@@ -1,0 +1,10 @@
+.DS_Store
+.vagrant/
+node_modules/
+keys/
+docs/graphics
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
