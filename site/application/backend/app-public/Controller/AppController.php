@@ -46,19 +46,19 @@ class AppController extends Controller {
 	            )
 	        ),
 	        'authorize' => array('Controller'), // Added this line
-	        'flash' => array(
-				'element' => 'alert',
-				'key' => 'auth',
-				'params' => array(
-					'plugin' => 'BoostCake',
-					'class' => 'alert-error'
-				)
-			),
+	  //       'flash' => array(
+			// 	'element' => 'alert',
+			// 	'key' => 'auth',
+			// 	'params' => array(
+			// 		'plugin' => 'BoostCake',
+			// 		'class' => 'alert-error'
+			// 	)
+			// ),
 	    ),
 
 	);
 
-	var $layout = 'bootstrap3';
+	// var $layout = 'bootstrap3';
 
 
 }
