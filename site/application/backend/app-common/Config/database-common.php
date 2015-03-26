@@ -3,6 +3,17 @@
 
 class DATABASE_CONFIG {
 
+	public $default = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => 'rootpass',
+		'database' => 'app',
+		'prefix' => '',
+		//'encoding' => 'utf8',
+	);
+
 	public $vagrant = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,

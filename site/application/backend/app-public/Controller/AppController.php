@@ -61,4 +61,10 @@ class AppController extends Controller {
 	// var $layout = 'bootstrap3';
 
 
+
+	public function isAuthorized() {
+		return true;
+	}
+
+
 }
