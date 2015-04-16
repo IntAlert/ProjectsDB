@@ -43,14 +43,14 @@ class Project extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)
-		// ,
-		// 'OwnerUser' => array(
-		// 	'className' => 'OwnerUser',
-		// 	'foreignKey' => 'owner_user_id',
-		// 	'conditions' => '',
-		// 	'fields' => '',
-		// 	'order' => ''
-		// )
+		,
+		'OwnerUser' => array(
+			'className' => 'User',
+			'foreignKey' => 'owner_user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 	);
 
 /**
@@ -71,7 +71,20 @@ class Project extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+		'Funding' => array(
+			'className' => 'Funding',
+			'foreignKey' => 'project_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => 'year ASC',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 	);
 
 
@@ -106,7 +119,31 @@ class Project extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
+		),
+		'Theme' => array(
+			'className' => 'Theme',
+			'joinTable' => 'projects_themes',
+			'foreignKey' => 'project_id',
+			'associationForeignKey' => 'theme_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
 		)
 	);
+
+
+	public $actsAs = array(
+		'AuditLog.Auditable'
+	);
+
+
+
+	public function search() {
+		
+	}
 
 }

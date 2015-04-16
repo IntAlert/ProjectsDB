@@ -60,8 +60,9 @@ class ProposalsController extends AppController {
 
 			if ($this->Proposal->save($this->request->data)) {
 
-				// if the save worked.. create a project to go with this.
-				$this->Proposal->Project->create(compact('owner_user_id'));
+				// if the save worked.. 
+				// create a project with the same data
+				$this->Proposal->Project->create($this->request->data['Proposal']);
 				$this->Proposal->Project->save();
 				$project_id = $this->Proposal->Project->id;
 
@@ -110,6 +111,7 @@ class ProposalsController extends AppController {
 		$themes = $this->Proposal->Theme->find('list');
 		$this->set(compact('programmes', 'projects', 'countries', 'themes'));
 	}
+
 
 /**
  * delete method

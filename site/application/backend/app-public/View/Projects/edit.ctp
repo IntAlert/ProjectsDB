@@ -11,8 +11,9 @@
 		echo $this->Form->input('owner_user_id');
 		echo $this->Form->input('start_date');
 		echo $this->Form->input('value');
-		echo $this->Form->input('Country');
+		echo $this->Form->input('Country', array('multiple' => 'checkbox'));
 		echo $this->Form->input('User');
+		echo $this->element('projects/contract');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -22,16 +23,6 @@
 	<ul>
 
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Project.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('Project.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Projects'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Statuses'), array('controller' => 'statuses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Status'), array('controller' => 'statuses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Programmes'), array('controller' => 'programmes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Programme'), array('controller' => 'programmes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Countries'), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Country'), array('controller' => 'countries', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Projectnotes'), array('controller' => 'projectnotes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Projectnote'), array('controller' => 'projectnotes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		
 	</ul>
 </div>

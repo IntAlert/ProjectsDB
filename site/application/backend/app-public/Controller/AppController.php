@@ -58,11 +58,18 @@ class AppController extends Controller {
 
 	);
 
+	public $uses = array('User');
+
 	// var $layout = 'bootstrap3';
 
 
+	public function beforeFilter() {
+		$this->Auth->allow();
+	}
 
-	public function isAuthorized() {
+
+
+	public function isAuthorized($user) {
 		return true;
 	}
 

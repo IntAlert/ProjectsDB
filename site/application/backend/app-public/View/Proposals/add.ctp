@@ -8,7 +8,8 @@
 		echo $this->Form->input('summary');
 		echo $this->Form->input('due_date');
 		echo $this->Form->input('donor');
-		echo $this->Form->input('liklihood', array('options' => array(
+		echo $this->Form->input('value');
+		echo $this->Form->input('likelihood', array('options' => array(
 			'high' => "High",
 			'medium' => "Medium", 
 			'low' => "Low", 
@@ -20,7 +21,7 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div class="actions">
+<!-- <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
@@ -35,3 +36,4 @@
 		<li><?php echo $this->Html->link(__('New Theme'), array('controller' => 'themes', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+ -->

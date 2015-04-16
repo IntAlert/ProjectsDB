@@ -5,7 +5,10 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
 
 
-	var $displayField = 'username';
+	public $virtualFields = array(
+	    // 'name' => 'CONCAT(User.first_name, " ", User.last_name)'
+	    'name' => 'username'
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -30,6 +33,13 @@ class User extends AppModel {
             )
         )
     );
+
+    public function findEmployeesList() {
+    	return $this->find('list', array(
+    		'fields' => array('id', 'username'),
+    		'conditions' => array('role' => 'employee')
+    	));
+    }
 
 
 	public function createEmptyUser() {

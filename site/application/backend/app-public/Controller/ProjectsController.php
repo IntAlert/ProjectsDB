@@ -22,8 +22,86 @@ class ProjectsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Project->recursive = 0;
+
+		// BUILD SEARCH CONDITIONS
+		$conditions = $joins = [];
+
+		// text search
+		if ($q = $this->request->query('q')) $conditions[] = array(
+			'Project.title LIKE' => '%' . trim($q) . '%',
+		);
+
+		// status_id
+		if ($status_id = $this->request->query('status_id')) $conditions[] = array(
+			'Project.status_id' => $status_id,
+		);
+
+		// programme_id
+		if ($programme_id = $this->request->query('programme_id')) $conditions[] = array(
+			'Project.programme_id' => $programme_id,
+		);
+
+		// owner_user_id
+		if ($owner_user_id = $this->request->query('owner_user_id')) $conditions[] = array(
+			'Project.owner_user_id' => $owner_user_id,
+		);
+
+		// value_from
+		if ($value_from = $this->request->query('value_from')) $conditions[] = array(
+			'Project.value >=' => $value_from,
+		);
+
+		// value_to
+		if ($value_to = $this->request->query('value_to')) $conditions[] = array(
+			'Project.value <=' => $value_to,
+		);
+
+		// theme_id (INNER JOIN METHOD)
+		if ($theme_id = $this->request->query('theme_id')) {
+			$joins[] = array(
+				'table' => 'projects_themes',
+	            'alias' => 'ProjectsTheme',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = ProjectsTheme.project_id',
+	                'ProjectsTheme.theme_id' => (int)$theme_id
+	            )
+	        );
+		}
+
+		// country_id (INNER JOIN METHOD)
+		if ($country_id = $this->request->query('country_id')) {
+			$joins[] = array(
+				'table' => 'countries_projects',
+	            'alias' => 'CountriesProject',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = CountriesProject.project_id',
+	                'CountriesProject.country_id' => (int)$country_id
+	            )
+	        );
+		}
+
+
+
+
+
+		$this->Paginator->settings = array(
+	        'joins' => $joins,
+	        'conditions' => $conditions,
+	        'limit' => 20,
+	    );
 		$this->set('projects', $this->Paginator->paginate());
+
+
+		// get search form data
+		$statuses = $this->Project->Status->findOrderedList();
+		$programmes = $this->Project->Programme->find('list');
+		$countries = $this->Project->Country->findActiveList();
+		$employees = $this->User->findEmployeesList();
+		$themes = $this->Project->Theme->find('list');
+
+		$this->set(compact('statuses', 'programmes', 'countries', 'employees', 'themes'));
 	}
 
 /**
@@ -58,8 +136,7 @@ class ProjectsController extends AppController {
 		}
 		$statuses = $this->Project->Status->find('list');
 		$programmes = $this->Project->Programme->find('list');
-		$countries = $this->Project->Country->find('list');
-		$countries = $this->Project->Country->find('list');
+		$countries = $this->Project->Country->findActiveList();
 		$users = $this->Project->User->find('list');
 		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users'));
 	}
@@ -90,8 +167,56 @@ class ProjectsController extends AppController {
 		$programmes = $this->Project->Programme->find('list');
 		$countries = $this->Project->Country->find('list');
 		$countries = $this->Project->Country->find('list');
-		$users = $this->Project->User->find('list');
+		$users = $this->User->find('list');
 		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users'));
+	}
+
+
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function convert($id = null) {
+		if (!$this->Project->exists($id)) {
+			throw new NotFoundException(__('Invalid project'));
+		}
+
+		// TODO: check that the proposal is in the right state
+
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Project->save($this->request->data)) {
+				$this->Session->setFlash(__('The proposal has been converted.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Project.' . $this->Project->primaryKey => $id));
+			$project = $this->Project->find('first', $options);;
+			$this->request->data = $project;
+		}
+		$statuses = $this->Project->Status->find('list', array(
+			'order' => array('sort_order'),
+			'conditions' => array(
+				'short_name' => array('funded', 'active', 'declined')
+			)
+		));
+		$countries = $this->Project->Country->findActiveList();
+		$users = $this->User->find('list');
+
+		$current_status = $project['Status'];
+
+		$this->set(compact(
+			'statuses',
+			 'programmes',
+			 'countries',
+			 'users',
+			 'current_status'
+		));
 	}
 
 /**

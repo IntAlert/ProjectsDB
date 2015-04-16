@@ -1,3 +1,103 @@
 nav ul {list-style: none; float:right;}
-nav ul li {display: inline;}
-nav ul li a { color:#fff; text-decoration: none;}
+nav ul li {float:left;}
+nav ul li a { color:#000; text-decoration: none; display: block; background:#fff; padding:1em;}
+
+
+/* Actions */
+div.actions {
+	/*width:19%;
+	padding:0;*/
+}
+.actions select {width:100%;}
+
+
+.projectnotes {
+	margin:2em 0;
+	max-width:500px;
+}
+.projectnotes ul {
+	list-style: none;
+	margin:0;
+}
+.projectnotes li {
+	background:#f3f3f3;
+	border:1px solid #eee;
+	padding:1em;
+	margin:1em 0;
+}
+
+/* Dashboard */
+
+section.dashboard {
+	float:left; 
+	padding:1em;
+	margin:1em;
+	border:3px solid #eee;
+	width:27%;
+}
+.dashboard-timespan {
+	float: left;
+	list-style: none;
+	margin:0;
+	height:40px;
+}
+
+.dashboard-timespan li {
+	float: left;
+	padding:0.5em;
+	margin:0;
+}
+.dashboard-timespan li.selected {
+	background:#eee;
+}
+.dashboard-timespan li a {
+	text-decoration: none;
+}
+
+.document-list {
+	list-style: none;
+	margin:0;
+}
+.document-list li { 
+	
+}
+
+.document-list li a { 
+	margin:2px;
+	display: block;
+	padding:1em;
+	background:#eee;
+	text-decoration: none;
+}
+
+.document-list li a:hover {
+	background:#ddd	;
+}
+
+
+.activity-feed {
+	list-style: none;
+	margin:1em;
+}
+.activity-feed li {
+	margin:1em 0;
+}
+.activity-feed img {
+	width:40px;
+	height:40px;
+	float:left;
+	margin-right: 10px;
+}
+
+.activity-feed p {
+	float:left;
+	width:240px;
+}
+
+
+/* Payment method */
+.contract {border:1px solid #ccc; padding:1em; margin:1em;}
+.contract .single-payments {display: none;}
+.contract .multiple-payments {display: none;}
+.template {display: none;}
+

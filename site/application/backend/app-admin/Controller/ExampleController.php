@@ -30,7 +30,6 @@ class ExampleController extends AppController {
 
 
         // get access token
-        $url = '';
         $data = array(
             'code' => $code,
             'grant_type' => 'authorization_code',

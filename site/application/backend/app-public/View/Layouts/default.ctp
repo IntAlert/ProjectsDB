@@ -24,6 +24,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<title>
 		ProjectsDB
 	</title>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -34,11 +36,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>ProjectsDB</h1>
+
+			<!-- <h1 style="float:right">ProjectsDB</h1> -->
+			<img src="/pdb/img/logo.png" style="height:40px; float:left; margin-bottom:1em;">
+
 		</div>
 		<nav>
 			<ul>
@@ -47,7 +53,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				</li>
 
 				<li>
-					<a href="/pdb/proposals/add">Create Proposal</a>
+					<a href="/pdb/proposals/add">Add Project</a>
 				</li>
 
 				<li>

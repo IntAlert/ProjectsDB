@@ -47,6 +47,13 @@
 			<?php echo h($proposal['Proposal']['donor']); ?>
 			&nbsp;
 		</dd>
+
+		<dt><?php echo __('Value'); ?></dt>
+		<dd>
+			<?php echo $this->Number->currency($proposal['Proposal']['value']); ?>
+			&nbsp;
+		</dd>
+
 		<dt><?php echo __('Likelihood'); ?></dt>
 		<dd>
 			<?php echo h($proposal['Proposal']['likelihood']); ?>
@@ -96,17 +103,14 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Proposal'), array('action' => 'edit', $proposal['Proposal']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Proposal'), array('action' => 'delete', $proposal['Proposal']['id']), array(), __('Are you sure you want to delete # %s?', $proposal['Proposal']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Proposals'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Proposal'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Programmes'), array('controller' => 'programmes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Programme'), array('controller' => 'programmes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Projects'), array('controller' => 'projects', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Project'), array('controller' => 'projects', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Countries'), array('controller' => 'countries', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Country'), array('controller' => 'countries', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Themes'), array('controller' => 'themes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Theme'), array('controller' => 'themes', 'action' => 'add')); ?> </li>
+
+
+		<li><?php echo $this->Html->link(__('Convert Proposal'), array(
+			'controller' => 'projects',
+			'action' => 'convert', 
+			$proposal['Project']['id']
+		)); ?> </li>
+		
 	</ul>
 </div>
 
