@@ -19,5 +19,18 @@ class ProjectnotesController extends AppController {
 		$this->set(compact('projectnote'));
 	}
 
+	function delete($projectnote_id) {
+		
+		// TODO: must be authed and must be note owner
+
+		if ($this->request->is('post')) {
+			
+			$projectnote = $this->Projectnote->softDelete($projectnote_id);
+
+		}
+
+		$this->set(compact('projectnote'));
+	}
+
 
 }

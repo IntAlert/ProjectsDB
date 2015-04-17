@@ -11,21 +11,6 @@ div.actions {
 .actions select {width:100%;}
 
 
-.projectnotes {
-	margin:2em 0;
-	max-width:500px;
-}
-.projectnotes ul {
-	list-style: none;
-	margin:0;
-}
-.projectnotes li {
-	background:#f3f3f3;
-	border:1px solid #eee;
-	padding:1em;
-	margin:1em 0;
-}
-
 /* Dashboard */
 
 section.dashboard {

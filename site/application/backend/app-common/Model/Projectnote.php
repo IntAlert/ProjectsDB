@@ -56,4 +56,10 @@ class Projectnote extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+	function softDelete($projectnote_id) {
+		$this->id = $projectnote_id;
+		return $this->saveField('deleted', true);
+	}
 }

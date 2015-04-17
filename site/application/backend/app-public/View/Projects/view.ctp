@@ -1,3 +1,4 @@
+<?php echo $this->Html->css('projects/view', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/view', array('inline' => false)); ?>
 
 <script>
@@ -65,7 +66,10 @@ var data = <?php echo json_encode($project); ?>;
 			</p>
 			<?php if ($projectnote['user_id'] === AuthComponent::user('id')): ?>
 
-				<a class="delete">X</a>
+			<a 
+				data-projectnote-id="<?php echo $projectnote['id']; ?>"
+				class="delete"
+			>Delete</a>
 
 			<?php endif; // ($projectnote['user_id'] === AuthComponent::user('id')): ?>
 		</li>

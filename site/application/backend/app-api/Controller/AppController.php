@@ -110,7 +110,7 @@ class AppController extends Controller {
 
 	public function afterFilter() {
 		// ensure responses are JSON
-		// $this->response->type('json');
+		$this->response->type('json');
 	}
 
 }

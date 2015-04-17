@@ -63,14 +63,8 @@ class Project extends AppModel {
 			'className' => 'Projectnote',
 			'foreignKey' => 'project_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'conditions' => array('Projectnote.deleted' => false),
+			'order' => array('created ASC'),
 		),
 		'Funding' => array(
 			'className' => 'Funding',

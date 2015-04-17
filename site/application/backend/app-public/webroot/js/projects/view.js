@@ -7,11 +7,7 @@ $(function(){
 
 		if(comment) {
 
-			// create the element
-			var li = $('<li>');
-			li.hide();
-			li.html('<p>' + comment + ' by <strong>me</strong></p>');
-			$('.projectnotes ul').append(li);
+			
 			
 			// post the new comment
 			$.post('/api/projectnotes/add', {
@@ -21,16 +17,67 @@ $(function(){
 					"content":comment
 				}
 
-			}, function(){
+			}, function(projectnote){
+
+				console.log(projectnote);
+
+				// create the element
+				var li = $('<li>');
+				li.hide();
+
+				// add comment and author
+				li.html('<p>' + projectnote.Projectnote.content + ' by <strong>me</strong></p>');
+
+				// add delete button
+				var $a = $('<a class="delete" href="#">Delete</a>');
+				$a.data('projectnote-id', projectnote.Projectnote.id);
+				li.append($a);
+
+				$('.projectnotes ul').append(li);
+
+				// reset the textarea
+				$('.projectnotes textarea').val('');
+
+
+
 				// fade it in the element to say it's been saved
 				li.fadeIn();
 			})
 
-			// reset the textarea
-			$('.projectnotes textarea').val('');
+			
 		}
 		
 		return false;
+	});
+
+
+	// Handle Project comment deletion
+	$(".projectnotes").on('click', '.delete', function(){
+
+		var msg = "Are you sure you want to delete this comment?";
+
+		if (confirm(msg) === false) return false;
+
+		// get project id
+		var projectnote_id = $(this).data('projectnote-id');
+
+		// get li
+		var li = $(this).parents('li');
+
+
+		// post the new comment
+		$.post('/api/projectnotes/delete/' + projectnote_id, function(){
+			
+			
+
+		})
+
+		// fade it in the element to say it's been saved
+		li.fadeOut();
+
+		return false;
+
+
 	})
 
 
