@@ -48,7 +48,7 @@ class Project extends AppModel {
 			'className' => 'User',
 			'foreignKey' => 'owner_user_id',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => array('id', 'username', 'name', 'first_name', 'last_name'),
 			'order' => ''
 		),
 	);
@@ -135,9 +135,30 @@ class Project extends AppModel {
 	);
 
 
+	function findRecentlyViewed($user_id, $limit = 10) {
 
-	public function search() {
-		
+		return $this->find('all', array(
+			'contain' => false,
+			'joins' => array(
+				array(
+					'table' => 'audits',
+		            'alias' => 'Audit',
+		            'type' => 'INNER',
+		            'conditions' => array(
+		                'Audit.model = "Project"',
+		                'Project.id = Audit.entity_id',
+		            ),
+
+		        ),
+			),
+			'order' => array('Audit.created DESC'),
+			'group' => array('Project.id'),
+			'limit' => $limit,
+		));
+
+
+
 	}
+
 
 }

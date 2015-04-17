@@ -52,9 +52,13 @@ class Projectnote extends AppModel {
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => array('id', 'username', 'name', 'first_name', 'last_name'),
 			'order' => ''
 		)
+	);
+
+	public $actsAs = array(
+		'AuditLog.Auditable'
 	);
 
 

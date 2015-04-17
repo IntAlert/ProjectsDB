@@ -121,7 +121,14 @@ class ProjectsController extends AppController {
 			'contain' => array('Projectnote.User', 'Status', 'Programme', 'OwnerUser'),
 			'conditions' => array('Project.' . $this->Project->primaryKey => $id),
 		);
-		$this->set('project', $this->Project->find('first', $options));
+		$project = $this->Project->find('first', $options);
+		$this->set('project', $project);
+
+
+
+
+		// AUDIT
+		$this->Audit->record("READ", "Project", $id, $project);
 	}
 
 /**
@@ -172,7 +179,7 @@ class ProjectsController extends AppController {
 		$statuses = $this->Project->Status->find('list');
 		$programmes = $this->Project->Programme->find('list');
 		$countries = $this->Project->Country->find('list');
-		$countries = $this->Project->Country->find('list');
+		$countries = $this->Project->Country->findActiveList();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		

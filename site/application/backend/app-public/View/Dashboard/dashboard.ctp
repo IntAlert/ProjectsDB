@@ -7,33 +7,16 @@
 <section class="dashboard recent " style="clear:both">
 	<h3>Your recently visited projects</h3>
 	<ul class="document-list">
-		<li>
-			<a href="#">Some project title</a>
-		</li>
 
-		<li>
-			<a href="#">Some project title</a>
-		</li>
 
+<?php foreach ($projectsRecentlyViewed as $project): ?>
 		<li>
-			<a href="#">Some project title</a>
+			<a href="/pdb/projects/edit/<?php echo $project['Project']['id']?>">
+				<?php echo $project['Project']['title']?>
+			</a>
 		</li>
+<?php endforeach; // ($projectsRecentlyViewed as $project): ?>
 
-		<li>
-			<a href="#">Some project title</a>
-		</li>
-
-		<li>
-			<a href="#">Some project title</a>
-		</li>
-
-		<li>
-			<a href="#">Some project title</a>
-		</li>
-
-		<li>
-			<a href="#">Some project title</a>
-		</li>
 	</ul>
 </section>
 

@@ -31,6 +31,13 @@ var data = <?php echo json_encode($project); ?>;
 			<?php echo h($project['Project']['start_date']); ?>
 			&nbsp;
 		</dd>
+
+		<dt><?php echo __('Finish Date'); ?></dt>
+		<dd>
+			<?php echo h($project['Project']['finish_date']); ?>
+			&nbsp;
+		</dd>
+
 		<dt><?php echo __('Value'); ?></dt>
 		<dd>
 			<?php echo $this->Number->currency($project['Project']['value'], 'GBP'); ?>
@@ -41,7 +48,7 @@ var data = <?php echo json_encode($project); ?>;
 			<?php echo $this->Time->nice($project['Project']['created']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
+		<dt><?php echo __('Last Modified'); ?></dt>
 		<dd>
 			<?php echo $this->Time->nice($project['Project']['modified']); ?>
 			&nbsp;

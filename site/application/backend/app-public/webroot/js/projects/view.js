@@ -73,7 +73,7 @@ $(function(){
 		})
 
 		// fade it in the element to say it's been saved
-		li.fadeOut();
+		li.slideUp();
 
 		return false;
 

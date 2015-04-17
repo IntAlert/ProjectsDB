@@ -55,7 +55,8 @@ class Country extends AppModel {
 
 	public function findActiveList() {
 		return $this->find('list', array(
-			'conditions' => array('active' => true)
+			'conditions' => array('active' => true),
+			'order' => array('sort_order ASC', 'name ASC'),
 		));
 	}
 
