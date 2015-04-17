@@ -42,7 +42,7 @@ require_once('../../app-common/Config/core-common.php');
  *
  */
 	Configure::write('Session', array(
-		'cookie' => 'ArgosFOFShareables',
+		'cookie' => 'IntAlertPDB',
 		'timeout' => 3600,
 		'cookieTimeout' => 3600,
 		'defaults' => 'database',
@@ -50,7 +50,7 @@ require_once('../../app-common/Config/core-common.php');
 
 
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
-$prefix = 'afof_shareables';
+$prefix = 'iapdb_';
 
 
 /**

@@ -105,28 +105,6 @@ class AppController extends Controller {
 
     public function beforeFilter() {
 
-
-    	// auto login load tester
-    	if(Configure::read('ENVIRONMENT') != "PRODUCTION" && ($this->request->data('loadtest') || $this->request->query('loadtest'))   ) {
-
-
-
-
-    	} else if ( !$this->Auth->user('id') ) {
-    		
-    		// if they are not logged in, create a user for them and log them in
-    		$user_id = $this->User->createEmptyUser();
-
-    		// log them in and mark as unauthed
-			$this->Auth->login(array(
-				'id' => $user_id,
-				'authed' => false,
-			));
-
-			// TODO: cache user_id in AppController to reduce calls to DB
-    	}
-
-
 		parent::beforeFilter();
 	}
 
@@ -134,16 +112,5 @@ class AppController extends Controller {
 		// ensure responses are JSON
 		// $this->response->type('json');
 	}
-
-	// Auth
-	// protected function _ensureFbLoggedIn() {
-        
- //        // if not logged in, 
- //        // throw a 403
- //        if ( !$this->Auth->user('authed') ) {
-
- //        	throw new ForbiddenException("You need to be facebook logged in to use this endpoint");
- //        }
- //    }
 
 }

@@ -115,7 +115,12 @@ class ProjectsController extends AppController {
 		if (!$this->Project->exists($id)) {
 			throw new NotFoundException(__('Invalid project'));
 		}
-		$options = array('conditions' => array('Project.' . $this->Project->primaryKey => $id));
+
+
+		$options = array(
+			'contain' => array('Projectnote.User', 'Status', 'Programme', 'OwnerUser'),
+			'conditions' => array('Project.' . $this->Project->primaryKey => $id),
+		);
 		$this->set('project', $this->Project->find('first', $options));
 	}
 
@@ -138,7 +143,8 @@ class ProjectsController extends AppController {
 		$programmes = $this->Project->Programme->find('list');
 		$countries = $this->Project->Country->findActiveList();
 		$users = $this->Project->User->find('list');
-		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users'));
+		$employees = $this->User->findEmployeesList();
+		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users', 'employees'));
 	}
 
 /**
@@ -168,7 +174,9 @@ class ProjectsController extends AppController {
 		$countries = $this->Project->Country->find('list');
 		$countries = $this->Project->Country->find('list');
 		$users = $this->User->find('list');
-		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users'));
+		$employees = $this->User->findEmployeesList();
+		
+		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users', 'employees'));
 	}
 
 

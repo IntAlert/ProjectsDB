@@ -21,7 +21,7 @@
 	<tr>
 		<!-- <td><?php echo h($project['Project']['id']); ?>&nbsp;</td> -->
 		<td><?php echo h($project['Project']['title']); ?>&nbsp;</td>
-		<td><?php echo $this->Number->currency($project['Project']['value']); ?>&nbsp;</td>
+		<td><?php echo $this->Number->currency($project['Project']['value'], 'GBP'); ?>&nbsp;</td>
 		<!-- <td>
 			<?php echo $this->Html->link($project['Status']['name'], array('controller' => 'statuses', 'action' => 'view', $project['Status']['id'])); ?>
 		</td>

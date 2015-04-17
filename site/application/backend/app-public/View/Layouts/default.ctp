@@ -26,6 +26,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+
+	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
+
+
 	<?php
 		echo $this->Html->meta('icon');
 

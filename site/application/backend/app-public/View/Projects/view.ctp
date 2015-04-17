@@ -1,3 +1,9 @@
+<?php echo $this->Html->script('projects/view', array('inline' => false)); ?>
+
+<script>
+var data = <?php echo json_encode($project); ?>;
+</script>
+
 <div class="projects view">
 <h2>Project - <?php echo h($project['Project']['title']); ?></h2>
 	<dl>
@@ -26,7 +32,7 @@
 		</dd>
 		<dt><?php echo __('Value'); ?></dt>
 		<dd>
-			<?php echo h($project['Project']['value']); ?>
+			<?php echo $this->Number->currency($project['Project']['value'], 'GBP'); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -43,33 +49,36 @@
 
 <div class="projectnotes">
 	<h3>Project Comments</h3>
+	
+		
+	
+
 	<ul>
+		<? foreach ($project['Projectnote'] as $projectnote):?>
 		<li>
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				<?php echo h($projectnote['content']); ?>
+				by
+				<strong>
+					<?php echo h($projectnote['User']['first_name']); ?>
+				</strong> 
 			</p>
+			<?php if ($projectnote['user_id'] === AuthComponent::user('id')): ?>
+
+				<a class="delete">X</a>
+
+			<?php endif; // ($projectnote['user_id'] === AuthComponent::user('id')): ?>
 		</li>
+		<? endforeach; // ($project['Projectnote'] as $projectnotes): ?>
+
 	</ul>
+
+	
 
 	<form method="post">
 		<textarea></textarea>
 		<input type="submit" value="Add comment">
 	</form>
-	<script type="text/javascript">
-	$('.projectnotes form').submit(function(){
-		var comment = $('.projectnotes textarea').val();
-
-		if(comment) {
-			var li = $('<li>');
-			li.html('<p>' + comment + '</p>');
-			$('.projectnotes ul').append(li);
-			$('.projectnotes textarea').val('');	
-		}
-		
-		return false;
-	})
-	</script>
 </div>
 
 

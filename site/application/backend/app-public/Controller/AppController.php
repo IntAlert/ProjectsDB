@@ -57,7 +57,7 @@ class AppController extends Controller {
 	    ),
 
 	);
-
+	
 	public $uses = array('User');
 
 	// var $layout = 'bootstrap3';

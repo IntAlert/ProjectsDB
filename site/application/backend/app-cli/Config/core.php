@@ -42,7 +42,7 @@ require_once('../../app-common/Config/core-common.php');
  *
  */
 	Configure::write('Session', array(
-		'cookie' => 'ArgosFOFShareables',
+		'cookie' => 'IntAlertPDB',
 		'timeout' => 3600,
 		'cookieTimeout' => 3600,
 		'defaults' => 'database',
