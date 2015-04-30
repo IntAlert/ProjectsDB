@@ -92,6 +92,73 @@ var data = <?php echo json_encode($project); ?>;
 	</form>
 </div>
 
+<h3>Contracts and Payments</h3>
+
+<div class="contracts">
+
+<?php if ( empty($project['Contract']) ): ?>
+	
+	<p>None</p>
+
+<?php else: // ( empty($project['Contract']) ): ?>
+
+	
+<?php foreach ($project['Contract'] as $contract): ?>
+	<div class="contract">
+		<h4><?php echo $contract['Donor']['name']; ?></h4>
+
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Date
+					</th>
+
+					<th>
+						Value
+					</th>
+
+					<th>
+						Received
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+<?php foreach ($contract['Payment'] as $payment): ?>
+				<tr>
+					<td>
+						<?php echo $this->Time->format(
+						  'F jS, Y',
+						  $payment['date']
+						); ?>
+					</td>
+					<td>
+						<?php echo $this->Number->currency(
+							$payment['value_donor_currency'],
+							$contract['Currency']['code']
+						); ?>
+
+						(<?php echo $this->Number->currency(
+							$payment['value_gbp'],
+							'GBP'
+						); ?>)
+						
+					</td>
+					<td>
+						<?php echo $payment['received'] ? 'Yes': 'No'; ?>
+					</td>
+				</tr>
+<?php endforeach; // ($project['Contract'] as $contract): ?>
+			</tbody>
+		</table>
+
+
+	</div>
+<?php endforeach; // ($project['Contract'] as $contract): ?>
+</div>
+
+
 
 
 <br><br><br>

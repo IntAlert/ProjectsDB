@@ -118,7 +118,15 @@ class ProjectsController extends AppController {
 
 
 		$options = array(
-			'contain' => array('Projectnote.User', 'Status', 'Programme', 'OwnerUser'),
+			'contain' => array(
+				'Contract.Donor',
+				'Contract.Currency',
+				'Contract.Payment',
+				'Projectnote.User',
+				'Status',
+				'Programme',
+				'OwnerUser'
+			),
 			'conditions' => array('Project.' . $this->Project->primaryKey => $id),
 		);
 		$project = $this->Project->find('first', $options);
@@ -162,28 +170,63 @@ class ProjectsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+
+
+
+
+
+// 		$project = $this->Project->find('first', array(
+// 			'contain' => array('Contract.Payment'),
+// 			'conditions' => array(
+// 				'Project.id' => 10
+// 			)
+// 		));
+
+// 		$project['Contract'][0]['Payment'][0]['value_gbp'] = rand(1,5);
+
+// 		$this->Project->saveAssociated($project, array('deep' => true));
+
+// 		debug($project);
+
+
+// die();
+// 			debug($this->Project->saveAssociated($this->request->data, array('deep' => true)));
+
+// 			die();
+
+
 		if (!$this->Project->exists($id)) {
 			throw new NotFoundException(__('Invalid project'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Project->save($this->request->data)) {
+
+			if ($this->Project->saveAssociated($this->request->data, array('deep' => true))) {
 				$this->Session->setFlash(__('The project has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+
+				
+				return $this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Project.' . $this->Project->primaryKey => $id));
+			$options = array(
+				'contain' => 'Contract.Payment',
+				'conditions' => array(
+					'Project.id' => $id
+				)
+			);
 			$this->request->data = $this->Project->find('first', $options);
 		}
 		$statuses = $this->Project->Status->find('list');
 		$programmes = $this->Project->Programme->find('list');
-		$countries = $this->Project->Country->find('list');
+		$currencies = $this->Currency->find('list');
+		$donors = $this->Donor->find('list');
+
 		$countries = $this->Project->Country->findActiveList();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users', 'employees'));
+		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users', 'employees', 'currencies', 'donors'));
 	}
 
 

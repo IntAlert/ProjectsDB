@@ -66,19 +66,15 @@ class Project extends AppModel {
 			'conditions' => array('Projectnote.deleted' => false),
 			'order' => array('created ASC'),
 		),
-		'Funding' => array(
-			'className' => 'Funding',
+
+		'Contract' => array(
+			'className' => 'Contract',
 			'foreignKey' => 'project_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => 'year ASC',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'dependent' => true,
+			'conditions' => array('Contract.deleted' => false),
+			'order' => array('created DESC'),
 		),
+
 	);
 
 

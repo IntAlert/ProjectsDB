@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $components = array(
-	    // 'DebugKit.Toolbar'
+	    'DebugKit.Toolbar',
 	    'Session',
 	    'Auth' => array(
 	    	'logoutRedirect' => array(
@@ -58,7 +58,7 @@ class AppController extends Controller {
 
 	);
 	
-	public $uses = array('User', 'Audit');
+	public $uses = array('User', 'Audit', 'Currency', 'Donor');
 
 	// var $layout = 'bootstrap3';
 

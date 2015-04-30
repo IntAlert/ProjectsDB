@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.41-0ubuntu0.12.04.1)
 # Database: app
-# Generation Time: 2015-03-19 15:22:29 +0000
+# Generation Time: 2015-04-30 09:57:52 +0000
 # ************************************************************
 
 
@@ -20,53 +20,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table cake_sessions
+# Dump of table payments
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `cake_sessions`;
+DROP TABLE IF EXISTS `payments`;
 
-CREATE TABLE `cake_sessions` (
-  `id` varchar(255) NOT NULL DEFAULT '',
-  `data` text,
-  `expires` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `cake_sessions` WRITE;
-/*!40000 ALTER TABLE `cake_sessions` DISABLE KEYS */;
-
-INSERT INTO `cake_sessions` (`id`, `data`, `expires`)
-VALUES
-	('u0mjcaf3c15u67p2s3ko5tnc20','Config|a:3:{s:9:\"userAgent\";s:32:\"02c9333c2bdf2ffb2de33ed0cf627988\";s:4:\"time\";i:1426994402;s:9:\"countdown\";i:10;}Message|a:1:{s:5:\"flash\";a:3:{s:7:\"message\";s:24:\"The user has been saved.\";s:7:\"element\";s:7:\"default\";s:6:\"params\";a:0:{}}}Auth|a:1:{s:4:\"User\";a:5:{s:2:\"id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:4:\"role\";s:5:\"admin\";s:7:\"created\";s:19:\"2015-03-19 15:19:40\";s:8:\"modified\";s:19:\"2015-03-19 15:19:40\";}}',1426994402);
-
-/*!40000 ALTER TABLE `cake_sessions` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table users
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
-
-CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `role` varchar(20) DEFAULT NULL,
+CREATE TABLE `payments` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) DEFAULT NULL,
+  `contract_id` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `value_donor_currency` float(11,2) DEFAULT NULL,
+  `value_gbp` float(11,2) DEFAULT NULL,
+  `received` tinyint(1) DEFAULT '0',
+  `deleted` tinyint(1) DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`)
-VALUES
-	(1,'admin','$2a$10$JZbLsEXMCB7eOHIrRxQ.buQ2OrnjB01..9oHRoR.1zlPp3PXzbukW','admin','2015-03-19 15:19:40','2015-03-19 15:19:40');
-
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 

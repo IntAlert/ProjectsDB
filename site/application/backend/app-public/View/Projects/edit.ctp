@@ -20,7 +20,7 @@
 		
 		
 		echo $this->Form->input('owner_user_id', array(
-			'label' => "Project Owner",
+			'label' => "Budget Holder",
 			'options' => $employees
 		));
 		echo $this->Form->input('start_date');
@@ -41,7 +41,7 @@
 		</div>
 	
 	<?php
-		echo $this->element('projects/contract');
+		echo $this->element('projects/edit/contract');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
