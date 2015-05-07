@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Projects Controller
  *
@@ -34,6 +35,11 @@ class ProjectsController extends AppController {
 		// status_id
 		if ($status_id = $this->request->query('status_id')) $conditions[] = array(
 			'Project.status_id' => $status_id,
+		);
+
+		// likelihood_id
+		if ($likelihood_id = $this->request->query('likelihood_id')) $conditions[] = array(
+			'Project.likelihood_id' => $status_id,
 		);
 
 		// programme_id
@@ -90,18 +96,20 @@ class ProjectsController extends AppController {
 	        'joins' => $joins,
 	        'conditions' => $conditions,
 	        'limit' => 20,
+	        'order' => array('Project.modified' => 'DESC'),
 	    );
 		$this->set('projects', $this->Paginator->paginate());
 
 
 		// get search form data
 		$statuses = $this->Project->Status->findOrderedList();
+		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
 		$countries = $this->Project->Country->findActiveList();
 		$employees = $this->User->findEmployeesList();
 		$themes = $this->Project->Theme->find('list');
 
-		$this->set(compact('statuses', 'programmes', 'countries', 'employees', 'themes'));
+		$this->set(compact('statuses', 'likelihoods', 'programmes', 'countries', 'employees', 'themes'));
 	}
 
 /**
@@ -116,14 +124,15 @@ class ProjectsController extends AppController {
 			throw new NotFoundException(__('Invalid project'));
 		}
 
-
 		$options = array(
 			'contain' => array(
+				'CofinancedByProject',
 				'Contract.Donor',
 				'Contract.Currency',
 				'Contract.Payment',
 				'Projectnote.User',
 				'Status',
+				'Likelihood',
 				'Programme',
 				'OwnerUser'
 			),
@@ -147,19 +156,30 @@ class ProjectsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Project->create();
-			if ($this->Project->save($this->request->data)) {
+			if ($this->Project->saveComplete($this->request->data)) {
+				
 				$this->Session->setFlash(__('The project has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $this->Project->id));
+
 			} else {
 				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
 			}
 		}
-		$statuses = $this->Project->Status->find('list');
+		
+
+		$statuses = $this->Project->Status->findOrderedList();
+		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
+		$currencies = $this->Currency->find('list');
+		$donors = $this->Donor->find('list');
+
 		$countries = $this->Project->Country->findActiveList();
-		$users = $this->Project->User->find('list');
+		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
-		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users', 'employees'));
+		
+		$this->set(compact('statuses', 'likelihoods', 'programmes', 'countries', 'countries', 'users', 'employees', 'currencies', 'donors'));
+
+
 	}
 
 /**
@@ -172,8 +192,10 @@ class ProjectsController extends AppController {
 	public function edit($id = null) {
 
 
+// unset($this->request->data['Country']);
+// debug($this->request->data);
 
-
+// die();
 
 // 		$project = $this->Project->find('first', array(
 // 			'contain' => array('Contract.Payment'),
@@ -200,7 +222,7 @@ class ProjectsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 
-			if ($this->Project->saveAssociated($this->request->data, array('deep' => true))) {
+			if ($this->Project->saveComplete($this->request->data)) {
 				$this->Session->setFlash(__('The project has been saved.'));
 
 				
@@ -217,7 +239,8 @@ class ProjectsController extends AppController {
 			);
 			$this->request->data = $this->Project->find('first', $options);
 		}
-		$statuses = $this->Project->Status->find('list');
+		$statuses = $this->Project->Status->findOrderedList();
+		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->find('list');
@@ -226,7 +249,7 @@ class ProjectsController extends AppController {
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('statuses', 'programmes', 'countries', 'countries', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('statuses', 'likelihoods', 'programmes', 'countries', 'countries', 'users', 'employees', 'currencies', 'donors'));
 	}
 
 

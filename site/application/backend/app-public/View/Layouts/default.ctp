@@ -58,11 +58,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				</li>
 
 				<li>
-					<a href="/pdb/proposals/add">Add Project</a>
+					<a href="/pdb/projects/add">Add Project</a>
 				</li>
 
 				<li>
 					<a href="/pdb/projects">Search Projects</a>
+				</li>
+
+				<li>
+					<a href="/pdb/payments/pipeline">MAC Pipeline</a>
 				</li>
 
 				

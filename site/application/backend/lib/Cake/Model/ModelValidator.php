@@ -206,6 +206,8 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		$model = $this->getModel();
 		$options += array('atomic' => true, 'deep' => false);
 		$model->validationErrors = $validationErrors = $return = array();
+		if (!$data) debug($model);
+
 		foreach ($data as $key => &$record) {
 			if ($options['deep']) {
 				$validates = $model->validateAssociated($record, $options);

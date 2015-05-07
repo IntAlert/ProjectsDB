@@ -11,7 +11,7 @@
 			<!-- <th><?php echo $this->Paginator->sort('owner_user_id'); ?></th> -->
 			<!-- <th><?php echo $this->Paginator->sort('start_date'); ?></th> -->
 			<th><?php echo $this->Paginator->sort('value'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
+			<th><?php echo $this->Paginator->sort('start_date'); ?></th>
 			<!-- <th><?php echo $this->Paginator->sort('modified'); ?></th> -->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -21,7 +21,7 @@
 	<tr>
 		<!-- <td><?php echo h($project['Project']['id']); ?>&nbsp;</td> -->
 		<td><?php echo h($project['Project']['title']); ?>&nbsp;</td>
-		<td><?php echo $this->Number->currency($project['Project']['value'], 'GBP'); ?>&nbsp;</td>
+		<td><?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>&nbsp;</td>
 		<!-- <td>
 			<?php echo $this->Html->link($project['Status']['name'], array('controller' => 'statuses', 'action' => 'view', $project['Status']['id'])); ?>
 		</td>
@@ -31,7 +31,11 @@
 		
 		<!-- <td><?php echo h($project['Project']['summary']); ?>&nbsp;</td> -->
 		<!-- <td><?php echo h($project['Project']['owner_user_id']); ?>&nbsp;</td> -->
-		<td><?php echo h($project['Project']['start_date']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Time->format(
+			  'F jS, Y',
+			  $project['Project']['start_date']
+			); ?>
 		
 		<!-- <td><?php echo h($project['Project']['created']); ?>&nbsp;</td> -->
 		<!-- <td><?php echo h($project['Project']['modified']); ?>&nbsp;</td> -->

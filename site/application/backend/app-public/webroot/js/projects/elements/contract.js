@@ -39,7 +39,7 @@ $(function(){
 
 		var paymentTr = $(this).parents('tr');
 
-		deleteContract(paymentTr);
+		deletePayment(paymentTr);
 
 		return false;
 	});
@@ -109,7 +109,7 @@ function deletePayment(paymentTr) {
 	paymentTr.fadeOut();
 }
 
-function deleteContract() {
+function deleteContract(contractDiv) {
 	// set contract and all payments as deleted
 	var deletedInputs = contractDiv.find('input.deleted');
 	deletedInputs.val(1);

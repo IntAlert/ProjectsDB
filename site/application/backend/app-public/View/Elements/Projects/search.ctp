@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('projects/search', array('inline' => false)); ?>
+<?php echo $this->Html->script('projects/elements/search', array('inline' => false)); ?>
 
 
 <div class="project-search">
@@ -23,6 +23,12 @@
 				'value' => $this->request->query('status_id'),
 			));
 
+			echo $this->Form->input('status_id', array(
+				'empty' => '--- Select Likelihood ---',
+				'options' => $likelihoods,
+				'value' => $this->request->query('likelihood_id'),
+			));
+
 			echo $this->Form->input('programme_id', array(
 				'empty' => '--- Select Programme ---',
 				'options' => $programmes,
@@ -31,8 +37,8 @@
 
 			
 			echo $this->Form->input('owner_user_id', array(
-				'label' => 'Owner',
-				'empty' => '--- Select Owner ---',
+				'label' => 'Budget Holder',
+				'empty' => '--- Select Budget Holder ---',
 				'options' => $employees,
 				'value' => $this->request->query('owner_user_id'),
 			));
@@ -72,7 +78,7 @@
 		<a class="reset" href="#">Reset Form</a>
 
 		
-	<?php echo $this->Form->end(__('Submit')); ?>
+	<?php echo $this->Form->end(__('Search Projects')); ?>
 
 	
 	</div>

@@ -36,6 +36,13 @@ class Project extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'Likelihood' => array(
+			'className' => 'Likelihood',
+			'foreignKey' => 'likelihood_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Programme' => array(
 			'className' => 'Programme',
 			'foreignKey' => 'programme_id',
@@ -50,6 +57,12 @@ class Project extends AppModel {
 			'conditions' => '',
 			'fields' => array('id', 'username', 'name', 'first_name', 'last_name'),
 			'order' => ''
+		),
+		'CofinancesProject' => array(
+			'className' => 'Project',
+			'foreignKey' => 'cofinances_project_id',
+			'dependent' => false,
+			'conditions' => array('CofinancesProject.deleted' => false),
 		),
 	);
 
@@ -73,6 +86,13 @@ class Project extends AppModel {
 			'dependent' => true,
 			'conditions' => array('Contract.deleted' => false),
 			'order' => array('created DESC'),
+		),
+
+		'CofinancedByProject' => array(
+			'className' => 'Project',
+			'foreignKey' => 'cofinances_project_id',
+			'dependent' => false,
+			'conditions' => array('CofinancedByProject.deleted' => false),
 		),
 
 	);
@@ -154,6 +174,23 @@ class Project extends AppModel {
 
 
 
+	}
+
+	function saveComplete($data) {
+
+		// dynamically calculate value sourced at contract level
+		$value_sourced = 0;
+		foreach ($data['Contract'] as $contract):
+			foreach ($contract['Payment'] as $payment):
+				$value_sourced += $payment['value_gbp'];
+			endforeach; // ($contract['Payment'] as $payment):
+		endforeach; // ($data['Contract'] as $contract):
+
+		$data['Project']['value_sourced'] = $value_sourced;
+
+
+
+		return $this->saveAssociated($data, array('deep' => true, 'validate' => false));
 	}
 
 

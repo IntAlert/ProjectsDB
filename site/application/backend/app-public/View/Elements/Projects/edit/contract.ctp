@@ -15,7 +15,7 @@ $project = $this->request->data;
 
 
 <div class="contracts">
-
+<?php if (isset($project['Contract'])): ?>
 <?php foreach ($project['Contract'] as $contract): ?>
 
 
@@ -46,6 +46,8 @@ $project = $this->request->data;
 					<td>
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_id', array(
 							'label' => false,
+							'empty' => '---- Please Select ----',
+							'value' => $contract['donor_id'],
 							'options' => $donors,
 						)); ?>
 					</td>
@@ -56,6 +58,7 @@ $project = $this->request->data;
 							'label' => false,
 							'type' => 'select',
 							'empty' => '---- Please Select ----',
+							'value' => $contract['currency_id'],
 							'options' => $currencies,
 						)); ?>
 
@@ -185,7 +188,7 @@ $project = $this->request->data;
 
 
 <?php endforeach; // ($project['Contract'] as $contract): ?>
-
+<?php endif; // (isset($project['Contract'])): ?>
 
 
 </div>
@@ -218,13 +221,14 @@ $project = $this->request->data;
 					<td>
 						<?php echo $this->Form->input('Contract.{contract_id}.donor_id', array(
 							'label' => false,
+							'empty' => '---- Please Select ----',
 							'options' => $donors,
 						)); ?>
 					</td>
 
 					<td>
 
-						<?php echo $this->Form->input('Contract.{contract_id}.donor_currency', array(
+						<?php echo $this->Form->input('Contract.{contract_id}.currency_id', array(
 							'label' => false,
 							'type' => 'select',
 							'empty' => '---- Please Select ----',

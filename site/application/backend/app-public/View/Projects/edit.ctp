@@ -17,6 +17,11 @@
 			'legend' => 'Status',
 			'type' => 'radio',
 		));
+
+		echo $this->Form->input('likelihood_id', array(
+			'legend' => 'Likelihood',
+			'type' => 'radio',
+		));
 		
 		
 		echo $this->Form->input('owner_user_id', array(
@@ -26,7 +31,7 @@
 		echo $this->Form->input('start_date');
 		echo $this->Form->input('finish_date');
 		
-		echo $this->Form->input('value', array('label' => 'Value (GBP)'));
+		echo $this->Form->input('value_required', array('label' => 'Value Required (GBP)'));
 		?>
 
 		<div class="country-selector clearfix">
@@ -44,7 +49,22 @@
 		echo $this->element('projects/edit/contract');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+
+
+	<div class="country-selector clearfix">
+
+		<h2>Co-financing Projects</h2>
+		
+		<?php 
+			echo $this->Form->input('CofinancedByProject', array(
+				'label' => false,
+				'multiple' => 'checkbox'
+			));
+		?>
+	</div>
+
+
+<?php echo $this->Form->end(__('Save Project')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
