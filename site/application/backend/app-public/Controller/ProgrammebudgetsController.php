@@ -67,23 +67,33 @@ class ProgrammebudgetsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->Programmebudget->exists($id)) {
+	public function edit($year = null) {
+
+		if (is_null($year)) {
 			throw new NotFoundException(__('Invalid programmebudget'));
 		}
+
+		// get programme budgets for this year, if any
+		$programmeBudgetsThisYear = $this->Programmebudget->find('list', array(
+			'fields' => array('programme_id', 'value_gbp'),
+			'conditions' => array(
+				'Programmebudget.year' => $year
+			),
+		));
+		
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Programmebudget->save($this->request->data)) {
-				$this->Session->setFlash(__('The programmebudget has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+			if ($this->Programmebudget->saveAnnualBudgets($year, $this->request->data)) {
+				$this->Session->setFlash(__('The Programme Budget has been saved.'));
+				return $this->redirect(array('action' => 'edit', $year));
 			} else {
-				$this->Session->setFlash(__('The programmebudget could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The Programme Budget could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Programmebudget.' . $this->Programmebudget->primaryKey => $id));
-			$this->request->data = $this->Programmebudget->find('first', $options);
+			// $options = array('conditions' => array('Programmebudget.' . $this->Programmebudget->primaryKey => $id));
+			// $this->request->data = $this->Programmebudget->find('first', $options);
 		}
 		$programmes = $this->Programmebudget->Programme->find('list');
-		$this->set(compact('programmes'));
+		$this->set(compact('year', 'programmes', 'programmeBudgetsThisYear'));
 	}
 
 /**

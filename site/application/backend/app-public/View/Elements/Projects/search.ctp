@@ -1,4 +1,5 @@
 <?php echo $this->Html->script('projects/elements/search', array('inline' => false)); ?>
+<?php echo $this->Html->css('projects/elements/search', array('inline' => false)); ?>
 
 
 <div class="project-search">
@@ -75,10 +76,17 @@
 		</fieldset>
 
 
-		<a class="reset" href="#">Reset Form</a>
-
 		
-	<?php echo $this->Form->end(__('Search Projects')); ?>
+
+	<div class="submit">
+		<ul>
+			
+			<li><input type="submit" value="Search Projects"></li>
+			<li><a class="reset btn" href="#">Reset Form</a></li>
+			
+		</ul>
+	</div>
+
 
 	
 	</div>

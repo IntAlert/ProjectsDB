@@ -1,0 +1,11 @@
+table.pipeline td.pipeline {
+	background:#ddd;
+}
+
+table.pipeline td.confirmed-highly-likely {
+	background:#eee;
+}
+
+table.pipeline td.last-year {
+	background:#fff;
+}

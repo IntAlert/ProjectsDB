@@ -11,7 +11,7 @@
 
 <?php foreach ($projectsRecentlyViewed as $project): ?>
 		<li>
-			<a href="/pdb/projects/edit/<?php echo $project['Project']['id']?>">
+			<a href="/pdb/projects/view/<?php echo $project['Project']['id']?>">
 				<?php echo $project['Project']['title']?>
 			</a>
 		</li>

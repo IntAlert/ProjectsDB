@@ -289,7 +289,10 @@ $project = $this->request->data;
 						</td>
 
 						<td>
-							<?php echo $this->Form->input('Contract.{contract_id}.Payment.{payment_id}.received', array('label' => false)); ?>
+							<?php echo $this->Form->input('Contract.{contract_id}.Payment.{payment_id}.received', array(
+								'label' => false,
+								'type' => 'checkbox',
+							)); ?>
 						</td>
 						<td>
 							<a class="btn btn-payment-delete" href="#">

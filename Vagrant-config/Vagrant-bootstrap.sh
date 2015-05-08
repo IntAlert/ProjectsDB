@@ -13,7 +13,8 @@ sudo a2enmod rewrite
 sudo apt-get install -y php5 libapache2-mod-php5 php5-mcrypt php5-curl php5-mysql
 
 # virtual hosts
-sudo ln -s /srv/config/sites-available/local.conf /etc/apache2/sites-available/local.conf
+
+sudo ln -sf /srv/Vagrant-config/sites-available/local.conf /etc/apache2/sites-available/local.conf
 sudo a2ensite local.conf
 sudo a2dissite 000-default
 
@@ -34,11 +35,19 @@ sudo apt-get -y install mysql-server-5.5
 # sudo pear channel-discover pear.firephp.org
 # sudo pear install firephp/FirePHPCore
 
+### AWS CLI
+sudo apt-get install -y python-pip
+sudo pip install awscli
+
+### AWS EB
+sudo apt-get install -y git
+sudo pip install awsebcli
+
 # reload apache service
 sudo service apache2 reload
 
 # export variables for any SSH sessions
-sudo cp /srv/config/setEnvVars.sh /etc/profile.d/
+sudo cp /srv/Vagrant-config/setEnvVars.sh /etc/profile.d/
 source /etc/profile.d/setEnvVars.sh
 
 # create database only once
@@ -48,10 +57,10 @@ mysql -uroot -prootpass -e "create schema if not exists app"
 # /vagrant_data/application/backend/app/Console/cake schema create -y
 
 # add test data
-mysql -uroot -prootpass --database app < /srv/config/sql/empty.sql
+mysql -uroot -prootpass --database app < /srv/Vagrant-config/sql/empty.sql
 
 # (re)load crontab
-crontab /srv/config/crons/crontab
+crontab /srv/Vagrant-config/crons/crontab
 
 # start again for good measure
 sudo apachectl restart

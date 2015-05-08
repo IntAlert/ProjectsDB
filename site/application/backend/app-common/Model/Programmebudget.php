@@ -24,4 +24,28 @@ class Programmebudget extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+	public function saveAnnualBudgets($year, $data) {
+
+		
+
+		// build data
+		$dataToSave = array();
+		foreach ($data['Programmebudget'] as $programme_id => $programmebudget) {
+			$dataToSave[] = array(
+				'year' => $year,
+				'programme_id' => $programme_id,
+				'value_gbp' => $programmebudget['value_gbp'],
+			);
+		}
+
+		// delete 
+		$this->deleteAll(array(
+			'Programmebudget.year' => $year
+		));
+
+		// save many
+		return $this->saveMany($dataToSave);
+	}
 }

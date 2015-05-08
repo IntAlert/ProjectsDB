@@ -4,7 +4,6 @@
 // Load Environment
 require_once(__DIR__ . '/environment.php');
 
-
 /**
  * This is core configuration file.
  *
