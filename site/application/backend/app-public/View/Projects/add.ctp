@@ -46,7 +46,7 @@
 		</div>
 	
 	<?php
-		echo $this->element('projects/edit/contract');
+		echo $this->element('Projects/edit/contract');
 	?>
 	</fieldset>
 

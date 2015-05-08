@@ -63,7 +63,7 @@
 </div>
 <div class="actions">
 
-	<?php echo $this->element('projects/search'); ?>
+	<?php echo $this->element('Projects/search'); ?>
 
 
 </div>
