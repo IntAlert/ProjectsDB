@@ -31,7 +31,8 @@ class ContractsController extends AppController {
 			'order' => array('Contractbudget.year' => 'ASC'),
 		));
 		
-		$firstYear = (int) $firstBudgetYear['Contractbudget']['year'];
+		$firstYear = (int) isset($firstBudgetYear['Contractbudget']) ?
+			$firstBudgetYear['Contractbudget']['year'] : date("Y");
 
 
 		// get selected year
