@@ -66,7 +66,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				</li>
 
 				<li>
-					<a href="/pdb/payments/pipeline">MAC Pipeline</a>
+					<a href="/pdb/contracts/pipeline">MAC Pipeline</a>
 				</li>
 
 				
