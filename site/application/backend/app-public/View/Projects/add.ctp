@@ -9,9 +9,23 @@
 		echo $this->Form->input('id');
 
 		echo $this->Form->input('title', array('type' => 'text'));
-		echo $this->Form->input('summary');
 		
+?>
 
+<div class="input textarea">
+	<label for="ProjectSummary">Summary</label>
+	
+	<p>Please include key information about your project, e.g. project goal, objectives, key activities, a brief summary of who the project is aimed at and where it will take place</p>
+
+	<?php echo $this->Form->input('summary', array(
+			'label' => false,
+			'div' => false,
+			'placeholder' => "e.g. project goal, objectives, key activities, a brief summary of who the project is aimed at and where it will take place"
+		)); ?>
+
+</div>
+		
+<?
 		echo $this->Form->input('programme_id');
 		echo $this->Form->input('status_id', array(
 			'legend' => 'Status',
@@ -46,22 +60,10 @@
 		</div>
 	
 	<?php
-		echo $this->element('Projects/edit/contract');
+		echo $this->element('Projects/edit/contract-with-budgets');
 	?>
 	</fieldset>
 
-
-	<div class="country-selector clearfix">
-
-		<h2>Co-financing Projects</h2>
-		
-		<?php 
-			echo $this->Form->input('CofinancedByProject', array(
-				'label' => false,
-				'multiple' => 'checkbox'
-			));
-		?>
-	</div>
 
 
 <?php echo $this->Form->end(__('Save Project')); ?>

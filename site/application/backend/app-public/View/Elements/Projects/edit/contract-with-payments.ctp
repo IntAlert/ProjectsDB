@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('projects/elements/contract');
+<?php echo $this->Html->script('projects/elements/contract-with-payments');
 
 // for convenience
 $project = $this->request->data;

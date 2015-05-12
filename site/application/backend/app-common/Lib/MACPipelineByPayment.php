@@ -6,13 +6,13 @@ class MACPipeline {
 
 	private $year;
 
-	private $contractBudgets = array();
+	private $payments = array();
 	private $totals = array();
 
-	function __construct($year, $programmeBudgets, $contractBudgets) {
+	function __construct($year, $programmeBudgets, $payments) {
 		$this->year = $year;
 		$this->programmeBudgets = $programmeBudgets;
-		$this->contractBudgets = $contractBudgets;
+		$this->payments = $payments;
 		$this->asOfDate = new DateTime();
 	}
 
@@ -28,21 +28,23 @@ class MACPipeline {
 		$total = 0;
 		
 
-		foreach ($this->contractBudgets as $contractBudget) {
+		foreach ($this->payments as $payment) {
 
 			// relevant project?
 			$programme_ok = 
 				($programme_id == 'all')
-				|| ($programme_id == $contractBudget['Contract']['Project']['programme_id']);
-			$likelihood_ok = array_search($contractBudget['Contract']['Project']['Likelihood']['short_name'], $likelihoods) !== FALSE;
+				|| ($programme_id == $payment['Contract']['Project']['programme_id']);
+			$likelihood_ok = array_search($payment['Contract']['Project']['Likelihood']['short_name'], $likelihoods) !== FALSE;
 
 			if (!$programme_ok || !$likelihood_ok) {
 				continue;
 			}
+			
+			$paymentDate = new DateTime($payment['Payment']['date']);
 
-			if ($contractBudget['Contractbudget']['year'] == $this->getYear()) {
+			if ($paymentDate->format('Y') == $this->getYear()) {
 
-				$total += $contractBudget['Contractbudget']['value_gbp'];
+				$total += $payment['Payment']['value_gbp'];
 
 			}
 

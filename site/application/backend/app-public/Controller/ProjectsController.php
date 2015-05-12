@@ -126,10 +126,9 @@ class ProjectsController extends AppController {
 
 		$options = array(
 			'contain' => array(
-				'CofinancedByProject',
 				'Contract.Donor',
 				'Contract.Currency',
-				'Contract.Payment',
+				'Contract.Contractbudget',
 				'Projectnote.User',
 				'Status',
 				'Likelihood',
@@ -223,6 +222,8 @@ class ProjectsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			if ($this->Project->saveComplete($this->request->data)) {
+				// debug($this->request->data);
+				// die();
 				$this->Session->setFlash(__('The project has been saved.'));
 
 				
@@ -232,7 +233,7 @@ class ProjectsController extends AppController {
 			}
 		} else {
 			$options = array(
-				'contain' => 'Contract.Payment',
+				'contain' => 'Contract.Contractbudget',
 				'conditions' => array(
 					'Project.id' => $id
 				)

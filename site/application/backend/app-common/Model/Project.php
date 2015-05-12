@@ -58,12 +58,6 @@ class Project extends AppModel {
 			'fields' => array('id', 'username', 'name', 'first_name', 'last_name'),
 			'order' => ''
 		),
-		'CofinancesProject' => array(
-			'className' => 'Project',
-			'foreignKey' => 'cofinances_project_id',
-			'dependent' => false,
-			'conditions' => array('CofinancesProject.deleted' => false),
-		),
 	);
 
 /**
@@ -86,13 +80,6 @@ class Project extends AppModel {
 			'dependent' => true,
 			'conditions' => array('Contract.deleted' => false),
 			'order' => array('created DESC'),
-		),
-
-		'CofinancedByProject' => array(
-			'className' => 'Project',
-			'foreignKey' => 'cofinances_project_id',
-			'dependent' => false,
-			'conditions' => array('CofinancedByProject.deleted' => false),
 		),
 
 	);
@@ -179,18 +166,40 @@ class Project extends AppModel {
 	function saveComplete($data) {
 
 		// dynamically calculate value sourced at contract level
-		$value_sourced = 0;
-		foreach ($data['Contract'] as $contract):
-			foreach ($contract['Payment'] as $payment):
-				$value_sourced += $payment['value_gbp'];
-			endforeach; // ($contract['Payment'] as $payment):
-		endforeach; // ($data['Contract'] as $contract):
+		// $value_sourced = 0;
+		// foreach ($data['Contract'] as $contract):
+		// 	foreach ($contract['Payment'] as $payment):
+		// 		$value_sourced += $payment['value_gbp'];
+		// 	endforeach; // ($contract['Payment'] as $payment):
+		// endforeach; // ($data['Contract'] as $contract):
 
-		$data['Project']['value_sourced'] = $value_sourced;
+		// $data['Project']['value_sourced'] = $value_sourced;
 
 
+		// delete all existing contractbudgets before a save,
+		// this is a bit dangerous
+		foreach ($data['Contract'] as & $contract) {
 
-		return $this->saveAssociated($data, array('deep' => true, 'validate' => false));
+			if (isset($contract['id'])) {
+
+				// delete any contractbudgets in the database
+				$this->Contract->Contractbudget->deleteAll(array(
+					'contract_id' => $contract['id']
+				));
+
+				// delete any contractbudgets in the submitted data (for deleted contracts)
+				if ($contract['deleted']) {
+					$contract['Contractbudget'] = array();
+				}
+
+			}
+			
+		}
+		// debug($data);
+		// die();
+
+
+		return $this->saveAssociated($data, array('deep' => true));
 	}
 
 

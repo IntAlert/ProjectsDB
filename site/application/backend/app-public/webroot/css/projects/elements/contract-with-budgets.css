@@ -1,0 +1,15 @@
+.contract {
+	border:1px solid #ccc; 
+	padding:1em; 
+	margin:1em;
+}
+
+/* hide delete links except first and last */
+.contract .btn-contractbudget-delete {
+	visibility:hidden;
+}
+
+.contract .contractbudget:first-child .btn-contractbudget-delete,
+.contract .contractbudget:last-child .btn-contractbudget-delete {
+	visibility:visible;
+}

@@ -4,17 +4,10 @@
 
 <?php
 
-// calculate cofinancing additions
-$cofinancing_total = 0;
-foreach ($project['CofinancedByProject'] as $cofinancedByProject):
-	$cofinancing_total += $cofinancedByProject['value_sourced'];
-endforeach; // ($project['CofinancedByProject'] as $cofinancedByProject):
-
 // calculate shortfall
 $shortfall = 
 	+ $project['Project']['value_required'] 
-	- $project['Project']['value_sourced']
-	- $cofinancing_total;
+	- $project['Project']['value_sourced'];
 
 
 
@@ -66,7 +59,7 @@ var data = <?php echo json_encode($project); ?>;
 		</dd>
 
 
-		<dt><?php echo __('Value (GBP)'); ?></dt>
+		<dt><?php echo __(' Total value (GBP)'); ?></dt>
 		<dd>
 			<?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>
 			&nbsp;
@@ -77,12 +70,6 @@ var data = <?php echo json_encode($project); ?>;
 			<?php echo $this->Number->currency(
 			$project['Project']['value_sourced']
 			, 'GBP'); ?>
-			&nbsp;
-		</dd>
-
-		<dt><?php echo __('Cofinancing (GBP)'); ?></dt>
-		<dd>
-			<?php echo $this->Number->currency($cofinancing_total, 'GBP'); ?>
 			&nbsp;
 		</dd>
 
@@ -106,7 +93,7 @@ var data = <?php echo json_encode($project); ?>;
 <?php endif; // (trim($project['Project']['summary'])): ?>
 
 
-<h3>Contracts and Payments</h3>
+<h3>Contracts and Annual Budgets</h3>
 
 <div class="contracts block">
 
@@ -125,42 +112,38 @@ var data = <?php echo json_encode($project); ?>;
 			<thead>
 				<tr>
 					<th>
-						Date
+						Year
 					</th>
 
 					<th>
-						Value
+						Value (GBP)
 					</th>
 
 					<th>
-						Received
+						Value (Donor Currency)
 					</th>
 				</tr>
 			</thead>
 
 			<tbody>
-<?php foreach ($contract['Payment'] as $payment): ?>
+<?php foreach ($contract['Contractbudget'] as $contractbudget): ?>
 				<tr>
 					<td>
-						<?php echo $this->Time->format(
-						  'F jS, Y',
-						  $payment['date']
-						); ?>
+						<?php echo $contractbudget['year']; ?>
 					</td>
 					<td>
 						<?php echo $this->Number->currency(
-							$payment['value_donor_currency'],
+							$contractbudget['value_donor_currency'],
 							$contract['Currency']['code']
 						); ?>
+					</td>
+					<td>
 
 						(<?php echo $this->Number->currency(
-							$payment['value_gbp'],
+							$contractbudget['value_gbp'],
 							'GBP'
 						); ?>)
 						
-					</td>
-					<td>
-						<?php echo $payment['received'] ? 'Yes': 'No'; ?>
 					</td>
 				</tr>
 <?php endforeach; // ($project['Contract'] as $contract): ?>
@@ -175,42 +158,6 @@ var data = <?php echo json_encode($project); ?>;
 
 <?php endif; // ( empty($project['Contract']) ): ?>
 
-
-<div class="co-financing block">
-
-	<h3>Co-financing projects</h3>
-
-
-	<table>
-		<thead>
-			<tr>
-				<th>Project name</th>
-				<th>Value Sourced</th>
-				<td></td>
-			</tr>
-		</thead>
-	
-
-		<tbody>
-	<?php foreach ($project['CofinancedByProject'] as $cofinancedByProject): ?>
-		
-		<tr>
-			<td>
-				<?php echo h($cofinancedByProject['title']); ?>
-			</td>
-			<td>
-				<?php echo $this->Number->currency($cofinancedByProject['value_sourced'], 'GBP'); ?>
-			</td>
-			<td>
-				<?php echo $this->Html->link(__('View'), array('action' => 'view', $cofinancedByProject['id'])); ?>
-			</td>
-		</tr>
-
-
-	<?php endforeach; // ($project['CofinancedByProject'] as $project): ?>
-		</tbody>
-	</table>
-</div>
 
 <div class="projectnotes block">
 	<h3>Project Comments</h3>
