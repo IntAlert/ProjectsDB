@@ -44,14 +44,20 @@ class ContractsController extends AppController {
 
 		// get payments
 		$budgetsThisYear = $this->Contract->Contractbudget->find('all', array(
-			'contain' => array('Contract.Project.Likelihood'),
+			'contain' => array(
+				'Contract.Project.Likelihood',
+				'Contract.Project.Status',
+			),
 			'conditions' => array(
 				'year' => $selectedYear
 			)
 		));
 
 		$budgetsLastYear = $this->Contract->Contractbudget->find('all', array(
-			'contain' => array('Contract.Project.Likelihood'),
+			'contain' => array(
+				'Contract.Project.Likelihood',
+				'Contract.Project.Status',
+			),
 			'conditions' => array(
 				'year' => $selectedYear - 1
 			)

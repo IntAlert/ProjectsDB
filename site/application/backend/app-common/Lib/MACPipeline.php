@@ -39,7 +39,7 @@ class MACPipeline {
 				|| ($programme_id == $contractBudget['Contract']['Project']['programme_id']);
 
 			// relevant likelihood
-			$contractLikelihood_ok = array_search($contractLikelihood, $likelihoods) !== FALSE;
+			$likelihood_ok = array_search($contractLikelihood, $likelihoods) !== FALSE;
 
 			// ignore if project is rejected
 			$project_ok = ($projectStatus != 'rejected');
