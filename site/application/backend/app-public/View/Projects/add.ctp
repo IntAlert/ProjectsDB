@@ -1,3 +1,4 @@
+<?php echo $this->Html->script('projects/edit', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/edit', array('inline' => false)); ?>
 <div class="projects form">
 
@@ -29,12 +30,13 @@
 		echo $this->Form->input('programme_id');
 		echo $this->Form->input('status_id', array(
 			'legend' => 'Status',
-			'type' => 'radio',
 		));
 
 		echo $this->Form->input('likelihood_id', array(
 			'legend' => 'Likelihood',
 			'type' => 'radio',
+			'class' => 'likelihood-option',
+			'div' => 'input radio likelihood',
 		));
 		
 		
@@ -42,9 +44,37 @@
 			'label' => "Budget Holder",
 			'options' => $employees
 		));
-		echo $this->Form->input('start_date');
-		echo $this->Form->input('finish_date');
 		
+?>
+
+		<!-- PROJECT TIMESPAN -->
+
+<?
+
+		echo $this->Form->input('start_date', array(
+			'type' => 'hidden',
+		));
+		echo $this->Form->input('finish_date', array(
+			'type' => 'hidden',
+		));
+
+?>
+
+	<div class="timespan">
+		<h3>Project Timespan</h3>
+		<div class="start">
+			<h4>Project Start</h4>
+			<div class="datepicker-placeholder"></div>
+		</div>
+
+		<div class="finish">
+			<h4>Project Finish</h4>
+			<div class="datepicker-placeholder"></div>
+		</div>
+	</div>
+
+
+		<?
 		echo $this->Form->input('value_required', array('label' => 'Value Required (GBP)'));
 		?>
 

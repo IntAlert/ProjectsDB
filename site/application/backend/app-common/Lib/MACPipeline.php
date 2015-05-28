@@ -30,13 +30,21 @@ class MACPipeline {
 
 		foreach ($this->contractBudgets as $contractBudget) {
 
+			$projectStatus = $contractBudget['Contract']['Project']['Status']['short_name'];
+			$contractLikelihood = $contractBudget['Contract']['Project']['Likelihood']['short_name'];
+
 			// relevant project?
 			$programme_ok = 
 				($programme_id == 'all')
 				|| ($programme_id == $contractBudget['Contract']['Project']['programme_id']);
-			$likelihood_ok = array_search($contractBudget['Contract']['Project']['Likelihood']['short_name'], $likelihoods) !== FALSE;
 
-			if (!$programme_ok || !$likelihood_ok) {
+			// relevant likelihood
+			$contractLikelihood_ok = array_search($contractLikelihood, $likelihoods) !== FALSE;
+
+			// ignore if project is rejected
+			$project_ok = ($projectStatus != 'rejected');
+
+			if (!$programme_ok || !$likelihood_ok || !$project_ok) {
 				continue;
 			}
 

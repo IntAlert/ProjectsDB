@@ -26,6 +26,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/pdb/js/plugins/word-and-character-counter.js"></script>
+
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/hot-sneaks/jquery-ui.css">
 
 
 	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
@@ -55,6 +63,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<ul>
 				<li>
 					<a href="/pdb/dashboard/dashboard">Dashboard</a>
+				</li>
+
+				<li>
+					<a href="/pdb/donors">Donors</a>
 				</li>
 
 				<li>

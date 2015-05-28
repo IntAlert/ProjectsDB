@@ -2,3 +2,12 @@
 	float:left;
 	clear:none;
 }
+
+
+
+/*Project timespan*/
+.timespan .start,
+.timespan .finish {float:left; width:40%; clear:none;}
+.timespan h4 {text-align: center;}
+.timespan .ui-datepicker {margin:0 auto;}
+.ui-datepicker .ui-datepicker-title {padding:0;}
