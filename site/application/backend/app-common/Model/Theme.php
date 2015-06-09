@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Country Model
+ * Theme Model
  *
  * @property Project $Project
  * @property Proposal $Proposal
  */
-class Country extends AppModel {
+class Theme extends AppModel {
 
 /**
  * Display field
@@ -26,8 +26,8 @@ class Country extends AppModel {
 	public $hasAndBelongsToMany = array(
 		'Project' => array(
 			'className' => 'Project',
-			'joinTable' => 'countries_projects',
-			'foreignKey' => 'country_id',
+			'joinTable' => 'projects_themes',
+			'foreignKey' => 'theme_id',
 			'associationForeignKey' => 'project_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
@@ -39,8 +39,8 @@ class Country extends AppModel {
 		),
 		'Proposal' => array(
 			'className' => 'Proposal',
-			'joinTable' => 'countries_proposals',
-			'foreignKey' => 'country_id',
+			'joinTable' => 'proposals_themes',
+			'foreignKey' => 'theme_id',
 			'associationForeignKey' => 'proposal_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
@@ -52,11 +52,9 @@ class Country extends AppModel {
 		)
 	);
 
-
-	public function findActiveList() {
+	public function findOrderedList() {
 		return $this->find('list', array(
-			'conditions' => array('active' => true),
-			'order' => array('sort_order ASC', 'name ASC'),
+			'order' => array('sort_order ASC')
 		));
 	}
 

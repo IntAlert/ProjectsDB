@@ -126,3 +126,4 @@ CakeLog::config('error', array(
 
 // Load libraries
 App::uses('MACPipeline', 'Lib');
+App::uses('MACPipelineByProgramme', 'Lib');

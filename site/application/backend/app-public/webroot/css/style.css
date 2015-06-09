@@ -1,6 +1,10 @@
+#header {margin-bottom: 1em;}
 nav ul {list-style: none; float:right;}
 nav ul li {float:left;}
 nav ul li a { color:#000; text-decoration: none; display: block; background:#fff; padding:1em;}
+
+section	{margin: 1em 0 2em;}
+
 
 
 /* Actions */

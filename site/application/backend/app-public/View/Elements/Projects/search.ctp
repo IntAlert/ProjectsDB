@@ -45,10 +45,10 @@
 			));
 			
 			
-			echo $this->Form->input('country_id', array(
-				'empty' => '--- Select Country ---',
-				'options' => $countries,
-				'value' => $this->request->query('country_id'),
+			echo $this->Form->input('territory_id', array(
+				'empty' => '--- Select Territory ---',
+				'options' => $territories,
+				'value' => $this->request->query('territory_id'),
 			));
 
 			echo $this->Form->input('theme_id', array(

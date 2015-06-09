@@ -10,6 +10,18 @@ $shortfall =
 	- $project['Project']['value_sourced'];
 
 
+// create array of country names
+$territory_names = [];
+foreach($project['Territory'] as $territory) {
+	array_push($territory_names, $territory['name']);
+}
+
+// create array of theme names
+$theme_names = [];
+foreach($project['Theme'] as $theme) {
+	array_push($theme_names, $theme['name']);
+}
+
 
 
 
@@ -41,6 +53,26 @@ var data = <?php echo json_encode($project); ?>;
 		<dt><?php echo __('Likelihood'); ?></dt>
 		<dd>
 			<?php echo h($project['Likelihood']['name']); ?>
+		</dd>
+
+		<dt><?php echo __('Territory/ies'); ?></dt>
+		<dd>
+			<?php 
+
+			if (count($territory_names)) echo implode(', ', $territory_names);
+			else echo "None"
+
+			?>
+		</dd>
+
+		<dt><?php echo __('Theme(s)'); ?></dt>
+		<dd>
+			<?php 
+
+			if (count($theme_names)) echo implode(', ', $theme_names);
+			else echo "None"
+
+			?>
 		</dd>
 		
 		

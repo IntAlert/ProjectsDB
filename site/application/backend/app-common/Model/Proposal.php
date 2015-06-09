@@ -55,11 +55,11 @@ class Proposal extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Country' => array(
-			'className' => 'Country',
-			'joinTable' => 'countries_proposals',
+		'Territory' => array(
+			'className' => 'Territory',
+			'joinTable' => 'territories_proposals',
 			'foreignKey' => 'proposal_id',
-			'associationForeignKey' => 'country_id',
+			'associationForeignKey' => 'territory_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',

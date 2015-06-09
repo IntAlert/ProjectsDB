@@ -1,16 +1,12 @@
 <?php echo $this->Html->css('contracts/pipeline', array('inline' => false)); ?>
 
 <?php
-	
-	// build year options
-	$years = array();
-	for ($year=$firstYear; $year <= $thisYear; $year++) {
-		$years[$year] = $year;
-	}
 
 	// create pipelines
 	$pipelineThisYear = new MACPipeline($selectedYear, $programmeBudgetsThisYear, $budgetsThisYear);
 	$pipelineLastYear = new MACPipeline($selectedYear - 1, $programmeBudgetsLastYear, $budgetsLastYear);
+
+	
 
 	$this->Html->script('contracts/pipeline', array('inline' => false));
 
@@ -21,15 +17,7 @@
 
 ?>
 
-<form>
 
-<?php echo $this->Form->input('selectedYear', array(
-	'type' => 'select',
-	'options' => $years,
-	'value' => $selectedYear,
-)); ?>
-
-</form>
 
 <!-- Budget Warning -->
 <?php if (count($programmeBudgetsThisYear) < count($programmesList)): ?>
@@ -45,6 +33,19 @@
 	<a href="/pdb/programmebudgets/edit/<?php echo $selectedYear - 1; ?>">Click here to update budgets for this year</a>.
 </div>
 <?php endif; // (count($programmeBudgetsThisYear) == 0): ?>
+
+
+
+<?php echo $this->element('programmes/pipeline-nav'); ?>
+
+<h2>
+	Summary
+
+	<?php echo $selectedYear; ?>
+</h2>
+
+
+
 
 <table class="table pipeline">
 
@@ -242,41 +243,4 @@
 
 </table>
 
-<!--
-<table>
 
-	<thead>
-		<tr>
-			<th colspan="5">
-				Africa
-			</th>
-
-			<th colspan="3">
-				2015 Budget
-			</th>
-
-			<th colspan="2">
-				
-			</th>
-
-		</tr>
-
-		<tr>
-			<td colspan="5"></td>
-			<td colspan="3">
-				2015 Budget
-			</td>
-			<td colspan="2">
-				
-			</td>
-		</tr>
-
-	</thead>
-
-
-
-
-
-
-</table>
--->

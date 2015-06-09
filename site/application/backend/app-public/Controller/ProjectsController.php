@@ -75,15 +75,15 @@ class ProjectsController extends AppController {
 	        );
 		}
 
-		// country_id (INNER JOIN METHOD)
-		if ($country_id = $this->request->query('country_id')) {
+		// territory_id (INNER JOIN METHOD)
+		if ($territory_id = $this->request->query('territory_id')) {
 			$joins[] = array(
-				'table' => 'countries_projects',
-	            'alias' => 'CountriesProject',
+				'table' => 'territories_projects',
+	            'alias' => 'TerritoriesProject',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Project.id = CountriesProject.project_id',
-	                'CountriesProject.country_id' => (int)$country_id
+	                'Project.id = TerritoriesProject.project_id',
+	                'TerritoriesProject.territory_id' => (int)$territory_id
 	            )
 	        );
 		}
@@ -105,11 +105,11 @@ class ProjectsController extends AppController {
 		$statuses = $this->Project->Status->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
-		$countries = $this->Project->Country->findActiveList();
+		$territories = $this->Project->Territory->findActiveList();
 		$employees = $this->User->findEmployeesList();
 		$themes = $this->Project->Theme->find('list');
 
-		$this->set(compact('statuses', 'likelihoods', 'programmes', 'countries', 'employees', 'themes'));
+		$this->set(compact('statuses', 'likelihoods', 'programmes', 'territories', 'employees', 'themes'));
 	}
 
 /**
@@ -131,9 +131,11 @@ class ProjectsController extends AppController {
 				'Contract.Contractbudget',
 				'Projectnote.User',
 				'Status',
+				'Theme',
 				'Likelihood',
 				'Programme',
-				'OwnerUser'
+				'OwnerUser',
+				'Territory',
 			),
 			'conditions' => array('Project.' . $this->Project->primaryKey => $id),
 		);
@@ -167,16 +169,17 @@ class ProjectsController extends AppController {
 		
 
 		$statuses = $this->Project->Status->findOrderedList();
+		$themes = $this->Project->Theme->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->find('list');
 
-		$countries = $this->Project->Country->findActiveList();
+		$territories = $this->Project->Territory->findActiveList();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('statuses', 'likelihoods', 'programmes', 'countries', 'countries', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('statuses', 'themes', 'likelihoods', 'programmes', 'territories', 'users', 'employees', 'currencies', 'donors'));
 
 
 	}
@@ -189,31 +192,6 @@ class ProjectsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-
-
-// unset($this->request->data['Country']);
-// debug($this->request->data);
-
-// die();
-
-// 		$project = $this->Project->find('first', array(
-// 			'contain' => array('Contract.Payment'),
-// 			'conditions' => array(
-// 				'Project.id' => 10
-// 			)
-// 		));
-
-// 		$project['Contract'][0]['Payment'][0]['value_gbp'] = rand(1,5);
-
-// 		$this->Project->saveAssociated($project, array('deep' => true));
-
-// 		debug($project);
-
-
-// die();
-// 			debug($this->Project->saveAssociated($this->request->data, array('deep' => true)));
-
-// 			die();
 
 
 		if (!$this->Project->exists($id)) {
@@ -241,16 +219,17 @@ class ProjectsController extends AppController {
 			$this->request->data = $this->Project->find('first', $options);
 		}
 		$statuses = $this->Project->Status->findOrderedList();
+		$themes = $this->Project->Theme->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->find('list');
 
-		$countries = $this->Project->Country->findActiveList();
+		$territories = $this->Project->Territory->findActiveList();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('statuses', 'likelihoods', 'programmes', 'countries', 'countries', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('statuses', 'themes', 'likelihoods', 'programmes', 'territories', 'users', 'employees', 'currencies', 'donors'));
 	}
 
 
@@ -287,7 +266,7 @@ class ProjectsController extends AppController {
 				'short_name' => array('funded', 'active', 'declined')
 			)
 		));
-		$countries = $this->Project->Country->findActiveList();
+		$territories = $this->Project->Territory->findActiveList();
 		$users = $this->User->find('list');
 
 		$current_status = $project['Status'];
@@ -295,7 +274,7 @@ class ProjectsController extends AppController {
 		$this->set(compact(
 			'statuses',
 			 'programmes',
-			 'countries',
+			 'territories',
 			 'users',
 			 'current_status'
 		));

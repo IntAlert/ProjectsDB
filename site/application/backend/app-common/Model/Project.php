@@ -91,11 +91,11 @@ class Project extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Country' => array(
-			'className' => 'Country',
-			'joinTable' => 'countries_projects',
+		'Territory' => array(
+			'className' => 'Territory',
+			'joinTable' => 'territories_projects',
 			'foreignKey' => 'project_id',
-			'associationForeignKey' => 'country_id',
+			'associationForeignKey' => 'territory_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',

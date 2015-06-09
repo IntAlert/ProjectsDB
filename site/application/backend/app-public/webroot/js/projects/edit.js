@@ -68,9 +68,12 @@ $(function(){
 
     // Summary: limit word count
     $("#ProjectSummary").counter({
-	    type: 'word',
-	    goal: 100
-	});
+      type: 'word',
+      goal: 200
+    });
+
+    // Summary: WYSIWYG
+    // $("#test").wysiwyg();
 
   
 	

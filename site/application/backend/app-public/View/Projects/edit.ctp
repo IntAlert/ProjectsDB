@@ -11,6 +11,7 @@
 
 		echo $this->Form->input('title', array('type' => 'text'));
 
+
 ?>
 
 
@@ -32,8 +33,9 @@
 
 
 
-<?
 
+<?
+		echo $this->Form->input('fund_code');
 		echo $this->Form->input('programme_id');
 		echo $this->Form->input('status_id', array(
 			'legend' => 'Status',
@@ -94,11 +96,25 @@
 echo $this->Form->input('value_required', array('label' => 'Total value (GBP)'));
 ?>
 
+
+		<!-- Territories -->
+		<div class="territory-selector clearfix">
+
+			<h2>Territories</h2>
+			<?php 
+				echo $this->Form->input('Territory', array(
+					'label' => false,
+					'multiple' => 'checkbox'
+				));
+			?>
+		</div>
+
+		<!-- Themes -->
 		<div class="country-selector clearfix">
 
-			<h2>Countries</h2>
+			<h2>Themes</h2>
 			<?php 
-				echo $this->Form->input('Country', array(
+				echo $this->Form->input('Theme', array(
 					'label' => false,
 					'multiple' => 'checkbox'
 				));

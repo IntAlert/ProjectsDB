@@ -25,15 +25,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		ProjectsDB
 	</title>
 
+	<!-- JS: Libraries -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<!-- JS: Plugins -->
 	<script type="text/javascript" src="/pdb/js/plugins/word-and-character-counter.js"></script>
+	<!--
+	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
+	
 
-
-
-
-
+	<!-- CSS: Libraries -->
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/hot-sneaks/jquery-ui.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+	
 
 
 	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
@@ -53,7 +59,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </head>
 <body>
 	<div id="container">
-		<div id="header">
+		<div id="header" class="clearfix">
 
 			<!-- <h1 style="float:right">ProjectsDB</h1> -->
 			<img src="/pdb/img/logo.png" style="height:40px; float:left; margin-bottom:1em;">
@@ -70,6 +76,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				</li>
 
 				<li>
+					<a href="/pdb/territories">Territories</a>
+				</li>
+
+				<li>
 					<a href="/pdb/projects/add">Add Project</a>
 				</li>
 
@@ -78,7 +88,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				</li>
 
 				<li>
-					<a href="/pdb/contracts/pipeline">MAC Pipeline</a>
+					<a href="/pdb/programmes/pipelineSummary">MAC Pipeline</a>
 				</li>
 
 				
