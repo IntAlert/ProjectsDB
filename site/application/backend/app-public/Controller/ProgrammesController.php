@@ -21,13 +21,15 @@ class ProgrammesController extends AppController {
 		if (is_null($selectedYear)) $selectedYear = $thisYear;
 
 		// determine first payment year
-		$firstBudgetYear = $this->Programme->Project->Contract->Contractbudget->find('first', array(
-			'fields' => array("year"),
-			'order' => array('Contractbudget.year' => 'ASC'),
+		$firstProjectYear = $this->Programme->Project->find('first', array(
+			'contain' => false,
+			'fields' => array("YEAR(start_date)"),
+			'order' => array('Project.start_date' => 'ASC'),
 		));
+
 		
-		$firstYear = (int) isset($firstBudgetYear['Contractbudget']) ?
-			$firstBudgetYear['Contractbudget']['year'] : date("Y");
+		$firstYear = (int) isset($firstProjectYear[0]) ?
+			$firstProjectYear[0]['YEAR(start_date)'] : date("Y");
 
 
 		// get payments
@@ -98,13 +100,16 @@ class ProgrammesController extends AppController {
 		if (is_null($selectedYear)) $selectedYear = $thisYear;
 
 		// determine first payment year
-		$firstBudgetYear = $this->Programme->Project->Contract->Contractbudget->find('first', array(
-			'fields' => array("year"),
-			'order' => array('Contractbudget.year' => 'ASC'),
+		$firstProjectYear = $this->Programme->Project->find('first', array(
+			'contain' => false,
+			'fields' => array("YEAR(start_date)"),
+			'order' => array('Project.start_date' => 'ASC'),
 		));
+
 		
-		$firstYear = (int) isset($firstBudgetYear['Contractbudget']) ?
-			$firstBudgetYear['Contractbudget']['year'] : date("Y");
+		$firstYear = (int) isset($firstProjectYear[0]) ?
+			$firstProjectYear[0]['YEAR(start_date)'] : date("Y");
+
 
 		// get programmes
 		$programmesList = $this->Programme->find('list', array(
