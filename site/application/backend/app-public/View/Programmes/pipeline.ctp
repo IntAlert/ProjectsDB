@@ -9,7 +9,7 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 
 ?>
 
-<?php echo $this->element('programmes/pipeline-nav'); ?>
+<?php echo $this->element('Programmes/pipeline-nav'); ?>
 
 <div class="pipeline-container">
 	<h2>

@@ -32,7 +32,7 @@
 
 
 
-<?php echo $this->element('programmes/pipeline-nav'); ?>
+<?php echo $this->element('Programmes/pipeline-nav'); ?>
 
 <h2>
 	Summary

@@ -27,8 +27,8 @@ class MACPipeline {
 		
 		$total = 0;
 		
-
 		foreach ($this->contractBudgets as $contractBudget) {
+
 
 			$projectStatus = $contractBudget['Contract']['Project']['Status']['short_name'];
 			$contractLikelihood = $contractBudget['Contract']['Project']['Likelihood']['short_name'];
