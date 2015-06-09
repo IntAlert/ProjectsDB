@@ -6,10 +6,6 @@
 	$pipelineThisYear = new MACPipeline($selectedYear, $programmeBudgetsThisYear, $budgetsThisYear);
 	$pipelineLastYear = new MACPipeline($selectedYear - 1, $programmeBudgetsLastYear, $budgetsLastYear);
 
-	
-
-	$this->Html->script('contracts/pipeline', array('inline' => false));
-
 	// get dates for convenience
 	$now = new DateTime();
 	$thisTimeLastYear = clone $now;

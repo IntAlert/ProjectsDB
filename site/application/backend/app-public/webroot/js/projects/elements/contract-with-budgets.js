@@ -90,7 +90,6 @@ function createContract() {
 		var inputName = $(this).attr('name');
 		var newName = inputName.replace('{contract_id}', "new-contract-"+new_contract_id);
 		$(this).attr('name', newName);
-		
 	});
 
 	// remove payment template
@@ -132,17 +131,14 @@ function updateContractEarliestLatestYears(contractDiv) {
 	$(contractDiv).find('.contractbudget').each(function(){
 		var year = $(this).find('input.year').val();
 
-		if (earliestYear == null || year < earliestYear) {
+		if (!earliestYear == null || year < earliestYear) {
 			earliestYear = year;
 		}
 
-		if (latestYear == null || year > latestYear) {
+		if (!latestYear == null || year > latestYear) {
 			latestYear = year;
 		}
 	});
-
-	console.log(earliestYear);
-	console.log(latestYear);
 
 	// update contract
 	$(contractDiv).data('contractbudget-earliest-year', earliestYear);
@@ -158,7 +154,6 @@ function deleteContract(contractDiv) {
 	// HIDE
 	contractDiv.slideUp(function(){
 
-		
 		// if this a contract created in this session (i.e. not already in the DB),
 		// don't bother saving anything to the database
 		// delete all the fields
@@ -186,11 +181,13 @@ function createContractBudget(contractDiv, beforeAfter) {
 
 	// get new year, update contract data
 	if ( !earliestYear ) { // don't test for latest year as they'll both be null or both be not null
-		var newYear = +$("#ProjectStartDateYear").val();
+		var startDate = $( ".timespan .start .datepicker-placeholder" ).datepicker('getDate');
+	console.log(startDate);
+		var newYear = +startDate.getFullYear();
 	} else if (beforeAfter == 'before') {
 		var newYear = earliestYear - 1;
 	} else {
-		var newYear = + latestYear + 1;
+		var newYear = +latestYear + 1;
 	}
 
 

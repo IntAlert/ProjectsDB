@@ -89,3 +89,24 @@ section.dashboard {
 /* Payment */
 .template {display: none;}
 
+/*Pipeline*/
+.pipeline-nav {
+	float:left;
+	width:20%;
+	border-right:1px solid #eee;
+	padding-right:1em;
+	margin-right:1em;
+}
+.pipeline-nav ul {
+	margin:0;
+}
+.pipeline-nav li {
+	display: block;
+	width:100%;
+}
+
+.pipeline-container {
+	float:left;
+	width:70%;
+	margin-top:1em;
+}
