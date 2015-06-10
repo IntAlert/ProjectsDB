@@ -97,7 +97,7 @@ echo $this->Form->input('value_required', array('label' => 'Total project value 
 ?>
 
 		<div class="total-contracts-value">
-			<label>Total Contract Value</label>
+			<label>Total Contract(s) Value</label>
 			&pound;<span class="value_gbp"></span>
 		</div>
 

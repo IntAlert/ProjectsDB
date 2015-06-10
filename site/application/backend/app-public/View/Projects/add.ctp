@@ -79,6 +79,16 @@
 		echo $this->Form->input('value_required', array('label' => 'Value Required (GBP)'));
 		?>
 
+		<div class="total-contracts-value">
+			<label>Total Contract(s) Value</label>
+			&pound;<span class="value_gbp"></span>
+		</div>
+
+		<div class="shortfall">
+			<label>Shortfall</label>
+			&pound;<span class="value_gbp"></span>
+		</div>
+
 		<!-- Territories -->
 		<div class="territory-selector clearfix">
 
