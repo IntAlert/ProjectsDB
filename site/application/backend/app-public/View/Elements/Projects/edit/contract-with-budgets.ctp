@@ -111,6 +111,8 @@ endif; //(count($project['Contract'])):
 				</tr>
 
 
+
+
 			</tbody>
 		</table>
 		
@@ -136,6 +138,9 @@ endif; //(count($project['Contract'])):
 
 						<th>
 							<!-- controls -->
+							<a class="btn btn-contractbudget-add-before" href="#">
+								Add year
+							</a>
 						</th>
 
 
@@ -166,6 +171,7 @@ endif; //(count($project['Contract'])):
 							<?php echo $this->Form->input('Contract.'.$contract['id'].'.Contractbudget.'.$contractbudget['id'].'.value_donor_currency', array(
 								'value' => $contractbudget['value_donor_currency'],
 								'label' => false,
+								'class' => 'value_donor_currency',
 							)); ?>
 						</td>
 
@@ -173,6 +179,7 @@ endif; //(count($project['Contract'])):
 							<?php echo $this->Form->input('Contract.'.$contract['id'].'.Contractbudget.'.$contractbudget['id'].'.value_gbp', array(
 								'value' => $contractbudget['value_gbp'],
 								'label' => false,
+								'class' => 'value_gbp',
 							)); ?>
 						</td>
 
@@ -195,15 +202,30 @@ endif; //(count($project['Contract'])):
 
 
 				</tbody>
+
+				<tfoot>
+					<tr>
+					<td>
+						Total
+					</td>
+					<td class="total_value_donor_currency">
+						
+					</td>
+					<td class="total_value_gbp">
+						
+					</td>
+					<td>
+						<a class="btn btn-contractbudget-add-after" href="#">
+							Add year
+						</a>
+					</td>
+				</tr>
+				</tfoot>
 			</table>
 
-			<a class="btn btn-contractbudget-add-before" href="#">
-				Add year (before)
-			</a>
+			
 
-			<a class="btn btn-contractbudget-add-after" href="#">
-				Add year (after)
-			</a>
+			
 
 		</div> <!-- End payments -->
 
@@ -311,6 +333,9 @@ endif; //(count($project['Contract'])):
 
 						<th>
 							<!-- controls -->
+							<a class="btn btn-contractbudget-add-before" href="#">
+								Add year
+							</a>
 						</th>
 
 
@@ -335,11 +360,17 @@ endif; //(count($project['Contract'])):
 						</td>
 
 						<td>
-							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_donor_currency', array('label' => false)); ?>
+							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_donor_currency', array(
+									'label' => false,
+									'class' => 'value_donor_currency',
+							)); ?>
 						</td>
 
 						<td>
-							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_gbp', array('label' => false)); ?>
+							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_gbp', array(
+									'label' => false,
+									'class' => 'value_gbp',
+							)); ?>
 						</td>
 						<td>
 							<a class="btn btn-contractbudget-delete" href="#">
@@ -349,15 +380,29 @@ endif; //(count($project['Contract'])):
 					</tr>
 
 				</tbody>
+
+				<tfoot>
+					<tr>
+					<td>
+						Total
+					</td>
+					<td class="total_value_donor_currency">
+						
+					</td>
+					<td class="total_value_gbp">
+						
+					</td>
+					<td>
+						<a class="btn btn-contractbudget-add-after" href="#">
+							Add year
+						</a>
+					</td>
+				</tr>
+				</tfoot>
+
 			</table>
 
-			<a class="btn btn-contractbudget-add-before" href="#">
-				Add year (before)
-			</a>
-
-			<a class="btn btn-contractbudget-add-after" href="#">
-				Add year (after)
-			</a>
+			
 			
 		
 

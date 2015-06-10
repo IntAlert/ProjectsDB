@@ -6,6 +6,14 @@ nav ul li a { color:#000; text-decoration: none; display: block; background:#fff
 section	{margin: 1em 0 2em;}
 
 
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 
 /* Actions */
 div.actions {

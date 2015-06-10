@@ -11,3 +11,7 @@
 .timespan h4 {text-align: center;}
 .timespan .ui-datepicker {margin:0 auto;}
 .ui-datepicker .ui-datepicker-title {padding:0;}
+
+
+.total-contracts-value {font-weight: bold; font-size: 1.2em;}
+.shortfall {font-weight: bold; font-size: 1.2em;}

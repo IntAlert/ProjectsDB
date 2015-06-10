@@ -166,14 +166,14 @@ class Project extends AppModel {
 	function saveComplete($data) {
 
 		// dynamically calculate value sourced at contract level
-		// $value_sourced = 0;
-		// foreach ($data['Contract'] as $contract):
-		// 	foreach ($contract['Payment'] as $payment):
-		// 		$value_sourced += $payment['value_gbp'];
-		// 	endforeach; // ($contract['Payment'] as $payment):
-		// endforeach; // ($data['Contract'] as $contract):
+		$value_sourced = 0;
+		foreach ($data['Contract'] as $contract):
+			foreach ($contract['Contractbudget'] as $payment):
+				$value_sourced += $payment['value_gbp'];
+			endforeach; // ($contract['Payment'] as $payment):
+		endforeach; // ($data['Contract'] as $contract):
 
-		// $data['Project']['value_sourced'] = $value_sourced;
+		$data['Project']['value_sourced'] = $value_sourced;
 
 
 		// delete all existing contractbudgets before a save,

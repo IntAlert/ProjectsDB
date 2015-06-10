@@ -118,9 +118,7 @@ var data = <?php echo json_encode($project); ?>;
 <div class="summary block">
 	<h3>Summary</h3>
 
-	<p>
-		<?php echo h($project['Project']['summary']); ?>
-	</p>
+	<pre><?php echo h($project['Project']['summary']); ?></pre>
 </div>
 <?php endif; // (trim($project['Project']['summary'])): ?>
 
@@ -171,10 +169,10 @@ var data = <?php echo json_encode($project); ?>;
 					</td>
 					<td>
 
-						(<?php echo $this->Number->currency(
+						<?php echo $this->Number->currency(
 							$contractbudget['value_gbp'],
 							'GBP'
-						); ?>)
+						); ?>
 						
 					</td>
 				</tr>
@@ -234,6 +232,7 @@ var data = <?php echo json_encode($project); ?>;
 	<h3>Project Activity</h3>
  -->
 
+</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

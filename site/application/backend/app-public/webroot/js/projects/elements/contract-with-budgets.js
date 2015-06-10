@@ -71,6 +71,20 @@ $(function(){
 		return false;
 	});
 
+	// handle expenditure update, update total contract value
+	$(".component-contracts").delegate(
+		".value_donor_currency, .value_gbp", 
+		'keyup', 
+		updateContractBudgetTotals
+	);
+
+	// update totals on project value change
+	$("#ProjectValueRequired").keyup(updateContractBudgetTotals);
+
+	// update totals, as above, on page load
+	updateContractBudgetTotals();
+	
+
 
 
 });
@@ -234,6 +248,47 @@ function createContractBudget(contractDiv, beforeAfter) {
 
 	return newYear;
 
+}
+
+
+function updateContractBudgetTotals() {
+
+	var contracts_grand_total_gbp = 0;
+
+	$(".component-contracts div.contract").each(function(){
+		var contractDiv = $(this);
+		// DONOR CURRENCY
+		var total_value_donor_currency = 0;
+		contractDiv
+			.find('.value_donor_currency')
+			.each(function(){
+				total_value_donor_currency += Number($(this).val());
+			});
+
+		// GBP
+		var total_value_gbp = 0;
+		contractDiv
+			.find('.value_gbp')
+			.each(function(){
+				total_value_gbp += Number($(this).val());
+			});
+
+		// update contract totals
+		$(contractDiv.find(".total_value_donor_currency")).text(total_value_donor_currency);
+		$(contractDiv.find(".total_value_gbp")).text(total_value_gbp);
+
+		contracts_grand_total_gbp += total_value_gbp;
+
+		
+	});
+
+	// update grand total for all contracts
+	$(".total-contracts-value .value_gbp").text(contracts_grand_total_gbp);
+
+	// update shortfall
+	var shortfall = Number($("#ProjectValueRequired").val()) - contracts_grand_total_gbp;
+	$(".shortfall .value_gbp").text(shortfall);
+	
 }
 
 
