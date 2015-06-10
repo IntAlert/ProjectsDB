@@ -47,8 +47,8 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
-		echo $this->Html->css('style');
+		echo $this->Html->css('cake.generic?v2');
+		echo $this->Html->css('style?v2');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -58,12 +58,12 @@
 </head>
 <body>
 	<div id="container">
-		<div id="header" class="clearfix">
+		<!-- <div id="header" class="clearfix">
 
-			<!-- <h1 style="float:right">ProjectsDB</h1> -->
+			
 			<img src="/pdb/img/logo.png" style="height:40px; float:left; margin-bottom:1em;">
 
-		</div>
+		</div> -->
 		<nav>
 			<ul>
 				<li>

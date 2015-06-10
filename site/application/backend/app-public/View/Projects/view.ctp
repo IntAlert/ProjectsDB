@@ -184,9 +184,10 @@ var data = <?php echo json_encode($project); ?>;
 	</div>
 <?php endforeach; // ($project['Contract'] as $contract): ?>
 
-</div>
-
 <?php endif; // ( empty($project['Contract']) ): ?>
+
+
+</div>
 
 
 <div class="projectnotes block">
@@ -231,8 +232,6 @@ var data = <?php echo json_encode($project); ?>;
 <br><br><br>
 	<h3>Project Activity</h3>
  -->
-
-</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
