@@ -72,6 +72,8 @@ $(function(){
       goal: 200
     });
 
+    $("#ProjectSummary").autoGrow();
+
     // Summary: WYSIWYG
     // $("#test").wysiwyg();
 

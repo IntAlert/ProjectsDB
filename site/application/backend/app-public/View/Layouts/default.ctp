@@ -31,6 +31,8 @@
 	<!-- JS: Plugins -->
 	<script type="text/javascript" src="/pdb/js/plugins/word-and-character-counter.js"></script>
 	<script type="text/javascript" src="/pdb/js/plugins/jquery.validate.js"></script>
+	<script type="text/javascript" src="/pdb/js/plugins/jquery.autogrow.js"></script>
+	
 	<!--
 	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
 	
@@ -47,8 +49,8 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic?v2');
-		echo $this->Html->css('style?v2');
+		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('style');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
