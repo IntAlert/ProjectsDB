@@ -81,10 +81,12 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_id', array(
+							'id' => false,
 							'label' => false,
 							'empty' => '---- Please Select ----',
 							'value' => $contract['donor_id'],
 							'options' => $donors,
+							'class' => 'contract-donor-id',
 						)); ?>
 					</td>
 
@@ -96,6 +98,7 @@ endif; //(count($project['Contract'])):
 							'empty' => '---- Please Select ----',
 							'value' => $contract['currency_id'],
 							'options' => $currencies,
+							'class' => 'contract-donor-currency',
 						)); ?>
 
 					</td>
@@ -106,6 +109,7 @@ endif; //(count($project['Contract'])):
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.summary', array(
 							'label' => 'Summary',
 							'value' => $contract['summary'],
+							'class' => 'contract-summary',
 						)); ?>
 					</td>
 				</tr>
@@ -282,9 +286,12 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						<?php echo $this->Form->input('Contract.{contract_id}.donor_id', array(
+							'id' => false,
 							'label' => false,
+							'id' => false,
 							'empty' => '---- Please Select ----',
 							'options' => $donors,
+							'class' => 'contract-donor-id',
 						)); ?>
 					</td>
 
@@ -293,8 +300,10 @@ endif; //(count($project['Contract'])):
 						<?php echo $this->Form->input('Contract.{contract_id}.currency_id', array(
 							'label' => false,
 							'type' => 'select',
+							'id' => false,
 							'empty' => '---- Please Select ----',
 							'options' => $currencies,
+							'class' => 'contract-donor-currency',
 						)); ?>
 
 					</td>
@@ -304,6 +313,8 @@ endif; //(count($project['Contract'])):
 					<td colspan="2">
 						<?php echo $this->Form->input('Contract.{contract_id}.summary', array(
 							'label' => 'Summary',
+							'id' => false,
+							'class' => 'contract-summary',
 						)); ?>
 					</td>
 				</tr>
@@ -354,6 +365,7 @@ endif; //(count($project['Contract'])):
 
 							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.year', array(
 								'type' => 'hidden',
+								'id' => false,
 								'label' => false,
 								'class' => 'year',
 							)); ?>
@@ -361,6 +373,7 @@ endif; //(count($project['Contract'])):
 
 						<td>
 							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_donor_currency', array(
+									'id' => false,
 									'label' => false,
 									'class' => 'value_donor_currency',
 							)); ?>
@@ -368,6 +381,7 @@ endif; //(count($project['Contract'])):
 
 						<td>
 							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_gbp', array(
+									'id' => false,
 									'label' => false,
 									'class' => 'value_gbp',
 							)); ?>

@@ -1,4 +1,5 @@
-<?php echo $this->Html->script('projects/edit', array('inline' => false)); ?>
+<?php echo $this->Html->script('projects/edit.main', array('inline' => false)); ?>
+<?php echo $this->Html->script('projects/edit.validation', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/edit', array('inline' => false)); ?>
 <div class="projects form">
 
@@ -36,7 +37,9 @@
 
 <?
 		echo $this->Form->input('fund_code');
-		echo $this->Form->input('programme_id');
+		echo $this->Form->input('programme_id', array(
+			'empty' => '--- Please Select ---',
+		));
 		echo $this->Form->input('status_id', array(
 			'legend' => 'Status',
 		));
@@ -93,7 +96,7 @@
 	</div>
 		
 <?
-echo $this->Form->input('value_required', array('label' => 'Total project value (GBP)'));
+	echo $this->Form->input('value_required', array('label' => 'Total project value (GBP)'));
 ?>
 
 		<div class="total-contracts-value">

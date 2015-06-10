@@ -167,12 +167,13 @@ class Project extends AppModel {
 
 		// dynamically calculate value sourced at contract level
 		$value_sourced = 0;
-		foreach ($data['Contract'] as $contract):
-			foreach ($contract['Contractbudget'] as $payment):
-				$value_sourced += $payment['value_gbp'];
-			endforeach; // ($contract['Payment'] as $payment):
-		endforeach; // ($data['Contract'] as $contract):
-
+		if (isset($data['Contract'])):
+			foreach ($data['Contract'] as $contract):
+				foreach ($contract['Contractbudget'] as $payment):
+					$value_sourced += $payment['value_gbp'];
+				endforeach; // ($contract['Payment'] as $payment):
+			endforeach; // ($data['Contract'] as $contract):
+		endif; // (isset($data['Contract'])):
 		$data['Project']['value_sourced'] = $value_sourced;
 
 
@@ -195,8 +196,6 @@ class Project extends AppModel {
 			}
 			
 		}
-		// debug($data);
-		// die();
 
 
 		return $this->saveAssociated($data, array('deep' => true));

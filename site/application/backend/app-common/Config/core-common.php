@@ -43,7 +43,7 @@ switch (Configure::read('ENVIRONMENT')) {
 		Configure::write('Cache.disable', false);
 		break;
 	case 'STAGING':
-		Configure::write('debug', 2);
+		Configure::write('debug', 0);
 		Configure::write('Cache.disable', true);
 		break;
 	default:

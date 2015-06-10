@@ -5,18 +5,14 @@ $(function(){
 	$(".component-contracts").data("index-new-contract-id", 0);
 	$(".component-contracts").data("index-new-contractbudget-id", 0);
 
-
-	// handle parent form submission, remove templates
-	$(".component-contracts").parents('form').submit(function(){
-		$(".component-contracts .template").remove();
-	});
-
 	// handle add contractbudget
 	$(".component-contracts").delegate(".btn-contractbudget-add-after", 'click', function(){
 	
 		var contractDiv = $(this).parents('div.contract');
 
 		var newYear = createContractBudget(contractDiv, 'after');
+
+		$(".component-contracts").trigger('fields-added');
 
 		return false;
 
@@ -28,6 +24,8 @@ $(function(){
 
 		var newYear = createContractBudget(contractDiv, 'before');
 
+		$(".component-contracts").trigger('fields-added');
+
 		return false;
 
 	});
@@ -38,6 +36,8 @@ $(function(){
 	$(".component-contracts").delegate(".btn-contract-add", 'click', function(){
 
 		createContract();
+
+		$(".component-contracts").trigger('fields-added');
 
 		return false;
 	});
@@ -145,11 +145,11 @@ function updateContractEarliestLatestYears(contractDiv) {
 	$(contractDiv).find('.contractbudget').each(function(){
 		var year = $(this).find('input.year').val();
 
-		if (!earliestYear == null || year < earliestYear) {
+		if (!earliestYear || year < earliestYear) {
 			earliestYear = year;
 		}
 
-		if (!latestYear == null || year > latestYear) {
+		if (!latestYear || year > latestYear) {
 			latestYear = year;
 		}
 	});
@@ -193,10 +193,13 @@ function createContractBudget(contractDiv, beforeAfter) {
 	var earliestYear = $(contractDiv).data('contractbudget-earliest-year');
 	var latestYear = $(contractDiv).data('contractbudget-latest-year');
 
+	console.log(earliestYear);
+	console.log(latestYear);
+
 	// get new year, update contract data
 	if ( !earliestYear ) { // don't test for latest year as they'll both be null or both be not null
 		var startDate = $( ".timespan .start .datepicker-placeholder" ).datepicker('getDate');
-	console.log(startDate);
+	
 		var newYear = +startDate.getFullYear();
 	} else if (beforeAfter == 'before') {
 		var newYear = earliestYear - 1;
@@ -209,7 +212,7 @@ function createContractBudget(contractDiv, beforeAfter) {
 	contractBudgetTrClone.find("input").each(function(){
 		
 		var contract_id = $(contractDiv).data('contract-id');
-		// console.log($(contractDiv));
+		
 		var inputName = $(this).attr('name');
 		var newName = inputName
 						.replace('{contractbudget_id}', "new-contractbudget-"+new_contractbudget_id)
