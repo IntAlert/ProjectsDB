@@ -52,6 +52,10 @@ $(function(){
 					required: true
 				},
 
+				"data[Project][likelihood_id]": {
+					required: true
+				},
+
 				"data[Project][value_required]": {
 					required: true,
 					number: true
