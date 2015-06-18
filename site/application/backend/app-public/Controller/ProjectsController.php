@@ -32,6 +32,11 @@ class ProjectsController extends AppController {
 			'Project.title LIKE' => '%' . trim($q) . '%',
 		);
 
+		// text search
+		if ($fund_code = $this->request->query('fund_code')) $conditions[] = array(
+			'Project.fund_code LIKE' => '%' . trim($fund_code) . '%',
+		);
+
 		// status_id
 		if ($status_id = $this->request->query('status_id')) $conditions[] = array(
 			'Project.status_id' => $status_id,
@@ -75,6 +80,20 @@ class ProjectsController extends AppController {
 	        );
 		}
 
+		// donor_id (INNER JOIN METHOD)
+		if ($donor_id = $this->request->query('donor_id')) {
+
+			$joins[] = array(
+				'table' => 'contracts',
+	            'alias' => 'Contract',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = Contract.project_id',
+	                'Contract.donor_id' => (int)$donor_id
+	            )
+	        );
+		}
+
 		// territory_id (INNER JOIN METHOD)
 		if ($territory_id = $this->request->query('territory_id')) {
 			$joins[] = array(
@@ -89,14 +108,11 @@ class ProjectsController extends AppController {
 		}
 
 
-
-
-
 		$this->Paginator->settings = array(
 	        'joins' => $joins,
 	        'conditions' => $conditions,
 	        'limit' => 20,
-	        'order' => array('Project.modified' => 'DESC'),
+	        'order' => array('Project.start_date' => 'DESC'),
 	    );
 		$this->set('projects', $this->Paginator->paginate());
 
@@ -104,12 +120,13 @@ class ProjectsController extends AppController {
 		// get search form data
 		$statuses = $this->Project->Status->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
+		$donors = $this->Project->Contract->Donor->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
 		$territories = $this->Project->Territory->findActiveList();
 		$employees = $this->User->findEmployeesList();
 		$themes = $this->Project->Theme->find('list');
 
-		$this->set(compact('statuses', 'likelihoods', 'programmes', 'territories', 'employees', 'themes'));
+		$this->set(compact('statuses', 'likelihoods', 'programmes', 'territories', 'employees', 'themes', 'donors'));
 	}
 
 /**

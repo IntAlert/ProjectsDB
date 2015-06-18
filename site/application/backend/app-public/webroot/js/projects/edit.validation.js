@@ -1,21 +1,11 @@
 // extend the current rules with new groovy ones
 
-// // this one requires the text "buga", we define a default message, too
-// $.validator.addMethod("buga", function(value) {
-// 	return value == "buga";
-// }, 'Please enter "buga"!');
-
-// // this one requires the value to be the same as the first parameter
-// $.validator.methods.equal = function(value, element, param) {
-// 	return value == param;
-// };
-
 $(function(){
 
 	// apply validator to appropriate form
-	var form = $("#ProjectEditForm").length ? $("#ProjectEditForm") : $("#ProjectAddForm");
+	var $form = $("#ProjectEditForm").length ? $("#ProjectEditForm") : $("#ProjectAddForm");
 
-	var validator = $("#ProjectAddForm").validate({
+	var validator = $form.validate({
 			// debug: true,
 			ignore: ":hidden, .ui-datepicker-year",
 			errorElement: 'span',
@@ -48,6 +38,27 @@ $(function(){
 					minlength: 30
 				},
 
+				"data[Project][beneficiaries]": {
+					required: true,
+					minlength: 30
+				},
+
+				"data[Project][location]": {
+					required: true,
+					minlength: 30
+				},
+
+				"data[Project][goals]": {
+					required: true,
+					minlength: 30
+				},
+				
+				"data[Project][objectives]": {
+					required: true,
+					minlength: 30
+				},
+
+
 				"data[Project][programme_id]": {
 					required: true
 				},
@@ -59,7 +70,7 @@ $(function(){
 				"data[Project][value_required]": {
 					required: true,
 					number: true
-				},
+				}
 			}
 		});
 
@@ -80,11 +91,6 @@ $(function(){
 			  required:true
 			});
 
-			$contracts.find(".contract-summary").rules("add", { 
-			  required:true
-			});
-			
-
 			$contracts.find(".value_donor_currency").rules("add", { 
 			  required:true,
 			  number: true
@@ -102,7 +108,7 @@ $(function(){
 		$(".component-contracts").on('fields-added', addValidationRulesToContracts);
 
 		// add rules for existing contracts
-		addValidationRulesToContracts()
+		// addValidationRulesToContracts()
 
 
 

@@ -12,7 +12,6 @@
 
 		echo $this->Form->input('title', array('type' => 'text'));
 
-
 ?>
 
 
@@ -27,6 +26,58 @@
 			'label' => false,
 			'div' => false,
 			'placeholder' => "e.g. project goal, objectives, key activities, a brief summary of who the project is aimed at and where it will take place"
+		)); ?>
+
+</div>
+
+<div class="input textarea">
+	<label for="ProjectBeneficiaries">Beneficiaries</label>
+	
+	<p>Help text</p>
+
+	<?php echo $this->Form->input('beneficiaries', array(
+			'label' => false,
+			'div' => false,
+			'placeholder' => "e.g. help text"
+		)); ?>
+
+</div>
+
+<div class="input textarea">
+	<label for="ProjectLocation">Location</label>
+	
+	<p>Help text</p>
+
+	<?php echo $this->Form->input('location', array(
+			'label' => false,
+			'div' => false,
+			'placeholder' => "e.g. help text"
+		)); ?>
+
+</div>
+
+<div class="input textarea">
+	<label for="ProjectGoals">Goals</label>
+	
+	<p>Help text</p>
+
+	<?php echo $this->Form->input('goals', array(
+			'label' => false,
+			'div' => false,
+			'placeholder' => "e.g. help text"
+		)); ?>
+
+</div>
+
+<div class="input textarea">
+	<label for="ProjectObjectives">Objectives</label>
+	
+	<p>Help text</p>
+
+	<?php echo $this->Form->input('objectives', array(
+			'label' => false,
+			'div' => false,
+			'placeholder' => "e.g. help text"
 		)); ?>
 
 </div>
@@ -101,13 +152,20 @@
 
 		<div class="total-contracts-value">
 			<label>Total Contract(s) Value</label>
+			<strong>
 			&pound;<span class="value_gbp"></span>
+			</strong>
+			<em>This value is automatically calculated</em>
 		</div>
 
 		<div class="shortfall">
 			<label>Shortfall</label>
-			&pound;<span class="value_gbp"></span>
+			<strong>
+				&pound;<span class="value_gbp"></span>
+			</strong>
+			<em>This value is automatically calculated</em>
 		</div>
+
 
 		<!-- Territories -->
 		<div class="territory-selector clearfix">

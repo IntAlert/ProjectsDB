@@ -18,13 +18,18 @@
 				'value' => $this->request->query('q'),
 			));
 
+			echo $this->Form->input('fund_code', array(
+				'label' => 'Fund Code',
+				'value' => $this->request->query('fund_code'),
+			));
+
 			echo $this->Form->input('status_id', array(
 				'empty' => '--- Select Status ---',
 				'options' => $statuses,
 				'value' => $this->request->query('status_id'),
 			));
 
-			echo $this->Form->input('status_id', array(
+			echo $this->Form->input('likelihood_id', array(
 				'empty' => '--- Select Likelihood ---',
 				'options' => $likelihoods,
 				'value' => $this->request->query('likelihood_id'),
@@ -34,6 +39,12 @@
 				'empty' => '--- Select Programme ---',
 				'options' => $programmes,
 				'value' => $this->request->query('programme_id'),
+			));
+
+			echo $this->Form->input('donor_id', array(
+				'empty' => '--- Select Donor ---',
+				'options' => $donors,
+				'value' => $this->request->query('donor_id'),
 			));
 
 			

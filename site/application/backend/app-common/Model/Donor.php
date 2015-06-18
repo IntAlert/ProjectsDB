@@ -38,4 +38,10 @@ class Donor extends AppModel {
 		)
 	);
 
+	public function findOrderedList() {
+		return $this->find('list', array(
+			'order' => array('Donor.name ASC')
+		));
+	}
+
 }

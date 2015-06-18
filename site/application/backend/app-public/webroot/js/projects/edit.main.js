@@ -37,7 +37,7 @@ $(function(){
     $( ".timespan .start .datepicker-placeholder" ).datepicker({
       defaultDate: $( "#ProjectStartDate" ).val(),
       yearRange: "-5:+10",
-      // changeMonth: true,
+      changeMonth: true,
       changeYear: true,
       numberOfMonths: 1,
       dateFormat: 'yy-mm-dd',
@@ -50,7 +50,7 @@ $(function(){
     // FINISH
     $( ".timespan .finish .datepicker-placeholder" ).datepicker({
       defaultDate: $( "#ProjectFinishDate" ).val(),
-      // changeMonth: true,
+      changeMonth: true,
       changeYear: true,
       yearRange: "-5:+10",
       numberOfMonths: 1,
@@ -66,13 +66,17 @@ $(function(){
     $( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", $( ".timespan .start .datepicker-placeholder" ).datepicker("getDate") );
 
 
-    // Summary: limit word count
-    $("#ProjectSummary").counter({
-      type: 'word',
-      goal: 200
-    });
+    // Summary: limit word count, autogrow
+    $("#ProjectSummary, #ProjectBeneficiaries, #ProjectLocation, #ProjectGoals, #ProjectObjectives")
+      .each(function(){
 
-    $("#ProjectSummary").autoGrow();
+        $(this).counter({
+          type: 'word',
+          goal: 200
+        })
+        .autoGrow();  
+      })
+      
 
     // Summary: WYSIWYG
     // $("#test").wysiwyg();

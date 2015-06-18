@@ -107,7 +107,7 @@ endif; //(count($project['Contract'])):
 				<tr>
 					<td colspan="2">
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.summary', array(
-							'label' => 'Summary',
+							'label' => 'Comments',
 							'value' => $contract['summary'],
 							'class' => 'contract-summary',
 						)); ?>
@@ -312,7 +312,7 @@ endif; //(count($project['Contract'])):
 				<tr>
 					<td colspan="2">
 						<?php echo $this->Form->input('Contract.{contract_id}.summary', array(
-							'label' => 'Summary',
+							'label' => 'Comments',
 							'id' => false,
 							'class' => 'contract-summary',
 						)); ?>

@@ -13,7 +13,5 @@
 .ui-datepicker .ui-datepicker-title {padding:0;}
 
 
-.total-contracts-value {font-weight: bold; font-size: 1.2em;}
-.shortfall {font-weight: bold; font-size: 1.2em;}
-
-#ProjectSummary {font-size:1em;}
+.total-contracts-value strong {font-size: 1.2em;}
+.shortfall strong {font-size: 1.2em;}
