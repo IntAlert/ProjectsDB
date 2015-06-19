@@ -51,13 +51,16 @@ class Programme extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Proposal' => array(
-			'className' => 'Proposal',
+		'Territory' => array(
+			'className' => 'Territory',
 			'foreignKey' => 'programme_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => array(
+				'Territory.sort_order' => 'ASC',
+				'Territory.name' => 'ASC',
+			),
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

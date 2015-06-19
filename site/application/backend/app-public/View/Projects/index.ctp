@@ -1,52 +1,85 @@
-<div class="projects index">
-	<h2><?php echo __('Projects'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<!-- <th><?php echo $this->Paginator->sort('id'); ?></th> -->
-			<!-- <th><?php echo $this->Paginator->sort('status_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('programme_id'); ?></th> -->
-			<th><?php echo $this->Paginator->sort('title'); ?></th>
-			<!-- <th><?php echo $this->Paginator->sort('summary'); ?></th> -->
-			<!-- <th><?php echo $this->Paginator->sort('owner_user_id'); ?></th> -->
-			<!-- <th><?php echo $this->Paginator->sort('start_date'); ?></th> -->
-			<th><?php echo $this->Paginator->sort('value'); ?></th>
-			<th><?php echo $this->Paginator->sort('start_date'); ?></th>
-			<!-- <th><?php echo $this->Paginator->sort('modified'); ?></th> -->
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($projects as $project): ?>
-	<tr>
-		<!-- <td><?php echo h($project['Project']['id']); ?>&nbsp;</td> -->
-		<td><?php echo h($project['Project']['title']); ?>&nbsp;</td>
-		<td><?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>&nbsp;</td>
-		<!-- <td>
-			<?php echo $this->Html->link($project['Status']['name'], array('controller' => 'statuses', 'action' => 'view', $project['Status']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($project['Programme']['name'], array('controller' => 'programmes', 'action' => 'view', $project['Programme']['id'])); ?>
-		</td> -->
-		
-		<!-- <td><?php echo h($project['Project']['summary']); ?>&nbsp;</td> -->
-		<!-- <td><?php echo h($project['Project']['owner_user_id']); ?>&nbsp;</td> -->
-		<td>
-			<?php echo $this->Time->format(
-			  'F jS, Y',
-			  $project['Project']['start_date']
-			); ?>
-		
-		<!-- <td><?php echo h($project['Project']['created']); ?>&nbsp;</td> -->
-		<!-- <td><?php echo h($project['Project']['modified']); ?>&nbsp;</td> -->
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $project['Project']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $project['Project']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
+<?php echo $this->Html->css('projects/index'); ?>
+
+
+<div class="projects">
+
+
+	<?php echo $this->element('Projects/search2'); ?>
+	
+
+<?php if ( !count($projects)): ?>
+	<p>
+		No results
+	</p>
+
+<?php else: // (count($projects)): ?>
+
+	<div class="project-sort">
+	Sort by: 
+		<?php echo $this->Paginator->sort('title'); ?>, 
+		<?php echo $this->Paginator->sort('value'); ?>,
+		<?php echo $this->Paginator->sort('start_date'); ?>
+	</div>
+<h2>Results</h2>
+
+	<ol class="search-results">
+
+
+		<?php foreach ($projects as $project): ?>
+		<li>
+			<h3>
+				<?php echo $this->Html->link(h($project['Project']['title']), array('action' => 'view', $project['Project']['id'])); ?>
+			</h3>
+
+			<p>
+				<?php echo $this->Text->truncate($project['Project']['summary'], 200); ?>
+			</p>
+
+			<p>
+
+				<?php 
+				// create array of country names
+				echo $project['Programme']['name']?>/<?php
+
+				$territory_names = [];
+				foreach($project['Territory'] as $territory) {
+					array_push($territory_names, $territory['name']);
+				}
+				
+				if (count($territory_names)) echo implode(', ', $territory_names);
+				else echo "None"
+
+
+				?>
+			</p>
+
+
+			<p>
+				Donors:
+				<?php
+
+				$donor_names = [];
+				foreach($project['Contract'] as $contract) {
+					array_push($donor_names, $contract['Donor']['name']);
+				}
+				$donor_names = array_unique($donor_names);
+				
+				if (count($donor_names)) echo implode(', ', $donor_names);
+				else echo "None"
+				?>
+			</p>
+			
+			<p>
+				Value: <?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>
+				Status: <?php echo h($project['Status']['name']); ?>
+			</p>
+		</li>
+		<?php endforeach; // ($projects as $project): ?>
+	</ol>
+
+<?php endif; // (count($projects)): ?>
+
+
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
@@ -60,10 +93,4 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-</div>
-<div class="actions">
-
-	<?php echo $this->element('Projects/search'); ?>
-
-
 </div>

@@ -109,9 +109,10 @@ class ProjectsController extends AppController {
 
 
 		$this->Paginator->settings = array(
+			'contain' => array('Programme', 'Status', 'Territory', 'Contract.Donor'),
 	        'joins' => $joins,
 	        'conditions' => $conditions,
-	        'limit' => 20,
+	        'limit' => 2,
 	        'order' => array('Project.start_date' => 'DESC'),
 	    );
 		$this->set('projects', $this->Paginator->paginate());
@@ -127,6 +128,7 @@ class ProjectsController extends AppController {
 		$themes = $this->Project->Theme->find('list');
 
 		$this->set(compact('statuses', 'likelihoods', 'programmes', 'territories', 'employees', 'themes', 'donors'));
+		
 	}
 
 /**
