@@ -37,17 +37,33 @@ class Territory extends AppModel {
 			'offset' => '',
 			'finderQuery' => '',
 		),
-	);
-
-	public $belongsTo = array(
 		'Programme' => array(
 			'className' => 'Programme',
-			'foreignKey' => 'programme_id',
+			'joinTable' => 'programmes_territories',
+			'foreignKey' => 'territory_id',
+			'associationForeignKey' => 'programme_id',
+			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
-		)
+			'order' => array(
+				'Programme.sort_order' => 'ASC',
+				'Programme.name' => 'ASC',
+			),
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+		),
 	);
+
+	// public $belongsTo = array(
+	// 	'Programme' => array(
+	// 		'className' => 'Programme',
+	// 		'foreignKey' => 'programme_id',
+	// 		'conditions' => '',
+	// 		'fields' => '',
+	// 		'order' => ''
+	// 	)
+	// );
 
 
 	public function findActiveList() {
@@ -56,5 +72,15 @@ class Territory extends AppModel {
 			'order' => array('sort_order ASC', 'name ASC'),
 		));
 	}
+
+	public function findActiveWithProgramme() {
+		return $this->find('all', array(
+			'contain' => array('Programme'),
+			'conditions' => array('active' => true),
+			'order' => array('Territory.sort_order ASC', 'Territory.name ASC'),
+		));
+	}
+
+	
 
 }

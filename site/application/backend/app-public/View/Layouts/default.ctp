@@ -26,7 +26,14 @@
 	<!-- JS: Libraries -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		// Resolve name collision between jQuery UI and Twitter Bootstrap
+		$.widget.bridge('uitooltip', $.ui.tooltip);
+		$.widget.bridge('uibutton', $.ui.button);
+		$.widget.bridge('uibuttonset', $.ui.buttonset);
+	</script>
+	<!--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
 
 	<!-- JS: Plugins -->
 	<script type="text/javascript" src="/pdb/js/plugins/word-and-character-counter.js"></script>
@@ -35,12 +42,14 @@
 	
 	<!--
 	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
+
+	<script type="text/javascript" src="/pdb/js/main.js"></script>
 	
 
 	<!-- CSS: Libraries -->
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/hot-sneaks/jquery-ui.css">
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
-	
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
 	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>

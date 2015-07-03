@@ -35,6 +35,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('jquery.js');
 		echo $this->fetch('script');
 	?>
+	
 </head>
 <body>
 	<div id="container">

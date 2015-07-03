@@ -124,8 +124,10 @@ class ProjectsController extends AppController {
 		$donors = $this->Project->Contract->Donor->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
 		$territories = $this->Project->Territory->findActiveList();
+
+		
 		$employees = $this->User->findEmployeesList();
-		$themes = $this->Project->Theme->find('list');
+		$themes = $this->Project->Theme->findOrderedList();
 
 		$this->set(compact('statuses', 'likelihoods', 'programmes', 'territories', 'employees', 'themes', 'donors'));
 		
@@ -245,10 +247,11 @@ class ProjectsController extends AppController {
 		$donors = $this->Donor->find('list');
 
 		$territories = $this->Project->Territory->findActiveList();
+		$territoriesWithProgrammes = $this->Project->Territory->findActiveWithProgramme();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
-		
-		$this->set(compact('statuses', 'themes', 'likelihoods', 'programmes', 'territories', 'users', 'employees', 'currencies', 'donors'));
+
+		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'territories', 'users', 'employees', 'currencies', 'donors'));
 	}
 
 

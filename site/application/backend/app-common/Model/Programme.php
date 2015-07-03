@@ -50,11 +50,33 @@ class Programme extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
+		)
+		// ,
+		// 'Territory' => array(
+		// 	'className' => 'Territory',
+		// 	'foreignKey' => 'programme_id',
+		// 	'dependent' => false,
+		// 	'conditions' => '',
+		// 	'fields' => '',
+		// 	'order' => array(
+		// 		'Territory.sort_order' => 'ASC',
+		// 		'Territory.name' => 'ASC',
+		// 	),
+		// 	'limit' => '',
+		// 	'offset' => '',
+		// 	'exclusive' => '',
+		// 	'finderQuery' => '',
+		// 	'counterQuery' => ''
+		// )
+	);
+
+	public $hasAndBelongsToMany = array(
 		'Territory' => array(
 			'className' => 'Territory',
+			'joinTable' => 'programmes_territories',
 			'foreignKey' => 'programme_id',
-			'dependent' => false,
+			'associationForeignKey' => 'territory_id',
+			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
 			'order' => array(
@@ -63,10 +85,8 @@ class Programme extends AppModel {
 			),
 			'limit' => '',
 			'offset' => '',
-			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
-		)
+		),
 	);
 
 }

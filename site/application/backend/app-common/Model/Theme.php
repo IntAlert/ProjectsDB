@@ -54,7 +54,7 @@ class Theme extends AppModel {
 
 	public function findOrderedList() {
 		return $this->find('list', array(
-			'order' => array('sort_order ASC')
+			'order' => array('sort_order ASC, name ASC'),
 		));
 	}
 

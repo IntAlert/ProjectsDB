@@ -4,8 +4,12 @@ nav ul {list-style: none; float:right;}
 nav ul li {float:left;}
 nav ul li a { color:#000; text-decoration: none; display: block; background:#fff; padding:1em;}
 
+fieldset fieldset legend {font-size:110%;}
+fieldset legend {color:#333;}
 section	{margin: 1em 0 2em;}
 textarea {font-size:1em;}
+
+
 
 pre {
  white-space: pre-wrap;       /* css-3 */

@@ -1,0 +1,20 @@
+.territory-selector div.checkbox {
+	display:inline;
+	padding:0;
+	margin-bottom:0;
+}
+.territory-selector div.checkbox label {
+	display:inline-block;
+	margin:0;
+}
+
+
+.territory-selector div.radio {
+	display:inline;
+	padding:0;
+	margin-bottom:0;
+}
+.territory-selector div.radio label {
+	display:inline-block;
+	margin:0;
+}

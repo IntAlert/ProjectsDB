@@ -179,6 +179,8 @@ class MACPipelineByProgramme {
 			} elseif ($contract_primary_value_gbp < $project['Project']['value_required']) {
 				// matched funding is required
 				$matched_funding_percentage = 100 * $contracts_secondary_value_gbp / ($project['Project']['value_required'] - $contract_primary_value_gbp);
+			} else {
+				$matched_funding_percentage = 0;
 			}
 
 

@@ -37,7 +37,10 @@ endif; //(count($project['Contract'])):
 ?>
 
 <div class="component-contracts">
-<h2>Contracts and Contract Budgets</h2>
+<h2>
+	Contracts and Contract Budgets
+	<?php echo $this->Tooltip->element('This section requires you to complete data for each donor contract you have with the project'); ?>
+</h2>
 
 
 <a class="btn btn-contract-add" href="#">
@@ -67,10 +70,12 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						Donor
+						<?php echo $this->Tooltip->element('Please select from the list.  If your donor is not listed, please contact Technology team to amend.'); ?>
 					</td>
 
 					<td>
 						Donor currency
+						<?php echo $this->Tooltip->element('Please select from the list.  If your currency is not listed, please contact Technology team to amend.'); ?>
 					</td>
 					
 				</tr>
@@ -87,6 +92,7 @@ endif; //(count($project['Contract'])):
 							'value' => $contract['donor_id'],
 							'options' => $donors,
 							'class' => 'contract-donor-id',
+							'tooltip' => 'Please select from the list.  If your donor is not listed, please contact Technology team to amend.',
 						)); ?>
 					</td>
 
@@ -110,6 +116,7 @@ endif; //(count($project['Contract'])):
 							'label' => 'Comments',
 							'value' => $contract['summary'],
 							'class' => 'contract-summary',
+							'tooltip' => 'Free text space for any comments, e.g. please note if the contract has been amended.',
 						)); ?>
 					</td>
 				</tr>
@@ -272,10 +279,12 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						Donor
+						<?php echo $this->Tooltip->element('Tooltip text'); ?>
 					</td>
 
 					<td>
 						Donor currency
+						<?php echo $this->Tooltip->element('Tooltip text'); ?>
 					</td>
 					
 				</tr>
@@ -291,7 +300,7 @@ endif; //(count($project['Contract'])):
 							'id' => false,
 							'empty' => '---- Please Select ----',
 							'options' => $donors,
-							'class' => 'contract-donor-id',
+							'class' => 'contract-donor-id'
 						)); ?>
 					</td>
 
@@ -303,7 +312,7 @@ endif; //(count($project['Contract'])):
 							'id' => false,
 							'empty' => '---- Please Select ----',
 							'options' => $currencies,
-							'class' => 'contract-donor-currency',
+							'class' => 'contract-donor-currency'
 						)); ?>
 
 					</td>
@@ -315,6 +324,7 @@ endif; //(count($project['Contract'])):
 							'label' => 'Comments',
 							'id' => false,
 							'class' => 'contract-summary',
+							'tooltip' => 'Free text space for any comments, e.g. please note if the contract has been amended.',
 						)); ?>
 					</td>
 				</tr>
@@ -324,7 +334,11 @@ endif; //(count($project['Contract'])):
 		
 
 		<div class="contractbudgets">
-			<h3>Annual Budgets</h3>
+			<h3>
+				Annual Budgets
+				<?php echo $this->Tooltip->element('Please calculate the estimated expenditure value for each calendar year (this will be used in the MAC pipeline)');
+				?>
+			</h3>
 			
 			<table>
 				<thead>

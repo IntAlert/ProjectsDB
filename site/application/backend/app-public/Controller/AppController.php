@@ -57,6 +57,11 @@ class AppController extends Controller {
 	    ),
 
 	);
+
+	public $helpers = array(
+		'Html',
+		'Form' => array('className' =>'CustomForm'),
+	);
 	
 	public $uses = array('User', 'Audit', 'Currency', 'Donor');
 

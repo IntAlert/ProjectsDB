@@ -135,6 +135,7 @@ function deleteContractBudget(budgetContractTr) {
 
 	// update earliest / latest years
 	updateContractEarliestLatestYears(contractDiv);
+	updateContractBudgetTotals();
 
 }
 
