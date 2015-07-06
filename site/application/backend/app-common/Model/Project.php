@@ -173,29 +173,31 @@ class Project extends AppModel {
 					$value_sourced += $payment['value_gbp'];
 				endforeach; // ($contract['Payment'] as $payment):
 			endforeach; // ($data['Contract'] as $contract):
+		
+
+
+			// delete all existing contractbudgets before a save,
+			// this is a bit dangerous
+			foreach ($data['Contract'] as & $contract) {
+
+				if (isset($contract['id'])) {
+
+					// delete any contractbudgets in the database
+					$this->Contract->Contractbudget->deleteAll(array(
+						'contract_id' => $contract['id']
+					));
+
+					// delete any contractbudgets in the submitted data (for deleted contracts)
+					if ($contract['deleted']) {
+						$contract['Contractbudget'] = array();
+					}
+
+				}
+				
+			}
+
 		endif; // (isset($data['Contract'])):
 		$data['Project']['value_sourced'] = $value_sourced;
-
-
-		// delete all existing contractbudgets before a save,
-		// this is a bit dangerous
-		foreach ($data['Contract'] as & $contract) {
-
-			if (isset($contract['id'])) {
-
-				// delete any contractbudgets in the database
-				$this->Contract->Contractbudget->deleteAll(array(
-					'contract_id' => $contract['id']
-				));
-
-				// delete any contractbudgets in the submitted data (for deleted contracts)
-				if ($contract['deleted']) {
-					$contract['Contractbudget'] = array();
-				}
-
-			}
-			
-		}
 
 
 		return $this->saveAssociated($data, array('deep' => true));

@@ -86,7 +86,7 @@ $body_classes = array(
 			<img src="/pdb/img/logo.png" style="">
 
 		</div>
-		<nav>
+		<nav class="main">
 			<ul>
 				<li class="dashboard">
 					<a href="/pdb/dashboard/dashboard">Dashboard</a>

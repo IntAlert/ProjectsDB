@@ -34,7 +34,15 @@ class ProjectsController extends AppController {
 
 			// text search
 			if ($q = $this->request->query('q')) $conditions[] = array(
-				'Project.title LIKE' => '%' . trim($q) . '%',
+				'OR' => array(
+
+					'Project.title LIKE' => '%' . trim($q) . '%',
+					'Project.summary LIKE' => '%' . trim($q) . '%',
+					'Project.objectives LIKE' => '%' . trim($q) . '%',
+					'Project.goals LIKE' => '%' . trim($q) . '%',
+					'Project.beneficiaries LIKE' => '%' . trim($q) . '%',
+					'Project.location LIKE' => '%' . trim($q) . '%',	
+				)
 			);
 
 			// text search

@@ -1,4 +1,5 @@
-<?php echo $this->Html->css('contracts/pipeline', array('inline' => false)); ?>
+<?php echo $this->Html->css('programmes/pipeline', array('inline' => false)); ?>
+<?php echo $this->Html->script('programmes/pipeline', array('inline' => false)); ?>
 
 <?php
 	

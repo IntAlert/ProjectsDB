@@ -25,11 +25,13 @@ class ProgrammesController extends AppController {
 			'contain' => false,
 			'fields' => array("YEAR(start_date)"),
 			'order' => array('Project.start_date' => 'ASC'),
+			'conditions' => array('Project.start_date <>' => NULL ),
 		));
-
 		
 		$firstYear = (int) isset($firstProjectYear[0]) ?
 			$firstProjectYear[0]['YEAR(start_date)'] : date("Y");
+
+
 
 
 		// get payments

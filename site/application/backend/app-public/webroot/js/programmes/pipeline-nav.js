@@ -1,5 +1,6 @@
 $(function(){
 
+	$("#selectedYear").selectmenu({width:'100%'});
 
 	// udate pipeline year
 	$("#selectedYear").change(function(){

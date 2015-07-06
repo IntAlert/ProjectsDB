@@ -5,14 +5,21 @@ nav {padding:1em 1em 0;}
 nav ul {list-style: none; float:right;}
 nav ul li {float:left;}
 nav ul li a {
-	color:#fff;
 	text-decoration: none;
 	display: block;
-	background:#04B3DE;
 	padding:1em;
 	border-radius: 1px 1px 0 0;
 }
-nav ul li a:hover {color:#000;}
+
+nav.main {
+	color:#fff;
+}
+nav.main ul li a {
+	background:#04B3DE;
+}
+nav.main ul li a:hover {
+	color:#000;
+}
 
 
 body.dashboard nav .dashboard a,
