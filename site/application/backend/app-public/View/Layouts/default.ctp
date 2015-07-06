@@ -14,6 +14,15 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+
+// build body classes
+$body_classes = array(
+	$this->params->controller,
+	$this->params->controller . '-' . $this->params->action,
+);
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,37 +76,39 @@
 	?>
 	
 </head>
-<body>
+
+<body class="<?php echo implode(' ', $body_classes); ?>">
+
 	<div id="container">
-		<!-- <div id="header" class="clearfix">
+		<div id="header" class="clearfix">
 
 			
-			<img src="/pdb/img/logo.png" style="height:40px; float:left; margin-bottom:1em;">
+			<img src="/pdb/img/logo.png" style="">
 
-		</div> -->
+		</div>
 		<nav>
 			<ul>
-				<li>
+				<li class="dashboard">
 					<a href="/pdb/dashboard/dashboard">Dashboard</a>
 				</li>
 
-				<li>
+				<li class="donors">
 					<a href="/pdb/donors">Donors</a>
 				</li>
 
-				<li>
+				<li class="territories">
 					<a href="/pdb/territories">Territories</a>
 				</li>
 
-				<li>
+				<li class="projects-add">
 					<a href="/pdb/projects/add">Add Project</a>
 				</li>
 
-				<li>
+				<li class="projects-index">
 					<a href="/pdb/projects">Search Projects</a>
 				</li>
 
-				<li>
+				<li class="pipeline">
 					<a href="/pdb/programmes/pipelineSummary">MAC Pipeline</a>
 				</li>
 

@@ -1,3 +1,12 @@
+
+
+<nav class="subnav clearfix">
+	<ul>
+		<li><?php echo $this->Html->link(__('New Territory'), array('action' => 'add')); ?></li>
+	</ul>
+</nav>
+
+
 <div class="territories index">
 	<h2><?php echo __('Territories'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -15,7 +24,21 @@
 	<tr>
 		<!-- <td><?php echo h($territory['Territory']['id']); ?>&nbsp;</td> -->
 		<td><?php echo h($territory['Territory']['name']); ?>&nbsp;</td>
-		<td><?php echo h($territory['Programme']['name']); ?>&nbsp;</td>
+		<td><?php 
+
+			$programme_names = array();
+			foreach($territory['Programme'] as $programme) {
+				$programme_names[] = $programme['name'];
+			}
+
+			if (count($programme_names)) {
+				echo implode(', ', $programme_names);
+			} else {
+				echo 'none';
+			}
+
+
+		?>&nbsp;</td>
 		<td><?php echo $territory['Territory']['active'] ? 'Yes' : 'No'; ?>&nbsp;</td>
 		<td class="actions">
 			<!--<?php echo $this->Html->link(__('View'), array('action' => 'view', $territory['Territory']['id'])); ?>-->
@@ -39,10 +62,4 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Territory'), array('action' => 'add')); ?></li>
-	</ul>
 </div>

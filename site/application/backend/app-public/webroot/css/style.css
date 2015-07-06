@@ -1,8 +1,30 @@
-#header {margin-bottom: 1em;}
+#container {min-width: 1000px;}
+#header { float:left;}
+#header img {height:32px;}
 nav {padding:1em 1em 0;}
 nav ul {list-style: none; float:right;}
 nav ul li {float:left;}
-nav ul li a { color:#000; text-decoration: none; display: block; background:#fff; padding:1em;}
+nav ul li a {
+	color:#fff;
+	text-decoration: none;
+	display: block;
+	background:#04B3DE;
+	padding:1em;
+	border-radius: 1px 1px 0 0;
+}
+nav ul li a:hover {color:#000;}
+
+
+body.dashboard nav .dashboard a,
+body.donors nav .donors a,
+body.territories nav .territories a,
+body.projects-add nav .projects-add a,
+body.projects-index nav .projects-index a,
+body.programmes-pipelineSummary nav .pipeline a,
+body.programmes-pipeline nav .pipeline a
+{background:#fff; color:#333;}
+
+nav.subnav {float:right; margin:0 1em 1em 1em;}
 
 fieldset fieldset legend {font-size:110%;}
 fieldset legend {color:#333;}
@@ -25,6 +47,13 @@ div.actions {
 	/*width:19%;
 	padding:0;*/
 }
+
+div.form, div.index, div.view {
+	float:none;
+	border:0;
+	width:100%;
+}
+
 .actions select {width:100%;}
 
 

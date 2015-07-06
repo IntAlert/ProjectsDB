@@ -7,7 +7,7 @@
 		echo $this->Form->input('programme_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('active');
-		// echo $this->Form->input('sort_order');
+		echo $this->Form->input('Programme', array('multiple' => 'checkbox'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

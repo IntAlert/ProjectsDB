@@ -8,36 +8,8 @@
 	padding:0;
 }
 
-.project-search2 .standard li {
-	float:left;
-	margin:0;
-}
-.project-search2 .standard .q{
-	width:80%;
-}
-.project-search2 .standard .q input {
-	width:80%;
-}
-.project-search2 .standard .submit{
-	width:20%;
-}
-.project-search2 ul {
-	list-style: none;
-	margin:0;
-	padding:0;	
-}
-.project-search2 ul li{
-	float:left;
-	width:20%;
-	height:100px;
-}
-.project-search2 ul li select,
-.project-search2 ul li input,
-.project-search2 ul li label {
-	width:100%;
-	font-size:120%;
-}
 
-.project-search2 .advanced {
-	display: none;
+.projects-container {
+	margin:0 auto;
+	width:800px;
 }

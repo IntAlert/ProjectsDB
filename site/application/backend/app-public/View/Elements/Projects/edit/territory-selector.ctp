@@ -10,24 +10,22 @@
 		Programme
 	</h3>
 
-	<?php
-		echo $this->Form->input('programme_id', array(
-			'legend' => 'Programme',
-			'tooltip' => 'Please select the programme which applies',
-			'type' => 'radio',
-		));
+	<div class="ui-state-default clearfix">
+		<?php
+			echo $this->Form->input('programme_id', array(
+				'legend' => false,
+				// 'tooltip' => 'Please select the programme which applies',
+				'type' => 'radio',
+			));
 
-	?>
+		?>
+	</div>
 
 
-	<fieldset>
-
-		<legend>
-			Territories, Countries or PIP programme
-			<?php $this->Tooltip->element('Please select at least one territories/countries/PIP programmes'); ?>
-		</legend>
-
-	</fieldset>
+	<h3>
+		Territories, Countries or PIP programme
+		<?php $this->Tooltip->element('Please select at least one territories/countries/PIP programmes'); ?>
+	</h3>
 
 
 	
@@ -68,29 +66,4 @@
 </div>
 
 
-
-
-
-	
-	<!-- 
-
-	<div class="territory-selector clearfix">
-
-		
-
-		<h3>
-			Territories
-			<?php echo $this->Tooltip->element('Tooltip text'); ?>
-		</h3>
-
-		<?php 
-			echo $this->Form->input('Territory', array(
-				'label' => false,
-				'multiple' => 'checkbox'
-			));
-		?>
-
-		</div>
-	
-	 -->
 

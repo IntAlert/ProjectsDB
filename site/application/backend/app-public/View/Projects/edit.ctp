@@ -1,8 +1,18 @@
 <?php echo $this->Html->script('projects/edit.main', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/edit.validation', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/edit', array('inline' => false)); ?>
+
+
+
+
 <div class="projects form">
 
+
+<nav class="subnav clearfix">
+	<ul>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Project.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('Project.id'))); ?></li>
+	</ul>
+</nav>
 
 <?php echo $this->Form->create('Project'); ?>
 	<fieldset>
@@ -61,24 +71,7 @@
 		<?php echo $this->element('Projects/edit/territory-selector'); ?>
 
 
-		<?
-		echo $this->Form->input('status_id', array(
-			'legend' => 'Status',
-			'tooltip' => 'Please check the main box which applies',
-		));
-
-?>
-
-<?
-		echo $this->Form->input('likelihood_id', array(
-			'legend' => 'Likelihood',
-			'type' => 'radio',
-			'class' => 'likelihood-option',
-			'div' => 'input radio likelihood',
-			'tooltip' => 'Please check the main box which applies',
-		));
-		
-?>
+		<?php echo $this->element('Projects/edit/status-selector'); ?>
 
 
 <?
@@ -96,34 +89,8 @@
 
 <!-- PROJECT TIMESPAN -->
 
-<?
+<?php echo $this->element('Projects/edit/timespan'); ?>
 
-		echo $this->Form->input('start_date', array(
-			'type' => 'hidden',
-		));
-		echo $this->Form->input('finish_date', array(
-			'type' => 'hidden',
-		));
-
-?>
-
-	<h3>
-		Project Timespan
-		<?php echo $this->Tooltip->element('Enter number of months'); ?>
-	</h3>
-
-	<div class="timespan clearfix">
-		
-		<div class="start">
-			<h4>Project Start Date</h4>
-			<div class="datepicker-placeholder"></div>
-		</div>
-
-		<div class="finish">
-			<h4>Project Finish Date</h4>
-			<div class="datepicker-placeholder"></div>
-		</div>
-	</div>
 		
 <?
 	echo $this->Form->input('value_required', array(
@@ -163,12 +130,4 @@
 
 
 <?php echo $this->Form->end(__('Save Project')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Project.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('Project.id'))); ?></li>
-		
-	</ul>
 </div>

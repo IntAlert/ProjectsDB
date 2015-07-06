@@ -18,9 +18,10 @@ class TerritoriesController extends AppController {
 
 	public $paginate = array(
         'limit' => 100,
+        'contain' => array('Programme'),
         'order' => array(
-            'Programme.sort_order' => 'asc',
-            'Programme.name' => 'asc',
+            // 'Programme.sort_order' => 'asc',
+            // 'Programme.name' => 'asc',
             'Territory.sort_order' => 'asc',
             'Territory.name' => 'asc',
         )

@@ -32,6 +32,14 @@ foreach($project['Theme'] as $theme) {
 var data = <?php echo json_encode($project); ?>;
 </script>
 
+
+<nav class="subnav clearfix">
+	<ul>
+		<li><?php echo $this->Html->link(__('Edit Project'), array('action' => 'edit', $project['Project']['id'])); ?> </li>
+		
+	</ul>
+</nav>
+
 <div class="projects view">
 <h2>Project - <?php echo h($project['Project']['title']); ?></h2>
 	<dl>
@@ -161,12 +169,7 @@ var data = <?php echo json_encode($project); ?>;
 					<td>
 						<?php echo $contractbudget['year']; ?>
 					</td>
-					<td>
-						<?php echo $this->Number->currency(
-							$contractbudget['value_donor_currency'],
-							$contract['Currency']['code']
-						); ?>
-					</td>
+
 					<td>
 
 						<?php echo $this->Number->currency(
@@ -174,6 +177,12 @@ var data = <?php echo json_encode($project); ?>;
 							'GBP'
 						); ?>
 						
+					</td>
+					<td>
+						<?php echo $this->Number->currency(
+							$contractbudget['value_donor_currency'],
+							$contract['Currency']['code']
+						); ?>
 					</td>
 				</tr>
 <?php endforeach; // ($project['Contract'] as $contract): ?>
@@ -233,10 +242,4 @@ var data = <?php echo json_encode($project); ?>;
 	<h3>Project Activity</h3>
  -->
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Project'), array('action' => 'edit', $project['Project']['id'])); ?> </li>
-		
-	</ul>
-</div>
+

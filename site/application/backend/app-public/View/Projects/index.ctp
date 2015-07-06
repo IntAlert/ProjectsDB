@@ -3,16 +3,21 @@
 
 <div class="projects">
 
+	<div class="projects-container">
+
 
 	<?php echo $this->element('Projects/search2'); ?>
 	
 
-<?php if ( !count($projects)): ?>
+<?php if ( $action == 'search' && !count($projects) ): ?>
 	<p>
 		No results
 	</p>
 
-<?php else: // (count($projects)): ?>
+<?php elseif ( $action == 'search' ): ?>
+
+
+<div class="search-results">
 
 	<div class="project-sort">
 	Sort by: 
@@ -20,9 +25,9 @@
 		<?php echo $this->Paginator->sort('value'); ?>,
 		<?php echo $this->Paginator->sort('start_date'); ?>
 	</div>
-<h2>Results</h2>
 
-	<ol class="search-results">
+
+	<ol>
 
 
 		<?php foreach ($projects as $project): ?>
@@ -60,7 +65,9 @@
 
 				$donor_names = [];
 				foreach($project['Contract'] as $contract) {
-					array_push($donor_names, $contract['Donor']['name']);
+					if (isset($contract['Donor']['name'])) {
+						array_push($donor_names, $contract['Donor']['name']);
+					}
 				}
 				$donor_names = array_unique($donor_names);
 				
@@ -77,7 +84,7 @@
 		<?php endforeach; // ($projects as $project): ?>
 	</ol>
 
-<?php endif; // (count($projects)): ?>
+
 
 
 	<p>
@@ -93,4 +100,12 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
+
+</div>
+
+<?php endif; // (count($projects)): ?>
+
+
+	</div>
+
 </div>

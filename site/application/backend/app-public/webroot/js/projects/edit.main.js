@@ -1,35 +1,9 @@
 $(function(){
 
-	// hide and override liklihood if status isn't submitted/not subitted
-	$("#ProjectStatusId").change(function(){
 
-		// var get likelihood list
-		var likelihoodRadios = $(".input.radio.likelihood");
+  $( "#ProjectOwnerUserId" ).selectmenu();
 
-		// get selected option text
-		var selTxt = $(this).find("option:selected").text()
-
-		if (selTxt == 'Approved' || selTxt == 'Contracted' || selTxt == 'Completed') {
-			// select 'confirmed' likelihood
-			var liklihoodToPreselect = $(".likelihood-option[value=2]");
-			liklihoodToPreselect.prop('checked', true);
-
-			// hide likehoods
-			likelihoodRadios.css('visibility', 'hidden');
-		} else if (selTxt == 'Rejected') {
-			// select 'low' likelihood
-			var liklihoodToPreselect = $(".likelihood-option[value=4]");
-			liklihoodToPreselect.prop('checked', true);
-
-			// hide likehoods
-			likelihoodRadios.css('visibility', 'hidden');
-		} else {
-			// hide likehood
-			likelihoodRadios.css('visibility', 'visible');
-		}
-
-
-	}).change();
+	
 
 
 	// set up project timespan
@@ -78,8 +52,8 @@ $(function(){
       })
       
 
-    // Summary: WYSIWYG
-    // $("#test").wysiwyg();
+    
+    
 
   
 	

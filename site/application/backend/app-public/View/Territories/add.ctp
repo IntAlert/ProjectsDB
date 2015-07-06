@@ -6,15 +6,8 @@
 		echo $this->Form->input('programme_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('active');
-		// echo $this->Form->input('sort_order');
+		echo $this->Form->input('Programme', array('multiple' => 'checkbox'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Territories'), array('action' => 'index')); ?></li>
-	</ul>
+<?php echo $this->Form->end(__('Save')); ?>
 </div>

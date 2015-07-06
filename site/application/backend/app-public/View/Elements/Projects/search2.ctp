@@ -1,9 +1,21 @@
 <?php echo $this->Html->script('projects/elements/search', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/elements/search', array('inline' => false)); ?>
+<?php
+
+$advanced_shown = !! $this->request->query('advanced');
+
+?>
 
 <div class="project-search2">
 
-<?php echo $this->Form->create('Project', array('type' => 'get')); ?>
+<?php echo $this->Form->create('Project', array('type' => 'get'));
+
+echo $this->Form->input('action', array(
+	'value' => 'search',
+	'type' => 'hidden',
+));
+
+ ?>
 
 
 
@@ -25,17 +37,31 @@
 					
 					<li class="submit">
 						<input type="submit" value="Search Projects">
+						<a class="reset btn" href="#">Reset Form</a>
 					</li>
 					
 				</ul>
-				<a class="show-advanced btn" href="#">Show Advanced</a>
-				<a class="reset btn" href="#">Reset Form</a>
+
+				<?php if (!$advanced_shown): ?>
+					<a class="show-advanced btn" href="#">Show Advanced</a>
+				<?php endif; // (!$show_advanced): ?>
+				
 			</div>
 
 			
 			
 			
-			<div class="advanced">
+			<div class="advanced <?php echo $advanced_shown ? 'advanced_shown' : ''?>">
+
+
+				<?php
+
+						echo $this->Form->input('advanced', array(
+							'type' => 'hidden',
+							'value' => $this->request->query('advanced'),
+						));
+					?>
+
 				<ul class="clearfix">
 					
 					<li>
@@ -127,14 +153,34 @@
 						<td>
 							<?php echo $this->Form->input('value_from', array(
 								'value' => $this->request->query('value_from'),
+								'label' => "Project Value from (GBP)",
 							)); ?>
 						</td>
 						<td>
 							<?php echo $this->Form->input('value_to', array(
 								'value' => $this->request->query('value_to'),
+								'label' => "Project Value to (GBP)",
 							)); ?>
 						</td>
 					</tr>
+
+					<tr>
+						<td>
+							<?php echo $this->Form->input('start_date', array(
+								'value' => $this->request->query('start_date'),
+								'label' => "Project Start Date",
+								'type' => 'text',
+							)); ?>
+						</td>
+						<td>
+							<?php echo $this->Form->input('finish_date', array(
+								'value' => $this->request->query('finish_date'),
+								'label' => "Project Finish Date",
+								'type' => 'text',
+							)); ?>
+						</td>
+					</tr>
+
 				</table>
 			</div>
 			

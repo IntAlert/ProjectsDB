@@ -84,8 +84,15 @@ $(function(){
 	// update totals, as above, on page load
 	updateContractBudgetTotals();
 	
+	// activate buttons
+	$( ".btn-contract-add" ).button({
+      icons: {
+        primary: "ui-icon-plus"
+      }
+    })
 
-
+    // make contract buttons attractive
+    activateContractButtons();
 
 });
 
@@ -295,6 +302,42 @@ function updateContractBudgetTotals() {
 	
 }
 
+
+function activateContractButtons() {
+
+	$(".contract .btn-contract-add").button({
+	  icons: {
+	    primary: "ui-icon-plus"
+	  }
+	});
+
+	$(".contract .btn-contractbudget-add-before").button({
+	  icons: {
+	    primary: "ui-icon-plus"
+	  }
+	});
+
+	$(".contract .btn-contractbudget-add-after").button({
+	  icons: {
+	    primary: "ui-icon-plus"
+	  }
+	});
+
+	$(".contract .btn-contractbudget-delete").button({
+	  icons: {
+	    primary: "ui-icon-closethick"
+	  },
+	  'text' : false
+	});
+
+	$(".contract .btn-contract-delete").button({
+	  icons: {
+	    primary: "ui-icon-closethick"
+	  }
+	});
+
+		
+}
 
 
 

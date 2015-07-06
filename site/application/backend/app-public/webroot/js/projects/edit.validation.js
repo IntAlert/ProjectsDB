@@ -24,7 +24,11 @@ $(function(){
 			},
 			success: function(label) {
 				// tick
-				label.html("&#10004;").addClass("input-validation-success");
+				// label.html("&#10004;").addClass("input-validation-success");
+
+				// mark parent as correct
+				$(label).parents('.input').addClass('validated');
+				
 			},
 			rules: {
 				"data[Project][title]": {
