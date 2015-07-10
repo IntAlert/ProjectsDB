@@ -22,15 +22,15 @@ $(function(){
 		var programmeName = label.text().toUpperCase();
 		if (programmeName == 'EP' && programmeName == 'PIP') {
 			// show all
-			$(".territory-selector .input.checkbox").show();
+			$(".territory-selector .territory-checkbox").show();
 
 		} else {
 			// otherwise,
 			// hide all 
-			$(".territory-selector .input.checkbox").hide();
+			$(".territory-selector .territory-checkbox").hide();
 
 			// show just the right ones.
-			$(".territory-selector .input.checkbox").each(function(){
+			$(".territory-selector .territory-checkbox").each(function(){
 				
 				var $div = $(this);
 				var programmeIdsCsv = $($div.find('input')).data('programme-ids-csv');

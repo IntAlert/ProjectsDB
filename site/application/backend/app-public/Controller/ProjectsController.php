@@ -278,7 +278,17 @@ class ProjectsController extends AppController {
 			}
 		} else {
 			$options = array(
-				'contain' => 'Contract.Contractbudget',
+				'contain' => array(
+					'Contract.Donor',
+					'Contract.Currency',
+					'Contract.Contractbudget',
+					'Status',
+					'Theme',
+					'Likelihood',
+					'Programme',
+					'OwnerUser',
+					'Territory',
+				),
 				'conditions' => array(
 					'Project.id' => $id
 				)

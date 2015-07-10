@@ -1,16 +1,16 @@
-.territory-selector div.checkbox {
+.territory-selector div.territory-checkbox {
 	display:inline;
 	padding:0;
 	margin-bottom:0;
 }
-.territory-selector div.checkbox label {
+.territory-selector div.territory-checkbox label {
 	display:inline-block;
 	margin:0;
 }
 
 
 .territory-selector div.radio {
-	display:inline;
+	display:block;
 	padding:0;
 	margin-bottom:0;
 }

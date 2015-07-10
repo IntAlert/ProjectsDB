@@ -122,13 +122,41 @@ var data = <?php echo json_encode($project); ?>;
 	</dl>
 
 
-<?php if (trim($project['Project']['summary'])): ?>
+
 <div class="summary block">
 	<h3>Summary</h3>
 
 	<pre><?php echo h($project['Project']['summary']); ?></pre>
 </div>
-<?php endif; // (trim($project['Project']['summary'])): ?>
+
+
+
+<div class="summary block">
+	<h3>Beneficiaries</h3>
+
+	<pre><?php echo h($project['Project']['beneficiaries']); ?></pre>
+</div>
+
+
+
+<div class="summary block">
+	<h3>Locations</h3>
+
+	<pre><?php echo h($project['Project']['location']); ?></pre>
+</div>
+
+
+<div class="summary block">
+	<h3>Goals</h3>
+
+	<pre><?php echo h($project['Project']['goals']); ?></pre>
+</div>
+
+<div class="summary block">
+	<h3>Objectives</h3>
+
+	<pre><?php echo h($project['Project']['objectives']); ?></pre>
+</div>
 
 
 <h3>Contracts and Annual Budgets</h3>

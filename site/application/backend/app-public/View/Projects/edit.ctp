@@ -77,6 +77,7 @@
 <?
 		echo $this->Form->input('owner_user_id', array(
 			'label' => "Budget Holder",
+			'empty' => '--- Please select --- ',
 			'options' => $employees,
 			'tooltip' => 'Enter name of Alert\'s budget holder',
 		));
@@ -91,6 +92,12 @@
 
 <?php echo $this->element('Projects/edit/timespan'); ?>
 
+
+
+<!-- Themes -->
+<?php echo $this->element('Projects/edit/theme-selector'); ?>
+
+
 		
 <?
 	echo $this->Form->input('value_required', array(
@@ -100,7 +107,7 @@
 ?>
 
 		<div class="total-contracts-value">
-			<label>Total Project Value</label>
+			<label>Total Contract(s) Value</label>
 			<strong>
 			&pound;<span class="value_gbp"></span>
 			</strong>
@@ -116,10 +123,6 @@
 		</div>
 
 
-		
-
-		<!-- Themes -->
-		<?php echo $this->element('Projects/edit/theme-selector'); ?>
 		
 	
 		<?php

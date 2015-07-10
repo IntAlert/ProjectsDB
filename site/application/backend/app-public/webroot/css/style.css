@@ -20,7 +20,7 @@ nav.main ul li a {
 nav.main ul li a:hover {
 	color:#000;
 }
-
+form div {padding:0.5em 0;}
 
 body.dashboard nav .dashboard a,
 body.donors nav .donors a,

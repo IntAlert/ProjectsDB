@@ -16,3 +16,8 @@
 .contract .contractbudget:last-child .btn-contractbudget-delete {
 	visibility:visible;
 }
+
+
+.component-contracts .input-validation-success {
+	visibility: hidden;
+}

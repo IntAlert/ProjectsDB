@@ -7,14 +7,20 @@ $(function(){
 
 	var validator = $form.validate({
 			// debug: true,
+			onfocusout: function (element) {
+		        $(element).valid();
+		    },
+		    onfocusin: function (element) {
+		        $(element).valid();
+		    },
 			ignore: ":hidden, .ui-datepicker-year",
 			errorElement: 'span',
 	        errorElementClass: 'input-validation-error',
 	        errorClass: 'field-validation-error',
 			errorContainer: $("#warning, #summary"),
-			// errorPlacement: function(error, element) {
-			// 	error.appendTo(element.parents("input"));
-			// },
+			errorPlacement: function(error, element) {
+				error.appendTo($(element).parents(".input"));
+			},
 			submitHandler: function(form) {
 				
 				// handle parent form submission, remove templates
@@ -24,11 +30,17 @@ $(function(){
 			},
 			success: function(label) {
 				// tick
-				// label.html("&#10004;").addClass("input-validation-success");
+				label.html("&#10004;").addClass("input-validation-success");
 
 				// mark parent as correct
 				$(label).parents('.input').addClass('validated');
 				
+			},
+
+			highlight: function(element, errorClass) {
+				$(element)
+					.siblings(".field-validation-error")
+					.removeClass('input-validation-success');
 			},
 			rules: {
 				"data[Project][title]": {
@@ -67,9 +79,18 @@ $(function(){
 					required: true
 				},
 
+				"data[Project][status_id]": {
+					required: true
+				},
+
 				"data[Project][likelihood_id]": {
 					required: true
 				},
+
+				// "data[Project][owner_user_id]": {
+				// 	required: true,
+				// 	minlength:1
+				// },
 
 				"data[Project][value_required]": {
 					required: true,
@@ -112,7 +133,7 @@ $(function(){
 		$(".component-contracts").on('fields-added', addValidationRulesToContracts);
 
 		// add rules for existing contracts
-		// addValidationRulesToContracts()
+		addValidationRulesToContracts()
 
 
 

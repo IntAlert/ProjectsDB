@@ -1,7 +1,16 @@
 <?php echo $this->Html->css('projects/elements/territory-selector', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/elements/territory-selector', array('inline' => false)); ?>
 
+<?
 
+	// get list of selected territory_ids
+	$territory_ids = array();
+
+	foreach($this->request->data['Territory'] as $territory):
+		$territory_ids[] = $territory['id'];
+	endforeach; //($this->request->data['Territory'] as $territory):
+
+?>
 
 <div class="territory-selector">
 
@@ -30,9 +39,7 @@
 
 	
 	<!-- Empty Territory Checkbox -->
-	<?php echo $this->Form->input('Territory.Territory', array(
-		'type' => 'hidden'
-	)); ?>
+
 
 	<div class="ui-state-default clearfix">
 		<div class="input select">
@@ -50,13 +57,21 @@
 
 			?>
 
-				<?php echo $this->Form->input('Territory.Territory.', array(
+				<?php 
+
+				$checked_value = 
+					array_search($territory['Territory']['id'], $territory_ids) === false 
+						? '' : 'checked';
+
+				echo $this->Form->input('Territory.Territory.', array(
 					'type' => 'checkbox',
 					'id' => 'TerritoryTerritory'.$territory['Territory']['id'],
 					'value' => $territory['Territory']['id'],
 					'label' => $territory['Territory']['name'],
 					'hiddenField' => false,
 					'data-programme-ids-csv' => $programme_ids_csv,
+					'div' => 'territory-checkbox',
+					'checked'=> $checked_value,
 				)); ?>
 
 			<?php endforeach; //($territoriesWithProgrammes as $territory): ?>

@@ -17,3 +17,25 @@
 .shortfall strong {font-size: 1.2em;}
 
 #ProjectOwnerUserId {min-width:50%;}
+
+
+span.field-validation-error {background:pink; padding:8px 4px;}
+span.input-validation-success {background:#D5F5D5;}
+
+
+.input {position:relative;}
+
+.field-validation-error {
+	display: block;
+	text-align: center;
+}
+
+.input-validation-success {
+  position: absolute;
+  top: 0;
+  left: -40px;
+  border-radius: 20px;
+  width: 26px;
+  color:darkgreen;
+  font-size:10px;
+ }
