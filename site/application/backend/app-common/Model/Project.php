@@ -148,6 +148,7 @@ class Project extends AppModel {
 		            'alias' => 'Audit',
 		            'type' => 'INNER',
 		            'conditions' => array(
+		            	'Audit.source_id' => $user_id, // audits the user owns
 		                'Audit.model = "Project"',
 		                'Project.id = Audit.entity_id',
 		            ),

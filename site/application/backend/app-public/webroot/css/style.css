@@ -154,8 +154,25 @@ section.dashboard {
 	width:100%;
 }
 
+
 .pipeline-container {
 	float:left;
 	width:70%;
 	margin-top:1em;
 }
+/*Sub nav */
+.programmes-pipelineSummary .pipeline-nav li.programme-summary,
+.programmes-pipeline-1 .pipeline-nav li.programme-1,
+.programmes-pipeline-2 .pipeline-nav li.programme-2,
+.programmes-pipeline-3 .pipeline-nav li.programme-3,
+.programmes-pipeline-4 .pipeline-nav li.programme-4,
+.programmes-pipeline-5 .pipeline-nav li.programme-5,
+.programmes-pipeline-6 .pipeline-nav li.programme-6,
+.programmes-pipeline-7 .pipeline-nav li.programme-7,
+.programmes-pipeline-8 .pipeline-nav li.programme-8 {
+	background: #eee;
+}
+
+
+.programmes-pipeline
+.pipeline-nav li

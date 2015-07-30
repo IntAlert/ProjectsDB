@@ -19,8 +19,8 @@
 $body_classes = array(
 	$this->params->controller,
 	$this->params->controller . '-' . $this->params->action,
+	$this->params->controller . '-' . $this->params->action . '-' . implode(',', $this->params['pass']),
 );
-
 
 
 ?>
@@ -87,6 +87,10 @@ $body_classes = array(
 
 		</div>
 		<nav class="main">
+
+
+
+<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 			<ul>
 				<li class="dashboard">
 					<a href="/pdb/dashboard/dashboard">Dashboard</a>
@@ -112,9 +116,10 @@ $body_classes = array(
 					<a href="/pdb/programmes/pipelineSummary">MAC Pipeline</a>
 				</li>
 
-				
-
 			</ul>
+
+	<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
+	
 		</nav>
 		<div id="content">
 

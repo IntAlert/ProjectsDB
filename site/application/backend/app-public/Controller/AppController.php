@@ -69,13 +69,16 @@ class AppController extends Controller {
 
 
 	public function beforeFilter() {
-		$this->Auth->allow();
+		
+		
+
+
 	}
 
 
 
 	public function isAuthorized($user) {
-		return true;
+		return !!$this->Auth->user('id');
 	}
 
 

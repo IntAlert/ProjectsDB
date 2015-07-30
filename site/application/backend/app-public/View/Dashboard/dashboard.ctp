@@ -1,11 +1,14 @@
 <h2>
-	Your Dashboard
+	Hello, <?php echo AuthComponent::user('first_name'); ?>
 </h2>
 
 
 
 <section class="dashboard recent " style="clear:both">
 	<h3>Your recently visited projects</h3>
+
+
+<?php if (count($projectsRecentlyViewed)): ?>
 	<ul class="document-list">
 
 
@@ -18,6 +21,17 @@
 <?php endforeach; // ($projectsRecentlyViewed as $project): ?>
 
 	</ul>
+
+<?php else: // (count($projectsRecentlyViewed)): ?>
+	<p>
+		None.
+	</p>
+
+	<p>
+		<a href="/pdb/projects">Search for a project here &rarr;</a>
+	</p>
+<?php endif; // (count($projectsRecentlyViewed)): ?>
+
 </section>
 
 

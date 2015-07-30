@@ -79,7 +79,7 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 
 			<td>
 				<?php 
-					if (isset($project['contract_primary']['Donor'])) {
+					if (isset($project['contract_primary']['Donor']['name'])) {
 						echo h($project['contract_primary']['Donor']['name']);
 					} else {
 						echo 'none';
@@ -149,7 +149,7 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 
 				<td>
 					<?php 
-						if ($contract_secondary['Donor']['name']) {
+						if (isset($contract_secondary['Donor']['name'])) {
 							echo h($contract_secondary['Donor']['name']);
 						} else {
 							echo 'none';

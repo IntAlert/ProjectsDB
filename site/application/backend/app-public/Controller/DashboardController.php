@@ -15,10 +15,11 @@ class DashboardController extends AppController {
 	public function dashboard($id = null) {
 
 
-
+		// get authenticated user
+		$user_id = $this->Auth->user('id');
 
 		// get most recently viewed projects
-		$projectsRecentlyViewed = $this->Project->findRecentlyViewed(10);
+		$projectsRecentlyViewed = $this->Project->findRecentlyViewed($user_id);
 
 		$this->set(compact('projectsRecentlyViewed'));
 		

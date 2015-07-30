@@ -43,9 +43,11 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				</th>
 				<td>
 					<?php echo $this->Number->currency($programmeBudgetThisYear, 'GBP'); ?>
+					(<a href="/pdb/programmebudgets/edit/<?php echo $selectedYear; ?>">Edit</a>)
 				</td>
 				<td>
 					<?php echo $this->Number->currency($programmeBudgetNextYear, 'GBP'); ?>
+					(<a href="/pdb/programmebudgets/edit/<?php echo $selectedYear + 1; ?>">Edit</a>)
 				</td>
 			</tr>
 

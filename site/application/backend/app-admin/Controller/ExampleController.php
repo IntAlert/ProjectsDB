@@ -5,19 +5,27 @@ App::import('Vendor', 'OAuth/OAuthClient');
 
 class ExampleController extends AppController {
 
-    var $client_id = '23fd3541-101a-4cd9-9227-2b60d4c934cc';
-    var $client_secret = 'Cp9JnhgrTWs+Kiu7ZD4T9NwpxArSYjtISYVC0P8/9EE=';
-
     var $redirect_uri = 'http://local.projects.international-alert.org/admin/example/callback';
     var $authorize_url = 'https://login.windows.net/international-alert.org/oauth2/authorize';
     var $token_url = 'https://login.windows.net/international-alert.org/oauth2/token';
+    var $windowsGraphUrl = 'https://graph.windows.net/me/?api-version=1.5';
+
+
+    public function beforeFilter() {
+        
+        // $this->Auth->allow('login', 'logout');
+        $this->Auth->allow('start', 'callback', 'getUser');
+
+        parent::beforeFilter();
+
+    }
 
     function start() {
 
 
         $request_url = $this->authorize_url 
             . '?response_type=code'
-            . '&client_id=' . $this->client_id 
+            . '&client_id=' . OFFICE365_CLIENT_ID 
             . '&redirect_uri=' . urlencode($this->redirect_uri);
 
         $this->redirect($request_url);
@@ -26,6 +34,81 @@ class ExampleController extends AppController {
 
     function callback() {
 
+
+        // get the code, and request an access token
+        $code = $this->request->query('code');
+
+        // get access token
+        $data = array(
+            'code' => $code,
+            'grant_type' => 'authorization_code',
+            'client_id' => OFFICE365_CLIENT_ID,
+            'client_secret' => OFFICE365_CLIENT_SECRET,
+            'redirect_uri' => $this->redirect_uri,
+            'resource' => 'https://graph.windows.net',
+        );
+
+        $socket = new HttpSocket(array(
+            'ssl_verify_host' => false
+        ));
+        $result = $socket->post($this->token_url, $data);
+
+        // parse response body
+        $response = json_decode($result->body);
+
+        var_dump($response);
+
+
+        if ( !$response ) {
+
+            throw new Exception("We received no response from Office365", 1);
+
+        }
+
+        if ( property_exists($response, 'error') ) {
+
+            throw new Exception("Office365 returned an error: " . $response->error, 1);
+
+        }
+
+
+        
+
+        $options = array( 
+            'header' => array( 
+                'Authorization' => 'Bearer ' . $response->access_token
+            ) 
+        );
+
+        $data = array(
+            "api-version" => "1.5"
+        );
+
+        $socket = new HttpSocket(array(
+            'ssl_verify_host' => false
+        ));
+        $result = $socket->get($this->windowsGraphUrl, $data, $options);
+
+        $o365_user_response = json_decode($result->body);
+
+
+        
+        $this->loadModel('Office365User');
+        $user = $this->Office365User->getOrCreate($o365_user_response);
+
+        // assuming we get a user back, log them in
+        $this->Auth->login($user['User']);
+
+        $this->redirect('/pdb/dashboard/dashboard');
+
+    }
+
+
+
+
+
+    function callback_dele() {
+
         $code = $this->request->query('code');
 
 
@@ -33,8 +116,8 @@ class ExampleController extends AppController {
         $data = array(
             'code' => $code,
             'grant_type' => 'authorization_code',
-            'client_id' => $this->client_id,
-            'client_secret' => $this->client_secret,
+            'client_id' => OFFICE365_CLIENT_ID,
+            'client_secret' => OFFICE365_CLIENT_SECRET,
             'redirect_uri' => $this->redirect_uri,
             'resource' => 'https://graph.windows.net',
         );

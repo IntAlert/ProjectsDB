@@ -14,25 +14,25 @@ class User extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	public $validate = array(
-        'username' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A username is required'
-            )
-        ),
-        'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
-        ),
-        'role' => array(
-            'valid' => array(
-                'rule' => array('inList', array('admin', 'voter')),
-                'message' => 'Please enter a valid role',
-                'allowEmpty' => false
-            )
-        )
+        // 'username' => array(
+        //     'required' => array(
+        //         'rule' => array('notEmpty'),
+        //         'message' => 'A username is required'
+        //     )
+        // ),
+        // 'password' => array(
+        //     'required' => array(
+        //         'rule' => array('notEmpty'),
+        //         'message' => 'A password is required'
+        //     )
+        // ),
+        // 'role' => array(
+        //     'valid' => array(
+        //         'rule' => array('inList', array('admin', 'employee')),
+        //         'message' => 'Please enter a valid role',
+        //         'allowEmpty' => false
+        //     )
+        // )
     );
 
     public function findEmployeesList() {

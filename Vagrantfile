@@ -10,6 +10,8 @@ VAGRANT_IP_ADDRESS = "192.168.33.58"
 VAGRANTFILE_API_VERSION = "2"
 
 
+
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -36,5 +38,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "./", "/srv", :mount_options => ["dmode=777,fmode=777"]
+
+  config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
 
 end
