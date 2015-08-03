@@ -7,6 +7,13 @@ App::uses('AppModel', 'Model');
  */
 class Donor extends AppModel {
 
+
+
+	public $actsAs = array(
+		'AuditLog.Auditable' => array(
+		)
+	);
+
 /**
  * Display field
  *

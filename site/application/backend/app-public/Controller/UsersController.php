@@ -20,7 +20,7 @@ class UsersController extends AppController {
 
 	function login() {
 
-        // redrect logged in users to their dashboard
+        // redirect logged in users to their dashboard
         if ($this->Auth->user('id')) {
             $this->redirect('/dashboard');
         }

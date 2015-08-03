@@ -5,10 +5,11 @@
 
 	// get list of selected territory_ids
 	$territory_ids = array();
-
-	foreach($this->request->data['Territory'] as $territory):
-		$territory_ids[] = $territory['id'];
-	endforeach; //($this->request->data['Territory'] as $territory):
+	if(isset($this->request->data['Territory'])):
+		foreach($this->request->data['Territory'] as $territory):
+			$territory_ids[] = $territory['id'];
+		endforeach; //($this->request->data['Territory'] as $territory):
+	endif; //(is_array($this->request->data['Territory'])):
 
 ?>
 

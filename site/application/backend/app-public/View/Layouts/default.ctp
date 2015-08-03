@@ -82,7 +82,6 @@ $body_classes = array(
 	<div id="container">
 		<div id="header" class="clearfix">
 
-			
 			<img src="/pdb/img/logo.png" style="">
 
 		</div>
@@ -95,7 +94,7 @@ $body_classes = array(
 				<li class="dashboard">
 					<a href="/pdb/dashboard/dashboard">Dashboard</a>
 				</li>
-
+<?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 				<li class="donors">
 					<a href="/pdb/donors">Donors</a>
 				</li>
@@ -103,6 +102,7 @@ $body_classes = array(
 				<li class="territories">
 					<a href="/pdb/territories">Territories</a>
 				</li>
+<?php endif; // (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 
 				<li class="projects-add">
 					<a href="/pdb/projects/add">Add Project</a>
@@ -128,7 +128,10 @@ $body_classes = array(
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			
+			<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
+
+				<a href="/pdb/users/logout">Log out</a>
+			<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>

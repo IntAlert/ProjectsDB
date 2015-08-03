@@ -121,4 +121,9 @@ class TerritoriesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function isAuthorized($user) {
+		// limit to managers
+		return $this->Auth->user('role') == 'manager';
+	}
 }

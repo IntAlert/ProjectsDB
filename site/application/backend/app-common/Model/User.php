@@ -5,10 +5,12 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
 
 
+    public $hasOne = 'Office365user';
+
 	public $virtualFields = array(
 	    // 'name' => 'CONCAT(User.first_name, " ", User.last_name)'
-	    'name' => 'username',
-        'fullname' => "CONCAT(last_name, ', ', first_name)",
+	    'name' => "CONCAT(first_name, ' ', last_name)",
+        'name_formal' => "CONCAT(last_name, ', ', first_name)",
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -37,7 +39,7 @@ class User extends AppModel {
 
     public function findEmployeesList() {
     	return $this->find('list', array(
-    		'fields' => array('id', 'fullname'),
+    		'fields' => array('id', 'name_formal'),
     		'conditions' => array('role' => 'employee')
     	));
     }

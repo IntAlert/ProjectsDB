@@ -3,38 +3,7 @@
 </h2>
 
 
-
-<section class="dashboard recent " style="clear:both">
-	<h3>Your recently visited projects</h3>
-
-
-<?php if (count($projectsRecentlyViewed)): ?>
-	<ul class="document-list">
-
-
-<?php foreach ($projectsRecentlyViewed as $project): ?>
-		<li>
-			<a href="/pdb/projects/view/<?php echo $project['Project']['id']?>">
-				<?php echo $project['Project']['title']?>
-			</a>
-		</li>
-<?php endforeach; // ($projectsRecentlyViewed as $project): ?>
-
-	</ul>
-
-<?php else: // (count($projectsRecentlyViewed)): ?>
-	<p>
-		None.
-	</p>
-
-	<p>
-		<a href="/pdb/projects">Search for a project here &rarr;</a>
-	</p>
-<?php endif; // (count($projectsRecentlyViewed)): ?>
-
-</section>
-
-
+<!--
 <section class="dashboard company-activity">
 
 	<h3>Your activity</h3>
@@ -79,14 +48,14 @@
 </section>
 
 
-
+-->
 
 
 
 <section class="dashboard company-activity">
 
-	<h3>Company activity</h3>
-
+	<h3>Company Activity</h3>
+<!-- 
 	<ul class='dashboard-timespan clearfix' >
 		<li class="selected">
 			<a href="#">
@@ -106,27 +75,63 @@
 			</a>
 		</li>
 
-	</ul>
+	</ul> -->
 
 
 	<ul class="activity-feed clearfix">
-		<?php for ($i=0; $i < 10; $i++): ?>
+		<?php foreach($projectsCompanyActivity as $activity): ?>
 		<li class='clearfix'>
-			<img src="http://lorempixel.com/40/40/people/<?php echo $i; ?>" class="profile">
+			<img src="/pdb/img/profile-pics/default.png" class="profile">
 			<p>
-				<strong>User's name</strong> edited
-				<a href="#">Project title</a>
-				<em>10 minutes ago</em>
+				<strong>
+					<?php echo $activity['User']['name']; ?>
+				</strong> edited
+				<a href="/pdb/projects/view/<?php echo $activity['Project']['id']; ?>"><?php echo $activity['Project']['title']; ?></a>
+				<br>
+				<em>
+					<?php echo $this->Time->timeAgoInWords($activity['Audit']['created'], array('format' => 'F jS, Y')); ?>
+				</em>
 			</p>
 			
 		</li>
+		<?php endforeach; //($projectsCompanyActivity as $activity): ?>
 
-		<?php endfor;  ?>
 
 	</ul>
 </section>
 
 
+
+
+<section class="dashboard recent clearfix">
+	<h3>Your recently visited projects</h3>
+
+
+<?php if (count($projectsRecentlyViewed)): ?>
+	<ul class="document-list">
+
+
+<?php foreach ($projectsRecentlyViewed as $project): ?>
+		<li>
+			<a href="/pdb/projects/view/<?php echo $project['Project']['id']?>">
+				<?php echo $project['Project']['title']?>
+			</a>
+		</li>
+<?php endforeach; // ($projectsRecentlyViewed as $project): ?>
+
+	</ul>
+
+<?php else: // (count($projectsRecentlyViewed)): ?>
+	<p>
+		None.
+	</p>
+
+	<p>
+		<a href="/pdb/projects">Search for a project here &rarr;</a>
+	</p>
+<?php endif; // (count($projectsRecentlyViewed)): ?>
+
+</section>
 
 
 

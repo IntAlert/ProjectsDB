@@ -1,6 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
-App::import('Vendor', 'OAuth/OAuthClient');
+App::uses('HttpSocket', 'Network/Http');
+#App::import('Vendor', 'OAuth/OAuthClient');
 /**
  * Users Controller
  *
@@ -12,13 +13,15 @@ class Office365usersController extends AppController {
 
     
 
-    var $redirect_uri = 'http://local.projects.international-alert.org/pdb/office365users/callback';
+    var $redirect_uri = false;
     var $authorize_url = 'https://login.windows.net/international-alert.org/oauth2/authorize';
     var $token_url = 'https://login.windows.net/international-alert.org/oauth2/token';
     var $windowsGraphUrl = 'https://graph.windows.net/me/?api-version=1.5';
 
 
     function beforeFilter() {
+
+        $this->redirect_uri = Router::url('/office365users/callback', true);
 
         $this->Auth->allow('login', 'callback');
 

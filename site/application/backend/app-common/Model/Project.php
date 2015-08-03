@@ -13,6 +13,14 @@ App::uses('AppModel', 'Model');
  */
 class Project extends AppModel {
 
+	
+
+	public $actsAs = array(
+		'AuditLog.Auditable' => array(
+			'ignore' => array( 'deleted'),
+		)
+	);
+
 /**
  * Display field
  *
@@ -133,11 +141,6 @@ class Project extends AppModel {
 	);
 
 
-	public $actsAs = array(
-		'AuditLog.Auditable'
-	);
-
-
 	function findRecentlyViewed($user_id, $limit = 10) {
 
 		return $this->find('all', array(
@@ -163,6 +166,8 @@ class Project extends AppModel {
 
 
 	}
+
+
 
 	function saveComplete($data) {
 
@@ -202,6 +207,12 @@ class Project extends AppModel {
 
 
 		return $this->saveAssociated($data, array('deep' => true));
+	}
+
+	public function softDelete($id) {
+		$this->id = $id;
+		$this->saveField('deleted', true);
+		return true; // assume it worked
 	}
 
 

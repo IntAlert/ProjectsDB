@@ -75,6 +75,9 @@ section.dashboard {
 	border:3px solid #eee;
 	width:27%;
 }
+section.company-activity {
+	width:55%;
+}
 .dashboard-timespan {
 	float: left;
 	list-style: none;
@@ -131,7 +134,7 @@ section.dashboard {
 
 .activity-feed p {
 	float:left;
-	width:240px;
+	width:440px;
 }
 
 

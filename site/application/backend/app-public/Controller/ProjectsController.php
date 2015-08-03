@@ -29,8 +29,10 @@ class ProjectsController extends AppController {
 		$action = $this->request->query('action');
 
 		if ($action == 'search'): 
+
 			// BUILD SEARCH CONDITIONS
-			$conditions = $joins = [];
+			$conditions = array('Project.deleted' => false);
+			$joins = [];
 
 			// text search
 			if ($q = $this->request->query('q')) $conditions[] = array(
@@ -371,7 +373,7 @@ class ProjectsController extends AppController {
 			throw new NotFoundException(__('Invalid project'));
 		}
 		$this->request->allowMethod('post', 'delete');
-		if ($this->Project->delete()) {
+		if ($this->Project->softDelete($id)) {
 			$this->Session->setFlash(__('The project has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The project could not be deleted. Please, try again.'));

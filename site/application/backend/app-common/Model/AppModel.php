@@ -33,28 +33,8 @@ class AppModel extends Model {
 
 	var $actsAs = array('Containable');
 
-
-	function getAllCompDates($include_today = false) {
-
-		// build array of dates
-		Configure::write('comp_start_date', '2015-03-01');
-		$start_date = new DateTime(Configure::read('comp_start_date'));
-		$most_recent_day = new DateTime();
-
-		if ($include_today == false) {
-			$most_recent_day->modify('-1 day');	
-		}
-		
-
-		$dates = array();
-		while ($most_recent_day > $start_date) {
-
-			$dates[] = $most_recent_day->format('Y-m-d');
-
-			$most_recent_day->modify('-1 day');
-
-		}
-
-		return $dates;
+	public function currentUser() {
+		return AuthComponent::user();
 	}
+
 }

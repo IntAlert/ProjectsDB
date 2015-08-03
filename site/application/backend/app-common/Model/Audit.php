@@ -10,30 +10,16 @@ class Audit extends AppModel
 
   
   public $belongsTo = array(
-    // 'User' => array(
-    //   'className' => 'User',
-    //   'foreignKey' => 'source_id',
-    // ),
-    // 'Journey' => array(
-    //   'className' => 'Journey',
-    //   'foreignKey' => 'entity_id',
-    //   'conditions' => array("Audit.model" => "Journey"),
-    // ),
-    // 'Company' => array(
-    //   'className' => 'Company',
-    //   'foreignKey' => 'entity_id',
-    //   'conditions' => array("Audit.model" => "Company"),
-    // ),
-    // 'Vehicle' => array(
-    //   'className' => 'Vehicle',
-    //   'foreignKey' => 'entity_id',
-    //   'conditions' => array("Audit.model" => "Vehicle"),
-    // ),
-    // 'Tag' => array(
-    //   'className' => 'Tag',
-    //   'foreignKey' => 'entity_id',
-    //   'conditions' => array("Audit.model" => "Tag"),
-    // ),
+    'Project' => array(
+      'className' => 'Project',
+      'foreignKey' => 'entity_id',
+      'conditions' => array('Audit.model = "Project"'),
+    ),
+
+    'User' => array(
+      'className' => 'User',
+      'foreignKey' => 'source_id',
+    ),
   );
 
   public $hasMany = array(
@@ -64,6 +50,14 @@ class Audit extends AppModel
 
     return $this->save();
 
+  }
+
+  function findCompanyActivity($limit = 10) {
+    return $this->find('all', array(
+      'contain' => array('User', 'Project'),
+      'order' => array('Audit.created DESC'),
+      'limit' => $limit,
+    ));
   }
 
 }
