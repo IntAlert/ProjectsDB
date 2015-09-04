@@ -285,8 +285,8 @@ function updateContractBudgetTotals() {
 			});
 
 		// update contract totals
-		$(contractDiv.find(".total_value_donor_currency")).text(total_value_donor_currency);
-		$(contractDiv.find(".total_value_gbp")).text(total_value_gbp);
+		$(contractDiv.find(".total_value_donor_currency")).text($.number(total_value_donor_currency));
+		$(contractDiv.find(".total_value_gbp")).text($.number(total_value_gbp));
 
 		contracts_grand_total_gbp += total_value_gbp;
 
@@ -294,11 +294,11 @@ function updateContractBudgetTotals() {
 	});
 
 	// update grand total for all contracts
-	$(".total-contracts-value .value_gbp").text(contracts_grand_total_gbp);
+	$(".total-contracts-value .value_gbp").text($.number(contracts_grand_total_gbp));
 
 	// update shortfall
 	var shortfall = Number($("#ProjectValueRequired").val()) - contracts_grand_total_gbp;
-	$(".shortfall .value_gbp").text(shortfall);
+	$(".shortfall .value_gbp").text($.number(shortfall));
 	
 }
 

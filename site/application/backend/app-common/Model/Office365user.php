@@ -26,7 +26,7 @@ class Office365user extends AppModel {
 	);
 
 
-	function getOrCreate($access_token, $o365_user_response) {
+	function getOrCreate($o365_user_response) {
 		
 		// extract useful data
 		$o365_object_id = $o365_user_response->objectId;
@@ -41,15 +41,8 @@ class Office365user extends AppModel {
 		$user = $this->findUserByObjectId($o365_object_id);
 
 		
-		if ($user) {
-
-			// update access token
-			$this->id = $user['Office365user']['id'];
-			$this->saveField('access_token', $access_token);
-
-			// return the user if it exists
-			return $user;
-		}
+		// return the user if it exists
+		if ($user) return $user;
 
 		// if not exist,
 		// create native user
@@ -65,14 +58,39 @@ class Office365user extends AppModel {
 		$this->create(compact(
 			'o365_object_id',
 			'user_id',
-			'email',
-			'access_token'
+			'email'
 		));
 		$this->save();
 
 		// return user record
 		return $this->findUserByObjectId($o365_object_id);
 
+
+	}
+
+	function updateGraphTokens($user_id, $tokens) {
+		
+		$this->id = $user_id;
+
+		$data = array(
+			'graph_access_token' => $tokens['access_token'],
+			'graph_refresh_token' => $tokens['refresh_token'],
+		);
+
+		return $this->save($data);
+
+	}
+
+	function updateSharepointTokens($user_id, $tokens) {
+		
+		$this->id = $user_id;
+
+		$data = array(
+			'sharepoint_access_token' => $tokens['access_token'],
+			'sharepoint_refresh_token' => $tokens['refresh_token'],
+		);
+
+		return $this->save($data);
 
 	}
 

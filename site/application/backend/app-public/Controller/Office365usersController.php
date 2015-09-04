@@ -47,6 +47,43 @@ class Office365usersController extends AppController {
         // get the code, and request an access token
         $code = $this->request->query('code');
 
+        $tokens = $this->getUserTokens($code);
+
+        var_dump($tokens);
+        
+        //
+        // get USER details
+        //
+        $o365_user_response = $this->getUserData($tokens['access_token']);
+
+        
+
+        // get or create the user
+        $user = $this->Office365user->getOrCreate($o365_user_response);
+
+
+
+        $this->Office365user->updateGraphTokens($user['Office365user']['id'], $tokens);
+
+        //
+        // GET ACCESS TO SHAREPOINT
+        //
+
+        $tokens = $this->getSharepointAccess($tokens['refresh_token']);
+
+        $this->Office365user->updateSharepointTokens($user['Office365user']['id'], $tokens);
+
+
+        // assuming we get a user back, log them in
+        $this->Auth->login($user['User']);
+
+        $this->redirect('/dashboard/dashboard');
+
+    }
+
+
+    private function getUserTokens($code) {
+        
         // get access token
         $data = array(
             'code' => $code,
@@ -77,50 +114,16 @@ class Office365usersController extends AppController {
             throw new Exception("Office365 returned an error: " . $response->error, 1);
         }
 
-/*
-
-        // GET ACCESS TO SHAREPOINT
-        $data = array(
-            'code' => $code,
-            'grant_type' => 'refresh_token',
-            'client_id' => OFFICE365_CLIENT_ID,
-            'client_secret' => OFFICE365_CLIENT_SECRET,
+        return array(
+            'access_token' => $response->access_token,
             'refresh_token' => $response->refresh_token,
-            'resource' => 'https://intlalert.sharepoint.com',
         );
+    }
 
-        $socket = new HttpSocket(array(
-            'ssl_verify_host' => false
-        ));
-        $result = $socket->post($this->token_url, $data);
-
-        // parse response body
-        $response = json_decode($result->body);
-
-
-
-
-
-        debug($response);
-
-        die();
-
-        // received a well-formed response?
-        if ( !$response ) {
-            throw new Exception("We received no response from Office365", 1);
-        }
-
-        // any errors?
-        if ( property_exists($response, 'error') ) {
-            throw new Exception("Office365 returned an error: " . $response->error, 1);
-        }
-
-*/
-        
-        // get USER details
+    private function getUserData($access_token) {
         $options = array( 
             'header' => array( 
-                'Authorization' => 'Bearer ' . $response->access_token
+                'Authorization' => 'Bearer ' . $access_token
             ) 
         );
 
@@ -136,17 +139,43 @@ class Office365usersController extends AppController {
 
         $o365_user_response = json_decode($result->body);
 
+        return $o365_user_response;
+    }
+
+    private function getSharepointAccess($refresh_token) {
+
+        $data = array(
+            'grant_type' => 'refresh_token',
+            'client_id' => OFFICE365_CLIENT_ID,
+            'client_secret' => OFFICE365_CLIENT_SECRET,
+            'refresh_token' => $refresh_token,
+            'resource' => 'https://intlalert.sharepoint.com',
+        );
+
+        $socket = new HttpSocket(array(
+            'ssl_verify_host' => false
+        ));
+        $result = $socket->post($this->token_url, $data);
+
+        // parse response body
+        $response = json_decode($result->body);
 
 
-        // get or create the user
-        $user = $this->Office365user->getOrCreate($response->access_token, $o365_user_response);
 
-        // debug($user);
+        // received a well-formed response?
+        if ( !$response ) {
+            throw new Exception("We received no response from Office365", 1);
+        }
 
-        // assuming we get a user back, log them in
-        $this->Auth->login($user['User']);
+        // any errors?
+        if ( property_exists($response, 'error') ) {
+            throw new Exception("Office365 returned an error when getting Sharepoint details: " . $response->error, 1);
+        }
 
-        $this->redirect('/dashboard/dashboard');
+        return array(
+            'access_token' => $response->access_token,
+            'refresh_token' => $response->refresh_token,
+        );
 
     }
 

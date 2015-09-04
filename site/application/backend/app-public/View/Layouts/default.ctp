@@ -48,6 +48,9 @@ $body_classes = array(
 	<script type="text/javascript" src="/pdb/js/plugins/word-and-character-counter.js"></script>
 	<script type="text/javascript" src="/pdb/js/plugins/jquery.validate.js"></script>
 	<script type="text/javascript" src="/pdb/js/plugins/jquery.autogrow.js"></script>
+	<script type="text/javascript" src="/pdb/js/plugins/jquery.number.js"></script>
+
+
 	
 	<!--
 	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
