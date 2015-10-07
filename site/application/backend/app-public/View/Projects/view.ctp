@@ -1,3 +1,4 @@
+<?php $this->set('title', 'Projects - ' . $this->request->data('Project.title')); ?>
 <?php echo $this->Html->css('projects/view', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/view', array('inline' => false)); ?>
 
@@ -48,6 +49,11 @@ var data = <?php echo json_encode($project); ?>;
 			<?php echo h($project['OwnerUser']['name']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Department'); ?></dt>
+		<dd>
+			<?php echo h($project['Department']['name']); ?>
+		</dd>
+
 		<dt><?php echo __('Programme'); ?></dt>
 		<dd>
 			<?php echo h($project['Programme']['name']); ?>

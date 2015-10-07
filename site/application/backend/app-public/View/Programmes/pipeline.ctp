@@ -12,11 +12,22 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 <?php echo $this->element('Programmes/pipeline-nav'); ?>
 
 <div class="pipeline-container">
+	
+
+
+	<nav class="subnav clearfix">
+		<ul>
+			<li><?php echo $this->Html->link(__('Add Project'), array('controller' => 'projects', 'action' => 'add')); ?> </li>
+			
+		</ul>
+	</nav>
+
 	<h2>
 		<?php echo $programme['Programme']['name']; ?>
 
 		<?php echo $selectedYear; ?>
 	</h2>
+
 
 
 
@@ -114,7 +125,14 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 
 	<!-- Confirmed Funding -->
 	<section>
-		<h3>Confirmed Funding</h3>
+
+		<h3>
+			Projects with confirmed Funding
+		</h3>
+		<h4>
+			<?php echo count($confirmedProjects); ?> project(s)
+		</h4>
+		
 		<? if (count($confirmedProjects)): ?>
 			<?php echo $this->element('Programmes/pipeline-by-programme-confirmed', compact('pipeline', 'confirmedProjects')); ?>	
 		<? else: // (count($confirmedProjects)): ?>
@@ -123,16 +141,25 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 		
 	</section>
 
+
 	<!-- Total Confirmed + Highly Likely Funding -->
 
 	<section>
-		<h3>Unconfirmed Funding</h3>
+		<h3>
+			Projects with unconfirmed Funding
+			
+		</h3>
+		<h4>
+			<?php echo count($unconfirmedProjects); ?> project(s)
+		</h4>
+
 		<? if (count($unconfirmedProjects)): ?>
 			<?php echo $this->element('Programmes/pipeline-by-programme-unconfirmed', compact('pipeline', 'unconfirmedProjects')); ?>
 		<? else: // (count($confirmedProjects)): ?>
 			<p>None</p>
 		<? endif; // (count($confirmedProjects)): ?>
 		
-
 	</section>
+
+
 </div>

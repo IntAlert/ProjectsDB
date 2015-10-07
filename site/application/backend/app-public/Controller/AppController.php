@@ -69,10 +69,10 @@ class AppController extends Controller {
 
 
 	public function beforeFilter() {
-
+		// stop any client side caching.. avoids missing data on user
+		// hitting back button
+		$this->response->disableCache();
 	}
-
-
 
 	public function isAuthorized($user) {
 		return !!$this->Auth->user('id');

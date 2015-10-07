@@ -22,6 +22,17 @@ $body_classes = array(
 	$this->params->controller . '-' . $this->params->action . '-' . implode(',', $this->params['pass']),
 );
 
+// build title if none exists
+
+if ( !isset($title) ) {
+	$title = ucfirst($this->params->controller) . ' - ' . ucfirst($this->params->action);
+
+	if (count($this->params['pass'])) {
+		$title .= ' - ' . implode(',', $this->params['pass']);
+	}	
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -29,12 +40,12 @@ $body_classes = array(
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		ProjectsDB
+		PROMPT - <?php echo $title; ?>
 	</title>
 
 	<!-- JS: Libraries -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/pdb/js/lib/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="/pdb/js/lib/jquery-ui.min.js"></script>
 
 	<script type="text/javascript">
 		// Resolve name collision between jQuery UI and Twitter Bootstrap
@@ -59,9 +70,9 @@ $body_classes = array(
 	
 
 	<!-- CSS: Libraries -->
-	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/hot-sneaks/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="/pdb/css/lib/jquery-ui.css">
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/pdb/css/lib/font-awesome-4.4.0/css/font-awesome.min.css">
 
 
 	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
@@ -116,7 +127,7 @@ $body_classes = array(
 				</li>
 
 				<li class="pipeline">
-					<a href="/pdb/programmes/pipelineSummary">MAC Pipeline</a>
+					<a href="/pdb/departments/pipelineSummary">MAC Pipeline</a>
 				</li>
 
 			</ul>

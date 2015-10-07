@@ -6,14 +6,14 @@ $(function(){
 	var $form = $("#ProjectEditForm").length ? $("#ProjectEditForm") : $("#ProjectAddForm");
 
 	var validator = $form.validate({
-			// debug: true,
+			debug: true,
 			onfocusout: function (element) {
 		        $(element).valid();
 		    },
 		    onfocusin: function (element) {
 		        $(element).valid();
 		    },
-			ignore: ":hidden, .ui-datepicker-year",
+			ignore: ":hidden, .ui-datepicker-year, .ui-datepicker-month",
 			errorElement: 'span',
 	        errorElementClass: 'input-validation-error',
 	        errorClass: 'field-validation-error',
@@ -23,10 +23,21 @@ $(function(){
 			},
 			submitHandler: function(form) {
 				
-				// handle parent form submission, remove templates
-				$(".component-contracts .template").remove();
+				// handle parent form submission
+				if (checkForInconsistencies()) {
+					// no inconsistencies, or
+					// user happy with any that exist
 
-				form.submit();
+					// remove templates
+					$(".component-contracts .template").remove();
+
+					// re-enable
+					$(".ui-buttonset-disabled").buttonset('enable');
+
+					form.submit();
+				}
+				
+				
 			},
 			success: function(label) {
 				// tick
@@ -50,30 +61,34 @@ $(function(){
 				},
 
 				"data[Project][summary]": {
-					required: true,
-					minlength: 30
+					// required: true,
+					// minlength: 30
 				},
 
 				"data[Project][beneficiaries]": {
-					required: true,
-					minlength: 30
+					// required: true,
+					// minlength: 30
 				},
 
 				"data[Project][location]": {
-					required: true,
-					minlength: 30
+					// required: true,
+					// minlength: 30
 				},
 
 				"data[Project][goals]": {
-					required: true,
-					minlength: 30
+					// required: true,
+					// minlength: 30
 				},
 				
 				"data[Project][objectives]": {
-					required: true,
-					minlength: 30
+					// required: true,
+					// minlength: 30
 				},
 
+
+				"data[Project][department_id]": {
+					required: true
+				},
 
 				"data[Project][programme_id]": {
 					required: true
@@ -96,6 +111,9 @@ $(function(){
 					required: true,
 					number: true
 				}
+
+
+				
 			}
 		});
 
@@ -125,6 +143,21 @@ $(function(){
 			  required:true,
 			  number: true
 			});
+
+		}
+
+		function checkForInconsistencies() {
+			// give the user an opportunity to abort
+
+			// check for negative shortfall
+			if ($(".shortfall .value_gbp").data('shortfall') < 0) {
+				var ok_with_neg_sf = confirm('Are you sure you want to save? This project has a negative shortfall.');
+				if (!ok_with_neg_sf) {
+					return false;
+				}
+			}
+
+			return true;
 
 		}
 

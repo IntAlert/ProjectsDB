@@ -171,6 +171,7 @@ class ProjectsController extends AppController {
 		$statuses = $this->Project->Status->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$donors = $this->Project->Contract->Donor->findOrderedList();
+		$departments = $this->Project->Department->find('list');
 		$programmes = $this->Project->Programme->find('list');
 		$territories = $this->Project->Territory->findActiveList();
 
@@ -178,9 +179,31 @@ class ProjectsController extends AppController {
 		$employees = $this->User->findEmployeesList();
 		$themes = $this->Project->Theme->findOrderedList();
 
-		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'territories', 'employees', 'themes', 'donors'));
+		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'employees', 'themes', 'donors'));
 		
 	}
+
+
+
+	public function health($year) {
+		$conditions = array(
+			'Project.deleted' => false,
+			'YEAR(Project.start_date) <=' => $year,
+			'YEAR(Project.finish_date) >=' => $year,
+		);
+
+
+		$projects = $this->Project->find('all', array(
+			'contain' => array('Territory', 'Theme', 'Contract.Donor', 'Contract.Contractbudget'),
+	        'conditions' => $conditions,
+	        'order' => array('Project.title' => 'ASC'),
+	    ));
+
+
+		$this->set('projects', $projects);
+
+
+	}	
 
 /**
  * view method
@@ -203,6 +226,7 @@ class ProjectsController extends AppController {
 				'Status',
 				'Theme',
 				'Likelihood',
+				'Department',
 				'Programme',
 				'OwnerUser',
 				'Territory',
@@ -218,6 +242,7 @@ class ProjectsController extends AppController {
 		// AUDIT
 		$this->Audit->record("READ", "Project", $id, $project);
 	}
+
 
 /**
  * add method
@@ -241,16 +266,17 @@ class ProjectsController extends AppController {
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
+		$departments = $this->Project->Department->find('list');
 		$programmes = $this->Project->Programme->find('list');
 		$currencies = $this->Currency->find('list');
-		$donors = $this->Donor->find('list');
+		$donors = $this->Donor->findOrderedList();
 
 		$territories = $this->Project->Territory->findActiveList();
 		$territoriesWithProgrammes = $this->Project->Territory->findActiveWithProgramme();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'territories', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
 
 
 	}
@@ -303,15 +329,16 @@ class ProjectsController extends AppController {
 		$themes = $this->Project->Theme->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$programmes = $this->Project->Programme->find('list');
+		$departments = $this->Project->Department->find('list');
 		$currencies = $this->Currency->find('list');
-		$donors = $this->Donor->find('list');
+		$donors = $this->Donor->findOrderedList();
 
 		$territories = $this->Project->Territory->findActiveList();
 		$territoriesWithProgrammes = $this->Project->Territory->findActiveWithProgramme();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 
-		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'territories', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
 	}
 
 

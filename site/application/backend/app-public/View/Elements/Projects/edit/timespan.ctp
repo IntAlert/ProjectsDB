@@ -1,11 +1,19 @@
 
 <?
 
+	$start_date = $this->request->data('Project.start_date')
+		? $this->request->data('Project.start_date') : date('Y-m-d');
+	$finish_date = $this->request->data('Project.finish_date')
+		? $this->request->data('Project.finish_date') : date('Y-m-d');
+
+
 		echo $this->Form->input('start_date', array(
 			'type' => 'hidden',
+			'value' => $start_date,
 		));
 		echo $this->Form->input('finish_date', array(
 			'type' => 'hidden',
+			'value' => $finish_date,
 		));
 
 ?>

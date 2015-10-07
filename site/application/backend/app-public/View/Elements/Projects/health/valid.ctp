@@ -1,0 +1,1 @@
+<div style="background:green; color:white; padding:10px; text-align:center;">Valid</div>

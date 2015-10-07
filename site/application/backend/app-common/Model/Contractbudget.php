@@ -19,7 +19,9 @@ class Contractbudget extends AppModel {
 		'Contract' => array(
 			'className' => 'Contract',
 			'foreignKey' => 'contract_id',
-			'conditions' => '',
+			'conditions' => array(
+				'deleted' => false,
+			),
 			'fields' => '',
 			'order' => ''
 		)

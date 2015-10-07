@@ -126,7 +126,9 @@ CakeLog::config('error', array(
 
 // Load libraries
 App::uses('MACPipeline', 'Lib');
-App::uses('MACPipelineByProgramme', 'Lib');
+App::uses('MACPipelineByDepartment', 'Lib');
+App::uses('ProjectChecker', 'Lib');
+
 
 
 // Temporary API keys

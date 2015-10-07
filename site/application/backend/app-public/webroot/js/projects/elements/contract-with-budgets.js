@@ -296,9 +296,16 @@ function updateContractBudgetTotals() {
 	// update grand total for all contracts
 	$(".total-contracts-value .value_gbp").text($.number(contracts_grand_total_gbp));
 
-	// update shortfall
+	// calculate shortfall
 	var shortfall = Number($("#ProjectValueRequired").val()) - contracts_grand_total_gbp;
+
+	// change shortfall text
 	$(".shortfall .value_gbp").text($.number(shortfall));
+
+	// save shortfall value
+	$(".shortfall .value_gbp").data('shortfall', shortfall);
+
+
 	
 }
 

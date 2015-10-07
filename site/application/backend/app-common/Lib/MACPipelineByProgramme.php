@@ -208,19 +208,20 @@ class MACPipelineByProgramme {
 
 		}
 
-		// reorder projects
-		uasort($flattenedProjects, function($a, $b){
+		// reorder projects by territory
+		// uasort($flattenedProjects, function($a, $b){
 
-			if (count($a['territory_names']) == 0 && count($b['territory_names']) == 0) {
-				return $a['title'] > $b['title'];
-			} elseif (count($a['territory_names']) == 0) {
-				return +1;
-			} elseif (count($b['territory_names']) == 0) {
-				return -1;
-			} else {
-				return $a['territory_names'][0] > $b['territory_names'][0];
-			}
-		});
+		// 	// order by territory
+		// 	if (count($a['territory_names']) == 0 && count($b['territory_names']) == 0) {
+		// 		return $a['title'] > $b['title'];
+		// 	} elseif (count($a['territory_names']) == 0) {
+		// 		return +1;
+		// 	} elseif (count($b['territory_names']) == 0) {
+		// 		return -1;
+		// 	} else {
+		// 		return $a['territory_names'][0] > $b['territory_names'][0];
+		// 	}
+		// });
 
 		$this->flattenedProjects = $flattenedProjects;
 	}

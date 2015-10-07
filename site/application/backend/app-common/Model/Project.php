@@ -40,25 +40,19 @@ class Project extends AppModel {
 		'Status' => array(
 			'className' => 'Status',
 			'foreignKey' => 'status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		),
 		'Likelihood' => array(
 			'className' => 'Likelihood',
 			'foreignKey' => 'likelihood_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		),
 		'Programme' => array(
 			'className' => 'Programme',
 			'foreignKey' => 'programme_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-		,
+		),
+		'Department' => array(
+			'className' => 'Department',
+			'foreignKey' => 'department_id',
+		),
 		'OwnerUser' => array(
 			'className' => 'User',
 			'foreignKey' => 'owner_user_id',
@@ -105,12 +99,6 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'territory_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		),
 		'TeamMember' => array(
 			'className' => 'User',
@@ -118,12 +106,6 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'user_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		),
 		'Theme' => array(
 			'className' => 'Theme',
@@ -131,12 +113,6 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'theme_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		)
 	);
 

@@ -88,15 +88,21 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 			</td>
 
 			<td>
-				<?php echo $this->Time->format(
-				  "M y",
+				<?php 
+
+				echo $this->Time->format(
+				  "M'y",
 				  $project['start_date']
-				); ?>
-				-
-				<?php echo $this->Time->format(
-				  "M y",
+				); 
+
+				echo '-';
+				
+				echo $this->Time->format(
+				  "M'y",
 				  $project['finish_date']
-				); ?>
+				); 
+
+				?>
 			</td>
 
 			<td>
@@ -158,15 +164,19 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				</td>
 
 				<td>
-					<?php echo $this->Time->format(
-					  'F, Y',
+					<?php 
+
+					echo $this->Time->format(
+					  'M y',
 					  $project['start_date']
-					); ?>
-					-
-					<?php echo $this->Time->format(
-					  'F, Y',
+					); 
+					echo '-';
+					echo $this->Time->format(
+					  'M y',
 					  $project['finish_date']
-					); ?>
+					); 
+
+					?>
 				</td>
 
 				<td>

@@ -32,9 +32,7 @@ class ProgrammesController extends AppController {
 			$firstProjectYear[0]['YEAR(start_date)'] : date("Y");
 
 
-
-
-		// get payments
+		// get annual budgets
 		$budgetsThisYear = $this->Programme->Project->Contract->Contractbudget->find('all', array(
 			'contain' => array(
 				'Contract.Project.Likelihood',
@@ -45,13 +43,14 @@ class ProgrammesController extends AppController {
 			)
 		));
 
+
 		$budgetsLastYear = $this->Programme->Project->Contract->Contractbudget->find('all', array(
 			'contain' => array(
 				'Contract.Project.Likelihood',
 				'Contract.Project.Status',
 			),
 			'conditions' => array(
-				'year' => $selectedYear - 1
+				'year' => ($selectedYear - 1),
 			)
 		));
 
@@ -152,12 +151,16 @@ class ProgrammesController extends AppController {
 
 			),
 			'conditions' => array(
+				'Project.deleted' => false,
 				'Project.programme_id' => $programme_id,
 				'OR' => array(
-					'YEAR(Project.start_date)' => $selectedYear,
-					'YEAR(Project.finish_date)' => $selectedYear,
+					'YEAR(Project.start_date) <=' => $selectedYear,
+					'YEAR(Project.finish_date) >=' => $selectedYear,
 				)
-			)
+			),
+			'order' => array(
+				'Project.title' => 'ASC'
+			),
 		));
 
 		$this->set(compact(

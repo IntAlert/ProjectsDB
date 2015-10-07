@@ -17,6 +17,21 @@
 
 
 	<h3>
+		Department
+	</h3>
+
+	<div class="ui-state-default clearfix">
+		<?php
+			echo $this->Form->input('department_id', array(
+				'legend' => false,
+				'tooltip' => 'Please select the department which applies',
+				'type' => 'radio',
+			));
+
+		?>
+	</div>
+
+	<h3>
 		Programme
 	</h3>
 

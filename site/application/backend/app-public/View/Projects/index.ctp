@@ -1,3 +1,4 @@
+<?php $this->set('title', 'Projects - Search'); ?>
 <?php echo $this->Html->css('projects/index'); ?>
 
 
