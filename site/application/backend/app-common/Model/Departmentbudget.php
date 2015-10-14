@@ -37,6 +37,25 @@ class Departmentbudget extends AppModel {
 		)
 	);
 
+	public function getDepartmentBudget($department_id, $year) {
+		return $this->Department->Departmentbudget->field(
+			'value_gbp', 
+			array(
+				'Departmentbudget.year' => $year,
+				'Departmentbudget.department_id' => $department_id,
+			)
+		);
+	}
+
+	public function getDepartmentBudgetsList($year) {
+		return $this->find('list', array(
+			'fields' => array('department_id', 'value_gbp'),
+			'conditions' => array(
+				'Departmentbudget.year' => $year
+			),
+		));
+	}
+
 	public function saveAnnualBudgets($year, $data) {
 
 		// build data

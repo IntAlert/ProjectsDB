@@ -1,6 +1,6 @@
 
 
-<table>
+<table class="table">
 
 	<thead>
 		<tr>
@@ -66,13 +66,7 @@
 			</td>
 
 			<td>
-				<?php 
-					if ($project['fund_code']) {
-						echo h($project['fund_code']);
-					} else {
-						echo 'none';
-					}
-				?>
+				<?php echo h($project['likelihood_short_name']); ?>
 			</td>
 
 			<td>
@@ -137,7 +131,7 @@
 
 				<td>
 					<?php 
-						echo h($project['likelihood']);
+						echo h($project['likelihood_short_name']);
 					?>
 				</td>
 

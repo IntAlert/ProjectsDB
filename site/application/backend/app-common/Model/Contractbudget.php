@@ -26,4 +26,17 @@ class Contractbudget extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+	public function getContractBudgets($year) {
+		return $this->find('all', array(
+			'contain' => array(
+				'Contract.Project.Likelihood',
+				'Contract.Project.Status',
+			),
+			'conditions' => array(
+				'year' => $year
+			)
+		));
+	}
 }

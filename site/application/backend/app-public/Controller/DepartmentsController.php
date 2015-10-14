@@ -20,17 +20,8 @@ class DepartmentsController extends AppController {
 		$selectedYear = $this->request->query('selectedYear');
 		if (is_null($selectedYear)) $selectedYear = $thisYear;
 
-		// determine first payment year
-		$firstProjectYear = $this->Department->Project->find('first', array(
-			'contain' => false,
-			'fields' => array("YEAR(start_date)"),
-			'order' => array('Project.start_date' => 'ASC'),
-			'conditions' => array('Project.start_date <>' => NULL ),
-		));
-		
-		$firstYear = (int) isset($firstProjectYear[0]) ?
-			$firstProjectYear[0]['YEAR(start_date)'] : date("Y");
-
+		// determine first project year
+		$firstYear = $this->Department->Project->getFirstProjectYear();
 
 		// get annual budgets
 		$budgetsThisYear = $this->Department->Project->Contract->Contractbudget->find('all', array(
@@ -43,30 +34,11 @@ class DepartmentsController extends AppController {
 			)
 		));
 
-
-		$budgetsLastYear = $this->Department->Project->Contract->Contractbudget->find('all', array(
-			'contain' => array(
-				'Contract.Project.Likelihood',
-				'Contract.Project.Status',
-			),
-			'conditions' => array(
-				'year' => ($selectedYear - 1),
-			)
-		));
-
 		// get department budgets for this year
 		$departmentBudgetsThisYear = $this->Department->Departmentbudget->find('list', array(
 			'fields' => array('department_id', 'value_gbp'),
 			'conditions' => array(
 				'Departmentbudget.year' => $selectedYear
-			),
-		));
-
-		// get department budgets for this year
-		$departmentBudgetsLastYear = $this->Department->Departmentbudget->find('list', array(
-			'fields' => array('department_id', 'value_gbp'),
-			'conditions' => array(
-				'Departmentbudget.year' => $selectedYear - 1
 			),
 		));
 
@@ -78,18 +50,15 @@ class DepartmentsController extends AppController {
 
 		$this->set(compact(
 			'departmentBudgetsThisYear',
-			'departmentBudgetsLastYear',
 			'selectedYear',
 			'thisYear',
 			'firstYear',
 			'budgetsThisYear',
-			'budgetsLastYear',
 			'departmentsList'
 		 ));
 	}
 
 	function pipeline($department_id = null) {
-
 
 
 		// determine this year
@@ -101,67 +70,22 @@ class DepartmentsController extends AppController {
 		if (is_null($selectedYear)) $selectedYear = $thisYear;
 
 		// determine first payment year
-		$firstProjectYear = $this->Department->Project->find('first', array(
-			'contain' => false,
-			'fields' => array("YEAR(start_date)"),
-			'order' => array('Project.start_date' => 'ASC'),
-		));
-
-		
-		$firstYear = (int) isset($firstProjectYear[0]) ?
-			$firstProjectYear[0]['YEAR(start_date)'] : date("Y");
-
+		$firstYear = $this->Department->Project->getFirstProjectYear();
 
 		// get departments
-		$departmentsList = $this->Department->find('list', array(
-			'fields' => array('id', 'name'),
-		));
+		$departmentsList = $this->Department->findOrderedList();
 
 		// get department
-		$department = $this->Department->find('first', array(
-			'contain' => false,
-			'conditions' => array(
-				'Department.id' => $department_id,
-			)
-		));
+		$department = $this->Department->findSimpleById($department_id);
 
 		// get department budget this year
-		$departmentBudgetThisYear = $this->Department->Departmentbudget->field(
-			'value_gbp', 
-			array(
-				'Departmentbudget.year' => $selectedYear,
-				'Departmentbudget.department_id' => $department_id,
-			)
-		);
+		$departmentBudgetThisYear = $this->Department->Departmentbudget->getDepartmentBudget($department_id, $selectedYear);
 
-		$departmentBudgetNextYear = $this->Department->Departmentbudget->field(
-			'value_gbp', 
-			array(
-				'Departmentbudget.year' => $selectedYear + 1,
-				'Departmentbudget.department_id' => $department_id,
-			)
-		);
+		// and next
+		$departmentBudgetNextYear = $this->Department->Departmentbudget->getDepartmentBudget($department_id, $selectedYear + 1);
 
-		$projects = $this->Department->Project->find('all', array(
-			'contain' => array(
-				'Contract.Contractbudget',
-				'Contract.Donor',
-				'Territory',
-				'Likelihood',
-
-			),
-			'conditions' => array(
-				'Project.deleted' => false,
-				'Project.department_id' => $department_id,
-				'OR' => array(
-					'YEAR(Project.start_date) <=' => $selectedYear,
-					'YEAR(Project.finish_date) >=' => $selectedYear,
-				)
-			),
-			'order' => array(
-				'Project.title' => 'ASC'
-			),
-		));
+		// get projects for this department and year
+		$projects = $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $selectedYear);
 
 		$this->set(compact(
 			'departmentsList',
@@ -177,8 +101,124 @@ class DepartmentsController extends AppController {
 
 	}
 
+	function pipelineExportConfirm() {
+
+		// get selected year
+		$selectedYear = $this->request->query('selectedYear');
+		if (is_null($selectedYear)) $selectedYear = $thisYear;
+		$nextYear = $selectedYear + 1;
+
+		// get all projects
+		$conditions = array(
+			'Project.deleted' => false,
+			'YEAR(Project.start_date) <=' => $selectedYear,
+			'YEAR(Project.finish_date) >=' => $selectedYear,
+		);
+
+		$projects = $this->Department->Project->find('all', array(
+			'contain' => array('Territory', 'Theme', 'Contract.Donor', 'Contract.Contractbudget', 'Status', 'Likelihood'),
+	        'conditions' => $conditions,
+	        'order' => array('Project.title' => 'ASC'),
+	    ));
+
+
+	    // departments
+	    $departmentsList = $this->Department->findOrderedList();
+
+		$this->set(compact(
+			'thisYear',
+			'firstYear',
+			'department',
+			'projects',
+			'selectedYear',
+			'nextYear', 
+			'departmentBudgetThisYear', 
+			'departmentBudgetNextYear',
+			'departmentsList'
+		));
+
+	}
+
+
+	function pipelineExport() {
+		
+	}
+
 	function setSharedData() {
 		// TODO: factor out shared
+	}
+
+	function pipelineExportForm() {
+
+		// determine this year
+		$now = new DateTime();
+		$thisYear = (int) ($now->format("Y"));
+
+		// get selected year
+		$selectedYear = $this->request->query('selectedYear');
+		if (is_null($selectedYear)) $selectedYear = $thisYear;
+		$nextYear = $selectedYear+1;
+
+		// get first payment year
+		$firstYear = $this->Department->Project->getFirstProjectYear();
+
+		// get departments
+		$departmentsList = $this->Department->findOrderedList();
+
+
+		// BUILD UP SUMMARY DATA for this year and next
+
+		// THIS YEAR
+		//
+		// get annual contract budgets
+		$contractbudgetsThisYear = $this->Department->Project->Contract->Contractbudget->getContractBudgets($selectedYear);
+
+		// get department budgets for this year
+		$departmentBudgetsThisYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($selectedYear);
+
+		// NEXT YEAR
+		//
+		// get annual contract budgets
+		$contractbudgetsNextYear = $this->Department->Project->Contract->Contractbudget->getContractBudgets($nextYear);
+
+		// get department budgets for this year
+		$departmentBudgetsNextYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($nextYear);
+
+
+		// BUILD UP DEPARTMENT-LEVEL DATA
+		$departmentsDetailAnnual = [];
+		foreach ($departmentsList as $department_id => $name) {
+
+			$departmentDetailAnnual = array(
+				'department' => $this->Department->findSimpleById($department_id),
+				'projects' => $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $selectedYear),
+				'departmentBudgetThisYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $selectedYear),
+				'departmentBudgetNextYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $nextYear),
+			);
+
+			$departmentsDetailAnnual[$department_id] = $departmentDetailAnnual;
+
+		}
+
+
+		$this->set(compact(
+
+			'departmentsList',
+			'firstYear',
+			'thisYear',
+			'selectedYear',
+			'nextYear',
+			
+			// Summary data
+			'departmentBudgetsThisYear',
+			'departmentBudgetsNextYear',
+			'contractbudgetsThisYear',
+			'contractbudgetsNextYear',
+
+			// department-level
+			'departmentsDetailAnnual'
+			
+		 ));
 	}
 
 }

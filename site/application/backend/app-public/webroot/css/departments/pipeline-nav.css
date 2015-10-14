@@ -1,0 +1,38 @@
+/*Pipeline*/
+.pipeline-nav {
+	float:left;
+	width:20%;
+	border-right:1px solid #eee;
+	padding-right:1em;
+	margin-right:1em;
+}
+.pipeline-nav ul {
+	margin:0;
+}
+.pipeline-nav li {
+	display: block;
+	width:100%;
+}
+
+/*Sub nav */
+.departments-pipelineSummary .pipeline-nav li.programme-summary,
+.departments-pipeline-1 .pipeline-nav li.department-1,
+.departments-pipeline-2 .pipeline-nav li.department-2,
+.departments-pipeline-3 .pipeline-nav li.department-3,
+.departments-pipeline-4 .pipeline-nav li.department-4,
+.departments-pipeline-5 .pipeline-nav li.department-5,
+.departments-pipeline-6 .pipeline-nav li.department-6,
+.departments-pipeline-7 .pipeline-nav li.department-7,
+.departments-pipeline-8 .pipeline-nav li.department-8 {
+	background: #eee;
+}
+
+.pipeline-nav .export {
+	margin-top:2em;
+	background: red;
+	color:white;
+	padding:12px;
+	display: block;
+	border-radius: 5px;
+	text-align: center;
+}

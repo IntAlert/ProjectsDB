@@ -53,5 +53,20 @@ class Department extends AppModel {
 		)
 	);
 
+	public function findSimpleById($department_id) {
+		return $this->find('first', array(
+			'contain' => false,
+			'conditions' => array(
+				'Department.id' => $department_id,
+			)
+		));
+	}
+
+	public function findOrderedList() {
+		return $this->find('list', array(
+			'order' => array('Department.sort_order ASC')
+		));
+	}
+
 
 }

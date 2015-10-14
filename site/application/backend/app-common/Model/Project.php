@@ -116,6 +116,21 @@ class Project extends AppModel {
 		)
 	);
 
+	function getFirstProjectYear() {
+		$result = $this->find('first', array(
+			'contain' => false,
+			'fields' => array("YEAR(start_date)"),
+			'order' => array('Project.start_date' => 'ASC'),
+			'conditions' => array('Project.start_date <>' => NULL ),
+		));
+
+		$firstYear = (int) isset($result[0]) ?
+			$result[0]['YEAR(start_date)'] : date("Y");
+
+		return $firstYear;
+
+	}
+
 
 	function findRecentlyViewed($user_id, $limit = 10) {
 
@@ -141,6 +156,29 @@ class Project extends AppModel {
 
 
 
+	}
+
+	function getProjectsByDepartmentAndYear($department_id, $year) {
+		return $this->Department->Project->find('all', array(
+			'contain' => array(
+				'Contract.Contractbudget',
+				'Contract.Donor',
+				'Territory',
+				'Likelihood',
+
+			),
+			'conditions' => array(
+				'Project.deleted' => false,
+				'Project.department_id' => $department_id,
+				'OR' => array(
+					'YEAR(Project.start_date) <=' => $year,
+					'YEAR(Project.finish_date) >=' => $year,
+				)
+			),
+			'order' => array(
+				'Project.title' => 'ASC'
+			),
+		));
 	}
 
 

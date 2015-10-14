@@ -6,7 +6,7 @@ $(function(){
 	var $form = $("#ProjectEditForm").length ? $("#ProjectEditForm") : $("#ProjectAddForm");
 
 	var validator = $form.validate({
-			debug: true,
+			// debug: true,
 			onfocusout: function (element) {
 		        $(element).valid();
 		    },
@@ -36,6 +36,8 @@ $(function(){
 
 					form.submit();
 				}
+
+
 				
 				
 			},
@@ -156,6 +158,23 @@ $(function(){
 					return false;
 				}
 			}
+
+			// if status changed to confirmed, remind to check project total
+			var likelihood_id_confirmed = 2;
+			var project_likelihood_submitted = Number($('[name="data[Project][likelihood_id]"]:checked').val());
+			console.log(project_likelihood_original);
+			console.log(project_likelihood_submitted);
+			if (
+				(project_likelihood_original != project_likelihood_submitted)
+				&& (project_likelihood_submitted == likelihood_id_confirmed)
+				) {
+			
+				var checked_project_total = confirm('You have changed the likelihood of this project to CONFIRMED. Have you ensured that the project total value is accurate?');
+
+				if (!checked_project_total) {
+					return false;
+				}
+			}			
 
 			return true;
 

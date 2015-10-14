@@ -46,6 +46,8 @@ class AppController extends Controller {
 	            )
 	        ),
 	        'authorize' => array('Controller'), // Added this line
+
+
 	  //       'flash' => array(
 			// 	'element' => 'alert',
 			// 	'key' => 'auth',
@@ -56,7 +58,16 @@ class AppController extends Controller {
 			// ),
 	    ),
 
+	    'RequestHandler' => array(
+		    'viewClassMap' => array(
+		        'xls' => 'CakePHPExcel.Excel',
+		        'xlsx' => 'CakePHPExcel.Excel'
+		    )
+		),
+
 	);
+
+
 
 	public $helpers = array(
 		'Html',

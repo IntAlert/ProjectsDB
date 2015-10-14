@@ -1,10 +1,12 @@
 <?
 
 	$this->Html->script('departments/pipeline-nav', array('inline' => false));
+	$this->Html->css('departments/pipeline-nav', array('inline' => false));
 
-	// build year options
+	// build year options: first year to next year
+	$nextYear = $thisYear + 1;
 	$years = array();
-	for ($year=$firstYear; $year <= $thisYear; $year++) {
+	for ($year=$firstYear; $year <= $nextYear; $year++) {
 		$years[$year] = $year;
 	}
 ?>
@@ -22,6 +24,8 @@
 					'value' => $selectedYear,
 				)); ?>
 			</li>
+
+			
 
 			<li class="department-summary">
 				<?php echo $this->Html->link('Summary', array(
@@ -42,7 +46,32 @@
 			</li>
 	<?php endforeach; // ($departments as $department): ?>
 
+			<li>
+				<?php echo $this->Html->link('Edit ' . $selectedYear . ' budgets', array(
+					'controller' => 'departmentbudgets', 
+					'action' => 'edit',
+					$selectedYear
+				), array('class' => 'departmentbudget')); ?>
 
+			</li>
+
+			<li>
+				<?php echo $this->Html->link('Edit ' . ($selectedYear + 1) . ' budgets', array(
+					'controller' => 'departmentbudgets', 
+					'action' => 'edit',
+					($selectedYear + 1)
+				), array('class' => 'departmentbudget')); ?>
+
+			</li>			
+
+			<li>
+				
+				<?php echo $this->Html->link('Export MAC template', array(
+					'controller' => 'departments', 
+					'action' => 'pipelineExportConfirm',
+					'?' => array('selectedYear' => $selectedYear)
+				), array('class' => 'export')); ?>
+			</li>
 
 		</ul>
 

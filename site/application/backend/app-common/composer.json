@@ -1,0 +1,13 @@
+{
+	"require": {
+	    "maraya/cake-php-excel": "1.1.*"
+	},
+	"config": {
+	    "vendor-dir": "Vendor/"
+	},
+	"extra": {
+	    "installer-paths": {
+	        "Plugin/CakePHPExcel": ["maraya/cake-php-excel"]
+	    }
+	}
+}

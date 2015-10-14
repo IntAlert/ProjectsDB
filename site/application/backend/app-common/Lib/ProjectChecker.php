@@ -21,12 +21,18 @@ class ProjectChecker {
 
 	}
 
-	function hasValidAnnualBudgets() {
+	function hasValidAnnualBudgets($startYear = null, $finishYear = null) {
 
 		if (!$this->hasValidDates()) return false;
 
-		$startYear = (int)date('Y', strtotime($this->project['Project']['start_date']));
-		$finishYear = (int)date('Y', strtotime($this->project['Project']['finish_date']));
+		// default to start 
+		if ( is_null($startYear)) {
+			$startYear = (int)date('Y', strtotime($this->project['Project']['start_date']));	
+		}
+
+		if ( is_null($finishYear)) {
+			$finishYear = (int)date('Y', strtotime($this->project['Project']['finish_date']));
+		}
 
 		$requiredYears = range($startYear, $finishYear);
 		$presentYears = [];
@@ -53,6 +59,10 @@ class ProjectChecker {
 
 		return true;
 
+	}
+
+	function hasValidTerritories() {
+		return !! count($this->project['Territory']); // at least one?
 	}
 
 }

@@ -60,6 +60,7 @@ if ( !isset($title) ) {
 	<script type="text/javascript" src="/pdb/js/plugins/jquery.validate.js"></script>
 	<script type="text/javascript" src="/pdb/js/plugins/jquery.autogrow.js"></script>
 	<script type="text/javascript" src="/pdb/js/plugins/jquery.number.js"></script>
+	<script type="text/javascript" src="/pdb/js/plugins/garlic.js"></script>
 
 
 	
@@ -88,6 +89,8 @@ if ( !isset($title) ) {
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+
+	<link rel="stylesheet" type="text/css" href="/pdb/css/print.css" media="print" >
 	
 </head>
 

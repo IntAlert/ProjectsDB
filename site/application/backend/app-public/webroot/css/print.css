@@ -1,0 +1,25 @@
+#header, nav.main, #footer, .cake-sql-log, #debug-kit-toolbar {display: none;}
+#container {min-width: auto; width:auto;}
+
+
+
+/*Pipeline PDF export*/
+.pipeline-export-form,
+.pipeline-export-by-department,
+.pipeline-export-form section,
+.pipeline-export-by-department section {
+	page-break-inside: avoid;
+	margin-bottom:3em;
+}
+.pipeline-export-form table {
+	max-width: 50%;
+	font-size:12px;
+}
+
+.pipeline-export-form .pipeline-container,
+.pipeline-export-by-department .pipeline-container {
+	float:none;
+	width:auto;
+}
+
+.pipeline-export-form input {display: none;}

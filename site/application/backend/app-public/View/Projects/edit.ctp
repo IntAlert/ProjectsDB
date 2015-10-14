@@ -135,3 +135,14 @@
 
 <?php echo $this->Form->end(__('Save Project')); ?>
 </div>
+
+
+<script>
+
+	var project_likelihood_original = <?php echo json_encode($this->request->data('Likelihood.id')); ?>;
+
+
+</script>
+
+
+

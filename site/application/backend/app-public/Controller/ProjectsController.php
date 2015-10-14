@@ -324,6 +324,7 @@ class ProjectsController extends AppController {
 				)
 			);
 			$this->request->data = $this->Project->find('first', $options);
+
 		}
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
@@ -337,6 +338,8 @@ class ProjectsController extends AppController {
 		$territoriesWithProgrammes = $this->Project->Territory->findActiveWithProgramme();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
+
+
 
 		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
 	}
