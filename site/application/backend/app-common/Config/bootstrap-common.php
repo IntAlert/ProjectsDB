@@ -129,6 +129,8 @@ App::uses('MACPipeline', 'Lib');
 App::uses('MACPipelineByDepartment', 'Lib');
 App::uses('ProjectChecker', 'Lib');
 
+// Load Vendors via autoload
+require_once(__DIR__ . '/../Vendor/autoload.php');
 
 
 // Temporary API keys

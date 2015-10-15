@@ -80,17 +80,21 @@ class MACPipeline {
 		return $budget;
 	}
 
-	function getPercentage($department_id, $statuses) {
+	
+
+	function getRatio($department_id, $statuses) {
 
 		// avoid divide by zero
 		if ($this->getBudget($department_id)) {
-			$percentage = 100 * $this->getTotal($department_id, $statuses) / $this->getBudget($department_id);
+			$ratio = $this->getTotal($department_id, $statuses) / $this->getBudget($department_id);
 		} else {
-			$percentage = 100;
+			$ratio = 1;
 		}
-		return $percentage;
+		return $ratio;
 	}
 
-
+	function getPercentage($department_id, $statuses) {
+		return $this->getRatio($department_id, $statuses) * 100;
+	}
 
 }

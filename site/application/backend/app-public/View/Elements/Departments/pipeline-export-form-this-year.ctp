@@ -95,14 +95,14 @@
 				</th>
 				<td>
 					<!-- Budget -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getBudget('all'), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getBudget('all')); ?>
 
 				</td>
 
 
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", "confirmed"), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", "confirmed")); ?>
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed percentage -->
@@ -112,7 +112,7 @@
 
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array('confirmed', 'highly-likely')), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array('confirmed', 'highly-likely'))); ?>
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL percentage -->
@@ -121,15 +121,15 @@
 
 				<td class="pipeline">
 					<!-- Total Unconfirmed -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array("highly-likely", 'medium', 'low')), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array("highly-likely", 'medium', 'low'))); ?>
 				</td>
 				<td class="pipeline">
 					<!-- HL -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", "highly-likely"), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", "highly-likely")); ?>
 				</td>
 				<td class="pipeline">
 					<!-- Low to Medium -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array('low', 'medium')), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array('low', 'medium'))); ?>
 				</td>
 
 
@@ -157,14 +157,14 @@
 				</th>
 				<td>
 					<!-- Budget -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getBudget($department_id), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getBudget($department_id)); ?>
 
 				</td>
 
 
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, "confirmed"), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, "confirmed")); ?>
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed percentage -->
@@ -174,7 +174,7 @@
 
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array('confirmed', 'highly-likely')), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array('confirmed', 'highly-likely'))); ?>
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL percentage -->
@@ -183,15 +183,15 @@
 
 				<td class="pipeline">
 					<!-- Total Unconfirmed -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array("highly-likely", 'medium', 'low')), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array("highly-likely", 'medium', 'low'))); ?>
 				</td>
 				<td class="pipeline">
 					<!-- HL -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, "highly-likely"), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, "highly-likely")); ?>
 				</td>
 				<td class="pipeline">
 					<!-- Low to Medium -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array('low', 'medium')), 'GBP'); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array('low', 'medium'))); ?>
 				</td>
 
 
