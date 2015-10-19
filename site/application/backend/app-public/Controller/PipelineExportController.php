@@ -1,68 +1,39 @@
 <?php
 
-
-
-
-class TestExcelGenShell extends AppShell {
+class PipelineExportController extends AppController {
 
 	var $uses = array('Department');
-	
+	var $template = false;
 
-	function main() {
+    public function download() {
 
-
-		// load comparisson data
-		$comparissonData = array(
-			'date' => '2014-10-10',
-			'department-budget' => array(
-				1 => '2003423',
-				2 => '23423',
-				3 => '2003423',
-				4 => '23423',
-				5 => '2003423',
-				6 => '232332',
-				7 => '2003423',
-			),
-			'department-chfl' => array(
-				1 => '200423',
-				2 => '2343',
-				3 => '200423',
-				4 => '2323',
-				5 => '200423',
-				6 => '23232',
-				7 => '23432',
-			),
-		);
-
-		$this->loadHelpers();		
+    	$this->loadSelectedYear();
+    	$this->loadHelpers();
 
 		// get template
-		$this->createBlankTemplate();
+		$this->createExcelTemplate();
 
 		// GET DATA
-		$this->loadData(2015, $comparissonData);
+		$this->buildData();
 
 		// write all sheets
 		$this->writeContent();
 		
 		// save the template
-		$this->savePipeline();
+		$exportFile = $this->savePipeline();
 
+		// respond with file
+		$name = 'MAC Pipeline ' . $this->selectedYear . ' ' . $this->Time->format('y-m-d-h-i', new DateTime()) . '.xlsx';
+		$download = true;
+		$this->response->file($exportFile, compact('name', 'download'));
+    }
 
-
-
-	}
-
-	function loadData($selectedYear, $comparissonData) {
+    private function buildData() {
 		
-		$this->selectedYear = $selectedYear;
-		$this->nextYear = $selectedYear + 1;
-
 		// get departments
 		$this->departmentsList = $this->Department->findOrderedList();
 
-		$this->loadComparissonData($comparissonData);
-
+		$this->loadComparissonData();
 
 		// get annual contract budgets
 		$this->contractbudgetsThisYear = $this->Department->Project->Contract->Contractbudget->getContractBudgets($this->selectedYear);
@@ -94,7 +65,74 @@ class TestExcelGenShell extends AppShell {
 		$this->departmentsDetailAnnual = $departmentsDetailAnnual;
 	}
 
-	function writeContent() {
+	private function loadComparissonData() {
+
+		// $comparissonData = array(
+		// 	'date' => '2014-10-10',
+		// 	'department-budget' => array(
+		// 		1 => '2003423',
+		// 		2 => '23423',
+		// 		3 => '2003423',
+		// 		4 => '23423',
+		// 		5 => '2003423',
+		// 		6 => '232332',
+		// 		7 => '2003423',
+		// 	),
+		// 	'department-chfl' => array(
+		// 		1 => '200423',
+		// 		2 => '2343',
+		// 		3 => '200423',
+		// 		4 => '2323',
+		// 		5 => '200423',
+		// 		6 => '23232',
+		// 		7 => '23432',
+		// 	),
+		// );
+
+		$comparissonData = array(
+			'date' => $this->request->data('date')
+		);
+
+		$comparissonData['total'] = array(
+			'department-budget' => 0,
+			'department-chfl' => 0,
+		);
+
+		foreach ($this->departmentsList as $department_id => $name) {
+
+			// grab figures, if they exist
+			$departmentBudget = (int) $this->request->data('department-budget.' . $department_id);
+			$departmentCHFL = (int) $this->request->data('department-chfl.' . $department_id);
+
+			// add to totals
+			$comparissonData['total']['department-budget'] += $departmentBudget;
+			$comparissonData['total']['department-chfl'] += $departmentCHFL;
+
+			// calculate ratio
+			if ($departmentBudget > 0) {
+				$ratio = $departmentCHFL / $departmentBudget;
+			} else {
+				$ratio = '';
+			}
+
+			$comparissonData['department-budget'][$department_id] = $departmentBudget;
+			$comparissonData['department-chfl'][$department_id] = $departmentCHFL;
+			$comparissonData['department-ratio'][$department_id] = $ratio;
+		}
+
+		// calculate total ratio
+		if ($comparissonData['total']['department-budget'] > 0) {
+			$total_ratio = $comparissonData['total']['department-chfl'] / $comparissonData['total']['department-budget'];
+		} else {
+			$total_ratio = '';
+		}
+
+		$comparissonData['total']['department-ratio'] = $total_ratio;
+
+		$this->comparissonData = $comparissonData;
+	}
+
+	private function writeContent() {
 
 		// pipeline summary this year
 		$pipelineThisYear = new MACPipeline($this->selectedYear, $this->departmentBudgetsThisYear, $this->contractbudgetsThisYear);
@@ -111,10 +149,7 @@ class TestExcelGenShell extends AppShell {
 
 	}
 
-
-	function createSummary($pipeline) {
-
-		
+	private function createSummary($pipeline) {
 
 		$sheet = $this->cloneSummarySheet($pipeline->getYear() . " Summary");
 
@@ -198,7 +233,7 @@ class TestExcelGenShell extends AppShell {
 		return $sheet;
 	}
 
-	function createDepartmentDetail($department_id) {
+	private function createDepartmentDetail($department_id) {
 
 
 		extract($this->departmentsDetailAnnual[$department_id]);
@@ -449,57 +484,72 @@ class TestExcelGenShell extends AppShell {
 	    $sheet->setCellValue('J' . ($unconfirmedTotalRow + 3),  $pipeline->getPercentageBudgetNextYear(array('highly-likely', 'confirmed')) / 100); // turn into ratio
 	}
 
-	function createBlankTemplate() {
-		$this->template = PHPExcel_IOFactory::load("mac-template.xlsx");
+    private function createExcelTemplate() {
+		$this->excelTemplate = PHPExcel_IOFactory::load(APP . "View/Layouts/mac-template.xlsx");
 	}
 
-	function savePipeline() {
+	private function savePipeline() {
 
+		// remove template sheets
 		$this->deleteTemplateSheets();
 
-		$objWriter = PHPExcel_IOFactory::createWriter($this->template, "Excel2007");
-		$objWriter->save("test6.xlsx");
+		// get tmp filename
+		$exportFile = tempnam(sys_get_temp_dir(), 'pipeline_');
+
+		$objWriter = PHPExcel_IOFactory::createWriter($this->excelTemplate, "Excel2007");
+		$objWriter->save($exportFile);
+
+		// return path to excel
+		return $exportFile;
 	}
 
-	
 
-	function cloneSummarySheet($sheet_name) {
+	private function cloneSummarySheet($sheet_name) {
 
-		$summaryTemplateSheet = $this->template->getSheetByName('Summary Template');
+		$summaryTemplateSheet = $this->excelTemplate->getSheetByName('Summary Template');
 
 		$clonedWorksheet = clone $summaryTemplateSheet;
 		$clonedWorksheet->setTitle($sheet_name);
-		$this->template->addSheet($clonedWorksheet);
+		$this->excelTemplate->addSheet($clonedWorksheet);
 
 		// build header row 1
 		return $clonedWorksheet;
 	}
 
-	function cloneDepartmentSheet($sheet_name) {
+	private function cloneDepartmentSheet($sheet_name) {
 
-		$departmentTemplateSheet = $this->template->getSheetByName('Department Template');
+		$departmentTemplateSheet = $this->excelTemplate->getSheetByName('Department Template');
 
 		$clonedWorksheet = clone $departmentTemplateSheet;
 		$clonedWorksheet->setTitle($sheet_name);
-		$this->template->addSheet($clonedWorksheet);
+		$this->excelTemplate->addSheet($clonedWorksheet);
 
 		// build header row 1
 		return $clonedWorksheet;
 	}
 
-	function deleteTemplateSheets() {
+	private function deleteTemplateSheets() {
 		
 		// delete summary template
-		$sheetIndex = $this->template->getIndex(
-	    	$this->template->getSheetByName('Summary Template')
+		$sheetIndex = $this->excelTemplate->getIndex(
+	    	$this->excelTemplate->getSheetByName('Summary Template')
 		);
-		$this->template->removeSheetByIndex($sheetIndex);
+		$this->excelTemplate->removeSheetByIndex($sheetIndex);
 
 		// delete department template
-		$sheetIndex = $this->template->getIndex(
-	    	$this->template->getSheetByName('Department Template')
+		$sheetIndex = $this->excelTemplate->getIndex(
+	    	$this->excelTemplate->getSheetByName('Department Template')
 		);
-		$this->template->removeSheetByIndex($sheetIndex);
+		$this->excelTemplate->removeSheetByIndex($sheetIndex);
+	}
+
+	// get selected year from query parameter
+	private function loadSelectedYear() {
+
+		$this->selectedYear = $this->request->query('selectedYear');
+		if (is_null($this->selectedYear)) $this->selectedYear = date('Y');
+		$this->nextYear = $this->selectedYear + 1;
+
 	}
 
 	private function loadHelpers() {
@@ -508,40 +558,5 @@ class TestExcelGenShell extends AppShell {
 		$this->Time = new TimeHelper(new View());
 		
 	}
-
-	private function loadComparissonData($comparissonData) {
-
-		$comparissonData['total'] = array(
-			'department-budget' => 0,
-			'department-chfl' => 0,
-		);
-
-		foreach ($this->departmentsList as $department_id => $name) {
-
-			// add to totals
-			$comparissonData['total']['department-budget'] += $comparissonData['department-budget'][$department_id];
-			$comparissonData['total']['department-chfl'] += $comparissonData['department-chfl'][$department_id];
-
-			// calculate ratio
-			if ($comparissonData['department-budget'][$department_id] > 0) {
-				$ratio = $comparissonData['department-chfl'][$department_id] / $comparissonData['department-budget'][$department_id];
-			} else {
-				$ratio = '';
-			}
-			$comparissonData['department-ratio'][$department_id] = $ratio;
-		}
-
-		// calculate total ratio
-		if ($comparissonData['total']['department-budget'] > 0) {
-			$total_ratio = $comparissonData['total']['department-chfl'] / $comparissonData['total']['department-budget'];
-		} else {
-			$total_ratio = '';
-		}
-
-		$comparissonData['total']['department-ratio'] = $total_ratio;
-
-		$this->comparissonData = $comparissonData;
-	}
-
-
 }
+

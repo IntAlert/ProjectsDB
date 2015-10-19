@@ -130,7 +130,7 @@ if ( !isset($title) ) {
 				</li>
 
 				<li class="pipeline">
-					<a href="/pdb/departments/pipelineSummary">MAC Pipeline</a>
+					<a href="/pdb/pipeline/summary">MAC Pipeline</a>
 				</li>
 
 			</ul>

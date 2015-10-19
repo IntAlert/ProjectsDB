@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('departments/pipeline', array('inline' => false)); ?>
+<?php echo $this->Html->css('pipeline/pipeline', array('inline' => false)); ?>
 
 <?php
 
@@ -23,7 +23,7 @@
 <?php endif; // (count($departmentBudgetsThisYear) == 0): ?>
 
 
-<?php echo $this->element('Departments/pipeline-nav'); ?>
+<?php echo $this->element('Pipeline/nav'); ?>
 
 
 <div class="pipeline-container">

@@ -1,17 +1,19 @@
 <?php
-
-
-
-
-class TestExcelGenShell extends AppShell {
+App::uses('View', 'View');
+class PipelineExcelView extends View {
 
 	var $uses = array('Department');
-	
+	var $helpers = array('Time');
 
-	function main() {
+    public function render($view = null, $layout = null) {
 
+		$name = 'test.xlsx';
+		$download = true;
 
-		// load comparisson data
+		// get template
+		$this->createExcelTemplate();
+
+		// GET DATA
 		$comparissonData = array(
 			'date' => '2014-10-10',
 			'department-budget' => array(
@@ -34,26 +36,19 @@ class TestExcelGenShell extends AppShell {
 			),
 		);
 
-		$this->loadHelpers();		
-
-		// get template
-		$this->createBlankTemplate();
-
-		// GET DATA
-		$this->loadData(2015, $comparissonData);
+		$this->buildData(2015, $comparissonData);
 
 		// write all sheets
 		$this->writeContent();
 		
 		// save the template
-		$this->savePipeline();
+		$exportFile = $this->savePipeline();
 
+		// respond with file
+		$this->response->file($exportFile, compact('name', 'download'));
+    }
 
-
-
-	}
-
-	function loadData($selectedYear, $comparissonData) {
+    function buildData($selectedYear, $comparissonData) {
 		
 		$this->selectedYear = $selectedYear;
 		$this->nextYear = $selectedYear + 1;
@@ -62,7 +57,6 @@ class TestExcelGenShell extends AppShell {
 		$this->departmentsList = $this->Department->findOrderedList();
 
 		$this->loadComparissonData($comparissonData);
-
 
 		// get annual contract budgets
 		$this->contractbudgetsThisYear = $this->Department->Project->Contract->Contractbudget->getContractBudgets($this->selectedYear);
@@ -94,6 +88,40 @@ class TestExcelGenShell extends AppShell {
 		$this->departmentsDetailAnnual = $departmentsDetailAnnual;
 	}
 
+	private function loadComparissonData($comparissonData) {
+
+		$comparissonData['total'] = array(
+			'department-budget' => 0,
+			'department-chfl' => 0,
+		);
+
+		foreach ($this->departmentsList as $department_id => $name) {
+
+			// add to totals
+			$comparissonData['total']['department-budget'] += $comparissonData['department-budget'][$department_id];
+			$comparissonData['total']['department-chfl'] += $comparissonData['department-chfl'][$department_id];
+
+			// calculate ratio
+			if ($comparissonData['department-budget'][$department_id] > 0) {
+				$ratio = $comparissonData['department-chfl'][$department_id] / $comparissonData['department-budget'][$department_id];
+			} else {
+				$ratio = '';
+			}
+			$comparissonData['department-ratio'][$department_id] = $ratio;
+		}
+
+		// calculate total ratio
+		if ($comparissonData['total']['department-budget'] > 0) {
+			$total_ratio = $comparissonData['total']['department-chfl'] / $comparissonData['total']['department-budget'];
+		} else {
+			$total_ratio = '';
+		}
+
+		$comparissonData['total']['department-ratio'] = $total_ratio;
+
+		$this->comparissonData = $comparissonData;
+	}
+
 	function writeContent() {
 
 		// pipeline summary this year
@@ -111,10 +139,7 @@ class TestExcelGenShell extends AppShell {
 
 	}
 
-
 	function createSummary($pipeline) {
-
-		
 
 		$sheet = $this->cloneSummarySheet($pipeline->getYear() . " Summary");
 
@@ -449,99 +474,64 @@ class TestExcelGenShell extends AppShell {
 	    $sheet->setCellValue('J' . ($unconfirmedTotalRow + 3),  $pipeline->getPercentageBudgetNextYear(array('highly-likely', 'confirmed')) / 100); // turn into ratio
 	}
 
-	function createBlankTemplate() {
-		$this->template = PHPExcel_IOFactory::load("mac-template.xlsx");
+    private function createExcelTemplate() {
+		$this->excelTemplate = PHPExcel_IOFactory::load(APP . "View/Layouts/mac-template.xlsx");
 	}
 
-	function savePipeline() {
+	private function savePipeline() {
 
+		// remove template sheets
 		$this->deleteTemplateSheets();
 
-		$objWriter = PHPExcel_IOFactory::createWriter($this->template, "Excel2007");
-		$objWriter->save("test6.xlsx");
+		// get tmp filename
+		$exportFile = tempnam(sys_get_temp_dir(), 'pipeline_');
+
+		$objWriter = PHPExcel_IOFactory::createWriter($this->excelTemplate, "Excel2007");
+		$objWriter->save($exportFile);
+
+		// return path to excel
+		return $exportFile;
 	}
 
-	
 
-	function cloneSummarySheet($sheet_name) {
+	private function cloneSummarySheet($sheet_name) {
 
-		$summaryTemplateSheet = $this->template->getSheetByName('Summary Template');
+		$summaryTemplateSheet = $this->excelTemplate->getSheetByName('Summary Template');
 
 		$clonedWorksheet = clone $summaryTemplateSheet;
 		$clonedWorksheet->setTitle($sheet_name);
-		$this->template->addSheet($clonedWorksheet);
+		$this->excelTemplate->addSheet($clonedWorksheet);
 
 		// build header row 1
 		return $clonedWorksheet;
 	}
 
-	function cloneDepartmentSheet($sheet_name) {
+	private function cloneDepartmentSheet($sheet_name) {
 
-		$departmentTemplateSheet = $this->template->getSheetByName('Department Template');
+		$departmentTemplateSheet = $this->excelTemplate->getSheetByName('Department Template');
 
 		$clonedWorksheet = clone $departmentTemplateSheet;
 		$clonedWorksheet->setTitle($sheet_name);
-		$this->template->addSheet($clonedWorksheet);
+		$this->excelTemplate->addSheet($clonedWorksheet);
 
 		// build header row 1
 		return $clonedWorksheet;
 	}
 
-	function deleteTemplateSheets() {
+	private function deleteTemplateSheets() {
 		
 		// delete summary template
-		$sheetIndex = $this->template->getIndex(
-	    	$this->template->getSheetByName('Summary Template')
+		$sheetIndex = $this->excelTemplate->getIndex(
+	    	$this->excelTemplate->getSheetByName('Summary Template')
 		);
-		$this->template->removeSheetByIndex($sheetIndex);
+		$this->excelTemplate->removeSheetByIndex($sheetIndex);
 
 		// delete department template
-		$sheetIndex = $this->template->getIndex(
-	    	$this->template->getSheetByName('Department Template')
+		$sheetIndex = $this->excelTemplate->getIndex(
+	    	$this->excelTemplate->getSheetByName('Department Template')
 		);
-		$this->template->removeSheetByIndex($sheetIndex);
+		$this->excelTemplate->removeSheetByIndex($sheetIndex);
 	}
-
-	private function loadHelpers() {
-		App::uses('View', 'View');
-		App::import('Helper', 'Time');
-		$this->Time = new TimeHelper(new View());
-		
-	}
-
-	private function loadComparissonData($comparissonData) {
-
-		$comparissonData['total'] = array(
-			'department-budget' => 0,
-			'department-chfl' => 0,
-		);
-
-		foreach ($this->departmentsList as $department_id => $name) {
-
-			// add to totals
-			$comparissonData['total']['department-budget'] += $comparissonData['department-budget'][$department_id];
-			$comparissonData['total']['department-chfl'] += $comparissonData['department-chfl'][$department_id];
-
-			// calculate ratio
-			if ($comparissonData['department-budget'][$department_id] > 0) {
-				$ratio = $comparissonData['department-chfl'][$department_id] / $comparissonData['department-budget'][$department_id];
-			} else {
-				$ratio = '';
-			}
-			$comparissonData['department-ratio'][$department_id] = $ratio;
-		}
-
-		// calculate total ratio
-		if ($comparissonData['total']['department-budget'] > 0) {
-			$total_ratio = $comparissonData['total']['department-chfl'] / $comparissonData['total']['department-budget'];
-		} else {
-			$total_ratio = '';
-		}
-
-		$comparissonData['total']['department-ratio'] = $total_ratio;
-
-		$this->comparissonData = $comparissonData;
-	}
-
 
 }
+
