@@ -1,4 +1,4 @@
-#header, nav.main, #footer, .cake-sql-log, #debug-kit-toolbar {display: none;}
+#header, nav, #footer, .cake-sql-log, #debug-kit-toolbar {display: none;}
 #container {min-width: auto; width:auto;}
 
 

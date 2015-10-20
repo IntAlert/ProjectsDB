@@ -88,6 +88,15 @@ endforeach; // ($projects as $project):
 
 ?>
 
+<nav class="subnav">
+	<ul>
+		<li>
+			<?php echo $this->Html->link('Cancel Export', array(
+		'controller' => 'pipeline', 'action' => 'summary', $selectedYear)); ?>
+		</li>
+	</ul>
+</nav>
+
 <h2>
 	MAC pipeline <?php echo $selectedYear; ?> health check
 </h2>

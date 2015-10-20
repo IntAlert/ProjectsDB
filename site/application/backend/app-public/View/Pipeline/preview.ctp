@@ -8,6 +8,25 @@
 <?php echo $this->Html->script('pipeline/export-form', array('inline' => false)); ?>
 
 
+<nav class="subnav">
+	<ul>
+		<li>
+			<?php echo $this->Html->link('Cancel Export', array(
+		'controller' => 'pipeline', 'action' => 'summary', $selectedYear)); ?>
+		</li>
+
+		<li>
+			<?php echo $this->Html->link('Print', '#', array('class' => 'print')); ?>
+		</li>
+
+		<li>
+			<?php echo $this->Html->link('Export to Excel', array(
+		'controller' => 'pipelineExport', 'action' => 'download', '?' => 'selectedYear=' . $selectedYear)); ?>
+		</li>
+
+	</ul>
+</nav>
+
 <div class="pipeline-export-form">
 <?php echo $this->element('Pipeline/export-form-this-year'); ?>
 </div>

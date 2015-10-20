@@ -46,6 +46,7 @@ if ( !isset($title) ) {
 	<!-- JS: Libraries -->
 	<script type="text/javascript" src="/pdb/js/lib/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="/pdb/js/lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/pdb/js/lib/date.js"></script>
 
 	<script type="text/javascript">
 		// Resolve name collision between jQuery UI and Twitter Bootstrap

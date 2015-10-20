@@ -35,10 +35,30 @@ $(function(){
 		}
 	});
 
+
+
+
+	// COMPARISSON DATE
+	function niceDateUpdater(dateText) {
+		var niceDate = Date.parse(dateText).toString('MMMM d, yyyy')
+		$(".pipeline-preview .datepicker-nice").text(niceDate)
+	}
+
 	// activate datepicker 
-	$('.departments-pipelineExportForm .datepicker').datepicker({
-		dateFormat: 'dd-mm-yy'
+	$('.pipeline-preview .datepicker').datepicker({
+		dateFormat: 'dd-mm-yy',
+		onSelect: niceDateUpdater
 	});
+
+	$(".datepicker-nice").click(function(){
+		$('.pipeline-preview .datepicker').datepicker('show');
+	})
+
+	// update comparisson nice date if one is already set	
+	if (dateText = localStorage[selectedYear + '-comparisson-date']) {
+		niceDateUpdater(dateText);
+	}
+
 
 
 	// keep totals and percentages up to date
@@ -48,7 +68,11 @@ $(function(){
 		updateTotals();
 	}).keyup()
 
-
+	// handle print
+	$('nav a.print').click(function(){
+		window.print();
+		return false;
+	})
 
 
 

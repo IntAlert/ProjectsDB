@@ -47,7 +47,9 @@
 				</th>
 				<th colspan="3">
 					Comparisson Figures as at <br>
-					<input class="datepicker garlic-persist" name="comparisson-date">
+					<input type="hidden" class="datepicker garlic-persist" name="comparisson-date">
+					<a class="datepicker-nice" href="#">No date set</a>
+
 				</th>
 			</tr>
 
