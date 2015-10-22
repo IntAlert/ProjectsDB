@@ -1,4 +1,5 @@
 Config/database-common.php
+Config/office365.php
 
 tmp/*
 !tmp/

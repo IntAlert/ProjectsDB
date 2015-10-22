@@ -132,7 +132,4 @@ App::uses('ProjectChecker', 'Lib');
 // Load Vendors via autoload
 require_once(__DIR__ . '/../Vendor/autoload.php');
 
-
-// Temporary API keys
-define('OFFICE365_CLIENT_ID', '23fd3541-101a-4cd9-9227-2b60d4c934cc');
-define('OFFICE365_CLIENT_SECRET', 'Cp9JnhgrTWs+Kiu7ZD4T9NwpxArSYjtISYVC0P8/9EE=');
+require_once(__DIR__ . '/office365.php');
