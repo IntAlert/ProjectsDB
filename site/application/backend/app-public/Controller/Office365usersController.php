@@ -49,7 +49,7 @@ class Office365usersController extends AppController {
 
         $tokens = $this->getUserTokens($code);
 
-        var_dump($tokens);
+        // var_dump($tokens);
         
         //
         // get USER details
