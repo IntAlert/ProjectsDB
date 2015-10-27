@@ -238,6 +238,9 @@ var data = <?php echo json_encode($project); ?>;
 
 </div>
 
+
+<?php echo $this->element('Projects/view/docs'); ?>
+
 <?php echo $this->element('Projects/view/projectnotes'); ?>
 
 

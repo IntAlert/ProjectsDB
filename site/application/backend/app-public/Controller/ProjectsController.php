@@ -183,6 +183,30 @@ class ProjectsController extends AppController {
 		
 	}
 
+	public function searchDocs() {
+
+
+
+
+		$action = $this->request->query('data.action');
+
+		if ($action == 'search'): 
+
+			$sd = new SharepointDocs($this->Auth->user('id'), $this->User->Office365user);
+
+			$q = $this->request->query('data.q');
+
+			$searchResults = $sd->search($q);
+
+			// debug($searchResults);
+
+			$this->set(compact('searchResults'));
+
+		endif; // ($action == 'search'): 
+
+
+	}
+
 
 
 	public function health($year) {
@@ -234,13 +258,32 @@ class ProjectsController extends AppController {
 			'conditions' => array('Project.' . $this->Project->primaryKey => $id),
 		);
 		$project = $this->Project->find('first', $options);
-		$this->set('project', $project);
+
+
+		
 
 
 
+		// DOCUMENTS
+
+		// connect to Sharepoint
+		$user_id = $this->Auth->user('id');
+		$sd = new SharepointDocs($user_id, $this->User->Office365user);
+
+		// ensure that the folders exist
+		$parent_folder = 'project_id_' . $id;
+		$general_folder = $parent_folder . '/' . 'general';
+		$sd->createFolder($parent_folder);
+		$sd->createFolder($general_folder);
+
+		// get list of files on Sharepoint
+		$fileList = $sd->getFolderContents($general_folder);
+		$sharepoint_root_folder = '/prompt/Documents/' . $general_folder;
 
 		// AUDIT
 		$this->Audit->record("READ", "Project", $id, $project);
+
+		$this->set(compact('project', 'fileList', 'sharepoint_root_folder'));
 	}
 
 
@@ -346,6 +389,36 @@ class ProjectsController extends AppController {
 
 
 
+	public function docs($project_id = null) {
+
+		if (!$this->Project->exists($project_id)) {
+			throw new NotFoundException(__('Invalid project'));
+		}
+
+		// TODO: check that the project isn't deleted
+
+		// 
+		$user_id = $this->Auth->user('id');
+		$sd = new SharepointDocs($user_id, $this->User->Office365user);
+
+
+		// ensure that the folders exist
+		$parent_folder = 'project_id_' . $project_id;
+		$general_folder = $parent_folder . '/' . 'general';
+
+		$sd->createFolder($parent_folder);
+		$sd->createFolder($general_folder);
+
+		$fileList = $sd->getFolderContents($general_folder);
+
+		$sharepoint_root_folder = '/prompt/Documents/' . $general_folder;
+
+		$this->set(compact('fileList', 'sharepoint_root_folder'));
+
+	}
+
+
+
 /**
  * edit method
  *
@@ -417,7 +490,7 @@ class ProjectsController extends AppController {
 	public function testFolderCreate() {
 
 
-		$access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2ludGxhbGVydC5zaGFyZXBvaW50LmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzYxODlmMjQ4LWNmMzMtNGE2OS1iNTBlLTA5YjMyYmNhNTgxMS8iLCJpYXQiOjE0NDEzNzg5NDAsIm5iZiI6MTQ0MTM3ODk0MCwiZXhwIjoxNDQxMzgyODQwLCJ2ZXIiOiIxLjAiLCJ0aWQiOiI2MTg5ZjI0OC1jZjMzLTRhNjktYjUwZS0wOWIzMmJjYTU4MTEiLCJvaWQiOiI2Nzc0ZDAxZi0wYzUzLTRlNjctOTdkMi04OTc2ZmRkZmYzNDAiLCJ1cG4iOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsInB1aWQiOiIxMDAzMDAwMDkyREJDMDcwIiwic3ViIjoiLUdBYzVXMlE5a3dmX3dVVk9Od3F3MWJqNkxldEpPeE1IMDl3OWZXbW0xbyIsImdpdmVuX25hbWUiOiJBbGFuIiwiZmFtaWx5X25hbWUiOiJUaG9tc29uIiwibmFtZSI6IkFsYW4gVGhvbXNvbiIsImFtciI6WyJwd2QiXSwidW5pcXVlX25hbWUiOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsIm9ucHJlbV9zaWQiOiJTLTEtNS0yMS00NDg1Mzk3MjMtMTg0NDIzNzYxNS04Mzk1MjIxMTUtNTA3MSIsImFwcGlkIjoiMjNmZDM1NDEtMTAxYS00Y2Q5LTkyMjctMmI2MGQ0YzkzNGNjIiwiYXBwaWRhY3IiOiIxIiwic2NwIjoiQWxsU2l0ZXMuRnVsbENvbnRyb2wgQWxsU2l0ZXMuTWFuYWdlIEFsbFNpdGVzLlJlYWQgQWxsU2l0ZXMuV3JpdGUgTXlGaWxlcy5SZWFkIE15RmlsZXMuV3JpdGUgU2l0ZXMuU2VhcmNoLkFsbCBUZXJtU3RvcmUuUmVhZC5BbGwgVGVybVN0b3JlLlJlYWRXcml0ZS5BbGwgVXNlci5SZWFkLkFsbCBVc2VyLlJlYWRXcml0ZS5BbGwiLCJhY3IiOiIxIiwiaXBhZGRyIjoiODIuMTA4LjYuMjEwIn0.o_BfzUncJAI8CZo3voRibGL5fVMmNtNZdA3h4_r0MBw6MPJxBU45JfcRpomnjI73MuUIACnl_8ZuZRfLpvGX0WaornrW_WrUlOz4PMqGrU4nuZt5GjQsjMPX23li_tbLwP3SskvAwcpZoWkpN4YdEe-pg8W1AKecVunAN_wmKoJj4RrW-rMfAT7aks8uBkRt_CkpNpIoHtfZzewae0_Bt96Tbiop8o4weO4p_-KEOZCdTVoHyswoYz2ucy11xmJJL-qjOuzBu5Z81-e3CtlBPL83ArK5aEbFEliKelwouAldtlsAUsOyAIaDcO_K4gYgrKEw2Yv9S57LpucumLL-ew';
+		$access_token = Configure::read('OFFICE365_CLIENT_SECRET');
 
 
 		// get USER details

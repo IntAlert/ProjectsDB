@@ -1,3 +1,6 @@
+
+
+
 <?php
 App::uses('AppController', 'Controller');
 App::uses('HttpSocket', 'Network/Http');
@@ -9,19 +12,19 @@ App::uses('HttpSocket', 'Network/Http');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class Office365usersController extends AppController {
+class Office365AdminController extends AppController {
 
     
 
     var $redirect_uri = false;
-    var $authorize_url = 'https://login.windows.net/international-alert.org/oauth2/authorize';
+    var $authorize_url = 'https://login.windows.net/common/oauth2/authorize';
     var $token_url = 'https://login.windows.net/international-alert.org/oauth2/token';
     var $windowsGraphUrl = 'https://graph.windows.net/me/?api-version=1.5';
 
 
     function beforeFilter() {
 
-        $this->redirect_uri = Router::url('/office365users/callback', true);
+        $this->redirect_uri = Router::url('/office365Admin/callback', true);
 
         $this->Auth->allow('login', 'callback');
 
@@ -30,9 +33,9 @@ class Office365usersController extends AppController {
 
     function login() {
 
-
         $request_url = $this->authorize_url 
             . '?response_type=code'
+            . '&resource=https://intlalert.sharepoint.com'
             . '&client_id=' . OFFICE365_CLIENT_ID 
             . '&redirect_uri=' . urlencode($this->redirect_uri);
 
@@ -47,37 +50,8 @@ class Office365usersController extends AppController {
         // get the code, and request an access token
         $code = $this->request->query('code');
 
-        $tokens = $this->getUserTokens($code);
 
-        // var_dump($tokens);
-        
-        //
-        // get USER details
-        //
-        $o365_user_response = $this->getUserData($tokens['access_token']);
-
-        
-
-        // get or create the user
-        $user = $this->Office365user->getOrCreate($o365_user_response);
-
-
-
-        $this->Office365user->updateGraphTokens($user['Office365user']['id'], $tokens);
-
-        //
-        // GET ACCESS TO SHAREPOINT
-        //
-
-        $tokens = $this->getSharepointAccess($tokens['refresh_token']);
-
-        $this->Office365user->updateSharepointTokens($user['Office365user']['user_id'], $tokens);
-
-
-        // assuming we get a user back, log them in
-        $this->Auth->login($user['User']);
-
-        $this->redirect('/dashboard/dashboard');
+        die();
 
     }
 
@@ -160,6 +134,8 @@ class Office365usersController extends AppController {
         // parse response body
         $response = json_decode($result->body);
 
+
+
         // received a well-formed response?
         if ( !$response ) {
             throw new Exception("We received no response from Office365", 1);
@@ -178,3 +154,4 @@ class Office365usersController extends AppController {
     }
 
 }
+

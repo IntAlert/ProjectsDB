@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  */
 class Office365user extends AppModel {
 
+	public $primaryKey = 'user_id';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -19,11 +20,10 @@ class Office365user extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
+
+
 
 
 	function getOrCreate($o365_user_response) {
@@ -88,6 +88,7 @@ class Office365user extends AppModel {
 		$data = array(
 			'sharepoint_access_token' => $tokens['access_token'],
 			'sharepoint_refresh_token' => $tokens['refresh_token'],
+			// 'sharepoint_token_expires' => $tokens['access_token_expires']
 		);
 
 		return $this->save($data);
@@ -104,3 +105,4 @@ class Office365user extends AppModel {
 	}
 
 }
+

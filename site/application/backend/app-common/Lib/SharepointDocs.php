@@ -4,12 +4,30 @@ App::uses('HttpSocket', 'Network/Http');
 class SharepointDocs {
 
 	private $access_token = false;
+    private $refresh_token = false;
 	private $api_base = 'https://intlalert.sharepoint.com/prompt/_api/web/';
+    private $api_search_base = 'https://intlalert.sharepoint.com/prompt/_api/search/postquery';
 	private $web_base = 'https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=%2Fprompt%2F';
 
+    
 
-	public function __construct($access_token) {
-		$this->access_token = $access_token;
+
+	public function __construct($user_id, &$Office365userModel) { // model passed by reference
+
+        // store model
+        $this->Office365user = &$Office365userModel;
+
+        // get tokens
+        $result = $this->Office365user->findByUserId($user_id);
+
+    
+        // always refresh
+        $tokens = $this->refreshTokens($result['Office365user']['sharepoint_refresh_token']);
+        $Office365userModel->updateSharepointTokens($user_id, $tokens);
+
+        $this->access_token = $tokens['access_token'];
+        $this->refresh_token = $tokens['refresh_token'];
+        
 	}
 
 	private function createSocket() {
@@ -36,7 +54,8 @@ class SharepointDocs {
         $options = array( 
             'header' => array( 
                 'Authorization' => 'Bearer ' . $this->access_token,
-                'Content-Type' => 'text/plain; odata=verbose',
+                'Content-Type' => 'text/plain;odata=verbose',
+                'Accept' => 'application/json;odata=verbose',
             ),
         );
 
@@ -66,6 +85,24 @@ class SharepointDocs {
     	// TODO: log result
     }
 
+    function getFolderContents($folder) {
+        
+        $socket = $this->createSocket();
+        $options = $this->createOptions();
+
+        $folder_encoded = urlencode('Documents/' . $folder);
+
+        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')/files";
+
+        $result = $socket->get($url, null, $options);
+
+        $responseObj = json_decode($result->body);
+
+        $fileList = $responseObj->d->results;
+
+        return $fileList;
+    }
+
     function deleteFolder($folder) {
 
     	$socket = $this->createSocket();
@@ -81,11 +118,98 @@ class SharepointDocs {
     	// TODO: log result
     }
 
+    function search($querytext, $RowsPerPage = 80, $StartRow = 0) {
+
+        $socket = $this->createSocket();
+        $options = $this->createOptions(array('Content-Type' => 'application/json'));
+
+        $url = $this->api_search_base;
+
+        $querytext .= ' site:https://intlalert.sharepoint.com/prompt/ IsDocument:true';
+
+        $data = array(
+            'request' => array(
+                'Querytext' => $querytext,
+                'RowsPerPage' => $RowsPerPage,
+                'StartRow' => $StartRow,
+            )
+        );
+
+        $result = $socket->post($url, json_encode($data), $options);
+
+        $responseObj = json_decode($result->body);
+
+        // debug($responseObj);
+
+        // get count of results
+        $resultCount = $responseObj->d->postquery->PrimaryQueryResult->RelevantResults->RowCount;
+
+        // debug($resultCount);
+
+        // rekey the result as it's returned in a table-like structure
+        $fileListUnkeyed = $responseObj->d->postquery->PrimaryQueryResult->RelevantResults->Table->Rows->results;
+
+        $fileListKeyed = [];
+        foreach ($fileListUnkeyed as $fileUnkeyed) {
+
+            $fileKeyed = new stdClass();
+            foreach ($fileUnkeyed->Cells->results as $property) {
+                $fileKeyed->{$property->Key} = $property->Value;
+            }
+            $fileListKeyed[] = $fileKeyed;
+        }
+
+        return array(
+            'fullCount' => $resultCount,
+            'fileList' => $fileListKeyed,
+        );
+
+    }
+
     function getWebUrl($folder) {
 
     	$folder_encoded = urlencode('Documents/' . $folder);
 
     	return $this->web_base . $folder_encoded;
+    }
+
+
+    private function refreshTokens($refresh_token) {
+        $socket = $this->createSocket();
+
+        $url = 'https://login.windows.net/international-alert.org/oauth2/token';
+        $data = array(
+            'grant_type' => 'refresh_token',
+            'client_id' => OFFICE365_CLIENT_ID,
+            'client_secret' => OFFICE365_CLIENT_SECRET,
+            'refresh_token' => $refresh_token,
+            'resource' => 'https://intlalert.sharepoint.com',
+        );
+
+
+        $result = $socket->post($url, $data); // add no other headers
+
+        // parse response body
+        $response = json_decode($result->body);
+
+        // received a well-formed response?
+        if ( !$response ) {
+            throw new Exception("We received no response from Office365", 1);
+        }
+
+        // any errors?
+        if ( property_exists($response, 'error') ) {
+            throw new Exception("Office365 returned an error when getting Sharepoint details: " . $response->error, 1);
+        }
+
+        return array(
+            'access_token' => $response->access_token,
+            'refresh_token' => $response->refresh_token,
+            'expires' => $response->expires_on,
+        );
+
+
+
     }
 
 
