@@ -85,6 +85,27 @@ class SharepointDocs {
     	// TODO: log result
     }
 
+    function recycleFolder($folder) {
+
+        // add content length of 0, otherwise SP endpoint gets upset
+        $additional_headers = array('Content-Length' => 0);
+
+        $socket = $this->createSocket();
+        $options = $this->createOptions($additional_headers);
+
+        $folder_encoded = urlencode('Documents/' . $folder);
+
+        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')/recycle";
+
+        $result = $socket->post($url, null, $options);
+
+        $responseObj = json_decode($result->body);
+
+        // TODO: check response
+
+        return;
+    }
+
     function getFolderContents($folder) {
         
         $socket = $this->createSocket();

@@ -128,47 +128,33 @@ var data = <?php echo json_encode($project); ?>;
 	</dl>
 
 
+<?php 
 
-<div class="summary block">
-	<h3>Documents</h3>
+$textBlocks = array(
+	'summary' => 'Summary',
+	'beneficiaries' => 'Beneficiaries',
+	'location' => 'Locations',
+	'goals' => 'Goals',
+	'objectives' => 'Objectives',
+);
+?>
 
-	<pre><?php echo h($project['Project']['summary']); ?></pre>
-</div>
+<?php foreach ($textBlocks as $key => $niceName): ?>
 
-<div class="summary block">
-	<h3>Summary</h3>
+	<?php if (trim($project['Project'][$key])): ?>
+	<div class="summary block">
+		<h3><?php echo $niceName; ?></h3>
 
-	<pre><?php echo h($project['Project']['summary']); ?></pre>
-</div>
+		<pre><?php echo h($project['Project'][$key]); ?></pre>
 
-
-
-<div class="summary block">
-	<h3>Beneficiaries</h3>
-
-	<pre><?php echo h($project['Project']['beneficiaries']); ?></pre>
-</div>
-
-
-
-<div class="summary block">
-	<h3>Locations</h3>
-
-	<pre><?php echo h($project['Project']['location']); ?></pre>
-</div>
+	</div>
+	<?php endif; // (trim($project['Project']['summary'])): ?>
 
 
-<div class="summary block">
-	<h3>Goals</h3>
+<?php endforeach; // ($textBlocks as $key => $textBlock): ?>
 
-	<pre><?php echo h($project['Project']['goals']); ?></pre>
-</div>
 
-<div class="summary block">
-	<h3>Objectives</h3>
 
-	<pre><?php echo h($project['Project']['objectives']); ?></pre>
-</div>
 
 
 <h3>Contracts and Annual Budgets</h3>

@@ -271,10 +271,9 @@ class ProjectsController extends AppController {
 		$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
 		// ensure that the folders exist
-		$parent_folder = 'project_id_' . $id;
+		$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
+
 		$general_folder = $parent_folder . '/' . 'general';
-		$sd->createFolder($parent_folder);
-		$sd->createFolder($general_folder);
 
 		// get list of files on Sharepoint
 		$fileList = $sd->getFolderContents($general_folder);
@@ -296,8 +295,19 @@ class ProjectsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Project->create();
 			if ($this->Project->saveComplete($this->request->data)) {
+
+				$user_id = $this->Auth->user('id');
+				$sd = new SharepointDocs($user_id, $this->User->Office365user);
+
+				// ensure that the folders exist
+				$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
+				$general_folder = $parent_folder . '/' . 'general';
+
+				$sd->createFolder($parent_folder);
+				$sd->createFolder($general_folder);
 				
 				$this->Session->setFlash(__('The project has been saved.'));
+
 				return $this->redirect(array('action' => 'view', $this->Project->id));
 
 			} else {
@@ -383,6 +393,16 @@ class ProjectsController extends AppController {
 		$employees = $this->User->findEmployeesList();
 
 
+		// ensure that folder exists
+		$user_id = $this->Auth->user('id');
+		$sd = new SharepointDocs($user_id, $this->User->Office365user);
+
+		// ensure that the folders exist
+		$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
+		$general_folder = $parent_folder . '/' . 'general';
+
+		$sd->createFolder($parent_folder);
+		$sd->createFolder($general_folder);
 
 		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
 	}
@@ -479,6 +499,18 @@ class ProjectsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Project->softDelete($id)) {
+
+
+			// RECYCLE ASSOCIATED FILES
+			// connect to Sharepoint
+			$user_id = $this->Auth->user('id');
+			$sd = new SharepointDocs($user_id, $this->User->Office365user);
+
+			// ensure that the folders exist
+			$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
+
+			$sd->recycleFolder($parent_folder);
+
 			$this->Session->setFlash(__('The project has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The project could not be deleted. Please, try again.'));
@@ -486,177 +518,4 @@ class ProjectsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-
-	public function testFolderCreate() {
-
-
-		$access_token = Configure::read('OFFICE365_CLIENT_SECRET');
-
-
-		// get USER details
-        $options = array( 
-            'header' => array( 
-                'Authorization' => 'Bearer ' . $access_token,
-                'Content-Type' => 'text/plain; odata=verbose',
-                'Content-length' => 0,
-            ),
-        );
-
-        $data = array(
-            "api-version" => "1.5"
-        );
-
-        $socket = new HttpSocket(array(
-            'ssl_verify_host' => false
-        ));
-
-        $url = "https://intlalert.sharepoint.com/prompt/_api/web/folders/add('Documents/sadfsad')";
-
-        // $url = 'https://intlalert.sharepoint.com/prompt/_api/contextinfo';
-
-        var_dump($url);
-
-
-        $result = $socket->post($url, null, $options);
-
-        $response = json_decode($result->body);
-
-
-        debug($socket->request);
-        debug($socket->response);
-
-        die();
-
-
-
-	}
-
-	public function testFolderDelete() {
-
-
-		$access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2ludGxhbGVydC5zaGFyZXBvaW50LmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzYxODlmMjQ4LWNmMzMtNGE2OS1iNTBlLTA5YjMyYmNhNTgxMS8iLCJpYXQiOjE0NDEzNzg5NDAsIm5iZiI6MTQ0MTM3ODk0MCwiZXhwIjoxNDQxMzgyODQwLCJ2ZXIiOiIxLjAiLCJ0aWQiOiI2MTg5ZjI0OC1jZjMzLTRhNjktYjUwZS0wOWIzMmJjYTU4MTEiLCJvaWQiOiI2Nzc0ZDAxZi0wYzUzLTRlNjctOTdkMi04OTc2ZmRkZmYzNDAiLCJ1cG4iOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsInB1aWQiOiIxMDAzMDAwMDkyREJDMDcwIiwic3ViIjoiLUdBYzVXMlE5a3dmX3dVVk9Od3F3MWJqNkxldEpPeE1IMDl3OWZXbW0xbyIsImdpdmVuX25hbWUiOiJBbGFuIiwiZmFtaWx5X25hbWUiOiJUaG9tc29uIiwibmFtZSI6IkFsYW4gVGhvbXNvbiIsImFtciI6WyJwd2QiXSwidW5pcXVlX25hbWUiOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsIm9ucHJlbV9zaWQiOiJTLTEtNS0yMS00NDg1Mzk3MjMtMTg0NDIzNzYxNS04Mzk1MjIxMTUtNTA3MSIsImFwcGlkIjoiMjNmZDM1NDEtMTAxYS00Y2Q5LTkyMjctMmI2MGQ0YzkzNGNjIiwiYXBwaWRhY3IiOiIxIiwic2NwIjoiQWxsU2l0ZXMuRnVsbENvbnRyb2wgQWxsU2l0ZXMuTWFuYWdlIEFsbFNpdGVzLlJlYWQgQWxsU2l0ZXMuV3JpdGUgTXlGaWxlcy5SZWFkIE15RmlsZXMuV3JpdGUgU2l0ZXMuU2VhcmNoLkFsbCBUZXJtU3RvcmUuUmVhZC5BbGwgVGVybVN0b3JlLlJlYWRXcml0ZS5BbGwgVXNlci5SZWFkLkFsbCBVc2VyLlJlYWRXcml0ZS5BbGwiLCJhY3IiOiIxIiwiaXBhZGRyIjoiODIuMTA4LjYuMjEwIn0.o_BfzUncJAI8CZo3voRibGL5fVMmNtNZdA3h4_r0MBw6MPJxBU45JfcRpomnjI73MuUIACnl_8ZuZRfLpvGX0WaornrW_WrUlOz4PMqGrU4nuZt5GjQsjMPX23li_tbLwP3SskvAwcpZoWkpN4YdEe-pg8W1AKecVunAN_wmKoJj4RrW-rMfAT7aks8uBkRt_CkpNpIoHtfZzewae0_Bt96Tbiop8o4weO4p_-KEOZCdTVoHyswoYz2ucy11xmJJL-qjOuzBu5Z81-e3CtlBPL83ArK5aEbFEliKelwouAldtlsAUsOyAIaDcO_K4gYgrKEw2Yv9S57LpucumLL-ew';
-
-
-		// get USER details
-        $options = array( 
-            'header' => array( 
-                'Authorization' => 'Bearer ' . $access_token,
-                'Content-Type' => 'text/plain; odata=verbose',
-                'Content-length' => 0,
-            ),
-        );
-
-        $data = array(
-            "api-version" => "1.5"
-        );
-
-        $socket = new HttpSocket(array(
-            'ssl_verify_host' => false
-        ));
-
-        $url = "https://intlalert.sharepoint.com/prompt/_api/web/GetFolderByServerRelativeUrl('Documents/sadfsad')";
-
-        // $url = 'https://intlalert.sharepoint.com/prompt/_api/contextinfo';
-
-        var_dump($url);
-
-
-        $result = $socket->delete($url, null, $options);
-
-        $response = json_decode($result->body);
-
-
-        debug($socket->request);
-        debug($socket->response);
-
-        die();
-
-
-
-	}
-
-	public function testDocUpload() {
-
-
-		$access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLndpbmRvd3MubmV0IiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNjE4OWYyNDgtY2YzMy00YTY5LWI1MGUtMDliMzJiY2E1ODExLyIsImlhdCI6MTQ0MDY4ODU4OSwibmJmIjoxNDQwNjg4NTg5LCJleHAiOjE0NDA2OTI0ODksInZlciI6IjEuMCIsInRpZCI6IjYxODlmMjQ4LWNmMzMtNGE2OS1iNTBlLTA5YjMyYmNhNTgxMSIsIm9pZCI6IjY3NzRkMDFmLTBjNTMtNGU2Ny05N2QyLTg5NzZmZGRmZjM0MCIsInVwbiI6IkFUaG9tc29uQGludGVybmF0aW9uYWwtYWxlcnQub3JnIiwicHVpZCI6IjEwMDMwMDAwOTJEQkMwNzAiLCJzdWIiOiJjX0Q2QzBQdUhlUjUzLTB0WDQ1MzJyVmprNUdZSGMtTE0xbnh3VUxLZnRBIiwiZ2l2ZW5fbmFtZSI6IkFsYW4iLCJmYW1pbHlfbmFtZSI6IlRob21zb24iLCJuYW1lIjoiQWxhbiBUaG9tc29uIiwiYW1yIjpbInB3ZCJdLCJ1bmlxdWVfbmFtZSI6IkFUaG9tc29uQGludGVybmF0aW9uYWwtYWxlcnQub3JnIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTQ0ODUzOTcyMy0xODQ0MjM3NjE1LTgzOTUyMjExNS01MDcxIiwiYXBwaWQiOiIyM2ZkMzU0MS0xMDFhLTRjZDktOTIyNy0yYjYwZDRjOTM0Y2MiLCJhcHBpZGFjciI6IjEiLCJzY3AiOiJVc2VyUHJvZmlsZS5SZWFkIiwiYWNyIjoiMSIsImlwYWRkciI6IjgyLjEwOC42LjIxMCJ9.e_28WEjDdOl0AHl_3PbBFTJOAa9z1dC70pwvQ6kTYaLvv3n67SMqQrEXEtgRJjUfxC0FYJY-7h55fPYVi5qBek7L36ZfbQLzhWKjPz5X-ySQfjSv_8tUiK6DlcQRPzO0ouUQFXCovXSYI9q6BLlWOjJC3dnTVEh94YZB4yHmaXxVSa5zOfjsYBTUD6wOCIIqHQUkKmj-hXWWSzTl-JHzRy5GlBLt6SKJnexSX1KxsQBfeonHo56zDgnFQHm7EqiXavG5bGMC4cuI9IyCVLeNoxHy1LYSzPxb8TGCUNvkLFaawBMz4cYK9g13WmpdFkbTcv272M0ocdDUjxG6XAoncA';
-
-
-		$file_contents = file_get_contents(APP . '../../v12-zero-percent.png');
-
-		$file_contents = 'affsadffasd';
-
-		// get USER details
-        $options = array( 
-            'header' => array( 
-                'Authorization' => 'Bearer ' . $access_token,
-                'Content-Type' => 'text/plain; odata=verbose',
-            ),
-            'body' => $file_contents,
-        );
-
-        $data = array(
-            "api-version" => "1.5"
-        );
-
-        $socket = new HttpSocket(array(
-            'ssl_verify_host' => false
-        ));
-
-
-        // NB: file name must be URL encoded
-        $filename = 'asfdasfds.png';
-
-        $url = "https://intlalert.sharepoint.com/prompt/_api/web/GetFolderByServerRelativeUrl('Documents')/Files/Add(url='".$filename."',overwrite=true)";
-
-        // $url = 'https://intlalert.sharepoint.com/prompt/_api/contextinfo';
-
-        var_dump($url);
-
-
-        $result = $socket->post($url, null, $options);
-
-        $response = json_decode($result->body);
-
-
-        debug($socket->request);
-        debug($socket->response);
-
-        die();
-
-
-
-	}
-
-	function testLibraryCreate() {
-		$access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2ludGxhbGVydC5zaGFyZXBvaW50LmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzYxODlmMjQ4LWNmMzMtNGE2OS1iNTBlLTA5YjMyYmNhNTgxMS8iLCJpYXQiOjE0NDEzODI4OTMsIm5iZiI6MTQ0MTM4Mjg5MywiZXhwIjoxNDQxMzg2NzkzLCJ2ZXIiOiIxLjAiLCJ0aWQiOiI2MTg5ZjI0OC1jZjMzLTRhNjktYjUwZS0wOWIzMmJjYTU4MTEiLCJvaWQiOiI2Nzc0ZDAxZi0wYzUzLTRlNjctOTdkMi04OTc2ZmRkZmYzNDAiLCJ1cG4iOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsInB1aWQiOiIxMDAzMDAwMDkyREJDMDcwIiwic3ViIjoiLUdBYzVXMlE5a3dmX3dVVk9Od3F3MWJqNkxldEpPeE1IMDl3OWZXbW0xbyIsImdpdmVuX25hbWUiOiJBbGFuIiwiZmFtaWx5X25hbWUiOiJUaG9tc29uIiwibmFtZSI6IkFsYW4gVGhvbXNvbiIsImFtciI6WyJwd2QiXSwidW5pcXVlX25hbWUiOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsIm9ucHJlbV9zaWQiOiJTLTEtNS0yMS00NDg1Mzk3MjMtMTg0NDIzNzYxNS04Mzk1MjIxMTUtNTA3MSIsImFwcGlkIjoiMjNmZDM1NDEtMTAxYS00Y2Q5LTkyMjctMmI2MGQ0YzkzNGNjIiwiYXBwaWRhY3IiOiIxIiwic2NwIjoiQWxsU2l0ZXMuRnVsbENvbnRyb2wgQWxsU2l0ZXMuTWFuYWdlIEFsbFNpdGVzLlJlYWQgQWxsU2l0ZXMuV3JpdGUgTXlGaWxlcy5SZWFkIE15RmlsZXMuV3JpdGUgU2l0ZXMuU2VhcmNoLkFsbCBUZXJtU3RvcmUuUmVhZC5BbGwgVGVybVN0b3JlLlJlYWRXcml0ZS5BbGwgVXNlci5SZWFkLkFsbCBVc2VyLlJlYWRXcml0ZS5BbGwiLCJhY3IiOiIxIiwiaXBhZGRyIjoiODIuMTA4LjYuMjEwIn0.enbpY8HrTt4FwLh-cyt4A7nooTbtt2VfLqjCZh3PKAno3NQHn81Wyn_ZnMty3T5vkVnWhYvYCFV2TPhtjyXtJtuj21YiXNxj0rRlTtTrPzDGUXqSiDW1X2Dip0ELVtBxZ3MeuD2KZFPayg_Jx-hJxzpizqVm6qZfmp3oVh7T5aJOBb8KeVlpv_lF7s4l734n8iPiimCHDGAah9HnH7lNp4Hk-7DUBzFnQ5hsleig9u4kl9PElb1pkFMfOaAGICsJ6I6k8RSTTE5c_5Dh9pxOTCwCWo2xdD_ShEkvuWe-7u68EeAq2SxhnqE2n7YFc91UzGVIcXVfnDyuCtl_ynP6EA';
-		$sd = new SharepointDocs($access_token);
-
-		$sd->createFolder('sadfasdf');
-
-		die();
-
-
-	}
-
-	function testLibraryDelete() {
-		$access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2ludGxhbGVydC5zaGFyZXBvaW50LmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzYxODlmMjQ4LWNmMzMtNGE2OS1iNTBlLTA5YjMyYmNhNTgxMS8iLCJpYXQiOjE0NDEzODI4OTMsIm5iZiI6MTQ0MTM4Mjg5MywiZXhwIjoxNDQxMzg2NzkzLCJ2ZXIiOiIxLjAiLCJ0aWQiOiI2MTg5ZjI0OC1jZjMzLTRhNjktYjUwZS0wOWIzMmJjYTU4MTEiLCJvaWQiOiI2Nzc0ZDAxZi0wYzUzLTRlNjctOTdkMi04OTc2ZmRkZmYzNDAiLCJ1cG4iOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsInB1aWQiOiIxMDAzMDAwMDkyREJDMDcwIiwic3ViIjoiLUdBYzVXMlE5a3dmX3dVVk9Od3F3MWJqNkxldEpPeE1IMDl3OWZXbW0xbyIsImdpdmVuX25hbWUiOiJBbGFuIiwiZmFtaWx5X25hbWUiOiJUaG9tc29uIiwibmFtZSI6IkFsYW4gVGhvbXNvbiIsImFtciI6WyJwd2QiXSwidW5pcXVlX25hbWUiOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsIm9ucHJlbV9zaWQiOiJTLTEtNS0yMS00NDg1Mzk3MjMtMTg0NDIzNzYxNS04Mzk1MjIxMTUtNTA3MSIsImFwcGlkIjoiMjNmZDM1NDEtMTAxYS00Y2Q5LTkyMjctMmI2MGQ0YzkzNGNjIiwiYXBwaWRhY3IiOiIxIiwic2NwIjoiQWxsU2l0ZXMuRnVsbENvbnRyb2wgQWxsU2l0ZXMuTWFuYWdlIEFsbFNpdGVzLlJlYWQgQWxsU2l0ZXMuV3JpdGUgTXlGaWxlcy5SZWFkIE15RmlsZXMuV3JpdGUgU2l0ZXMuU2VhcmNoLkFsbCBUZXJtU3RvcmUuUmVhZC5BbGwgVGVybVN0b3JlLlJlYWRXcml0ZS5BbGwgVXNlci5SZWFkLkFsbCBVc2VyLlJlYWRXcml0ZS5BbGwiLCJhY3IiOiIxIiwiaXBhZGRyIjoiODIuMTA4LjYuMjEwIn0.enbpY8HrTt4FwLh-cyt4A7nooTbtt2VfLqjCZh3PKAno3NQHn81Wyn_ZnMty3T5vkVnWhYvYCFV2TPhtjyXtJtuj21YiXNxj0rRlTtTrPzDGUXqSiDW1X2Dip0ELVtBxZ3MeuD2KZFPayg_Jx-hJxzpizqVm6qZfmp3oVh7T5aJOBb8KeVlpv_lF7s4l734n8iPiimCHDGAah9HnH7lNp4Hk-7DUBzFnQ5hsleig9u4kl9PElb1pkFMfOaAGICsJ6I6k8RSTTE5c_5Dh9pxOTCwCWo2xdD_ShEkvuWe-7u68EeAq2SxhnqE2n7YFc91UzGVIcXVfnDyuCtl_ynP6EA';
-		$sd = new SharepointDocs($access_token);
-
-		$sd->deleteFolder('sadfasdf');
-
-		die();
-
-
-	}
-
-	function testLibraryURL() {
-		$access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2ludGxhbGVydC5zaGFyZXBvaW50LmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzYxODlmMjQ4LWNmMzMtNGE2OS1iNTBlLTA5YjMyYmNhNTgxMS8iLCJpYXQiOjE0NDEzODI4OTMsIm5iZiI6MTQ0MTM4Mjg5MywiZXhwIjoxNDQxMzg2NzkzLCJ2ZXIiOiIxLjAiLCJ0aWQiOiI2MTg5ZjI0OC1jZjMzLTRhNjktYjUwZS0wOWIzMmJjYTU4MTEiLCJvaWQiOiI2Nzc0ZDAxZi0wYzUzLTRlNjctOTdkMi04OTc2ZmRkZmYzNDAiLCJ1cG4iOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsInB1aWQiOiIxMDAzMDAwMDkyREJDMDcwIiwic3ViIjoiLUdBYzVXMlE5a3dmX3dVVk9Od3F3MWJqNkxldEpPeE1IMDl3OWZXbW0xbyIsImdpdmVuX25hbWUiOiJBbGFuIiwiZmFtaWx5X25hbWUiOiJUaG9tc29uIiwibmFtZSI6IkFsYW4gVGhvbXNvbiIsImFtciI6WyJwd2QiXSwidW5pcXVlX25hbWUiOiJBVGhvbXNvbkBpbnRlcm5hdGlvbmFsLWFsZXJ0Lm9yZyIsIm9ucHJlbV9zaWQiOiJTLTEtNS0yMS00NDg1Mzk3MjMtMTg0NDIzNzYxNS04Mzk1MjIxMTUtNTA3MSIsImFwcGlkIjoiMjNmZDM1NDEtMTAxYS00Y2Q5LTkyMjctMmI2MGQ0YzkzNGNjIiwiYXBwaWRhY3IiOiIxIiwic2NwIjoiQWxsU2l0ZXMuRnVsbENvbnRyb2wgQWxsU2l0ZXMuTWFuYWdlIEFsbFNpdGVzLlJlYWQgQWxsU2l0ZXMuV3JpdGUgTXlGaWxlcy5SZWFkIE15RmlsZXMuV3JpdGUgU2l0ZXMuU2VhcmNoLkFsbCBUZXJtU3RvcmUuUmVhZC5BbGwgVGVybVN0b3JlLlJlYWRXcml0ZS5BbGwgVXNlci5SZWFkLkFsbCBVc2VyLlJlYWRXcml0ZS5BbGwiLCJhY3IiOiIxIiwiaXBhZGRyIjoiODIuMTA4LjYuMjEwIn0.enbpY8HrTt4FwLh-cyt4A7nooTbtt2VfLqjCZh3PKAno3NQHn81Wyn_ZnMty3T5vkVnWhYvYCFV2TPhtjyXtJtuj21YiXNxj0rRlTtTrPzDGUXqSiDW1X2Dip0ELVtBxZ3MeuD2KZFPayg_Jx-hJxzpizqVm6qZfmp3oVh7T5aJOBb8KeVlpv_lF7s4l734n8iPiimCHDGAah9HnH7lNp4Hk-7DUBzFnQ5hsleig9u4kl9PElb1pkFMfOaAGICsJ6I6k8RSTTE5c_5Dh9pxOTCwCWo2xdD_ShEkvuWe-7u68EeAq2SxhnqE2n7YFc91UzGVIcXVfnDyuCtl_ynP6EA';
-		$sd = new SharepointDocs($access_token);
-
-		var_dump($sd->getWebUrl('sadfasdf'));
-
-		die();
-
-
-	}
 }
