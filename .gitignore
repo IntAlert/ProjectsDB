@@ -8,3 +8,6 @@ docs/graphics
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# below used to set environment variables
+site/application/frontend/.htaccess 

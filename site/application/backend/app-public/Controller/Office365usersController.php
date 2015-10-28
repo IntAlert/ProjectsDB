@@ -63,7 +63,7 @@ class Office365usersController extends AppController {
 
 
 
-        $this->Office365user->updateGraphTokens($user['Office365user']['id'], $tokens);
+        $this->Office365user->updateGraphTokens($user['Office365user']['user_id'], $tokens);
 
         //
         // GET ACCESS TO SHAREPOINT
