@@ -63,9 +63,22 @@ div.form, div.index, div.view {
 }
 
 .actions select {width:100%;}
-
-
 .block {margin:2em 0 3em;}
+
+
+#footer ul {
+	list-style: none;
+	float:right;
+}
+#footer ul li {
+	float:left;
+}
+#footer ul a {
+	text-decoration: none;
+}
+
+
+
 
 /* Dashboard */
 

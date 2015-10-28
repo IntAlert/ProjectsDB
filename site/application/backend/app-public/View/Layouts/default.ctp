@@ -146,10 +146,21 @@ if ( !isset($title) ) {
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 
-				<a href="/pdb/users/logout">Log out</a>
-			<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
+			<ul>
+				<li>
+					<a href="https://intalert.typeform.com/to/SUUUaZ" target="_blank">Report Bug</a>
+				</li>
+				<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
+				<li>
+					<a href="/pdb/users/logout">Log out</a>
+				</li>
+				<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
+			</ul>
+			
+
+				
+			
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
