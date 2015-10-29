@@ -76,12 +76,12 @@ class ProjectsController extends AppController {
 
 			// value_from
 			if ($value_from = $this->request->query('value_from')) $conditions[] = array(
-				'Project.value >=' => $value_from,
+				'Project.value_required >=' => $value_from,
 			);
 
 			// value_to
 			if ($value_to = $this->request->query('value_to')) $conditions[] = array(
-				'Project.value <=' => $value_to,
+				'Project.value_required <=' => $value_to,
 			);
 
 			// start_date
@@ -260,7 +260,10 @@ class ProjectsController extends AppController {
 		$project = $this->Project->find('first', $options);
 
 
-		
+		// check not deleted
+		if ($project['Project']['deleted']) {
+			throw new NotFoundException(__('This project has been deleted. Please contact the Admin to reinstate'));
+		}
 
 
 

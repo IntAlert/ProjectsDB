@@ -53,9 +53,26 @@ class Audit extends AppModel
   }
 
   function findCompanyActivity($limit = 10) {
+
+
+    $joins = array(
+      array(
+        'table' => 'projects',
+            'alias' => 'ProjectNotDeleted',
+            'type' => 'INNER',
+            'conditions' => array(
+                'Audit.model = "Project"',
+                'Project.id = Audit.entity_id',
+                'Project.deleted = 0',
+            ),
+        ),
+    );
+
+
     return $this->find('all', array(
       'contain' => array('User', 'Project'),
       'order' => array('Audit.created DESC'),
+      'joins' => $joins,
       'limit' => $limit,
     ));
   }

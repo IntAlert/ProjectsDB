@@ -1,9 +1,13 @@
+
+
+
+body {background:rgba(10,200,255,0.3);}
 #container {min-width: 1000px;}
-#header { float:left;}
-#header img {height:32px;}
+#header { height:150px; }
 nav {padding:1em 1em 0;}
-nav ul {list-style: none; float:right;}
-nav ul li {float:left;}
+nav ul {list-style: none;}
+nav ul li {float:right;}
+nav ul li.dashboard {float: left;}
 nav ul li a {
 	text-decoration: none;
 	display: block;
@@ -16,10 +20,19 @@ nav.main {
 }
 nav.main ul li a {
 	background:#04B3DE;
+	color:#fff;
+	border-radius: 5px 5px 0 0;
+
 }
 nav.main ul li a:hover {
+	background:#54D3DE;
 	color:#000;
 }
+
+#header-title {
+	float:left;
+}
+
 form div {padding:0.5em 0;}
 
 body.dashboard nav .dashboard a,
@@ -27,8 +40,8 @@ body.donors nav .donors a,
 body.territories nav .territories a,
 body.projects-add nav .projects-add a,
 body.projects-index nav .projects-index a,
-body.programmes-pipelineSummary nav .pipeline a,
-body.programmes-pipeline nav .pipeline a
+body.pipeline-summary nav .pipeline a,
+body.pipeline-department nav .pipeline a
 {background:#fff; color:#333;}
 
 nav.subnav {float:right; margin:0 1em 1em 1em;}
@@ -65,13 +78,21 @@ div.form, div.index, div.view {
 .actions select {width:100%;}
 .block {margin:2em 0 3em;}
 
+#footer {
+	background:#000;
+}
 
 #footer ul {
 	list-style: none;
-	float:right;
 }
 #footer ul li {
+	float:right;
+}
+#footer ul li.logo {
 	float:left;
+}
+#footer ul li.logo img{
+height:48px;
 }
 #footer ul a {
 	text-decoration: none;
@@ -82,14 +103,44 @@ div.form, div.index, div.view {
 
 /* Dashboard */
 
-section.dashboard {
-	float:left; 
+#dashboard-actions {
+	float:left;
+	width:60%;
+	margin-top:30px;
+}
+
+#dashboard-digest {
+	float:left;
+	width:40%;	
+}
+
+#dashboard-actions .links {
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+
+.search-form {margin-top:50px;}
+
+#dashboard-actions .links li {
+	
+	margin:0;
+}
+
+#dashboard-actions .links li a {
+	background:#eee;
+	padding:8px 20px;
+	display: block;
+	text-decoration: none;
+
+}
+
+.dashboard section {
 	padding:1em;
 	margin:1em;
 	border:3px solid #eee;
-	width:27%;
 }
-section.company-activity {
+/*section.company-activity {
 	width:55%;
 }
 .dashboard-timespan {
@@ -109,7 +160,7 @@ section.company-activity {
 }
 .dashboard-timespan li a {
 	text-decoration: none;
-}
+}*/
 
 .document-list {
 	list-style: none;
@@ -148,7 +199,7 @@ section.company-activity {
 
 .activity-feed p {
 	float:left;
-	width:440px;
+	/*width:440px;*/
 }
 
 

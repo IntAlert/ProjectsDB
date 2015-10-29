@@ -32,7 +32,7 @@ if ( !isset($title) ) {
 	}	
 }
 
-
+// debug(AuthComponent::user('role'));
 
 ?>
 <!DOCTYPE html>
@@ -98,11 +98,7 @@ if ( !isset($title) ) {
 <body class="<?php echo implode(' ', $body_classes); ?>">
 
 	<div id="container">
-		<div id="header" class="clearfix">
 
-			<img src="/pdb/img/logo.png" style="">
-
-		</div>
 		<nav class="main">
 
 
@@ -110,7 +106,7 @@ if ( !isset($title) ) {
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 			<ul>
 				<li class="dashboard">
-					<a href="/pdb/dashboard/dashboard">Dashboard</a>
+					<a href="/pdb/dashboard/dashboard">PROMPT Dashboard</a>
 				</li>
 <?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 				<li class="donors">
@@ -145,9 +141,12 @@ if ( !isset($title) ) {
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
+		<div id="footer" class="clearfix">
 
 			<ul>
+				<li class="logo">
+					<img src="/pdb/img/logo.png">
+				</li>
 				<li>
 					<a href="https://intalert.typeform.com/to/SUUUaZ" target="_blank">Report Bug</a>
 				</li>
