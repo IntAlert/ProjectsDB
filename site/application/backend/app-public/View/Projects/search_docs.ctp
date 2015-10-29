@@ -2,6 +2,9 @@
 <h2>Document Search</h2>
 
 
+<p>
+	This page allows you to search for all documents stored on the system. Currently, there are very few documents.
+</p>
 
 <form action="" method="get">
 	
@@ -13,6 +16,7 @@
 
 <?php if (isset($searchResults)): ?>
 
+<div class="results">
 
 <h3>Document Search Results</h3>
 
@@ -110,3 +114,6 @@ if (count($results)) {
 <?php endif; // (count($searchResults['fileList'])): ?>
 
 <?php endif; // (isset($searchResults['fileList'])): ?>
+
+
+</div>

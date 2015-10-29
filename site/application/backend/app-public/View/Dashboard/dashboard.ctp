@@ -13,10 +13,6 @@
 		International Alert's <strong>project metadata and documents</strong>.
 	</p>
 
-	<p>
-		If you encounter any bugs or have any suggestions for improvement, <br>
-		<a href="https://intalert.typeform.com/to/SUUUaZ" target="_blank">please report them here</a>.
-	</p>
 
 	<!-- <ul class="links">
 		<li>
@@ -32,8 +28,17 @@
 		<form action="/pdb/projects" method="get">
 
 			<input type="hidden" name="action" value="search">
-			<input type="text" name="q">
-			<input type="submit" value="Search Project Metadata">
+
+			<table>
+				<tr>
+					<td>
+						<input type="text" name="q">
+					</td>
+					<td>
+						<input type="submit" value="Search">
+					</td>
+				</tr>
+			</table>
 
 		</form>
 
@@ -46,13 +51,27 @@
 		
 		<form action="/pdb/projects/searchDocs" method="get">
 
-			<input type="hidden" name="action" value="search">
-			<input type="text" name="q">
-			<input type="submit" value="Search Project Metadata">
+			<input type="hidden" name="data[action]" value="search">
+			<table>
+				<tr>
+					<td>
+						<input type="text" name="data[q]">
+					</td>
+					<td>
+						<input type="submit" value="Search">
+					</td>
+				</tr>
+			</table>
 
 		</form>
 
 	</div>
+
+
+	<p class="feedback">
+		If you encounter any bugs or have any suggestions for improvement, <br>
+		<a href="https://intalert.typeform.com/to/SUUUaZ" target="_blank">please report them here</a>.
+	</p>
 
 </div>
 
