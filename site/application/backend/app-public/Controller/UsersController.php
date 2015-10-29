@@ -23,6 +23,9 @@ class UsersController extends AppController {
         // redirect logged in users to their dashboard
         if ($this->Auth->user('id')) {
             $this->redirect('/dashboard');
+        } else {
+            $this->redirect('/office365users/login');
+            
         }
 
     }
