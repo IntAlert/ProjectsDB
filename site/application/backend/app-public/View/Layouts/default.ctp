@@ -106,7 +106,11 @@ if ( !isset($title) ) {
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 			<ul>
 				<li class="dashboard">
-					<a href="/pdb/dashboard/dashboard">PROMPT Dashboard</a>
+					
+					<a href="/pdb/dashboard/dashboard">
+						<i class="fa fa-map"></i>
+						PROMPT Dashboard
+					</a>
 				</li>
 <?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 				<li class="donors">
@@ -119,15 +123,27 @@ if ( !isset($title) ) {
 <?php endif; // (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 
 				<li class="projects-add">
-					<a href="/pdb/projects/add">Add Project</a>
+					<a href="/pdb/projects/add">
+						<i class="fa fa-plus-circle"></i>
+						Add Project
+					</a>
 				</li>
 
 				<li class="projects-index">
-					<a href="/pdb/projects">Search Projects</a>
+					
+					<a href="/pdb/projects">
+						<i class="fa fa-search"></i>
+						Search Projects
+					</a>
+
 				</li>
 
 				<li class="pipeline">
-					<a href="/pdb/pipeline/summary">MAC Pipeline</a>
+					
+					<a href="/pdb/pipeline/summary">
+						<i class="fa fa-table"></i>
+						MAC Pipeline
+					</a>
 				</li>
 
 			</ul>

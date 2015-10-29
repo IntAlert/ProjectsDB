@@ -143,6 +143,10 @@ height:48px;
 .dashboard .feedback {
 	margin-top:3em;
 }
+
+.dashboard .intro {
+	font-size:1.2em;
+}
 /*section.company-activity {
 	width:55%;
 }

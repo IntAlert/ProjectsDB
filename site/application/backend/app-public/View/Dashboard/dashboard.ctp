@@ -5,10 +5,10 @@
 <div id="dashboard-actions">
 
 	<h2>
-		Hello, <?php echo AuthComponent::user('first_name'); ?>
+		Hello <?php echo AuthComponent::user('first_name'); ?>
 	</h2>
 
-	<p>
+	<p class="intro">
 		Welcome to PROMPT. This application is used to manage and search <br>
 		International Alert's <strong>project metadata and documents</strong>.
 	</p>
