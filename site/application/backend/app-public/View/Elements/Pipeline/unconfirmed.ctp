@@ -72,7 +72,7 @@
 			<td>
 				<?php 
 					if (isset($project['contract_primary']['Donor'])) {
-						echo h($project['contract_primary']['Donor']['name']);
+						echo h($project['contract_primary']['donor_name']);
 					} else {
 						echo 'none';
 					}
@@ -137,8 +137,8 @@
 
 				<td>
 					<?php 
-						if ($contract_secondary['Donor']['name']) {
-							echo h($contract_secondary['Donor']['name']);
+						if ($contract_secondary['donor_name']) {
+							echo h($contract_secondary['donor_name']);
 						} else {
 							echo 'none';
 						}

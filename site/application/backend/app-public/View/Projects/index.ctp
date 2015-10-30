@@ -66,8 +66,8 @@
 
 				$donor_names = [];
 				foreach($project['Contract'] as $contract) {
-					if (isset($contract['Donor']['name'])) {
-						array_push($donor_names, $contract['Donor']['name']);
+					if (trim($contract['donor_name'])) {
+						array_push($donor_names, $contract['donor_name']);
 					}
 				}
 				$donor_names = array_unique($donor_names);
