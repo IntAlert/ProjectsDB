@@ -1,8 +1,9 @@
 
 
 
-body {background:rgba(10,200,255,0.3);}
+body {background:#54D3DE;}
 #container {min-width: 1000px;}
+
 nav {padding:2em 1em 0;}
 nav ul {list-style: none;}
 nav ul li {float:right;}
@@ -18,18 +19,22 @@ nav.main {
 	color:#fff;
 }
 nav.main ul li a {
-	background:#04B3DE;
-	color:#fff;
+	background:rgba(255,255,255,0.7);
+	color:#444;
 	border-radius: 5px 5px 0 0;
 
 }
 nav.main ul li a:hover {
-	background:#54D3DE;
-	color:#000;
+	background:rgba(255,255,255,0.85);
+	color:#222;
 }
 
 #header-title {
 	float:left;
+}
+
+#content {
+	box-shadow:#666 2px 2px 2px 2px
 }
 
 form div {padding:0.5em 0;}
@@ -41,7 +46,10 @@ body.projects-add nav .projects-add a,
 body.projects-index nav .projects-index a,
 body.pipeline-summary nav .pipeline a,
 body.pipeline-department nav .pipeline a
-{background:#fff; color:#333;}
+{
+	background:#fff; 
+	color:#333;
+}
 
 nav.subnav {float:right; margin:0 1em 1em 1em;}
 

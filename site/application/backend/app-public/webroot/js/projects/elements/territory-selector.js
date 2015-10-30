@@ -6,7 +6,7 @@ $(function(){
 
 
 	// handle programme change
-	$(".territory-selector .input.radio").change(function(){
+	$(".territory-selector .programme .input.radio").change(function(){
 
 		// get selected input
 		var selectedInput = $(".territory-selector .input.radio :checked");
@@ -20,7 +20,10 @@ $(function(){
 
 		// if programme name is EP, PIP:
 		var programmeName = label.text().toUpperCase();
-		if (programmeName == 'EP' && programmeName == 'PIP') {
+
+		console.log(programmeName);
+
+		if (programmeName == 'EMERGING PROGRAMMES' && programmeName == 'PIP') {
 			// show all
 			$(".territory-selector .territory-checkbox").show();
 

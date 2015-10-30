@@ -10,7 +10,7 @@
 
 <?php echo $this->Form->create('Project'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Project'); ?></legend>
+		<legend><?php echo __('Add Project'); ?></legend>
 	<?php
 
 		echo $this->Form->input('title', array(

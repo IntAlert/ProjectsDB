@@ -10,4 +10,4 @@ docs/graphics
 !.elasticbeanstalk/*.global.yml
 
 # below used to set environment variables
-site/application/frontend/.htaccess 
+./site/application/frontend/.htaccess 

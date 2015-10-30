@@ -20,7 +20,7 @@
 		Department
 	</h3>
 
-	<div class="ui-state-default clearfix">
+	<div class="department ui-state-default clearfix">
 		<?php
 			echo $this->Form->input('department_id', array(
 				'legend' => false,
@@ -35,7 +35,7 @@
 		Programme
 	</h3>
 
-	<div class="ui-state-default clearfix">
+	<div class="programme ui-state-default clearfix">
 		<?php
 			echo $this->Form->input('programme_id', array(
 				'legend' => false,
