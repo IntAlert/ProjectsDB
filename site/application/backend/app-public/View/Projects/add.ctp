@@ -125,3 +125,12 @@
 
 <?php echo $this->Form->end(__('Save Project')); ?>
 </div>
+
+
+
+<script>
+
+	var project_likelihood_original = false; // because this is a new project
+
+
+</script>

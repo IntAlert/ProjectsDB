@@ -127,9 +127,8 @@ $(function(){
 
 			if ($contracts.length == 0) return;
 
-			$contracts.find(".contract-donor-id").rules("add", { 
-			  required:true,
-			  number: true
+			$contracts.find(".contract-donor-name").rules("add", { 
+			  required:true
 			});
 
 			$contracts.find(".contract-donor-currency").rules("add", { 
@@ -162,8 +161,9 @@ $(function(){
 			// if status changed to confirmed, remind to check project total
 			var likelihood_id_confirmed = 2;
 			var project_likelihood_submitted = Number($('[name="data[Project][likelihood_id]"]:checked').val());
-			console.log(project_likelihood_original);
-			console.log(project_likelihood_submitted);
+			
+
+			//
 			if (
 				(project_likelihood_original != project_likelihood_submitted)
 				&& (project_likelihood_submitted == likelihood_id_confirmed)
@@ -186,8 +186,6 @@ $(function(){
 
 		// add rules for existing contracts
 		addValidationRulesToContracts()
-
-
 
 })
 

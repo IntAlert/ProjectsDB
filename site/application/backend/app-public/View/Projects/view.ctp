@@ -1,4 +1,4 @@
-<?php $this->set('title', 'Projects - ' . $this->request->data('Project.title')); ?>
+<?php $this->set('title', 'Projects - ' . $project['Project']['title']); ?>
 <?php echo $this->Html->css('projects/view', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/view', array('inline' => false)); ?>
 
@@ -157,9 +157,12 @@ $textBlocks = array(
 
 
 
-<h3>Contracts and Annual Budgets</h3>
 
 <div class="contracts block">
+
+
+<h3>Contracts and Annual Budgets</h3>
+
 
 <?php if ( empty($project['Contract']) ): ?>
 	
@@ -170,7 +173,7 @@ $textBlocks = array(
 
 <?php foreach ($project['Contract'] as $contract): ?>
 	<div class="contract">
-		<h4><?php echo $contract['Donor']['name']; ?></h4>
+		<h4><?php echo $contract['donor_name']; ?></h4>
 
 		<table>
 			<thead>

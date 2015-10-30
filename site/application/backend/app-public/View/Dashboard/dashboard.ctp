@@ -126,7 +126,30 @@
 				<p>
 					<strong>
 						<?php echo $activity['User']['name']; ?>
-					</strong> edited
+					</strong>
+
+					<?php switch($activity['Audit']['event']) {
+
+						case "EDIT":
+							$action = 'updated';
+						break;
+
+						case "CREATE":
+							$action = 'created';
+						break;
+
+						default:
+							$action = $activity['Audit']['event'];
+
+
+
+					}
+
+					echo $action; 
+
+					?>
+
+
 					<a href="/pdb/projects/view/<?php echo $activity['Project']['id']; ?>"><?php echo $activity['Project']['title']; ?></a>
 					<br>
 					<em>

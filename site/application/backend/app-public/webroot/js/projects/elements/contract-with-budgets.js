@@ -201,8 +201,8 @@ function createContractBudget(contractDiv, beforeAfter) {
 	var earliestYear = $(contractDiv).data('contractbudget-earliest-year');
 	var latestYear = $(contractDiv).data('contractbudget-latest-year');
 
-	console.log(earliestYear);
-	console.log(latestYear);
+	// console.log(earliestYear);
+	// console.log(latestYear);
 
 	// get new year, update contract data
 	if ( !earliestYear ) { // don't test for latest year as they'll both be null or both be not null

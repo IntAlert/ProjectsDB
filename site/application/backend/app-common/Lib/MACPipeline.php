@@ -28,6 +28,9 @@ class MACPipeline {
 		$total = 0;	
 		foreach ($this->contractBudgets as $contractBudget) {
 
+			// don't count deleted projects
+			if ($contractBudget['Contract']['Project']['deleted']) continue;
+
 			$projectStatus = $contractBudget['Contract']['Project']['Status']['short_name'];
 			$contractLikelihood = $contractBudget['Contract']['Project']['Likelihood']['short_name'];
 

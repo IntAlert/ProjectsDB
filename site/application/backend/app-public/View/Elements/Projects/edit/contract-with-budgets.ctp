@@ -72,7 +72,7 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						Donor
-						<?php echo $this->Tooltip->element('Please select from the list.  If your donor is not listed, please contact Technology team to amend.'); ?>
+						<?php echo $this->Tooltip->element('Please enter donor name'); ?>
 					</td>
 
 					<td>
@@ -87,14 +87,12 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td>
-						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_id', array(
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_name', array(
 							'id' => false,
 							'label' => false,
-							'empty' => '---- Please Select ----',
-							'value' => $contract['donor_id'],
-							'options' => $donors,
-							'class' => 'contract-donor-id',
-							'tooltip' => 'Please select from the list.  If your donor is not listed, please contact Technology team to amend.',
+							'value' => $contract['donor_name'],
+							'class' => 'contract-donor-name',
+							'tooltip' => 'Please enter donor name.',
 						)); ?>
 					</td>
 
@@ -296,13 +294,10 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td>
-						<?php echo $this->Form->input('Contract.{contract_id}.donor_id', array(
+						<?php echo $this->Form->input('Contract.{contract_id}.donor_name', array(
 							'id' => false,
 							'label' => false,
-							'id' => false,
-							'empty' => '---- Please Select ----',
-							'options' => $donors,
-							'class' => 'contract-donor-id'
+							'class' => 'contract-donor-name'
 						)); ?>
 					</td>
 

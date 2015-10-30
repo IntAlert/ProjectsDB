@@ -113,9 +113,9 @@ if ( !isset($title) ) {
 					</a>
 				</li>
 <?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
-				<li class="donors">
+				<!-- <li class="donors">
 					<a href="/pdb/donors">Donors</a>
-				</li>
+				</li> -->
 
 				<li class="territories">
 					<a href="/pdb/territories">Territories</a>

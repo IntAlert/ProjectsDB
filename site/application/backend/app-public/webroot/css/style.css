@@ -22,7 +22,6 @@ nav.main ul li a {
 	background:rgba(255,255,255,0.7);
 	color:#444;
 	border-radius: 5px 5px 0 0;
-	box-shadow:rgba(0,0,0,0.3) 2px 2px 2px 2px
 
 }
 nav.main ul li a:hover {
@@ -59,6 +58,9 @@ fieldset legend {color:#333;}
 section	{margin: 1em 0 2em;}
 textarea {font-size:1em;}
 
+.message {
+	background:green;
+}
 
 
 pre {

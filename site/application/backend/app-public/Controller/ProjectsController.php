@@ -303,6 +303,7 @@ class ProjectsController extends AppController {
 				$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
 				// ensure that the folders exist
+				$id = $this->Project->id;
 				$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
 				$general_folder = $parent_folder . '/' . 'general';
 
