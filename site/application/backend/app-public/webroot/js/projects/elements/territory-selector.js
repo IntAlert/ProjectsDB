@@ -9,7 +9,7 @@ $(function(){
 	$(".territory-selector .programme .input.radio").change(function(){
 
 		// get selected input
-		var selectedInput = $(".territory-selector .input.radio :checked");
+		var selectedInput = $(".territory-selector .programme .input.radio :checked");
 
 		// get selected value
 		var selectedProgrammeId = selectedInput.val();
@@ -21,7 +21,7 @@ $(function(){
 		// if programme name is EP, PIP:
 		var programmeName = label.text().toUpperCase();
 
-		console.log(programmeName);
+		console.log(selectedProgrammeId);
 
 		if (programmeName == 'EMERGING PROGRAMMES' && programmeName == 'PIP') {
 			// show all

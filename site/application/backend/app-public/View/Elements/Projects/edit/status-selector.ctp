@@ -8,7 +8,7 @@ echo $this->Html->css('projects/elements/status-selector', array('inline' => fal
 
 <?
 		echo $this->Form->input('status_id', array(
-			'legend' => 'Status',
+			'legend' => 'Submisssion Status',
 			'type' => 'radio',
 			'div' => 'input radio status',
 			'tooltip' => 'Please check the main box which applies',
