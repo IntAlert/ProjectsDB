@@ -284,10 +284,13 @@ class ProjectsController extends AppController {
 		$user_id = $this->Auth->user('id');
 		$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
-		// ensure that the folders exist
+		
 		$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
-
 		$general_folder = $parent_folder . '/' . 'general';
+
+		// ensure that the folders exist
+		$sd->createFolder($parent_folder);
+		$sd->createFolder($general_folder);
 
 		// get list of files on Sharepoint
 		$fileList = $sd->getFolderContents($general_folder);
