@@ -67,36 +67,15 @@ class PipelineExportController extends AppController {
 
 	private function loadComparissonData() {
 
-		// $comparissonData = array(
-		// 	'date' => '2014-10-10',
-		// 	'department-budget' => array(
-		// 		1 => '2003423',
-		// 		2 => '23423',
-		// 		3 => '2003423',
-		// 		4 => '23423',
-		// 		5 => '2003423',
-		// 		6 => '232332',
-		// 		7 => '2003423',
-		// 	),
-		// 	'department-chfl' => array(
-		// 		1 => '200423',
-		// 		2 => '2343',
-		// 		3 => '200423',
-		// 		4 => '2323',
-		// 		5 => '200423',
-		// 		6 => '23232',
-		// 		7 => '23432',
-		// 	),
-		// );
-
 		$comparissonData = array(
-			'date' => $this->request->data('date')
+			'comparisson-date' => $this->request->data('comparisson-date')
 		);
 
 		$comparissonData['total'] = array(
 			'department-budget' => 0,
 			'department-chfl' => 0,
 		);
+
 
 		foreach ($this->departmentsList as $department_id => $name) {
 
@@ -130,6 +109,7 @@ class PipelineExportController extends AppController {
 		$comparissonData['total']['department-ratio'] = $total_ratio;
 
 		$this->comparissonData = $comparissonData;
+
 	}
 
 	private function writeContent() {
@@ -160,14 +140,14 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('A1', $snapshotTime);
 
 		// Comparisson year
-		$sheet->setCellValue('J1', $this->Time->format('Y', $this->comparissonData['date']) . " Progress to Target" );
+		$sheet->setCellValue('J1', $this->Time->format('Y', strtotime($this->comparissonData['comparisson-date'])) . " Progress to Target" );
 
 		// SECOND ROW
 		// add year
 		$sheet->setCellValue('A2', $pipeline->getYear() . ' Budget Targets');
 
 		// add comparisson date
-		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', $this->comparissonData['date']));
+		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($this->comparissonData['comparisson-date'])));
 
 		// ALL DEPARTMENTS
 		$grandTotal = array(

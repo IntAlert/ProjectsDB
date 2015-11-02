@@ -4,31 +4,9 @@ $(function(){
 	// keep totals up to date
 
 
-	// local storage key
-	// var localStorageKey = 'macpipeline-export-form-' + selectedYear;
-
-	// // get any data in local storage
-	// if (localStorage) {
-	// 	var formValues = localStorage.getItem(localStorageKey)
-
-
-	// 	if (formValues) {
-
-
-	// 	}
-
-
-	// }
-
-	// // store any values here in user's local storage
-	// if (localStorage) {
-
-	// 	localStorage.setItem(localStorageKey);
-
-	// }
-
 	// persist comparisson data
 	$('.garlic-persist').garlic({
+		destroy: false,
 		getPath: function ( $elem ) {
 			var path = selectedYear + '-' + $elem.attr( 'name' );
 			return path;
@@ -57,6 +35,7 @@ $(function(){
 	// update comparisson nice date if one is already set	
 	if (dateText = localStorage[selectedYear + '-comparisson-date']) {
 		niceDateUpdater(dateText);
+		$( 'input[name="comparisson-date"]' ).val(dateText); // because garlic doesn't work on hidden fields
 	}
 
 

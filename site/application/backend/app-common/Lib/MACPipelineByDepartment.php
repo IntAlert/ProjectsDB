@@ -215,7 +215,11 @@ class MACPipelineByDepartment {
 			if ($project['Project']['start_date'] && $project['Project']['finish_date']) {
 				$startDate = new DateTime(($project['Project']['start_date']));
 				$finishDate = new DateTime(($project['Project']['finish_date']));
-				$duration_months = $finishDate->diff($startDate, true)->m;
+				$duration = $finishDate->diff($startDate, true);
+
+				// too lazy to get real answer
+				// gives at leat one month if not a one day project
+				$duration_months = ceil($duration->m + $duration->d/30); 
 			} else {
 				$duration_months = 0;
 			}
