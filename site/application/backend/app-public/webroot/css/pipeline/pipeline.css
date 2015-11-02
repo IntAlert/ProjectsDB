@@ -1,4 +1,14 @@
 
+nav.subnav input[type=submit] {
+	background:red;
+	color:#fff;
+	border: 0;
+	font-weight: normal;
+	padding:8px 12px;
+	text-shadow:none;
+	cursor: pointer;
+}
+
 .pipeline-container {
 	float:left;
 	width:70%;
