@@ -288,12 +288,18 @@ class ProjectsController extends AppController {
 		$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
 		$general_folder = $parent_folder . '/' . 'general';
 
-		// ensure that the folders exist
-		$sd->createFolder($parent_folder);
-		$sd->createFolder($general_folder);
 
 		// get list of files on Sharepoint
 		$fileList = $sd->getFolderContents($general_folder);
+
+
+		
+		if (count($fileList) == 0) {
+			// ensure that the folders exist
+			$sd->createFolder($parent_folder);
+			$sd->createFolder($general_folder);
+		}
+
 		$sharepoint_root_folder = '/prompt/Documents/' . $general_folder;
 
 		// AUDIT
