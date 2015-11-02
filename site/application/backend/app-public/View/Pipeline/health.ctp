@@ -116,7 +116,7 @@ endforeach; // ($projects as $project):
 				Department
 			</th>
 			<td colspan="6">
-				STATUS
+				SUBMISSION STATUS
 			</td>
 		</tr>
 		<tr>
@@ -164,7 +164,12 @@ endforeach; // ($projects as $project):
 
 <section class="mac-health-warning">
 
-<h3>Warning: These projects do not have all required annual budgets</h3>
+<h3>Warning: These projects do not have all required annual planned expenditature</h3>
+
+<p>
+	This most likely means the projects below do not have a record of planned expentiture for every year of the project timeline.
+</p>
+
 <ul>
 <?php foreach($projectsWithoutBudgets as $project): ?>
 	<li>

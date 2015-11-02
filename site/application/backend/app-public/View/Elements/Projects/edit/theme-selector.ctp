@@ -3,7 +3,7 @@
 <!-- Themes -->
 <div class="theme-selector clearfix">
 
-	<h2>Themes</h2>
+	<h3>Themes</h3>
 	<div class="ui-state-default">
 	<?php 
 		echo $this->Form->input('Theme', array(

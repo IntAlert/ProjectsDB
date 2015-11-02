@@ -6,8 +6,21 @@ $(function(){
 	
 
 
-	// set up project timespan
-	// START
+	// set up project dates
+	// SUBMISSION DATES
+    $( ".timespan .submission .datepicker-placeholder" ).datepicker({
+      defaultDate: $( "#ProjectSubmissionDate" ).val(),
+      yearRange: "-5:+10",
+      changeMonth: true,
+      changeYear: true,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(selectedDate) {
+        $( "#ProjectSubmissionDate" ).val(selectedDate);
+      }
+    });
+
+  // START
     $( ".timespan .start .datepicker-placeholder" ).datepicker({
       defaultDate: $( "#ProjectStartDate" ).val(),
       yearRange: "-5:+10",
@@ -16,8 +29,8 @@ $(function(){
       numberOfMonths: 1,
       dateFormat: 'yy-mm-dd',
       onSelect: function(selectedDate) {
-      	$( "#ProjectStartDate" ).val(selectedDate);
-      	$( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", selectedDate );
+        $( "#ProjectStartDate" ).val(selectedDate);
+        $( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", selectedDate );
       }
     });
 

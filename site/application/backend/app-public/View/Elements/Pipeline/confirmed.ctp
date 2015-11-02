@@ -91,14 +91,14 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				<?php 
 
 				echo $this->Time->format(
-				  "M'y",
+				  'M&\nb\s\p;y', // non breaking space
 				  $project['start_date']
 				); 
 
 				echo '-';
 				
 				echo $this->Time->format(
-				  "M'y",
+				  'M&\nb\s\p;y', // non breaking space
 				  $project['finish_date']
 				); 
 

@@ -103,7 +103,7 @@ echo $this->Form->input('action', array(
 						));
 					?>
 					</li>
-					<li>
+					<!-- <li>
 					<?php
 
 						echo $this->Form->input('donor_id', array(
@@ -112,7 +112,7 @@ echo $this->Form->input('action', array(
 							'value' => $this->request->query('donor_id'),
 						));
 					?>
-					</li>
+					</li> -->
 					<li>
 					<?php
 

@@ -26,6 +26,34 @@ class MACPipelineByDepartment {
 			if ($likelihood_ok) $projects[] = $flattenedProject;
 		}
 
+		// sort on primary territory name
+		uasort($projects, function($a, $b){
+
+			if(count($a['territory_names']) && count($b['territory_names'])) {
+				// both have territory names
+				$a_name = $a['territory_names'][0];
+				$b_name = $b['territory_names'][0];
+
+				if ($a_name > $b_name) return 1;
+				elseif ($a_name < $b_name) return -1;
+				else return 0; 
+
+			} elseif(count($a['territory_names'])) {
+				// a has territory name, b does not
+				return 1;
+
+			} elseif(count($b['territory_names'])) {
+				// b has territory name, a does not
+				return -1;
+			} else {
+				return 0;
+			}
+
+
+		});
+
+
+
 		return $projects;
 	}
 
@@ -183,6 +211,15 @@ class MACPipelineByDepartment {
 				$matched_funding_percentage = false;
 			}
 
+			// calculate project duration in months
+			if ($project['Project']['start_date'] && $project['Project']['finish_date']) {
+				$startDate = new DateTime(($project['Project']['start_date']));
+				$finishDate = new DateTime(($project['Project']['finish_date']));
+				$duration_months = $finishDate->diff($startDate, true)->m;
+			} else {
+				$duration_months = 0;
+			}
+			
 
 
 
@@ -192,8 +229,13 @@ class MACPipelineByDepartment {
 				'likelihood_short_name' => $project['Likelihood']['short_name'],
 				'territory_names' => $territory_names,
 				'fund_code' => $project['Project']['fund_code'],
+
+				// dates
+				'submission_date' => $project['Project']['submission_date'],
 				'start_date' => $project['Project']['start_date'],
 				'finish_date' => $project['Project']['finish_date'],
+				'duration_months' => $duration_months,
+
 				'value_required' => $project['Project']['value_required'],
 
 				'contract_primary' => $contract_primary,
@@ -207,21 +249,6 @@ class MACPipelineByDepartment {
 
 
 		}
-
-		// reorder projects by territory
-		// uasort($flattenedProjects, function($a, $b){
-
-		// 	// order by territory
-		// 	if (count($a['territory_names']) == 0 && count($b['territory_names']) == 0) {
-		// 		return $a['title'] > $b['title'];
-		// 	} elseif (count($a['territory_names']) == 0) {
-		// 		return +1;
-		// 	} elseif (count($b['territory_names']) == 0) {
-		// 		return -1;
-		// 	} else {
-		// 		return $a['territory_names'][0] > $b['territory_names'][0];
-		// 	}
-		// });
 
 		$this->flattenedProjects = $flattenedProjects;
 	}

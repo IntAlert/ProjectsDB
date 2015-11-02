@@ -388,8 +388,8 @@ class PipelineExportController extends AppController {
 				$project['title'], // budget this year
 				$project['likelihood_short_name'],
 				$primary_donor_name,
-				$this->Time->format('d/m/Y', $project['start_date']),
-				$this->Time->format('d/m/Y', $project['finish_date']),
+				$this->Time->format('d/m/Y', $project['submission_date']),
+				$project['duration_months'],
 				$project['value_required'],
 				$matched_funding_percentage,
 				$project['contract_primary']['contract_budget_this_year_gbp'],

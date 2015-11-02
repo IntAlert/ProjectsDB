@@ -21,7 +21,11 @@
 			</th>
 
 			<th>
-				Dates
+				Submission Date
+			</th>
+
+			<th>
+				Duration
 			</th>
 
 			<th>
@@ -81,14 +85,13 @@
 
 			<td>
 				<?php echo $this->Time->format(
-				  "M y",
-				  $project['start_date']
+				  'M&\nb\s\p;y', // non breaking space
+				  $project['submission_date']
 				); ?>
-				-
-				<?php echo $this->Time->format(
-				  "M y",
-				  $project['finish_date']
-				); ?>
+			</td>
+
+			<td>
+				<?php echo $project['duration_months']; ?>m
 			</td>
 
 			<td>
@@ -147,14 +150,13 @@
 
 				<td>
 					<?php echo $this->Time->format(
-					  'M y',
-					  $project['start_date']
+					  'M&\nb\s\p;y', // non breaking space
+					  $project['submission_date']
 					); ?>
-					-
-					<?php echo $this->Time->format(
-					  'M y',
-					  $project['finish_date']
-					); ?>
+				</td>
+
+				<td>
+					<!--<?php echo $project['duration_months']; ?>m-->
 				</td>
 
 				<td>

@@ -37,17 +37,28 @@ class ProjectsController extends AppController {
 			$joins = [];
 
 			// text search
-			if ($q = $this->request->query('q')) $conditions[] = array(
-				'OR' => array(
+			if ($q = $this->request->query('q')) {
 
-					'Project.title LIKE' => '%' . trim($q) . '%',
-					'Project.summary LIKE' => '%' . trim($q) . '%',
-					'Project.objectives LIKE' => '%' . trim($q) . '%',
-					'Project.goals LIKE' => '%' . trim($q) . '%',
-					'Project.beneficiaries LIKE' => '%' . trim($q) . '%',
-					'Project.location LIKE' => '%' . trim($q) . '%',	
-				)
-			);
+				// split the query into words
+				$q_split = explode(' ', $q);
+
+				foreach ($q_split as $q_word) {
+
+					$conditions[] = array(
+
+						'OR' => array(
+
+							'Project.title LIKE' => '%' . trim($q_word) . '%',
+							'Project.summary LIKE' => '%' . trim($q_word) . '%',
+							'Project.objectives LIKE' => '%' . trim($q_word) . '%',
+							'Project.goals LIKE' => '%' . trim($q_word) . '%',
+							'Project.beneficiaries LIKE' => '%' . trim($q_word) . '%',
+							'Project.location LIKE' => '%' . trim($q_word) . '%',	
+						)
+
+					);
+				}
+			}
 
 			// text search
 			if ($fund_code = $this->request->query('fund_code')) $conditions[] = array(

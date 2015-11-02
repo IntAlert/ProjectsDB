@@ -83,7 +83,7 @@
 
 <!-- PROJECT TIMESPAN -->
 
-<?php echo $this->element('Projects/edit/timespan'); ?>
+<?php echo $this->element('Projects/edit/dates'); ?>
 
 
 <!-- Themes -->

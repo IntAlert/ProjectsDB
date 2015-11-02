@@ -12,19 +12,29 @@
 .pipeline-nav li {
 	display: block;
 	width:100%;
+	border-radius: 3px;
+	margin-bottom:2px;
+}
+
+.pipeline-nav li.year {
+	margin-bottom:12px;
 }
 
 /*Sub nav */
-.departments-pipelineSummary .pipeline-nav li.programme-summary,
-.departments-pipeline-1 .pipeline-nav li.department-1,
-.departments-pipeline-2 .pipeline-nav li.department-2,
-.departments-pipeline-3 .pipeline-nav li.department-3,
-.departments-pipeline-4 .pipeline-nav li.department-4,
-.departments-pipeline-5 .pipeline-nav li.department-5,
-.departments-pipeline-6 .pipeline-nav li.department-6,
-.departments-pipeline-7 .pipeline-nav li.department-7,
-.departments-pipeline-8 .pipeline-nav li.department-8 {
+.pipeline-summary .pipeline-nav li.department-summary,
+.pipeline-department-1 .pipeline-nav li.department-1,
+.pipeline-department-2 .pipeline-nav li.department-2,
+.pipeline-department-3 .pipeline-nav li.department-3,
+.pipeline-department-4 .pipeline-nav li.department-4,
+.pipeline-department-5 .pipeline-nav li.department-5,
+.pipeline-department-6 .pipeline-nav li.department-6,
+.pipeline-department-7 .pipeline-nav li.department-7,
+.pipeline-department-8 .pipeline-nav li.department-8 {
 	background: #eee;
+}
+
+.pipeline-nav li a:hover {
+	background-color:#eee;
 }
 
 .pipeline-nav .export {
@@ -35,4 +45,7 @@
 	display: block;
 	border-radius: 5px;
 	text-align: center;
+}
+.pipeline-nav .export:hover {
+	background: red;
 }

@@ -118,7 +118,10 @@ if ( !isset($title) ) {
 				</li> -->
 
 				<li class="territories">
-					<a href="/pdb/territories">Territories</a>
+					<a href="/pdb/territories">
+						<i class="fa fa-globe"></i>
+						Territories
+					</a>
 				</li>
 <?php endif; // (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 
