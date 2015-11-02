@@ -187,7 +187,7 @@
 
 	<tfoot>
 		<tr>
-			<th colspan="7">
+			<th colspan="8">
 				Unconfirmed
 			</th>
 			<td>
@@ -198,7 +198,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th colspan="7">
+			<th colspan="8">
 				Highly Likely
 			</th>
 			<td>
@@ -210,7 +210,7 @@
 		</tr>
 
 		<tr>
-			<th colspan="7" rowspan="2">
+			<th colspan="8" rowspan="2">
 				Total Confirmed + Highly Likely against Budget
 			</th>
 			<td>
