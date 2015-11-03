@@ -312,11 +312,8 @@ class ProjectsController extends AppController {
 
 				// ensure that the folders exist
 				$id = $this->Project->id;
-				$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
-				$general_folder = $parent_folder . '/' . 'general';
-
-				$sd->createFolder($parent_folder);
-				$sd->createFolder($general_folder);
+				
+				$results = $sd->createTemplateFolders($id);
 				
 				$this->Session->setFlash(__('The project has been saved.'));
 
