@@ -20,10 +20,12 @@ class DashboardController extends AppController {
 		// get most recently viewed projects
 		$projectsRecentlyViewed = $this->Project->findRecentlyViewed($user_id);
 
+		$departmentsWithProjects = $this->Project->Department->find('all', array('contain' => 'Project'));
+
 		// get company activity
 		$projectsCompanyActivity = $this->Audit->findCompanyActivity();
 
-		$this->set(compact('projectsRecentlyViewed', 'projectsCompanyActivity'));
+		$this->set(compact('projectsRecentlyViewed', 'projectsCompanyActivity', 'departmentsWithProjects'));
 		
 	}
 

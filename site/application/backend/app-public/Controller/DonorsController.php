@@ -16,6 +16,17 @@ class DonorsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+
+	public $paginate = array(
+        'limit' => 100,
+        'order' => array(
+            // 'Department.sort_order' => 'asc',
+            // 'Department.name' => 'asc',
+            'Donor.sort_order' => 'asc',
+            'Donor.name' => 'asc',
+        )
+    );
+
 /**
  * index method
  *
@@ -23,6 +34,7 @@ class DonorsController extends AppController {
  */
 	public function index() {
 		$this->Donor->recursive = 0;
+		$this->Paginator->settings = $this->paginate;
 		$this->set('donors', $this->Paginator->paginate());
 	}
 

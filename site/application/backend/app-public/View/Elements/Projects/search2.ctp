@@ -96,10 +96,11 @@ echo $this->Form->input('action', array(
 					<li>
 					<?php
 
-						echo $this->Form->input('programme_id', array(
+						echo $this->Form->input('department_id', array(
+							'label' => 'Programme',
 							'empty' => '--- Select Programme ---',
-							'options' => $programmes,
-							'value' => $this->request->query('programme_id'),
+							'options' => $departments,
+							'value' => $this->request->query('department_id'),
 						));
 					?>
 					</li>

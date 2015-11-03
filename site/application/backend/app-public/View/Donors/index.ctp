@@ -1,3 +1,12 @@
+
+
+
+<nav class="subnav clearfix">
+	<ul>
+		<li><?php echo $this->Html->link(__('New Donor'), array('action' => 'add')); ?></li>
+	</ul>
+</nav>
+
 <div class="donors index">
 	<h2><?php echo __('Donors'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -17,7 +26,6 @@
 			<?php endif; // (isset($donor['Donor']['name'])): ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $donor['Donor']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $donor['Donor']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $donor['Donor']['id']), array(), __('Are you sure you want to delete # %s?', $donor['Donor']['id'])); ?>
 		</td>
@@ -38,10 +46,4 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Donor'), array('action' => 'add')); ?></li>
-	</ul>
 </div>

@@ -29,27 +29,12 @@ class Department extends AppModel {
 			'className' => 'Departmentbudget',
 			'foreignKey' => 'department_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		),
 		'Project' => array(
 			'className' => 'Project',
 			'foreignKey' => 'department_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'conditions' => array('Project.deleted' => false),
 		)
 	);
 

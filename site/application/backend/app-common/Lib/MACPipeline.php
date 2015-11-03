@@ -32,6 +32,11 @@ class MACPipeline {
 			if ($contractBudget['Contract']['Project']['deleted']) continue;
 
 			$projectStatus = $contractBudget['Contract']['Project']['Status']['short_name'];
+
+			if (is_null($projectStatus)) {
+
+				die($contractBudget['Contract']['Project']['id']);
+			}
 			$contractLikelihood = $contractBudget['Contract']['Project']['Likelihood']['short_name'];
 
 			// relevant project?

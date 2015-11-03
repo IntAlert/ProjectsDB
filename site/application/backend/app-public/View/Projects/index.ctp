@@ -45,7 +45,7 @@
 
 				<?php 
 				// create array of country names
-				echo $project['Programme']['name']?>/<?php
+				echo $project['Department']['name']?>/<?php
 
 				$territory_names = [];
 				foreach($project['Territory'] as $territory) {
@@ -66,14 +66,17 @@
 
 				$donor_names = [];
 				foreach($project['Contract'] as $contract) {
-					if (trim($contract['donor_name'])) {
-						array_push($donor_names, $contract['donor_name']);
+					if (isset($contract['Donor']['name'])) {
+						array_push($donor_names, $contract['Donor']['name']);
 					}
 				}
 				$donor_names = array_unique($donor_names);
 				
-				if (count($donor_names)) echo implode(', ', $donor_names);
-				else echo "None"
+				if (count($donor_names)) {
+					echo implode(', ', $donor_names);
+				} else {
+					echo "None";
+				}
 				?>
 			</p>
 			

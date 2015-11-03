@@ -75,9 +75,9 @@ class ProjectsController extends AppController {
 				'Project.likelihood_id' => $status_id,
 			);
 
-			// programme_id
-			if ($programme_id = $this->request->query('programme_id')) $conditions[] = array(
-				'Project.programme_id' => $programme_id,
+			// department_id
+			if ($department_id = $this->request->query('department_id')) $conditions[] = array(
+				'Project.department_id' => $department_id,
 			);
 
 			// owner_user_id
@@ -158,10 +158,10 @@ class ProjectsController extends AppController {
 
 
 			$this->Paginator->settings = array(
-				'contain' => array('Programme', 'Status', 'Territory', 'Contract.Donor'),
+				'contain' => array('Department', 'Status', 'Territory', 'Contract.Donor'),
 		        'joins' => $joins,
 		        'conditions' => $conditions,
-		        'limit' => 10,
+		        'limit' => 25,
 		        'order' => array('Project.start_date' => 'DESC'),
 		    );
 
@@ -183,7 +183,7 @@ class ProjectsController extends AppController {
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$donors = $this->Project->Contract->Donor->findOrderedList();
 		$departments = $this->Project->Department->find('list');
-		$programmes = $this->Project->Programme->find('list');
+		// $programmes = $this->Project->Programme->find('list');
 		$territories = $this->Project->Territory->findActiveList();
 
 		
@@ -277,35 +277,23 @@ class ProjectsController extends AppController {
 		}
 
 
-
 		// DOCUMENTS
 
 		// connect to Sharepoint
 		$user_id = $this->Auth->user('id');
 		$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
-		
-		$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
-		$general_folder = $parent_folder . '/' . 'general';
-
-
 		// get list of files on Sharepoint
-		$fileList = $sd->getFolderContents($general_folder);
+		$results = $sd->createTemplateFolders($id);
 
+		$sharepoint_root_folder = $results['sharepoint_root_folder'];
+		$fileTree = $results['fileTree'];
 
-		
-		if (count($fileList) == 0) {
-			// ensure that the folders exist
-			$sd->createFolder($parent_folder);
-			$sd->createFolder($general_folder);
-		}
-
-		$sharepoint_root_folder = '/prompt/Documents/' . $general_folder;
 
 		// AUDIT
 		$this->Audit->record("READ", "Project", $id, $project);
 
-		$this->set(compact('project', 'fileList', 'sharepoint_root_folder'));
+		$this->set(compact('project', 'fileTree', 'sharepoint_root_folder'));
 	}
 
 
@@ -344,7 +332,7 @@ class ProjectsController extends AppController {
 		$themes = $this->Project->Theme->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$departments = $this->Project->Department->find('list');
-		$programmes = $this->Project->Programme->find('list');
+		// $programmes = $this->Project->Programme->find('list');
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
 
@@ -406,7 +394,7 @@ class ProjectsController extends AppController {
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
-		$programmes = $this->Project->Programme->find('list');
+		// $programmes = $this->Project->Programme->find('list');
 		$departments = $this->Project->Department->find('list');
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
@@ -461,53 +449,6 @@ class ProjectsController extends AppController {
 
 	}
 
-
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function convert($id = null) {
-		if (!$this->Project->exists($id)) {
-			throw new NotFoundException(__('Invalid project'));
-		}
-
-		// TODO: check that the proposal is in the right state
-
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Project->save($this->request->data)) {
-				$this->Session->setFlash(__('The proposal has been converted.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Project.' . $this->Project->primaryKey => $id));
-			$project = $this->Project->find('first', $options);;
-			$this->request->data = $project;
-		}
-		$statuses = $this->Project->Status->find('list', array(
-			'order' => array('sort_order'),
-			'conditions' => array(
-				'short_name' => array('funded', 'active', 'declined')
-			)
-		));
-		$territories = $this->Project->Territory->findActiveList();
-		$users = $this->User->find('list');
-
-		$current_status = $project['Status'];
-
-		$this->set(compact(
-			'statuses',
-			 'programmes',
-			 'territories',
-			 'users',
-			 'current_status'
-		));
-	}
 
 /**
  * delete method

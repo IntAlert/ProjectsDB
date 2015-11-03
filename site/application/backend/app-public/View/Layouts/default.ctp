@@ -117,6 +117,15 @@ if ( !isset($title) ) {
 					<a href="/pdb/donors">Donors</a>
 				</li> -->
 
+
+				<li class="territories">
+					<a href="/pdb/donors">
+						<i class="fa fa-dollar"></i>
+						Donors
+					</a>
+				</li>
+
+
 				<li class="territories">
 					<a href="/pdb/territories">
 						<i class="fa fa-globe"></i>
@@ -148,6 +157,7 @@ if ( !isset($title) ) {
 						MAC Pipeline
 					</a>
 				</li>
+
 
 			</ul>
 

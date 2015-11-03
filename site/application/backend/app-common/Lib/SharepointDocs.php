@@ -67,6 +67,50 @@ class SharepointDocs {
 
     }
 
+    function createTemplateFolders($project_id) {
+
+        $parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $project_id;
+        $general_folder = $parent_folder . '/' . 'general';
+
+        // build list of folders to create
+        $subfoldersToCreate = array(
+            '1 Tender Documents',
+            '2 Workplans',
+            '3 Research and Background',
+            '4 Communications',
+            '5 Draft Proposal Documents',
+            '6 Submitted Proposal Documents',
+            '7 Donor Feedback',
+            '8 Partnership',
+            'P1 Contract',
+            'P2 Project Inception',
+        );
+
+
+        // parent folder exists
+        $folderExists = $this->folderExists($general_folder);
+        
+        if ( !$folderExists ) {
+            // ensure that the folders exist
+            $this->createFolder($parent_folder);
+            $this->createFolder($general_folder);
+
+            foreach($subfoldersToCreate as $subfolder_name) {
+                $sub_folder_path = $general_folder . '/' . $subfolder_name;
+                $this->createFolder($sub_folder_path);
+            }
+        }
+
+        $sharepoint_root_folder = '/prompt/Documents/' . $general_folder;
+
+
+        
+        // get list of files on Sharepoint
+        $fileTree = $this->getFolderContents($general_folder);
+
+        return compact('sharepoint_root_folder', 'fileTree');
+    }
+
     function createFolder($folder) {
 
     	// add content length of 0, otherwise SP endpoint gets upset
@@ -75,7 +119,7 @@ class SharepointDocs {
     	$socket = $this->createSocket();
     	$options = $this->createOptions($additional_headers);
 
-    	$folder_encoded = urlencode('Documents/' . $folder);
+    	$folder_encoded = rawurlencode('Documents/' . $folder);
 
     	$url = $this->api_base . "folders/add('" . $folder_encoded . "')";
 
@@ -93,7 +137,7 @@ class SharepointDocs {
         $socket = $this->createSocket();
         $options = $this->createOptions($additional_headers);
 
-        $folder_encoded = urlencode('Documents/' . $folder);
+        $folder_encoded = rawurlencode('Documents/' . $folder);
 
         $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')/recycle";
 
@@ -111,17 +155,32 @@ class SharepointDocs {
         $socket = $this->createSocket();
         $options = $this->createOptions();
 
-        $folder_encoded = urlencode('Documents/' . $folder);
+        $folder_encoded = rawurlencode('Documents/' . $folder);
 
-        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')/files";
+        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')?\$expand=Folders,Files";
 
         $result = $socket->get($url, null, $options);
 
         $responseObj = json_decode($result->body);
 
-        $fileList = $responseObj->d->results;
+        return $responseObj->d;
 
-        return $fileList;
+    }
+
+    function folderExists($folder) {
+        $socket = $this->createSocket();
+        $options = $this->createOptions();
+
+        $folder_encoded = rawurlencode('Documents/' . $folder);
+
+        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')?\$expand=Folders,Files";
+
+        $result = $socket->get($url, null, $options);
+
+        $responseObj = json_decode($result->body);
+
+        return ! isset($responseObj->error);
+
     }
 
     function deleteFolder($folder) {
@@ -129,7 +188,7 @@ class SharepointDocs {
     	$socket = $this->createSocket();
     	$options = $this->createOptions();
 
-    	$folder_encoded = urlencode('Documents/' . $folder);
+    	$folder_encoded = rawurlencode('Documents/' . $folder);
 
     	$url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')";
 
@@ -189,7 +248,7 @@ class SharepointDocs {
 
     function getWebUrl($folder) {
 
-    	$folder_encoded = urlencode('Documents/' . $folder);
+    	$folder_encoded = rawurlencode('Documents/' . $folder);
 
     	return $this->web_base . $folder_encoded;
     }

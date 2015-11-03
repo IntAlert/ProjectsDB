@@ -37,7 +37,13 @@ var data = <?php echo json_encode($project); ?>;
 <nav class="subnav clearfix">
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Project'), array('action' => 'edit', $project['Project']['id'])); ?> </li>
-		
+		<li>
+			<a 
+			target="_blank"
+			href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=<?php echo urlencode($sharepoint_root_folder); ?>">
+				View Sharepoint Folder
+			</a>
+		</li>
 	</ul>
 </nav>
 
@@ -223,7 +229,7 @@ $textBlocks = array(
 </div>
 
 
-<?php echo $this->element('Projects/view/docs'); ?>
+<?php // echo $this->element('Projects/view/docs'); ?>
 
 <?php echo $this->element('Projects/view/projectnotes'); ?>
 

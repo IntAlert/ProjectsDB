@@ -87,12 +87,16 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td>
-						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_name', array(
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_id', array(
+
 							'id' => false,
+							'value' => $contract['donor_id'],
+							'type' => 'select',
 							'label' => false,
-							'value' => $contract['donor_name'],
-							'class' => 'contract-donor-name',
-							'tooltip' => 'Please enter donor name.',
+							'empty' => '---- Please Select ----',
+							'options' => $donors,
+							'class' => 'contract-donor-id',
+
 						)); ?>
 					</td>
 
@@ -294,10 +298,13 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td>
-						<?php echo $this->Form->input('Contract.{contract_id}.donor_name', array(
+						<?php echo $this->Form->input('Contract.{contract_id}.donor_id', array(
 							'id' => false,
+							'type' => 'select',
 							'label' => false,
-							'class' => 'contract-donor-name'
+							'empty' => '---- Please Select ----',
+							'options' => $donors,
+							'class' => 'contract-donor-id',
 						)); ?>
 					</td>
 

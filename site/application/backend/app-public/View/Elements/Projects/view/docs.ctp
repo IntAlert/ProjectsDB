@@ -18,7 +18,14 @@
 
 
 
-<?php if (count($fileList)): ?>
+<?php if ($fileTree): 
+
+// printFolder($fileTree);
+
+?>
+
+
+
 <table class="table">
 
 
@@ -80,3 +87,18 @@
 
 <?php endif; // (count($fileList)): ?>
 
+<?
+
+	function printFolder($folder) {
+		echo '<ul>';
+
+		foreach ($folder->Folders->results as $folder) {
+			echo '<li>' . $folder->Name . '</li>';
+		}
+
+		echo '</ul>';
+	}
+
+
+
+?>

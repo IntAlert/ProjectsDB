@@ -123,7 +123,7 @@ $(function(){
 
 			if ($contracts.length == 0) return;
 
-			$contracts.find(".contract-donor-name").rules("add", { 
+			$contracts.find(".contract-donor-id").rules("add", { 
 			  required:true
 			});
 

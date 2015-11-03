@@ -3,16 +3,9 @@
 	<fieldset>
 		<legend><?php echo __('Add Donor'); ?></legend>
 	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('short_name');
+		echo $this->Form->input('name', array('type' => 'text'));
+		echo $this->Form->input('short_name', array('type' => 'text'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Donors'), array('action' => 'index')); ?></li>
-	</ul>
 </div>

@@ -14,11 +14,37 @@
 	</p>
 
 
-	<!-- <ul class="links">
+
+<h2>
+	Find a project
+</h2>
+	
+<?php foreach ($departmentsWithProjects as $department): ?>
+
+	<h3>
+	
+		<a href="/pdb/projects?action=search&amp;department_id=<?php echo $department['Department']['id']; ?>">
+			<?php echo $department['Department']['name']; ?>
+		</a>
+		
+	</h3>
+
+	<ul class="project-list">
+<?php foreach ($department['Project'] as $project): ?>
+	
+
 		<li>
-			<a class="btn" href="/pdb/projects" class="add"> Add Project </a>
+			<a href="/pdb/projects/view/<?php echo $project['id']; ?>">
+				<?php echo $project['title']; ?>
+			</a>
 		</li>
-	</ul> -->
+
+
+<?php endforeach; // ($department['Project'] as $project): ?>
+
+	</ul>
+
+<?php endforeach; // ($departments as $department): ?>
 
 
 	<div class="search-form">

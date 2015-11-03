@@ -158,6 +158,17 @@ height:48px;
 .dashboard .intro {
 	font-size:1.2em;
 }
+
+.dashboard .project-list {
+	margin-bottom:2em;
+}
+.dashboard .project-list li {
+	margin-bottom:8px;
+}
+.dashboard .project-list a {
+	font-weight: normal;
+	text-decoration: none;
+}
 /*section.company-activity {
 	width:55%;
 }
