@@ -349,11 +349,11 @@ class ProjectsController extends AppController {
 		$donors = $this->Donor->findOrderedList();
 
 		$territories = $this->Project->Territory->findActiveList();
-		$territoriesWithProgrammes = $this->Project->Territory->findActiveWithProgramme();
+		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
 
 
 	}
@@ -412,7 +412,7 @@ class ProjectsController extends AppController {
 		$donors = $this->Donor->findOrderedList();
 
 		$territories = $this->Project->Territory->findActiveList();
-		$territoriesWithProgrammes = $this->Project->Territory->findActiveWithProgramme();
+		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 
@@ -428,7 +428,7 @@ class ProjectsController extends AppController {
 		$sd->createFolder($parent_folder);
 		$sd->createFolder($general_folder);
 
-		$this->set(compact('territoriesWithProgrammes', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors'));
 	}
 
 

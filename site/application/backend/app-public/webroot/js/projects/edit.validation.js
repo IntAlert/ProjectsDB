@@ -92,10 +92,6 @@ $(function(){
 					required: true
 				},
 
-				"data[Project][programme_id]": {
-					required: true
-				},
-
 				"data[Project][status_id]": {
 					required: true
 				},

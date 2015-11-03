@@ -5,25 +5,25 @@ $(function(){
 	$(".territory-selector .input.select").buttonset()
 
 
-	// handle programme change
-	$(".territory-selector .programme .input.radio").change(function(){
+	// handle department change
+	$(".territory-selector .department .input.radio").change(function(){
 
 		// get selected input
-		var selectedInput = $(".territory-selector .programme .input.radio :checked");
+		var selectedInput = $(".territory-selector .department .input.radio :checked");
 
 		// get selected value
-		var selectedProgrammeId = selectedInput.val();
+		var selectedDepartmentId = selectedInput.val();
 
 		// get label
 		var label = $("label[for='"+ selectedInput.attr('id') + "']");
 
 
-		// if programme name is EP, PIP:
-		var programmeName = label.text().toUpperCase();
+		// if department name is EP, PIP:
+		var departmentName = label.text().toUpperCase();
 
-		console.log(selectedProgrammeId);
+		console.log(selectedDepartmentId);
 
-		if (programmeName == 'EMERGING PROGRAMMES' && programmeName == 'PIP') {
+		if (departmentName == 'EMERGING PROGRAMMES' && departmentName == 'PIP') {
 			// show all
 			$(".territory-selector .territory-checkbox").show();
 
@@ -36,11 +36,11 @@ $(function(){
 			$(".territory-selector .territory-checkbox").each(function(){
 				
 				var $div = $(this);
-				var programmeIdsCsv = $($div.find('input')).data('programme-ids-csv');
-				var programmeIds = String(programmeIdsCsv).split(',');
+				var departmentIdsCsv = $($div.find('input')).data('department-ids-csv');
+				var departmentIds = String(departmentIdsCsv).split(',');
 
 
-				if ($.inArray(selectedProgrammeId, programmeIds) > -1) {
+				if ($.inArray(selectedDepartmentId, departmentIds) > -1) {
 					$(this).show();
 				} else {
 					$(this).hide();

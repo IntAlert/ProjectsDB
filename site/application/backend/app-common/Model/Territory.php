@@ -30,40 +30,24 @@ class Territory extends AppModel {
 			'foreignKey' => 'territory_id',
 			'associationForeignKey' => 'project_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		),
-		'Programme' => array(
-			'className' => 'Programme',
-			'joinTable' => 'programmes_territories',
+		'Department' => array(
+			'className' => 'Department',
+			'joinTable' => 'departments_territories',
 			'foreignKey' => 'territory_id',
-			'associationForeignKey' => 'programme_id',
+			'associationForeignKey' => 'department_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
 			'order' => array(
-				'Programme.sort_order' => 'ASC',
-				'Programme.name' => 'ASC',
+				'Department.sort_order' => 'ASC',
+				'Department.name' => 'ASC',
 			),
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
 		),
 	);
-
-	// public $belongsTo = array(
-	// 	'Programme' => array(
-	// 		'className' => 'Programme',
-	// 		'foreignKey' => 'programme_id',
-	// 		'conditions' => '',
-	// 		'fields' => '',
-	// 		'order' => ''
-	// 	)
-	// );
 
 
 	public function findActiveList() {
@@ -73,9 +57,9 @@ class Territory extends AppModel {
 		));
 	}
 
-	public function findActiveWithProgramme() {
+	public function findActiveWithDepartment() {
 		return $this->find('all', array(
-			'contain' => array('Programme'),
+			'contain' => array('Department'),
 			'conditions' => array('active' => true),
 			'order' => array('Territory.sort_order ASC', 'Territory.name ASC'),
 		));

@@ -2,7 +2,7 @@
 <?php echo $this->Html->css('projects/elements/search', array('inline' => false)); ?>
 <?php
 
-$advanced_shown = !! $this->request->query('advanced');
+$advanced_shown = true; // !! $this->request->query('advanced');
 
 ?>
 

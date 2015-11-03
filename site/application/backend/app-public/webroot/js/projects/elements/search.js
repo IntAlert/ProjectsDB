@@ -19,15 +19,15 @@ $(function(){
 
 
 	 // $('.project-search select').selectmenu()
-	 $(".project-search2 .show-advanced").click(function(){
-	 	$(".project-search2 .advanced").slideDown();
+	 // $(".project-search2 .show-advanced").click(function(){
+	 // 	$(".project-search2 .advanced").slideDown();
 	 	
-	 	$("#ProjectAdvanced").val(true);
+	 // 	$("#ProjectAdvanced").val(true);
 
-	 	$(this).hide();
+	 // 	$(this).hide();
 
-	 	return false;
-	 })
+	 // 	return false;
+	 // })
 
 
 	 $(".project-search2 select").selectmenu({width:"100%"});

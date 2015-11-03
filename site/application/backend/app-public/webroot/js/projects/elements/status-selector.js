@@ -11,7 +11,7 @@ $(function(){
 		// get selected option text
 		var selectedStatusId = statusRadiosContainer.find(":checked").val();
 
-		var statusIdApproved = 3;
+		var statusIdApproved = 2;
 		var statusIdCompleted = 6;
 		var statusIdRejected = 4;
 		var likelihoodIdLow = 4;
@@ -20,9 +20,9 @@ $(function(){
 
 		if (selectedStatusId == statusIdApproved || selectedStatusId == statusIdCompleted) {
 			// select 'confirmed' likelihood
-			var liklihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdConfirmed+']'));
+			var likelihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdConfirmed+']'));
 
-			liklihoodToPreselect.prop('checked', true);
+			likelihoodToPreselect.prop('checked', true);
 
 			// hide likehoods
 			$(".input.radio.likelihood").buttonset('refresh');
@@ -30,9 +30,9 @@ $(function(){
 
 		} else if (selectedStatusId == statusIdRejected) {
 			// select 'low' likelihood
-			var liklihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdLow+']'));
+			var likelihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdLow+']'));
 	  
-			liklihoodToPreselect.prop('checked', true);
+			likelihoodToPreselect.prop('checked', true);
 
 			// hide likehoods
 			$(".input.radio.likelihood").buttonset('refresh');

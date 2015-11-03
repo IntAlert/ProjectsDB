@@ -49,14 +49,9 @@ var data = <?php echo json_encode($project); ?>;
 			<?php echo h($project['OwnerUser']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Department'); ?></dt>
-		<dd>
-			<?php echo h($project['Department']['name']); ?>
-		</dd>
-
 		<dt><?php echo __('Programme'); ?></dt>
 		<dd>
-			<?php echo h($project['Programme']['name']); ?>
+			<?php echo h($project['Department']['name']); ?>
 		</dd>
 
 		<dt><?php echo __('Status'); ?></dt>

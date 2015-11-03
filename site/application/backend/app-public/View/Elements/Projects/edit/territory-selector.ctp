@@ -17,29 +17,14 @@
 
 
 	<h3>
-		Department
+		Programme
 	</h3>
 
 	<div class="department ui-state-default clearfix">
 		<?php
 			echo $this->Form->input('department_id', array(
 				'legend' => false,
-				'tooltip' => 'Please select the department which applies',
-				'type' => 'radio',
-			));
-
-		?>
-	</div>
-
-	<h3>
-		Programme
-	</h3>
-
-	<div class="programme ui-state-default clearfix">
-		<?php
-			echo $this->Form->input('programme_id', array(
-				'legend' => false,
-				// 'tooltip' => 'Please select the programme which applies',
+				'tooltip' => 'Please select the programme which applies',
 				'type' => 'radio',
 			));
 
@@ -48,7 +33,7 @@
 
 
 	<h3>
-		Territories, Countries or PIP programme
+		Territories, Countries or Sub-Programme
 		<?php $this->Tooltip->element('Please select at least one territories/countries/PIP programmes'); ?>
 	</h3>
 
@@ -61,14 +46,14 @@
 		<div class="input select">
 			<?php 
 
-			foreach($territoriesWithProgrammes as $territory):
+			foreach($territoriesWithDepartments as $territory):
 
 			// build a list of programme_ids
-			$programme_ids = array();
-			foreach ($territory['Programme'] as $programme) {
-				$programme_ids[] = $programme['id'];
+			$department_ids = array();
+			foreach ($territory['Department'] as $department) {
+				$department_ids[] = $department['id'];
 			}
-			$programme_ids_csv = implode(',', $programme_ids);
+			$department_ids_csv = implode(',', $department_ids);
 
 
 			?>
@@ -85,7 +70,7 @@
 					'value' => $territory['Territory']['id'],
 					'label' => $territory['Territory']['name'],
 					'hiddenField' => false,
-					'data-programme-ids-csv' => $programme_ids_csv,
+					'data-department-ids-csv' => $department_ids_csv,
 					'div' => 'territory-checkbox',
 					'checked'=> $checked_value,
 				)); ?>

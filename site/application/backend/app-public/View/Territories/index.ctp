@@ -14,7 +14,7 @@
 	<tr>
 			<!-- <th><?php echo $this->Paginator->sort('id'); ?></th> -->
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('programme_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('department_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('active'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -26,13 +26,13 @@
 		<td><?php echo h($territory['Territory']['name']); ?>&nbsp;</td>
 		<td><?php 
 
-			$programme_names = array();
-			foreach($territory['Programme'] as $programme) {
-				$programme_names[] = $programme['name'];
+			$department_names = array();
+			foreach($territory['Department'] as $department) {
+				$department_names[] = $department['name'];
 			}
 
-			if (count($programme_names)) {
-				echo implode(', ', $programme_names);
+			if (count($department_names)) {
+				echo implode(', ', $department_names);
 			} else {
 				echo 'none';
 			}
