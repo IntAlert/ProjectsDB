@@ -28,7 +28,7 @@
 		</a>
 		
 	</h3>
-
+<!--
 	<ul class="project-list">
 <?php foreach ($department['Project'] as $project): ?>
 	
@@ -41,7 +41,7 @@
 
 
 <?php endforeach; // ($department['Project'] as $project): ?>
-
+-->
 	</ul>
 
 <?php endforeach; // ($departments as $department): ?>
