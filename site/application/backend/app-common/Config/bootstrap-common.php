@@ -57,6 +57,7 @@ Cache::config('default', array('engine' => 'File'));
 		'Plugin' => array(__DIR__ . '/../Plugin/'),
 		'Vendor' => array(__DIR__ . '/../Vendor/'),
 		'View/Helper' => array(__DIR__ . '/../View/Helper/'),
+		'Controller/Component' => array(__DIR__ . '/../Controller/Component/'),
 	));
 
 /**

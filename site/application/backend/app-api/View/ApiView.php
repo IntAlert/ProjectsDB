@@ -13,7 +13,7 @@ class ApiView extends View {
  *
  * @var string
  */
-	// public $subDir = 'json';
+	public $subDir = false;
 
 /**
  * Constructor

@@ -39,10 +39,18 @@ class AppController extends Controller {
 
 	// components
 	public $components = array(
-		'RequestHandler',
+		// 'RequestHandler',
 		'Session',
-		'Auth',
-		'DebugKit.Toolbar',
+		// 'Auth' => array(
+	 //    	'logoutRedirect' => false,
+	 //    	// 'authenticate' => array(
+	 //     //        'Form' => array(
+	 //     //            'passwordHasher' => 'Blowfish'
+	 //     //        )
+	 //     //    ),
+	 //        'authorize' => array('Controller'), // Added this line
+	 //    ),
+
 	);
 
 	public $uses = array('User');
@@ -89,28 +97,21 @@ class AppController extends Controller {
 
 	}
 
-	protected function _cloudFrontDetectDevice() {
-
-		if (isset($_SERVER['CloudFront-Is-Mobile-Viewer'])) {
-			return 'mobile';
-		} else if (isset($_SERVER['CloudFront-Is-Tablet-Viewer'])) {
-			return 'tablet';
-		} else {
-			return 'desktop';
-		}
-
-	}
 
 	// callbacks
-
     public function beforeFilter() {
 
-		parent::beforeFilter();
 	}
 
 	public function afterFilter() {
 		// ensure responses are JSON
 		$this->response->type('json');
+	}
+
+	public function isAuthorized($user) {
+
+		// if logged in, you can access whole API unless overridden
+		return !!$this->Auth->user('id');
 	}
 
 }

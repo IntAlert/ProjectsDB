@@ -58,7 +58,7 @@
 			<table>
 				<tr>
 					<td>
-						<input type="text" name="q">
+						<input type="text" name="q" id="project-search">
 					</td>
 					<td>
 						<input type="submit" value="Search">
@@ -69,6 +69,23 @@
 		</form>
 
 	</div>
+
+	<script>
+
+	  $(function() {
+	 
+	    $( "#project-search" ).autocomplete({
+	      source: "/api/projects/search",
+	      minLength: 2,
+	      select: function( event, ui ) {
+	        console.log( ui.item ?
+	          "Selected: " + ui.item.value + " aka " + ui.item.id :
+	          "Nothing selected, input was " + this.value );
+	      }
+	    });
+	  });
+
+	</script>
 
 
 	<div class="search-form">

@@ -235,8 +235,12 @@ switch (Configure::read('ENVIRONMENT')) {
  * the cake shell command: cake schema create Sessions
  *
  */
+
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		'cookie' => 'IntAlertPROMPT',
+		'timeout' => 3600,
+		'cookieTimeout' => 3600,
+		'defaults' => 'database',
 	));
 
 /**
@@ -379,7 +383,7 @@ if (Configure::read('debug') > 0) {
 }
 
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
-$prefix = 'myapp_';
+$prefix = 'iaprompt_';
 
 /**
  * Configure the cache used for general framework caching. Path information,

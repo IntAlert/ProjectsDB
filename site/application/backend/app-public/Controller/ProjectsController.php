@@ -17,7 +17,10 @@ class ProjectsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array(
+		'Paginator',
+		'ProjectSearch'
+	);
 
 
 
@@ -33,134 +36,12 @@ class ProjectsController extends AppController {
 		if ($action == 'search'): 
 
 			// BUILD SEARCH CONDITIONS
-			$conditions = array('Project.deleted' => false);
-			$joins = [];
-
-			// text search
-			if ($q = $this->request->query('q')) {
-
-				// split the query into words
-				$q_split = explode(' ', $q);
-
-				foreach ($q_split as $q_word) {
-
-					$conditions[] = array(
-
-						'OR' => array(
-
-							'Project.title LIKE' => '%' . trim($q_word) . '%',
-							'Project.summary LIKE' => '%' . trim($q_word) . '%',
-							'Project.objectives LIKE' => '%' . trim($q_word) . '%',
-							'Project.goals LIKE' => '%' . trim($q_word) . '%',
-							'Project.beneficiaries LIKE' => '%' . trim($q_word) . '%',
-							'Project.location LIKE' => '%' . trim($q_word) . '%',	
-						)
-
-					);
-				}
-			}
-
-			// text search
-			if ($fund_code = $this->request->query('fund_code')) $conditions[] = array(
-				'Project.fund_code LIKE' => '%' . trim($fund_code) . '%',
-			);
-
-			// status_id
-			if ($status_id = $this->request->query('status_id')) $conditions[] = array(
-				'Project.status_id' => $status_id,
-			);
-
-			// likelihood_id
-			if ($likelihood_id = $this->request->query('likelihood_id')) $conditions[] = array(
-				'Project.likelihood_id' => $status_id,
-			);
-
-			// department_id
-			if ($department_id = $this->request->query('department_id')) $conditions[] = array(
-				'Project.department_id' => $department_id,
-			);
-
-			// owner_user_id
-			if ($owner_user_id = $this->request->query('owner_user_id')) $conditions[] = array(
-				'Project.owner_user_id' => $owner_user_id,
-			);
-
-			// value_from
-			if ($value_from = $this->request->query('value_from')) $conditions[] = array(
-				'Project.value_required >=' => $value_from,
-			);
-
-			// value_to
-			if ($value_to = $this->request->query('value_to')) $conditions[] = array(
-				'Project.value_required <=' => $value_to,
-			);
-
-			// start_date
-			if ($start_date = $this->request->query('start_date')) {
-
-
-				$start_date_mysql = DateTime::createFromFormat('d-m-Y', $start_date)->format('Y-m-d');
-
-				$conditions[] = array(
-					'Project.start_date >=' => $start_date_mysql,
-				);
-			}
-
-			if ($finish_date = $this->request->query('finish_date')) {
-
-				$finish_date_mysql = DateTime::createFromFormat('d-m-Y', $finish_date)->format('Y-m-d');
-
-				$conditions[] = array(
-					'Project.finish_date <=' => $finish_date_mysql,
-				);
-
-			}
-
-			// theme_id (INNER JOIN METHOD)
-			if ($theme_id = $this->request->query('theme_id')) {
-				$joins[] = array(
-					'table' => 'projects_themes',
-		            'alias' => 'ProjectsTheme',
-		            'type' => 'INNER',
-		            'conditions' => array(
-		                'Project.id = ProjectsTheme.project_id',
-		                'ProjectsTheme.theme_id' => (int)$theme_id
-		            )
-		        );
-			}
-
-			// donor_id (INNER JOIN METHOD)
-			if ($donor_id = $this->request->query('donor_id')) {
-
-				$joins[] = array(
-					'table' => 'contracts',
-		            'alias' => 'Contract',
-		            'type' => 'INNER',
-		            'conditions' => array(
-		                'Project.id = Contract.project_id',
-		                'Contract.donor_id' => (int)$donor_id
-		            )
-		        );
-			}
-
-			// territory_id (INNER JOIN METHOD)
-			if ($territory_id = $this->request->query('territory_id')) {
-				$joins[] = array(
-					'table' => 'territories_projects',
-		            'alias' => 'TerritoriesProject',
-		            'type' => 'INNER',
-		            'conditions' => array(
-		                'Project.id = TerritoriesProject.project_id',
-		                'TerritoriesProject.territory_id' => (int)$territory_id
-		            )
-		        );
-			}
-
+			$options = $this->ProjectSearch->buildSearchOptions();
 
 			$this->Paginator->settings = array(
 				'contain' => array('Department', 'Status', 'Territory', 'Contract.Donor'),
-		        'joins' => $joins,
-		        'conditions' => $conditions,
+		        'joins' => $options['joins'],
+		        'conditions' => $options['conditions'],
 		        'limit' => 25,
 		        'order' => array('Project.start_date' => 'DESC'),
 		    );

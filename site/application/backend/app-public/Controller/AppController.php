@@ -46,16 +46,6 @@ class AppController extends Controller {
 	            )
 	        ),
 	        'authorize' => array('Controller'), // Added this line
-
-
-	  //       'flash' => array(
-			// 	'element' => 'alert',
-			// 	'key' => 'auth',
-			// 	'params' => array(
-			// 		'plugin' => 'BoostCake',
-			// 		'class' => 'alert-error'
-			// 	)
-			// ),
 	    ),
 
 	    'RequestHandler' => array(
@@ -75,9 +65,6 @@ class AppController extends Controller {
 	);
 	
 	public $uses = array('User', 'Audit', 'Currency', 'Donor');
-
-	// var $layout = 'bootstrap3';
-
 
 	public function beforeFilter() {
 		// stop any client side caching.. avoids missing data on user
