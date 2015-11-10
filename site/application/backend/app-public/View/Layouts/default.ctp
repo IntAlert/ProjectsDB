@@ -101,6 +101,15 @@ if ( !isset($title) ) {
 
 		<nav class="main">
 
+			<div id="search-shortcut" class="clearfix">
+				<form action="/pdb/projects" method="get">
+
+					<input type="hidden" name="action" value="search">
+
+					<input type="text" name="q" placeholder="Search PROMPT projects" class="contracted">
+
+				</form>
+			</div>
 
 
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>

@@ -4,7 +4,7 @@
 body {background:#54D3DE;}
 #container {min-width: 1000px;}
 
-nav {padding:2em 1em 0;}
+nav {padding:1.5em 1em 0;}
 nav ul {list-style: none;}
 nav ul li {float:right;}
 nav ul li.dashboard {float: left;}
@@ -71,6 +71,27 @@ pre {
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+#search-shortcut form {
+	float: right;
+	width:auto;
+	margin-bottom: 25px;
+}
+#search-shortcut input[name=q]{
+	font-size: 16px;
+	padding: 10px 8px;
+	border:0;
+}
+#search-shortcut input[name=q].contracted {
+	width: 200px;
+	opacity: 0.5;
+}
+
+#search-shortcut input[name=q].expanded {
+	width: 350px;
+	background:#fff;
+}
+
+.ui-widget-content .ui-state-focus {font-weight: normal}
 
 
 /* Actions */
