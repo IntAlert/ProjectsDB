@@ -30,32 +30,20 @@ class Theme extends AppModel {
 			'foreignKey' => 'theme_id',
 			'associationForeignKey' => 'project_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		),
-		'Proposal' => array(
-			'className' => 'Proposal',
-			'joinTable' => 'proposals_themes',
-			'foreignKey' => 'theme_id',
-			'associationForeignKey' => 'proposal_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		)
 	);
 
 	public function findOrderedList() {
 		return $this->find('list', array(
+			'conditions' => array('Theme.deleted' => false),
 			'order' => array('sort_order ASC, name ASC'),
 		));
+	}
+
+	public function softDelete($id) {
+		$this->id = $id;
+		$this->saveField('deleted', true);
+		return true; // assume it worked
 	}
 
 }

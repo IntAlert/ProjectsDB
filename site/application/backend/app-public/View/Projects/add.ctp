@@ -21,10 +21,42 @@
 ?>
 
 
+	
+<?
+	echo $this->Form->input('value_required', array(
+		'label' => 'Total project value (GBP)',
+		'tooltip' => 'Tooltip text',
+	));
+?>
+
+		<div class="total-contracts-value">
+			<label>Total Contract(s) Value</label>
+			<strong>
+			&pound;<span class="value_gbp"></span>
+			</strong>
+			<em>This field is automatically calculated based on the sum of all donor contracts</em>
+		</div>
+
+		<div class="shortfall">
+			<label>Shortfall</label>
+			<strong>
+				&pound;<span class="value_gbp"></span>
+			</strong>
+			<em>This value is automatically calculated</em>
+		</div>
+
+
+		
+	
+		<?php
+			echo $this->element('Projects/edit/contract-with-budgets');
+		?>
+
+
 
 	<?php echo $this->Form->input('summary', array(
 			// 'placeholder' => "e.g. help text",
-			'tooltip' => '200 word summary of what your project hopes to achieve and how this will be delivered',
+			'tooltip' => 'Up to 300 word summary of what your project hopes to achieve and how this will be delivered',
 		)); ?>
 
 	<?php echo $this->Form->input('beneficiaries', array(
@@ -89,36 +121,7 @@
 <!-- Themes -->
 <?php echo $this->element('Projects/edit/theme-selector'); ?>
 
-		
-<?
-	echo $this->Form->input('value_required', array(
-		'label' => 'Total project value (GBP)',
-		'tooltip' => 'Tooltip text',
-	));
-?>
-
-		<div class="total-contracts-value">
-			<label>Total Contract(s) Value</label>
-			<strong>
-			&pound;<span class="value_gbp"></span>
-			</strong>
-			<em>This field is automatically calculated based on the sum of all donor contracts</em>
-		</div>
-
-		<div class="shortfall">
-			<label>Shortfall</label>
-			<strong>
-				&pound;<span class="value_gbp"></span>
-			</strong>
-			<em>This value is automatically calculated</em>
-		</div>
-
-
-		
 	
-		<?php
-			echo $this->element('Projects/edit/contract-with-budgets');
-		?>
 
 	</fieldset>
 

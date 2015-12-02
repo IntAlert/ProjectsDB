@@ -121,6 +121,16 @@ if ( !isset($title) ) {
 						PROMPT Dashboard
 					</a>
 				</li>
+
+				<li class="projects-index">
+					
+					<a href="/pdb/projects">
+						<i class="fa fa-search"></i>
+						Search Projects
+					</a>
+
+				</li>
+
 <?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
 				<!-- <li class="donors">
 					<a href="/pdb/donors">Donors</a>
@@ -131,6 +141,13 @@ if ( !isset($title) ) {
 					<a href="/pdb/donors">
 						<i class="fa fa-dollar"></i>
 						Donors
+					</a>
+				</li>
+
+				<li class="territories">
+					<a href="/pdb/themes">
+						<i class="fa fa-tags"></i>
+						Themes
 					</a>
 				</li>
 
@@ -148,15 +165,6 @@ if ( !isset($title) ) {
 						<i class="fa fa-plus-circle"></i>
 						Add Project
 					</a>
-				</li>
-
-				<li class="projects-index">
-					
-					<a href="/pdb/projects">
-						<i class="fa fa-search"></i>
-						Search Projects
-					</a>
-
 				</li>
 
 				<li class="pipeline">

@@ -165,7 +165,7 @@ class ProjectsController extends AppController {
 		$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
 		// get list of files on Sharepoint
-		$results = $sd->createTemplateFolders($id);
+		$results = $sd->createTemplateFolders($id, false); // TODO: remove ensureFoldersCreated = false
 
 		$sharepoint_root_folder = $results['sharepoint_root_folder'];
 		$fileTree = $results['fileTree'];

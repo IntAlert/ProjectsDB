@@ -67,7 +67,7 @@ class SharepointDocs {
 
     }
 
-    function createTemplateFolders($project_id) {
+    function createTemplateFolders($project_id, $ensureFoldersCreated = true) {
 
         $parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $project_id;
         $general_folder = $parent_folder . '/' . 'general';
@@ -87,19 +87,21 @@ class SharepointDocs {
         );
 
 
-        // parent folder exists
-        $folderExists = $this->folderExists($general_folder);
-        
-        if ( !$folderExists ) {
-            // ensure that the folders exist
-            $this->createFolder($parent_folder);
-            $this->createFolder($general_folder);
+        if ($ensureFoldersCreated):
+            // parent folder exists
+            $folderExists = $this->folderExists($general_folder);
+            
+            if ( !$folderExists ) {
+                // ensure that the folders exist
+                $this->createFolder($parent_folder);
+                $this->createFolder($general_folder);
 
-            foreach($subfoldersToCreate as $subfolder_name) {
-                $sub_folder_path = $general_folder . '/' . $subfolder_name;
-                $this->createFolder($sub_folder_path);
+                foreach($subfoldersToCreate as $subfolder_name) {
+                    $sub_folder_path = $general_folder . '/' . $subfolder_name;
+                    $this->createFolder($sub_folder_path);
+                }
             }
-        }
+        endif; // ($ensureFoldersCreated):
 
         $sharepoint_root_folder = '/prompt/Documents/' . $general_folder;
 

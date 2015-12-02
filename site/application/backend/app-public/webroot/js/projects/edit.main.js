@@ -59,7 +59,7 @@ $(function(){
 
         $(this).counter({
           type: 'word',
-          goal: 200
+          goal: 300
         })
         .autoGrow();  
       })

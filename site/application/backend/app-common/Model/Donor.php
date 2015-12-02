@@ -34,14 +34,6 @@ class Donor extends AppModel {
 			'className' => 'Contract',
 			'foreignKey' => 'donor_id',
 			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		)
 	);
 
@@ -49,6 +41,12 @@ class Donor extends AppModel {
 		return $this->find('list', array(
 			'order' => array('Donor.name ASC')
 		));
+	}
+
+	public function softDelete($id) {
+		$this->id = $id;
+		$this->saveField('deleted', true);
+		return true; // assume it worked
 	}
 
 }

@@ -41,7 +41,7 @@ var data = <?php echo json_encode($project); ?>;
 			<a 
 			target="_blank"
 			href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=<?php echo urlencode($sharepoint_root_folder); ?>">
-				View Sharepoint Folder
+				View Project Documents
 			</a>
 		</li>
 	</ul>
@@ -129,35 +129,6 @@ var data = <?php echo json_encode($project); ?>;
 	</dl>
 
 
-<?php 
-
-$textBlocks = array(
-	'summary' => 'Summary',
-	'beneficiaries' => 'Beneficiaries',
-	'location' => 'Locations',
-	'goals' => 'Goals',
-	'objectives' => 'Objectives',
-);
-?>
-
-<?php foreach ($textBlocks as $key => $niceName): ?>
-
-	<?php if (trim($project['Project'][$key])): ?>
-	<div class="summary block">
-		<h3><?php echo $niceName; ?></h3>
-
-		<pre><?php echo h($project['Project'][$key]); ?></pre>
-
-	</div>
-	<?php endif; // (trim($project['Project']['summary'])): ?>
-
-
-<?php endforeach; // ($textBlocks as $key => $textBlock): ?>
-
-
-
-
-
 
 <div class="contracts block">
 
@@ -174,7 +145,7 @@ $textBlocks = array(
 
 <?php foreach ($project['Contract'] as $contract): ?>
 	<div class="contract">
-		<h4><?php echo $contract['donor_name']; ?></h4>
+		<h4><?php echo $contract['Donor']['name']; ?></h4>
 
 		<table>
 			<thead>
@@ -227,6 +198,37 @@ $textBlocks = array(
 
 
 </div>
+
+
+
+<?php 
+
+$textBlocks = array(
+	'summary' => 'Summary',
+	'beneficiaries' => 'Beneficiaries',
+	'location' => 'Locations',
+	'goals' => 'Goals',
+	'objectives' => 'Objectives',
+);
+?>
+
+<?php foreach ($textBlocks as $key => $niceName): ?>
+
+	<?php if (trim($project['Project'][$key])): ?>
+	<div class="summary block">
+		<h3><?php echo $niceName; ?></h3>
+
+		<pre><?php echo h($project['Project'][$key]); ?></pre>
+
+	</div>
+	<?php endif; // (trim($project['Project']['summary'])): ?>
+
+
+<?php endforeach; // ($textBlocks as $key => $textBlock): ?>
+
+
+
+
 
 
 <?php // echo $this->element('Projects/view/docs'); ?>
