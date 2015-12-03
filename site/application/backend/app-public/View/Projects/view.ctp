@@ -49,84 +49,152 @@ var data = <?php echo json_encode($project); ?>;
 
 <div class="projects view">
 <h2>Project - <?php echo h($project['Project']['title']); ?></h2>
-	<dl>
-		<dt><?php echo __('Budget Holder'); ?></dt>
-		<dd>
-			<?php echo h($project['OwnerUser']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Programme'); ?></dt>
-		<dd>
-			<?php echo h($project['Department']['name']); ?>
-		</dd>
 
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($project['Status']['name']); ?>
-		</dd>
 
-		<dt><?php echo __('Likelihood'); ?></dt>
-		<dd>
-			<?php echo h($project['Likelihood']['name']); ?>
-		</dd>
+<table class="table">
+		<tr>
+			<th>
+				<?php echo __('Budget Holder'); ?>
+			</th>
+			<td>
+				<?php echo h($project['OwnerUser']['name']); ?>
+				&nbsp;
+			</td>
+		</tr>
 
-		<dt><?php echo __('Territory/ies'); ?></dt>
-		<dd>
+		<tr>
+			<th>
+				<?php echo __('Programme'); ?>
+			</th>
+			<td>
+				<?php echo h($project['Department']['name']); ?>
+			</td>
+		</tr>
+
+
+
+
+<?php if ($project['SecondaryDepartment']['name']): ?>
+		<tr>
+			<th>
+				<?php echo __('Secondary Programme'); ?>
+				</th>
+			<td>
+				<?php echo h($project['SecondaryDepartment']['name']); ?>
+			</td>
+		</tr>
+
+<?php endif; // ($project['SecondaryDepartment']['name']): ?>
+
+
+
+		<tr>
+			<th>
+				<?php echo __('Status'); ?>
+				</th>
+			<td>
+				<?php echo h($project['Status']['name']); ?>
+			</td>
+		</tr>
+
+
+		<tr>
+			<th>
+				<?php echo __('Likelihood'); ?>
+				</th>
+			<td>
+				<?php echo h($project['Likelihood']['name']); ?>
+			</td>
+		</tr>
+
+
+		<tr>
+			<th>
+				<?php echo __('Territory/ies'); ?>
+			</th>
+		<td>
 			<?php 
 
 			if (count($territory_names)) echo implode(', ', $territory_names);
-			else echo "None"
+				else echo "None"
 
-			?>
-		</dd>
+				?>
+			</td>
+		</tr>
 
-		<dt><?php echo __('Theme(s)'); ?></dt>
-		<dd>
+
+		<tr>
+			<th>
+				<?php echo __('Theme(s)'); ?>
+			</th>
+		<td>
 			<?php 
 
 			if (count($theme_names)) echo implode(', ', $theme_names);
-			else echo "None"
+				else echo "None"
 
-			?>
-		</dd>
+				?>
+			</td>
+		</tr>
+
 		
 		
 		
-		<dt><?php echo __('Timespan'); ?></dt>
-		<dd>
+		<tr>
+			<th>
+				<?php echo __('Timespan'); ?>
+			</th>
+		<td>
 			<?php echo $this->Time->format(
 			  'F jS, Y',
 			  $project['Project']['start_date']
 			); ?>
 			-
 			<?php echo $this->Time->format(
-			  'F jS, Y',
-			  $project['Project']['finish_date']
-			); ?>
-		</dd>
+				  'F jS, Y',
+				  $project['Project']['finish_date']
+				); ?>
+			</td>
+		</tr>
 
 
-		<dt><?php echo __(' Total value (GBP)'); ?></dt>
-		<dd>
-			<?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>
-			&nbsp;
-		</dd>
 
-		<dt><?php echo __('Raised (GBP)'); ?></dt>
-		<dd>
+		<tr>
+			<th>
+				<?php echo __(' Total value (GBP)'); ?>
+			</th>
+		<td>
+				<?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>
+				&nbsp;
+			</td>
+		</tr>
+
+
+		<tr>
+			<th>
+				<?php echo __('Raised (GBP)'); ?>
+			</th>
+		<td>
 			<?php echo $this->Number->currency(
-			$project['Project']['value_sourced']
-			, 'GBP'); ?>
-			&nbsp;
-		</dd>
+				$project['Project']['value_sourced']
+				, 'GBP'); ?>
+				&nbsp;
+			</td>
+		</tr>
 
-		<dt><?php echo __('Shortfall (GBP)'); ?></dt>
-		<dd>
-			<?php echo $this->Number->currency($shortfall, 'GBP'); ?>
-			&nbsp;
-		</dd>
+
+		<tr>
+			<th>
+				<?php echo __('Shortfall (GBP)'); ?>
+			</th>
+			<td>
+				<?php echo $this->Number->currency($shortfall, 'GBP'); ?>
+				&nbsp;
+			</td>
+		</tr>
+
 		
-	</dl>
+	</table>
 
 
 

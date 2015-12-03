@@ -115,6 +115,49 @@ endif; //(count($project['Contract'])):
 				</tr>
 
 				<tr>
+
+					<td>
+						Donor Framework
+						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+					</td>
+
+					<td>
+						Contract Category
+						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+					</td>
+					
+				</tr>
+				
+				<tr>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.framework_id', array(
+							'label' => false,
+							'type' => 'select',
+							'empty' => '---- No Donor Framework ----',
+							'value' => $contract['framework_id'],
+							'options' => $frameworks,
+							'class' => 'contract-donor-framework'
+						)); ?>
+
+					</td>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.contractcategory_id', array(
+							'label' => false,
+							'type' => 'select',
+							'empty' => '---- Please Select ----',
+							'value' => $contract['contractcategory_id'],
+							'options' => $contractcategories,
+							'class' => 'contract-donor-framework'
+						)); ?>
+
+					</td>
+				</tr>
+
+				<tr>
 					<td colspan="2">
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.summary', array(
 							'label' => 'Comments',
@@ -292,6 +335,7 @@ endif; //(count($project['Contract'])):
 					</td>
 					
 				</tr>
+
 			</thead>
 
 			<tbody>
@@ -317,6 +361,50 @@ endif; //(count($project['Contract'])):
 							'empty' => '---- Please Select ----',
 							'options' => $currencies,
 							'class' => 'contract-donor-currency'
+						)); ?>
+
+					</td>
+				</tr>
+
+
+				<tr>
+
+					<td>
+						Donor Framework
+						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+					</td>
+
+					<td>
+						Contract Category
+						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+					</td>
+					
+				</tr>
+				
+				<tr>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.{contract_id}.framework_id', array(
+							'label' => false,
+							'type' => 'select',
+							'id' => false,
+							'empty' => '---- No Donor Framework ----',
+							'options' => $frameworks,
+							'class' => 'contract-donor-framework'
+						)); ?>
+
+					</td>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.{contract_id}.contractcategory_id', array(
+							'label' => false,
+							'type' => 'select',
+							'id' => false,
+							'empty' => '---- Please select ----',
+							'options' => $contractcategories,
+							'class' => 'contract-category-framework'
 						)); ?>
 
 					</td>
@@ -433,10 +521,6 @@ endif; //(count($project['Contract'])):
 				</tfoot>
 
 			</table>
-
-			
-			
-		
 
 		</div> <!-- End payments -->
 

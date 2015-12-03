@@ -24,6 +24,9 @@ class DonorsController extends AppController {
             // 'Department.name' => 'asc',
             'Donor.sort_order' => 'asc',
             'Donor.name' => 'asc',
+        ),
+        'conditions' => array(
+        	'deleted' => false
         )
     );
 

@@ -31,6 +31,22 @@
 		?>
 	</div>
 
+	<h3>
+		Secondary Programme
+	</h3>
+
+	<div class="secondary-department ui-state-default clearfix">
+		<?php
+			echo $this->Form->input('secondary_department_id', array(
+				'options' => $departments,
+				'legend' => false,
+				'tooltip' => 'If this project involves a secondary department/programme, please select a department',
+				'type' => 'radio',
+			));
+
+		?>
+	</div>
+
 
 	<h3>
 		Territories, Countries or Sub-Programme

@@ -53,6 +53,10 @@ class Project extends AppModel {
 			'className' => 'Department',
 			'foreignKey' => 'department_id',
 		),
+		'SecondaryDepartment' => array(
+			'className' => 'Department',
+			'foreignKey' => 'secondary_department_id',
+		),
 		'OwnerUser' => array(
 			'className' => 'User',
 			'foreignKey' => 'owner_user_id',

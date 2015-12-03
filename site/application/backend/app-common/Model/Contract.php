@@ -22,24 +22,23 @@ class Contract extends AppModel {
 		'Project' => array(
 			'className' => 'Project',
 			'foreignKey' => 'project_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		),
 		'Donor' => array(
 			'className' => 'Donor',
 			'foreignKey' => 'donor_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		),
 		'Currency' => array(
 			'className' => 'Currency',
 			'foreignKey' => 'currency_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		),
+		'Framework' => array(
+			'className' => 'Framework',
+			'foreignKey' => 'framework_id',
+		),
+		'Contractcategory' => array(
+			'className' => 'Contractcategory',
+			'foreignKey' => 'contractcategory_id',
+		),
 	);
 
 /**

@@ -1,18 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Donor Model
+ * Framework Model
  *
  * @property Contract $Contract
  */
-class Donor extends AppModel {
-
-
-
-	public $actsAs = array(
-		'AuditLog.Auditable' => array(
-		)
-	);
+class Framework extends AppModel {
 
 /**
  * Display field
@@ -32,15 +25,16 @@ class Donor extends AppModel {
 	public $hasMany = array(
 		'Contract' => array(
 			'className' => 'Contract',
-			'foreignKey' => 'donor_id',
+			'foreignKey' => 'framework_id',
 			'dependent' => false,
 		)
 	);
 
+
 	public function findOrderedList() {
 		return $this->find('list', array(
-			'order' => array('Donor.name ASC'),
-        	'conditions' => array('deleted' => false),
+			'order' => array('Framework.name ASC'),
+			'conditions' => array('deleted' => false),
 		));
 	}
 
