@@ -44,16 +44,16 @@
 
 
 	<div id="url_add_form">
-		<h3>Add a website link</h3>
+		<h4>Add a website link</h4>
 
 		<label>
 			URL: 
-			<input class="url" value="http://www.google.com">
+			<input class="url" value="" placeholder="Enter a website address">
 		</label>
 
 		<label>
 			Title: 
-			<input class="title" value="Google">
+			<input class="title" placeholder="Enter a title for the link">
 		</label>
 
 		<input type="button" value="Add Weblink">

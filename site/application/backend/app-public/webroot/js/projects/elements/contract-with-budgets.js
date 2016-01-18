@@ -130,6 +130,10 @@ function createContract() {
 
 	// animate
 	contractDivClone.hide().slideDown();
+
+	// activate tooltips
+	contractDivClone.find('.tooltip').uitooltip();
+
 }
 
 function deleteContractBudget(budgetContractTr) {
@@ -257,7 +261,7 @@ function createContractBudget(contractDiv, beforeAfter) {
 	// animate
 	contractBudgetTrClone.hide().fadeIn();
 
-	return newYear;
+	return newYear
 
 }
 

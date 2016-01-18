@@ -7,6 +7,9 @@
 .contract table td {vertical-align: middle;}
 .contractbudget .input.number {margin-bottom:0;}
 
+/*.contract-donor-id {width:430px;}*/
+
+
 /* hide delete links except first and last */
 .contract .btn-contractbudget-delete {
 	visibility:hidden;

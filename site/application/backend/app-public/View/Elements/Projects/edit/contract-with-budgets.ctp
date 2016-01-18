@@ -70,14 +70,14 @@ endif; //(count($project['Contract'])):
 			<thead>
 				<tr>
 
-					<td>
+					<td colspan='2'>
 						Donor
 						<?php echo $this->Tooltip->element('Please enter donor name'); ?>
 					</td>
 
 					<td>
-						Donor currency
-						<?php echo $this->Tooltip->element('Please select from the list.  If your currency is not listed, please contact Technology team to amend.'); ?>
+						Sub-donor
+						<?php echo $this->Tooltip->element('The department/body signing the contract'); ?>
 					</td>
 					
 				</tr>
@@ -86,7 +86,7 @@ endif; //(count($project['Contract'])):
 			<tbody>
 				<tr>
 
-					<td>
+					<td colspan='2'>
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_id', array(
 
 							'id' => false,
@@ -101,16 +101,15 @@ endif; //(count($project['Contract'])):
 					</td>
 
 					<td>
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.subdonor_name', array(
 
-						<?php echo $this->Form->input('Contract.'.$contract['id'].'.currency_id', array(
+							'id' => false,
+							'value' => $contract['subdonor_name'],
+							'type' => 'text',
 							'label' => false,
-							'type' => 'select',
-							'empty' => '---- Please Select ----',
-							'value' => $contract['currency_id'],
-							'options' => $currencies,
-							'class' => 'contract-donor-currency',
-						)); ?>
+							'class' => 'contract-subdonor-name',
 
+						)); ?>
 					</td>
 				</tr>
 
@@ -124,6 +123,13 @@ endif; //(count($project['Contract'])):
 					<td>
 						Contract Category
 						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+					</td>
+
+
+
+					<td>
+						Donor currency
+						<?php echo $this->Tooltip->element('Please select from the list.  If your currency is not listed, please contact Technology team to amend.'); ?>
 					</td>
 					
 				</tr>
@@ -151,14 +157,30 @@ endif; //(count($project['Contract'])):
 							'empty' => '---- Please Select ----',
 							'value' => $contract['contractcategory_id'],
 							'options' => $contractcategories,
-							'class' => 'contract-donor-framework'
+							'class' => 'contract-category'
 						)); ?>
 
 					</td>
+
+
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.currency_id', array(
+							'label' => false,
+							'type' => 'select',
+							'empty' => '---- Please Select ----',
+							'value' => $contract['currency_id'],
+							'options' => $currencies,
+							'class' => 'contract-donor-currency',
+						)); ?>
+
+					</td>
+
 				</tr>
 
 				<tr>
-					<td colspan="2">
+					<td colspan="3">
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.summary', array(
 							'label' => 'Comments',
 							'value' => $contract['summary'],
@@ -324,15 +346,17 @@ endif; //(count($project['Contract'])):
 			<thead>
 				<tr>
 
-					<td>
+					<td colspan="2">
 						Donor
 						<?php echo $this->Tooltip->element('Tooltip text'); ?>
 					</td>
 
 					<td>
-						Donor currency
-						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+						Sub-donor
+						<?php echo $this->Tooltip->element('The department/body signing the contract'); ?>
 					</td>
+
+					
 					
 				</tr>
 
@@ -341,7 +365,7 @@ endif; //(count($project['Contract'])):
 			<tbody>
 				<tr>
 
-					<td>
+					<td colspan="2">
 						<?php echo $this->Form->input('Contract.{contract_id}.donor_id', array(
 							'id' => false,
 							'type' => 'select',
@@ -353,17 +377,15 @@ endif; //(count($project['Contract'])):
 					</td>
 
 					<td>
-
-						<?php echo $this->Form->input('Contract.{contract_id}.currency_id', array(
-							'label' => false,
-							'type' => 'select',
+						<?php echo $this->Form->input('Contract.{contract_id}.subdonor_name', array(
 							'id' => false,
-							'empty' => '---- Please Select ----',
-							'options' => $currencies,
-							'class' => 'contract-donor-currency'
-						)); ?>
+							'type' => 'text',
+							'label' => false,
+							'class' => 'contract-subdonor-name',
 
+						)); ?>
 					</td>
+
 				</tr>
 
 
@@ -371,12 +393,17 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						Donor Framework
-						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+						<?php echo $this->Tooltip->element('Please enter a donor framework if one applies'); ?>
 					</td>
 
 					<td>
 						Contract Category
-						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+						<?php echo $this->Tooltip->element('Please enter a contract category'); ?>
+					</td>
+
+					<td>
+						Donor currency
+						<?php echo $this->Tooltip->element('Please enter the native currency of the grant'); ?>
 					</td>
 					
 				</tr>
@@ -404,14 +431,30 @@ endif; //(count($project['Contract'])):
 							'id' => false,
 							'empty' => '---- Please select ----',
 							'options' => $contractcategories,
-							'class' => 'contract-category-framework'
+							'class' => 'contract-category'
 						)); ?>
 
 					</td>
+
+
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.{contract_id}.currency_id', array(
+							'label' => false,
+							'type' => 'select',
+							'id' => false,
+							'empty' => '---- Please Select ----',
+							'options' => $currencies,
+							'class' => 'contract-donor-currency'
+						)); ?>
+
+					</td>
+
 				</tr>
 
 				<tr>
-					<td colspan="2">
+					<td colspan="3">
 						<?php echo $this->Form->input('Contract.{contract_id}.summary', array(
 							'label' => 'Comments',
 							'id' => false,

@@ -136,6 +136,11 @@ $(function(){
 			  number: true
 			});
 
+			$contracts.find(".contract-category").rules("add", { 
+			  required:true,
+			  number: true
+			});
+
 			$contracts.find(".value_gbp").rules("add", { 
 			  required:true,
 			  number: true
