@@ -15,7 +15,12 @@
 	</ul>
 </nav>
 
+
+
+
 <?php echo $this->Form->create('Project'); ?>
+
+
 	<fieldset>
 		<legend><?php echo __('Edit Project'); ?></legend>
 	<?php
@@ -91,6 +96,16 @@
 			// 'placeholder' => "e.g. help text",
 			'tooltip' => 'Include project objectives from logframe (or equivalent)',
 		)); ?>
+
+
+	<?php echo $this->Form->input('partners', array(
+			// 'placeholder' => "e.g. help text",
+			'tooltip' => 'Add details of names of partners including value of sub-grant',
+		)); ?>
+
+
+	<?php echo $this->element('Projects/edit/urls'); ?>
+
 
 
 

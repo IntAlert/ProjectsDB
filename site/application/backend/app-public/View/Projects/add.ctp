@@ -11,6 +11,27 @@
 <?php echo $this->Form->create('Project'); ?>
 	<fieldset>
 		<legend><?php echo __('Add Project'); ?></legend>
+
+
+		<div class="instruction-block">
+			<p>
+				In order to create a project, there is a <strong>minimum</strong> requirement of adding the following data:
+			</p>
+			<ul>
+				<li>Title</li>
+				<li>Total Project Value</li>
+				<li>Programme</li>
+				<li>Submission Status</li>
+				<li>Likelihood</li>
+			</ul>
+			<p>As the proposal/project progresses, please remember to come back to PROMPT and update its details.</p>
+		</div>
+
+
+
+
+
+
 	<?php
 
 		echo $this->Form->input('title', array(
@@ -82,6 +103,15 @@
 			// 'placeholder' => "e.g. help text",
 			'tooltip' => 'Include project objectives from logframe (or equivalent)',
 		)); ?>
+
+
+	<?php echo $this->Form->input('partners', array(
+			// 'placeholder' => "e.g. help text",
+			'tooltip' => 'Add details of names of partners including value of sub-grant',
+		)); ?>
+
+
+	<?php echo $this->element('Projects/edit/urls'); ?>
 
 
 

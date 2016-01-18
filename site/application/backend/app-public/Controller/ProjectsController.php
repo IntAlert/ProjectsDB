@@ -164,20 +164,26 @@ class ProjectsController extends AppController {
 		// DOCUMENTS
 
 		// connect to Sharepoint
-		$user_id = $this->Auth->user('id');
-		$sd = new SharepointDocs($user_id, $this->User->Office365user);
+		if ( !Configure::read('disable_sharepoint_folder_sync') ):
+			$user_id = $this->Auth->user('id');
+			$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
-		// get list of files on Sharepoint
-		$results = $sd->createTemplateFolders($id, false); // TODO: remove ensureFoldersCreated = false
+			// get list of files on Sharepoint
+			$results = $sd->createTemplateFolders($id, false); // TODO: remove ensureFoldersCreated = false
 
-		$sharepoint_root_folder = $results['sharepoint_root_folder'];
-		$fileTree = $results['fileTree'];
+			$sharepoint_root_folder = $results['sharepoint_root_folder'];
+			$fileTree = $results['fileTree'];	
+		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
+		
 
+
+		// get activity
+		$project_activity = $this->Audit->findProjectActivity($id);
 
 		// AUDIT
 		$this->Audit->record("READ", "Project", $id, $project);
 
-		$this->set(compact('project', 'fileTree', 'sharepoint_root_folder'));
+		$this->set(compact('project', 'fileTree', 'sharepoint_root_folder', 'project_activity'));
 	}
 
 
@@ -289,16 +295,18 @@ class ProjectsController extends AppController {
 		$employees = $this->User->findEmployeesList();
 
 
-		// ensure that folder exists
-		$user_id = $this->Auth->user('id');
-		$sd = new SharepointDocs($user_id, $this->User->Office365user);
+		if ( !Configure::read('disable_sharepoint_folder_sync') ):
+			// ensure that folder exists
+			$user_id = $this->Auth->user('id');
+			$sd = new SharepointDocs($user_id, $this->User->Office365user);
 
-		// ensure that the folders exist
-		$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
-		$general_folder = $parent_folder . '/' . 'general';
+			// ensure that the folders exist
+			$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
+			$general_folder = $parent_folder . '/' . 'general';
 
-		$sd->createFolder($parent_folder);
-		$sd->createFolder($general_folder);
+			$sd->createFolder($parent_folder);
+			$sd->createFolder($general_folder);
+		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 
 		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories'));
 	}

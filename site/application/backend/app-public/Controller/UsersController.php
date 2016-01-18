@@ -9,12 +9,13 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-	public function beforeFilter() {
-		
-		$this->Auth->allow('login', 'logout');
-		parent::beforeFilter();
 
-	}
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = array('Paginator', 'Session');
 
 
 
@@ -35,6 +36,100 @@ class UsersController extends AppController {
         // logout
         $this->Auth->logout();
 
+    }
+
+
+/**
+ * index method
+ *
+ * @return void
+ */
+    public function index() {
+        $this->Paginator->settings = array(
+            'contain' => false,
+            'conditions' => array('User.deleted' => false),
+            'limit' => 25,
+            'order' => array('User.last_name', 'User.first_name'),
+        );
+        $this->set('users', $this->Paginator->paginate());
+    }
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+    public function view($id = null) {
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+        $this->set('user', $this->User->find('first', $options));
+    }
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+    public function edit($id = null) {
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->request->is(array('post', 'put'))) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+            }
+        } else {
+            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+            $this->request->data = $this->User->find('first', $options);
+        }
+    }
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+    public function delete($id = null) {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $this->request->allowMethod('post', 'delete');
+        if ($this->User->softDelete($id)) {
+            $this->Session->setFlash(__('The user has been deleted.'));
+        } else {
+            $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(array('action' => 'index'));
+    }
+
+    public function isAuthorized($user) {
+
+
+        // login / logout allowed
+        if (in_array($this->action, array('login', 'logout'))) {
+            return true;
+        }
+
+        // admin allowed to see the rest
+        if ($user['role'] == 'admin') {
+            return true;
+        }
+
+        // most people cannot see this
+        return false;
+        
     }
 
 

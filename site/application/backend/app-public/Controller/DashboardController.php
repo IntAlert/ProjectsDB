@@ -12,7 +12,7 @@ class DashboardController extends AppController {
 
 	var $uses = array('Project');
 
-	public function dashboard($id = null) {
+	public function dashboard() {
 
 		// get authenticated user
 		$user_id = $this->Auth->user('id');
@@ -28,6 +28,35 @@ class DashboardController extends AppController {
 		$this->set(compact('projectsRecentlyViewed', 'projectsCompanyActivity', 'departmentsWithProjects'));
 		
 	}
+
+	public function admin() {
+
+		// get authenticated user
+		$user_id = $this->Auth->user('id');
+
+		// get company activity
+		$projectsCompanyActivity = $this->Audit->findCompanyActivity();
+
+		$this->set(compact('projectsCompanyActivity'));
+		
+	}
+
+
+	public function isAuthorized($user) {
+
+		// must be logged in
+		if (parent::isAuthorized($user) == false) {
+			return false;
+		}
+
+        // login / logout allowed
+        if ($this->action == 'admin' && $user['role'] != 'admin') {
+            return false;
+        }
+
+        return true;
+        
+    }
 
 
 

@@ -68,4 +68,10 @@ class User extends AppModel {
 	    return true;
 	}
 
+    public function softDelete($id) {
+        $this->id = $id;
+        $this->saveField('deleted', true);
+        return true; // assume it worked
+    }
+
 }

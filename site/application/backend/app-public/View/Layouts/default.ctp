@@ -114,6 +114,9 @@ if ( !isset($title) ) {
 
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 			<ul>
+
+
+
 				<li class="dashboard">
 					
 					<a href="/pdb/dashboard/dashboard">
@@ -121,6 +124,20 @@ if ( !isset($title) ) {
 						PROMPT Dashboard
 					</a>
 				</li>
+
+
+<?php if (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
+
+				<li class="dashboard-admin">
+					
+					<a href="/pdb/dashboard/admin">
+						<i class="fa fa-lock"></i>
+						Admin
+					</a>
+				</li>
+
+<?php endif;// (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
+
 
 				<li class="projects-index">
 					
@@ -132,17 +149,8 @@ if ( !isset($title) ) {
 				</li>
 
 <?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
-				<!-- <li class="donors">
-					<a href="/pdb/donors">Donors</a>
-				</li> -->
 
 
-				<li class="territories">
-					<a href="/pdb/donors">
-						<i class="fa fa-dollar"></i>
-						Donors
-					</a>
-				</li>
 
 				<li class="territories">
 					<a href="/pdb/themes">
@@ -176,6 +184,7 @@ if ( !isset($title) ) {
 				</li>
 
 
+
 			</ul>
 
 	<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
@@ -188,6 +197,9 @@ if ( !isset($title) ) {
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer" class="clearfix">
+
+
+
 
 			<ul>
 				<li class="logo">

@@ -30,3 +30,10 @@
 .projectnotes li a.delete:hover {
 	color:#000;
 }
+
+.project-activity ul {
+	height: 300px;
+	overflow: auto;
+	list-style: none;
+    margin: 0;
+}

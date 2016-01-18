@@ -56,13 +56,27 @@ class Audit extends AppModel
 
     return $this->find('all', array(
       'conditions' => array(
-        'Audit.model = "Project"',
+        'Audit.model' => "Project",
         'Audit.event' => array("CREATE", "EDIT"),
         'Project.deleted' => false,
       ),
       'contain' => array('User', 'Project'),
       'order' => array('Audit.created DESC'),
       'limit' => $limit,
+    ));
+  }
+
+  function findProjectActivity($project_id) {
+
+    return $this->find('all', array(
+      'conditions' => array(
+        'Audit.model' => "Project",
+        'Audit.entity_id' => $project_id,
+        'Audit.event' => array("CREATE", "EDIT", "READ"),
+        'Project.deleted' => false,
+      ),
+      'contain' => array('User', 'Project'),
+      'order' => array('Audit.created DESC'),
     ));
   }
 

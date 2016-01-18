@@ -40,3 +40,20 @@ span.input-validation-success {background:#D5F5D5;}
   color:darkgreen;
   font-size:10px;
  }
+
+
+ /*Project URLs*/
+
+
+.project-urls ul {
+  list-style: none;
+    margin: 0;
+}
+.project-urls ul li {
+  padding:4px 8px;
+  margin-bottom:4px;
+  background: #eee;
+}
+.project-urls ul li .delete {
+  float:right;
+}

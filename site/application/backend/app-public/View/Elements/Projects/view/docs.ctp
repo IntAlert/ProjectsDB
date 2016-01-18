@@ -1,3 +1,17 @@
+<? if (!isset($fileTree)): ?>
+
+
+<p>Sharepoint docs not available, sorry</p>
+
+<p>You may find the docs <a href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?">here</a>.</p>
+
+
+
+
+<? else: // (!isset($fileTree)): ?>
+
+
+
 
 <nav class='subnav'>
 
@@ -17,10 +31,7 @@
 <h3>Documents</h3>
 
 
-
-<?php if ($fileTree): 
-
-// printFolder($fileTree);
+printFolder($fileTree);
 
 ?>
 
@@ -99,6 +110,4 @@
 		echo '</ul>';
 	}
 
-
-
-?>
+endif; // (!isset($fileTree)): ?>

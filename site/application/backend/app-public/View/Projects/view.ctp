@@ -37,6 +37,9 @@ var data = <?php echo json_encode($project); ?>;
 <nav class="subnav clearfix">
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Project'), array('action' => 'edit', $project['Project']['id'])); ?> </li>
+		
+
+<?php if (isset($sharepoint_root_folder)): ?>
 		<li>
 			<a 
 			target="_blank"
@@ -44,6 +47,8 @@ var data = <?php echo json_encode($project); ?>;
 				View Project Documents
 			</a>
 		</li>
+<?php endif; // (isset($sharepoint_root_folder)): ?>
+
 	</ul>
 </nav>
 
@@ -277,6 +282,7 @@ $textBlocks = array(
 	'location' => 'Locations',
 	'goals' => 'Goals',
 	'objectives' => 'Objectives',
+	'partners' => 'Partners',
 );
 ?>
 
@@ -296,10 +302,12 @@ $textBlocks = array(
 
 
 
-
+<?php echo $this->element('Projects/view/urls'); ?>
 
 
 <?php // echo $this->element('Projects/view/docs'); ?>
+
+<?php echo $this->element('Projects/view/activity'); ?>
 
 <?php echo $this->element('Projects/view/projectnotes'); ?>
 

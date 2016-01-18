@@ -164,7 +164,7 @@ class SharepointDocs {
         $result = $socket->get($url, null, $options);
 
         $responseObj = json_decode($result->body);
-
+        
         return $responseObj->d;
 
     }
