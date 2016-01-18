@@ -39,7 +39,7 @@ require_once(__DIR__ . '/environment.php');
 
 switch (Configure::read('ENVIRONMENT')) {
 	case 'PRODUCTION':
-		Configure::write('debug', 2);
+		Configure::write('debug', 0);
 		Configure::write('Cache.disable', true);
 		break;
 	case 'STAGING':
