@@ -13,7 +13,6 @@ class CompleteProjectsShell extends AppShell {
 			'conditions' => array(
 				'Project.status_id' => 2, // i.e. approved and on going
 				'Project.finish_date < NOW()', // and now out of timespan
-				
 			),
 			'limit' => 5,
 		));
@@ -30,8 +29,6 @@ class CompleteProjectsShell extends AppShell {
 			), array(
 				'callbacks' => false
 			));
-
-			var_dump($result);
 
 			$this->out('Done');			
 		}
