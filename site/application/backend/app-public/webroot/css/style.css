@@ -45,6 +45,7 @@ body.users nav .users a,
 body.territories nav .territories a,
 body.projects-add nav .projects-add a,
 body.projects-index nav .projects-index a,
+body.projects-searchDocs nav .projects-searchDocs a,
 body.pipeline-summary nav .pipeline a,
 body.pipeline-department nav .pipeline a
 {

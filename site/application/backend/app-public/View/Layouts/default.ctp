@@ -139,7 +139,7 @@ if ( !isset($title) ) {
 <?php endif;// (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
 
 
-				<li class="projects-index">
+				<li class="projects-searchDocs">
 					
 					<a href="/pdb/projects/searchDocs">
 						<i class="fa fa-files-o"></i>

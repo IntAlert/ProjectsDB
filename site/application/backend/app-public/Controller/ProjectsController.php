@@ -79,9 +79,6 @@ class ProjectsController extends AppController {
 
 	public function searchDocs() {
 
-
-
-
 		$action = $this->request->query('data.action');
 
 		if ($action == 'search'): 

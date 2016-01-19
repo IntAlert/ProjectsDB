@@ -1,4 +1,4 @@
 <?php
 
-// Load FB 
-require_once('../../app-common/Config/database-common.php');
+// Load Common 
+require_once(APP . '../app-common/Config/database-common.php');
