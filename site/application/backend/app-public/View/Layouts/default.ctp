@@ -148,26 +148,6 @@ if ( !isset($title) ) {
 
 				</li>
 
-<?php if (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
-
-
-
-				<li class="territories">
-					<a href="/pdb/themes">
-						<i class="fa fa-tags"></i>
-						Themes
-					</a>
-				</li>
-
-
-				<li class="territories">
-					<a href="/pdb/territories">
-						<i class="fa fa-globe"></i>
-						Territories
-					</a>
-				</li>
-<?php endif; // (AuthComponent::user('role') == 'manager'): // only show nav to logged in users ?>
-
 				<li class="projects-add">
 					<a href="/pdb/projects/add">
 						<i class="fa fa-plus-circle"></i>

@@ -123,6 +123,6 @@ class ThemesController extends AppController {
 
 	public function isAuthorized($user) {
 		// limit to managers
-		return $this->Auth->user('role') == 'manager';
+		return $this->Auth->user('role') == 'admin';
 	}
 }
