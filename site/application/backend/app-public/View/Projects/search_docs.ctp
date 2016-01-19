@@ -3,7 +3,7 @@
 
 
 <p>
-	This page allows you to search for all documents stored on the system. Currently, there are very few documents.
+	This page allows you to search for all documents stored on the system.
 </p>
 
 <form action="" method="get">

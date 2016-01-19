@@ -49,7 +49,7 @@
 
 	<div class="search-form">
 
-		<h2>Search Project Metadata</h2>
+		<h2>Search Projects</h2>
 		
 		<form action="/pdb/projects" method="get">
 
@@ -72,7 +72,7 @@
 
 	<div class="search-form">
 
-		<h2>Search Project Documents</h2>
+		<h2>Search Documents</h2>
 		
 		<form action="/pdb/projects/searchDocs" method="get">
 

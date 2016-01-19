@@ -141,6 +141,15 @@ if ( !isset($title) ) {
 
 				<li class="projects-index">
 					
+					<a href="/pdb/projects/searchDocs">
+						<i class="fa fa-files-o"></i>
+						Search Documents
+					</a>
+
+				</li>
+
+				<li class="projects-index">
+					
 					<a href="/pdb/projects">
 						<i class="fa fa-search"></i>
 						Search Projects
