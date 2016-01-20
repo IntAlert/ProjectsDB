@@ -77,6 +77,25 @@ class ProjectsController extends AppController {
 		
 	}
 
+	function newInterface() {
+	// get search form data
+		$statuses = $this->Project->Status->findOrderedList();
+		$likelihoods = $this->Project->Likelihood->findOrderedList();
+		$donors = $this->Project->Contract->Donor->findOrderedList();
+		$frameworks = $this->Project->Contract->Framework->findOrderedList();
+		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
+		$departments = $this->Project->Department->find('list');
+		// $programmes = $this->Project->Programme->find('list');
+		$territories = $this->Project->Territory->findActiveList();
+
+		
+		$employees = $this->User->findEmployeesList();
+		$themes = $this->Project->Theme->findOrderedList();
+
+		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'employees', 'themes', 'donors', 'frameworks', 'contractcategories'));
+			
+	}
+
 	public function searchDocs() {
 
 		$action = $this->request->query('data.action');

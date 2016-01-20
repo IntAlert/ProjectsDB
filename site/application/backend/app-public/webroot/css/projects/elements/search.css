@@ -56,3 +56,70 @@
 .project-search2 .advanced_shown {
 	display: block;
 }
+
+
+
+
+/*Three*/
+
+
+
+.project-search3 {padding:10px;}
+.project-search3 fieldset {margin:0; padding:0;}
+.project-search3 .advanced {font-size:0.8em;}
+
+
+.project-search3 .submit a.reset {
+	display: block;
+	background: 0;
+	border: 0;
+	box-shadow: none;
+	text-align: center;
+	text-decoration: none;
+	padding-top: 4px;
+}
+
+.search-results {margin-top:3em;}
+
+
+
+.project-search3 .standard li {
+	float:left;
+	margin:0;
+}
+.project-search3 .standard .q{
+	width:80%;
+}
+.project-search3 .standard .q input {
+	width:80%;
+}
+.project-search3 .standard .submit{
+	width:20%;
+}
+.project-search3 ul {
+	list-style: none;
+	margin:0;
+	padding:0;	
+}
+.project-search3 ul li{
+	float:left;
+	width:20%;
+	height:100px;
+}
+.project-search3 ul li select,
+.project-search3 ul li input,
+.project-search3 ul li label {
+	width:100%;
+	font-size:120%;
+}
+
+.project-search3 .advanced {
+	display: none;
+}
+
+.project-search3 .advanced_shown {
+	display: block;
+}
+
+.project-search3 {float:left; width:300px;}
+.project-search3 form div {margin:0 0 4px; padding:0;}
