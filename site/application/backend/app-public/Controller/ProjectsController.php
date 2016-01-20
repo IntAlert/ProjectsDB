@@ -77,49 +77,6 @@ class ProjectsController extends AppController {
 		
 	}
 
-	function newInterface() {
-
-
-		$action = $this->request->query('action');
-
-		if ($action == 'search'): 
-
-			// BUILD SEARCH CONDITIONS
-			$options = $this->ProjectSearch->buildSearchOptions();
-
-			$this->Paginator->settings = array(
-				'contain' => array('Department', 'Status', 'Territory', 'Contract.Donor'),
-		        'joins' => $options['joins'],
-		        'conditions' => $options['conditions'],
-		        'limit' => 25,
-		        'order' => array('Project.start_date' => 'DESC'),
-		    );
-
-		    $projects = $this->Paginator->paginate();
-		    
-		else: // ($this->request->query('action') == 'search'): 
-			
-			$projects = array();
-
-		endif; // ($this->request->query('action') == 'search'): 
-		
-	// get search form data
-		$statuses = $this->Project->Status->findOrderedList();
-		$likelihoods = $this->Project->Likelihood->findOrderedList();
-		$donors = $this->Project->Contract->Donor->findOrderedList();
-		$frameworks = $this->Project->Contract->Framework->findOrderedList();
-		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
-		$departments = $this->Project->Department->find('list');
-		// $programmes = $this->Project->Programme->find('list');
-		$territories = $this->Project->Territory->findActiveList();
-
-		
-		$employees = $this->User->findEmployeesList();
-		$themes = $this->Project->Theme->findOrderedList();
-
-		$this->set(compact('action', 'projects', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'employees', 'themes', 'donors', 'frameworks', 'contractcategories'));
-			
-	}
 
 	public function searchDocs() {
 
