@@ -26,7 +26,7 @@ $(function(){
 	$('#ProjectFinishDate').datepicker({dateFormat: 'dd/mm/yy'});
 
 	// reset all fields
-	$('.project-search3 .reset').click(function(){
+	$('.project-search-left .reset').click(function(){
 		$(this)
 			.parents("form")
 			.find("select,input[type!=submit]")
@@ -34,12 +34,14 @@ $(function(){
 
 
 		// refresh jQuery UI
-		$(".project-search3 select").selectmenu("refresh");
+		$(".project-search-left select").selectmenu("refresh");
 
 		return false;
 	})
 
-	 $(".project-search3 select").selectmenu({width:"100%"});
+	 $(".project-search-left select").selectmenu({width:"100%"});
+
+	 
 
 
 

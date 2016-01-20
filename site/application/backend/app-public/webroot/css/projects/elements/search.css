@@ -64,12 +64,12 @@
 
 
 
-.project-search3 {padding:10px;}
-.project-search3 fieldset {margin:0; padding:0;}
-.project-search3 .advanced {font-size:0.8em;}
+.project-search-left {padding:10px;}
+.project-search-left fieldset {margin:0; padding:0;}
+.project-search-left .advanced {font-size:0.8em;}
 
 
-.project-search3 .submit a.reset {
+.project-search-left .submit a.reset {
 	display: block;
 	background: 0;
 	border: 0;
@@ -83,43 +83,62 @@
 
 
 
-.project-search3 .standard li {
+.project-search-left .standard li {
 	float:left;
 	margin:0;
 }
-.project-search3 .standard .q{
+.project-search-left .standard .q{
 	width:80%;
 }
-.project-search3 .standard .q input {
+.project-search-left .standard .q input {
 	width:80%;
 }
-.project-search3 .standard .submit{
+.project-search-left .standard .submit{
 	width:20%;
 }
-.project-search3 ul {
+.project-search-left ul {
 	list-style: none;
 	margin:0;
 	padding:0;	
 }
-.project-search3 ul li{
+.project-search-left ul li{
 	float:left;
 	width:20%;
 	height:100px;
 }
-.project-search3 ul li select,
-.project-search3 ul li input,
-.project-search3 ul li label {
+.project-search-left ul li select,
+.project-search-left ul li input,
+.project-search-left ul li label {
 	width:100%;
 	font-size:120%;
 }
 
-.project-search3 .advanced {
+.project-search-left .advanced {
 	display: none;
 }
 
-.project-search3 .advanced_shown {
+.project-search-left .advanced_shown {
 	display: block;
 }
 
-.project-search3 {float:left; width:300px;}
-.project-search3 form div {margin:0 0 4px; padding:0;}
+.project-search-left {float:left; width:25%; margin-right: 3%; font-size: 90%;}
+form .project-search-left div {margin:0 0 6px; padding:0;}
+
+
+.project-search-top {
+	float:left;
+	clear:none;
+	width:69%;
+}
+
+.project-search-top ul {list-style: none;}
+.project-search-top li {float:left;}
+.project-search-top li.q {width:70%;}
+.project-search-top li.q .input {margin-top:0;}
+.project-search-top li.submit {width:20%; margin-top:6px;}
+
+.project-search-results {
+	float:left;
+	clear:none;
+	width: 69%;
+}
