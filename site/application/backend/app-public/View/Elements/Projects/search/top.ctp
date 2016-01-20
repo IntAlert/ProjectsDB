@@ -9,6 +9,7 @@
 					'label' => false, //'Query',
 					'placeholder' => 'Enter search terms here',
 					'value' => $this->request->query('q'),
+					'class' => "search-autocomplete",
 				));
 
 			?>

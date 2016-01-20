@@ -106,7 +106,7 @@ if ( !isset($title) ) {
 
 					<input type="hidden" name="action" value="search">
 
-					<input type="text" name="q" placeholder="Search PROMPT projects" class="contracted">
+					<input type="text" name="q" placeholder="Search PROMPT projects" class="contracted search-autocomplete">
 
 				</form>
 			</div>

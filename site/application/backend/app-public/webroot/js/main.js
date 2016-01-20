@@ -19,7 +19,7 @@ $(function(){
 	  
 	});
 
-	// autocomplete and animation
+	// Search animation
 	$( "#search-shortcut input[name=q]" )
 		.focus(function(){
 			// expand on focus
@@ -31,6 +31,10 @@ $(function(){
 				$(this).switchClass( "expanded", "contracted", 500, "easeInOutQuad" );
 			} 
 		})
+
+
+	// search autocomplete
+	$( ".search-autocomplete" )
 		.autocomplete({
 	      source: function(req, callback){
 	      	$.get("/api/projects/search", {q:req.term}, function(results){
