@@ -110,11 +110,11 @@ class ProjectSearchComponent extends Component {
 
 			$joins[] = array(
 				'table' => 'contracts',
-	            'alias' => 'Contract',
+	            'alias' => 'ContractDonor',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Project.id = Contract.project_id',
-	                'Contract.donor_id' => (int)$donor_id
+	                'Project.id = ContractDonor.project_id',
+	                'ContractDonor.donor_id' => (int)$donor_id
 	            )
 	        );
 		}
@@ -124,11 +124,11 @@ class ProjectSearchComponent extends Component {
 
 			$joins[] = array(
 				'table' => 'contracts',
-	            'alias' => 'Contract',
+	            'alias' => 'ContractContractcategory',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Project.id = Contract.project_id',
-	                'Contract.contractcategory_id' => (int)$contractcategory_id
+	                'Project.id = ContractContractcategory.project_id',
+	                'ContractContractcategory.contractcategory_id' => (int)$contractcategory_id
 	            )
 	        );
 		}
@@ -138,11 +138,11 @@ class ProjectSearchComponent extends Component {
 
 			$joins[] = array(
 				'table' => 'contracts',
-	            'alias' => 'Contract',
+	            'alias' => 'ContractFramework',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Project.id = Contract.project_id',
-	                'Contract.framework_id' => (int)$framework_id
+	                'Project.id = ContractFramework.project_id',
+	                'ContractFramework.framework_id' => (int)$framework_id
 	            )
 	        );
 		}
