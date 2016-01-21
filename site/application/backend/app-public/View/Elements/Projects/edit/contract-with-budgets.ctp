@@ -130,6 +130,7 @@ endif; //(count($project['Contract'])):
 					<td>
 						Donor currency
 						<?php echo $this->Tooltip->element('Please select from the list.  If your currency is not listed, please contact Technology team to amend.'); ?>
+
 					</td>
 					
 				</tr>
@@ -305,7 +306,7 @@ endif; //(count($project['Contract'])):
 
 			
 
-			
+			<small><a target="_blank" href="http://www.oanda.com/currency/converter/">Find indicative currency exchange rates on Oanda</a></small>
 
 		</div> <!-- End payments -->
 
@@ -564,6 +565,8 @@ endif; //(count($project['Contract'])):
 				</tfoot>
 
 			</table>
+
+			<small><a target="_blank" href="http://www.oanda.com/currency/converter/">Find indicative currency exchange rates on Oanda</a></small>
 
 		</div> <!-- End payments -->
 
