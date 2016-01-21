@@ -103,6 +103,31 @@
 					</div>
 
 
+					<div>
+					<?php
+
+						echo $this->Form->input('contractcategory_id', array(
+							'empty' => '--- Select Contract Category ---',
+							'label' => false,
+							'options' => $contractcategories,
+							'value' => $this->request->query('contractcategory_id'),
+						));
+					?>
+					</div>
+
+					<div>
+					<?php
+
+						echo $this->Form->input('framework_id', array(
+							'empty' => '--- Select Donor Framework ---',
+							'label' => false,
+							'options' => $frameworks,
+							'value' => $this->request->query('framework_id'),
+						));
+					?>
+					</div>
+
+
 
 					<div>
 

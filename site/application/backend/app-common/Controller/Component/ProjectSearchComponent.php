@@ -119,6 +119,34 @@ class ProjectSearchComponent extends Component {
 	        );
 		}
 
+		// contractcategory_id (INNER JOIN METHOD)
+		if ($contractcategory_id = $this->controller->request->query('contractcategory_id')) {
+
+			$joins[] = array(
+				'table' => 'contracts',
+	            'alias' => 'Contract',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = Contract.project_id',
+	                'Contract.contractcategory_id' => (int)$contractcategory_id
+	            )
+	        );
+		}
+
+		// framework_id (INNER JOIN METHOD)
+		if ($framework_id = $this->controller->request->query('framework_id')) {
+
+			$joins[] = array(
+				'table' => 'contracts',
+	            'alias' => 'Contract',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = Contract.project_id',
+	                'Contract.framework_id' => (int)$framework_id
+	            )
+	        );
+		}
+
 		// territory_id (INNER JOIN METHOD)
 		if ($territory_id = $this->controller->request->query('territory_id')) {
 			$joins[] = array(

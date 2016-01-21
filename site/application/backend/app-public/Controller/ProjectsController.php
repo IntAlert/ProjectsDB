@@ -66,7 +66,6 @@ class ProjectsController extends AppController {
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
 		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
 		$departments = $this->Project->Department->find('list');
-		// $programmes = $this->Project->Programme->find('list');
 		$territories = $this->Project->Territory->findActiveList();
 
 		

@@ -17,7 +17,7 @@ $(function(){
 		return false;
 	})
 
-	 $(".project-search-left select").selectmenu({width:"100%"});
+	 $(".project-search-left select").selectmenu({width:$('.project-search-left').width()});
 
 
 
