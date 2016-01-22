@@ -306,7 +306,7 @@ endif; //(count($project['Contract'])):
 
 			
 
-			<small><a target="_blank" href="http://www.oanda.com/currency/converter/">Find indicative currency exchange rates on Oanda</a></small>
+			<small><a target="_blank" href="https://portal.international-alert.org/fis/mer/SitePages/Home.aspx">Alert's working exchange rates are published here</a></small>
 
 		</div> <!-- End payments -->
 
@@ -566,7 +566,7 @@ endif; //(count($project['Contract'])):
 
 			</table>
 
-			<small><a target="_blank" href="http://www.oanda.com/currency/converter/">Find indicative currency exchange rates on Oanda</a></small>
+			<small><a target="_blank" href="https://portal.international-alert.org/fis/mer/SitePages/Home.aspx">Alert's working exchange rates are published here</a></small>
 
 		</div> <!-- End payments -->
 
