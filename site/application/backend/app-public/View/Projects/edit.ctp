@@ -143,6 +143,9 @@
 
 
 
+<!-- Pathway -->
+<?php echo $this->element('Projects/edit/pathway-selector'); ?>
+
 <!-- Themes -->
 <?php echo $this->element('Projects/edit/theme-selector'); ?>
 
