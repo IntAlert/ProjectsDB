@@ -58,7 +58,7 @@
 			<table>
 				<tr>
 					<td>
-						<input type="text" name="q">
+						<input type="text" name="q" class="search-autocomplete">
 					</td>
 					<td>
 						<input type="submit" value="Search">
