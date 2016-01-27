@@ -29,6 +29,7 @@ foreach ($departmentsList as $department_id => $department_name) {
 		'counts' => array(
 			'total' => 0,
 			'status' => array(
+				'work-in-progress' => 0,
 				'not-submitted' => 0,
 				'work-in-progress' => 0,
 				'submitted' => 0,
@@ -50,12 +51,14 @@ $organisationStats = array(
 	'counts' => array(
 		'total' => 0,
 		'status' => array(
-			'not-submitted' => 0,
-			'approved' => 0,
 			'work-in-progress' => 0,
+			'not-submitted' => 0,
+			'work-in-progress' => 0,
+
 			'submitted' => 0,
-			
+			'approved' => 0,
 			'rejected' => 0,
+
 			'completed' => 0,
 			'total' => 0,
 		),
@@ -123,6 +126,7 @@ endforeach; // ($projects as $project):
 			</td>
 		</tr>
 		<tr>
+			<th>Work In Progress</th>
 			<th>Not Yet Submitted</th>
 			<th>Submitted</th>
 			<th>Rejected</th>
@@ -137,6 +141,7 @@ endforeach; // ($projects as $project):
 
 	<tr>
 		<th><?php echo $department['name']; ?></th>
+		<td><?php echo $department['counts']['status']['work-in-progress']; ?></td>
 		<td><?php echo $department['counts']['status']['not-submitted']; ?></td>
 		<td><?php echo $department['counts']['status']['submitted']; ?></td>
 		<td><?php echo $department['counts']['status']['rejected']; ?></td>
@@ -151,6 +156,7 @@ endforeach; // ($projects as $project):
 
 	<tfoot>
 		<th>Total</th>
+		<td><?php echo $organisationStats['counts']['status']['work-in-progress']; ?></td>
 		<td><?php echo $organisationStats['counts']['status']['not-submitted']; ?></td>
 		<td><?php echo $organisationStats['counts']['status']['submitted']; ?></td>
 		<td><?php echo $organisationStats['counts']['status']['rejected']; ?></td>
