@@ -27,10 +27,8 @@ class BackupDBShell extends AppShell {
 		$Email->from(array('as.thomson@gmail.com' => 'Alan Thomson'));
 		$Email->to('alan@projectmccoll.co.uk');
 		$Email->subject('About');
-		$Email->send('My message');
 
-
-		// send as attachment
+		// add attachment
 
 		$Email->attachments(array(
 		    'backup.tar.gz' => array(
@@ -39,8 +37,7 @@ class BackupDBShell extends AppShell {
 		    )
 		));
 
-		
-
+		$Email->send('My message');
 
 
 	}
