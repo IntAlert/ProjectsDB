@@ -24,6 +24,7 @@ class BackupDBShell extends AppShell {
 
 		// create mail
 		$Email = new CakeEmail();
+		$Email->config('default');
 		$Email->from(array('as.thomson@gmail.com' => 'Alan Thomson'));
 		$Email->to('alan@projectmccoll.co.uk');
 		$Email->subject('About');
