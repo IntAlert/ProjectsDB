@@ -27,18 +27,20 @@ class BackupDBShell extends AppShell {
 		$Email->config('default');
 		$Email->from(array('as.thomson@gmail.com' => 'Alan Thomson'));
 		$Email->to('alan@projectmccoll.co.uk');
-		$Email->subject('About');
+		$Email->subject('PROMPT database backup');
 
 		// add attachment
 
 		$Email->attachments(array(
-		    'backup.tar.gz' => array(
+		    'backup.sql.gz' => array(
 		        'file' => $target,
 		        'mimetype' => 'application/x-gzip'
 		    )
 		));
 
-		$Email->send('My message');
+		$Email->send('See attached SQL dump');
+
+		$this->out("Send complete");
 
 
 	}
