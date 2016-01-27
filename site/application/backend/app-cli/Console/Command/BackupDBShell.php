@@ -26,7 +26,7 @@ class BackupDBShell extends AppShell {
 		$Email = new CakeEmail();
 		$Email->config('default');
 		$Email->from(array('as.thomson@gmail.com' => 'Alan Thomson'));
-		$Email->to('alan@projectmccoll.co.uk');
+		$Email->to('it@international-alert.org');
 		$Email->subject('PROMPT database backup');
 
 		// add attachment
