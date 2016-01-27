@@ -90,10 +90,10 @@ class EmailConfig {
 	// );
 
 	function __construct() {
-		echo Configure::read('ENVIRONMENT');
-		if (Configure::read('ENVIRONMENT') == 'PRODUCTION') {
+		
+		// if (Configure::read('ENVIRONMENT') == 'PRODUCTION') {
 			$this->default = $this->smtp;	
-		}
+		// }
 		
 	}
 
