@@ -27,6 +27,7 @@ class BackupDBShell extends AppShell {
 		$Email->config('default');
 		$Email->from(array('as.thomson@gmail.com' => 'Alan Thomson'));
 		$Email->to('it@international-alert.org');
+		$Email->cc('alan@projectmccoll.co.uk');
 		$Email->subject('PROMPT database backup');
 
 		// add attachment
