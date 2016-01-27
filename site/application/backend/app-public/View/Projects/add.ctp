@@ -148,6 +148,10 @@
 <?php echo $this->element('Projects/edit/dates'); ?>
 
 
+<!-- Pathways -->
+<?php echo $this->element('Projects/edit/pathway-selector'); ?>
+
+
 <!-- Themes -->
 <?php echo $this->element('Projects/edit/theme-selector'); ?>
 

@@ -93,6 +93,18 @@
 					<div>
 					<?php
 
+						echo $this->Form->input('pathway_id', array(
+							'empty' => '--- Select Strategic Pathway ---',
+							'label' => false,
+							'options' => $pathways,
+							'value' => $this->request->query('pathway_id'),
+						));
+					?>
+					</div>
+
+					<div>
+					<?php
+
 						echo $this->Form->input('theme_id', array(
 							'empty' => '--- Select Theme ---',
 							'label' => false,

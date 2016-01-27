@@ -71,8 +71,9 @@ class ProjectsController extends AppController {
 		
 		$employees = $this->User->findEmployeesList();
 		$themes = $this->Project->Theme->findOrderedList();
+		$pathways = $this->Project->Pathway->findOrderedList();
 
-		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'employees', 'themes', 'donors', 'frameworks', 'contractcategories'));
+		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'employees', 'themes', 'donors', 'frameworks', 'contractcategories', 'pathways'));
 		
 	}
 
@@ -139,6 +140,7 @@ class ProjectsController extends AppController {
 				'Contract.Contractbudget',
 				'Projectnote.User',
 				'Status',
+				'Pathway',
 				'Theme',
 				'Likelihood',
 				'Department',
@@ -214,6 +216,7 @@ class ProjectsController extends AppController {
 
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
+		$pathways = $this->Project->Pathway->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$departments = $this->Project->Department->find('list');
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
@@ -226,7 +229,7 @@ class ProjectsController extends AppController {
 		$users = $this->User->find('list');
 		$employees = $this->User->findEmployeesList();
 		
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways'));
 
 
 	}
@@ -278,8 +281,9 @@ class ProjectsController extends AppController {
 		}
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
+		$pathways = $this->Project->Pathway->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
-		// $programmes = $this->Project->Programme->find('list');
+		
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
 		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
 		$departments = $this->Project->Department->find('list');
@@ -305,7 +309,7 @@ class ProjectsController extends AppController {
 			$sd->createFolder($general_folder);
 		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways'));
 	}
 
 

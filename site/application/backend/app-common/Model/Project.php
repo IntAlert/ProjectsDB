@@ -117,6 +117,13 @@ class Project extends AppModel {
 			'foreignKey' => 'project_id',
 			'associationForeignKey' => 'theme_id',
 			'unique' => 'keepExisting',
+		),
+		'Pathway' => array(
+			'className' => 'Pathway',
+			'joinTable' => 'pathways_project',
+			'foreignKey' => 'project_id',
+			'associationForeignKey' => 'pathway_id',
+			'unique' => 'keepExisting',
 		)
 	);
 

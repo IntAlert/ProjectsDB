@@ -105,6 +105,19 @@ class ProjectSearchComponent extends Component {
 	        );
 		}
 
+		// theme_id (INNER JOIN METHOD)
+		if ($pathway_id = $this->controller->request->query('pathway_id')) {
+			$joins[] = array(
+				'table' => 'pathways_project',
+	            'alias' => 'ProjectsPathway',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = ProjectsPathway.project_id',
+	                'ProjectsPathway.pathway_id' => (int)$pathway_id
+	            )
+	        );
+		}
+
 		// donor_id (INNER JOIN METHOD)
 		if ($donor_id = $this->controller->request->query('donor_id')) {
 

@@ -1,0 +1,7 @@
+.pathway-selector div.checkbox {
+	display:inline;
+	padding:0;
+}
+.pathway-selector div.checkbox label {
+	display:inline-block;
+}

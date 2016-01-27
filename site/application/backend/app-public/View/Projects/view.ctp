@@ -23,6 +23,12 @@ foreach($project['Theme'] as $theme) {
 	array_push($theme_names, $theme['name']);
 }
 
+// create array of theme names
+$pathway_names = [];
+foreach($project['Pathway'] as $pathway) {
+	array_push($pathway_names, $pathway['name']);
+}
+
 
 
 
@@ -127,6 +133,20 @@ var data = <?php echo json_encode($project); ?>;
 			</td>
 		</tr>
 
+
+		<tr>
+			<th>
+				<?php echo __('Strategic Pathway(s)'); ?>
+			</th>
+		<td>
+			<?php 
+
+			if (count($pathway_names)) echo implode(', ', $pathway_names);
+				else echo "None"
+
+				?>
+			</td>
+		</tr>
 
 		<tr>
 			<th>
