@@ -10,7 +10,7 @@
 						
 						<a href="/pdb/users">
 							<i class="fa fa-users"></i>
-							Manager Users
+							Manage Users
 						</a>
 					</li>
 

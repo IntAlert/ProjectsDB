@@ -26,7 +26,7 @@ class Office365user extends AppModel {
 
 
 
-	function getOrCreate($o365_user_response) {
+	function getOrCreate($o365_user_response, $role_ids = array()) {
 		
 		// extract useful data
 		$o365_object_id = $o365_user_response->objectId;
@@ -53,6 +53,15 @@ class Office365user extends AppModel {
 		));
 		$result = $this->User->save();
 		$user_id = $this->User->id;
+
+		// add roles if any supplied
+		if(is_array($role_ids)) {
+			foreach ($role_ids as $role_id) {
+				$this->User->RolesUser->create(compact('user_id', 'role_id'));
+				$this->User->RolesUser->save();
+			}	
+		}
+		
 
 		// create o365 user
 		$this->create(compact(
@@ -94,6 +103,27 @@ class Office365user extends AppModel {
 		return $this->save($data);
 
 	}
+
+	function getAlreadyKnownListByObjectId($office365Users) {
+
+		$objectIds = array();
+
+		foreach ($office365Users as $o365user) {
+			$objectIds[] = $o365user->objectId;
+		}
+
+		// which of these already exist?
+		$knownObjectIds = $this->find('list', array(
+			'conditions' => array(
+				'o365_object_id' => $objectIds,
+			),
+			'fields' => array('o365_object_id', 'email')
+		));
+
+		return $knownObjectIds;
+
+	}
+
 
 	private function findUserByObjectId($o365_object_id) {
 		return $this->find('first', array(

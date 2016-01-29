@@ -58,12 +58,6 @@ class Office365usersController extends AppController {
 
         $o365_user_response = $o365userAPI->getMe();
 
-
-        // try dan
-        $dan = $o365userAPI->getUserByEmailAddress("danm@international-alert.org");
-        debug($dan);
-        die();
-
         // get or create the user
         $user = $this->Office365user->getOrCreate($o365_user_response);
 
@@ -84,6 +78,58 @@ class Office365usersController extends AppController {
 
         $this->redirect('/dashboard/dashboard');
 
+    }
+
+    function search() {
+
+        if ($this->request->is('post')) {
+            
+            $startsWith = $this->request->data('User.q');
+
+            // get all users from o365
+            $o365auth = new Office365AuthAPI();
+            $tokens = $o365auth->getAppTokens();
+            $o365userAPI = new Office365UserAPI($tokens['access_token']);
+
+            $office365Users = $o365userAPI->getAllUsers($startsWith);
+
+            $knownUsers = $this->Office365user->getAlreadyKnownListByObjectId($office365Users);
+
+            // debug(compact('office365Users', 'knownUsers'));
+            $this->set(compact('users', 'knownUsers'));
+
+        }
+
+        $this->set(compact('office365Users'));
+        
+    }
+
+    function add($o365_object_id) {
+
+
+        // we are going to need to check the 
+        // object_id with Office 365 so
+        // do it up here:
+        $o365auth = new Office365AuthAPI();
+        $tokens = $o365auth->getAppTokens();
+
+        // get all users from o365
+        $o365userAPI = new Office365UserAPI($tokens['access_token']);
+        $office365user = $o365userAPI->getUserByEmailAddressOrObjectId($o365_object_id);
+
+        if ($this->request->is("post")) {
+            $role_ids = $this->request->data("User.role");
+            // debug($role_ids);
+            // die();
+            $this->Office365user->getOrCreate($office365user, $role_ids);
+        }
+
+        
+
+        $roles = $this->Office365user->User->Role->findOrderedList();
+
+        $this->set(compact('office365user', 'roles'));
+        
     }
 
 }

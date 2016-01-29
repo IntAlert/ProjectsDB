@@ -2,6 +2,9 @@
 
 App::uses('HttpSocket', 'Network/Http');
 
+
+
+
 class Office365UserAPI {
 
 	private $access_token = false;
@@ -38,7 +41,9 @@ class Office365UserAPI {
         return $o365_user_response;
     }
 
-    function getUserByEmailAddress($email) {
+
+    function getAllUsers($startsWithStr = null) {
+
 
     	$options = array( 
             'header' => array( 
@@ -47,7 +52,47 @@ class Office365UserAPI {
         );
 
         $data = array(
-            "api-version" => "1.5"
+            "api-version" => "1.6"
+        );
+
+        if ($startsWithStr) {
+        	$data['$filter'] = "startswith(displayName, '" . $startsWithStr . "') or startswith(mail, '" . $startsWithStr . "')";
+            // $data['$filter'] = "startswith(displayName, '" . $startsWithStr . "') or startswith(mail, '" . $startsWithStr . "')";
+        }
+
+
+        $socket = new HttpSocket(array(
+            'ssl_verify_host' => false
+        ));
+
+
+        $url = 'https://graph.windows.net/' . OFFICE365_TENANT_ID . '/users/';
+
+        // debug(compact('url', 'data', 'options'));
+
+        $result = $socket->get($url, $data, $options);
+
+        $o365_user_response = json_decode($result->body);
+
+        debug($o365_user_response);
+
+        $users = $o365_user_response->value;
+
+        return $users;
+
+    }
+
+    function getUserByEmailAddressOrObjectId($uid) {
+
+
+    	$options = array( 
+            'header' => array( 
+                'Authorization' => 'Bearer ' . $this->access_token
+            ) 
+        );
+
+        $data = array(
+            "api-version" => "1.6"
         );
 
         $socket = new HttpSocket(array(
@@ -55,20 +100,21 @@ class Office365UserAPI {
         ));
 
 
-        $url = 'https://graph.microsoft.com/users';
+        $url = 'https://graph.windows.net/' . OFFICE365_TENANT_ID . '/users/' . $uid;
 
-        debug(compact('url', 'data', 'options'));
+        // debug(compact('url', 'data', 'options'));
 
         $result = $socket->get($url, $data, $options);
 
         $o365_user_response = json_decode($result->body);
 
-        return $o365_user_response;
+        // debug($o365_user_response);
 
+        $users = $o365_user_response;
 
-    	
-
+        return $users;
 
     }
 
+    
 }

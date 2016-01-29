@@ -1,0 +1,29 @@
+.Office365users-search .selector {
+	margin: 1em 0;
+}
+
+.Office365users-search .results ul {
+	list-style: none;
+}
+
+.Office365users-search .results ul li {
+
+	padding:8px;
+	background:#eee;
+	margin:8px;
+}
+
+
+.Office365users-search .results ul li .display-name {
+
+	float:left;
+	width:50%;
+
+}
+
+.Office365users-search .results ul li .action {
+
+	float:right;
+	width:25%;
+
+}

@@ -6,6 +6,7 @@ class User extends AppModel {
 
 
     public $hasOne = 'Office365user';
+    public $hasAndBelongsToMany = 'Role';
 
 	public $virtualFields = array(
 	    // 'name' => 'CONCAT(User.first_name, " ", User.last_name)'

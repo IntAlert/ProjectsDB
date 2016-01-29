@@ -1,5 +1,21 @@
+<nav class="subnav clearfix">
+	<ul>
+		<li><?php echo $this->Html->link(__('Add User'), array(
+			'controller' => 'Office365users',
+			'action' => 'search'
+		)); ?></li>
+	</ul>
+</nav>
+
+
+
 <div class="users index">
+
+
+
 	<h2><?php echo __('Users'); ?></h2>
+
+
 	<table cellpadding="0" cellspacing="0" class="table">
 	<thead>
 	<tr>

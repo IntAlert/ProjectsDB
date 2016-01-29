@@ -29,7 +29,7 @@ class Office365AuthAPI {
             'client_id' => OFFICE365_CLIENT_ID,
             'client_secret' => OFFICE365_CLIENT_SECRET,
             'redirect_uri' => $callback_url,
-            'resource' => 'https://graph.windows.net',
+            'resource' => 'https://graph.windows.net/',
         );
 
         $socket = new HttpSocket(array(
@@ -61,38 +61,52 @@ class Office365AuthAPI {
 
     function getAppTokens() {
 
-        // get access token
-        $data = array(
-            'grant_type' => 'client_credentials',
-            'client_id' => OFFICE365_CLIENT_ID,
-            'client_secret' => OFFICE365_CLIENT_SECRET,
-            'resource' => 'https://graph.microsoft.com',
-        );
+        $cache_key_name = 'Office365AuthAPI.AppTokens';
+        $tokens = Cache::read($cache_key_name);
 
-        $socket = new HttpSocket(array(
-            'ssl_verify_host' => false
-        ));
-        $result = $socket->post($this->token_url, $data);
+        if ( !$tokens ) {
+            // get access token
+            $data = array(
+                'grant_type' => 'client_credentials',
+                'client_id' => OFFICE365_CLIENT_ID,
+                'client_secret' => OFFICE365_CLIENT_SECRET,
+                'resource' => 'https://graph.windows.net/',
+            );
 
-        // parse response body
-        $response = json_decode($result->body);
+            $socket = new HttpSocket(array(
+                'ssl_verify_host' => false
+            ));
+            $result = $socket->post($this->token_url, $data);
 
-        // debug($response);
+            // parse response body
+            $response = json_decode($result->body);
 
-        // received a well-formed response?
-        if ( !$response ) {
-            throw new Exception("We received no response from Office365", 1);
+            // debug($response);
+
+            // received a well-formed response?
+            if ( !$response ) {
+                throw new Exception("We received no response from Office365", 1);
+            }
+
+            // any errors?
+            if ( property_exists($response, 'error') ) {
+                throw new Exception("Office365 returned an error: " . $response->error, 1);
+            }
+
+            $tokens = array(
+                'access_token' => $response->access_token,
+                // 'refresh_token' => $response->refresh_token,
+            );
+
+            
+            Cache::set(array('duration' => '+' . $response->expires_in . ' seconds'));
+            Cache::write($cache_key_name, $tokens);
+
         }
 
-        // any errors?
-        if ( property_exists($response, 'error') ) {
-            throw new Exception("Office365 returned an error: " . $response->error, 1);
-        }
+        return $tokens;
 
-        return array(
-            'access_token' => $response->access_token,
-            'refresh_token' => $response->refresh_token,
-        );
+        
     }
 
 

@@ -1,5 +1,10 @@
 <?php
 App::uses('AppController', 'Controller');
+
+
+App::import('Vendor', 'Office365/Office365AuthAPI');
+App::import('Vendor', 'Office365/Office365UserAPI');
+
 /**
  * Users Controller
  *
@@ -113,6 +118,25 @@ class UsersController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
+
+
+
+    public function add() {
+        
+        if ($this->request->is('post')) {
+            
+            // $objectId =
+
+
+
+        }
+
+    }
+
+
+
+
+
 
     public function isAuthorized($user) {
 
