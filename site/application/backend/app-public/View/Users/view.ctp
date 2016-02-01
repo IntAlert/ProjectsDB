@@ -13,14 +13,32 @@
 
 
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
+		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['id']); ?>
+			<?php echo h($user['User']['first_name']); ?>
 			&nbsp;
+			<?php echo h($user['User']['last_name']); ?>
 		</dd>
-		<dt><?php echo __('Role'); ?></dt>
+		<dt><?php echo __('Special Role(s)'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['role']); ?>
+			<?php if (count($user['Role'])): ?>
+			<ul>
+			
+				<?php foreach ( $user['Role'] as $role): ?>
+				
+				<li>
+					<?php echo $role['name']; ?>
+				</li>
+
+				<?php endforeach; // ( $user['Role'] as $role): ?>
+
+			</ul>
+
+			<?php else: // (count($user['User']['Role'])): ?>
+
+				<p>No special roles</p>
+
+			<?php endif; // (count($user['User']['Role'])): ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

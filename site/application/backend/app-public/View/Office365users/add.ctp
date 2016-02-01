@@ -21,7 +21,21 @@
 					Mail
 				</th>
 				<td>
-					<?php echo $office365user->mail; ?>
+					<?php echo $office365user->userPrincipalName; ?>
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					Role(s)
+				</th>
+				<td>
+					<?php 
+					echo $this->Form->input('User.Role', array(
+						'label' => false,
+						'multiple' => 'checkbox'
+					));
+					?>
 				</td>
 			</tr>
 		</table>
@@ -33,7 +47,7 @@
 			'type' => 'hidden',
 			'value' => $office365user->objectId,
 		));
-		echo $this->Form->input('User.role', array('multiple' => 'checkbox'));
+
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Create New User')); ?>

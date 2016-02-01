@@ -56,7 +56,7 @@ class Office365UserAPI {
         );
 
         if ($startsWithStr) {
-        	$data['$filter'] = "startswith(displayName, '" . $startsWithStr . "') or startswith(mail, '" . $startsWithStr . "')";
+        	$data['$filter'] = "startswith(displayName, '" . $startsWithStr . "') or startswith(userPrincipalName, '" . $startsWithStr . "')";
             // $data['$filter'] = "startswith(displayName, '" . $startsWithStr . "') or startswith(mail, '" . $startsWithStr . "')";
         }
 
@@ -74,7 +74,7 @@ class Office365UserAPI {
 
         $o365_user_response = json_decode($result->body);
 
-        debug($o365_user_response);
+        // debug($o365_user_response);
 
         $users = $o365_user_response->value;
 

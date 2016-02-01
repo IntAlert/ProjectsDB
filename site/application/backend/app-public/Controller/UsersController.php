@@ -96,6 +96,8 @@ class UsersController extends AppController {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
+
+        $this->set('roles', $this->User->Role->findOrderedList());
     }
 
 /**

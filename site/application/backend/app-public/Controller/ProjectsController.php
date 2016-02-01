@@ -69,11 +69,11 @@ class ProjectsController extends AppController {
 		$territories = $this->Project->Territory->findActiveList();
 
 		
-		$employees = $this->User->findEmployeesList();
+		$budget_holders = $this->User->findBudgetHoldersList();
 		$themes = $this->Project->Theme->findOrderedList();
 		$pathways = $this->Project->Pathway->findOrderedList();
 
-		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'employees', 'themes', 'donors', 'frameworks', 'contractcategories', 'pathways'));
+		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'budget_holders', 'themes', 'donors', 'frameworks', 'contractcategories', 'pathways'));
 		
 	}
 
@@ -227,9 +227,9 @@ class ProjectsController extends AppController {
 		$territories = $this->Project->Territory->findActiveList();
 		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
-		$employees = $this->User->findEmployeesList();
+		$budget_holders = $this->User->findBudgetHoldersList();
 		
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways'));
 
 
 	}

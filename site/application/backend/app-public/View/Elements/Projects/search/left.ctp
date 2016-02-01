@@ -73,7 +73,7 @@
 							'label' => 'Budget Holder',
 							'empty' => '--- Select Budget Holder ---',
 							'label' => false,
-							'options' => $employees,
+							'options' => $budget_holders,
 							'value' => $this->request->query('owner_user_id'),
 						));
 					?>

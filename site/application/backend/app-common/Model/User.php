@@ -38,10 +38,27 @@ class User extends AppModel {
         // )
     );
 
-    public function findEmployeesList() {
+    public function findBudgetHoldersList() {
+
+        // get all user ids that are budget holders
+        $role = $this->Role->find('first', array(
+            'contain' => 'User',
+            'conditions' => array(
+                'Role.id' => 2, // budget holder
+            )
+        ));
+
+        $user_ids = [];
+        foreach ($role['User'] as $user) {
+            $user_ids[] = $user['id'];
+        }
+
     	return $this->find('list', array(
     		'fields' => array('id', 'name_formal'),
-    		'conditions' => array('role' => 'employee')
+            'order' => array('last_name, first_name'),
+            'conditions' => array(
+                'User.id' => $user_ids
+            )
     	));
     }
 

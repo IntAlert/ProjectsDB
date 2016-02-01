@@ -121,7 +121,14 @@ class Office365usersController extends AppController {
             $role_ids = $this->request->data("User.role");
             // debug($role_ids);
             // die();
-            $this->Office365user->getOrCreate($office365user, $role_ids);
+            $user = $this->Office365user->getOrCreate($office365user, $role_ids);
+
+            
+            return $this->redirect(array(
+                'controller' => 'users',
+                'action' => 'view',
+                $user['User']['id'],
+            ));
         }
 
         

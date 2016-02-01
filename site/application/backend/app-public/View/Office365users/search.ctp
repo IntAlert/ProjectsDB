@@ -15,7 +15,7 @@
 	</p>
 
 	<p>
-		<strong>NB.</strong> You can only add users that already exist on the Office365 system
+		<strong>NB.</strong> You can only add users that already exist on the Office365 system.
 	</p>
 
 </div>
@@ -25,7 +25,7 @@
 	<div class="form">
 		<?php echo $this->Form->create('User'); ?>
 			<fieldset>
-				<legend><?php echo __('Find User'); ?></legend>
+				<legend><?php echo __('Find User to Import'); ?></legend>
 			<?php
 				echo $this->Form->input('q', array(
 					'label' => 'Name or Email Address'
@@ -43,14 +43,21 @@
 <?php if (isset($office365Users)): ?>
 
 
+
+<?php if (count($office365Users)): ?>
+
+
 	<ul>
 
 <?php foreach ($office365Users as $office365User): ?>
 	
+<?php if ($office365User->mail): ?>
+
 		<li class="clearfix">
 
 			<div class="display-name">
 				<?php echo $office365User->displayName; ?>
+				(<?php echo $office365User->userPrincipalName; ?>)
 			</div>
 
 			<div class="action">
@@ -71,9 +78,18 @@
 
 
 		</li>
+<?php endif; // ($office365User->mail): ?>
+
 <?php endforeach; // ($office365Users as $office365User): ?>
 
 	</ul>
+
+<?php else: // (count($office365Users)): ?>
+	<p>No results for &quot;<?php echo $this->request->data('User.q'); ?>&quot;.</p>
+
+<?php endif; // (count($office365Users)): ?>
+
+
 
 
 

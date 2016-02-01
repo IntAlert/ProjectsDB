@@ -31,7 +31,7 @@ class Office365user extends AppModel {
 		// extract useful data
 		$o365_object_id = $o365_user_response->objectId;
 		$name = $o365_user_response->displayName;
-		$email = $o365_user_response->mail;
+		$email = $o365_user_response->userPrincipalName;
 		$displayName = $o365_user_response->displayName;
 		$givenName = $o365_user_response->givenName;
 		$surname = $o365_user_response->surname;
@@ -57,8 +57,10 @@ class Office365user extends AppModel {
 		// add roles if any supplied
 		if(is_array($role_ids)) {
 			foreach ($role_ids as $role_id) {
-				$this->User->RolesUser->create(compact('user_id', 'role_id'));
-				$this->User->RolesUser->save();
+				$relationship = compact('user_id', 'role_id');
+
+				$this->User->RolesUser->create();
+				$this->User->RolesUser->save($relationship);
 			}	
 		}
 		

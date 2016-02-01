@@ -133,7 +133,7 @@
 		echo $this->Form->input('owner_user_id', array(
 			'label' => "Budget Holder",
 			'empty' => '--- Please select --- ',
-			'options' => $employees,
+			'options' => $budget_holders,
 			'tooltip' => 'Enter name of Alert\'s budget holder',
 		));
 
