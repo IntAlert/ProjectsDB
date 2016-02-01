@@ -32,8 +32,6 @@ if ( !isset($title) ) {
 	}	
 }
 
-// debug(AuthComponent::user('role'));
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -126,7 +124,7 @@ if ( !isset($title) ) {
 				</li>
 
 
-<?php if (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
+<?php if ($is_admin): // only show nav to logged in users ?>
 
 				<li class="dashboard-admin">
 					

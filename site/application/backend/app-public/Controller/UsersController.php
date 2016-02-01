@@ -123,38 +123,28 @@ class UsersController extends AppController {
 
 
 
-    public function add() {
+    // public function add() {
         
-        if ($this->request->is('post')) {
+    //     if ($this->request->is('post')) {
             
-            // $objectId =
+    //         // $objectId =
 
 
 
-        }
+    //     }
 
-    }
-
-
-
-
+    // }
 
 
     public function isAuthorized($user) {
-
 
         // login / logout allowed
         if (in_array($this->action, array('login', 'logout'))) {
             return true;
         }
 
-        // admin allowed to see the rest
-        if ($user['role'] == 'admin') {
-            return true;
-        }
-
-        // most people cannot see this
-        return false;
+        // limit to admin
+        return $this->userIs('admin');
         
     }
 

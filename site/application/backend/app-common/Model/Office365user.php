@@ -129,7 +129,7 @@ class Office365user extends AppModel {
 
 	private function findUserByObjectId($o365_object_id) {
 		return $this->find('first', array(
-			'contain' => array('User'),
+			'contain' => array('User', 'User.Role'),
 			'conditions' => array(
 				'o365_object_id' => $o365_object_id
 			)

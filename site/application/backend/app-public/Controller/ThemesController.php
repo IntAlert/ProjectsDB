@@ -122,7 +122,7 @@ class ThemesController extends AppController {
 
 
 	public function isAuthorized($user) {
-		// limit to managers
-		return $this->Auth->user('role') == 'admin';
+		// limit to admin
+		return $this->userIs('admin');
 	}
 }

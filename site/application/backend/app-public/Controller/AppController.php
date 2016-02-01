@@ -70,10 +70,28 @@ class AppController extends Controller {
 		// stop any client side caching.. avoids missing data on user
 		// hitting back button
 		$this->response->disableCache();
+
+		// make admin status available to general template
+		$this->set('is_admin', $this->userIs('admin'));
 	}
 
 	public function isAuthorized($user) {
 		return !!$this->Auth->user('id');
+	}
+
+	public function userIs($desired_role) {
+
+		// check for admin role
+		$roles = $this->Auth->user('Role');
+
+		foreach ($roles as $role) {
+			if ($role['short_name'] == $desired_role) {
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 
 

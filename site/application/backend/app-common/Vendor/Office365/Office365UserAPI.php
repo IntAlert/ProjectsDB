@@ -34,7 +34,7 @@ class Office365UserAPI {
 
         $result = $socket->get($this->windowsGraphUrl, $data, $options);
 
-        debug(compact('data', 'options'));
+        // debug(compact('data', 'options'));
 
         $o365_user_response = json_decode($result->body);
 

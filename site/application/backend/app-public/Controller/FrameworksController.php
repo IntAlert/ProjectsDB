@@ -117,7 +117,7 @@ class FrameworksController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-		// limit to managers
-		return $this->Auth->user('role') == 'manager';
+		// limit to admin
+		return $this->userIs('admin');
 	}
 }
