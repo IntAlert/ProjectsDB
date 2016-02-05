@@ -1,6 +1,6 @@
 <?php
 
-// debug($fileTree);
+debug($fileTree);
 
 
 ?>
@@ -27,9 +27,12 @@ $folders = [];
 
 foreach ($fileTree->Folders->results as $folder):
 
+
+
+
 	$folders[$folder->Name] = array(
 		'name' => $folder->Name,
-		'uri' => $folder->__metadata->uri
+		'uri' => 'https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=' . rawurlencode($sharepoint_root_folder . '/' . $folder->Name),
 	);
 
 endforeach; // ($fileTree->Folders->results as $folder):
