@@ -159,7 +159,7 @@ class SharepointDocs {
 
         $folder_encoded = rawurlencode('Documents/' . $folder);
 
-        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')?\$expand=Folders,Files";
+        $url = $this->api_base . "GetFolderByServerRelativeUrl('" . $folder_encoded . "')?\$expand=Folders";
 
         $result = $socket->get($url, null, $options);
 

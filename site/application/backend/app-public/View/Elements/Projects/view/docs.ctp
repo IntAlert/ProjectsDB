@@ -1,14 +1,12 @@
 <?php
 
-debug($fileTree);
+// debug($fileTree);
+
 
 ?>
 
 
 <? if (!isset($fileTree)): ?>
-
-
-
 
 <p>Sharepoint docs not available, sorry</p>
 
@@ -17,7 +15,28 @@ debug($fileTree);
 
 
 
-<? else: // (!isset($fileTree)): ?>
+<? else: // (!isset($fileTree)):
+
+
+
+
+// get folder names and reorder according to name
+// SP API is terrible
+
+$folders = [];
+
+foreach ($fileTree->Folders->results as $folder):
+
+	$folders[$folder->Name] = array(
+		'name' => $folder->Name,
+		'uri' => $folder->__metadata->uri
+	);
+
+endforeach; // ($fileTree->Folders->results as $folder):
+
+ksort($folders);
+
+ ?>
 
 
 
@@ -26,9 +45,7 @@ debug($fileTree);
 
 	<ul>
 		<li>
-			<a 
-			target="_blank"
-			href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=<?php echo urlencode($sharepoint_root_folder); ?>">
+			
 				View Sharepoint Folder
 			</a>
 		</li>
@@ -37,57 +54,36 @@ debug($fileTree);
 </nav>
 
 
-<h3>Documents</h3>
-
-
-<!-- printFolder($fileTree); -->
-<?php
-
-
-?>
+<h3>
+	<a 
+			target="_blank"
+			href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=<?php echo urlencode($sharepoint_root_folder); ?>">
+			Documents
+	</a>
+</h3>
 
 
 
 <table class="table">
 
 
-<?php foreach ($fileList as $file): ?>
+<?php foreach ($folders as $folder): ?>
 
 	<tr>
 
 		<td>
-			<?php echo $file->Name; ?>
+			<?php echo $folder['name']; ?>
 		</td>
 
 		<td>
-			<?php echo $file->TimeLastModified; ?>
-		</td>
-
-		<td>
-			<a href="https://intlalert.sharepoint.com<?php echo $file->ServerRelativeUrl; ?>">Download</a>
-		</td>
-
-		<td>
-
-<?php 
-
-	// Show Edit/View links for docx
-	$parts = explode('.', $file->Name);
-	$extension = $parts[count($parts) - 1 ];
-
-	if (in_array($extension, array('xls','xlsx','doc','docx',))):
-
-
-?>
-
-			<a href="https://intlalert.sharepoint.com/prompt/_layouts/15/WopiFrame.aspx?sourcedoc={<?php echo $file->UniqueId; ?>}&file=<?php echo urlencode($file->Name); ?>&action=default">
-				Edit/View
+			<a 
+				href="<?php echo $folder['uri']; ?>" 
+				target="_blank"
+			>
+				View Folder
 			</a>
-
-<?php endif; // (in_array($extension, array('xls','xlsx','doc','docx',))):
-
-?>
 		</td>
+
 
 		<!-- <td>
 			<a href="">Delete</a>
@@ -104,22 +100,5 @@ debug($fileTree);
 
 </table>
 
-<?php //else: // (count($fileList)): ?>
 
-<p>No documents</p>
-
-<?php // endif; // (count($fileList)): ?>
-
-<?
-
-	function printFolder($folder) {
-		echo '<ul>';
-
-		foreach ($folder->Folders->results as $folder) {
-			echo '<li>' . $folder->Name . '</li>';
-		}
-
-		echo '</ul>';
-	}
-
-endif; // (!isset($fileTree)): ?>
+<? endif; // (!isset($fileTree)): ?>
