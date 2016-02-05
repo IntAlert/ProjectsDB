@@ -54,7 +54,7 @@
 						));
 					?>
 					</div>
-					<!-- <div>
+					<div>
 					<?php
 
 						echo $this->Form->input('donor_id', array(
@@ -64,7 +64,7 @@
 							'value' => $this->request->query('donor_id'),
 						));
 					?>
-					</div> -->
+					</div>
 					<div>
 					<?php
 

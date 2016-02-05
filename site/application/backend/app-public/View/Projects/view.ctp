@@ -29,8 +29,11 @@ foreach($project['Pathway'] as $pathway) {
 	array_push($pathway_names, $pathway['name']);
 }
 
-
-
+// create array of donor names
+$donor_names = [];
+foreach($project['Contract'] as $contract) {
+	array_push($donor_names, $contract['Donor']['name']);
+}
 
 
 
@@ -156,6 +159,20 @@ var data = <?php echo json_encode($project); ?>;
 			<?php 
 
 			if (count($theme_names)) echo implode(', ', $theme_names);
+				else echo "None"
+
+				?>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				<?php echo __('Donor(s)'); ?>
+			</th>
+		<td>
+			<?php 
+
+			if (count($donor_names)) echo implode(', ', $donor_names);
 				else echo "None"
 
 				?>
