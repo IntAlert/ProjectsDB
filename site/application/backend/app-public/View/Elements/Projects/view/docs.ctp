@@ -41,19 +41,6 @@ ksort($folders);
 
 
 
-<nav class='subnav'>
-
-	<ul>
-		<li>
-			
-				View Sharepoint Folder
-			</a>
-		</li>
-	</ul>
-
-</nav>
-
-
 <h3>
 	<a 
 			target="_blank"
