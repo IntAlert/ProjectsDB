@@ -82,7 +82,7 @@ class Office365usersController extends AppController {
 
         if ($this->request->query('data.q')) {
             
-            $startsWith = $this->request->query('data.q');
+            $startsWith = trim($this->request->query('data.q'));
 
             // get all users from o365
             $o365auth = new Office365AuthAPI();

@@ -1,4 +1,13 @@
+<?php
+
+debug($fileTree);
+
+?>
+
+
 <? if (!isset($fileTree)): ?>
+
+
 
 
 <p>Sharepoint docs not available, sorry</p>
@@ -31,7 +40,9 @@
 <h3>Documents</h3>
 
 
-printFolder($fileTree);
+<!-- printFolder($fileTree); -->
+<?php
+
 
 ?>
 
@@ -92,11 +103,12 @@ printFolder($fileTree);
 
 
 </table>
-<?php else: // (count($fileList)): ?>
+
+<?php //else: // (count($fileList)): ?>
 
 <p>No documents</p>
 
-<?php endif; // (count($fileList)): ?>
+<?php // endif; // (count($fileList)): ?>
 
 <?
 

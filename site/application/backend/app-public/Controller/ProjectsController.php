@@ -172,6 +172,7 @@ class ProjectsController extends AppController {
 
 			$sharepoint_root_folder = $results['sharepoint_root_folder'];
 			$fileTree = $results['fileTree'];	
+
 		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 		
 
@@ -293,7 +294,7 @@ class ProjectsController extends AppController {
 		$territories = $this->Project->Territory->findActiveList();
 		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
-		$employees = $this->User->findEmployeesList();
+		$budget_holders = $this->User->findBudgetHoldersList();
 
 
 		if ( !Configure::read('disable_sharepoint_folder_sync') ):
@@ -309,7 +310,7 @@ class ProjectsController extends AppController {
 			$sd->createFolder($general_folder);
 		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'employees', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders'));
 	}
 
 
