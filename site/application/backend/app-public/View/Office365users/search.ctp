@@ -23,7 +23,7 @@
 <div class="selector">
 
 	<div class="form">
-		<?php echo $this->Form->create('User'); ?>
+		<form action="" method="get">
 			<fieldset>
 				<legend><?php echo __('Find User to Import'); ?></legend>
 			<?php

@@ -80,9 +80,9 @@ class Office365usersController extends AppController {
 
     function search() {
 
-        if ($this->request->is('post')) {
+        if ($this->request->query('data.q')) {
             
-            $startsWith = $this->request->data('User.q');
+            $startsWith = $this->request->query('data.q');
 
             // get all users from o365
             $o365auth = new Office365AuthAPI();
@@ -116,9 +116,8 @@ class Office365usersController extends AppController {
         $office365user = $o365userAPI->getUserByEmailAddressOrObjectId($o365_object_id);
 
         if ($this->request->is("post")) {
-            $role_ids = $this->request->data("User.role");
-            // debug($role_ids);
-            // die();
+            $role_ids = $this->request->data("User.Role");
+            
             $user = $this->Office365user->getOrCreate($office365user, $role_ids);
 
             
