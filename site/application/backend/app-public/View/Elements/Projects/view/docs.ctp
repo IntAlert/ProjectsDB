@@ -1,6 +1,6 @@
 <?php
 
-debug($fileTree);
+// debug($fileTree);
 
 
 ?>
