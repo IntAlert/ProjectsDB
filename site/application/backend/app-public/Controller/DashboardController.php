@@ -42,20 +42,9 @@ class DashboardController extends AppController {
 	}
 
 
-	public function isAuthorized($user) {
-
-		// must be logged in
-		if (parent::isAuthorized($user) == false) {
-			return false;
-		}
-
-        // login / logout allowed
-        if ($this->action == 'admin' && $user['role'] != 'admin') {
-            return false;
-        }
-
-        return true;
-        
+    public function isAuthorized($user) {
+        // limit to admin
+        return $this->userIs('admin');
     }
 
 

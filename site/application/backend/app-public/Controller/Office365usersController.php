@@ -25,8 +25,6 @@ class Office365usersController extends AppController {
 
         $this->redirect_uri = Router::url('/office365users/callback', true);
 
-        $this->Auth->allow('login', 'callback');
-
         parent::beforeFilter();
     }
 
@@ -138,5 +136,19 @@ class Office365usersController extends AppController {
         $this->set(compact('office365user', 'roles'));
         
     }
+
+
+    public function isAuthorized($user) {
+
+        // login / logout allowed
+        if (in_array($this->action, array('login', 'callback'))) {
+            return true;
+        }
+
+        // limit to admin
+        return $this->userIs('admin');
+        
+    }
+
 
 }
