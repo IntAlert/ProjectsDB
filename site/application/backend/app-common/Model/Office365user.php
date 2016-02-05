@@ -119,7 +119,7 @@ class Office365user extends AppModel {
 			'conditions' => array(
 				'o365_object_id' => $objectIds,
 			),
-			'fields' => array('o365_object_id', 'email')
+			'fields' => array('o365_object_id', 'user_id')
 		));
 
 		return $knownObjectIds;

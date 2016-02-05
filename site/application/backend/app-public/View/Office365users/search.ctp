@@ -28,7 +28,8 @@
 				<legend><?php echo __('Find User to Import'); ?></legend>
 			<?php
 				echo $this->Form->input('q', array(
-					'label' => 'Name or Email Address'
+					'label' => 'Name or Email Address',
+					'value' => $this->request->query('data.q'),
 				));
 			?>
 			</fieldset>
@@ -65,6 +66,11 @@
 				<?php if (isset($knownUsers[$office365User->objectId])): ?>
 
 					Already added
+				<?php echo $this->Html->link(__('(view)'), array(
+					'controller' => 'Users',
+					'action' => 'view',
+					$knownUsers[$office365User->objectId]
+				)); ?>
 
 				<?php else: // (isset($knownUsers[$office365User->objectId])): ?>
 					
