@@ -23,6 +23,8 @@ class Office365usersController extends AppController {
 
     function beforeFilter() {
 
+        $this->Auth->allow('login', 'callback');
+
         $this->redirect_uri = Router::url('/office365users/callback', true);
 
         parent::beforeFilter();
