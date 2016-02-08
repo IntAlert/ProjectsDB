@@ -62,7 +62,7 @@ var data = <?php echo json_encode($project); ?>;
 </nav>
 
 <div class="projects view">
-<h2>Project - <?php echo h($project['Project']['title']); ?></h2>
+<h2><?php echo h($project['Project']['title']); ?></h2>
 
 
 <table class="table">
@@ -71,7 +71,14 @@ var data = <?php echo json_encode($project); ?>;
 				<?php echo __('Budget Holder'); ?>
 			</th>
 			<td>
-				<?php echo h($project['OwnerUser']['name']); ?>
+				<?php 
+				if (trim($project['OwnerUser']['name'])) {
+					echo h($project['OwnerUser']['name']);
+				} else {
+					echo "No budget holder selected <strong>(Please amend)</strong>";
+				} ?>
+
+				
 				&nbsp;
 			</td>
 		</tr>
