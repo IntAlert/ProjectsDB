@@ -91,18 +91,29 @@ class SharepointDocs {
 
 
         if ($ensureFoldersCreated):
-            // parent folder exists
-            $folderExists = $this->folderExists($general_folder);
             
-            if ( !$folderExists ) {
+            // parent folder exists
+            $parentFolderExists = $this->folderExists($general_folder);
+            
+            if ( !$parentFolderExists ) {
                 // ensure that the folders exist
                 $this->createFolder($parent_folder);
                 $this->createFolder($general_folder);
 
-                foreach($subfoldersToCreate as $subfolder_name) {
-                    $sub_folder_path = $general_folder . '/' . $subfolder_name;
-                    $this->createFolder($sub_folder_path);
+            }
+
+            // sub folders
+            foreach($subfoldersToCreate as $subfolder_name) {
+                
+                $sub_folder_path = $general_folder . '/' . $subfolder_name;
+
+                // sub folder exists?
+                $subFolderExists = $this->folderExists($sub_folder_path);
+
+                if ( !$subFolderExists ) {
+                    $this->createFolder($sub_folder_path);    
                 }
+                
             }
         endif; // ($ensureFoldersCreated):
 

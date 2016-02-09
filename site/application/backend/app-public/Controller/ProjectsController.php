@@ -302,14 +302,10 @@ class ProjectsController extends AppController {
 			// ensure that folder exists
 			$user_id = $this->Auth->user('id');
 			$sd = new SharepointDocs($user_id, $this->User->Office365user);
+			$results = $sd->createTemplateFolders($id); // TODO: remove ensureFoldersCreated = false
 
-			// ensure that the folders exist
-			$parent_folder = Configure::read('ENVIRONMENT') . '/projects/project_id_' . $id;
-			$general_folder = $parent_folder . '/' . 'general';
-
-			$sd->createFolder($parent_folder);
-			$sd->createFolder($general_folder);
 		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
+
 
 		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders'));
 	}
