@@ -99,6 +99,9 @@ if ( !isset($title) ) {
 
 		<nav class="main">
 
+
+<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
+	
 			<div id="search-shortcut" class="clearfix">
 				<form action="/pdb/projects" method="get">
 
@@ -110,7 +113,6 @@ if ( !isset($title) ) {
 			</div>
 
 
-<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 			<ul>
 
 
