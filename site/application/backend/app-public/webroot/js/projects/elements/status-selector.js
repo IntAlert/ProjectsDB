@@ -12,13 +12,14 @@ $(function(){
 		var selectedStatusId = statusRadiosContainer.find(":checked").val();
 
 		var statusIdApproved = 2;
+		var statusIdOngoing = 9;
 		var statusIdCompleted = 6;
 		var statusIdRejected = 4;
 		var likelihoodIdLow = 4;
 		var likelihoodIdConfirmed = 2;
 
 
-		if (selectedStatusId == statusIdApproved || selectedStatusId == statusIdCompleted) {
+		if (selectedStatusId == statusIdApproved || selectedStatusId == statusIdCompleted || selectedStatusId == statusIdOngoing) {
 			// select 'confirmed' likelihood
 			var likelihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdConfirmed+']'));
 
