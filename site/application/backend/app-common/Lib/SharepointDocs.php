@@ -84,14 +84,14 @@ class SharepointDocs {
             '8 Partnership',
             'P1 Contract',
             'P2 Project Inception',
-            'P3 - Budget and Finance',
-            'P4 - Donor Reporting',
-            'P5 - Monitoring & Evaluation',
+            'P3 Budget and Finance',
+            'P4 Donor Reporting',
+            'P5 Monitoring & Evaluation',
         );
 
 
         if ($ensureFoldersCreated):
-            
+
             // parent folder exists
             $parentFolderExists = $this->folderExists($general_folder);
             
