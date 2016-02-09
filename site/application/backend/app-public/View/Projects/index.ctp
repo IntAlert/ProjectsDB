@@ -3,7 +3,10 @@
 
 
 
-<?php echo $this->Form->create('Project', array('type' => 'get'));
+<?php echo $this->Form->create('Project', array(
+	'type' => 'get',
+	'action' => 'index/page:1', // always revert to page 1 for new searches
+));
 
 echo $this->Form->input('action', array(
 	'value' => 'search',
@@ -19,7 +22,9 @@ echo $this->Form->input('action', array(
 
 <?php echo $this->element('Projects/search/top'); ?>
 
-<?php echo $this->element('Projects/search/results'); ?>
+<?php echo $this->element('Projects/search/summary'); ?>
+
+<?php echo $this->element('Projects/search/results-table'); ?>
 
 
 </form>

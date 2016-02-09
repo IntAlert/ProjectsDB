@@ -77,3 +77,20 @@ form .project-search-left div {margin:0 0 6px; padding:0;}
 	clear:none;
 	width: 69%;
 }
+
+.project-search-summary {
+	float:left;
+	clear:none;
+	width: 69%;
+}
+.project-search-summary ul {
+	list-style:none;
+	margin:1em 1em 0;
+
+}
+.project-search-summary li {
+	float:left;
+	padding:4px 8px;
+	margin:4px;
+	background:#eee;
+}

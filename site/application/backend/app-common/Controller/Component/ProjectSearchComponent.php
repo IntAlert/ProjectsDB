@@ -74,8 +74,8 @@ class ProjectSearchComponent extends Component {
 
 		// start_date
 		if ($start_date = $this->controller->request->query('start_date')) {
-
-			$start_date_mysql = DateTime::createFromFormat('d-m-Y', $start_date)->format('Y-m-d');
+			
+			$start_date_mysql = DateTime::createFromFormat('d/m/Y', $start_date)->format('Y-m-d');
 
 			$conditions[] = array(
 				'Project.start_date >=' => $start_date_mysql,
@@ -84,7 +84,7 @@ class ProjectSearchComponent extends Component {
 
 		if ($finish_date = $this->controller->request->query('finish_date')) {
 
-			$finish_date_mysql = DateTime::createFromFormat('d-m-Y', $finish_date)->format('Y-m-d');
+			$finish_date_mysql = DateTime::createFromFormat('d/m/Y', $finish_date)->format('Y-m-d');
 
 			$conditions[] = array(
 				'Project.finish_date <=' => $finish_date_mysql,
