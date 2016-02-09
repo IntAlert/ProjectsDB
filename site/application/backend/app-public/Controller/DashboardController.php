@@ -43,8 +43,15 @@ class DashboardController extends AppController {
 
 
     public function isAuthorized($user) {
-        // limit to admin
+
+        // login / logout allowed
+        if (in_array($this->action, array('dashboard'))) {
+            return parent::isAuthorized($user);
+        }
+
+        // limit to admin for eveything but dashboard
         return $this->userIs('admin');
+        
     }
 
 
