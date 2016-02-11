@@ -5,9 +5,8 @@
 }
 
 .contract table td {vertical-align: middle;}
+.contract select {width:98%;} /*Max Width won't work in IE*/
 .contractbudget .input.number {margin-bottom:0;}
-
-/*.contract-donor-id {width:430px;}*/
 
 
 /* hide delete links except first and last */
