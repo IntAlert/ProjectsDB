@@ -23,13 +23,14 @@
 
 	<fieldset>
 		<legend><?php echo __('Edit Project'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
+	<?php echo $this->Form->input('id'); ?>
 
-		echo $this->Form->input('title', array(
-			'type' => 'text',
-			'tooltip' => 'Complete full project title',
-		));
+
+	<?php echo $this->Form->input('title', array(
+		'type' => 'text',
+		'between' => $this->Tooltip->inline_required(),
+		'tooltip' => 'Complete full project title',
+	));
 
 ?>
 
@@ -39,6 +40,7 @@
 <?
 	echo $this->Form->input('value_required', array(
 		'label' => 'Total project value (GBP)',
+		'between' => $this->Tooltip->inline_required(),
 		'tooltip' => 'Tooltip text',
 	));
 ?>

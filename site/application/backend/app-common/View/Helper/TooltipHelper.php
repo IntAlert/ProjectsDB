@@ -22,4 +22,12 @@ class TooltipHelper extends AppHelper {
 		
 	}
 
+	function inline_required($content = 'This field is required', $fa_symbol = 'fa-asterisk') {
+
+		$content = '<i class="fa ' . $fa_symbol . '"></i> ' . $content;
+
+		return $this->Html->div('tooltip-inline-required', $content);
+		
+	}
+
 }

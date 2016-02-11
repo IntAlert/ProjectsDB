@@ -286,3 +286,13 @@ nav.admin-nav ul li {
 .instruction-block ul {
 	margin-bottom:1em;
 }
+
+.tooltip-inline-required {
+	padding:4px;
+	margin:0;
+	background:#fee;
+}
+
+.tooltip-inline-required .fa-asterisk {
+	color:red;
+}

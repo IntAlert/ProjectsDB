@@ -298,18 +298,16 @@ function updateContractBudgetTotals() {
 	});
 
 	// update grand total for all contracts
-	$(".total-contracts-value .value_gbp").text($.number(contracts_grand_total_gbp));
+	$(".total-contracts-value .value_gbp").text($.number(contracts_grand_total_gbp, 2));
 
 	// calculate shortfall
 	var shortfall = Number($("#ProjectValueRequired").val()) - contracts_grand_total_gbp;
 
 	// change shortfall text
-	$(".shortfall .value_gbp").text($.number(shortfall));
+	$(".shortfall .value_gbp").text($.number(shortfall, 2));
 
 	// save shortfall value
 	$(".shortfall .value_gbp").data('shortfall', shortfall);
-
-
 	
 }
 

@@ -36,6 +36,7 @@
 
 		echo $this->Form->input('title', array(
 			'type' => 'text',
+			'between' => $this->Tooltip->inline_required(),
 			'tooltip' => 'Complete full project title',
 		));
 
@@ -46,6 +47,7 @@
 <?
 	echo $this->Form->input('value_required', array(
 		'label' => 'Total project value (GBP)',
+		'between' => $this->Tooltip->inline_required(),
 		'tooltip' => 'Tooltip text',
 	));
 ?>

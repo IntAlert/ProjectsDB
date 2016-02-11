@@ -20,6 +20,8 @@
 		Programme
 	</h3>
 
+	<?php echo $this->Tooltip->inline_required(); ?>
+
 	<div class="department ui-state-default clearfix">
 		<?php
 			echo $this->Form->input('department_id', array(

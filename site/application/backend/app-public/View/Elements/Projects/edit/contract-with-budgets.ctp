@@ -39,10 +39,10 @@ endif; //(count($project['Contract'])):
 <div class="component-contracts">
 
 <a class="btn btn-contract-add" href="#" style="float:right">
-	Add Contract
+	Add Information and documents
 </a>
 <h2>
-	Contracts and Contract Budgets
+	Donor, Contracts and Budgets
 	<?php echo $this->Tooltip->element('This section requires you to complete data for each donor contract you have with the project'); ?>
 </h2>
 
