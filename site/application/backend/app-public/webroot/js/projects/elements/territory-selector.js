@@ -21,8 +21,6 @@ $(function(){
 		// if department name is EP, PIP:
 		var departmentName = label.text().toUpperCase();
 
-		console.log(selectedDepartmentId);
-
 		if (departmentName == 'EMERGING PROGRAMMES' && departmentName == 'PIP') {
 			// show all
 			$(".territory-selector .territory-checkbox").show();

@@ -71,13 +71,13 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td colspan='2'>
-						Donor
-						<?php echo $this->Tooltip->element('Please enter donor name'); ?>
+						Overall origin donor
+						<?php echo $this->Tooltip->element('Where the funding originates from. For example, in Nigeria Alert is a consortium sub-partner to the British Council for a Security & Reconciliation project funded by DFID. In this case, DFID is the origin donor and the "sub-donor" to Alert is British Council.'); ?>
 					</td>
 
 					<td>
 						Sub-donor
-						<?php echo $this->Tooltip->element('The department/body signing the contract'); ?>
+						<?php echo $this->Tooltip->element('Who Alert signs a contract with - may be another NGO or a commercial contractor - who holds the overall project contract with the origin donor'); ?>
 					</td>
 					
 				</tr>
@@ -117,12 +117,12 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						Donor Framework
-						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
 					</td>
 
 					<td>
 						Contract Category
-						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+						<?php echo $this->Tooltip->element('Please enter the type of contract that Alert holds (the overall contract with origin donor may be a different type). For example, in Nigeria, Alert holds a sub-contract with the British Council for a Security & Reconciliation project. British Council holds the overall project contract with DFID which is a service contract.'); ?>
 					</td>
 
 
@@ -348,13 +348,13 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td colspan="2">
-						Donor
-						<?php echo $this->Tooltip->element('Tooltip text'); ?>
+						Overall origin donor
+						<?php echo $this->Tooltip->element('Where the funding originates from. For example, in Nigeria Alert is a consortium sub-partner to the British Council for a Security & Reconciliation project funded by DFID. In this case, DFID is the origin donor and the "sub-donor" to Alert is British Council.'); ?>
 					</td>
 
 					<td>
 						Sub-donor
-						<?php echo $this->Tooltip->element('The department/body signing the contract'); ?>
+						<?php echo $this->Tooltip->element('Who Alert signs a contract with - may be another NGO or a commercial contractor - who holds the overall project contract with the origin donor'); ?>
 					</td>
 
 					
@@ -394,12 +394,12 @@ endif; //(count($project['Contract'])):
 
 					<td>
 						Donor Framework
-						<?php echo $this->Tooltip->element('Please enter a donor framework if one applies'); ?>
+						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
 					</td>
 
 					<td>
 						Contract Category
-						<?php echo $this->Tooltip->element('Please enter a contract category'); ?>
+						<?php echo $this->Tooltip->element('Please enter the type of contract that Alert holds (the overall contract with origin donor may be a different type). For example, in Nigeria, Alert holds a sub-contract with the British Council for a Security & Reconciliation project. British Council holds the overall project contract with DFID which is a service contract.'); ?>
 					</td>
 
 					<td>

@@ -30,7 +30,18 @@ $(function(){
       dateFormat: 'yy-mm-dd',
       onSelect: function(selectedDate) {
         $( "#ProjectStartDate" ).val(selectedDate);
+
+        // ensure project finish date is valid
         $( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", selectedDate );
+
+        if (Date.parse($( "#ProjectFinishDate" ).val()) < Date.parse(selectedDate)) {
+          // finish date invalid
+          // jquery UI datepicker updates its date but not the hidden field,
+          // so do it manually
+          $( "#ProjectFinishDate" ).val(selectedDate);
+
+        }
+
       }
     });
 
@@ -44,12 +55,11 @@ $(function(){
       dateFormat: 'yy-mm-dd',
       onSelect: function(selectedDate) {
       	$( "#ProjectFinishDate" ).val(selectedDate);
-      	$( ".timespan .start .datepicker-placeholder" ).datepicker( "option", "maxDate", selectedDate );
       }
     });
 
-    // ensure timespan is restricted
-    $( ".timespan .start .datepicker-placeholder" ).datepicker( "option", "maxDate", $( ".timespan .finish .datepicker-placeholder" ).datepicker("getDate") );
+    // ensure project finish date is restricted
+    // $( ".timespan .start .datepicker-placeholder" ).datepicker( "option", "maxDate", $( ".timespan .finish .datepicker-placeholder" ).datepicker("getDate") );
     $( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", $( ".timespan .start .datepicker-placeholder" ).datepicker("getDate") );
 
 
@@ -63,11 +73,6 @@ $(function(){
         })
         .autoGrow();  
       })
-      
-
     
-    
-
-  
 	
 })

@@ -44,18 +44,21 @@
 
 
 	<div id="url_add_form">
-		<h4>Add a website link</h4>
+		<h4>
+			Add a website link
+			<?php echo $this->Tooltip->element('For example, if the project has its own website, such as the Nigeria Stability & Reconciliation Project: http://www.nsrp-nigeria.org/. OR if you would like to link to publications produced by or related to the project, for example http://www.international-alert.org/resources/publications/2011-post-elections-violence-northern-nigeria'); ?>
+		</h4>
 
 		<label>
 			URL: 
-			<input class="url" value="" placeholder="Enter a website address">
+			<input name="url" class="url" value="" placeholder="Enter a website address">
 		</label>
 
 		<label>
 			Title: 
-			<input class="title" placeholder="Enter a title for the link">
+			<input name="title" class="title" placeholder="Enter a title for the link">
 		</label>
 
-		<input type="button" value="Add Weblink">
+		<input name="add-url" type="button" value="Add Weblink">
 	</div>
 </div>

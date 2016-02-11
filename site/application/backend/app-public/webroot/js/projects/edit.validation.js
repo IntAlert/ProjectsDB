@@ -5,6 +5,8 @@ $(function(){
 	// apply validator to appropriate form
 	var $form = $("#ProjectEditForm").length ? $("#ProjectEditForm") : $("#ProjectAddForm");
 
+
+
 	var validator = $form.validate({
 			// debug: true,
 			onfocusout: function (element) {
@@ -34,7 +36,19 @@ $(function(){
 					// re-enable
 					$(".ui-buttonset-disabled").buttonset('enable');
 
-					form.submit();
+					// set unsaved changes to false and let the save go ahead
+					// ref. edit.unsaved.js
+					changesUnsaved = false;
+
+					// show dialog
+					
+					$("#dialog-project-save").dialog({
+						closeOnEscape: false,
+						dialogClass: "no-titlebar",
+						modal:true
+					})
+
+					form.submit()
 				}
 
 
@@ -99,11 +113,6 @@ $(function(){
 				"data[Project][likelihood_id]": {
 					required: true
 				},
-
-				// "data[Project][owner_user_id]": {
-				// 	required: true,
-				// 	minlength:1
-				// },
 
 				"data[Project][value_required]": {
 					required: true,

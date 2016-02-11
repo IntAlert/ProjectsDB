@@ -29,23 +29,22 @@
 
 <h3>
 	Project Timespan
-	<?php echo $this->Tooltip->element('Enter number of months'); ?>
 </h3>
 
 <div class="timespan clearfix">
 	
 	<div class="submission">
-		<h4>Submission Date</h4>
+		<h4>Proposal/Bid<br>Submission Date</h4>
 		<div class="datepicker-placeholder"></div>
 	</div>
 
 	<div class="start">
-		<h4>Project Start Date</h4>
+		<h4>Project<br>Start Date</h4>
 		<div class="datepicker-placeholder"></div>
 	</div>
 
 	<div class="finish">
-		<h4>Project Finish Date</h4>
+		<h4>Project<br>Finish Date</h4>
 		<div class="datepicker-placeholder"></div>
 	</div>
 </div>

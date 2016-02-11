@@ -9,7 +9,7 @@
 .timespan .submission,
 .timespan .start,
 .timespan .finish {float:left; width:25%; clear:none; margin-right:3%;}
-.timespan h4 {text-align: center;}
+.timespan h4 {text-align: center; font-size:120%;}
 .timespan .ui-datepicker {margin:0 auto;}
 .ui-datepicker .ui-datepicker-title {padding:0;}
 
@@ -57,3 +57,17 @@ span.input-validation-success {background:#D5F5D5;}
 .project-urls ul li .delete {
   float:right;
 }
+
+
+#dialog-project-save {
+  display: none;
+  text-align: center;
+}
+
+/*Dialogs*/
+
+.no-titlebar .ui-dialog-titlebar {
+    display: none;
+}
+
+

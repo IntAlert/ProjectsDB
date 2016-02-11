@@ -2,6 +2,38 @@
 
 // debug($fileTree);
 
+// define tool tips for project folders
+$folder_tooltips = array(
+    '1 Tender Documents' => 
+    	'This includes all announcement and Terms of Reference documents published by donors at all stages - for example Call for Expression of Interest, Call for Proposals, Pre-Qualification Questionnaire, Invitiation to Tender, etc.',
+    '2 Workplans' => 
+    	'',
+    '3 Research and Background' => 
+    	'',
+    '4 Communications' => 
+    	'',
+    '5 Draft Proposal Documents' => 
+    	'',
+    '6 Submitted Proposal Documents' => 
+    	'',
+    '7 Donor Feedback' => 
+    	'',
+    '8 Partnership' => 
+    	'',
+    'P1 Contract' => 
+    	'',
+    'P2 Project Inception' => 
+    	'',
+    'P3 Budget and Finance' => 
+    	'',
+    'P4 Donor Reporting' => 
+    	'',
+    'P5 Monitoring & Evaluation' => 
+    	'',
+);
+
+
+
 
 ?>
 
@@ -33,6 +65,7 @@ foreach ($fileTree->Folders->results as $folder):
 	$folders[$folder->Name] = array(
 		'name' => $folder->Name,
 		'uri' => 'https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=' . rawurlencode($sharepoint_root_folder . '/' . $folder->Name),
+		'tooltip' => (isset($folder_tooltips[$folder->Name]) ? $folder_tooltips[$folder->Name] : false),
 	);
 
 endforeach; // ($fileTree->Folders->results as $folder):
@@ -63,6 +96,11 @@ ksort($folders);
 
 		<td>
 			<?php echo $folder['name']; ?>
+			
+			<?php if ($folder['tooltip']) {
+				echo $this->Tooltip->element($folder['tooltip']);
+			} ?>
+
 		</td>
 
 		<td>

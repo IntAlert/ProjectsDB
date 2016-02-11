@@ -117,7 +117,7 @@
 
 <?
 		echo $this->Form->input('fund_code', array(
-			'tooltip' => 'Complete the project fund code as issued by Finance team',
+			'tooltip' => '(this only happens when a project is approved and Alert signs a contract)',
 		));
 
 		?>
@@ -169,5 +169,10 @@
 
 	var project_likelihood_original = false; // because this is a new project
 
-
 </script>
+
+
+<?php 
+// placed at end of doc as some scripts added by elements alter inputs
+// at init
+echo $this->element('Projects/edit/saving');
