@@ -84,11 +84,14 @@ class AppController extends Controller {
 		// check for admin role
 		$roles = $this->Auth->user('Role');
 
-		foreach ($roles as $role) {
-			if ($role['short_name'] == $desired_role) {
-				return true;
-			}
+		if (is_array($roles)) {
+			foreach ($roles as $role) {
+				if ($role['short_name'] == $desired_role) {
+					return true;
+				}
+			}	
 		}
+		
 
 		return false;
 

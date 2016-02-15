@@ -59,7 +59,7 @@ class Office365usersController extends AppController {
         $o365_user_response = $o365userAPI->getMe();
 
         // get or create the user
-        $user = $this->Office365user->getOrCreate($o365_user_response);
+        $user = $this->Office365user->getOrCreate($o365_user_response, array('budget-holder'));
 
         $this->Office365user->updateGraphTokens($user['Office365user']['user_id'], $tokens);
 
@@ -71,7 +71,6 @@ class Office365usersController extends AppController {
         $tokens = $sharepoint->getAccessTokens($tokens['refresh_token']);
 
         $this->Office365user->updateSharepointTokens($user['Office365user']['user_id'], $tokens);
-
 
         // assuming we get a user back, log them in
         $this->Auth->login($user['User']);

@@ -14,30 +14,6 @@ class User extends AppModel {
         'name_formal' => "CONCAT(last_name, ', ', first_name)",
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-	public $validate = array(
-        // 'username' => array(
-        //     'required' => array(
-        //         'rule' => array('notEmpty'),
-        //         'message' => 'A username is required'
-        //     )
-        // ),
-        // 'password' => array(
-        //     'required' => array(
-        //         'rule' => array('notEmpty'),
-        //         'message' => 'A password is required'
-        //     )
-        // ),
-        // 'role' => array(
-        //     'valid' => array(
-        //         'rule' => array('inList', array('admin', 'employee')),
-        //         'message' => 'Please enter a valid role',
-        //         'allowEmpty' => false
-        //     )
-        // )
-    );
-
     public function findBudgetHoldersList() {
 
         // get all user ids that are budget holders
@@ -71,11 +47,6 @@ class User extends AppModel {
 		return $this->id;
 	}
 
-	// public function markAsMigrated($user_id) {
-	// 	$this->id = $user_id;
-	// 	return $this->saveField('migrated', true);
-	// }
-
 	public function beforeSave($options = array()) {
 	    if (isset($this->data[$this->alias]['password'])) {
 	        $passwordHasher = new BlowfishPasswordHasher();
@@ -90,6 +61,40 @@ class User extends AppModel {
         $this->id = $id;
         $this->saveField('deleted', true);
         return true; // assume it worked
+    }
+
+    public function addRole($user_id, $role_short_name_or_id) {
+
+        // if name, get role
+        if (is_string($role_short_name_or_id)) {
+            $role = $this->Role->findByShortName($role_short_name_or_id);
+            if (!$role) throw new Exception("Role not found: " . $role_short_name_or_id, 1);
+            $role_id = $role['Role']['id'];    
+        } else {
+            // otherwise, assume it's an ID for role
+            $role_id = $role_short_name_or_id;
+        }
+        
+
+        // role assoc already exists?
+        $role_assocs = $this->RolesUser->find('list', array(
+            'conditions' => compact('user_id'),
+            'fields' => array('role_id', 'role_id'),
+        ));
+
+        // already associated?
+        if ( !isset($role_assocs[$role_id]) ) {
+            // create assoc
+            $this->RolesUser->create();
+            $this->RolesUser->save(compact('role_id', 'user_id'));
+        }
+
+    }
+
+    public function addRoles($user_id, $role_short_name_or_ids) {
+        foreach ($role_short_name_or_ids as $role_short_name_or_id) {
+            $this->addRole($user_id, $role_short_name_or_id);
+        }
     }
 
 }

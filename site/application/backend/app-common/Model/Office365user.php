@@ -26,7 +26,7 @@ class Office365user extends AppModel {
 
 
 
-	function getOrCreate($o365_user_response, $role_ids = array()) {
+	function getOrCreate($o365_user_response, $role_ids = null) {
 		
 		// extract useful data
 		$o365_object_id = $o365_user_response->objectId;
@@ -41,37 +41,33 @@ class Office365user extends AppModel {
 		$user = $this->findUserByObjectId($o365_object_id);
 
 		
-		// return the user if it exists
-		if ($user) return $user;
+		// if the user does not exist, create them
+		if ( !$user ) {
 
-		// if not exist,
-		// create native user
-		$this->User->create(array(
-			'first_name' => $givenName,
-			'last_name' => $surname,
-			'display_name' => $displayName,
-		));
-		$result = $this->User->save();
-		$user_id = $this->User->id;
+			// create native user (i.e. not inc. an office 365 record)
+			$this->User->create(array(
+				'first_name' => $givenName,
+				'last_name' => $surname,
+				'display_name' => $displayName,
+			));
+			$result = $this->User->save();
+			$user_id = $this->User->id;			
 
-		// add roles if any supplied
-		if(is_array($role_ids)) {
-			foreach ($role_ids as $role_id) {
-				$relationship = compact('user_id', 'role_id');
-
-				$this->User->RolesUser->create();
-				$this->User->RolesUser->save($relationship);
-			}	
+			// create o365 user
+			$this->create(compact(
+				'o365_object_id',
+				'user_id',
+				'email'
+			));
+			$this->save();
+		} else {
+			$user_id = $user['User']['id'];
 		}
-		
 
-		// create o365 user
-		$this->create(compact(
-			'o365_object_id',
-			'user_id',
-			'email'
-		));
-		$this->save();
+		// add roles if any supplied (whether this was a new log in or not)
+		if(is_array($role_ids)) {
+			$this->User->addRoles($user_id, $role_ids);
+		}
 
 		// return user record
 		return $this->findUserByObjectId($o365_object_id);
