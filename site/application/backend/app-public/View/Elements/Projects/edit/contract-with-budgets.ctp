@@ -43,7 +43,7 @@ endif; //(count($project['Contract'])):
 </a>
 <h2>
 	Donors, Contracts and Budgets
-	<?php echo $this->Tooltip->element('This section requires you to complete data for each donor contract you have with the project'); ?>
+	<?php echo $this->Tooltip->element('This section requires you to complete data for each donor contract you have with the project. A single project may have multiple contracts associated with it in the case of co-financing (such as for EC-funded projects) or multi-donor financing. Please be sure to upload and input information for all contracts associated with each project.'); ?>
 </h2>
 
 
