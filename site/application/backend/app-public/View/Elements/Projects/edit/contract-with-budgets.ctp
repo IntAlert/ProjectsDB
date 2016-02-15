@@ -149,7 +149,7 @@ endif; //(count($project['Contract'])):
 					</td>
 
 					<td>
-						Total origin donor contract value (Donor Currency) (Donor currency)
+						Total origin donor contract value (Donor Currency)
 						<?php echo $this->Tooltip->element('This should be the total budget for the whole project across all partners – reflecting the full budget of the primary contract holder with the donor, or the sum of all consortium member budgets. For example, in Nigeria, Alert is part of a consortium led by the British Council. British Council has a £33 million GBP contract with DFID for the whole project. Alert is a partner in British Council’s consortium and our sub-contract with British Council for the project is £795,000. In this case the Total origin donor contract value (Donor Currency) is £33,000,000 so that would be entered in this field.'); ?>
 
 					</td>
