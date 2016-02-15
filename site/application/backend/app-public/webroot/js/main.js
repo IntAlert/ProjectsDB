@@ -1,6 +1,12 @@
 $(function(){
 
-	$('.tooltip').uitooltip();
+	// tooltips with HTML enabled
+	$('.tooltip').uitooltip({
+		// content: function () {
+		// 	console.log($(this).prop('title'));
+		// 	return $(this).prop('title')
+		// }
+	});
 
 	$("nav.subnav a").button();
 

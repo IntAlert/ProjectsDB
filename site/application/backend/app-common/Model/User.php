@@ -66,14 +66,16 @@ class User extends AppModel {
     public function addRole($user_id, $role_short_name_or_id) {
 
         // if name, get role
-        if (is_string($role_short_name_or_id)) {
-            $role = $this->Role->findByShortName($role_short_name_or_id);
-            if (!$role) throw new Exception("Role not found: " . $role_short_name_or_id, 1);
-            $role_id = $role['Role']['id'];    
-        } else {
-            // otherwise, assume it's an ID for role
-            $role_id = $role_short_name_or_id;
-        }
+        $role = $this->Role->find('first', array(
+            'conditions' => array(
+                'OR' => array(
+                    'Role.id' => $role_short_name_or_id,
+                    'Role.short_name' => $role_short_name_or_id,
+        ))));
+
+        if (!$role) throw new Exception("Role not found: " . $role_short_name_or_id, 1);
+        $role_id = $role['Role']['id'];    
+        
         
 
         // role assoc already exists?
