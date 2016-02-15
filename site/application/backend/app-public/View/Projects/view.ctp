@@ -210,9 +210,9 @@ var data = <?php echo json_encode($project); ?>;
 
 		<tr>
 			<th>
-				<?php echo __(' Total value (GBP)'); ?>
+				<?php echo __(' Total ALERT contract value (GBP)'); ?>
 			</th>
-		<td>
+			<td>
 				<?php echo $this->Number->currency($project['Project']['value_required'], 'GBP'); ?>
 				&nbsp;
 			</td>
@@ -250,7 +250,9 @@ var data = <?php echo json_encode($project); ?>;
 <div class="contracts block">
 
 
-<h3>Contracts and Annual Budgets</h3>
+<h3>
+	Donors, Contracts and Budgets
+</h3>
 
 
 <?php if ( empty($project['Contract']) ): ?>
@@ -260,9 +262,19 @@ var data = <?php echo json_encode($project); ?>;
 <?php else: // ( empty($project['Contract']) ): ?>
 
 
-<?php foreach ($project['Contract'] as $contract): ?>
+<?php foreach ($project['Contract'] as $contract): 
+
+
+$contract_value_total_gbp = 0;
+$contract_value_total_donor_currency = 0;
+
+
+
+?>
 	<div class="contract">
-		<h4><?php echo $contract['Donor']['name']; ?></h4>
+		<h4>
+			<?php echo $contract['Donor']['name']; ?>
+		</h4>
 
 		<table>
 			<thead>
@@ -282,7 +294,12 @@ var data = <?php echo json_encode($project); ?>;
 			</thead>
 
 			<tbody>
-<?php foreach ($contract['Contractbudget'] as $contractbudget): ?>
+<?php foreach ($contract['Contractbudget'] as $contractbudget): 
+
+$contract_value_total_gbp += $contractbudget['value_gbp'];
+$contract_value_total_donor_currency += $contractbudget['value_donor_currency'];
+
+?>
 				<tr>
 					<td>
 						<?php echo $contractbudget['year']; ?>
@@ -305,6 +322,48 @@ var data = <?php echo json_encode($project); ?>;
 				</tr>
 <?php endforeach; // ($project['Contract'] as $contract): ?>
 			</tbody>
+
+			<tfoot>
+				<tr>
+					<td>
+						Total ALERT contract value
+					</td>
+
+					<td>
+
+						<?php echo $this->Number->currency(
+							$contract_value_total_gbp,
+							'GBP'
+						); ?>
+						
+					</td>
+					<td>
+						<?php echo $this->Number->currency(
+							$contract_value_total_donor_currency,
+							$contract['Currency']['code']
+						); ?>
+					</td>
+				</tr>
+
+			<?php if ($contract['origin_total_value']): ?>
+				<tr>
+					<td>
+						Total origin donor contract value
+					</td>
+
+					<td>
+						<!-- Only show donor currency -->
+					</td>
+					<td>
+						<?php echo $this->Number->currency(
+							$contract['origin_total_value'],
+							$contract['Currency']['code']
+						); ?>
+					</td>
+				</tr>
+			<?php endif;  // ($contract['Contract']['origin_total_value']): ?>
+
+			</tfoot>
 		</table>
 
 

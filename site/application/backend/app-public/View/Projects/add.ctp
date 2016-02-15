@@ -46,9 +46,9 @@
 	
 <?
 	echo $this->Form->input('value_required', array(
-		'label' => 'Total project value (GBP)',
+		'label' => 'Total ALERT contract value (GBP)',
 		'between' => $this->Tooltip->inline_required(),
-		'tooltip' => 'Tooltip text',
+		'tooltip' => 'This should be the total budget that Alert manages for the project. For example, in Nigeria, Alert is part of a consortium led by the British Council. British Council has a £33 million GBP contract with DFID for the whole project. Alert is a partner in British Council’s consortium and our sub-contract with British Council for the project is £795,000. In this case the Total ALERT contract value is £795,000 so that would be entered in this field. This value may include funding that Alert will later sub-contract to others or give to local partners – as long as it is still income that will be initially received by Alert.',
 	));
 ?>
 

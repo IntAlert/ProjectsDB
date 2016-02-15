@@ -37,8 +37,6 @@ $(function(){
 
 		createContract();
 
-		$(".component-contracts").trigger('fields-added');
-
 		return false;
 	});
 
@@ -94,6 +92,12 @@ $(function(){
     // make contract buttons attractive
     activateContractButtons();
 
+    // add one contract, if none exist
+    if ($('.contracts .contract:not(.template)').length == 0) {
+    	createContract();
+    }
+
+
 });
 
 function createContract() {
@@ -133,6 +137,9 @@ function createContract() {
 
 	// activate tooltips
 	contractDivClone.find('.tooltip').uitooltip();
+
+	// trigger event so that valdidation can be set up for new fields
+	$(".component-contracts").trigger('fields-added');
 
 }
 

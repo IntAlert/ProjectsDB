@@ -42,7 +42,7 @@ endif; //(count($project['Contract'])):
 	Add Information and documents
 </a>
 <h2>
-	Donor, Contracts and Budgets
+	Donors, Contracts and Budgets
 	<?php echo $this->Tooltip->element('This section requires you to complete data for each donor contract you have with the project'); ?>
 </h2>
 
@@ -70,9 +70,14 @@ endif; //(count($project['Contract'])):
 			<thead>
 				<tr>
 
-					<td colspan='2'>
+					<td>
 						Overall origin donor
 						<?php echo $this->Tooltip->element('Where the funding originates from. For example, in Nigeria Alert is a consortium sub-partner to the British Council for a Security & Reconciliation project funded by DFID. In this case, DFID is the origin donor and the "sub-donor" to Alert is British Council.'); ?>
+					</td>
+
+					<td>
+						Donor Framework
+						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
 					</td>
 
 					<td>
@@ -86,7 +91,7 @@ endif; //(count($project['Contract'])):
 			<tbody>
 				<tr>
 
-					<td colspan='2'>
+					<td>
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.donor_id', array(
 
 							'id' => false,
@@ -98,6 +103,19 @@ endif; //(count($project['Contract'])):
 							'class' => 'contract-donor-id',
 
 						)); ?>
+					</td>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.framework_id', array(
+							'label' => false,
+							'type' => 'select',
+							'empty' => '---- No Donor Framework ----',
+							'value' => $contract['framework_id'],
+							'options' => $frameworks,
+							'class' => 'contract-donor-framework'
+						)); ?>
+
 					</td>
 
 					<td>
@@ -115,10 +133,7 @@ endif; //(count($project['Contract'])):
 
 				<tr>
 
-					<td>
-						Donor Framework
-						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
-					</td>
+					
 
 					<td>
 						Contract Category
@@ -132,23 +147,18 @@ endif; //(count($project['Contract'])):
 						<?php echo $this->Tooltip->element('Please select from the list.  If your currency is not listed, please contact Technology team to amend.'); ?>
 
 					</td>
+
+					<td>
+						Total origin donor contract value (Donor Currency) (Donor currency)
+						<?php echo $this->Tooltip->element('This should be the total budget for the whole project across all partners – reflecting the full budget of the primary contract holder with the donor, or the sum of all consortium member budgets. For example, in Nigeria, Alert is part of a consortium led by the British Council. British Council has a £33 million GBP contract with DFID for the whole project. Alert is a partner in British Council’s consortium and our sub-contract with British Council for the project is £795,000. In this case the Total origin donor contract value (Donor Currency) is £33,000,000 so that would be entered in this field.'); ?>
+
+					</td>
 					
 				</tr>
 				
 				<tr>
 
-					<td>
-
-						<?php echo $this->Form->input('Contract.'.$contract['id'].'.framework_id', array(
-							'label' => false,
-							'type' => 'select',
-							'empty' => '---- No Donor Framework ----',
-							'value' => $contract['framework_id'],
-							'options' => $frameworks,
-							'class' => 'contract-donor-framework'
-						)); ?>
-
-					</td>
+					
 
 					<td>
 
@@ -174,6 +184,16 @@ endif; //(count($project['Contract'])):
 							'value' => $contract['currency_id'],
 							'options' => $currencies,
 							'class' => 'contract-donor-currency',
+						)); ?>
+
+					</td>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.origin_total_value', array(
+							'label' => false,
+							'type' => 'text',
+							'class' => 'contract-origin-total-value',
 						)); ?>
 
 					</td>
@@ -347,9 +367,14 @@ endif; //(count($project['Contract'])):
 			<thead>
 				<tr>
 
-					<td colspan="2">
+					<td>
 						Overall origin donor
 						<?php echo $this->Tooltip->element('Where the funding originates from. For example, in Nigeria Alert is a consortium sub-partner to the British Council for a Security & Reconciliation project funded by DFID. In this case, DFID is the origin donor and the "sub-donor" to Alert is British Council.'); ?>
+					</td>
+
+					<td>
+						Donor Framework
+						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
 					</td>
 
 					<td>
@@ -366,7 +391,7 @@ endif; //(count($project['Contract'])):
 			<tbody>
 				<tr>
 
-					<td colspan="2">
+					<td>
 						<?php echo $this->Form->input('Contract.{contract_id}.donor_id', array(
 							'id' => false,
 							'type' => 'select',
@@ -375,6 +400,19 @@ endif; //(count($project['Contract'])):
 							'options' => $donors,
 							'class' => 'contract-donor-id',
 						)); ?>
+					</td>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.{contract_id}.framework_id', array(
+							'label' => false,
+							'type' => 'select',
+							'id' => false,
+							'empty' => '---- No Donor Framework ----',
+							'options' => $frameworks,
+							'class' => 'contract-donor-framework'
+						)); ?>
+
 					</td>
 
 					<td>
@@ -393,11 +431,6 @@ endif; //(count($project['Contract'])):
 				<tr>
 
 					<td>
-						Donor Framework
-						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
-					</td>
-
-					<td>
 						Contract Category
 						<?php echo $this->Tooltip->element('Please enter the type of contract that Alert holds (the overall contract with origin donor may be a different type). For example, in Nigeria, Alert holds a sub-contract with the British Council for a Security & Reconciliation project. British Council holds the overall project contract with DFID which is a service contract.'); ?>
 					</td>
@@ -406,23 +439,18 @@ endif; //(count($project['Contract'])):
 						Donor currency
 						<?php echo $this->Tooltip->element('Please enter the native currency of the grant'); ?>
 					</td>
+
+					<td>
+						Total origin donor contract value (Donor Currency)
+						<?php echo $this->Tooltip->element('This should be the total budget for the whole project across all partners – reflecting the full budget of the primary contract holder with the donor, or the sum of all consortium member budgets. For example, in Nigeria, Alert is part of a consortium led by the British Council. British Council has a £33 million GBP contract with DFID for the whole project. Alert is a partner in British Council’s consortium and our sub-contract with British Council for the project is £795,000. In this case the Total origin donor contract value is £33,000,000 so that would be entered in this field.'); ?>
+
+					</td>
 					
 				</tr>
 				
 				<tr>
 
-					<td>
-
-						<?php echo $this->Form->input('Contract.{contract_id}.framework_id', array(
-							'label' => false,
-							'type' => 'select',
-							'id' => false,
-							'empty' => '---- No Donor Framework ----',
-							'options' => $frameworks,
-							'class' => 'contract-donor-framework'
-						)); ?>
-
-					</td>
+					
 
 					<td>
 
@@ -448,6 +476,17 @@ endif; //(count($project['Contract'])):
 							'empty' => '---- Please Select ----',
 							'options' => $currencies,
 							'class' => 'contract-donor-currency'
+						)); ?>
+
+					</td>
+
+					<td>
+
+						<?php echo $this->Form->input('Contract.{contract_id}.origin_total_value', array(
+							'label' => false,
+							'type' => 'text',
+							'id' => false,
+							'class' => 'contract-origin-total-value'
 						)); ?>
 
 					</td>
