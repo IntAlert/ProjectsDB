@@ -15,7 +15,7 @@ nav.subnav input[type=submit] {
 	margin-top:1em;
 }
 
-.departments-pipelineExportForm .pipeline-container {
+.pipeline-preview .pipeline-container {
 	width:auto;
 }
 
@@ -30,6 +30,16 @@ table.pipeline td.confirmed-highly-likely {
 table.pipeline td.last-year {
 	background:#fff;
 }
+
+.pipeline-export-by-department .fa-check {
+	color:green;
+}
+
+.pipeline-export-by-department .fa-times-circle {
+	color:red;
+}
+
+
 
 .export-mac-template {
 	margin-top:2em;

@@ -7,6 +7,12 @@ class ProjectChecker {
 	private $project;
 
 	function __construct($project) {
+
+		// normalise
+		if (!isset($project['Project'])) {
+			$project['Project'] = $project;
+		}
+
 		$this->project = $project;
 	}
 
@@ -63,6 +69,10 @@ class ProjectChecker {
 
 	function hasValidTerritories() {
 		return !! count($this->project['Territory']); // at least one?
+	}
+
+	function hasAtLeastOneContract() {
+		return !! count($this->project['Contract']); // at least one?
 	}
 
 }

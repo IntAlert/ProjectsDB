@@ -15,7 +15,7 @@ echo $this->Form->input('action', array(
 
  ?>
 
-<h2>Project Search</h2>
+<h2>Proposal/Project Search</h2>
 
 
 <?php echo $this->element('Projects/search/left'); ?>

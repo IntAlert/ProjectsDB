@@ -152,7 +152,7 @@ if ( !isset($title) ) {
 					
 					<a href="/pdb/projects">
 						<i class="fa fa-search"></i>
-						Search Projects
+						Search Proposals/Projects
 					</a>
 
 				</li>
@@ -160,7 +160,7 @@ if ( !isset($title) ) {
 				<li class="projects-add">
 					<a href="/pdb/projects/add">
 						<i class="fa fa-plus-circle"></i>
-						Add Project
+						Add Proposal/Project
 					</a>
 				</li>
 

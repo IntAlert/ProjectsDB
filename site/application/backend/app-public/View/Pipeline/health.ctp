@@ -90,8 +90,6 @@ foreach ($projects as $project):
 endforeach; // ($projects as $project): 
 
 
-
-
 ?>
 
 <nav class="subnav">

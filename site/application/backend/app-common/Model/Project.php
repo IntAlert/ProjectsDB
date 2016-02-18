@@ -182,7 +182,7 @@ class Project extends AppModel {
 			'conditions' => array(
 				'Project.deleted' => false,
 				'Project.department_id' => $department_id,
-				'OR' => array(
+				'AND' => array(
 					'YEAR(Project.start_date) <=' => $year,
 					'YEAR(Project.finish_date) >=' => $year,
 				)

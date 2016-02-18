@@ -231,6 +231,7 @@ class MACPipelineByDepartment {
 				'id' => $project['Project']['id'],
 				'title' => $project['Project']['title'],
 				'likelihood_short_name' => $project['Likelihood']['short_name'],
+				'Territory' => $project['Territory'], // all contracts
 				'territory_names' => $territory_names,
 				'fund_code' => $project['Project']['fund_code'],
 
@@ -242,6 +243,7 @@ class MACPipelineByDepartment {
 
 				'value_required' => $project['Project']['value_required'],
 
+				'Contract' => $project['Contract'], // all contracts
 				'contract_primary' => $contract_primary,
 				'contracts_secondary' => $contracts_secondary,
 

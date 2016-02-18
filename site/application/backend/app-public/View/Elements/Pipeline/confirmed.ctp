@@ -42,6 +42,18 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				<?php echo $selectedYear + 1; ?>
 			</th>
 
+			<th>
+				Has 1+ contract(s)
+			</th>
+
+			<th>
+				Has annual budgets
+			</th>
+
+			<th>
+				Has territories
+			</th>
+
 		</tr>
 
 	</thead>
@@ -49,7 +61,11 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 	<tbody>
 
 
-<?php foreach ($confirmedProjects as $project): ?>
+<?php foreach ($confirmedProjects as $project): 
+
+	$projectChecker = new ProjectChecker($project);
+
+?>
 	
 
 		<!-- Primary Contract -->
@@ -130,6 +146,46 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				<?php echo $this->MacNumber->currency($project['contract_primary']['contract_budget_next_year_gbp']); ?>
 			</td>
 
+			<td>
+				
+				<?php 
+
+					if ($projectChecker->hasAtLeastOneContract()) {
+						echo '<i class="fa fa-check"></i>';
+					} else {
+						echo '<i class="fa fa-times-circle"></i>';
+					}
+
+				?>
+
+			</td>
+
+			<td>
+					<?php 
+
+					if ($projectChecker->hasValidAnnualBudgets($selectedYear)) {
+						echo '<i class="fa fa-check"></i>';
+					} else {
+						echo '<i class="fa fa-times-circle"></i>';
+					}
+
+					?>
+			</td>
+
+			<td>
+				
+				<?php 
+
+					if ($projectChecker->hasValidTerritories()) {
+						echo '<i class="fa fa-check"></i>';
+					} else {
+						echo '<i class="fa fa-times-circle"></i>';
+					}
+
+				?>
+
+			</td>
+			
 		</tr>
 
 

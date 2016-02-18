@@ -68,7 +68,7 @@
 				
 				<?php echo $this->Html->link('Export MAC template', array(
 					'controller' => 'pipeline', 
-					'action' => 'health',
+					'action' => 'preview',
 					'?' => array('selectedYear' => $selectedYear)
 				), array('class' => 'export')); ?>
 			</li>
