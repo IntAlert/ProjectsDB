@@ -22,7 +22,7 @@
 
 
 	<fieldset>
-		<legend><?php echo __('Edit Project'); ?></legend>
+		<legend><?php echo __('Edit Proposal/Project'); ?></legend>
 	<?php echo $this->Form->input('id'); ?>
 
 

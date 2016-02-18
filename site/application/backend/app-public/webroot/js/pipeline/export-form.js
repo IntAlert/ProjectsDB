@@ -14,8 +14,6 @@ $(function(){
 	});
 
 
-
-
 	// COMPARISSON DATE
 	function niceDateUpdater(dateText) {
 		var niceDate = Date.parse(dateText).toString('MMMM d, yyyy')
@@ -24,8 +22,11 @@ $(function(){
 
 	// activate datepicker 
 	$('.pipeline-preview .datepicker').datepicker({
-		dateFormat: 'dd-mm-yy',
-		onSelect: niceDateUpdater
+		dateFormat: 'yy-mm-dd',
+		onSelect: function(dateText){
+			niceDateUpdater(dateText);
+			localStorage[selectedYear + '-comparisson-date'] = dateText;
+		}
 	});
 
 	$(".datepicker-nice").click(function(){

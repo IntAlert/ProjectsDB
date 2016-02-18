@@ -26,7 +26,7 @@
 				</th>
 				<th colspan="3" class="last-year">
 					
-					Comparison Date
+					Comparisson Date
 					
 				</th>
 			</tr>
@@ -45,7 +45,7 @@
 				</th>
 				<th colspan="3">
 					Comparisson Figures as at <br>
-					<span class="comparisson-date">Date not set</span>
+					<span class="datepicker-nice comparisson-date">Date not set</span>
 				</th>
 			</tr>
 

@@ -28,7 +28,7 @@
 				</th>
 				<th colspan="3" class="last-year">
 					
-					Comparison Date
+					Comparisson Date
 					
 				</th>
 			</tr>
