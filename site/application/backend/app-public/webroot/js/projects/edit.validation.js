@@ -26,7 +26,7 @@ $(function(){
 			submitHandler: function(form) {
 				
 				// handle parent form submission
-				if (checkForInconsistencies()) {
+				if (finalChecks()) {
 					// no inconsistencies, or
 					// user happy with any that exist
 
@@ -155,6 +155,13 @@ $(function(){
 			  number: true
 			});
 
+			$contracts.find(".contract-origin-total-value").rules("add", { 
+			  required:true,
+			  number: true
+			});
+
+			
+
 		}
 
 		function checkForInconsistencies() {
@@ -187,6 +194,52 @@ $(function(){
 			}			
 
 			return true;
+
+		}
+
+		function checkContractsMinimumRequirements() {
+
+
+
+			var $contracts = $(".component-contracts").find(".contract:not(.template)");
+
+			// check at least one contract
+			if ($contracts.length == 0) {
+				alert("Please add at least one contract")
+				return false
+			}
+
+			// check each contract has a budget 
+			var missingAnnualBudget = 0;
+			$contracts.each(function(contractBlock){
+				$contractBlock = $(this);
+
+				if ($contractBlock.find('.value_donor_currency').length == 0) {
+					missingAnnualBudget++
+				}		
+			})
+
+			if (missingAnnualBudget > 0) {
+				alert('Each contract needs at least one annual budget')
+				return false;	
+			}
+
+
+			// all must have been fine
+			return true;
+
+
+		}
+
+		function finalChecks() {
+
+			if (checkForInconsistencies() == false) {
+				return false
+			} else if ( checkContractsMinimumRequirements() == false) {
+				return false
+			}
+			return true
+
 
 		}
 
