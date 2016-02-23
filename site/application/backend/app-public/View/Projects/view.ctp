@@ -414,7 +414,7 @@ $textBlocks = array(
 
 <?php echo $this->element('Projects/view/projectnotes'); ?>
 
-
+<iframe src="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=%2Fprompt%2FDocuments%2FPRODUCTION%2Fprojects%2Fproject_id_98%2Fgeneral"></iframe>
 	
 <!-- 
 
