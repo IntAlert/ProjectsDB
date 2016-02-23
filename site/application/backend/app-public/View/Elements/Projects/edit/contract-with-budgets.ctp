@@ -193,6 +193,7 @@ endif; //(count($project['Contract'])):
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.origin_total_value', array(
 							'label' => false,
 							'type' => 'text',
+							'value' => $contract['origin_total_value'],
 							'class' => 'contract-origin-total-value',
 						)); ?>
 
