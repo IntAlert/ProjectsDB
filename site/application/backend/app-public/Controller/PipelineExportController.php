@@ -73,35 +73,34 @@ class PipelineExportController extends AppController {
 
 		$comparissonData['total'] = array(
 			'department-budget' => 0,
-			'department-chfl' => 0,
+			'department-cfhl' => 0,
 		);
-
 
 		foreach ($this->departmentsList as $department_id => $name) {
 
 			// grab figures, if they exist
 			$departmentBudget = (int) $this->request->data('department-budget.' . $department_id);
-			$departmentCHFL = (int) $this->request->data('department-chfl.' . $department_id);
+			$departmentCFHL = (int) $this->request->data('department-cfhl.' . $department_id);
 
 			// add to totals
 			$comparissonData['total']['department-budget'] += $departmentBudget;
-			$comparissonData['total']['department-chfl'] += $departmentCHFL;
+			$comparissonData['total']['department-cfhl'] += $departmentCFHL;
 
 			// calculate ratio
 			if ($departmentBudget > 0) {
-				$ratio = $departmentCHFL / $departmentBudget;
+				$ratio = $departmentCFHL / $departmentBudget;
 			} else {
 				$ratio = '';
 			}
 
 			$comparissonData['department-budget'][$department_id] = $departmentBudget;
-			$comparissonData['department-chfl'][$department_id] = $departmentCHFL;
+			$comparissonData['department-cfhl'][$department_id] = $departmentCFHL;
 			$comparissonData['department-ratio'][$department_id] = $ratio;
 		}
 
 		// calculate total ratio
 		if ($comparissonData['total']['department-budget'] > 0) {
-			$total_ratio = $comparissonData['total']['department-chfl'] / $comparissonData['total']['department-budget'];
+			$total_ratio = $comparissonData['total']['department-cfhl'] / $comparissonData['total']['department-budget'];
 		} else {
 			$total_ratio = '';
 		}
@@ -167,7 +166,7 @@ class PipelineExportController extends AppController {
 
 			// add previous year snapshot
 			$this->comparissonData['total']['department-budget'],
-			$this->comparissonData['total']['department-chfl'],
+			$this->comparissonData['total']['department-cfhl'],
 			$this->comparissonData['total']['department-ratio'],
 			
 		);
@@ -196,11 +195,13 @@ class PipelineExportController extends AppController {
 
 				// add previous year snapshot
 				$this->comparissonData['department-budget'][$department_id],
-				$this->comparissonData['department-chfl'][$department_id],
+				$this->comparissonData['department-cfhl'][$department_id],
 				$this->comparissonData['department-ratio'][$department_id],
 			
 				
 			);
+
+
 			
 			// add the row of data
 		    $sheet->fromArray($departmentTotal, NULL, 'A' . $rowNumber);
