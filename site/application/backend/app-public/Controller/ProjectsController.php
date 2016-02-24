@@ -273,6 +273,7 @@ class ProjectsController extends AppController {
 					'Programme',
 					'OwnerUser',
 					'Territory',
+					'Pathway',
 				),
 				'conditions' => array(
 					'Project.id' => $id
