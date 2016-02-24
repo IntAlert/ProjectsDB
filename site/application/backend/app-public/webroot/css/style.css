@@ -1,4 +1,4 @@
-body {background:#54D3DE;}
+body {background:#54D3DE; font-size: 85%;}
 #container {min-width: 1120px;}
 
 nav {padding:1.5em 1em 0;}
@@ -21,7 +21,7 @@ nav.main ul li a {
 	background:rgba(255,255,255,0.7);
 	color:#444;
 	border-radius: 5px 5px 0 0;
-
+	font-size:12px;
 }
 nav.main ul li a:hover {
 	background:rgba(255,255,255,0.85);

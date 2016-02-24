@@ -1,6 +1,10 @@
-<?php if (count($projects)): ?>
+
+<?php if ($this->request->query('action')): ?>
 
 <div class="project-search-results">
+
+<?php if (count($projects)): ?>
+
 
 <table>
 
@@ -11,13 +15,17 @@
 			</th>
 
 			<th>
-				Project
+				Status
 			</th>
 
 			<th>
-				Fund code
+				Project
 			</th>
 
+<!-- 		<th>
+				Fund code
+			</th>
+ -->
 			<th>
 				Donor
 			</th>
@@ -71,10 +79,14 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 			</td>
 
 			<td>
-				<?php echo $this->Html->link($project['Project']['title'], array('controller' => 'projects', 'action' => 'view', $project['Project']['id'])); ?>
+				<?php echo $project['Status']['name'] ?>
 			</td>
 
 			<td>
+				<?php echo $this->Html->link($project['Project']['title'], array('controller' => 'projects', 'action' => 'view', $project['Project']['id'])); ?>
+			</td>
+
+			<!-- <td>
 				<?php 
 					if ($project['Project']['fund_code']) {
 						echo h($project['Project']['fund_code']);
@@ -82,11 +94,12 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 						echo 'none';
 					}
 				?>
-			</td>
+			</td> -->
 
 			<td>
 				<?php 
-					if ($contract_primary) {
+					if ($contract_primary['Donor']) {
+						
 						echo h($contract_primary['Donor']['name']);
 
 					} else {
@@ -131,7 +144,7 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 					<?php echo $project['Project']['title']; ?>
 				</td>
 
-				<td>
+				<!-- <td>
 					<?php 
 						if ($project['Project']['fund_code']) {
 							echo h($project['Project']['fund_code']);
@@ -139,7 +152,7 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 							echo 'none';
 						}
 					?>
-				</td>
+				</td> -->
 
 				<td>
 					<?php 
@@ -189,6 +202,11 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 <?php echo $this->element('Projects/search/pagination'); ?>
 
 
+<?php else: // (count($projects)): ?>
+	<p class="error">No results for your search criteria.</p>
+<?php endif; // (count($projects)): ?>
+
 </div>
 
-<?php endif; // (count($projects)): ?>
+
+<?php endif; // ($this->request->query('action')): ?>

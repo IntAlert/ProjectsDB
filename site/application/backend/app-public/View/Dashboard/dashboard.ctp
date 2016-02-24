@@ -46,7 +46,7 @@
 
 <?php endforeach; // ($departments as $department): ?>
 
-
+<!-- 
 	<div class="search-form">
 
 		<h2>Search Projects</h2>
@@ -69,8 +69,8 @@
 		</form>
 
 	</div>
-
-	<div class="search-form">
+ -->
+	<!-- <div class="search-form">
 
 		<h2>Search Documents</h2>
 		
@@ -90,7 +90,7 @@
 
 		</form>
 
-	</div>
+	</div> -->
 
 
 	<p class="feedback">

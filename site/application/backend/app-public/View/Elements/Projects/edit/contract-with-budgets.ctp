@@ -39,7 +39,7 @@ endif; //(count($project['Contract'])):
 <div class="component-contracts">
 
 <a class="btn btn-contract-add" href="#" style="float:right">
-	Add Information and documents
+	Add Additional Contracts
 </a>
 <h2>
 	Donors, Contracts and Budgets
@@ -515,6 +515,8 @@ endif; //(count($project['Contract'])):
 				<?php echo $this->Tooltip->element('Please calculate the estimated expenditure value for each calendar year (this will be used in the MAC pipeline)');
 				?>
 			</h3>
+
+			<small><a target="_blank" href="https://portal.international-alert.org/fis/mer/SitePages/Home.aspx">Alert's working exchange rates are published here</a></small>
 			
 			<table>
 				<thead>

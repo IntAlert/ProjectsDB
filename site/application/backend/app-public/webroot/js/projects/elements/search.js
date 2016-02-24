@@ -1,6 +1,6 @@
 $(function(){
 
-	 $('#ProjectStartDate').datepicker({dateFormat: 'dd/mm/yy'});
+	$('#ProjectStartDate').datepicker({dateFormat: 'dd/mm/yy'});
 	$('#ProjectFinishDate').datepicker({dateFormat: 'dd/mm/yy'});
 
 	// reset all fields
@@ -17,10 +17,7 @@ $(function(){
 		return false;
 	})
 
-	 $(".project-search-left select").selectmenu({width:$('.project-search-left').width()});
-
-
-
+	 // $(".project-search-left select").selectmenu({width:$('.project-search-left').width()});
 
 
 })

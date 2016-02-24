@@ -3,7 +3,6 @@
 
 class MACPipelineByDepartment {
 
-	
 	private $year = false;
 	private $departmentBudgetThisYear = false;
 	private $departmentBudgetNextYear = false;

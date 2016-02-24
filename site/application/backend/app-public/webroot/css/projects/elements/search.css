@@ -41,9 +41,9 @@
 	width:20%;
 	height:100px;
 }
-.project-search-left ul li select,
-.project-search-left ul li input,
-.project-search-left ul li label {
+.project-search-left select,
+.project-search-left input,
+.project-search-left label {
 	width:100%;
 	font-size:120%;
 }

@@ -51,7 +51,7 @@
 			</th>
 
 			<th>
-				Has annual budgets
+				Complete annual budgets
 			</th>
 
 			<th>

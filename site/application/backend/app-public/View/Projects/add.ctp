@@ -84,7 +84,7 @@
 
 	<?php echo $this->Form->input('beneficiaries', array(
 			// 'placeholder' => "e.g. help text",
-			'tooltip' => 'Include total number of beneficiaries to be reached in the project and an estimate of gender disaggregation',
+			'tooltip' => 'Include all relevant information such as of type of beneficiary, total number of beneficiaries to be reached in the project and an estimate of gender disaggregation',
 		)); ?>
 
 
@@ -138,8 +138,6 @@
 			'options' => $budget_holders,
 			'tooltip' => 'Enter name of Alert\'s budget holder',
 		));
-
-
 ?>
 
 

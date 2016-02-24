@@ -11,10 +11,12 @@ $(function(){
 		// get selected option text
 		var selectedStatusId = statusRadiosContainer.find(":checked").val();
 
+		// these are the IDs used in the database for these statuses/likelihoods
 		var statusIdApproved = 2;
 		var statusIdOngoing = 9;
 		var statusIdCompleted = 6;
 		var statusIdRejected = 4;
+		var statusIdCancelled = 10;
 		var likelihoodIdLow = 4;
 		var likelihoodIdConfirmed = 2;
 
@@ -29,7 +31,7 @@ $(function(){
 			$(".input.radio.likelihood").buttonset('refresh');
 			$(".input.radio.likelihood").buttonset('disable');
 
-		} else if (selectedStatusId == statusIdRejected) {
+		} else if (selectedStatusId == statusIdRejected || selectedStatusId == statusIdCancelled) {
 			// select 'low' likelihood
 			var likelihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdLow+']'));
 	  

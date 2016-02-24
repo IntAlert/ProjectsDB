@@ -46,6 +46,9 @@
 			</li>
 	<?php endforeach; // ($departments as $department): ?>
 
+
+
+<?php if ($is_admin): // only show nav to logged in users ?>
 			<li>
 				<?php echo $this->Html->link('Edit ' . $selectedYear . ' budgets', array(
 					'controller' => 'departmentbudgets', 
@@ -62,11 +65,12 @@
 					($selectedYear + 1)
 				), array('class' => 'departmentbudget')); ?>
 
-			</li>			
+			</li>	
+<?php endif; // ($is_admin): // only show nav to logged in users ?>
 
 			<li>
 				
-				<?php echo $this->Html->link('Export MAC template', array(
+				<?php echo $this->Html->link('Check and Export Fundraising pipeline', array(
 					'controller' => 'pipeline', 
 					'action' => 'preview',
 					'?' => array('selectedYear' => $selectedYear)

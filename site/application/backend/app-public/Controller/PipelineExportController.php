@@ -23,7 +23,7 @@ class PipelineExportController extends AppController {
 		$exportFile = $this->savePipeline();
 
 		// respond with file
-		$name = 'MAC Pipeline ' . $this->selectedYear . ' ' . $this->Time->format('y-m-d-h-i', new DateTime()) . '.xlsx';
+		$name = 'Fundraising Pipeline ' . $this->selectedYear . ' ' . $this->Time->format('y-m-d-h-i', new DateTime()) . '.xlsx';
 		$download = true;
 		$this->response->file($exportFile, compact('name', 'download'));
     }

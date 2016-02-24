@@ -49,8 +49,8 @@ class MACPipeline {
 			// remove deleted projects
 			$project_deleted = $contractBudget['Contract']['Project']['deleted'];
 
-			// ignore if project is rejected or deleted
-			$project_ok = !$project_deleted && ($projectStatus != 'rejected') ;
+			// ignore if project is rejected, cancelled or deleted
+			$project_ok = !$project_deleted && ($projectStatus != 'rejected') && ($projectStatus != 'cancelled') ;
 
 			// remove deleted contracts
 			$contract_ok = !$contractBudget['Contract']['deleted'];

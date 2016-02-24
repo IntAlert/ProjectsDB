@@ -116,4 +116,11 @@ class DepartmentbudgetsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function isAuthorized($user) {
+		
+        // limit to admin for eveything but dashboard
+        return $this->userIs('admin');
+        
+    }
 }

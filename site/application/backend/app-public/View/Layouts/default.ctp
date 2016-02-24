@@ -152,7 +152,7 @@ if ( !isset($title) ) {
 					
 					<a href="/pdb/projects">
 						<i class="fa fa-search"></i>
-						Search Proposals/Projects
+						Search Data
 					</a>
 
 				</li>
@@ -168,7 +168,7 @@ if ( !isset($title) ) {
 					
 					<a href="/pdb/pipeline/summary">
 						<i class="fa fa-table"></i>
-						MAC Pipeline
+						Fundraising Pipeline
 					</a>
 				</li>
 

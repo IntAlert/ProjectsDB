@@ -177,11 +177,12 @@ class Project extends AppModel {
 				'Contract.Donor',
 				'Territory',
 				'Likelihood',
-
+				'Status',
 			),
 			'conditions' => array(
 				'Project.deleted' => false,
 				'Project.department_id' => $department_id,
+				'Status.short_name <>' => array('cancelled', 'rejected'),
 				'AND' => array(
 					'YEAR(Project.start_date) <=' => $year,
 					'YEAR(Project.finish_date) >=' => $year,

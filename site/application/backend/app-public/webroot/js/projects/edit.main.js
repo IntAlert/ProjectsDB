@@ -1,10 +1,7 @@
 $(function(){
 
 
-  $( "#ProjectOwnerUserId" ).selectmenu();
-
-	
-
+  // $( "#ProjectOwnerUserId" ).selectmenu();
 
 	// set up project dates
 	// SUBMISSION DATES

@@ -102,11 +102,11 @@ endforeach; // ($projects as $project):
 </nav>
 
 <h2>
-	MAC pipeline <?php echo $selectedYear; ?> health check
+	Fundraising pipeline <?php echo $selectedYear; ?> health check
 </h2>
 
 <p>
-	You are about to export a MAC pipeline template for <?php echo $selectedYear; ?>.
+	You are about to export a Fundraising pipeline template for <?php echo $selectedYear; ?>.
 </p>
 
 
@@ -212,7 +212,7 @@ endforeach; // ($projects as $project):
 <?php endif; // (count($projectsWithoutTerritories)): ?>
 
 
-<?php echo $this->Html->link('Preview MAC template', array(
+<?php echo $this->Html->link('Preview Fundraising template', array(
 	'controller' => 'pipeline', 
 	'action' => 'preview',
 	'?' => array('selectedYear' => $selectedYear)

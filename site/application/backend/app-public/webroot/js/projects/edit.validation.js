@@ -73,7 +73,7 @@ $(function(){
 				"data[Project][title]": {
 					required: true,
 					minlength: 3,
-					maxlength: 100
+					maxlength: 200
 				},
 
 				"data[Project][summary]": {
