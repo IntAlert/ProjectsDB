@@ -33,12 +33,12 @@ $(function(){
 
 		} else if (selectedStatusId == statusIdRejected || selectedStatusId == statusIdCancelled) {
 			// select 'low' likelihood
-			var likelihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdLow+']'));
+			// var likelihoodToPreselect = $(likelihoodRadiosContainer.find('[value='+likelihoodIdLow+']'));
 	  
-			likelihoodToPreselect.prop('checked', true);
+			// likelihoodToPreselect.prop('checked', true);
 
 			// hide likehoods
-			$(".input.radio.likelihood").buttonset('refresh');
+			// $(".input.radio.likelihood").buttonset('refresh');
 			$(".input.radio.likelihood").buttonset('disable');
 		} else {
 			// show likehood
