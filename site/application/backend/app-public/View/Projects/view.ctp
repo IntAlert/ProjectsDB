@@ -203,6 +203,8 @@ var data = <?php echo json_encode($project); ?>;
 				  'F jS, Y',
 				  $project['Project']['finish_date']
 				); ?>
+
+			(<?php echo $this->CustomTime->differenceInMonths($project['Project']['start_date'], $project['Project']['finish_date']); ?>)
 			</td>
 		</tr>
 

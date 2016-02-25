@@ -46,5 +46,6 @@
 	<div class="finish">
 		<h4>Project<br>Finish Date</h4>
 		<div class="datepicker-placeholder"></div>
+		<div class="timespan-in-months"></div>
 	</div>
 </div>

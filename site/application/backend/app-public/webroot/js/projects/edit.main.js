@@ -39,6 +39,8 @@ $(function(){
 
         }
 
+        updateTimespanInMonths();
+
       }
     });
 
@@ -52,6 +54,7 @@ $(function(){
       dateFormat: 'yy-mm-dd',
       onSelect: function(selectedDate) {
       	$( "#ProjectFinishDate" ).val(selectedDate);
+        updateTimespanInMonths();
       }
     });
 
@@ -70,6 +73,16 @@ $(function(){
         })
         .autoGrow();  
       })
+
+
+      
+    updateTimespanInMonths();
     
 	
 })
+function updateTimespanInMonths() {
+  var start = $( "#ProjectStartDate" ).val();
+  var finish = $( "#ProjectFinishDate" ).val();
+  var months = (Date.parse(finish) - Date.parse(start)) / (60 * 60 * 24 * 365 * 1000 / 12);
+  $(".timespan-in-months").text(months.toFixed(1) + " month(s)")
+}
