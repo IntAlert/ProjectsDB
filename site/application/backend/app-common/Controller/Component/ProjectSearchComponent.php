@@ -24,7 +24,6 @@ class ProjectSearchComponent extends Component {
 				$conditions[] = array(
 
 					'OR' => array(
-
 						'Project.title LIKE' => '%' . trim($q_word) . '%',
 						'Project.summary LIKE' => '%' . trim($q_word) . '%',
 						'Project.objectives LIKE' => '%' . trim($q_word) . '%',
@@ -34,6 +33,21 @@ class ProjectSearchComponent extends Component {
 					)
 
 				);
+
+
+				// // also search donor names
+				// $joins[] = array(
+				// 	'table' => 'donors',
+		  //           'alias' => 'ContractDonorName',
+		  //           'type' => 'INNER',
+		  //           'conditions' => array(
+		  //               'Project.id = ContractDonorName.project_id',
+		  //               'ContractDonorName.name LIKE' =>  '%' . trim($q_word) . '%',
+		  //           )
+		  //       );
+
+
+
 			}
 		}
 
