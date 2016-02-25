@@ -124,6 +124,7 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 				); 
 
 				?>
+				(<?php echo $this->CustomTime->differenceInMonths($project['Project']['start_date'], $project['Project']['finish_date']); ?>)
 			</td>
 
 			<td>
