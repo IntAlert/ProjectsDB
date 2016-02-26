@@ -23,6 +23,7 @@ class MACPipelineByDepartment {
 			$likelihood_ok = array_search($flattenedProject['likelihood_short_name'], $likelihoods) !== FALSE;
 
 			if ($likelihood_ok) $projects[] = $flattenedProject;
+			
 		}
 
 		// sort on primary territory name

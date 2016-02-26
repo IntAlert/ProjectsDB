@@ -199,8 +199,6 @@ $(function(){
 
 		function checkContractsMinimumRequirements() {
 
-
-
 			var $contracts = $(".component-contracts").find(".contract:not(.template)");
 
 			// check at least one contract
@@ -209,21 +207,51 @@ $(function(){
 				return false
 			}
 
-			// check each contract has a budget 
+
+			// check each contract has a budget for every year
+			var start = Date.parse($( "#ProjectStartDate" ).val());
+			var finish = Date.parse($( "#ProjectFinishDate" ).val());
+
+			var startYear = start.toString("yyyy")
+			var finishYear = finish.toString("yyyy")
+
 			var missingAnnualBudget = 0;
 			$contracts.each(function(contractBlock){
 				$contractBlock = $(this);
+				
+				$contractBlock.each(function(){
 
-				if ($contractBlock.find('.value_donor_currency').length == 0) {
-					missingAnnualBudget++
-				}		
+					for (var y = startYear; y <= finishYear; y++) {
+
+						if ($contractBlock.find('.year[value="' + y + '"]').length == 0) {
+							missingAnnualBudget++
+						}		
+
+					}
+
+				})
 			})
 
 			if (missingAnnualBudget > 0) {
-				alert('Each contract needs at least one annual budget')
+				alert('The annual budgets for each contract need to cover the entire project timespan')
 				return false;	
 			}
 
+			// check no budgets for years outside timespan
+			var tooManyBudgets = 0;
+			$contracts.find('input.year').each(function(){
+				var year = $(this).val()
+				if ( !(year >= startYear && year <= finishYear) ) {
+					tooManyBudgets++
+				}
+			})
+			
+			if (tooManyBudgets > 0) {
+				alert('At least one of your contract budgets covers a year outside of the project timespan. Please correct.')
+				return false;
+			}
+			
+					
 
 			// all must have been fine
 			return true;

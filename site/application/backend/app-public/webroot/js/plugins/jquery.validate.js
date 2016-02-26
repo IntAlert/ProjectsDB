@@ -134,8 +134,6 @@ $.extend($.fn, {
 		var element = this[ 0 ],
 			settings, staticRules, existingRules, data, param, filtered;
 
-console.log(this)
-
 		if ( command ) {
 			settings = $.data( element.form, "validator" ).settings;
 			staticRules = settings.rules;
