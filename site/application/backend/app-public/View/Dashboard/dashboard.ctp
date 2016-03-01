@@ -42,7 +42,7 @@
 
 <?php endforeach; // ($departments as $department): ?>
 
-<?php echo $this->element('/dashboard/map'); ?>
+<?php echo $this->element('Dashboard/map'); ?>
 
 <!-- 
 	<div class="search-form">
