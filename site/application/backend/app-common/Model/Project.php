@@ -283,12 +283,17 @@ class Project extends AppModel {
 					];
 				}
 
-				$projectsByTerritory[$territory['iso3']]['projects'][] = $project;
+				$projectsByTerritory[$territory['iso3']]['projects'][$project['Project']['id']] = $project;
 
 			endforeach; //($project['Territory'] as $territory):
 
 		}
 
+		// remove keys, all a bit hacky
+		foreach ($projectsByTerritory as &$val) {
+			$val['projects'] = array_values($val['projects']);
+		}
+		
 		return $projectsByTerritory;
 	}
 
