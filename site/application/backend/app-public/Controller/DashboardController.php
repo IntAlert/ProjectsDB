@@ -25,8 +25,25 @@ class DashboardController extends AppController {
 		// get company activity
 		$projectsCompanyActivity = $this->Audit->findCompanyActivity();
 
+
 		$this->set(compact('projectsRecentlyViewed', 'projectsCompanyActivity', 'departmentsWithProjects'));
+
+		// map data
+		$year = date('Y');
+		$mapData = $this->Project->getMapData(2015);
+		$this->set(compact('mapData', 'year'));
+
 		
+		
+	}
+
+	public function map() {
+
+		$year = date('Y');
+		
+		$mapData = $this->Project->getMapData(2015);
+
+		$this->set(compact('mapData', 'year'));
 	}
 
 	public function admin() {

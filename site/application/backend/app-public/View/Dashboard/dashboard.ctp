@@ -1,7 +1,3 @@
-
-
-
-
 <div id="dashboard-actions">
 
 	<h2>
@@ -45,6 +41,8 @@
 	</ul>
 
 <?php endforeach; // ($departments as $department): ?>
+
+<?php echo $this->element('/dashboard/map'); ?>
 
 <!-- 
 	<div class="search-form">
@@ -188,5 +186,7 @@
 
 		</ul>
 	</section>
+
+	
 
 </div>

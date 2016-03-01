@@ -73,7 +73,7 @@
 				Pipeline (all unconfirmed)
 			</th>
 			<th colspan="3">
-				Comparisson Figures as at <br>
+				Comparison Figures as at <br>
 				<?php echo $this->Time->nice($thisTimeLastYear); ?>
 			</th>
 		</tr>

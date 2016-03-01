@@ -171,7 +171,7 @@ class Project extends AppModel {
 	}
 
 	function getProjectsByDepartmentAndYear($department_id, $year) {
-		return $this->Department->Project->find('all', array(
+		return $this->find('all', array(
 			'contain' => array(
 				'Contract.Contractbudget',
 				'Contract.Donor',
@@ -235,6 +235,63 @@ class Project extends AppModel {
 
 		return $this->saveAssociated($data, array('deep' => true));
 	}
+
+
+
+	function getMapData($year) {
+		$projects = $this->find('all', array(
+			'contain' => array(
+				'Contract.Contractbudget',
+				'Contract.Donor',
+				'Territory',
+				'Likelihood',
+				'Status',
+			),
+			'conditions' => array(
+				'Project.deleted' => false,
+				'Status.short_name' => array(
+					'approved',
+					'project-ongoing',
+					'completed',
+				),
+
+				'AND' => array(
+					'YEAR(Project.start_date) <=' => $year,
+					'YEAR(Project.finish_date) >=' => $year,
+				)
+			),
+			'order' => array(
+				'Project.title' => 'ASC'
+			),
+		));
+
+		// separate into territories with iso3 codes
+		$projectsByTerritory = [];
+
+
+		foreach ($projects as $project) {
+
+			foreach($project['Territory'] as $territory):
+
+				// don't bother returning projects with null iso3
+				if ( ! $territory['iso3'] ) continue;
+
+				if (!isset($projectsByTerritory[$territory['iso3']])) {
+					$projectsByTerritory[$territory['iso3']] = [
+						'territory' => $territory,
+						'projects' => array(), // to be loaded up
+					];
+				}
+
+				$projectsByTerritory[$territory['iso3']]['projects'][] = $project;
+
+			endforeach; //($project['Territory'] as $territory):
+
+		}
+
+		return $projectsByTerritory;
+	}
+
 
 	public function softDelete($id) {
 		$this->id = $id;

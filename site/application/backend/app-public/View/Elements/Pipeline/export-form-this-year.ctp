@@ -28,7 +28,7 @@
 				</th>
 				<th colspan="3" class="last-year">
 					
-					Comparisson Date
+					Comparison Date
 					
 				</th>
 			</tr>
@@ -46,7 +46,7 @@
 					Pipeline (all unconfirmed)
 				</th>
 				<th colspan="3">
-					Comparisson Figures as at <br>
+					Comparison Figures as at <br>
 					<input type="hidden" class="datepicker" name="comparisson-date">
 					<a class="datepicker-nice" href="#">No date set</a>
 

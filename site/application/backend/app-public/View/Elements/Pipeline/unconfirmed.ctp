@@ -154,7 +154,7 @@ $projectChecker = new ProjectChecker($project);
 			<td>
 					<?php 
 
-					if ($projectChecker->hasValidAnnualBudgets($selectedYear)) {
+					if ($projectChecker->hasValidAnnualBudgets()) {
 						echo '<i class="fa fa-check"></i>';
 					} else {
 						echo '<i class="fa fa-times-circle"></i>';

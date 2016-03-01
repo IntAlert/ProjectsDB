@@ -83,7 +83,7 @@
 						
 						
 						echo $this->Form->input('territory_id', array(
-							'empty' => '--- Select Territory ---',
+							'empty' => '--- Select Territory/Sub-programme ---',
 							'label' => false,
 							'options' => $territories,
 							'value' => $this->request->query('territory_id'),

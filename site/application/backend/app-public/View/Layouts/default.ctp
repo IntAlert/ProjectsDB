@@ -62,7 +62,11 @@ if ( !isset($title) ) {
 	<script type="text/javascript" src="/pdb/js/plugins/garlic.js"></script>
 
 
-	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+
+	<script type="text/javascript" src="/pdb/js/lib/datamaps.world.min.js"></script>
+
 	<!--
 	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
 

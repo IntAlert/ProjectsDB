@@ -55,6 +55,9 @@ class ProjectChecker {
 		$presentYears = array_keys($presentYears);
 
 
+		// if ($this->project['Project']['id'] == 48) debug(get_defined_vars());
+
+
 		// should be same years
 		if (
 			count($requiredYears) != count($presentYears)
