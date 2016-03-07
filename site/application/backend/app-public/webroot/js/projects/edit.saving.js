@@ -7,7 +7,6 @@ $(function(){
 
   // detect future changes
   $("textarea,input,select").change(function(){
-    console.log(this)
     changesUnsaved = true;
   })
 });

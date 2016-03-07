@@ -185,16 +185,22 @@ function deleteContract(contractDiv) {
 	deletedInputs.val(1);
 
 	// HIDE
-	contractDiv.slideUp(function(){
+	contractDiv
+		.addClass('.deleted')
+		.slideUp(function(){
 
-		// if this a contract created in this session (i.e. not already in the DB),
-		// don't bother saving anything to the database
-		// delete all the fields
-		if (deletedInputs.length == 0) {
-			$(this).remove();
-		}
+			// if this a contract created in this session (i.e. not already in the DB),
+			// don't bother saving anything to the database
+			// delete all the fields
+			if (deletedInputs.length == 0) {
+				$(contractDiv).remove();
+			}
 
-	});
+			updateContractBudgetTotals()
+
+		});
+
+
 	
 }
 
@@ -277,7 +283,7 @@ function updateContractBudgetTotals() {
 
 	var contracts_grand_total_gbp = 0;
 
-	$(".component-contracts div.contract").each(function(){
+	$(".component-contracts div.contract:not(.template):not(.deleted)").each(function(){
 		var contractDiv = $(this);
 		// DONOR CURRENCY
 		var total_value_donor_currency = 0;
