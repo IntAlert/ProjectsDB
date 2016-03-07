@@ -99,4 +99,16 @@ class User extends AppModel {
         }
     }
 
+    
+
 }
+
+
+
+
+
+
+
+
+
+

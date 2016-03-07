@@ -14,6 +14,7 @@ class DashboardController extends AppController {
 
 	public function dashboard() {
 
+
 		// get authenticated user
 		$user_id = $this->Auth->user('id');
 

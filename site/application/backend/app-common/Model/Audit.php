@@ -80,5 +80,33 @@ class Audit extends AppModel
     ));
   }
 
+  public function getLeagueTable() {
+        $results = $this->find('all', array(
+            'fields' => array(
+                'User.*', 
+                'COUNT(Audit.id)',
+                'Audit.source_id',
+            ),
+            'conditions' => array(
+              'Audit.source_id <>' => null,
+              'Audit.source_id <>' => 0,
+            ),
+            'group' => array('Audit.source_id'),
+            'order' => 'COUNT(Audit.id) DESC',
+            'contain' => 'User.Office365user',
+                        )
+        );
+
+        // $table = [];
+        // foreach($results as $result) {
+        //   $table[] = array(
+        //     'total' => $result[0]['COUNT(`Audit`.`id`)'],
+        //     'Office365User' => $result['User']['Office365User'],
+        //   );
+        // }
+
+        return $results;
+    }
+
 }
 ?>

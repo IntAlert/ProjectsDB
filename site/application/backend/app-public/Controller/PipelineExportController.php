@@ -68,44 +68,75 @@ class PipelineExportController extends AppController {
 	private function loadComparissonData() {
 
 		$comparissonData = array(
-			'comparisson-date' => $this->request->data('comparisson-date')
-		);
-
-		$comparissonData['total'] = array(
-			'department-budget' => 0,
-			'department-cfhl' => 0,
+			'this-year' => array(
+				'comparisson-date' => $this->request->data('comparisson-date-this-year'),
+				'total' => array(
+					'department-budget' => 0,
+					'department-cfhl' => 0,
+				),
+			),
+			'next-year' => array(
+				'comparisson-date' => $this->request->data('comparisson-date-next-year'),
+				'total' => array(
+					'department-budget' => 0,
+					'department-cfhl' => 0,
+				),
+			)
+			
 		);
 
 		foreach ($this->departmentsList as $department_id => $name) {
 
-			// grab figures, if they exist
-			$departmentBudget = (int) $this->request->data('department-budget.' . $department_id);
-			$departmentCFHL = (int) $this->request->data('department-cfhl.' . $department_id);
+			// grab comparison figures, if they exist
+			$departmentBudgetThisYear = (int) $this->request->data('department-budget-this-year.' . $department_id);
+			$departmentCFHLThisYear = (int) $this->request->data('department-cfhl-this-year.' . $department_id);
+			$departmentBudgetNextYear = (int) $this->request->data('department-budget-next-year.' . $department_id);
+			$departmentCFHLNextYear = (int) $this->request->data('department-cfhl-next-year.' . $department_id);
 
 			// add to totals
-			$comparissonData['total']['department-budget'] += $departmentBudget;
-			$comparissonData['total']['department-cfhl'] += $departmentCFHL;
+			$comparissonData['this-year']['total']['department-budget'] += $departmentBudgetThisYear;
+			$comparissonData['this-year']['total']['department-cfhl'] += $departmentCFHLThisYear;
+			$comparissonData['next-year']['total']['department-budget'] += $departmentBudgetNextYear;
+			$comparissonData['next-year']['total']['department-cfhl'] += $departmentCFHLNextYear;
 
-			// calculate ratio
-			if ($departmentBudget > 0) {
-				$ratio = $departmentCFHL / $departmentBudget;
+			// calculate ratios
+			if ($departmentBudgetThisYear > 0) {
+				$ratioThisYear = $departmentCFHLThisYear / $departmentBudgetThisYear;
 			} else {
-				$ratio = '';
+				$ratioThisYear = '';
 			}
 
-			$comparissonData['department-budget'][$department_id] = $departmentBudget;
-			$comparissonData['department-cfhl'][$department_id] = $departmentCFHL;
-			$comparissonData['department-ratio'][$department_id] = $ratio;
+			if ($departmentBudgetNextYear > 0) {
+				$ratioNextYear = $departmentCFHLNextYear / $departmentBudgetNextYear;
+			} else {
+				$ratioNextYear = '';
+			}
+
+			$comparissonData['this-year']['department-budget'][$department_id] = $departmentBudgetThisYear;
+			$comparissonData['this-year']['department-cfhl'][$department_id] = $departmentCFHLThisYear;
+			$comparissonData['this-year']['department-ratio'][$department_id] = $ratioThisYear;
+
+			$comparissonData['next-year']['department-budget'][$department_id] = $departmentBudgetNextYear;
+			$comparissonData['next-year']['department-cfhl'][$department_id] = $departmentCFHLNextYear;
+			$comparissonData['next-year']['department-ratio'][$department_id] = $ratioNextYear;
 		}
 
 		// calculate total ratio
-		if ($comparissonData['total']['department-budget'] > 0) {
-			$total_ratio = $comparissonData['total']['department-cfhl'] / $comparissonData['total']['department-budget'];
+		if ($comparissonData['this-year']['total']['department-budget'] > 0) {
+			$total_ratio_this_year = $comparissonData['this-year']['total']['department-cfhl'] / $comparissonData['this-year']['total']['department-budget'];
 		} else {
-			$total_ratio = '';
+			$total_ratio_this_year = '';
 		}
 
-		$comparissonData['total']['department-ratio'] = $total_ratio;
+		// calculate total ratio
+		if ($comparissonData['next-year']['total']['department-budget'] > 0) {
+			$total_ratio_next_year = $comparissonData['next-year']['total']['department-cfhl'] / $comparissonData['next-year']['total']['department-budget'];
+		} else {
+			$total_ratio_next_year = '';
+		}
+
+		$comparissonData['this-year']['total']['department-ratio'] = $total_ratio_this_year;
+		$comparissonData['next-year']['total']['department-ratio'] = $total_ratio_next_year;
 
 		$this->comparissonData = $comparissonData;
 
@@ -115,11 +146,11 @@ class PipelineExportController extends AppController {
 
 		// pipeline summary this year
 		$pipelineThisYear = new MACPipeline($this->selectedYear, $this->departmentBudgetsThisYear, $this->contractbudgetsThisYear);
-		$this->createSummary($pipelineThisYear);
+		$this->createSummary($pipelineThisYear, $this->comparissonData['this-year']);
 
 		// copy summary 2016
 		$pipelineNextYear = new MACPipeline($this->selectedYear + 1, $this->departmentBudgetsNextYear, $this->contractbudgetsNextYear);
-		$this->createSummary($pipelineNextYear);
+		$this->createSummary($pipelineNextYear, $this->comparissonData['next-year']);
 
 		// Create department detail for each department
 		foreach($this->departmentsList as $department_id => $unused) {
@@ -128,7 +159,9 @@ class PipelineExportController extends AppController {
 
 	}
 
-	private function createSummary($pipeline) {
+	private function createSummary($pipeline, $comparissonData) {
+
+		// expects $thisYearOrNext = 'this-year' or 'next-year'
 
 		$sheet = $this->cloneSummarySheet($pipeline->getYear() . " Summary");
 
@@ -139,14 +172,14 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('A1', $snapshotTime);
 
 		// Comparisson year
-		$sheet->setCellValue('J1', $this->Time->format('Y', strtotime($this->comparissonData['comparisson-date'])) . " Progress to Target" );
+		$sheet->setCellValue('J1', $this->Time->format('Y', strtotime($comparissonData['comparisson-date'])) . " Progress to Target" );
 
 		// SECOND ROW
 		// add year
 		$sheet->setCellValue('A2', $pipeline->getYear() . ' Budget Targets');
 
 		// add comparisson date
-		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($this->comparissonData['comparisson-date'])));
+		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($comparissonData['comparisson-date'])));
 
 		// ALL DEPARTMENTS
 		$grandTotal = array(
@@ -165,9 +198,9 @@ class PipelineExportController extends AppController {
 			$pipeline->getTotal("all", array('medium', 'low')),
 
 			// add previous year snapshot
-			$this->comparissonData['total']['department-budget'],
-			$this->comparissonData['total']['department-cfhl'],
-			$this->comparissonData['total']['department-ratio'],
+			$comparissonData['total']['department-budget'],
+			$comparissonData['total']['department-cfhl'],
+			$comparissonData['total']['department-ratio'],
 			
 		);
 
@@ -194,9 +227,9 @@ class PipelineExportController extends AppController {
 				$pipeline->getTotal($department_id, array('medium', 'low')),
 
 				// add previous year snapshot
-				$this->comparissonData['department-budget'][$department_id],
-				$this->comparissonData['department-cfhl'][$department_id],
-				$this->comparissonData['department-ratio'][$department_id],
+				$comparissonData['department-budget'][$department_id],
+				$comparissonData['department-cfhl'][$department_id],
+				$comparissonData['department-ratio'][$department_id],
 			
 				
 			);

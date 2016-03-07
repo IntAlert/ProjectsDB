@@ -47,7 +47,7 @@
 				</th>
 				<th colspan="3">
 					Comparison Figures as at <br>
-					<input type="hidden" class="datepicker" name="comparisson-date">
+					<input type="hidden" class="datepicker comparisson-date" name="comparisson-date-this-year">
 					<a class="datepicker-nice" href="#">No date set</a>
 
 				</th>
@@ -201,8 +201,9 @@
 				<td class="last-year">
 					<!-- Budget -->
 					<input 
+						type="number"
 						class="garlic-persist department-budget" 
-						name="department-budget[<?php echo $department_id;?>]"
+						name="department-budget-this-year[<?php echo $department_id;?>]"
 						data-department-id="<?php echo $department_id;?>"
 					>
 					
@@ -215,8 +216,9 @@
 				<td class="last-year">
 					<!-- Value CF+HL -->
 					<input 
+						type="number"
 						class="garlic-persist department-cfhl" 
-						name="department-cfhl[<?php echo $department_id;?>]"
+						name="department-cfhl-this-year[<?php echo $department_id;?>]"
 						data-department-id="<?php echo $department_id;?>"
 					>
 

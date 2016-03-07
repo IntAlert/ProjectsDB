@@ -121,6 +121,13 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+    function leagueTable() {
+
+        $leagueTable = $this->Audit->getLeagueTable();
+
+        $this->set(compact('leagueTable'));
+    }
+
 
 
     // public function add() {

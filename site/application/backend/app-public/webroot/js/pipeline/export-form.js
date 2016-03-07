@@ -1,8 +1,6 @@
 $(function(){
 
 
-	// keep totals up to date
-
 
 	// persist comparisson data
 	$('.garlic-persist').garlic({
@@ -13,41 +11,6 @@ $(function(){
 		}
 	});
 
-
-	// COMPARISSON DATE
-	function niceDateUpdater(dateText) {
-		var niceDate = Date.parse(dateText).toString('MMMM d, yyyy')
-		$(".pipeline-preview .datepicker-nice").text(niceDate)
-	}
-
-	// activate datepicker 
-	$('.pipeline-preview .datepicker').datepicker({
-		dateFormat: 'yy-mm-dd',
-		onSelect: function(dateText){
-			niceDateUpdater(dateText);
-			localStorage[selectedYear + '-comparisson-date'] = dateText;
-		}
-	});
-
-	$(".datepicker-nice").click(function(){
-		$('.pipeline-preview .datepicker').datepicker('show');
-	})
-
-	// update comparisson nice date if one is already set	
-	if (dateText = localStorage[selectedYear + '-comparisson-date']) {
-		niceDateUpdater(dateText);
-		$( 'input[name="comparisson-date"]' ).val(dateText); // because garlic doesn't work on hidden fields
-	}
-
-
-
-	// keep totals and percentages up to date
-	$('.pipeline.this-year .department-cfhl, .pipeline.this-year .department-budget').keyup(function(){
-		mirrorFields();
-		updatePercentages();
-		updateTotals();
-	}).keyup()
-
 	// handle print
 	$('nav a.print').click(function(){
 		window.print();
@@ -56,89 +19,136 @@ $(function(){
 
 
 
-})
-
-var mirrorFields = function(){
-	$('.pipeline .department-budget').each(function(){
-		var department_id = $(this).data('department-id');
-		var thisYearInput = $('[name="department-budget[' + department_id + ']"]')
-		$(this).html('&pound;' + $.number(thisYearInput.val()));
-	})
-
-	$('.pipeline .department-cfhl').each(function(){
-		var department_id = $(this).data('department-id');
-		var thisYearInput = $('[name="department-cfhl[' + department_id + ']"]')
-		$(this).html('&pound;' + $.number(thisYearInput.val()));
-	})
-}
+	// keep totals up to date
+	$('table.pipeline').each(function(){
 
 
-var updateTotals = function() {
-	
-	// build totals
-	var department_budget_total = 0;
-	$(".pipeline.this-year .department-budget").each(function(){
-		department_budget_total += Number($(this).val());
-	});
+		var $pipeline = $(this),
+			$datepicker = $pipeline.find('.datepicker'),
+			$datepickerNice = $pipeline.find('.datepicker-nice'),
+			$inputs = $pipeline.find('.department-cfhl, .department-budget'),
+			$budgetTotal = $pipeline.find('.department-budget-total'),
+			$cfhlTotal = $pipeline.find('.department-cfhl-total'),
+			$cfhlTotalPercentage = $pipeline.find('.department-cfhl-total-percentage'),
+			uniquePipelineIdentifier = $pipeline.hasClass('this-year') ? 'this_year' : 'next_year'
 
-	var department_cfhl_total = 0;
-	$(".pipeline.this-year .department-cfhl").each(function(){
-		department_cfhl_total += Number($(this).val());
-	});
+		var updateTotals = function() {
+			
+			// build totals
+			var department_budget_total = 0;
+			$pipeline.find("input.department-budget").each(function(){
+				department_budget_total += Number( $(this).val() );
+			});
 
-	if (department_budget_total > 0) {
-		var department_cfhl_percentage = Math.round(100 * department_cfhl_total/department_budget_total)
-	} else {
-		department_cfhl_percentage = 0
-	}
-	
+			var department_cfhl_total = 0;
+			$pipeline.find("input.department-cfhl").each(function(){
+				department_cfhl_total += Number( $(this).val() );
+			});
 
-	$('.department-budget-total').text($.number(department_budget_total)); // comma-formatted
-	$('.department-cfhl-total').text($.number(department_cfhl_total)); // comma-formatted
-	$('.department-cfhl-total-percentage').text(department_cfhl_percentage);
+			if (department_budget_total > 0) {
+				var department_cfhl_percentage = Math.round(100 * department_cfhl_total/department_budget_total)
+			} else {
+				department_cfhl_percentage = 0
+			}
+			
 
-}
+			$budgetTotal.text($.number(department_budget_total)); // comma-formatted
+			$cfhlTotal.text($.number(department_cfhl_total)); // comma-formatted
+			$cfhlTotalPercentage.text(department_cfhl_percentage);
 
-var updatePercentages = function() {
-
-
-	var department_budgets = {}
-	var department_cfhls = {}
-
-	// collect budget values
-	$(".pipeline.this-year input.department-budget").each(function(){
-
-		var department_id = $(this).data('department-id')
-		var department_budget = $(this).val()
-		department_budgets[department_id] = department_budget
-
-	});
-
-	// collect cfhl values
-	$(".pipeline.this-year input.department-cfhl").each(function(){
-
-		var department_id = $(this).data('department-id')
-		var department_cfhl = $(this).val()
-		department_cfhls[department_id] = department_cfhl
-
-	});
-
-	// update slave and master
-	$(".department-cfhl-percentage").each(function(){
-
-		var department_id = $(this).data('department-id')
-		if (department_budgets[department_id] > 0) {
-			var department_chfl_percentage = Math.round(100 * department_cfhls[department_id] / department_budgets[department_id])	
-		} else {
-			var department_chfl_percentage = 0
 		}
-		
-		$(this).text(department_chfl_percentage)
 
-	});
+		var updatePercentages = function() {
 
-}
+			var department_budgets = {}
+			var department_cfhls = {}
+
+			// collect budget values
+			$pipeline.find("input.department-budget").each(function(){
+
+				var department_id = $(this).data('department-id')
+				var department_budget = $(this).val()
+				department_budgets[department_id] = department_budget
+
+			});
+
+			// collect cfhl values
+			$pipeline.find("input.department-cfhl").each(function(){
+
+				var department_id = $(this).data('department-id')
+				var department_cfhl = $(this).val()
+				department_cfhls[department_id] = department_cfhl
+
+			});
 
 
 
+			// update slave and master
+			$pipeline.find(".department-cfhl-percentage").each(function(){
+
+				var department_id = $(this).data('department-id')
+				if (department_budgets[department_id] > 0) {
+					var department_chfl_percentage = Math.round(100 * department_cfhls[department_id] / department_budgets[department_id])	
+				} else {
+					var department_chfl_percentage = 0
+				}
+				
+				$(this).text(department_chfl_percentage)
+
+			});
+
+		}
+
+		var niceDateUpdater = function(dateText) {
+			var niceDate = Date.parse(dateText).toString('MMMM d, yyyy')
+			$pipeline.find(".datepicker-nice").text(niceDate)
+		}
+
+		var saveComparisonDate = function(dateText) {
+			localStorage[selectedYear + '-comparisson-date-' + uniquePipelineIdentifier] = dateText
+		}
+
+		var getComparisonDate = function() {
+			return localStorage[selectedYear + '-comparisson-date-' + uniquePipelineIdentifier]
+		}
+
+		// activate datepicker 
+		$pipeline.find('.datepicker').datepicker({
+			dateFormat: 'yy-mm-dd',
+			onSelect: function(dateText){
+				niceDateUpdater(dateText)
+				saveComparisonDate(dateText)
+			}
+		});
+
+		// open datepicker on click
+		$pipeline.find(".datepicker-nice").click(function(){
+			$pipeline.find('.datepicker').datepicker('show')
+			return false
+		})
+
+		// update comparisson nice date if one is already set	
+		if ( getComparisonDate() ) {
+			var dateText = getComparisonDate()
+			niceDateUpdater(dateText)
+			$pipeline.find( 'input.comparisson-date' ).val(dateText) // because garlic doesn't work on hidden fields
+		}
+
+
+
+		// keep totals and percentages up to date
+		$inputs.bind('keyup, change', function(){
+			updatePercentages();
+			updateTotals();
+		})
+
+		// initialise percentages and totals
+		updatePercentages();
+		updateTotals();
+
+
+	})
+
+
+});
 
