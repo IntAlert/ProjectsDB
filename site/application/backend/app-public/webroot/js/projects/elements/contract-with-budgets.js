@@ -43,6 +43,14 @@ $(function(){
 	// handle delete contract
 	$(".component-contracts").delegate(".btn-contractbudget-delete", 'click', function(){
 
+		// make sure that there is at least one year
+		var allContractbudgetTrs = $(this).parents('tbody').find('tr');
+
+		if (allContractbudgetTrs.length == 1) {
+			alert("Each contract must have at least one budget year.\n\nAdd another before deleting this year.")
+			return false;
+		}
+
 		var msg = 'Are you sure you want to delete this year?';
 
 		if ( !confirm(msg) ) return false;
