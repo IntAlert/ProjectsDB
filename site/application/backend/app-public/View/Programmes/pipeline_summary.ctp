@@ -73,6 +73,7 @@
 				<th colspan="3">
 					Comparison Figures as at <br>
 					<?php echo $this->Time->nice($thisTimeLastYear); ?>
+					for current year projections
 				</th>
 			</tr>
 

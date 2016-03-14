@@ -45,10 +45,7 @@ class PipelineController extends AppController {
 		));
 
 		// get departments
-		$departmentsList = $this->Department->find('list', array(
-			'fields' => array('id', 'name'),
-		));
-
+		$departmentsList = $this->Department->findOrderedList();
 
 		$this->set(compact(
 			'departmentBudgetsThisYear',
@@ -76,6 +73,7 @@ class PipelineController extends AppController {
 
 		// get departments
 		$departmentsList = $this->Department->findOrderedList();
+
 
 		// get department
 		$department = $this->Department->findSimpleById($department_id);

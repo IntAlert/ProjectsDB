@@ -179,7 +179,7 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('A2', $pipeline->getYear() . ' Budget Targets');
 
 		// add comparisson date
-		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($comparissonData['comparisson-date'])));
+		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($comparissonData['comparisson-date'])) . ' for current year projections');
 
 		// ALL DEPARTMENTS
 		$grandTotal = array(

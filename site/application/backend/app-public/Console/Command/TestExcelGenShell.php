@@ -121,7 +121,7 @@ class TestExcelGenShell extends AppShell {
 		// FIRST ROW
 		// Pipeline year and snapshot time
 		$now = new DateTime();
-		$snapshotTime = $pipeline->getYear() . ' STATUS as at ' . $this->Time->nice($now);
+		$snapshotTime = $pipeline->getYear() . ' STATUS as at ' . $this->Time->nice($now) . ' for current year projections';
 		$sheet->setCellValue('A1', $snapshotTime);
 
 		// Comparisson year

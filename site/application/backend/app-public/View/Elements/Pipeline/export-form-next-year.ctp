@@ -47,7 +47,7 @@
 					Comparison Figures as at <br>
 					<input type="hidden" class="datepicker comparisson-date" name="comparisson-date-next-year">
 					<a class="datepicker-nice" href="#">No date set</a>
-
+					for current year projections
 				</th>
 			</tr>
 

@@ -27,7 +27,7 @@ class MACPipeline {
 		$total = 0;	
 		foreach ($this->contractBudgets as $contractBudget) {
 
-			// don't count deleted projects
+			// don't count deleted/corrupted projects
 			if (
 				   !isset($contractBudget['Contract'])
 				|| !isset($contractBudget['Contract']['Project'])
