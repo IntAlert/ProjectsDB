@@ -1,3 +1,9 @@
+<?php 
+
+$this->SharepointDocs->load($project);
+
+?>
+
 <?php $this->set('title', 'Projects - ' . $project['Project']['title']); ?>
 <?php echo $this->Html->css('projects/view', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/view', array('inline' => false)); ?>
@@ -48,23 +54,13 @@ var data = <?php echo json_encode($project); ?>;
 		<li><?php echo $this->Html->link(__('Edit Project'), array('action' => 'edit', $project['Project']['id'])); ?> </li>
 		
 
-<?php if (isset($sharepoint_root_folder)): ?>
 		<li>
 			<a 
 			target="_blank"
-			href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=<?php echo urlencode($sharepoint_root_folder); ?>">
+			href="<?php echo $this->SharepointDocs->folderHref()?>">
 				View Project Documents
 			</a>
 		</li>
-<!-- 
-		<li>
-			<a 
-			href="file://intlalert.sharepoint.com@SSL/DavWWWRoot/prompt/Documents/PRODUCTION/projects/project_id_135">
-				Test Link Please Ignore
-			</a>
-		</li>
- -->
-<?php endif; // (isset($sharepoint_root_folder)): ?>
 
 	</ul>
 </nav>

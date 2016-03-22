@@ -1,6 +1,7 @@
 <?php
 
-// debug($fileTree);
+$this->SharepointDocs->load($project);
+
 
 // define tool tips for project folders
 $folder_tooltips = array(
@@ -42,7 +43,7 @@ $folder_tooltips = array(
 
 <p>Sharepoint docs not available, sorry</p>
 
-<p>You may find the docs <a href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?">here</a>.</p>
+<p>You may find the docs <a href="<?php echo $this->SharepointDocs->folderHref()?>">here</a>.</p>
 
 
 
@@ -59,12 +60,8 @@ $folders = [];
 
 foreach ($fileTree->Folders->results as $folder):
 
-
-
-
 	$folders[$folder->Name] = array(
 		'name' => $folder->Name,
-		'uri' => 'https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=' . rawurlencode($sharepoint_root_folder . '/' . $folder->Name),
 		'tooltip' => (isset($folder_tooltips[$folder->Name]) ? $folder_tooltips[$folder->Name] : false),
 	);
 
@@ -80,7 +77,7 @@ ksort($folders);
 <h3>
 	<a 
 			target="_blank"
-			href="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=<?php echo urlencode($sharepoint_root_folder); ?>">
+			href="<?php echo $this->SharepointDocs->folderHref()?>">
 			Documents
 	</a>
 </h3>
@@ -105,7 +102,7 @@ ksort($folders);
 
 		<td>
 			<a 
-				href="<?php echo $folder['uri']; ?>" 
+				href="<?php echo $this->SharepointDocs->folderHref($folder['name']);?>" 
 				target="_blank"
 			>
 				View Folder
