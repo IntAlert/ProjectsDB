@@ -233,7 +233,7 @@ function createContractBudget(contractDiv, beforeAfter) {
 	if ( !earliestYear ) { // don't test for latest year as they'll both be null or both be not null
 		var startDate = $( ".timespan .start .datepicker-placeholder" ).datepicker('getDate');
 	
-		var newYear = +startDate.getFullYear();
+		var newYear = +startDate.getFullYear()
 	} else if (beforeAfter == 'before') {
 		var newYear = earliestYear - 1;
 	} else {

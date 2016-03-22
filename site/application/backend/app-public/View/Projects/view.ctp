@@ -56,6 +56,15 @@ var data = <?php echo json_encode($project); ?>;
 				View Project Documents
 			</a>
 		</li>
+
+		<li>
+			<a 
+			target="_blank"
+			href="\\intlalert.sharepoint.com@SSL\DavWWWRoot\prompt\Documents\PRODUCTION\projects\project_id_135">
+				Test Link Please Ignore
+			</a>
+		</li>
+
 <?php endif; // (isset($sharepoint_root_folder)): ?>
 
 	</ul>
