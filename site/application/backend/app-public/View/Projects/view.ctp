@@ -59,7 +59,6 @@ var data = <?php echo json_encode($project); ?>;
 
 		<li>
 			<a 
-			target="_blank"
 			href="file://intlalert.sharepoint.com@SSL/DavWWWRoot/prompt/Documents/PRODUCTION/projects/project_id_135">
 				Test Link Please Ignore
 			</a>
