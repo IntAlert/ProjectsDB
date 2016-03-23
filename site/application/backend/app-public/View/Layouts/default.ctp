@@ -78,6 +78,7 @@ if ( !isset($title) ) {
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="/pdb/css/lib/font-awesome-4.4.0/css/font-awesome.min.css">
 
+	<script type="text/javascript" src="https://static.sharepointonline.com/bld/_layouts/15/16.0.5104.1212/core.js"></script>
 
 	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
 
