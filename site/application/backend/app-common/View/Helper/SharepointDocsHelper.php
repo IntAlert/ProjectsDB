@@ -74,6 +74,7 @@ class SharepointDocsHelper extends AppHelper {
 
 	private function useLocalFileLinks() {
 		// return true;
+		return false;
 		$browser = $this->get_browser();
 		
 		// return true if IE *IS* browser
