@@ -55,11 +55,8 @@ var data = <?php echo json_encode($project); ?>;
 		
 
 		<li>
-			<a 
-			target="_blank"
-			href="<?php echo $this->SharepointDocs->folderHref()?>">
-				View Project Documents
-			</a>
+			<?php echo $this->SharepointDocs->folderLink('View Project Documents')?>
+			
 		</li>
 
 	</ul>
@@ -419,11 +416,6 @@ $textBlocks = array(
 <?php echo $this->element('Projects/view/activity'); ?>
 
 <?php echo $this->element('Projects/view/projectnotes'); ?>
-
-
-<?php if ($project['Project']['id'] == '30'): ?>
-<iframe width="100%" height="500" src="https://intlalert.sharepoint.com/prompt/Documents/Forms/AllItems.aspx?RootFolder=%2Fprompt%2FDocuments%2FPRODUCTION%2Fprojects%2Fproject_id_98%2Fgeneral"></iframe>
-<?php endif; // ($project['Project']['id'] == '30'): ?>
 
 <!-- 
 

@@ -4,9 +4,10 @@ class SharepointDocsHelper extends AppHelper {
     
 	var $project = null;
 
+	var $helpers = array('Html');
+
 	public function load($project) {
 		$this->project = $project;
-		echo '<!-- ' . $this->get_browser() . ' -->';
 	}
 
 	public function folderHref($subfolder = null) {
@@ -22,22 +23,49 @@ class SharepointDocsHelper extends AppHelper {
 		}
 
 		
-		$folder = $base . Configure::read('ENVIRONMENT') . '/projects/project_id_' . $this->project['Project']['id'];
+		$url = $base . Configure::read('ENVIRONMENT') . '/projects/project_id_' . $this->project['Project']['id'];
 
-        $folder .= '/' . 'general';
+        $url .= '/' . 'general';
 
         if ( !is_null($subfolder) ) {
 
-        	$folder .= '/' . rawurlencode($subfolder);
+        	$url .= '/' . rawurlencode($subfolder);
         }
 
-        return $folder;
+        return $url;
 
+	}
+
+	public function folderLink($link_text, $subfolder = null, $a_options = array()) {
+		
+		$url = $this->folderHref($subfolder);
+
+		if ($this->useLocalFileLinks()) {
+			$default_options = array();
+		} else {
+			$default_options = array('target' => '_blank');
+		}
+		
+
+		$options = array_merge($default_options, $a_options);
+
+		return $this->Html->link(
+		    $link_text,
+		    $url,
+		    $options
+		);
 	}
 
 
 
-
+	public function embedSharepoint() {
+		return false;
+		// return 
+		$browser = $this->get_browser();
+		
+		// return true if IE *IS NOT* browser
+		return (substr($browser, 0, 2) != 'ie');
+	}
 
 
 	//////
@@ -45,10 +73,10 @@ class SharepointDocsHelper extends AppHelper {
 	//////
 
 	private function useLocalFileLinks() {
-		// return 
+		// return true;
 		$browser = $this->get_browser();
 		
-		// return true if IE is browser
+		// return true if IE *IS* browser
 		return (substr($browser, 0, 2) == 'ie');
 	}
 

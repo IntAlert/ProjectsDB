@@ -6,9 +6,6 @@ echo $this->Html->css('projects/elements/contract-with-budgets', array('inline' 
 $project = $this->request->data;
 
 
-
-
-
 // append earliest and latest contractbudget year
 if(!empty($project['Contract'])):
 foreach($project['Contract'] as &$contract):
@@ -76,7 +73,7 @@ endif; //(count($project['Contract'])):
 					</td>
 
 					<td>
-						Donor Framework
+						Donor Framework or donor instrument
 						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
 					</td>
 

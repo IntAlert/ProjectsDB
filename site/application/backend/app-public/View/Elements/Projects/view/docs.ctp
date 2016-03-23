@@ -3,6 +3,22 @@
 $this->SharepointDocs->load($project);
 
 
+if($this->SharepointDocs->embedSharepoint()):
+	// embed Sharepoint if we can
+?>
+	<iframe 
+		frameborder="0"
+		width="100%" 
+		height="800" 
+		src="<?php echo $this->SharepointDocs->folderHref()?>"
+	></iframe>
+
+<?php else: //($this->SharepointDocs->embedSharepoint()):
+
+
+
+
+
 // define tool tips for project folders
 $folder_tooltips = array(
     '1 Tender Documents' => 
@@ -127,3 +143,7 @@ ksort($folders);
 
 
 <? endif; // (!isset($fileTree)): ?>
+
+
+<?php endif; //($this->SharepointDocs->embedSharepoint()): ?>
+

@@ -172,7 +172,7 @@ if ( !isset($title) ) {
 					
 					<a href="/pdb/pipeline/summary">
 						<i class="fa fa-table"></i>
-						Fundraising Pipeline
+						Projects &amp; Fundraising Pipeline
 					</a>
 				</li>
 
