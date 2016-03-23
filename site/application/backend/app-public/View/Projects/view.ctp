@@ -423,7 +423,4 @@ $textBlocks = array(
 	<h3>Project Activity</h3>
  -->
 </div>
-<small>
-<a onclick="NavigateHttpFolder('https:u002fu002fintlalert.sharepoint.comu002fpromptu002fDocumentsu002f', 'blank');" href="#">Don't click this</a>
-</small>
 
