@@ -1,6 +1,6 @@
 <?php
 
-// Load FB 
+// Load common bootstrap
 require_once('../../app-common/Config/bootstrap-common.php');
 
 

@@ -377,4 +377,27 @@ class ProjectsController extends AppController {
 
 	function newInterface() {}
 
+	function searchFeedback() {
+
+
+		// email PROMPT admins about the feedback
+		App::uses('CakeEmail', 'Network/Email');
+		$Email = new CakeEmail('default');
+		$result = $Email->template('projects/search_feedback')
+			->config(array('log' => true))
+		    ->emailFormat('html')
+		    ->viewVars(array(
+		    	'feedback' => $this->request->data,
+		    	'user_fullname' => AuthComponent::user('name'),
+		    ))
+		    ->subject('PROMPT Search Feedback')
+		    ->from('as.thomson@gmail.com')
+		    ->to('alan@projectmccoll.co.uk')
+		    ->send();
+
+		
+
+
+	}
+
 }

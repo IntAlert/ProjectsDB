@@ -25,9 +25,10 @@ sudo apt-get update
 sudo apt-get -y install mysql-server-5.5
 
 # install mail
-# echo postfix postfix/mail#name string local.xmas.argos.co.uk | sudo debconf-set-selections
+# echo postfix postfix/mail#name string prompt.intalert.org | sudo debconf-set-selections
 # echo postfix postfix/main_mailer_type string 'Internet Site' |  sudo debconf-set-selections
-# sudo apt-get -y install mailutils
+# sudo apt-get install postfix
+#sudo apt-get -y install mailutils
 # sudo service postfix reload
 
 # firephp

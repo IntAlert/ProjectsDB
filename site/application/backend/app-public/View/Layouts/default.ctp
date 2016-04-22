@@ -77,6 +77,22 @@ if ( !isset($title) ) {
 	<link rel="stylesheet" type="text/css" href="/pdb/css/lib/jquery-ui-1.11.4/jquery-ui.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="/pdb/css/lib/font-awesome-4.4.0/css/font-awesome.min.css">
+	
+	<script 
+	    src="//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js" 
+	    type="text/javascript">
+	</script>
+	<script 
+	    src="https://intlalert.sharepoint.com/_layouts/15/sp.runtime.js"
+	    type="text/javascript">
+	</script>
+
+	<script 
+	    src="https://intlalert.sharepoint.com/_layouts/15/sp.js"
+	    type="text/javascript">
+	</script>
+
+	
 
 	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
 

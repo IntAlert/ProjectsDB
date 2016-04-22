@@ -94,3 +94,17 @@ form .project-search-left div {margin:0 0 6px; padding:0;}
 	margin:4px;
 	background:#eee;
 }
+
+.no-results-feedback {
+	float:left;
+	width: 69%;
+	margin-top:2em;
+	background:#D7F9D7;
+	border:1px solid lightgreen;
+	padding:0.5em 0;
+	border-radius: 2px;
+}
+
+.no-results-feedback .inner {
+	padding:1em;
+}

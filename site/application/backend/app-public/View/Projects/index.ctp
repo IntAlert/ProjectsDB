@@ -28,3 +28,5 @@ echo $this->Form->input('action', array(
 
 
 </form>
+
+<?php echo $this->element('Projects/search/no-results-feedback'); ?>
