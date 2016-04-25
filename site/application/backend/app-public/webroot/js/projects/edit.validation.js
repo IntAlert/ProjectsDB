@@ -109,7 +109,7 @@ $(function(){
 				"data[Pathway][Pathway][]": {
 					required: true
 				},
-				
+
 
 				"data[Project][status_id]": {
 					required: true
@@ -123,7 +123,6 @@ $(function(){
 					required: true,
 					number: true
 				}
-
 
 				
 			}
@@ -196,7 +195,18 @@ $(function(){
 				if (!checked_project_total) {
 					return false;
 				}
-			}			
+			}	
+
+			// last check, if the project start and finish are the same date,
+			// stop submission
+			var start = Date.parse($( "#ProjectStartDate" ).val());
+			var finish = Date.parse($( "#ProjectFinishDate" ).val());
+
+			if (start.getTime() == finish.getTime()) {
+				alert("Your start and finish dates are the same.\n\nPlease enter valid timespan for this project.");
+				return false;
+			}
+
 
 			return true;
 
