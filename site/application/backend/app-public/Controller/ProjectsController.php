@@ -225,13 +225,14 @@ class ProjectsController extends AppController {
 		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
+		$donorWarnings = $this->Donor->findDonorWarnings();
 
 		$territories = $this->Project->Territory->findActiveList();
 		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$budget_holders = $this->User->findBudgetHoldersList();
 		
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'donorWarnings'));
 
 
 	}
@@ -292,6 +293,7 @@ class ProjectsController extends AppController {
 		$departments = $this->Project->Department->find('list');
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
+		$donorWarnings = $this->Donor->findDonorWarnings();
 
 		$territories = $this->Project->Territory->findActiveList();
 		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
@@ -308,7 +310,7 @@ class ProjectsController extends AppController {
 		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 
 
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders'));
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders', 'donorWarnings'));
 	}
 
 

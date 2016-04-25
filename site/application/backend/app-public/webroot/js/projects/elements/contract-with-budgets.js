@@ -30,8 +30,6 @@ $(function(){
 
 	});
 
-
-
 	// handle add contract
 	$(".component-contracts").delegate(".btn-contract-add", 'click', function(){
 
@@ -84,6 +82,9 @@ $(function(){
 		updateContractBudgetTotals
 	);
 
+	// handle donor change
+	$(".component-contracts").delegate(".contract-donor-id", 'change', showDonorWarningIfAny);
+
 	// update totals on project value change
 	$("#ProjectValueRequired").keyup(updateContractBudgetTotals);
 
@@ -104,6 +105,8 @@ $(function(){
     if ($('.contracts .contract:not(.template)').length == 0) {
     	createContract();
     }
+
+
 
 
 });
@@ -369,6 +372,15 @@ function activateContractButtons() {
 		
 }
 
+function showDonorWarningIfAny() {
+	
+	var donor_id = $(this).val()
+
+	if (donorWarnings.hasOwnProperty(donor_id)) {
+		alert("Donor Warning:\n\n" + donorWarnings[donor_id])
+	}
+
+}
 
 
 

@@ -50,4 +50,17 @@ class Donor extends AppModel {
 		return true; // assume it worked
 	}
 
+	public function findDonorWarnings() {
+
+		// return warning text indexed by donor_id
+		return $this->find('list', array(
+			'fields' => array('id', 'warning_text'),
+        	'conditions' => array(
+        		'deleted' => false,
+        		'warning_text <>' => '',
+        		'warning_text <>' => null,
+        	),
+		));
+	}
+
 }

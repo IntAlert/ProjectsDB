@@ -616,3 +616,16 @@ endif; //(count($project['Contract'])):
 	</div> <!-- End Contract -->
 
 </div> <!-- End Component Contracts -->
+
+
+
+
+<script>
+	// These will used to give the user a warning if they pick
+	// a donor, indexed by donor_id
+	var donorWarnings = <?php echo json_encode($donorWarnings); ?>;
+</script>
+
+
+
+
