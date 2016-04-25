@@ -106,6 +106,11 @@ $(function(){
 					required: true
 				},
 
+				"data[Pathway][Pathway][]": {
+					required: true
+				},
+				
+
 				"data[Project][status_id]": {
 					required: true
 				},
