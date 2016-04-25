@@ -26,6 +26,17 @@
 	<?php echo $this->Form->input('id'); ?>
 
 
+
+	<div class="instruction-block">
+		<p>
+			Reminder:
+		</p>
+		<p>
+			Only one person should update a Project/Proposal record at any given time.
+		</p>
+	</div>
+
+
 	<?php echo $this->Form->input('title', array(
 		'type' => 'text',
 		'between' => $this->Tooltip->inline_required(),
