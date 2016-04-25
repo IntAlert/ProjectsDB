@@ -67,6 +67,9 @@ if ( !isset($title) ) {
 
 	<script type="text/javascript" src="/pdb/js/lib/datamaps.world.min.js"></script>
 
+	<!-- Polyfill for IE<11 Input[type=number] -->
+	<script type="text/javascript" src="/pdb/js/lib/number-polyfill.min.js"></script>
+
 	<!--
 	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
 
