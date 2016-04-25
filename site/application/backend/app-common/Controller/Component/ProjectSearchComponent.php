@@ -86,6 +86,11 @@ class ProjectSearchComponent extends Component {
 			'Project.value_required <=' => $value_to,
 		);
 
+		// solicited opportunity
+		if ($this->controller->request->query('solicited_proposal') > -1) $conditions[] = array(
+			'Project.solicited_proposal' => $this->controller->request->query('solicited_proposal'),
+		);
+
 		// start_date
 		if ($start_date = $this->controller->request->query('start_date')) {
 			

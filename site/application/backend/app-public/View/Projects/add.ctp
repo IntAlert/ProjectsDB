@@ -114,6 +114,10 @@
 		)); ?>
 
 
+	<?php echo $this->element('Projects/edit/text-metadata'); ?>
+
+	<?php echo $this->element('Projects/edit/other-metadata'); ?>
+
 	<?php echo $this->element('Projects/edit/urls'); ?>
 
 

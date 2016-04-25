@@ -139,6 +139,21 @@
 					?>
 					</div>
 
+					<div>
+					<?php
+
+						echo $this->Form->input('solicited_proposal', array(
+							'label' => false,
+							'options' => array(
+								-1 => '--- Select Opportunity Type ---',
+								0 => 'Unsolicted Opportunity',
+								1 => 'Solicited/Published Opportunity',
+							),
+							'value' => $this->request->query('solicited_proposal'),
+						));
+					?>
+					</div>
+
 
 
 					<div>
