@@ -42,6 +42,7 @@
 						));
 					?>
 					</div>
+
 					<div>
 					<?php
 
@@ -54,6 +55,20 @@
 						));
 					?>
 					</div>
+
+					<div>
+					<?php
+
+						echo $this->Form->input('secondary_department_id', array(
+							'label' => 'Programme',
+							'empty' => '--- Select Secondary Programme ---',
+							'label' => false,
+							'options' => $departments,
+							'value' => $this->request->query('secondary_department_id'),
+						));
+					?>
+					</div>
+
 					<div>
 					<?php
 

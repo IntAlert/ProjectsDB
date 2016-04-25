@@ -6,4 +6,4 @@ if (Configure::read('debug') > 0) {
 	Configure::write('disable_sharepoint_folder_sync', true);	
 }
 
-Configure::write('disable_sharepoint_folder_sync', false);	
+// Configure::write('disable_sharepoint_folder_sync', false);	

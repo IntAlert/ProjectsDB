@@ -71,6 +71,11 @@ class ProjectSearchComponent extends Component {
 			'Project.department_id' => $department_id,
 		);
 
+		// secondary_department_id
+		if ($secondary_department_id = $this->controller->request->query('secondary_department_id')) $conditions[] = array(
+			'Project.secondary_department_id' => $secondary_department_id,
+		);
+
 		// owner_user_id
 		if ($owner_user_id = $this->controller->request->query('owner_user_id')) $conditions[] = array(
 			'Project.owner_user_id' => $owner_user_id,
