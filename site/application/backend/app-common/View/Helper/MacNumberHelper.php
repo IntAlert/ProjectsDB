@@ -19,4 +19,10 @@ class MacNumberHelper extends AppHelper {
 		
 	}
 
+	function toPercentage($value, $precision = 0, $options = array())
+	{
+		return $this->Number->toPercentage($value, $precision = 0, $options);
+		
+	}
+
 }

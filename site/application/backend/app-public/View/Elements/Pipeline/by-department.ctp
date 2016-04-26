@@ -58,11 +58,11 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				</th>
 				<td>
 					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('confirmed'))); ?>
-					(<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed'))); ?>)
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed'))); ?>)
 				</td>
 				<td>
 					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('confirmed'))); ?>
-					(<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed'))); ?>)
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed'))); ?>)
 				</td>
 			</tr>
 
@@ -73,11 +73,11 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				</th>
 				<td>
 					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('highly-likely'))); ?>
-					(<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetThisYear(array('highly-likely'))); ?>)
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('highly-likely'))); ?>)
 				</td>
 				<td>
 					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('highly-likely'))); ?>
-					(<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetNextYear(array('highly-likely'))); ?>)
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('highly-likely'))); ?>)
 				</td>
 			</tr>
 
@@ -88,11 +88,11 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				</th>
 				<td>
 					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('confirmed', 'highly-likely'))); ?>
-					(<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed', 'highly-likely'))); ?>)
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed', 'highly-likely'))); ?>)
 				</td>
 				<td>
 					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('confirmed', 'highly-likely'))); ?>
-					(<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed', 'highly-likely'))); ?>)
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed', 'highly-likely'))); ?>)
 				</td>
 			</tr>
 

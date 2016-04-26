@@ -108,7 +108,7 @@
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed percentage -->
-					<?php echo $this->Number->toPercentage($pipelineThisYear->getPercentage("all", "confirmed")); ?>
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage("all", "confirmed")); ?>
 				</td>
 
 
@@ -118,7 +118,7 @@
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL percentage -->
-					<?php echo $this->Number->toPercentage($pipelineThisYear->getPercentage("all", array('confirmed', 'highly-likely'))); ?>
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage("all", array('confirmed', 'highly-likely'))); ?>
 				</td>
 
 				<td class="pipeline">
@@ -170,7 +170,7 @@
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed percentage -->
-					<?php echo $this->Number->toPercentage($pipelineThisYear->getPercentage($department_id, "confirmed")); ?>
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage($department_id, "confirmed")); ?>
 				</td>
 
 
@@ -180,7 +180,7 @@
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL percentage -->
-					<?php echo $this->Number->toPercentage($pipelineThisYear->getPercentage($department_id, array('confirmed', 'highly-likely'))); ?>
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage($department_id, array('confirmed', 'highly-likely'))); ?>
 				</td>
 
 				<td class="pipeline">

@@ -121,7 +121,7 @@ $projectChecker = new ProjectChecker($project);
 					if($project['matched_funding_percentage'] === false) {
 						echo 'n/a';
 					} else {
-						echo $this->Number->toPercentage($project['matched_funding_percentage']);
+						echo $this->MacNumber->toPercentage($project['matched_funding_percentage']);
 					}
 
 				?>
@@ -282,10 +282,10 @@ $projectChecker = new ProjectChecker($project);
 		</tr>
 		<tr>
 			<td>
-				<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed', 'highly-likely'))); ?>
+				<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed', 'highly-likely'))); ?>
 			</td>
 			<td>
-				<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed', 'highly-likely'))); ?>
+				<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed', 'highly-likely'))); ?>
 			</td>
 		</tr>
 	</tfoot>

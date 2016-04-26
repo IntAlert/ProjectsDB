@@ -131,7 +131,7 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 					if($project['matched_funding_percentage'] === false) {
 						echo 'n/a';
 					} else {
-						echo $this->Number->toPercentage($project['matched_funding_percentage']);
+						echo $this->MacNumber->toPercentage($project['matched_funding_percentage']);
 					}
 
 				?>
@@ -276,10 +276,10 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 		</tr>
 		<tr>
 			<td>
-				<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed'))); ?>
+				<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed'))); ?>
 			</td>
 			<td>
-				<?php echo $this->Number->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed'))); ?>
+				<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed'))); ?>
 			</td>
 		</tr>
 	</tfoot>
