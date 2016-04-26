@@ -10,8 +10,16 @@ if ($this->request->query('action')):
 		$criteria[] = 'Project text matching : "' . h($q) . '"';
 	}
 
+	if($donor_id = $this->request->query('donor_id')) {
+		foreach($donor_id as $donor_id_single):
+			$criteria[] = 'Donor: "' . $donors[$donor_id_single] . '"';
+		endforeach; //($donor_id as $donor_ids):
+	}
+
 	if($status_id = $this->request->query('status_id')) {
-		$criteria[] = 'Status: "' . $statuses[$status_id] . '"';
+		foreach($status_id as $status_id_single):
+			$criteria[] = 'Status: "' . $statuses[$status_id_single] . '"';
+		endforeach; //($status_id as $donor_ids):
 	}
 
 	if($likelihood_id = $this->request->query('likelihood_id')) {
@@ -21,13 +29,6 @@ if ($this->request->query('action')):
 	if($department_id = $this->request->query('department_id')) {
 		$criteria[] = 'Programme: "' . $departments[$department_id] . '"';
 	}
-
-	if($donor_id = $this->request->query('donor_id')) {
-		foreach($donor_id as $donor_id_single):
-			$criteria[] = 'Donor: "' . $donors[$donor_id_single] . '"';
-		endforeach; //($donor_id as $donor_ids):
-	}
-
 
 	if($owner_user_id = $this->request->query('owner_user_id')) {
 		$criteria[] = 'Budget Holder: "' . $budget_holders[$owner_user_id] . '"';
