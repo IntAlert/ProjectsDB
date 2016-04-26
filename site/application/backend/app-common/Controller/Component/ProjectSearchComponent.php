@@ -151,7 +151,9 @@ class ProjectSearchComponent extends Component {
 	            'type' => 'INNER',
 	            'conditions' => array(
 	                'Project.id = ContractDonor.project_id',
-	                'ContractDonor.donor_id' => (int)$donor_id
+	                'OR' => array(
+		                'ContractDonor.donor_id' => $donor_id
+	                )
 	            )
 	        );
 		}

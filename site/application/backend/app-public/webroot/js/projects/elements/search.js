@@ -17,6 +17,14 @@ $(function(){
 		return false;
 	})
 
+	$("#ProjectDonorId").multipleSelect({
+        width: "100%"
+    });
+
+    $("#ProjectStatusId").multipleSelect({
+        width: "100%"
+    });
+
 	 // $(".project-search-left select").selectmenu({width:$('.project-search-left').width()});
 
 

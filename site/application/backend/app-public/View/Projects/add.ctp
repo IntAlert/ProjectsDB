@@ -42,6 +42,9 @@
 
 ?>
 
+<!-- Status -->
+<?php echo $this->element('Projects/edit/status-selector'); ?>
+
 
 	
 <?
@@ -131,10 +134,6 @@
 
 		<!-- Territories -->
 		<?php echo $this->element('Projects/edit/territory-selector'); ?>
-
-
-		<?php echo $this->element('Projects/edit/status-selector'); ?>
-
 
 <?
 		echo $this->Form->input('owner_user_id', array(

@@ -23,9 +23,9 @@
 
 	<fieldset>
 		<legend><?php echo __('Edit Proposal/Project'); ?></legend>
+	
+
 	<?php echo $this->Form->input('id'); ?>
-
-
 
 	<div class="instruction-block">
 		<p>
@@ -46,7 +46,8 @@
 ?>
 
 
-
+<!-- Status -->
+<?php echo $this->element('Projects/edit/status-selector'); ?>
 		
 <?
 	echo $this->Form->input('value_required', array(
@@ -99,8 +100,6 @@
 		<!-- Territories -->
 		<?php echo $this->element('Projects/edit/territory-selector'); ?>
 
-
-		<?php echo $this->element('Projects/edit/status-selector'); ?>
 
 
 <?

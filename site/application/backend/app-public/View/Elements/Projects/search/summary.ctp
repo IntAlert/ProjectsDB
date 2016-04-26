@@ -23,7 +23,9 @@ if ($this->request->query('action')):
 	}
 
 	if($donor_id = $this->request->query('donor_id')) {
-		$criteria[] = 'Donor: "' . $donors[$donor_id] . '"';
+		foreach($donor_id as $donor_id_single):
+			$criteria[] = 'Donor: "' . $donors[$donor_id_single] . '"';
+		endforeach; //($donor_id as $donor_ids):
 	}
 
 

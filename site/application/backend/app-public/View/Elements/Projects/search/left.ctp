@@ -18,14 +18,27 @@
 
 				
 
+
+					<div>
+					<?php
+
+						echo $this->Form->input('donor_id', array(
+							// 'empty' => '--- Select Donor ---',
+							'label' => 'Donor',
+							'multiple' => true,
+							'options' => $donors,
+							'value' => $this->request->query('donor_id'),
+						));
+					?>
+
+					</div>
 					
 					
 					<div>
 					<?php
 
 						echo $this->Form->input('status_id', array(
-							'empty' => '--- Select Status ---',
-							'label' => false,
+							'multiple' => true,
 							'options' => $statuses,
 							'value' => $this->request->query('status_id'),
 						));
@@ -69,17 +82,7 @@
 					?>
 					</div>
 
-					<div>
-					<?php
-
-						echo $this->Form->input('donor_id', array(
-							'empty' => '--- Select Donor ---',
-							'label' => false,
-							'options' => $donors,
-							'value' => $this->request->query('donor_id'),
-						));
-					?>
-					</div>
+					
 					<div>
 					<?php
 

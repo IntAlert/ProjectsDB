@@ -7,16 +7,6 @@ echo $this->Html->css('projects/elements/status-selector', array('inline' => fal
 
 
 
-<?
-		echo $this->Form->input('likelihood_id', array(
-			'legend' => 'Likelihood',
-			'type' => 'radio',
-			'between' => $this->Tooltip->inline_required(),
-			'div' => 'input radio likelihood',
-			'tooltip' => 'Please check the main box which applies',
-		));
-		
-?>
 
 
 <?
@@ -28,4 +18,16 @@ echo $this->Html->css('projects/elements/status-selector', array('inline' => fal
 			'tooltip' => 'Please check the main box which applies',
 		));
 
+?>
+
+
+<?
+		echo $this->Form->input('likelihood_id', array(
+			'legend' => 'Likelihood',
+			'type' => 'radio',
+			'between' => $this->Tooltip->inline_required(),
+			'div' => 'input radio likelihood',
+			'tooltip' => 'Please check the main box which applies',
+		));
+		
 ?>

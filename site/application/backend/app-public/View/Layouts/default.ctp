@@ -70,6 +70,11 @@ if ( !isset($title) ) {
 	<!-- Polyfill for IE<11 Input[type=number] -->
 	<script type="text/javascript" src="/pdb/js/lib/number-polyfill.min.js"></script>
 
+
+	<!-- Multiple Select -->
+	<link rel="stylesheet" href="/pdb/js/lib/multiple-select/multiple-select.css">
+	<script type="text/javascript" src="/pdb/js/lib/multiple-select/multiple-select.js"></script>
+
 	<!--
 	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
 

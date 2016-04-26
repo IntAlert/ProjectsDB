@@ -108,3 +108,9 @@ form .project-search-left div {margin:0 0 6px; padding:0;}
 .no-results-feedback .inner {
 	padding:1em;
 }
+
+
+.project-search-left .ms-drop input[type="checkbox"] {width:auto;}
+.project-search-left .ms-parent ul li {width:100%;height:auto;}
+
+
