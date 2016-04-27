@@ -41,7 +41,8 @@ class MACPipeline {
 
 			if (is_null($projectStatus)) {
 
-				die($contractBudget['Contract']['Project']['id']);
+				throw new Exception("Project Status does not exist for Project ID#" . $contractBudget['Contract']['Project']['id']);
+				
 			}
 			$contractLikelihood = $contractBudget['Contract']['Project']['Likelihood']['short_name'];
 
@@ -57,7 +58,11 @@ class MACPipeline {
 			$project_deleted = $contractBudget['Contract']['Project']['deleted'];
 
 			// ignore if project is rejected, cancelled or deleted
-			$project_ok = !$project_deleted && ($projectStatus != 'rejected') && ($projectStatus != 'cancelled') ;
+			$project_ok = !$project_deleted 
+				&& ($projectStatus != 'concept') 
+				&& ($projectStatus != 'completed') 
+				&& ($projectStatus != 'rejected') 
+				&& ($projectStatus != 'cancelled') ;
 
 			// remove deleted contracts
 			$contract_ok = !$contractBudget['Contract']['deleted'];

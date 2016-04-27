@@ -182,7 +182,7 @@ class Project extends AppModel {
 			'conditions' => array(
 				'Project.deleted' => false,
 				'Project.department_id' => $department_id,
-				'Status.short_name <>' => array('cancelled', 'rejected'),
+				'Status.short_name <>' => array('concept', 'cancelled', 'rejected', 'completed'),
 				'AND' => array(
 					'YEAR(Project.start_date) <=' => $year,
 					'YEAR(Project.finish_date) >=' => $year,
