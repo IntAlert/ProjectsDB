@@ -206,6 +206,22 @@ var data = <?php echo json_encode($project); ?>;
 				); ?>
 
 			(<?php echo $this->CustomTime->differenceInMonths($project['Project']['start_date'], $project['Project']['finish_date']); ?>)
+
+			<?php if ($project['Project']['extension_reason']): ?>
+
+				<p class="extension_reason">
+					<strong>Project dates extended because:</strong>
+					<?php echo h($project['Project']['extension_reason']); ?>
+				</p>
+
+
+
+			<?php endif; // ($project['Project']['extension_reason']): ?>
+
+
+
+
+
 			</td>
 		</tr>
 

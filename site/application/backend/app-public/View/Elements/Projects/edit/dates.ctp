@@ -48,4 +48,12 @@
 		<div class="datepicker-placeholder"></div>
 		<div class="timespan-in-months"></div>
 	</div>
+
+	<?php
+		echo $this->Form->input('extension_reason', array(
+			'label' => 'If the project finish date has been extended, please give reasons for this:'
+		));
+	?>
+
 </div>
+
