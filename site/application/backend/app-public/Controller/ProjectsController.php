@@ -377,7 +377,7 @@ class ProjectsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	function newInterface() {}
+	// function newInterface() {}
 
 	function searchFeedback() {
 
@@ -393,8 +393,7 @@ class ProjectsController extends AppController {
 		    	'user_fullname' => AuthComponent::user('name'),
 		    ))
 		    ->subject('PROMPT Search Feedback')
-		    ->from('as.thomson@gmail.com')
-		    ->to('alan@projectmccoll.co.uk')
+		    ->to('as.thomson@gmail.com')
 		    ->send();
 
 		

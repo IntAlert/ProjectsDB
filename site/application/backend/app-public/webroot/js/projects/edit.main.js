@@ -60,7 +60,23 @@ $(function(){
 
     // ensure project finish date is restricted
     // $( ".timespan .start .datepicker-placeholder" ).datepicker( "option", "maxDate", $( ".timespan .finish .datepicker-placeholder" ).datepicker("getDate") );
-    $( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", $( ".timespan .start .datepicker-placeholder" ).datepicker("getDate") );
+    $( ".timespan .finish .datepicker-placeholder" )
+        .datepicker( "option", "minDate", $( ".timespan .start .datepicker-placeholder" ).datepicker("getDate") );
+
+
+    // handle project finish extension
+    $("[name='data[Project][finish_extended]']").change(function(){
+      
+      // ignore this change if this radion button not checked:
+      if ( !$(this).is(':checked') ) return;
+
+      // we're dealing with the selected option now
+      if (this.value == 0) {
+          $(".project-extension-block").hide()
+      } else {
+          $(".project-extension-block").show()
+      }
+    }).change()
 
 
     // Summary: limit word count, autogrow
@@ -73,13 +89,12 @@ $(function(){
         })
         .autoGrow();  
       })
-
-
       
     updateTimespanInMonths();
     
 	
 })
+
 function updateTimespanInMonths() {
   var start = $( "#ProjectStartDate" ).val();
   var finish = $( "#ProjectFinishDate" ).val();

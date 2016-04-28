@@ -50,8 +50,22 @@
 	</div>
 
 	<?php
+		echo $this->Form->input('finish_extended', array(
+			'legend' => 'Has the project finish date been extended?',
+			'type' => 'radio',
+			'options' => array(
+				0 => 'No',
+				1 => 'Yes',
+			),
+			'default' => 0,
+
+		));
+	?>
+
+	<?php
 		echo $this->Form->input('extension_reason', array(
-			'label' => 'If the project finish date has been extended, please give reasons for this:'
+			'div' => 'project-extension-block',
+			'label' => 'Please give the reasons for the project date extension:'
 		));
 	?>
 
