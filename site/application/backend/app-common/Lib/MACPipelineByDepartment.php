@@ -7,11 +7,20 @@ class MACPipelineByDepartment {
 	private $departmentBudgetThisYear = false;
 	private $departmentBudgetNextYear = false;
 
-	function __construct($year, $projects, $departmentBudgetThisYear, $departmentBudgetNextYear) {
+	function __construct(
+			$year, 
+			$projects, 
+			$departmentBudgetThisYear, 
+			$departmentBudgetNextYear,
+			$departmentUnrestrictedAllocationThisYear, 
+			$departmentUnrestrictedAllocationNextYear
+		) {
 		$this->year = $year;
 		$this->projects = $projects;
 		$this->departmentBudgetThisYear = $departmentBudgetThisYear;
 		$this->departmentBudgetNextYear = $departmentBudgetNextYear;
+		$this->departmentUnrestrictedAllocationThisYear = $departmentUnrestrictedAllocationThisYear;
+		$this->departmentUnrestrictedAllocationNextYear = $departmentUnrestrictedAllocationNextYear;
 
 		// flatten/extract relevant project/contract data
 		$this->flattenProjects();
@@ -79,6 +88,26 @@ class MACPipelineByDepartment {
 			return 100 * $this->getTotalBudgetByYear($likelihoods, 'next') / $this->departmentBudgetNextYear;
 		} else {
 			return 100;
+		}
+	}
+
+	function getPercentageUnrestrictedAllocationThisYear() {
+		if ( !$this->departmentBudgetThisYear ) {
+			return 100;
+		} elseif ( !$this->departmentUnrestrictedAllocationThisYear ){
+			return 0;
+		} else {
+			return 100 * $this->departmentUnrestrictedAllocationThisYear / $this->departmentBudgetThisYear;	
+		}
+	}
+
+	function getPercentageUnrestrictedAllocationNextYear() {
+		if ( !$this->departmentBudgetNextYear ) {
+			return 100;
+		} elseif ( !$this->departmentUnrestrictedAllocationNextYear ){
+			return 0;
+		} else {
+			return 100 * $this->departmentUnrestrictedAllocationNextYear / $this->departmentBudgetNextYear;	
 		}
 	}
 

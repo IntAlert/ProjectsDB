@@ -8,6 +8,7 @@
 	<thead>
 		<th>Department</th>
 		<td>Target Budget</td>
+		<td>Unrestricted Funding Allocation</td>
 	</thead>
 <?php foreach ($departments as $department_id => $department_name): ?>
 	
@@ -25,6 +26,17 @@
 			'value' => 
 				isset($departmentBudgetsThisYear[$department_id]) 
 					? $departmentBudgetsThisYear[$department_id] : 0,
+		));?>
+	</td>
+
+	<td>
+		
+		<?php echo $this->Form->input('Departmentbudget.'.$department_id.'.unrestricted_allocation_gbp', array(
+			'label' => false,
+			'type' => 'number',
+			'value' => 
+				isset($departmentUnrestrictedAllocationsThisYear[$department_id]) 
+					? $departmentUnrestrictedAllocationsThisYear[$department_id] : 0,
 		));?>
 	</td>
 </tr>

@@ -8,9 +8,10 @@ class MACPipeline {
 	private $contractBudgets = array();
 	private $totals = array();
 
-	function __construct($year, $departmentBudgets, $contractBudgets) {
+	function __construct($year, $departmentBudgets, $departmentUnrestrictedAllocations, $contractBudgets) {
 		$this->year = $year;
 		$this->departmentBudgets = $departmentBudgets;
+		$this->departmentUnrestrictedAllocations = $departmentUnrestrictedAllocations;
 		$this->contractBudgets = $contractBudgets;
 		$this->asOfDate = new DateTime();
 	}
@@ -97,6 +98,20 @@ class MACPipeline {
 		}
 		
 		return $budget;
+	}
+
+	function getUnrestrictedAllocation($department_id) {
+
+		if ($department_id == 'all') {
+			$budget = array_sum($this->departmentUnrestrictedAllocations);
+		} elseif (isset($this->departmentUnrestrictedAllocations[$department_id])) {
+			$budget = $this->departmentUnrestrictedAllocations[$department_id];
+		} else {
+			$budget = 0;
+		}
+		
+		return $budget;
+
 	}
 
 	

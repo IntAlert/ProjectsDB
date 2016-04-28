@@ -14,17 +14,17 @@ class DepartmentbudgetsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	// public $components = array('Paginator', 'Session');
 
 /**
  * index method
  *
  * @return void
  */
-	public function index() {
-		$this->Departmentbudget->recursive = 0;
-		$this->set('departmentbudgets', $this->Paginator->paginate());
-	}
+	// public function index() {
+	// 	$this->Departmentbudget->recursive = 0;
+	// 	$this->set('departmentbudgets', $this->Paginator->paginate());
+	// }
 
 /**
  * view method
@@ -33,32 +33,32 @@ class DepartmentbudgetsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->Departmentbudget->exists($id)) {
-			throw new NotFoundException(__('Invalid departmentbudget'));
-		}
-		$options = array('conditions' => array('Departmentbudget.' . $this->Departmentbudget->primaryKey => $id));
-		$this->set('departmentbudget', $this->Departmentbudget->find('first', $options));
-	}
+	// public function view($id = null) {
+	// 	if (!$this->Departmentbudget->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid departmentbudget'));
+	// 	}
+	// 	$options = array('conditions' => array('Departmentbudget.' . $this->Departmentbudget->primaryKey => $id));
+	// 	$this->set('departmentbudget', $this->Departmentbudget->find('first', $options));
+	// }
 
 /**
  * add method
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Departmentbudget->create();
-			if ($this->Departmentbudget->save($this->request->data)) {
-				$this->Session->setFlash(__('The departmentbudget has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The departmentbudget could not be saved. Please, try again.'));
-			}
-		}
-		$departments = $this->Departmentbudget->Department->find('list');
-		$this->set(compact('departments'));
-	}
+	// public function add() {
+	// 	if ($this->request->is('post')) {
+	// 		$this->Departmentbudget->create();
+	// 		if ($this->Departmentbudget->save($this->request->data)) {
+	// 			$this->Session->setFlash(__('The departmentbudget has been saved.'));
+	// 			return $this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Session->setFlash(__('The departmentbudget could not be saved. Please, try again.'));
+	// 		}
+	// 	}
+	// 	$departments = $this->Departmentbudget->Department->find('list');
+	// 	$this->set(compact('departments'));
+	// }
 
 /**
  * edit method
@@ -80,6 +80,13 @@ class DepartmentbudgetsController extends AppController {
 				'Departmentbudget.year' => $year
 			),
 		));
+
+		$departmentUnrestrictedAllocationsThisYear = $this->Departmentbudget->find('list', array(
+			'fields' => array('department_id', 'unrestricted_allocation_gbp'),
+			'conditions' => array(
+				'Departmentbudget.year' => $year
+			),
+		));
 		
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Departmentbudget->saveAnnualBudgets($year, $this->request->data)) {
@@ -93,7 +100,7 @@ class DepartmentbudgetsController extends AppController {
 			// $this->request->data = $this->Departmentbudget->find('first', $options);
 		}
 		$departments = $this->Departmentbudget->Department->find('list');
-		$this->set(compact('year', 'departments', 'departmentBudgetsThisYear'));
+		$this->set(compact('year', 'departments', 'departmentBudgetsThisYear', 'departmentUnrestrictedAllocationsThisYear'));
 	}
 
 /**
@@ -103,19 +110,19 @@ class DepartmentbudgetsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
-		$this->Departmentbudget->id = $id;
-		if (!$this->Departmentbudget->exists()) {
-			throw new NotFoundException(__('Invalid departmentbudget'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Departmentbudget->delete()) {
-			$this->Session->setFlash(__('The departmentbudget has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The departmentbudget could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
+	// public function delete($id = null) {
+	// 	$this->Departmentbudget->id = $id;
+	// 	if (!$this->Departmentbudget->exists()) {
+	// 		throw new NotFoundException(__('Invalid departmentbudget'));
+	// 	}
+	// 	$this->request->allowMethod('post', 'delete');
+	// 	if ($this->Departmentbudget->delete()) {
+	// 		$this->Session->setFlash(__('The departmentbudget has been deleted.'));
+	// 	} else {
+	// 		$this->Session->setFlash(__('The departmentbudget could not be deleted. Please, try again.'));
+	// 	}
+	// 	return $this->redirect(array('action' => 'index'));
+	// }
 
 	public function isAuthorized($user) {
 		

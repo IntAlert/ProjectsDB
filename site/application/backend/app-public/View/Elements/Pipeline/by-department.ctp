@@ -1,6 +1,13 @@
 <?
 
-$pipeline = new MACPipelineByDepartment($selectedYear, $projects, $departmentBudgetThisYear, $departmentBudgetNextYear);
+$pipeline = new MACPipelineByDepartment(
+		$selectedYear, 
+		$projects, 
+		$departmentBudgetThisYear, 
+		$departmentBudgetNextYear,
+		$departmentUnrestrictedAllocationThisYear, 
+		$departmentUnrestrictedAllocationNextYear
+	);
 
 $unconfirmedProjects = $pipeline->getFlattenedProjects(array('highly-likely', 'medium', 'low'));
 $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
@@ -48,6 +55,21 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 				</td>
 				<td>
 					<?php echo $this->MacNumber->currency($departmentBudgetNextYear); ?>
+				</td>
+			</tr>
+
+			<!-- Unrestricted Allocation -->
+			<tr>
+				<th>
+					Unrestricted Allocation
+				</th>
+				<td>
+					<?php echo $this->MacNumber->currency($departmentUnrestrictedAllocationThisYear); ?>
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageUnrestrictedAllocationThisYear()); ?>)
+				</td>
+				<td>
+					<?php echo $this->MacNumber->currency($departmentUnrestrictedAllocationNextYear); ?>
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageUnrestrictedAllocationNextYear()); ?>)
 				</td>
 			</tr>
 

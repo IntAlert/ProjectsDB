@@ -56,6 +56,25 @@ class Departmentbudget extends AppModel {
 		));
 	}
 
+	public function getDepartmentUnrestrictedAllocation($department_id, $year) {
+		return $this->Department->Departmentbudget->field(
+			'unrestricted_allocation_gbp', 
+			array(
+				'Departmentbudget.year' => $year,
+				'Departmentbudget.department_id' => $department_id,
+			)
+		);
+	}
+
+	public function getDepartmentUnrestrictedAllocationsList($year) {
+		return $this->find('list', array(
+			'fields' => array('department_id', 'unrestricted_allocation_gbp'),
+			'conditions' => array(
+				'Departmentbudget.year' => $year
+			),
+		));
+	}
+
 	public function saveAnnualBudgets($year, $data) {
 
 		// build data
@@ -65,6 +84,7 @@ class Departmentbudget extends AppModel {
 				'year' => $year,
 				'department_id' => $department_id,
 				'value_gbp' => $departmentbudget['value_gbp'],
+				'unrestricted_allocation_gbp' => $departmentbudget['unrestricted_allocation_gbp'],
 			);
 		}
 

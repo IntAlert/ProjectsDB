@@ -3,7 +3,7 @@
 <?php
 
 	// create pipelines
-	$pipelineThisYear = new MACPipeline($selectedYear, $departmentBudgetsThisYear, $budgetsThisYear);
+	$pipelineThisYear = new MACPipeline($selectedYear, $departmentBudgetsThisYear, $departmentUnrestrictedAllocationsThisYear, $budgetsThisYear);
 
 	// get dates for convenience
 	$now = new DateTime();
@@ -40,7 +40,7 @@
 
 		<thead>
 			<tr>
-				<th colspan="9" class="this-year">
+				<th colspan="10" class="this-year">
 					<?php echo $pipelineThisYear->getYear(); ?> STATUS 
 					as at <?php echo $this->Time->nice($now); ?>
 				</th>
@@ -48,7 +48,7 @@
 
 
 			<tr>
-				<th colspan="2">
+				<th colspan="3">
 					<?php echo $pipelineThisYear->getYear(); ?> Budget Targets
 				</th>
 				<th colspan="4">
@@ -66,6 +66,9 @@
 				</th>
 				<th>
 					Budget
+				</th>
+				<th>
+					Unrestricted funding
 				</th>
 
 				<th colspan="2">
@@ -96,6 +99,12 @@
 				<td>
 					<!-- Budget -->
 					<?php echo $this->MacNumber->currency($pipelineThisYear->getBudget('all')); ?>
+
+				</td>
+
+				<td>
+					<!-- Unrestricted -->
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getUnrestrictedAllocation('all')); ?>
 
 				</td>
 
@@ -144,6 +153,12 @@
 				<td>
 					<!-- Budget -->
 					<?php echo $this->MacNumber->currency($pipelineThisYear->getBudget($department_id)); ?>
+
+				</td>
+
+				<td>
+					<!-- Unrestricted funding -->
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getUnrestrictedAllocation($department_id)); ?>
 
 				</td>
 

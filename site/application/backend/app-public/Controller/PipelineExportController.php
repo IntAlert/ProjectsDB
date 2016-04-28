@@ -41,11 +41,17 @@ class PipelineExportController extends AppController {
 		// get department budgets for this year
 		$this->departmentBudgetsThisYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($this->selectedYear);
 
+		// get department unrestricted allocation for this year
+		$this->departmentUnrestrictedAllocationsThisYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocationsList($this->selectedYear);
+
 		// get annual contract budgets
 		$this->contractbudgetsNextYear = $this->Department->Project->Contract->Contractbudget->getContractBudgets($this->nextYear);
 
 		// get department budgets for next year
 		$this->departmentBudgetsNextYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($this->nextYear);
+
+		// get department unrestricted allocation for this year
+		$this->departmentUnrestrictedAllocationsNextYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocationsList($this->nextYear);
 
 		// BUILD UP DEPARTMENT-LEVEL DATA
 		$departmentsDetailAnnual = [];
@@ -55,7 +61,9 @@ class PipelineExportController extends AppController {
 				'department' => $this->Department->findSimpleById($department_id),
 				'projects' => $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $this->selectedYear),
 				'departmentBudgetThisYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->selectedYear),
-				'departmentBudgetNextYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->selectedYear + 1),
+				'departmentBudgetNextYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->nextYear),
+				'departmentUnrestrictedAllocationsThisYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->selectedYear),
+				'departmentUnrestrictedAllocationsNextYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->nextYear),
 			);
 
 			$departmentsDetailAnnual[$department_id] = $departmentDetailAnnual;
@@ -145,11 +153,21 @@ class PipelineExportController extends AppController {
 	private function writeContent() {
 
 		// pipeline summary this year
-		$pipelineThisYear = new MACPipeline($this->selectedYear, $this->departmentBudgetsThisYear, $this->contractbudgetsThisYear);
+		$pipelineThisYear = new MACPipeline(
+			$this->selectedYear, 
+			$this->departmentBudgetsThisYear, 
+			$this->departmentUnrestrictedAllocationsThisYear, 
+			$this->contractbudgetsThisYear
+		);
 		$this->createSummary($pipelineThisYear, $this->comparissonData['this-year']);
 
 		// copy summary 2016
-		$pipelineNextYear = new MACPipeline($this->selectedYear + 1, $this->departmentBudgetsNextYear, $this->contractbudgetsNextYear);
+		$pipelineNextYear = new MACPipeline(
+			$this->nextYear, 
+			$this->departmentBudgetsNextYear, 
+			$this->departmentUnrestrictedAllocationsNextYear, 
+			$this->contractbudgetsNextYear
+		);
 		$this->createSummary($pipelineNextYear, $this->comparissonData['next-year']);
 
 		// Create department detail for each department
@@ -172,19 +190,20 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('A1', $snapshotTime);
 
 		// Comparisson year
-		$sheet->setCellValue('J1', $this->Time->format('Y', strtotime($comparissonData['comparisson-date'])) . " Progress to Target" );
+		$sheet->setCellValue('K1', $this->Time->format('Y', strtotime($comparissonData['comparisson-date'])) . " Progress to Target" );
 
 		// SECOND ROW
 		// add year
 		$sheet->setCellValue('A2', $pipeline->getYear() . ' Budget Targets');
 
 		// add comparisson date
-		$sheet->setCellValue('J2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($comparissonData['comparisson-date'])) . ' for current year projections');
+		$sheet->setCellValue('K2', 'Comparison Figures as at ' . $this->Time->format('d/m/y', strtotime($comparissonData['comparisson-date'])) . ' for current year projections');
 
 		// ALL DEPARTMENTS
 		$grandTotal = array(
 			'Total',
 			$pipeline->getBudget('all'), // budget this year
+			$pipeline->getUnrestrictedAllocation('all'), // budget this year
 
 			// pipeline (confirmed and highly likely)
 			$pipeline->getTotal("all", "confirmed"), // confirmed value
@@ -214,6 +233,7 @@ class PipelineExportController extends AppController {
 	    	$departmentTotal = array(
 				$department_name,
 				$pipeline->getBudget($department_id), // budget this year
+				$pipeline->getUnrestrictedAllocation($department_id), // unrestricted allocation this year
 
 				// pipeline (confirmed and highly likely)
 				$pipeline->getTotal($department_id, "confirmed"), // confirmed value
@@ -253,7 +273,12 @@ class PipelineExportController extends AppController {
 		extract($this->departmentsDetailAnnual[$department_id]);
 
 		// instantiate pipeline
-		$pipeline = new MACPipelineByDepartment($this->selectedYear, $projects, $departmentBudgetThisYear, $departmentBudgetNextYear);
+		$pipeline = new MACPipelineByDepartment(
+			$this->selectedYear, 
+			$projects, 
+			$departmentBudgetThisYear, 
+			$departmentBudgetNextYear
+		);
 
 		$unconfirmedProjects = $pipeline->getFlattenedProjects(array('highly-likely', 'medium', 'low'));
 		$confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
@@ -265,12 +290,18 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('A1', $department['Department']['name'] );
 
 		// add this year budget
-		$sheet->setCellValue('G1', $this->selectedYear . " Budget" );
-		$sheet->setCellValue('I1', $departmentBudgetThisYear );
+		$sheet->setCellValue('F1', $this->selectedYear);
+		$sheet->setCellValue('G1', $departmentBudgetThisYear );
+
+		// add this year unrestricted allocation
+		$sheet->setCellValue('J1', $departmentUnrestrictedAllocationsThisYear );
 
 		// add next year budget
-		$sheet->setCellValue('G2', $this->selectedYear + 1 . " Budget" );
-		$sheet->setCellValue('I2', $departmentBudgetNextYear );
+		$sheet->setCellValue('F2', $this->nextYear);
+		$sheet->setCellValue('G2', $departmentBudgetNextYear );
+
+		// add next year unrestricted allocation
+		$sheet->setCellValue('J2', $departmentUnrestrictedAllocationsNextYear );
 
 		// add row 5 headers
 		$sheet->setCellValue('I4', $this->selectedYear);

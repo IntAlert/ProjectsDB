@@ -37,13 +37,11 @@ class PipelineController extends AppController {
 		));
 
 		// get department budgets for this year
-		$departmentBudgetsThisYear = $this->Department->Departmentbudget->find('list', array(
-			'fields' => array('department_id', 'value_gbp'),
-			'conditions' => array(
-				'Departmentbudget.year' => $selectedYear
-			),
-		));
-
+		$departmentBudgetsThisYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($selectedYear);
+		
+		// get department budgets for this year
+		$departmentUnrestrictedAllocationsThisYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocationsList($selectedYear);
+		
 		// get departments
 		$departmentsList = $this->Department->findOrderedList();
 
@@ -53,6 +51,7 @@ class PipelineController extends AppController {
 			'thisYear',
 			'firstYear',
 			'budgetsThisYear',
+			'departmentUnrestrictedAllocationsThisYear',
 			'departmentsList'
 		 ));
 	}
@@ -81,8 +80,14 @@ class PipelineController extends AppController {
 		// get department budget this year
 		$departmentBudgetThisYear = $this->Department->Departmentbudget->getDepartmentBudget($department_id, $selectedYear);
 
-		// and next
+		// and next year's budget
 		$departmentBudgetNextYear = $this->Department->Departmentbudget->getDepartmentBudget($department_id, $selectedYear + 1);
+
+		// get department unrestricted allocation this year
+		$departmentUnrestrictedAllocationThisYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $selectedYear);
+
+		// and next year's unrestricted allocation
+		$departmentUnrestrictedAllocationNextYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $selectedYear + 1);
 
 		// get projects for this department and year
 		$projects = $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $selectedYear);
@@ -95,7 +100,9 @@ class PipelineController extends AppController {
 			'projects',
 			'selectedYear', 
 			'departmentBudgetThisYear', 
-			'departmentBudgetNextYear'
+			'departmentBudgetNextYear',
+			'departmentUnrestrictedAllocationThisYear', 
+			'departmentUnrestrictedAllocationNextYear'
 		));
 
 	}
@@ -169,6 +176,9 @@ class PipelineController extends AppController {
 		// get department budgets for this year
 		$departmentBudgetsThisYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($selectedYear);
 
+		// get department unrestricted allocations for this year
+		$departmentUnrestrictedAllocationThisYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocationsList($selectedYear);
+
 		// NEXT YEAR
 		//
 		// get annual contract budgets
@@ -176,6 +186,9 @@ class PipelineController extends AppController {
 
 		// get department budgets for this year
 		$departmentBudgetsNextYear = $this->Department->Departmentbudget->getDepartmentBudgetsList($nextYear);
+
+		// get department unrestricted allocations for next year
+		$departmentUnrestrictedAllocationNextYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocationsList($selectedYear);
 
 
 		// BUILD UP DEPARTMENT-LEVEL DATA
@@ -205,6 +218,8 @@ class PipelineController extends AppController {
 			// Summary data
 			'departmentBudgetsThisYear',
 			'departmentBudgetsNextYear',
+			'departmentUnrestrictedAllocationThisYear',
+			'departmentUnrestrictedAllocationNextYear',
 			'contractbudgetsThisYear',
 			'contractbudgetsNextYear',
 
