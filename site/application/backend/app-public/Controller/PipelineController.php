@@ -198,8 +198,10 @@ class PipelineController extends AppController {
 			$departmentDetailAnnual = array(
 				'department' => $this->Department->findSimpleById($department_id),
 				'projects' => $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $selectedYear),
-				'departmentBudgetThisYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $selectedYear),
-				'departmentBudgetNextYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $nextYear),
+				'departmentBudgetThisYear' => $departmentBudgetsThisYear[$department_id],
+				'departmentBudgetNextYear' => $departmentBudgetsNextYear[$department_id],
+				'departmentUnrestrictedAllocationThisYear' => $departmentUnrestrictedAllocationThisYear[$department_id],
+				'departmentUnrestrictedAllocationNextYear' => $departmentUnrestrictedAllocationNextYear[$department_id],
 			);
 
 			$departmentsDetailAnnual[$department_id] = $departmentDetailAnnual;

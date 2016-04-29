@@ -50,7 +50,6 @@
 	<?php foreach($departmentsDetailAnnual as $department_id => $departmentDetailAnnual): ?>
 
 	<div class="pipeline-export-by-department">
-
 	<?php echo $this->element('Pipeline/by-department', $departmentDetailAnnual); ?>
 
 	</div>

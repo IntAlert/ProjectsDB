@@ -1,13 +1,13 @@
 
 
-<?php if ( !count($projects) ): ?>
+<?php if ( $this->request->query('action') ): ?>
 
 <!-- Feedback form -->
 
 <div class="no-results-feedback">
 	<div class="inner">
 	
-	<h3>Expecting to find results for your search criteria?</h3>
+	<h3>Expecting to find different results for your search criteria?</h3>
 	<p>Let us know what you were expecting and we'll do what we can to improve the search engine.</p>
 
 	<?php 
