@@ -62,8 +62,8 @@ class PipelineExportController extends AppController {
 				'projects' => $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $this->selectedYear),
 				'departmentBudgetThisYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->selectedYear),
 				'departmentBudgetNextYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->nextYear),
-				'departmentUnrestrictedAllocationsThisYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->selectedYear),
-				'departmentUnrestrictedAllocationsNextYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->nextYear),
+				'departmentUnrestrictedAllocationThisYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->selectedYear),
+				'departmentUnrestrictedAllocationNextYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->nextYear),
 			);
 
 			$departmentsDetailAnnual[$department_id] = $departmentDetailAnnual;
@@ -277,7 +277,9 @@ class PipelineExportController extends AppController {
 			$this->selectedYear, 
 			$projects, 
 			$departmentBudgetThisYear, 
-			$departmentBudgetNextYear
+			$departmentBudgetNextYear,
+			$departmentUnrestrictedAllocationThisYear, 
+			$departmentUnrestrictedAllocationNextYear
 		);
 
 		$unconfirmedProjects = $pipeline->getFlattenedProjects(array('highly-likely', 'medium', 'low'));
@@ -294,14 +296,14 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('G1', $departmentBudgetThisYear );
 
 		// add this year unrestricted allocation
-		$sheet->setCellValue('J1', $departmentUnrestrictedAllocationsThisYear );
+		$sheet->setCellValue('J1', $departmentUnrestrictedAllocationThisYear );
 
 		// add next year budget
 		$sheet->setCellValue('F2', $this->nextYear);
 		$sheet->setCellValue('G2', $departmentBudgetNextYear );
 
 		// add next year unrestricted allocation
-		$sheet->setCellValue('J2', $departmentUnrestrictedAllocationsNextYear );
+		$sheet->setCellValue('J2', $departmentUnrestrictedAllocationNextYear );
 
 		// add row 5 headers
 		$sheet->setCellValue('I4', $this->selectedYear);
