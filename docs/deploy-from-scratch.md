@@ -126,6 +126,6 @@ Enable the app domain on Azure
 
 Finito Benito
 ====
-You should now be able to visit PROMPT
+You should now be able to visit [PROMPT](http://prompt.intalert.org)
 
 
