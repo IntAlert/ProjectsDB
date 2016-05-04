@@ -66,26 +66,26 @@ class MACPipelineByDepartment {
 		return $projects;
 	}
 
-	function getTotalBudgetThisYear($likelihoods = array()) {
-		return $this->getTotalBudgetByYear($likelihoods, 'this');
+	function getTotalBudgetThisYear($likelihoods = array(), $includeUnrestricted = false) {
+		return $this->getTotalBudgetByYear($likelihoods, 'this', $includeUnrestricted);
 	}
 
-	function getTotalBudgetNextYear($likelihoods = array()) {
-		return $this->getTotalBudgetByYear($likelihoods, 'next');
+	function getTotalBudgetNextYear($likelihoods = array(), $includeUnrestricted = false) {
+		return $this->getTotalBudgetByYear($likelihoods, 'next', $includeUnrestricted);
 	}
 
-	function getPercentageBudgetThisYear($likelihoods = array()) {
+	function getPercentageBudgetThisYear($likelihoods = array(), $includeUnrestricted = false) {
 		if ($this->departmentBudgetThisYear) {
-			return 100 * $this->getTotalBudgetByYear($likelihoods, 'this') / $this->departmentBudgetThisYear;
+			return 100 * $this->getTotalBudgetByYear($likelihoods, 'this', $includeUnrestricted) / $this->departmentBudgetThisYear;
 		} else {
 			return 100;
 		}
 		
 	}
 
-	function getPercentageBudgetNextYear($likelihoods = array()) {
+	function getPercentageBudgetNextYear($likelihoods = array(), $includeUnrestricted = false) {
 		if ($this->departmentBudgetNextYear) {
-			return 100 * $this->getTotalBudgetByYear($likelihoods, 'next') / $this->departmentBudgetNextYear;
+			return 100 * $this->getTotalBudgetByYear($likelihoods, 'next', $includeUnrestricted) / $this->departmentBudgetNextYear;
 		} else {
 			return 100;
 		}
@@ -115,7 +115,7 @@ class MACPipelineByDepartment {
 
 	// Private functions
 
-	private function getTotalBudgetByYear($likelihoods = array(), $which_year) {
+	private function getTotalBudgetByYear($likelihoods = array(), $which_year, $includeUnrestricted = false) {
 
 		// check which year is valid
 		switch ($which_year) {
@@ -148,6 +148,23 @@ class MACPipelineByDepartment {
 				
 				$total += $contract_secondary[$year_key];
 			}
+		}
+
+		if ($includeUnrestricted) {
+
+			switch ($which_year) {
+				case 'this':
+					$total += $this->departmentUnrestrictedAllocationThisYear;
+					break;
+
+				case 'next':
+					$total += $this->departmentUnrestrictedAllocationNextYear;
+					break;
+
+				// no default as would be caught earlier
+			}
+
+			
 		}
 		return $total;
 	}

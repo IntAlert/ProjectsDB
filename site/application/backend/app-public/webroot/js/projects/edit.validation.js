@@ -107,7 +107,13 @@ $(function(){
 				},
 
 				"data[Pathway][Pathway][]": {
-					required: true
+					required: true,
+					minlength: 1
+				},
+
+				"data[Theme][Theme][]": {
+					required: true,
+					minlength: 1
 				},
 
 

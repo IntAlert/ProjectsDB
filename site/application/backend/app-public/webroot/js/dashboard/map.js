@@ -14,8 +14,7 @@ $(function(){
 
 
     var minValue = Math.min.apply(null, onlyValues),
-            maxValue = Math.max.apply(null, onlyValues);
-            console.log(minValue, maxValue)
+        maxValue = Math.max.apply(null, onlyValues);
     // create color palette function
     // color can be whatever you wish
     var paletteScale = d3.scale.linear()

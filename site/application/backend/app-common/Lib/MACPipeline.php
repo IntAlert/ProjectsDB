@@ -21,7 +21,7 @@ class MACPipeline {
 	}
 
 
-	function getTotal($department_id, $likelihoods) {
+	function getTotal($department_id, $likelihoods, $includeUnrestricted = false) {
 
 		if (is_string($likelihoods)) $likelihoods = array($likelihoods);
 		
@@ -83,6 +83,11 @@ class MACPipeline {
 
 		}
 
+		// include unrestricted funding?
+		if ($includeUnrestricted) {
+			$total += $this->getUnrestrictedAllocation($department_id);
+		}
+
 		return $total;
 	}
 
@@ -116,19 +121,19 @@ class MACPipeline {
 
 	
 
-	function getRatio($department_id, $statuses) {
+	function getRatio($department_id, $statuses, $includeUnrestricted = false) {
 
 		// avoid divide by zero
 		if ($this->getBudget($department_id)) {
-			$ratio = $this->getTotal($department_id, $statuses) / $this->getBudget($department_id);
+			$ratio = $this->getTotal($department_id, $statuses, $includeUnrestricted) / $this->getBudget($department_id);
 		} else {
 			$ratio = 1;
 		}
 		return $ratio;
 	}
 
-	function getPercentage($department_id, $statuses) {
-		return $this->getRatio($department_id, $statuses) * 100;
+	function getPercentage($department_id, $statuses, $includeUnrestricted = false) {
+		return $this->getRatio($department_id, $statuses, $includeUnrestricted) * 100;
 	}
 
 }

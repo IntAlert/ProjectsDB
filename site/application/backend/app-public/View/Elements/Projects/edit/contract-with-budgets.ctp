@@ -189,7 +189,7 @@ endif; //(count($project['Contract'])):
 
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.origin_total_value', array(
 							'label' => false,
-							'type' => 'text',
+							'type' => 'number',
 							'value' => $contract['origin_total_value'],
 							'class' => 'contract-origin-total-value',
 						)); ?>
@@ -271,6 +271,7 @@ endif; //(count($project['Contract'])):
 								'value' => $contractbudget['value_donor_currency'],
 								'label' => false,
 								'class' => 'value_donor_currency',
+								'type' => 'number',
 							)); ?>
 						</td>
 
@@ -279,6 +280,7 @@ endif; //(count($project['Contract'])):
 								'value' => $contractbudget['value_gbp'],
 								'label' => false,
 								'class' => 'value_gbp',
+								'type' => 'number',
 							)); ?>
 						</td>
 
@@ -371,7 +373,7 @@ endif; //(count($project['Contract'])):
 					</td>
 
 					<td>
-						Donor Framework
+						Donor Framework or funding instrument
 						<?php echo $this->Tooltip->element('Frameworks are pre-selection mechanisms used by donors to restrict the pool of applicants/suppliers. Examples include the UK Conflict, Stability & Security Fund (CSSF) framework or the DFID Fragile & Conflict-Affected States (FCAS) framework. USAID also uses frameworks but calls them Indefinite Quantity Contracts (IQC).'); ?>
 					</td>
 
@@ -482,7 +484,7 @@ endif; //(count($project['Contract'])):
 
 						<?php echo $this->Form->input('Contract.{contract_id}.origin_total_value', array(
 							'label' => false,
-							'type' => 'text',
+							'type' => 'number',
 							'id' => false,
 							'class' => 'contract-origin-total-value'
 						)); ?>
@@ -564,6 +566,7 @@ endif; //(count($project['Contract'])):
 							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_donor_currency', array(
 									'id' => false,
 									'label' => false,
+									'type' => 'number',
 									'class' => 'value_donor_currency',
 							)); ?>
 						</td>
@@ -572,6 +575,7 @@ endif; //(count($project['Contract'])):
 							<?php echo $this->Form->input('Contract.{contract_id}.Contractbudget.{contractbudget_id}.value_gbp', array(
 									'id' => false,
 									'label' => false,
+									'type' => 'number',
 									'class' => 'value_gbp',
 							)); ?>
 						</td>

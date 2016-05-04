@@ -21,6 +21,7 @@
 				<li>Title</li>
 				<li>Total Project Value</li>
 				<li>Programme</li>
+				<li>Strategic Pathway</li>
 				<li>Submission Status</li>
 				<li>Likelihood</li>
 			</ul>
@@ -164,7 +165,7 @@
 	</fieldset>
 
 
-<?php echo $this->Form->end(__('Save Project')); ?>
+<?php echo $this->Form->end(__('Save Record')); ?>
 </div>
 
 

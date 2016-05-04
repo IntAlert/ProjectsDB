@@ -52,7 +52,7 @@
 					<?php echo $pipelineThisYear->getYear(); ?> Budget Targets
 				</th>
 				<th colspan="4">
-					Progress Status to Target Against Budget
+					Progress towards Budget Target
 					(confirmed and highly likely)
 				</th>
 				<th colspan="3">
@@ -68,7 +68,7 @@
 					Budget
 				</th>
 				<th>
-					Unrestricted funding
+					Unrestricted allocation
 				</th>
 
 				<th colspan="2">
@@ -110,22 +110,22 @@
 
 
 				<td class="confirmed-highly-likely">
-					<!-- Confirmed -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", "confirmed")); ?>
+					<!-- Confirmed + Unrestricted -->
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", "confirmed", true)); ?>
 				</td>
 				<td class="confirmed-highly-likely">
-					<!-- Confirmed percentage -->
-					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage("all", "confirmed")); ?>
+					<!-- Confirmed + Unrestricted percentage -->
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage("all", "confirmed", true)); ?>
 				</td>
 
 
 				<td class="confirmed-highly-likely">
-					<!-- Confirmed + HL -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array('confirmed', 'highly-likely'))); ?>
+					<!-- Confirmed + HL + Unrestricted -->
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal("all", array('confirmed', 'highly-likely'), true)); ?>
 				</td>
 				<td class="confirmed-highly-likely">
-					<!-- Confirmed + HL percentage -->
-					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage("all", array('confirmed', 'highly-likely'))); ?>
+					<!-- Confirmed + HL + Unrestricted percentage -->
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage("all", array('confirmed', 'highly-likely'), true)); ?>
 				</td>
 
 				<td class="pipeline">
@@ -157,7 +157,7 @@
 				</td>
 
 				<td>
-					<!-- Unrestricted funding -->
+					<!-- Unrestricted allocation -->
 					<?php echo $this->MacNumber->currency($pipelineThisYear->getUnrestrictedAllocation($department_id)); ?>
 
 				</td>
@@ -165,21 +165,21 @@
 
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, "confirmed")); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, "confirmed", true)); ?>
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed percentage -->
-					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage($department_id, "confirmed")); ?>
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage($department_id, "confirmed", true)); ?>
 				</td>
 
 
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL -->
-					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array('confirmed', 'highly-likely'))); ?>
+					<?php echo $this->MacNumber->currency($pipelineThisYear->getTotal($department_id, array('confirmed', 'highly-likely'), true)); ?>
 				</td>
 				<td class="confirmed-highly-likely">
 					<!-- Confirmed + HL percentage -->
-					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage($department_id, array('confirmed', 'highly-likely'))); ?>
+					<?php echo $this->MacNumber->toPercentage($pipelineThisYear->getPercentage($department_id, array('confirmed', 'highly-likely'), true)); ?>
 				</td>
 
 				<td class="pipeline">

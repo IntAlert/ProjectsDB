@@ -190,7 +190,7 @@ class PipelineExportController extends AppController {
 		$sheet->setCellValue('A1', $snapshotTime);
 
 		// Comparisson year
-		$sheet->setCellValue('K1', $this->Time->format('Y', strtotime($comparissonData['comparisson-date'])) . " Progress to Target" );
+		$sheet->setCellValue('K1', $this->Time->format('Y', strtotime($comparissonData['comparisson-date'])) . " Progress towards Budget Target" );
 
 		// SECOND ROW
 		// add year
@@ -206,10 +206,10 @@ class PipelineExportController extends AppController {
 			$pipeline->getUnrestrictedAllocation('all'), // budget this year
 
 			// pipeline (confirmed and highly likely)
-			$pipeline->getTotal("all", "confirmed"), // confirmed value
-			$pipeline->getRatio("all", "confirmed"), // confirmed %
-			$pipeline->getTotal("all", array('confirmed', 'highly-likely')),
-			$pipeline->getRatio("all", array('confirmed', 'highly-likely')),
+			$pipeline->getTotal("all", "confirmed", true), // confirmed value
+			$pipeline->getRatio("all", "confirmed", true), // confirmed %
+			$pipeline->getTotal("all", array('confirmed', 'highly-likely'), true),
+			$pipeline->getRatio("all", array('confirmed', 'highly-likely'), true),
 
 			// pipeline (all unconfirmed)
 			$pipeline->getTotal("all", array("highly-likely", 'medium', 'low')),
@@ -236,10 +236,10 @@ class PipelineExportController extends AppController {
 				$pipeline->getUnrestrictedAllocation($department_id), // unrestricted allocation this year
 
 				// pipeline (confirmed and highly likely)
-				$pipeline->getTotal($department_id, "confirmed"), // confirmed value
-				$pipeline->getRatio($department_id, "confirmed"), // confirmed %
-				$pipeline->getTotal($department_id, array('confirmed', 'highly-likely')),
-				$pipeline->getRatio($department_id, array('confirmed', 'highly-likely')),
+				$pipeline->getTotal($department_id, "confirmed", true), // confirmed value
+				$pipeline->getRatio($department_id, "confirmed", true), // confirmed %
+				$pipeline->getTotal($department_id, array('confirmed', 'highly-likely'), true),
+				$pipeline->getRatio($department_id, array('confirmed', 'highly-likely'), true),
 
 				// pipeline (all unconfirmed)
 				$pipeline->getTotal($department_id, array("highly-likely", 'medium', 'low')),
@@ -293,14 +293,14 @@ class PipelineExportController extends AppController {
 
 		// add this year budget
 		$sheet->setCellValue('F1', $this->selectedYear);
-		$sheet->setCellValue('G1', $departmentBudgetThisYear );
+		$sheet->setCellValue('H1', $departmentBudgetThisYear );
 
 		// add this year unrestricted allocation
 		$sheet->setCellValue('J1', $departmentUnrestrictedAllocationThisYear );
 
 		// add next year budget
 		$sheet->setCellValue('F2', $this->nextYear);
-		$sheet->setCellValue('G2', $departmentBudgetNextYear );
+		$sheet->setCellValue('H2', $departmentBudgetNextYear );
 
 		// add next year unrestricted allocation
 		$sheet->setCellValue('J2', $departmentUnrestrictedAllocationNextYear );

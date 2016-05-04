@@ -133,7 +133,7 @@
 	</fieldset>
 
 
-<?php echo $this->Form->end(__('Save Project')); ?>
+<?php echo $this->Form->end(__('Save Record')); ?>
 </div>
 
 

@@ -79,12 +79,12 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 					Confirmed
 				</th>
 				<td>
-					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('confirmed'))); ?>
-					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed'))); ?>)
+					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('confirmed'), true)); ?>
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed'), true)); ?>)
 				</td>
 				<td>
-					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('confirmed'))); ?>
-					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed'))); ?>)
+					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('confirmed'), true)); ?>
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed'), true)); ?>)
 				</td>
 			</tr>
 
@@ -109,12 +109,12 @@ $confirmedProjects = $pipeline->getFlattenedProjects(array('confirmed'));
 					Confirmed + Highly Likely
 				</th>
 				<td>
-					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('confirmed', 'highly-likely'))); ?>
-					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed', 'highly-likely'))); ?>)
+					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetThisYear(array('confirmed', 'highly-likely'), true)); ?>
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetThisYear(array('confirmed', 'highly-likely'), true)); ?>)
 				</td>
 				<td>
-					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('confirmed', 'highly-likely'))); ?>
-					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed', 'highly-likely'))); ?>)
+					<?php echo $this->MacNumber->currency($pipeline->getTotalBudgetNextYear(array('confirmed', 'highly-likely'), true)); ?>
+					(<?php echo $this->MacNumber->toPercentage($pipeline->getPercentageBudgetNextYear(array('confirmed', 'highly-likely'), true)); ?>)
 				</td>
 			</tr>
 
