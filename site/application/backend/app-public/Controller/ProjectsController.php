@@ -253,8 +253,8 @@ class ProjectsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			if ($this->Project->saveComplete($this->request->data)) {
-				// debug($this->request->data);
-				// die();
+				
+
 				$this->Session->setFlash(__('The project has been saved.'));
 
 				
@@ -301,13 +301,17 @@ class ProjectsController extends AppController {
 		$budget_holders = $this->User->findBudgetHoldersList();
 
 
-		if ( !Configure::read('disable_sharepoint_folder_sync') ):
-			// ensure that folder exists
-			$user_id = $this->Auth->user('id');
-			$sd = new SharepointDocs($user_id, $this->User->Office365user);
-			$results = $sd->createTemplateFolders($id); // TODO: remove ensureFoldersCreated = false
 
-		endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
+		// THESE LINES WERE IN PLACE TO ENSURE THAT LEGACY PROJECTS 
+		// WOULD HAVE THE RIGHT FILE STRUCTURE
+		//
+		// if ( !Configure::read('disable_sharepoint_folder_sync') ):
+		// 	// ensure that folder exists
+		// 	$user_id = $this->Auth->user('id');
+		// 	$sd = new SharepointDocs($user_id, $this->User->Office365user);
+		// 	$results = $sd->createTemplateFolders($id); // TODO: remove ensureFoldersCreated = false
+
+		// endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 
 
 		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders', 'donorWarnings'));
