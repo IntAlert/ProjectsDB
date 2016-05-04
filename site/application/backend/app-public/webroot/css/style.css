@@ -269,8 +269,10 @@ height:48px;
 
 nav.admin-nav ul li {
 	float: left;
-	clear:both;
+	text-align: center;
+	max-width:20%;
 }
+nav.admin-nav ul li p {padding:1em;}
 
 
 /* Instruction-block */
