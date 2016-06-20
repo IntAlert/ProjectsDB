@@ -20,10 +20,11 @@
 			<ul>
 				<li>Title</li>
 				<li>Total Project Value</li>
-				<li>Programme</li>
-				<li>Strategic Pathway</li>
 				<li>Submission Status</li>
 				<li>Likelihood</li>
+				<li>Programme(s)</li>
+				<li>Strategic Pathway(s)</li>
+				<li>Theme(s)</li>
 			</ul>
 			<p>As the proposal/project progresses, please remember to come back to PROMPT and update its details.</p>
 		</div>
