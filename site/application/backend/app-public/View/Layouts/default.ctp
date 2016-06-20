@@ -37,6 +37,7 @@ if ( !isset($title) ) {
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>
 		PROMPT - <?php echo $title; ?>
 	</title>
