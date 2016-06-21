@@ -5,14 +5,16 @@ Two backups are taken. The default TSO backup runs ever 5-6 days. A custom scrip
 
 
 ## Daily Backups
-The PROMPT database is updated daily at 6am GMT via a cron script conigured on TSO hosts as follows
+The PROMPT database is updated daily at 6am GMT via a cron script conigured on TSO hosts as follows:
 ```
 0	6	*	*	* /bin/sh /var/sites/p/prompt.intalert.org/backupGenerator.sh
 ```
 
 This script produces mysql backups of the database in:
 
-```/var/sites/p/prompt.intalert.org/additional_backups```
+```
+/var/sites/p/prompt.intalert.org/additional_backups
+```
 
 
 These daily backups are kept for 30 days.

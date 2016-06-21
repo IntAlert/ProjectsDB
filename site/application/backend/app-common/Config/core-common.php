@@ -240,6 +240,7 @@ switch (Configure::read('ENVIRONMENT')) {
 		'cookie' => 'IntAlertPROMPT',
 		'timeout' => 3600,
 		'cookieTimeout' => 3600,
+		'checkAgent' =>	false,
 		'defaults' => 'database',
 	));
 
