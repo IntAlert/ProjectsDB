@@ -27,8 +27,18 @@ A separate, TSO process produces backups every 5-6 days in this folder:
 ```
 
 ## Restoring a backup
-1. Log in to the server via SSH or FTP
+1. Log in to the server via SSH* or FTP
 2. Navigate to ```/var/sites/p/prompt.intalert.org/additional_backups```
 3. Download the appropriate backup file
 4. Open the database in your [MySQL client](remote-database-access.md)
 5. Import the database export
+
+* SCP shortcut command:
+```
+scp prompt:/var/sites/p/prompt.intalert.org/additional_backups/06-08-16_06:00-sql_backup.sql ./
+```
+
+## Practice restoring a backup
+Follow the steps above but restore the backup on staging instead.
+
+
