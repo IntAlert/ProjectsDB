@@ -33,7 +33,7 @@ A separate, TSO process produces backups every 5-6 days in this folder:
 4. Open the database in your [MySQL client](remote-database-access.md)
 5. Import the database export
 
-* SCP shortcut command:
+ * SCP shortcut command:
 ```
 scp prompt:/var/sites/p/prompt.intalert.org/additional_backups/06-08-16_06:00-sql_backup.sql ./
 ```

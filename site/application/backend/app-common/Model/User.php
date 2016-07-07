@@ -29,13 +29,21 @@ class User extends AppModel {
             $user_ids[] = $user['id'];
         }
 
-    	return $this->find('list', array(
-    		'fields' => array('id', 'name_formal'),
+        return $this->find('list', array(
+            'fields' => array('id', 'name_formal'),
             'order' => array('last_name, first_name'),
             'conditions' => array(
                 'User.id' => $user_ids
             )
-    	));
+        ));
+    }
+
+    public function findAllUsersList() {
+
+        return $this->find('list', array(
+            'fields' => array('id', 'name_formal'),
+            'order' => array('last_name, first_name')
+        ));
     }
 
 
@@ -102,13 +110,3 @@ class User extends AppModel {
     
 
 }
-
-
-
-
-
-
-
-
-
-
