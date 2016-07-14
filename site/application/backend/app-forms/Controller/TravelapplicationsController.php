@@ -55,23 +55,23 @@ class TravelapplicationsController extends AppController {
 			convert dates
 
 		*/
-		if ($this->request->is('post')) {
-			$this->Travelapplication->create();
+		// if ($this->request->is('post')) {
+		// 	$this->Travelapplication->create();
 			
 
-			if ($this->Travelapplication->saveAll($this->request->data)) {
+		// 	if ($this->Travelapplication->saveAll($this->request->data)) {
 
-				debug($this->request->data);
-				die();
+		// 		debug($this->request->data);
+		// 		die();
 
-				$this->Session->setFlash(__('The travelapplication has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The travelapplication could not be saved. Please, try again.'));
-			}
-		}
-		$users = $this->Travelapplication->User->findAllUsersList();
-		$this->set(compact('users'));
+		// 		$this->Session->setFlash(__('The travelapplication has been saved.'));
+		// 		return $this->redirect(array('action' => 'index'));
+		// 	} else {
+		// 		$this->Session->setFlash(__('The travelapplication could not be saved. Please, try again.'));
+		// 	}
+		// }
+		// $users = $this->Travelapplication->User->findAllUsersList();
+		// $this->set(compact('users'));
 	}
 
 /**

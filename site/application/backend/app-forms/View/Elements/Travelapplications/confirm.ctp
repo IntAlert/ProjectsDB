@@ -1,8 +1,8 @@
 <h1 class="md-display-2">Confirm</h1>
 
+<p>Show all data here</p>
+
 <md-button 
-	ng-click="removeItineraryItem(i)"
-	ng-show="formData.itinerary.length > 1"
 	class="md-raised">
-	Remove
+	Confirm
 </md-button>

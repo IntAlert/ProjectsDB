@@ -3,12 +3,12 @@
 <?php
 		echo $this->Form->input('user_id', array(
 			'type' => 'hidden',
-			'value' => $this->session->read('Auth.User.id')
+			'value' => $this->Session->read('Auth.User.id')
 		));
 		echo $this->Form->input('name', array(
 			'type' => 'text',
 			'label' => 'Your name',
-			'value' => $this->session->read('Auth.User.name'),
+			'value' => $this->Session->read('Auth.User.name'),
 			'disabled' => true,
 			'ng-model' => 'formData.applicant.name'
 		));
