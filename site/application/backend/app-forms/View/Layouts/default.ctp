@@ -42,8 +42,21 @@ if ( !isset($title) ) {
 		PROMPT - <?php echo $title; ?>
 	</title>
 
+
+
 	<!-- JS: Libraries -->
 	<script type="text/javascript" src="/pdb/js/lib/jquery-1.11.2.min.js"></script>
+
+	<script type="text/javascript" src="/pdb/js/lib/angular.min.js"></script>
+
+<!-- Angular -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
 	<script type="text/javascript" src="/pdb/css/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/pdb/js/lib/date.js"></script>
 
@@ -84,6 +97,9 @@ if ( !isset($title) ) {
 
 	<!-- CSS: Libraries -->
 	<link rel="stylesheet" type="text/css" href="/pdb/css/lib/jquery-ui-1.11.4/jquery-ui.min.css">
+	<!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="/pdb/css/lib/font-awesome-4.4.0/css/font-awesome.min.css">
 	
@@ -108,6 +124,10 @@ if ( !isset($title) ) {
 	<link rel="stylesheet" type="text/css" href="/pdb/css/cake.generic.css">
 	<link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
 
+	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css">
+
+	
+
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -128,76 +148,25 @@ if ( !isset($title) ) {
 
 
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
-	
-			<div id="search-shortcut" class="clearfix">
-				<form action="/pdb/projects" method="get">
-
-					<input type="hidden" name="action" value="search">
-
-					<input type="text" name="q" placeholder="Search PROMPT projects" class="contracted search-autocomplete">
-
-				</form>
-			</div>
-
 
 			<ul>
 
 
 
-				<li class="dashboard">
-					
-					<a href="/pdb/dashboard/dashboard">
-						<i class="fa fa-map"></i>
-						PROMPT Dashboard
-					</a>
-				</li>
-
 
 <?php if ($is_admin): // only show nav to logged in users ?>
 
-				<li class="dashboard-admin">
+				<!-- <li class="dashboard-admin">
 					
 					<a href="/pdb/dashboard/admin">
 						<i class="fa fa-lock"></i>
 						Admin
 					</a>
-				</li>
+				</li> -->
 
 <?php endif;// (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
 
 
-				<li class="projects-searchDocs">
-					
-					<a href="/pdb/projects/searchDocs">
-						<i class="fa fa-files-o"></i>
-						Search Documents
-					</a>
-
-				</li>
-
-				<li class="projects-index">
-					
-					<a href="/pdb/projects">
-						<i class="fa fa-search"></i>
-						Search Data
-					</a>
-
-				</li>
-
-				<li class="projects-add">
-					<a href="/pdb/projects/add">
-						<i class="fa fa-plus-circle"></i>
-						Add Proposal/Project
-					</a>
-				</li>
-
-				<li class="pipeline">
-					
-					<a href="/pdb/pipeline/summary">
-						<i class="fa fa-table"></i>
-						Projects &amp; Fundraising Pipeline
-					</a>
-				</li>
 
 
 

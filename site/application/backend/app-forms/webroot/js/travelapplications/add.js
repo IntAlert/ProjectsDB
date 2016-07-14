@@ -1,3 +1,12 @@
+// TODO: 
+/*
+
+	at least one itinerary
+	onfocus flicker
+	
+
+*/
+
 $(function(){
 	$(".datepicker").datepicker({ 
 		dateFormat: "dd/mm/yy",
@@ -53,6 +62,7 @@ $(function(){
 			// 	// form.submit()
 			// }
 
+			form.submit()
 
 			
 			
