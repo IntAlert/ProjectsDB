@@ -43,6 +43,9 @@ if ( !isset($title) ) {
 	</title>
 
 
+	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
+
+
 
 	<!-- JS: Libraries -->
 	<script type="text/javascript" src="/pdb/js/lib/jquery-1.11.2.min.js"></script>
@@ -53,6 +56,8 @@ if ( !isset($title) ) {
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
@@ -119,7 +124,7 @@ if ( !isset($title) ) {
 
 	
 
-	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
+	
 
 	<link rel="stylesheet" type="text/css" href="/pdb/css/cake.generic.css">
 	<link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
@@ -146,6 +151,7 @@ if ( !isset($title) ) {
 
 		<nav class="main">
 
+			<img src="/pdb/img/logo.png" height="60" class="logo">
 
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 

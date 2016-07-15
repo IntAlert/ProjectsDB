@@ -9,6 +9,12 @@ App::uses('AppController', 'Controller');
  */
 class TravelapplicationsController extends AppController {
 
+
+	public $uses = array(
+		'Travelapplication',
+		'Territory'
+	);
+
 /**
  * Components
  *
@@ -70,8 +76,12 @@ class TravelapplicationsController extends AppController {
 				$this->Session->setFlash(__('The travelapplication could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Travelapplication->User->findAllUsersList();
-		$this->set(compact('users'));
+		$users = $this->User->findAllUsersList();
+		$usersFull = $this->User->findAllUsersOrdered();
+		$territories = $this->Territory->findAllGeographical();
+		$this->set(compact('users', 'territories', 'usersFull'));
+
+
 	}
 
 /**

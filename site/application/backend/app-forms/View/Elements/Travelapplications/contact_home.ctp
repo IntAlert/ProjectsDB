@@ -3,15 +3,13 @@
 <table>
 	<tr>
 		<th>
-			Name
+			Staff Member
 		</th>
 		<td>
-			<?php
-				echo $this->Form->input('homecontact_name', array(
-					'label' => false,
-			'ng-model' => 'formData.contact_home.name'
-				));
-			?>
+
+			<select ng-model="formData.contact_home.user" ng-options="user.User.name_formal for user in users">
+			</select>
+
 		</td>
 	</tr>
 
@@ -23,7 +21,7 @@
 			<?php
 				echo $this->Form->input('homecontact_email', array(
 					'label' => false,
-			'ng-model' => 'formData.contact_home.email'
+					'ng-model' => 'formData.contact_home.email',
 				));
 			?>
 		</td>

@@ -4,15 +4,11 @@
 <table>
 	<tr>
 		<th>
-			Name
+			Member of staff
 		</th>
 		<td>
-			<?php
-				echo $this->Form->input('homecontact_name', array(
-					'label' => false,
-			'ng-model' => 'formData.contact_incountry.name'
-				));
-			?>
+			<select ng-model="formData.contact_incountry.user" ng-options="user.User.name_formal for user in users">
+			</select>
 		</td>
 	</tr>
 

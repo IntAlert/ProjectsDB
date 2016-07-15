@@ -3,23 +3,28 @@
 <?php echo $this->Html->css('travelapplications/add', array('inline' => false)); ?>
 
 <div class="travelapplications form" ng-app="travelapplication">
-
+	
 	<?php echo $this->Form->create('Travelapplication', array(
+		'name' => 'Travelapplication',
 		'ng-controller' => "TravelapplicationController"
 	)); ?>
 
 	<fieldset>
 		<legend><?php echo __('New Travel Application'); ?></legend>
 
-
-
 		<div ng-cloak>
 		  <md-content>
-		    <md-tabs md-dynamic-height md-border-bottom>
+		    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTabIndex">
 		      <md-tab label="general">
 		        <md-content class="md-padding">
 
-		          <?php echo $this->element('Travelapplications/mode'); ?>
+		          <?php echo $this->element('Travelapplications/general'); ?>
+
+		        </md-content>
+		      </md-tab>
+
+		      <md-tab label="applicant">
+		        <md-content class="md-padding">
 
 		          <?php echo $this->element('Travelapplications/applicant'); ?>
 
@@ -44,6 +49,12 @@
 		      <md-tab label="meetings">
 		        <md-content class="md-padding">
 		          <?php echo $this->element('Travelapplications/schedule'); ?>
+		        </md-content>
+		      </md-tab>
+
+		      <md-tab label="security">
+		        <md-content class="md-padding">
+		          <?php echo $this->element('Travelapplications/security'); ?>
 		        </md-content>
 		      </md-tab>
 

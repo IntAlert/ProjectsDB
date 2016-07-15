@@ -46,6 +46,13 @@ class User extends AppModel {
         ));
     }
 
+    public function findAllUsersOrdered() {
+
+        return $this->find('all', array(
+            'order' => array('last_name, first_name')
+        ));
+    }
+
 
 	public function createEmptyUser() {
 

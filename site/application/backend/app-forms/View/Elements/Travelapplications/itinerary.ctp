@@ -40,22 +40,24 @@
 			<tr>
 				<th>Origin</th>
 				<td colspan="3">
-					<?php
-						echo $this->Form->input('homecontact_freq', array(
-							'label' => false
-						));
-					?>
+
+					<select 
+						ng-model="itinerary_item.origin" 
+						ng-options="territory.Territory.name for territory in territories">
+					</select>
+
 				</td>
 			</tr>
 			<tr>
 
 				<th>Destination</th>
 				<td colspan="3">
-					<?php
-						echo $this->Form->input('homecontact_freq', array(
-							'label' => false
-						));
-					?>
+
+					<select 
+						ng-model="itinerary_item.destination" 
+						ng-options="territory.Territory.name for territory in territories">
+					</select>
+
 				</td>
 
 			</tr>
@@ -68,26 +70,29 @@
 				<td>
 					
 					<?php
-						echo $this->Form->input('homecontact_freq', array(
+						echo $this->Form->input('transport_detail', array(
 							'label' => 'Detail',
-							'type' => 'textarea'
+							'type' => 'textarea',
+							'ng-model' => 'itinerary_item.transport.detail'
 						));
 					?>
 					<p>eg. flight details, airport pick up, road travel</p>
 				</td>
 				<td>
 					<?php
-						echo $this->Form->input('homecontact_freq', array(
+						echo $this->Form->input('transport_email', array(
 							'label' => 'Email Address(es)',
-							'type' => 'textarea'
+							'type' => 'textarea',
+							'ng-model' => 'itinerary_item.transport.email'
 						));
 					?>
 				</td>
 				<td>
 					<?php
-						echo $this->Form->input('homecontact_freq', array(
+						echo $this->Form->input('transport_phone', array(
 							'label' => 'Phone numbers',
-							'type' => 'textarea'
+							'type' => 'textarea',
+							'ng-model' => 'itinerary_item.transport.phone'
 						));
 					?>
 				</td>
@@ -98,25 +103,28 @@
 				<th>Accommodation</th>
 				<td>
 					<?php
-						echo $this->Form->input('homecontact_freq', array(
+						echo $this->Form->input('accommodation_detail', array(
 							'label' => 'Detail',
-							'type' => 'textarea'
+							'type' => 'textarea',
+							'ng-model' => 'itinerary_item.accommodation.detail'
 						));
 					?>
 				</td>
 				<td>
 					<?php
-						echo $this->Form->input('homecontact_freq', array(
+						echo $this->Form->input('accommodation_email', array(
 							'label' => 'Email Address(es)',
-							'type' => 'textarea'
+							'type' => 'textarea',
+							'ng-model' => 'itinerary_item.accommodation.email'
 						));
 					?>
 				</td>
 				<td>
 					<?php
-						echo $this->Form->input('homecontact_freq', array(
+						echo $this->Form->input('accommodation_phone', array(
 							'label' => 'Phone numbers',
-							'type' => 'textarea'
+							'type' => 'textarea',
+							'ng-model' => 'itinerary_item.accommodation.phone'
 						));
 					?>
 				</td>

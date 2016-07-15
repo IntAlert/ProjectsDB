@@ -57,6 +57,14 @@ class Territory extends AppModel {
 		));
 	}
 
+	public function findAllGeographical() {
+		return $this->find('all', array(
+			'contain' => false,
+			'conditions' => array('iso <>' => null),
+			'order' => array('sort_order ASC', 'name ASC'),
+		));
+	}
+
 	public function findActiveWithDepartment() {
 		return $this->find('all', array(
 			'contain' => array('Department'),
@@ -64,9 +72,5 @@ class Territory extends AppModel {
 			'order' => array('Territory.sort_order ASC', 'Territory.name ASC'),
 		));
 	}
-
-	
-
-	
 
 }

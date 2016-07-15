@@ -41,15 +41,9 @@ class AppController extends Controller {
 	public $components = array(
 		// 'RequestHandler',
 		'Session',
-		// 'Auth' => array(
-	 //    	'logoutRedirect' => false,
-	 //    	// 'authenticate' => array(
-	 //     //        'Form' => array(
-	 //     //            'passwordHasher' => 'Blowfish'
-	 //     //        )
-	 //     //    ),
-	 //        'authorize' => array('Controller'), // Added this line
-	 //    ),
+		'Auth' => array(
+	        'authorize' => array('Controller'), // Added this line
+	    ),
 
 	);
 
@@ -100,7 +94,7 @@ class AppController extends Controller {
 
 	// callbacks
     public function beforeFilter() {
-
+		parent::beforeFilter();
 	}
 
 	public function afterFilter() {
@@ -109,9 +103,17 @@ class AppController extends Controller {
 	}
 
 	public function isAuthorized($user) {
-
+		
 		// if logged in, you can access whole API unless overridden
 		return !!$this->Auth->user('id');
 	}
+
+	public function redirect($url, $status = null, $exit = true) {
+
+		// never do a redirect as this is an API
+		// only reason a redirect would happen would be unAuthed
+		throw new ForbiddenException("Not authed");
+
+    }
 
 }

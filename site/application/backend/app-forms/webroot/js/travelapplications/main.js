@@ -1,19 +1,24 @@
 
 var app = angular
 	.module('travelapplication', ['ngMaterial', 'ngMessages'])
-	// .module('travelapplication', ['ui.bootstrap', 'ngSanitize'])
-	// .config(function($sceDelegateProvider) {
-	//   $sceDelegateProvider.resourceUrlWhitelist([
-	//     // Allow same origin resource loads.
-	//     'self',
-	//     // Allow loading from outer templates domain.
-	//     'https://s3-eu-west-1.amazonaws.com/zakat-dev-justgiving-com/**'
-	//   ]); 
-	// });
+	.config(function($mdDateLocaleProvider) {
+		$mdDateLocaleProvider.formatDate = function(date) {
+			return date ? moment(date).format('DD/MM/YYYY') : "";
+		};
+	})
 
 
 
 app.controller('TravelapplicationController', function ($scope, $http, $window) {
+
+
+	// UI
+	$scope.selectedTabIndex = 1;
+
+	// data for form fields
+	$scope.users = [];
+	$scope.territories = [];
+
 
 	// UI mode [no-office | has-office]
 	$scope.mode = 'has-office';
@@ -24,6 +29,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window) 
 
 		// Applicant
 		"applicant": {
+			"id": "",
 			"name": "",
 			"role_category": "",
 			"role_category_other": "",
@@ -34,7 +40,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window) 
 
 		// Contact Home
 		"contact_home": {
-			"name": "",
+			"user": false,
 			"email": "",
 			"tel_land": "",
 			"tel_mobile": "",
@@ -101,6 +107,48 @@ app.controller('TravelapplicationController', function ($scope, $http, $window) 
 	};
 
 
+	// Watch data
+	$scope.$watch('formData.contact_home.user', function() {
+		if ($scope.formData.contact_home.user) {
+			$scope.formData.contact_home.email = $scope.formData.contact_home.user.Office365user.email	
+		}
+		
+	}, true);
+
+	$scope.$watch('formData.contact_incountry.user', function() {
+		if ($scope.formData.contact_incountry.user) {
+			$scope.formData.contact_incountry.email = $scope.formData.contact_incountry.user.Office365user.email
+		}
+	}, true);
+
+
+
+	// Load data
+
+	// This user
+	$scope.formData.applicant.id = me.id
+	$scope.formData.applicant.name = me.name
+
+
+	// All users
+	$http.get('/api/users/all.json')
+		.then(function(response){
+			$scope.users = response.data;
+		}, function(users){
+			alert("Users download error")
+		});
+
+	// All geographical territories
+	$http.get('/api/territories/allGeographical.json')
+		.then(function(response){
+			$scope.territories = response.data;
+		}, function(territories){
+			alert("territories download error")
+		});
+
+	
+
+
 	$scope.addItineraryItem = function() {
 		$scope.formData.itinerary.push({})
 	}
@@ -120,6 +168,8 @@ app.controller('TravelapplicationController', function ($scope, $http, $window) 
 			$scope.formData.schedule.splice(i,1)
 		}
 	}
+
+
 
 	
 
