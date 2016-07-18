@@ -4,7 +4,7 @@
 
 <div class="itinerary-item" ng-repeat="(i, itinerary_item) in formData.itinerary">
 
-	<h3>Itinerary Item #{{i+1}}</h3>
+	<h3>Leg #{{i+1}}</h3>
 
 	 <md-button 
 		ng-click="removeItineraryItem(i)"
@@ -19,7 +19,8 @@
 			<tr>
 				<th>Start</th>
 				<td colspan="3">
-					<md-datepicker 
+					<md-datepicker
+						required
 						ng-model="itinerary_item.start" 
 						md-placeholder="Enter date"
 					></md-datepicker>
@@ -31,6 +32,7 @@
 				<th>Finish</th>
 				<td colspan="3">
 					<md-datepicker 
+						required
 						ng-model="itinerary_item.finish" 
 						md-placeholder="Enter date"
 					></md-datepicker>
@@ -42,6 +44,7 @@
 				<td colspan="3">
 
 					<select 
+						required
 						ng-model="itinerary_item.origin" 
 						ng-options="territory.Territory.name for territory in territories">
 					</select>
@@ -54,6 +57,7 @@
 				<td colspan="3">
 
 					<select 
+						required
 						ng-model="itinerary_item.destination" 
 						ng-options="territory.Territory.name for territory in territories">
 					</select>
@@ -71,6 +75,7 @@
 					
 					<?php
 						echo $this->Form->input('transport_detail', array(
+							'required' => true,
 							'label' => 'Detail',
 							'type' => 'textarea',
 							'ng-model' => 'itinerary_item.transport.detail'
@@ -81,6 +86,7 @@
 				<td>
 					<?php
 						echo $this->Form->input('transport_email', array(
+							'required' => true,
 							'label' => 'Email Address(es)',
 							'type' => 'textarea',
 							'ng-model' => 'itinerary_item.transport.email'
@@ -90,6 +96,7 @@
 				<td>
 					<?php
 						echo $this->Form->input('transport_phone', array(
+							'required' => true,
 							'label' => 'Phone numbers',
 							'type' => 'textarea',
 							'ng-model' => 'itinerary_item.transport.phone'
@@ -104,6 +111,7 @@
 				<td>
 					<?php
 						echo $this->Form->input('accommodation_detail', array(
+							'required' => true,
 							'label' => 'Detail',
 							'type' => 'textarea',
 							'ng-model' => 'itinerary_item.accommodation.detail'
@@ -113,6 +121,7 @@
 				<td>
 					<?php
 						echo $this->Form->input('accommodation_email', array(
+							'required' => true,
 							'label' => 'Email Address(es)',
 							'type' => 'textarea',
 							'ng-model' => 'itinerary_item.accommodation.email'
@@ -122,6 +131,7 @@
 				<td>
 					<?php
 						echo $this->Form->input('accommodation_phone', array(
+							'required' => true,
 							'label' => 'Phone numbers',
 							'type' => 'textarea',
 							'ng-model' => 'itinerary_item.accommodation.phone'

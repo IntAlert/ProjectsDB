@@ -1,4 +1,4 @@
-<h1 class="md-display-2">Schedule</h1>
+<h1 class="md-display-2">Meetings</h1>
 
 <table>
 	<thead>
@@ -42,6 +42,7 @@
 				<!-- Date -->
 
 				<md-datepicker 
+					required
 					ng-model="schedule_item.date" 
 					md-placeholder="Enter date"
 				></md-datepicker>
@@ -52,6 +53,7 @@
 				<!-- Time -->
 				<?php
 					echo $this->Form->input('homecontact_freq', array(
+						'required' => true,
 						'label' => false,
 						'type' => 'text',
 						'ng-model' => 'schedule_item.time'
@@ -63,6 +65,7 @@
 				<!-- Organisation and contact -->
 				<?php
 					echo $this->Form->input('homecontact_freq', array(
+						'required' => true,
 						'label' => false,
 						'type' => 'textarea',
 						'ng-model' => 'schedule_item.org_contact'
@@ -74,6 +77,7 @@
 				<!-- Full Address -->
 				<?php
 					echo $this->Form->input('homecontact_freq', array(
+						'required' => true,
 						'label' => false,
 						'type' => 'textarea',
 						'ng-model' => 'schedule_item.address'
@@ -85,6 +89,7 @@
 				<!-- Email -->
 				<?php
 					echo $this->Form->input('homecontact_freq', array(
+						'required' => true,
 						'label' => false,
 						'type' => 'text',
 						'ng-model' => 'schedule_item.email'

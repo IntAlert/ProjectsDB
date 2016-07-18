@@ -8,11 +8,22 @@ class User extends AppModel {
     public $hasOne = 'Office365user';
     public $hasAndBelongsToMany = 'Role';
 
-	public $virtualFields = array(
-	    // 'name' => 'CONCAT(User.first_name, " ", User.last_name)'
-	    'name' => "CONCAT(first_name, ' ', last_name)",
-        'name_formal' => "CONCAT(last_name, ', ', first_name)",
-	);
+	// public $virtualFields = array(
+	//     // 'name' => 'CONCAT(User.first_name, " ", User.last_name)'
+	//     'name' => "CONCAT(first_name, ' ', last_name)",
+ //        'name_formal' => "CONCAT(last_name, ', ', first_name)",
+	// );
+
+    public function __construct($id = false, $table = null, $ds = null) {
+
+        parent::__construct($id, $table, $ds);
+
+        $this->virtualFields = array(
+            'name' => "CONCAT(" . $this->alias . ".first_name, ' ', " . $this->alias . ".last_name)",
+            'name_formal' => "CONCAT(" . $this->alias . ".last_name, ', ', " . $this->alias . ".first_name)",
+        );
+
+    }
 
     public function findBudgetHoldersList() {
 

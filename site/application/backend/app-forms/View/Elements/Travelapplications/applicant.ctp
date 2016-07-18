@@ -14,6 +14,7 @@
 		));
 
 		echo $this->Form->input('role_category', array(
+			'required' => true,
 			'type' => 'radio',
 			'options' => array(
 				'Alert staff' => 'Alert staff', 
@@ -28,13 +29,15 @@
 			'type' => 'text',
 			'label' => 'Other Role',
 			'ng-model' => 'formData.applicant.role_category_other',
+			'ng-required' => " formData.applicant.role_category == 'Other' ",
 			'div' => array(
-				'ng-show' => "formData.applicant.role_category == 'Other'"
+				'ng-show' => " formData.applicant.role_category == 'Other' "
 			)
 			
 		));
 
 		echo $this->Form->input('role_text', array(
+			'required' => true,
 			'type' => 'text',
 			'label' => 'Your role at Alert',
 			'ng-model' => 'formData.applicant.role_text'

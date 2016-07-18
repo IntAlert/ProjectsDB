@@ -25,13 +25,27 @@ class Travelapplication extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'User' => array(
+		'Applicant' => array(
 			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+			'foreignKey' => 'applicant_user_id'
+		),
+
+		'ApprovingManager' => array(
+			'className' => 'User',
+			'foreignKey' => 'manager_user_id'
+		),
+
+		'HomeContact' => array(
+			'className' => 'User',
+			'foreignKey' => 'contact_home_user_id'
+		),
+
+		'CountryContact' => array(
+			'className' => 'User',
+			'foreignKey' => 'contact_incountry_user_id'
+		),
+
+		
 	);
 
 /**
@@ -40,18 +54,9 @@ class Travelapplication extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Travelapplicationitinerary' => array(
-			'className' => 'Travelapplicationitinerary',
-			'foreignKey' => 'travelapplication_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+		'TravelapplicationItinerary' => array(
+			'className' => 'TravelapplicationItinerary',
+			'foreignKey' => 'travelapplication_id'
 		)
 	);
 

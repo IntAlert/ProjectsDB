@@ -10,13 +10,8 @@
 
 <?php echo $this->element('Travelapplications/confirm/itinerary'); ?>
 
-<?php echo $this->element('Travelapplications/confirm/schedule'); ?>
+<?php echo $this->element('Travelapplications/confirm/meetings'); ?>
 
 <?php echo $this->element('Travelapplications/confirm/security'); ?>
 
-<?php echo $this->element('Travelapplications/confirm/tickboxes'); ?>
-
-<md-button 
-	class="md-raised">
-	Confirm
-</md-button>
+<?php echo $this->element('Travelapplications/confirm/checklist'); ?>

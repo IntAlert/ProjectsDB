@@ -1,7 +1,6 @@
 
 <h1 class="md-display-2">General</h1>
 
-<div ng-form name="generalForm">
 <?php
 			
 		echo $this->Form->input('mode', array(
@@ -11,7 +10,7 @@
 				'no-office' => 'No, the country does not have an Alert office'
 			),
 			'legend' => 'Does your destination country have an Alert office?',
-			'ng-model' => 'mode'
+			'ng-model' => 'formData.mode'
 		));
 
 
@@ -30,16 +29,14 @@
 
 	<div class="input select">
 		<label>Name of manager who has approved trip</label>
-		<select ng-model="formData.applicant.approving_manager" ng-options="user.User.name_formal for user in users">
+		<select 
+			required
+			ng-model="formData.applicant.approving_manager" 
+			ng-options="user.User.name_formal for user in users">
 		</select>
 	</div>
 
-
-{{generalForm["data[Travelapplication][reason]"].$valid}}
-
-</div>
-
-
+<!-- 
 
 
 <form name="userForm">
@@ -73,9 +70,4 @@
 	<div ng-message="minlength">That's too short!</div>
 </div>
 
-
-<md-button 
-	ng-click="selectedTabIndex = 2"
-	class="md-raised">
-	Confirm
-</md-button>
+ -->

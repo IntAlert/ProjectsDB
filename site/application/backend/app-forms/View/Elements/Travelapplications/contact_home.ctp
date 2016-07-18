@@ -7,7 +7,10 @@
 		</th>
 		<td>
 
-			<select ng-model="formData.contact_home.user" ng-options="user.User.name_formal for user in users">
+			<select 
+				required
+				ng-model="formData.contact_home.user" 
+				ng-options="user.User.name_formal for user in users">
 			</select>
 
 		</td>
@@ -20,6 +23,7 @@
 		<td>
 			<?php
 				echo $this->Form->input('homecontact_email', array(
+					'required' => true,
 					'label' => false,
 					'ng-model' => 'formData.contact_home.email',
 				));
@@ -34,8 +38,9 @@
 		<td>
 			<?php
 				echo $this->Form->input('homecontact_tel_land', array(
+					'required' => true,
 					'label' => false,
-			'ng-model' => 'formData.contact_home.tel_land'
+					'ng-model' => 'formData.contact_home.tel_land'
 				));
 			?>
 		</td>
@@ -48,8 +53,9 @@
 		<td>
 			<?php
 				echo $this->Form->input('homecontact_tel_mob', array(
+					'required' => true,
 					'label' => false,
-			'ng-model' => 'formData.contact_home.tel_mobile'
+					'ng-model' => 'formData.contact_home.tel_mobile'
 				));
 			?>
 		</td>
@@ -62,8 +68,9 @@
 		<td>
 			<?php
 				echo $this->Form->input('homecontact_tel_skype', array(
+					'required' => true,
 					'label' => false,
-			'ng-model' => 'formData.contact_home.skype'
+					'ng-model' => 'formData.contact_home.skype'
 				));
 			?>
 		</td>
@@ -76,8 +83,9 @@
 		<td>
 			<?php
 				echo $this->Form->input('homecontact_freq', array(
+					'required' => true,
 					'label' => false,
-			'ng-model' => 'formData.contact_home.freqency_of_contact'
+					'ng-model' => 'formData.contact_home.freqency_of_contact'
 				));
 			?>
 		</td>
