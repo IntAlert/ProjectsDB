@@ -46,7 +46,6 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 			"email": "",
 			"tel_land": "",
 			"tel_mobile": "",
-			"skype": "",
 			"freqency_of_contact": ""
 		},
 
@@ -56,7 +55,6 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 			"email": "",
 			"tel_land": "",
 			"tel_mobile": "",
-			"skype": "",
 			"freqency_of_contact": ""
 		},
 
@@ -91,14 +89,16 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 		}],
 
 		// Schedule
-		"schedule": [{
-			"date": "",
-			"time": "",
-			"org_contact": "",
-			"address": "",
-			"email": "",
-			"confirmed": false
-		}],
+		"schedule": [
+		// {
+		// 	"date": "",
+		// 	"time": "",
+		// 	"org_contact": "",
+		// 	"address": "",
+		// 	"email": "",
+		// 	"confirmed": false
+		// }
+		],
 
 		// tickboxes
 		"convenant_agreed": false,
@@ -123,30 +123,55 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 		}
 	}, true);
 
-
-
-	// Load data
-
 	// This user
 	$scope.formData.applicant.id = me.id
 	$scope.formData.applicant.name = me.name
 
-
+	// Load data for select boxes
 	// All users
 	$http.get('/api/users/all.json')
 		.then(function(response){
 			$scope.users = response.data;
+
+			// All geographical territories
+			$http.get('/api/territories/allGeographical.json')
+				.then(function(response){
+					$scope.territories = response.data;
+				}, function(territories){
+					alert("territories download error")
+				});
+
+			downloadIfEdit()
+
+
 		}, function(users){
 			alert("Users download error")
 		});
 
-	// All geographical territories
-	$http.get('/api/territories/allGeographical.json')
-		.then(function(response){
-			$scope.territories = response.data;
-		}, function(territories){
-			alert("territories download error")
-		});
+	
+
+		function downloadIfEdit() {
+			// Determine if add or edit
+			var parts = window.location.pathname.split('/')
+			if (parts[parts.length - 2] == 'edit') {
+				var TravelApplicationID = parts[parts.length - 1]
+				// Get travelapplication JSON
+				$http.get('/forms/travelapplications/viewJson/' + TravelApplicationID)
+					.then(function(response){
+						$scope.formData = response.data;
+						console.dir($scope.formData)
+					}, function(){
+						alert("Failed to find application")
+					});
+			}	
+		}
+
+
+
+	// Load data
+
+
+	
 
 	
 	$scope.changeActiveTab = function(i) {
@@ -357,7 +382,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	}
 	
 	// fixture for debugging
-	$scope.formData = testDataHasOffice
+	// $scope.formData = testDataHasOffice
 
 });
 

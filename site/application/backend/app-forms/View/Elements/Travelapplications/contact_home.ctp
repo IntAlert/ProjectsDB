@@ -3,14 +3,14 @@
 <table>
 	<tr>
 		<th>
-			Staff Member
+			Staff Member *
 		</th>
 		<td>
 
 			<select 
 				required
 				ng-model="formData.contact_home.user" 
-				ng-options="user.User.name_formal for user in users">
+				ng-options="user.User.name_formal for user in users track by user.id">
 			</select>
 
 		</td>
@@ -18,7 +18,7 @@
 
 	<tr>
 		<th>
-			Email Address(es)
+			Email Address(es) *
 		</th>
 		<td>
 			<?php
@@ -33,7 +33,7 @@
 
 	<tr>
 		<th>
-			Landline telephone number(s)
+			Landline telephone number(s) *
 		</th>
 		<td>
 			<?php
@@ -48,7 +48,7 @@
 
 	<tr>
 		<th>
-			Mobile telephone number(s)
+			Mobile telephone number(s) *
 		</th>
 		<td>
 			<?php
@@ -63,22 +63,7 @@
 
 	<tr>
 		<th>
-			Skype
-		</th>
-		<td>
-			<?php
-				echo $this->Form->input('homecontact_tel_skype', array(
-					'required' => true,
-					'label' => false,
-					'ng-model' => 'formData.contact_home.skype'
-				));
-			?>
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			Agreed Frequency of Contact
+			Agreed Frequency of Contact *
 		</th>
 		<td>
 			<?php

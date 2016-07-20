@@ -4,23 +4,23 @@
 	<thead>
 		<tr>
 			<th>
-				Date
+				Date *
 			</th>
 
 			<th>
-				Time
+				Time *
 			</th>
 
 			<th>
-				Organisation and contact
+				Organisation and contact *
 			</th>
 
 			<th>
-				Full Address
+				Full Address *
 			</th>
 
 			<th>
-				Email
+				Email *
 			</th>
 
 			<th>
@@ -110,10 +110,9 @@
 
 			<td>
 				<md-button 
-						ng-show="formData.schedule.length > 1"
 						ng-click="removeScheduleItem(i)"
-						class="md-raised">
-						Remove
+						class="md-warn">
+						Remove Meeting
 				</md-button>
 				
 			</td>
@@ -124,8 +123,21 @@
 </table>
 
 
-<md-button 
-	ng-click="addScheduleItem()"
-	class="md-raised">
-	Add Schedule Item
-</md-button>
+
+
+<div layout="row" layout-align="end center">
+
+	<md-button 
+		ng-click="addScheduleItem()"
+		class="md-raised">
+		Add Schedule Item
+	</md-button>
+
+	<md-button 
+			ng-show="meetingsForm.$valid"
+			ng-click=" changeActiveTab(5) "
+			class="md-raised">
+			Next
+	</md-button>
+	  
+</div>

@@ -8,7 +8,7 @@
 		));
 		echo $this->Form->input('name', array(
 			'type' => 'text',
-			'label' => 'Your name',
+			'label' => 'Your name *',
 			'disabled' => true,
 			'ng-model' => 'formData.applicant.name'
 		));
@@ -21,13 +21,13 @@
 				'Consultant' => 'Consultant', 
 				'Other'=> 'Other'
 			),
-			'label' => 'Category',
+			'legend' => 'Category *',
 			'ng-model' => 'formData.applicant.role_category'
 		));
 
 		echo $this->Form->input('role_category_other', array(
 			'type' => 'text',
-			'label' => 'Other Role',
+			'label' => 'Other Role *',
 			'ng-model' => 'formData.applicant.role_category_other',
 			'ng-required' => " formData.applicant.role_category == 'Other' ",
 			'div' => array(
@@ -39,10 +39,20 @@
 		echo $this->Form->input('role_text', array(
 			'required' => true,
 			'type' => 'text',
-			'label' => 'Your role at Alert',
+			'label' => 'Your role at Alert *',
 			'ng-model' => 'formData.applicant.role_text'
 		));
 
 
 
 ?>
+
+
+<div layout="row" layout-align="end center">
+	<md-button 
+	ng-show="applicantForm.$valid"
+	ng-click=" changeActiveTab(2) "
+	class="md-raised">
+	Next
+	</md-button>
+</div>

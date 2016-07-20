@@ -25,12 +25,6 @@
 
 		          <?php echo $this->element('Travelapplications/general'); ?>
 
-					<md-button 
-						ng-show="generalForm.$valid"
-						ng-click=" changeActiveTab(1) "
-						class="md-raised">
-						Next
-					</md-button>
 
 		        </md-content>
 		      </md-tab>
@@ -43,13 +37,6 @@
 
 		          <?php echo $this->element('Travelapplications/applicant'); ?>
 
-		          <md-button 
-						ng-show="applicantForm.$valid"
-						ng-click=" changeActiveTab(2) "
-						class="md-raised">
-						Next
-					</md-button>
-
 		        </md-content>
 		      </md-tab>
 
@@ -57,18 +44,10 @@
 		      <md-tab label="contacts" ng-disabled="disableTabsByValid && applicantForm.$invalid">
 		        <md-content class="md-padding" ng-form="contactsForm">
 					
-				<?php echo $this->element('Travelapplications/contact_home'); ?>
+				
 
-				<?php echo $this->element('Travelapplications/contact_incountry'); ?>
+				<?php echo $this->element('Travelapplications/contacts'); ?>
 
-				<?php echo $this->element('Travelapplications/contact_other'); ?>
-
-					<md-button 
-						ng-show="contactsForm.$valid"
-						ng-click=" changeActiveTab(3) "
-						class="md-raised">
-						Next
-					</md-button>
 
 		        </md-content>
 		      </md-tab>
@@ -77,13 +56,6 @@
 		      <md-tab label="itinerary" ng-disabled="disableTabsByValid && contactsForm.$invalid">
 		        <md-content class="md-padding" ng-form="itineraryForm">
 		          <?php echo $this->element('Travelapplications/itinerary'); ?>
-
-					<md-button 
-						ng-show="itineraryForm.$valid"
-						ng-click=" changeActiveTab(4) "
-						class="md-raised">
-						Next
-					</md-button>
 
 		        </md-content>
 		      </md-tab>
@@ -95,13 +67,6 @@
 		          <?php echo $this->element('Travelapplications/meetings'); ?>
 		        </md-content>
 
-		        <md-button 
-						ng-show="meetingsForm.$valid"
-						ng-click=" changeActiveTab(5) "
-						class="md-raised">
-						Next
-				</md-button>
-
 		      </md-tab>
 
 		      <!-- Security -->
@@ -111,13 +76,6 @@
 		          <?php echo $this->element('Travelapplications/security'); ?>
 		        </md-content>
 
-		        <md-button 
-					ng-show="securityForm.$valid"
-					ng-click=" changeActiveTab(6) "
-					class="md-raised">
-					Next
-				</md-button>
-
 		      </md-tab>
 
 		      <!-- Checklist -->
@@ -126,13 +84,6 @@
 		      	ng-disabled="disableTabsByValid && securityForm.$invalid">
 		        <md-content class="md-padding" ng-form="checklistForm">
 		          <?php echo $this->element('Travelapplications/checklist'); ?>
-
-					<md-button 
-						ng-show="checklistForm.$valid"
-						ng-click=" changeActiveTab(7) "
-						class="md-raised">
-						Next
-					</md-button>
 
 		        </md-content>
 		      </md-tab>
@@ -144,13 +95,6 @@
 		        </md-content>
 
 
-				<md-button 
-					ng-show="checklistForm.$valid"
-					ng-click=" submitTravelApplication() "
-					class="md-raised">
-					Submit Travel Application
-				</md-button>
-
 		      </md-tab>
 		    </md-tabs>
 		  </md-content>
@@ -161,4 +105,4 @@
 </form>
 </div>
 
-<?php echo $this->Html->script('travelapplications/main', array('inline' => false)); ?>
+<?php echo $this->Html->script('travelapplications/edit', array('inline' => false)); ?>

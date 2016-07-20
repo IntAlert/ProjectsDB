@@ -34,16 +34,6 @@
 
 	<tr>
 		<th>
-			Skype
-		</th>
-		
-		<td>
-			{{formData.contact_home.skype}}
-		</td>
-	</tr>
-
-	<tr>
-		<th>
 			Agreed Frequency of Contact
 		</th>
 		
