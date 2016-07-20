@@ -1,15 +1,7 @@
 
-var app = angular
-	.module('travelapplication', ['ngMaterial', 'ngMessages'])
-	.config(function($mdDateLocaleProvider) {
-		$mdDateLocaleProvider.formatDate = function(date) {
-			return date ? moment(date).format('DD/MM/YYYY') : "";
-		};
-	})
 
 
-
-app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll) {
+app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll, travelapplicationService) {
 
 
 	// UI
@@ -156,13 +148,13 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 			if (parts[parts.length - 2] == 'edit') {
 				var TravelApplicationID = parts[parts.length - 1]
 				// Get travelapplication JSON
-				$http.get('/forms/travelapplications/viewJson/' + TravelApplicationID)
-					.then(function(response){
-						$scope.formData = response.data;
-						console.dir($scope.formData)
+				travelapplicationService.getById(TravelApplicationID)
+					.then(function(data){
+						$scope.formData = data;
 					}, function(){
-						alert("Failed to find application")
-					});
+						alert('error')
+					})
+
 			}	
 		}
 
@@ -282,7 +274,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	   },
 	   "itinerary":[  
 	      {  
-	         "start":"2016-07-17T23:00:00.000Z",
+	         "start":new Date("2016-07-17T23:00:00.000Z"),
 	         "finish":"2016-07-18T23:00:00.000Z",
 	         "origin":{  
 	            "Territory":{  

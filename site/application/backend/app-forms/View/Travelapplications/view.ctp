@@ -1,6 +1,5 @@
 <div class="travelapplications" ng-app="travelapplication" ng-cloak>
 		
-
 	<div 
 		ng-controller="TravelapplicationViewController"
 		ng-cloak
@@ -26,4 +25,5 @@
 </div>
 
 
-<?php echo $this->Html->script('travelapplications/view', array('inline' => false)); ?>
+<?php echo $this->Html->script('travelapplications/app'); ?>
+<?php echo $this->Html->script('travelapplications/view'); ?>

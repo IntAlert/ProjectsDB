@@ -10,7 +10,7 @@
 			<select 
 				required
 				ng-model="formData.contact_home.user" 
-				ng-options="user.User.name_formal for user in users track by user.id">
+				ng-options="user.User.name_formal for user in users track by user.User.id">
 			</select>
 
 		</td>

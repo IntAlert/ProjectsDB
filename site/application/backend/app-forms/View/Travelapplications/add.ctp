@@ -105,4 +105,5 @@
 </form>
 </div>
 
-<?php echo $this->Html->script('travelapplications/edit', array('inline' => false)); ?>
+<?php echo $this->Html->script('travelapplications/app'); ?>
+<?php echo $this->Html->script('travelapplications/edit'); ?>

@@ -12,7 +12,7 @@
 				<select 
 					ng-required=" formData.mode == 'no-office' "
 					ng-model="formData.contact_incountry.user" 
-					ng-options="user.User.name_formal for user in users track by user.id">
+					ng-options="user.User.name_formal for user in users track by user.User.id">
 				</select>
 			</td>
 		</tr>

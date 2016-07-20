@@ -1,18 +1,4 @@
-
-var app = angular
-	.module('travelapplication', ['ngMaterial', 'ngMessages'])
-	.config(function($mdDateLocaleProvider) {
-		$mdDateLocaleProvider.formatDate = function(date) {
-			return date ? moment(date).format('DD/MM/YYYY') : "";
-		};
-	})
-	.config(['$locationProvider', function($locationProvider) {
-        $locationProvider.html5Mode(false);
-    }]);
-
-
-
-app.controller('TravelapplicationViewController', function ($scope, $http, $location) {
+app.controller('TravelapplicationViewController', function ($scope, $http, $location, travelapplicationService) {
 
 
 	// all form fields
@@ -25,9 +11,9 @@ app.controller('TravelapplicationViewController', function ($scope, $http, $loca
 	// Load data
 
 	// Get travelapplication JSON
-	$http.get('/forms/travelapplications/viewJson/' + TravelApplicationID)
-		.then(function(response){
-			$scope.formData = response.data;
+	travelapplicationService.getById(TravelApplicationID)
+		.then(function(data){
+			$scope.formData = data;
 		}, function(){
 			alert("Failed to find application")
 		});
