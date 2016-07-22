@@ -199,7 +199,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 		$http.post('/forms/travelapplications/add', cleanFormData)
 			.then(function(){
 				// success
-				window.location.href = '/forms/travelapplications/mine';
+				// window.location.href = '/forms/travelapplications/mine';
 			}, function(){
 				// there has been an error
 				alert('there has been an error')

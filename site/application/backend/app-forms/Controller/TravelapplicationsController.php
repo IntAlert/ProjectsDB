@@ -119,8 +119,19 @@ class TravelapplicationsController extends AppController {
 			// create application
 			$travelapplication_id = $this->Travelapplication->saveWithItinerary($this->request->data);
 
+			// get Travel Application Receivers
+			$travelapplicationReceivers = $this->User->findUsersByRoleName('travel-application-receiver');
+
+			// add the manager to the list
+			$manager = $this->User->findById($this->request->data['applicant']['approving_manager']['User']['id']);
+			$travelapplicationReceivers[] = $manager;
+
+			// add the self to the list
+			$me = $this->User->findById($this->Auth->user('id'));
+			$travelapplicationReceivers[] = $me;
+
 			// send mail
-			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id);
+			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $travelapplicationReceivers);
 
 			// return result
 			$this->layout = 'ajax';
