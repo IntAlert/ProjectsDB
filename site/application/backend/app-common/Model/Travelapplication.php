@@ -109,7 +109,7 @@ class Travelapplication extends AppModel {
 			}
 		}
 
-		return true;
+		return $travelapplication_id;
 	}
 
 }

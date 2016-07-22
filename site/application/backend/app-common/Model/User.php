@@ -25,13 +25,13 @@ class User extends AppModel {
 
     }
 
-    public function findBudgetHoldersList() {
+    public function findUserListByRoleName($role_name) {
 
         // get all user ids that are budget holders
         $role = $this->Role->find('first', array(
             'contain' => 'User',
             'conditions' => array(
-                'Role.id' => 2, // budget holder
+                'Role.name' => $role_name, // budget holder
             )
         ));
 
@@ -47,6 +47,34 @@ class User extends AppModel {
                 'User.id' => $user_ids
             )
         ));
+    }
+
+    public function findUsersByRoleName($role_name) {
+
+        // get all user ids that are budget holders
+        $role = $this->Role->find('first', array(
+            'contain' => 'User',
+            'conditions' => array(
+                'Role.short_name' => $role_name, // budget holder
+            )
+        ));
+
+        $user_ids = [];
+        foreach ($role['User'] as $user) {
+            $user_ids[] = $user['id'];
+        }
+
+        return $this->find('all', array(
+            'conditions' => array(
+                'User.id' => $user_ids
+            )
+        ));
+    }
+
+    public function findBudgetHoldersList() {
+
+        return $this->findUserListByRoleName('budget-holder');
+
     }
 
     public function findAllUsersList() {
