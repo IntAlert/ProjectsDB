@@ -32,6 +32,7 @@ class Office365usersController extends AppController {
 
     function login() {
 
+
         $o365auth = new Office365AuthAPI();
 
         $request_url = $o365auth->getRedirectURL($this->redirect_uri);
@@ -75,7 +76,16 @@ class Office365usersController extends AppController {
         // assuming we get a user back, log them in
         $this->Auth->login($user['User']);
 
-        $this->redirect('/dashboard/dashboard');
+        // $this->Session->write('post_login_redirect', null);
+        // $post_login_redirect = $this->Session->read('post_login_redirect');
+        // die($post_login_redirect);
+
+        if ($post_login_redirect = $this->Session->read('post_login_redirect')) {
+            $this->Session->write('post_login_redirect', null);
+            return $this->redirect($post_login_redirect);
+        } else {
+            return $this->redirect('/dashboard');
+        }
 
     }
 

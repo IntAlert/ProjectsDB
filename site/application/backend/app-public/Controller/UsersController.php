@@ -27,12 +27,12 @@ class UsersController extends AppController {
 	function login() {
 
         // redirect logged in users to their dashboard
-        if ($this->Auth->user('id')) {
-            $this->redirect('/dashboard');
-        } else {
-            $this->redirect('/office365users/login');
-            
+        if ( !$this->Auth->user('id') ) {
+            return $this->redirect('/office365users/login');    
         }
+
+        // we must be logged in
+        return $this->redirect('/dashboard');        
 
     }
 

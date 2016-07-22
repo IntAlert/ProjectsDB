@@ -67,6 +67,13 @@ class AppController extends Controller {
 	public $uses = array('User', 'Audit', 'Currency', 'Donor');
 
 	public function beforeFilter() {
+
+		// if a redirect isn't already 'booked', save for later
+		// redirect happens in o365 callback
+		if ( !$this->Session->read('post_login_redirect') ) {
+			$this->Session->write('post_login_redirect', Router::url(null,true));
+		}
+
 		// stop any client side caching.. avoids missing data on user
 		// hitting back button
 		$this->response->disableCache();
@@ -76,7 +83,11 @@ class AppController extends Controller {
 	}
 
 	public function isAuthorized($user) {
-		return !!$this->Auth->user('id');
+
+		$isAuthorized = !!$this->Auth->user('id');
+
+		
+		return $isAuthorized;
 	}
 
 	public function userIs($desired_role) {

@@ -202,7 +202,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 		$http.post('/forms/travelapplications/add', cleanFormData)
 			.then(function(){
 				// success
-				console.log('success')
+				$location.path('/forms/travelapplications/mine');
 			}, function(){
 				// there has been an error
 				console.log('there has been an error')
