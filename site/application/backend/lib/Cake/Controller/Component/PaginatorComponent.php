@@ -142,6 +142,7 @@ class PaginatorComponent extends Component {
 		$options = $this->validateSort($object, $options, $whitelist);
 		$options = $this->checkLimit($options);
 
+
 		$conditions = $fields = $order = $limit = $page = $recursive = null;
 
 		if (!isset($options['conditions'])) {
@@ -289,6 +290,7 @@ class PaginatorComponent extends Component {
 
 			return $this->Controller->{$name};
 		}
+
 		return $object;
 	}
 

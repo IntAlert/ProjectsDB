@@ -1,6 +1,3 @@
-UsersController.php
-
-
 <?php
 class UsersController extends AppController {
 
