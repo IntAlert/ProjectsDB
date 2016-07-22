@@ -9,8 +9,6 @@ class UsersController extends AppController {
      */
     public $components = array('Paginator', 'Session');
 
-
-
 	function login() {
 
         // redirect logged in users to their dashboard
