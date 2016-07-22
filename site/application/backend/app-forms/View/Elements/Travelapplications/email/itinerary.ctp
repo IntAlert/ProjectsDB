@@ -65,7 +65,7 @@
 					Transport Phone numbers
 				</th>
 				<td>
-					<?php echo $itineraryItem->transport->phone;?>
+					<?php echo property_exists($itineraryItem->transport, 'phone') ? $itineraryItem->transport->phone : 'n/a';?>
 				</td>
 			</tr>
 			<tr>
@@ -75,7 +75,7 @@
 					Transport Email Address(es)
 				</th>
 				<td>
-					<?php echo $itineraryItem->transport->email;?>
+					<?php echo property_exists($itineraryItem->transport, 'email') ? $itineraryItem->transport->email : 'n/a';?>
 				</td>
 			</tr>
 			<tr>

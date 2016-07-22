@@ -70,7 +70,7 @@
 		      </md-tab>
 
 		      <!-- Security -->
-		      <md-tab label="security" ng-disabled="disableTabsByValid && meetingsForm.$invalid">
+		      <md-tab label="security" ng-disabled="disableTabsByValid && (meetingsForm.$invalid || itineraryForm.$invalid)">
 		        
 		        <md-content class="md-padding" ng-form="securityForm">
 		          <?php echo $this->element('Travelapplications/security'); ?>
