@@ -18,6 +18,9 @@
 <html>
 <head>
 	<title><?php echo $title_for_layout; ?></title>
+	<style type="text/css">
+	table th {text-align: left; padding:0 1em;}
+	</style>
 </head>
 <body>
 	<?php echo $this->fetch('content'); ?>

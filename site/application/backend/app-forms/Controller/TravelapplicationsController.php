@@ -20,11 +20,13 @@ class TravelapplicationsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TravelapplicationNotifier');
 
 
 	public $paginate = array(
         'limit' => 25,
+        'sort' => 'Travelapplication.created',
+        'direction' => "DESC",
         'contain' => array(
         	'Applicant',
         	'ApprovingManager',
@@ -71,6 +73,15 @@ class TravelapplicationsController extends AppController {
 
 	}
 
+	function testMail() {
+		$travelapplication = $this->Travelapplication->findById(1);
+		$travelapplicationObj = json_decode($travelapplication['Travelapplication']['application_json']);
+		$this->set('travelapplicationObj', $travelapplicationObj);
+
+		$this->layout = '/Emails/html/default';
+		$this->render('/Emails/html/travelapplications/send_email');
+	}
+
 /**
  * view method
  *
@@ -106,7 +117,12 @@ class TravelapplicationsController extends AppController {
 		if ($this->request->is('post')) {
 
 			// create application
-			$this->Travelapplication->saveWithItinerary($this->request->data);
+			$travelapplication_id = $this->Travelapplication->saveWithItinerary($this->request->data);
+
+			// send mail
+			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id);
+
+			// return result
 			$this->layout = 'ajax';
 			return $this->render('save_success_json');
 
