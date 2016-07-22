@@ -68,6 +68,12 @@ class AppController extends Controller {
 
 	public function beforeFilter() {
 
+		// if a redirect isn't already 'booked', save for later
+		// redirect happens in o365 callback
+		if ( !$this->Session->read('post_login_redirect') ) {
+			$this->Session->write('post_login_redirect', Router::url(null,true));
+		}
+
 		// stop any client side caching.. avoids missing data on user
 		// hitting back button
 		$this->response->disableCache();
