@@ -1,6 +1,3 @@
-
-<h1 class="md-display-2">Applicant Details</h1>
-
 <?php
 		echo $this->Form->input('user_id', array(
 			'type' => 'hidden',

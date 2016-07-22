@@ -1,7 +1,3 @@
-<h1 class="md-display-2">Itinerary</h1>
-
-
-
 <div class="itinerary-item" ng-repeat="(i, itinerary_item) in formData.itinerary">
 
 	

@@ -1,4 +1,4 @@
-<h1 class="md-display-2">Point of Contact information in your home office</h1>
+<h3>Point of Contact information in your home office</h3>
 
 <table>
 	<tr>

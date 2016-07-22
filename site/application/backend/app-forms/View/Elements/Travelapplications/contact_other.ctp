@@ -1,6 +1,6 @@
 <div ng-show=" formData.mode == 'no-office' ">
 
-	<h1 class="md-display-2">Other Useful Contacts</h1>
+	<h3>Other Useful Contacts</h3>
 
 	<p>Please supply other useful contacts eg. Alert partners, Embassies, Local emergency numbers, Local medical facilities</p>
 

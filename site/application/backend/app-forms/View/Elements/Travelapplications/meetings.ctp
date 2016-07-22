@@ -1,5 +1,3 @@
-<h1 class="md-display-2">Meetings</h1>
-
 <table>
 	<thead>
 		<tr>

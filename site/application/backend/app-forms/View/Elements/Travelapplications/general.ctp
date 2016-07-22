@@ -1,6 +1,3 @@
-
-<h1 class="md-display-2">General</h1>
-
 <?php
 			
 		echo $this->Form->input('mode', array(

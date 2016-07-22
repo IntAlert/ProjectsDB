@@ -1,6 +1,6 @@
 
 <div ng-show=" formData.mode == 'no-office' ">
-	<h1 class="md-display-2">Point of Contact information in-country</h1>
+	<h3>Point of Contact information in-country</h3>
 		
 
 	<table>

@@ -1,5 +1,3 @@
-<h1 class="md-display-2">Checklist</h1>
-
 <p>All checkboxes must be checked to proceed.</p>
 
 <?php

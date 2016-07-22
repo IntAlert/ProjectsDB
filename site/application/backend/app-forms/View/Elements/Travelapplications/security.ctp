@@ -1,5 +1,3 @@
-<h1 class="md-display-2">Security Risk Assessment</h1>
-
 <p>
 	Please consult the FCO travel advice for each destination country:
 	<ul>
