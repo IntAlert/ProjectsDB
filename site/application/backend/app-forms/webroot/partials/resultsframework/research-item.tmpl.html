@@ -1,0 +1,71 @@
+
+<md-dialog layout-padding ng-cloak ng-form="researchItemForm">
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Research Item</h2>
+      </div>
+    </md-toolbar>
+
+	<md-dialog-content>
+		
+		<div layout="row">
+			<!-- Title -->
+			<md-input-container>
+				<label>Title</label>
+				<input ng-model="data.research.title" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row"><h3>Territories</h3></div>
+		<div layout="row">
+	        <ul class="territories-selector">
+				<li ng-repeat="country in countries">
+					<md-checkbox 
+						checklist-model="data.research.countries" 
+						checklist-value="country"
+						>
+			            {{country.Territory.name}}
+					</md-checkbox>
+				</li>
+			</ul>
+		</div>
+
+		<div layout="row"><h3>Themes</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="theme in themes">
+					
+					<md-checkbox 
+						checklist-model="data.research.themes" 
+						checklist-value="theme"
+					>
+			            {{theme.Theme.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+		
+		<pre>{{data.research | json}}</pre>
+
+	</md-dialog-content>
+
+
+
+	<md-dialog-actions layout="row">
+        <md-button ng-click="cancel()" md-no-ink class="md-primary">
+          Cancel
+        </md-button>
+	  <span flex></span>
+	  <md-button 
+	  	ng-show="researchItemForm.$valid && data.research.themes.length && data.research.countries"
+	  	ng-click="save(data.research)" 
+	  	class="md-raised md-primary">
+	    Save
+	  </md-button>
+	</md-dialog-actions>
+
+
+
+</md-dialog>

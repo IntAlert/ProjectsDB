@@ -60,7 +60,9 @@ if ( !isset($title) ) {
   <script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
 
   <!-- Angular Material Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.js"></script>
+
+	<script src="/pdb/js/lib/angular.checklist-model.js"></script>
 
 	<script type="text/javascript" src="/pdb/css/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/pdb/js/lib/date.js"></script>
@@ -102,9 +104,7 @@ if ( !isset($title) ) {
 
 	<!-- CSS: Libraries -->
 	<link rel="stylesheet" type="text/css" href="/pdb/css/lib/jquery-ui-1.11.4/jquery-ui.min.css">
-	<!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-
+	
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="/pdb/css/lib/font-awesome-4.4.0/css/font-awesome.min.css">
 	
@@ -140,6 +140,10 @@ if ( !isset($title) ) {
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+
+	<!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
 
 	<link rel="stylesheet" type="text/css" href="/pdb/css/print.css" media="print" >
 	

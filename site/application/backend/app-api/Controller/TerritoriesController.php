@@ -3,9 +3,17 @@
 class TerritoriesController extends AppController {
 
 
-	function allGeographical() {
+	function allCountries() {
 
-        $territories = $this->Territory->findAllGeographical();
+        $territories = $this->Territory->findAllCountries();
+
+        $this->set(compact('territories'));
+        
+	}
+
+	function allRegions() {
+
+        $territories = $this->Territory->findAllRegions();
 
         $this->set(compact('territories'));
         

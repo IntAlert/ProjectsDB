@@ -40,6 +40,14 @@ class Theme extends AppModel {
 		));
 	}
 
+	public function findOrderedAll() {
+		return $this->find('all', array(
+			'contain' => false,
+			'conditions' => array('Theme.deleted' => false),
+			'order' => array('sort_order ASC, name ASC'),
+		));
+	}
+
 	public function softDelete($id) {
 		$this->id = $id;
 		$this->saveField('deleted', true);

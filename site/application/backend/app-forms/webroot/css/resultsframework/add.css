@@ -1,0 +1,28 @@
+.territories-selector {
+	list-style: none;
+	margin:0;
+	padding:0;
+	color:#333;
+}
+.territories-selector li {
+	float:left;
+	width:17%;
+}
+
+.themes-selector {
+	list-style: none;
+	margin:0;
+	padding:0;
+	color:#333;
+}
+.themes-selector li {
+	float:left;
+	width:45%;
+}
+
+.pathway-selector {
+	color:#333;
+}
+
+.md-toolbar-tools h2 {color: rgba(255,255,255,0.87); background:none;}
+.md-button {color:#333;}

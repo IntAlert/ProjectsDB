@@ -39,4 +39,11 @@ class Pathway extends AppModel {
 		));
 	}
 
+	public function findOrderedAll() {
+		return $this->find('all', array(
+			'contain' => false,
+			'order' => array('sort_order ASC, name ASC'),
+		));
+	}
+
 }

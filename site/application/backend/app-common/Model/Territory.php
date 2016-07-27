@@ -57,10 +57,18 @@ class Territory extends AppModel {
 		));
 	}
 
-	public function findAllGeographical() {
+	public function findAllCountries() {
 		return $this->find('all', array(
 			'contain' => false,
-			'conditions' => array('iso <>' => null),
+			'conditions' => array('type' => 'country'),
+			'order' => array('sort_order ASC', 'name ASC'),
+		));
+	}
+
+	public function findAllRegions() {
+		return $this->find('all', array(
+			'contain' => false,
+			'conditions' => array('type' => 'region'),
 			'order' => array('sort_order ASC', 'name ASC'),
 		));
 	}
