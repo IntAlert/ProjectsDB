@@ -11,10 +11,22 @@ var app = angular
 app.factory('ResultsData', function(){
   return {
   		themes: [],
+  		dialogues: {
+  			meetings: [],
+  			processes: []
+  		},
   		grography: {
   			countries: [],
 	  		regions: []
   		},
+  		trainings: [{
+			title: "Test Research Title",
+			themes: [],
+			participant_types: [],
+			male_count: null,
+			female_count: null
+		}],
+		accompaniments:[],
 		researches: [{
 			title: "Test Research Title",
 			themes: [],
@@ -27,6 +39,26 @@ app.factory('ResultsData', function(){
 
 app.factory('FormOptions', function($http) {
   var formOptionsInstance = {
+	participant_types: [
+		{name:"Youth groups"},
+		{name:"Women's groups"},
+		{name:"Local community groups"},
+		{name:"Diaspora communities"},
+		{name:"Refugee/ displaced communities"},
+		{name:"Local NGO"},
+		{name:"INGO"},
+		{name:"IGO"},
+		{name:"National Business"},
+		{name:"Int'l Business"},
+		{name:"Donors"},
+		{name:"National Govt"},
+		{name:"Sub-National Govt"},
+		{name:"MPs/political parties"},
+		{name:"Non-state armed groups"},
+		{name:"Media"},
+		{name:"Academic Institutions"},
+		{name:"Think Tanks"}
+	],
   	results: {
   		impacts: [
   			{"name": "Changed knowledge and attitudes"},
@@ -35,6 +67,8 @@ app.factory('FormOptions', function($http) {
   		]
   	}
   };
+
+  console.log(formOptionsInstance);
 
 
   // All countries
@@ -82,7 +116,7 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 
 	// debug
 	// $scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 7;
+	$scope.selectedTabIndex = 3;
 
 	
 	$scope.changeActiveTab = function(i) {

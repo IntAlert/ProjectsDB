@@ -41,25 +41,36 @@
 
 		    <!-- TRAINING -->
 		      <md-tab label="TRAINING">
-		        <md-content class="md-padding" ng-form="trainingForm">
+		        <md-content 
+		        	class="md-padding" 
+		        	ng-controller="TrainingsController"
+		        	ng-form="trainingForm">
 
+		        	<?php echo $this->element('resultsframework/trainings'); ?>
 
 		        </md-content>
 		      </md-tab>
 
 		    <!-- ACCOMPANIMENT -->
 		      <md-tab label="ACCOMPANIMENT">
-		        <md-content class="md-padding" ng-form="accompanimentForm">
+		        <md-content 
+		        	class="md-padding" 
+		        	ng-controller="AccompanimentsController"
+		        	ng-form="accompanimentForm">
 
+		        <?php echo $this->element('resultsframework/accompaniments'); ?>
 
 		        </md-content>
 		      </md-tab>
 
 		    <!-- DIALOGUE -->
 		      <md-tab label="DIALOGUE">
-		        <md-content class="md-padding" ng-form="dialogueForm">
+		        <md-content 
+		        	class="md-padding" 
+		        	ng-controller="DialoguesController"
+		        	ng-form="dialogueForm">
 
-
+		        <?php echo $this->element('resultsframework/dialogues'); ?>
 		        </md-content>
 		      </md-tab>
 
@@ -114,3 +125,6 @@
 <?php echo $this->Html->script('resultsframework/themes'); ?>
 <?php echo $this->Html->script('resultsframework/researches'); ?>
 <?php echo $this->Html->script('resultsframework/results'); ?>
+<?php echo $this->Html->script('resultsframework/trainings'); ?>
+<?php echo $this->Html->script('resultsframework/dialogues'); ?>
+<?php echo $this->Html->script('resultsframework/accompaniments'); ?>

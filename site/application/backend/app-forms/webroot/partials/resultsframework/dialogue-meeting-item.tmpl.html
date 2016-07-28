@@ -1,0 +1,124 @@
+<md-dialog layout-padding ng-cloak ng-form="dialogueProcessItemForm">
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Dialogue Process</h2>
+      </div>
+    </md-toolbar>
+
+	<md-dialog-content>
+		
+		<div layout="row">
+			<!-- Title -->
+			<md-input-container>
+				<label>Title</label>
+				<input ng-model="data.dialogue.title" required>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row">
+			<!-- Session Count -->
+			<md-input-container>
+				<label>Number of Sessions</label>
+				<input type="number" ng-model="data.dialogue.session_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<!-- Male Count -->
+			<md-input-container>
+				<label>Number of Males</label>
+				<input type="number" ng-model="data.dialogue.male_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<!-- Female Count -->
+			<md-input-container>
+				<label>Number of Females</label>
+				<input type="number" ng-model="data.dialogue.female_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<!-- Male Count (Trauma) -->
+			<md-input-container>
+				<label>Number of Males (Trauma-councelled)</label>
+				<input type="number" ng-model="data.dialogue.male_trauma_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<!-- Female Count (Trauma) -->
+			<md-input-container>
+				<label>Number of Females (Trauma-councelled)</label>
+				<input type="number" ng-model="data.dialogue.female_trauma_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row"><h3>Themes</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="theme in FormOptions.themes">
+					
+					<md-checkbox 
+						checklist-model="data.dialogue.themes" 
+						checklist-value="theme"
+					>
+			            {{theme.Theme.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+
+		<div layout="row"><h3>Participant Types</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="participant_type in FormOptions.participant_types">
+					
+					<md-checkbox 
+						checklist-model="data.dialogue.participant_types" 
+						checklist-value="participant_type"
+					>
+			            {{participant_type.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+
+		<div layout="row"><h3>Conflict Resolution</h3></div>
+		<div layout="row">
+
+			<md-checkbox 
+				ng-model="data.dialogue.conflict_resolution" 
+			>
+	            Please tick this box if the dialogue seek to resolve a specific conflict issue between groups or entities
+			</md-checkbox>
+
+		</div>
+
+		
+		<pre>{{data.dialogue | json}}</pre>
+
+	</md-dialog-content>
+
+
+	<md-dialog-actions layout="row">
+        <md-button ng-click="cancel()" md-no-ink class="md-primary">
+          Cancel
+        </md-button>
+	  <span flex></span>
+	  <md-button 
+	  	ng-show="dialogueProcessItemForm.$valid && data.dialogue.themes.length && data.dialogue.participant_types.length"
+	  	ng-click="save(data.dialogue)" 
+	  	class="md-raised md-primary">
+	    Save
+	  </md-button>
+	</md-dialog-actions>
+
+
+
+</md-dialog>

@@ -1,0 +1,60 @@
+
+<md-dialog layout-padding ng-cloak ng-form="accompanimentItemForm">
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Accompaniment Item</h2>
+      </div>
+    </md-toolbar>
+
+	<md-dialog-content>
+		
+		<div layout="row">
+			<!-- Title -->
+			<md-input-container>
+				<label>Title</label>
+				<input ng-model="data.accompaniment.title" required>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row" layout-wrap>
+  
+			<div 
+				flex="50" 
+				ng-repeat="participation_type in FormOptions.participant_types">
+				<!-- Participation Types -->
+				<md-input-container class="md-block">
+					<label>Number of {{participation_type.name}}</label>
+					<input 
+						type="number"
+						min="0"
+						ng-model="data.accompaniment.participant_types[participation_type.name]"
+						>
+				</md-input-container>
+			</div>
+		</div>
+
+		
+		<pre>{{data.accompaniment | json}}</pre>
+
+	</md-dialog-content>
+
+
+
+	<md-dialog-actions layout="row">
+        <md-button ng-click="cancel()" md-no-ink class="md-primary">
+          Cancel
+        </md-button>
+	  <span flex></span>
+	  <md-button 
+	  	ng-show="accompanimentItemForm.$valid"
+	  	ng-click="save(data.accompaniment)" 
+	  	class="md-raised md-primary">
+	    Save
+	  </md-button>
+	</md-dialog-actions>
+
+
+
+</md-dialog>

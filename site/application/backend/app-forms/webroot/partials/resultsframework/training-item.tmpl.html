@@ -1,0 +1,90 @@
+
+<md-dialog layout-padding ng-cloak ng-form="trainingItemForm">
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Training</h2>
+      </div>
+    </md-toolbar>
+
+	<md-dialog-content>
+		
+		<div layout="row">
+			<!-- Title -->
+			<md-input-container>
+				<label>Title</label>
+				<input ng-model="data.training.title" required>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row">
+			<!-- Male Count -->
+			<md-input-container>
+				<label>Number of Males</label>
+				<input type="number" ng-model="data.training.male_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<!-- Female Count -->
+			<md-input-container>
+				<label>Number of Females</label>
+				<input type="number" ng-model="data.training.female_count" required>
+			</md-input-container>
+		</div>
+
+		<div layout="row"><h3>Themes</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="theme in FormOptions.themes">
+					
+					<md-checkbox 
+						checklist-model="data.training.themes" 
+						checklist-value="theme"
+					>
+			            {{theme.Theme.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+
+		<div layout="row"><h3>Participant Types</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="participant_type in FormOptions.participant_types">
+					
+					<md-checkbox 
+						checklist-model="data.training.participant_types" 
+						checklist-value="participant_type"
+					>
+			            {{participant_type.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+
+		
+		<pre>{{data.training | json}}</pre>
+
+	</md-dialog-content>
+
+
+	<md-dialog-actions layout="row">
+        <md-button ng-click="cancel()" md-no-ink class="md-primary">
+          Cancel
+        </md-button>
+	  <span flex></span>
+	  <md-button 
+	  	ng-show="trainingItemForm.$valid && data.training.themes.length && data.training.participant_types.length"
+	  	ng-click="save(data.training)" 
+	  	class="md-raised md-primary">
+	    Save
+	  </md-button>
+	</md-dialog-actions>
+
+
+
+</md-dialog>
