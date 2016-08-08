@@ -5,14 +5,15 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData){
 
 	$scope.removeResearchItem = function(i) {
 		if (confirm("Are you sure you want to remove this research item?")) {
-			$scope.data.researches.splice(i,1)
+			$scope.data.researches.items.splice(i,1)
+			updateTotals()
 		}
 	}
 
 	$scope.showResearchItemDialog = function(i) {
 
 		// add or edit
-		var researchToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.researches[i]
+		var researchToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.researches.items[i]
 
 	    $mdDialog.show({
 	      controller: ResearchItemController,
@@ -29,17 +30,26 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData){
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.researches.push(research)
+				$scope.data.researches.items.push(research)
 	    	} else {
 	    		// edit
-	    		$scope.data.researches[i] = research	
+	    		$scope.data.researches.items[i] = research	
 	    	}
+
+	    	updateTotals()
 			
 
 	    }, function() {
 	      console.log('You cancelled the dialog.');
 	    });
 	  };
+
+		function updateTotals() {
+
+			$scope.data.researches.totals = {
+				count: $scope.data.researches.items.length
+			};
+		}
 })
 
 function ResearchItemController($scope, $mdDialog, data, FormOptions) {
@@ -47,7 +57,7 @@ function ResearchItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.data = data;
 
 	// options for form fields
-	$scope.FormOptions
+	$scope.FormOptions = FormOptions
 
 	$scope.cancel = function() {
 		$mdDialog.cancel();

@@ -1,3 +1,12 @@
+<table>
+	<tr ng-repeat="(participant_type, count) in data.accompaniments.totals">
+		<th>{{participant_type}}</th>
+		<td>{{count || 0}}</td>
+	</tr>
+</table>
+
+
+
 
 <h2>Accompaniments</h2>
 <table>
@@ -15,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, accompaniment) in data.accompaniments">
+		<tr ng-repeat="(i, accompaniment) in data.accompaniments.items">
 			<td>
 				{{accompaniment.title}}
 			</td>
@@ -51,3 +60,9 @@
 
 <md-button class="md-raised" ng-click="showAccompanimentItemDialog()">Add Accompaniment</md-button>
 
+
+
+
+<pre>
+	{{data.accompaniments | json}}
+</pre>

@@ -12,26 +12,33 @@ app.factory('ResultsData', function(){
   return {
   		themes: [],
   		dialogues: {
-  			meetings: [],
-  			processes: []
+  			meetings: {
+  				items: []
+  			},
+  			processes: {
+  				items: []
+  			}
   		},
   		grography: {
   			countries: [],
 	  		regions: []
   		},
-  		trainings: [{
-			title: "Test Research Title",
-			themes: [],
-			participant_types: [],
-			male_count: null,
-			female_count: null
-		}],
-		accompaniments:[],
-		researches: [{
-			title: "Test Research Title",
-			themes: [],
-			countries: []
-		}],
+  		trainings: {
+  			items: [],
+  			totals: {}
+  		},
+		accompaniments: {
+  			items: [],
+  			totals: {}
+  		},
+		advocacies:{
+  			items: [],
+  			totals: {}
+  		},
+		researches: {
+			items: [],
+  			totals: {}
+		},
 		results: []
 	};
 });
@@ -116,7 +123,7 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 
 	// debug
 	// $scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 3;
+	$scope.selectedTabIndex = 7;
 
 	
 	$scope.changeActiveTab = function(i) {

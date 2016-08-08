@@ -89,8 +89,12 @@
 
 		    <!-- ADVOCACY AND OUTREACH -->
 		      <md-tab label="ADVOCACY AND OUTREACH">
-		        <md-content class="md-padding" ng-form="advocacyForm">
+		        <md-content 
+		        class="md-padding" 
+	        	ng-controller="AdvocaciesController"
+		        ng-form="advocacyForm">
 
+		        	<?php echo $this->element('resultsframework/advocacies'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -128,3 +132,4 @@
 <?php echo $this->Html->script('resultsframework/trainings'); ?>
 <?php echo $this->Html->script('resultsframework/dialogues'); ?>
 <?php echo $this->Html->script('resultsframework/accompaniments'); ?>
+<?php echo $this->Html->script('resultsframework/advocacies'); ?>

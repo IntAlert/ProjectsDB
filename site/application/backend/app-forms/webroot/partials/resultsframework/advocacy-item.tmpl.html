@@ -1,0 +1,108 @@
+
+<md-dialog layout-padding ng-cloak ng-form="advocacyItemForm">
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Advocacy/Outreach Item</h2>
+      </div>
+    </md-toolbar>
+
+	<md-dialog-content>
+		
+		<div layout="row">
+			<!-- Title -->
+			<md-input-container>
+				<label>Title</label>
+				<input ng-model="data.advocacy.title" required>
+			</md-input-container>
+		</div>
+
+
+		<div layout="row" layout-wrap>
+
+
+			<div flex="50">
+				<!-- Participation Types -->
+				<md-input-container class="md-block">
+					<label>Number of Males</label>
+					<input 
+						required
+						type="number"
+						min="0"
+						ng-model="data.advocacy.male_count"
+						>
+				</md-input-container>
+			</div>
+
+
+			<div flex="50">
+				<!-- Participation Types -->
+				<md-input-container class="md-block">
+					<label>Number of Females</label>
+					<input 
+						required
+						type="number"
+						min="0"
+						ng-model="data.advocacy.female_count"
+						>
+				</md-input-container>
+			</div>
+
+			
+
+  
+			<div 
+				flex="50" 
+				ng-repeat="participation_type in FormOptions.participant_types">
+				<!-- Participation Types -->
+				<md-input-container class="md-block">
+					<label>Number of {{participation_type.name}}</label>
+					<input 
+						type="number"
+						min="0"
+						ng-model="data.advocacy.participant_types[participation_type.name]"
+						>
+				</md-input-container>
+			</div>
+		</div>
+
+		<div layout="row"><h3>Themes</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="theme in FormOptions.themes">
+					
+					<md-checkbox 
+						checklist-model="data.advocacy.themes" 
+						checklist-value="theme"
+					>
+			            {{theme.Theme.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+	
+
+		
+		<pre>{{data.advocacy | json}}</pre>
+
+	</md-dialog-content>
+
+
+
+	<md-dialog-actions layout="row">
+        <md-button ng-click="cancel()" md-no-ink class="md-primary">
+          Cancel
+        </md-button>
+	  <span flex></span>
+	  <md-button 
+	  	ng-show="advocacyItemForm.$valid && data.advocacy.themes.length"
+	  	ng-click="save(data.advocacy)" 
+	  	class="md-raised md-primary">
+	    Save
+	  </md-button>
+	</md-dialog-actions>
+
+
+
+</md-dialog>

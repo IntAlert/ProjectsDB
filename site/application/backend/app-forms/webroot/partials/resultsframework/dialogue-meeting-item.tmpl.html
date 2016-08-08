@@ -21,7 +21,7 @@
 			<!-- Session Count -->
 			<md-input-container>
 				<label>Number of Sessions</label>
-				<input type="number" ng-model="data.dialogue.session_count" required>
+				<input type="number" min="0" ng-model="data.dialogue.session_count" required>
 			</md-input-container>
 		</div>
 
@@ -29,7 +29,7 @@
 			<!-- Male Count -->
 			<md-input-container>
 				<label>Number of Males</label>
-				<input type="number" ng-model="data.dialogue.male_count" required>
+				<input type="number" min="0" ng-model="data.dialogue.male_count" required>
 			</md-input-container>
 		</div>
 
@@ -37,7 +37,7 @@
 			<!-- Female Count -->
 			<md-input-container>
 				<label>Number of Females</label>
-				<input type="number" ng-model="data.dialogue.female_count" required>
+				<input type="number" min="0" ng-model="data.dialogue.female_count" required>
 			</md-input-container>
 		</div>
 
@@ -45,7 +45,7 @@
 			<!-- Male Count (Trauma) -->
 			<md-input-container>
 				<label>Number of Males (Trauma-councelled)</label>
-				<input type="number" ng-model="data.dialogue.male_trauma_count" required>
+				<input type="number" min="0" ng-model="data.dialogue.male_trauma_count" required>
 			</md-input-container>
 		</div>
 
@@ -53,7 +53,7 @@
 			<!-- Female Count (Trauma) -->
 			<md-input-container>
 				<label>Number of Females (Trauma-councelled)</label>
-				<input type="number" ng-model="data.dialogue.female_trauma_count" required>
+				<input type="number" min="0" ng-model="data.dialogue.female_trauma_count" required>
 			</md-input-container>
 		</div>
 

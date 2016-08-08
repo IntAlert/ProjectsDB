@@ -1,3 +1,15 @@
+
+<table>
+
+	<tr>
+		<th>Number of research reports or other papers produced by Alert to improve understanding and peacebuilding approaches on particular geographic contexts or issues?</th>
+		<td>{{data.researches.totals.count || 0}}</td>
+	</tr>
+
+</table>
+
+
+<h2>Research</h2>
 <table>
 	<thead>
 		<tr>
@@ -16,7 +28,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, research) in data.researches">
+		<tr ng-repeat="(i, research) in data.researches.items">
 			<td>
 				{{research.title}}
 			</td>
@@ -59,3 +71,5 @@
 </table>
 
 <md-button class="md-raised" ng-click="showResearchItemDialog()">Add</md-button>
+
+

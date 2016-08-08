@@ -1,3 +1,22 @@
+
+<table>
+	<tr>
+		<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
+		<td>{{data.trainings.totals.event_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>How many male participants took part?</th>
+		<td>{{data.trainings.totals.male_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>How many female participants took part?</th>
+		<td>{{data.trainings.totals.female_count || 0}}</td>
+	</tr>
+</table>
+
+<h2>Training</h2>
 <table>
 	<thead>
 		<tr>
@@ -24,7 +43,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, training) in data.trainings">
+		<tr ng-repeat="(i, training) in data.trainings.items">
 			<td>
 				{{training.title}}
 			</td>
@@ -75,3 +94,5 @@
 </table>
 
 <md-button class="md-raised" ng-click="showTrainingItemDialog()">Add</md-button>
+
+

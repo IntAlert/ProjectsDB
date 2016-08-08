@@ -5,14 +5,15 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData){
 
 	$scope.removeTrainingItem = function(i) {
 		if (confirm("Are you sure you want to remove this training item?")) {
-			$scope.data.trainings.splice(i,1)
+			$scope.data.trainings.items.splice(i,1)
+			updateTotals()
 		}
 	}
 
 	$scope.showTrainingItemDialog = function(i) {
 
 		// add or edit
-		var trainingToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.trainings[i]
+		var trainingToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.trainings.items[i]
 
 	    $mdDialog.show({
 	      controller: TrainingItemController,
@@ -29,17 +30,37 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData){
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.trainings.push(training)
+				$scope.data.trainings.items.push(training)
 	    	} else {
 	    		// edit
-	    		$scope.data.trainings[i] = training	
+	    		$scope.data.trainings.items[i] = training	
 	    	}
 			
+			updateTotals()
 
 	    }, function() {
 	      console.log('You cancelled the dialog.');
 	    });
 	  };
+
+
+
+	function updateTotals() {
+
+		var totals = {
+			'event_count': 0,
+			'male_count': 0,
+			'female_count': 0
+		}
+
+		angular.forEach($scope.data.trainings.items, function(item) {
+			this.event_count++
+  			this.male_count += item.male_count
+  			this.female_count += item.female_count
+		}, totals);
+
+		$scope.data.trainings.totals = totals;
+	}
 })
 
 function TrainingItemController($scope, $mdDialog, data, FormOptions) {

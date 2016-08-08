@@ -1,4 +1,48 @@
 
+
+<table>
+
+
+	<tr>
+		<th>Number of sustained dialogue processes conducted</th>
+		<td>{{data.dialogues.totals.process_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>Number of separate dialogue meetings, including mediation sessions, facilitated / organised?</th>
+		<td>{{data.dialogues.totals.meeting_count || 0}}</td>
+	</tr>
+
+
+	<tr>
+		<th>How many female participants took part (cumulative)?</th>
+		<td>{{data.dialogues.totals.male_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>How many female participants took part (cumulative) ?</th>
+		<td>{{data.dialogues.totals.female_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>Number of males for whom trauma-counselling services were provided (cumulative)?</th>
+		<td>{{data.dialogues.totals.male_trauma_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>Number of females for whom trauma-counselling services were provided (cumulative) ?</th>
+		<td>{{data.dialogues.totals.female_trauma_count || 0}}</td>
+	</tr>
+
+	<tr>
+		<th>The dialogue sought to resolve a specific conflict issue between groups or entities </th>
+		<td>{{data.dialogues.totals.conflict_resolution ? 'YES': 'NO'}}</td>
+	</tr>
+</table>
+
+
+
+
 <h2>Processes</h2>
 <table>
 	<thead>
@@ -42,7 +86,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, dialogue) in data.dialogues.processes">
+		<tr ng-repeat="(i, dialogue) in data.dialogues.processes.items">
 			<td>
 				{{dialogue.title}}
 			</td>
@@ -154,7 +198,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, dialogue) in data.dialogues.meetings">
+		<tr ng-repeat="(i, dialogue) in data.dialogues.meetings.items">
 			<td>
 				{{dialogue.title}}
 			</td>
@@ -220,3 +264,8 @@
 </table>
 
 <md-button class="md-raised" ng-click="showDialogueMeetingItemDialog()">Add Dialog Meeting</md-button>
+
+
+
+
+<pre>{{data.dialogues | json}}</pre>
