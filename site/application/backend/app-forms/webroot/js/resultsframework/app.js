@@ -114,7 +114,53 @@ app.factory('FormOptions', function($http) {
   return formOptionsInstance;
 });
 
+app.factory('DedupeThemes', function() {
+  var obj = {
 
+  	dedupe: function (themesDuped) {
+
+  		var ids = {}
+  		var themesClean = []
+
+  		angular.forEach(themesDuped, function(theme){
+  			if ( !ids[theme.Theme.id] ) {
+  				themesClean.push(theme)
+  			}
+  			ids[theme.Theme.id] = true
+  		})
+
+  		return themesClean;
+  	}
+
+  }
+
+  return obj
+
+});
+
+app.factory('DedupeTerritories', function() {
+  var obj = {
+
+  	dedupe: function (territoriesDuped) {
+
+  		var ids = {}
+  		var territoriesClean = []
+
+  		angular.forEach(territoriesDuped, function(theme){
+  			if ( !ids[territory.Territory.id] ) {
+  				territoriesClean.push(theme)
+  			}
+  			ids[territory.Territory.id] = true
+  		})
+
+  		return territoriesClean;
+  	}
+
+  }
+
+  return obj
+
+});
 
 app.controller('ResultsframeworkController', function ($scope, $window, $location, $anchorScroll) {
 
@@ -123,7 +169,7 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 
 	// debug
 	// $scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 7;
+	$scope.selectedTabIndex = 2;
 
 	
 	$scope.changeActiveTab = function(i) {

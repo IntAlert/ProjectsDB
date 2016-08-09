@@ -14,6 +14,17 @@
 		<th>How many female participants took part?</th>
 		<td>{{data.trainings.totals.female_count || 0}}</td>
 	</tr>
+	<tr>
+		<th>Themes</th>
+		<td>
+			<span ng-repeat="theme in data.trainings.totals.themes">
+					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.trainings.totals.themes.length ">
+				none
+			</span>
+		</td>
+	</tr>
 </table>
 
 <h2>Training</h2>
@@ -94,5 +105,8 @@
 </table>
 
 <md-button class="md-raised" ng-click="showTrainingItemDialog()">Add</md-button>
+
+
+<pre>{{data.trainings | json}}</pre>
 
 

@@ -21,7 +21,7 @@
 		<md-radio-group ng-model="data.pathways.primary">
 	      <md-radio-button 
 	      	ng-repeat="pathway in FormOptions.pathways"
-	      	value="pathway" class="md-primary">{{pathway.Pathway.name}}</md-radio-button>
+	      	ng-value="pathway" class="md-primary">{{pathway.Pathway.name}}</md-radio-button>
 	    </md-radio-group>
 	</div>
 
@@ -30,7 +30,7 @@
 		<md-radio-group ng-model="data.pathways.secondary">
 	      <md-radio-button 
 	      	ng-repeat="pathway in FormOptions.pathways"
-	      	value="pathway" class="md-primary">{{pathway.Pathway.name}}</md-radio-button>
+	      	ng-value="pathway" class="md-primary">{{pathway.Pathway.name}}</md-radio-button>
 	    </md-radio-group>
 	</div>
 

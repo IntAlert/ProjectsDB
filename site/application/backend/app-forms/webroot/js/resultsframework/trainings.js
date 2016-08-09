@@ -1,5 +1,5 @@
 
-app.controller('TrainingsController', function($scope, $mdDialog, ResultsData){
+app.controller('TrainingsController', function($scope, $mdDialog, ResultsData, DedupeThemes){
 
 	$scope.data = ResultsData
 
@@ -53,11 +53,21 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData){
 			'female_count': 0
 		}
 
+		var themes = []
+
 		angular.forEach($scope.data.trainings.items, function(item) {
 			this.event_count++
   			this.male_count += item.male_count
   			this.female_count += item.female_count
+
+  			themes = themes.concat(item.themes)
+
+  			console.log(themes)
+
 		}, totals);
+
+		totals.themes = DedupeThemes.dedupe(themes)
+
 
 		$scope.data.trainings.totals = totals;
 	}
