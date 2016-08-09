@@ -2,6 +2,9 @@
 
 class TerritoriesController extends AppController {
 
+// update territories set type = 'country' where iso3 is not null
+// manual region
+// update territories set type = 'other' where type is not null
 
 	function allCountries() {
 

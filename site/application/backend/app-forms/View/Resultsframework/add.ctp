@@ -22,7 +22,7 @@
 		        ng-controller="GeographyController"
 		        ng-form="geographyForm">
 
-		        <?php echo $this->element('resultsframework/geography'); ?>
+		        <?php echo $this->element('Resultsframework/geography'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -34,7 +34,7 @@
 		        	ng-controller="ThemesController"
 		        	ng-form="themesForm">
 
-		        <?php echo $this->element('resultsframework/themes'); ?>
+		        <?php echo $this->element('Resultsframework/themes'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -46,7 +46,7 @@
 		        	ng-controller="TrainingsController"
 		        	ng-form="trainingForm">
 
-		        	<?php echo $this->element('resultsframework/trainings'); ?>
+		        	<?php echo $this->element('Resultsframework/trainings'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -58,7 +58,7 @@
 		        	ng-controller="AccompanimentsController"
 		        	ng-form="accompanimentForm">
 
-		        <?php echo $this->element('resultsframework/accompaniments'); ?>
+		        <?php echo $this->element('Resultsframework/accompaniments'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -70,7 +70,7 @@
 		        	ng-controller="DialoguesController"
 		        	ng-form="dialogueForm">
 
-		        <?php echo $this->element('resultsframework/dialogues'); ?>
+		        <?php echo $this->element('Resultsframework/dialogues'); ?>
 		        </md-content>
 		      </md-tab>
 
@@ -81,7 +81,7 @@
 		        	ng-controller="ResearchesController"
 		        	ng-form="researchForm">
 
-		      	<?php echo $this->element('resultsframework/researches'); ?>
+		      	<?php echo $this->element('Resultsframework/researches'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -94,7 +94,7 @@
 	        	ng-controller="AdvocaciesController"
 		        ng-form="advocacyForm">
 
-		        	<?php echo $this->element('resultsframework/advocacies'); ?>
+		        	<?php echo $this->element('Resultsframework/advocacies'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -107,7 +107,7 @@
 			        class="md-padding" 
 			        ng-form="resultsForm">
 
-			        <?php echo $this->element('resultsframework/results'); ?>
+			        <?php echo $this->element('Resultsframework/results'); ?>
 
 		        </md-content>
 		      </md-tab>
