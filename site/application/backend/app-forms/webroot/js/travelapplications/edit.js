@@ -93,7 +93,6 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 		"convenant_agreed": false,
 		"policy_understood": false,
 		"evacuation_understood": false,
-		"conduct_understood": false,
 		"countrymanager_notified": false
 	};
 
@@ -123,7 +122,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 			$scope.users = response.data;
 
 			// All geographical territories
-			$http.get('/api/territories/allGeographical.json')
+			$http.get('/api/territories/allCountries.json')
 				.then(function(response){
 					$scope.territories = response.data;
 				}, function(territories){

@@ -196,7 +196,6 @@ app.factory('travelapplicationService', function($http) {
 	   "convenant_agreed":true,
 	   "policy_understood":true,
 	   "evacuation_understood":true,
-	   "conduct_understood":true,
 	   "countrymanager_notified":true
 	}
 

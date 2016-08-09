@@ -70,7 +70,12 @@
 		      </md-tab>
 
 		      <!-- Security -->
-		      <md-tab label="security" ng-disabled="disableTabsByValid && (meetingsForm.$invalid || itineraryForm.$invalid)">
+
+
+
+
+<!-- If the no office, we need at least one meeting -->
+		      <md-tab label="security" ng-disabled="disableTabsByValid && (!(meetingsForm.$valid && (formData.mode == 'has-office' || formData.schedule.length)) || itineraryForm.$invalid)">
 		        
 		        <md-content class="md-padding" ng-form="securityForm">
 		          <?php echo $this->element('Travelapplications/security'); ?>

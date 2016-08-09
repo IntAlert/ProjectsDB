@@ -15,30 +15,47 @@
 
 </p>
 
+
 <?php
+	echo $this->Form->input('countrymanager_notified', array(
+		'type' => 'checkbox',
+		'ng-required' => " formData.mode=='has-office' ",
+		'label' => "I have notified the Country Manager(s) of my arrival, departure and purpose of visit *",
+		'ng-model' => 'formData.countrymanager_notified',
+		'div' => array(
+			'ng-show' => " formData.mode=='has-office' "
+		)
+	));
+
+
 	echo $this->Form->input('homecontact_freq', array(
-		'required' => true,
+		'ng-required' => " formData.mode=='no-office' ",
 		'label' => 'What are the main safety and security risks in the locations which you will visit? *',
 		'type' => 'textarea',
-		'ng-model' => 'formData.risks.overview'
+		'ng-model' => 'formData.risks.overview',
+		'div' => array(
+			'ng-show' => " formData.mode=='no-office' "
+		)
 	));
-?>
 
-<?php
 	echo $this->Form->input('homecontact_freq', array(
-		'required' => true,
+		'ng-required' => " formData.mode=='no-office' ",
 		'label' => 'How will you protect yourself against these risks? *',
 		'type' => 'textarea',
-		'ng-model' => 'formData.risks.protection'
+		'ng-model' => 'formData.risks.protection',
+		'div' => array(
+			'ng-show' => " formData.mode=='no-office' "
+		)
 	));
-?>
 
-<?php
 	echo $this->Form->input('homecontact_freq', array(
-		'required' => true,
+		'ng-required' => " formData.mode=='no-office' ",
 		'label' => 'Sources of security information used *',
 		'type' => 'textarea',
-		'ng-model' => 'formData.risks.sources'
+		'ng-model' => 'formData.risks.sources',
+		'div' => array(
+			'ng-show' => " formData.mode=='no-office' "
+		)
 	));
 ?>
 

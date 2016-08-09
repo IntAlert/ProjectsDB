@@ -1,4 +1,7 @@
-<table>
+<p ng-show=" formData.mode == 'no-office' ">
+	If your destination does <strong>not</strong> have an office, please record details of at least one meeting.
+</p>
+<table ng-show=" formData.schedule.length ">
 	<thead>
 		<tr>
 			<th>
@@ -121,18 +124,17 @@
 </table>
 
 
-
-
 <div layout="row" layout-align="end center">
 
 	<md-button 
 		ng-click="addScheduleItem()"
 		class="md-raised">
-		Add Schedule Item
+		Add Meeting
 	</md-button>
 
+<!-- If the no office, we need at least one meeting -->
 	<md-button 
-			ng-show="meetingsForm.$valid"
+			ng-show="meetingsForm.$valid && (formData.mode == 'has-office' || formData.schedule.length)"
 			ng-click=" changeActiveTab(5) "
 			class="md-raised">
 			Next

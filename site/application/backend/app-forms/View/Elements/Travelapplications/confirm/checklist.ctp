@@ -31,15 +31,6 @@
 
 		<tr ng-show=" formData.mode=='has-office' ">
 			<th>
-				I have read &amp; understood Country Security Guidelines &amp; Rules of Conduct
-			</th>
-			<td>
-				{{formData.conduct_understood ? 'YES' : 'NO'}}
-			</td>
-		</tr>
-
-		<tr ng-show=" formData.mode=='has-office' ">
-			<th>
 				I have notified the Country Manager(s) of my arrival, departure and purpose of visit
 			</th>
 			<td>
