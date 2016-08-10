@@ -1,5 +1,5 @@
 
-app.controller('ResearchesController', function($scope, $mdDialog, ResultsData){
+app.controller('ResearchesController', function($scope, $mdDialog, ResultsData, DedupeService){
 
 	$scope.data = ResultsData
 
@@ -46,9 +46,32 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData){
 
 		function updateTotals() {
 
-			$scope.data.researches.totals = {
+			var totals = {
 				count: $scope.data.researches.items.length
 			};
+
+			var themes = []
+			var countries = []
+
+			angular.forEach($scope.data.researches.items, function(item) {
+
+				totals.male_count += item.male_count
+				totals.female_count += item.female_count
+				totals.female_trauma_count += item.female_trauma_count
+				totals.male_trauma_count += item.male_trauma_count
+				totals.meeting_count++
+				totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
+
+				themes = themes.concat(item.themes)
+	  			countries = countries.concat(item.countries)
+
+			});
+
+			totals.themes = DedupeService.themes(themes)
+			totals.countries = DedupeService.territories(countries)
+
+			$scope.data.researches.totals = totals
+
 		}
 })
 

@@ -1,4 +1,3 @@
-
 <table>
 	<tr>
 		<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
@@ -25,14 +24,30 @@
 			</span>
 		</td>
 	</tr>
+
+	<tr>
+		<th>Participant Types</th>
+		<td>
+			<span ng-repeat="participant_type in data.trainings.totals.participant_types">
+					{{participant_type.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.trainings.totals.participant_types.length ">
+				none
+			</span>
+		</td>
+	</tr>
 </table>
 
 <h2>Training</h2>
-<table>
+<table ng-show=" data.trainings.items.length ">
 	<thead>
 		<tr>
 			<th>
 				Title
+			</th>
+
+			<th>
+				Date
 			</th>
 
 			<th>
@@ -57,6 +72,10 @@
 		<tr ng-repeat="(i, training) in data.trainings.items">
 			<td>
 				{{training.title}}
+			</td>
+
+			<td>
+				{{training.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>
@@ -104,7 +123,7 @@
 	
 </table>
 
-<md-button class="md-raised" ng-click="showTrainingItemDialog()">Add</md-button>
+<md-button class="md-raised" ng-click="showTrainingItemDialog()">Add Training</md-button>
 
 
 <pre>{{data.trainings | json}}</pre>

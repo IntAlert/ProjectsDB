@@ -2,14 +2,14 @@
 	<tr>
 		<th>How many male participants in public advocacy meetings</th>
 		<td>
-			{{data.advocacies.totals.female_count}}
+			{{data.advocacies.totals.female_count || 0}}
 		</td>
 	</tr>
 
 	<tr>
 		<th>How many female participants in public advocacy meetings</th>
 		<td>
-			{{data.advocacies.totals.male_count}}
+			{{data.advocacies.totals.male_count || 0}}
 		</td>
 	</tr>
 
@@ -17,16 +17,46 @@
 		<th>{{participant_type}}</th>
 		<td>{{count || 0}}</td>
 	</tr>
+
+	<tr>
+		<th>Topics</th>
+		<td>
+			<span ng-repeat="theme in data.advocacies.totals.themes">
+					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.advocacies.totals.themes.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
+	<tr>
+		<th>Participant Types</th>
+		<td>
+			<span ng-repeat="participant_type in data.advocacies.totals.participant_types">
+					{{participant_type.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.advocacies.totals.participant_types.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
+
 </table>
 
 
 
 <h2>Advocacy and Outreach</h2>
-<table>
+<table ng-show=" data.advocacies.items.length ">
 	<thead>
 		<tr>
 			<th>
 				Title
+			</th>
+
+			<th>
+				Date
 			</th>
 
 			<th>
@@ -52,6 +82,10 @@
 		<tr ng-repeat="(i, advocacy) in data.advocacies.items">
 			<td>
 				{{advocacy.title}}
+			</td>
+
+			<td>
+				{{advocacy.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>

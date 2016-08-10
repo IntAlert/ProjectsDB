@@ -125,6 +125,7 @@
 
 
 <?php echo $this->Html->script('resultsframework/app'); ?>
+<?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
 <?php echo $this->Html->script('resultsframework/geography'); ?>
 <?php echo $this->Html->script('resultsframework/themes'); ?>
 <?php echo $this->Html->script('resultsframework/researches'); ?>
@@ -133,3 +134,6 @@
 <?php echo $this->Html->script('resultsframework/dialogues'); ?>
 <?php echo $this->Html->script('resultsframework/accompaniments'); ?>
 <?php echo $this->Html->script('resultsframework/advocacies'); ?>
+
+
+<style type="text/css">pre {display: none}</style>

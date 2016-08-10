@@ -38,17 +38,70 @@
 		<th>The dialogue sought to resolve a specific conflict issue between groups or entities </th>
 		<td>{{data.dialogues.totals.conflict_resolution ? 'YES': 'NO'}}</td>
 	</tr>
+
+	<tr>
+		<th>What kinds of groups or entities were involved in the dialogue processes?</th>
+		<td>
+			<span ng-repeat="participant_type in data.dialogues.totals.participant_types_process">
+					{{participant_type.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.dialogues.totals.participant_types_process.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
+	<tr>
+		<th>Topics in dialogue processes?</th>
+		<td>
+			<strong>DO NOT RECORD???</strong>
+			<span ng-repeat="theme in data.dialogues.totals.themes_process">
+					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.dialogues.totals.themes_process.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
+	<tr>
+		<th>Kinds of participants / groups involved in dialogue meetings?</th>
+		<td>
+			<span ng-repeat="participant_type in data.dialogues.totals.participant_types_meeting">
+					{{participant_type.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.dialogues.totals.participant_types_meeting.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
+	<tr>
+		<th>Topics in dialogue meetings?</th>
+		<td>
+			<span ng-repeat="theme in data.dialogues.totals.themes_meeting">
+					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.dialogues.totals.themes_meeting.length ">
+				none
+			</span>
+		</td>
+	</tr>
 </table>
 
 
 
 
 <h2>Processes</h2>
-<table>
+<table ng-show=" data.dialogues.processes.items.length ">
 	<thead>
 		<tr>
 			<th>
 				Title
+			</th>
+
+			<th>
+				Date
 			</th>
 
 			<th>
@@ -89,6 +142,10 @@
 		<tr ng-repeat="(i, dialogue) in data.dialogues.processes.items">
 			<td>
 				{{dialogue.title}}
+			</td>
+
+			<td>
+				{{dialogue.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>
@@ -156,11 +213,15 @@
 
 
 <h2>Meetings</h2>
-<table>
+<table ng-show=" data.dialogues.meetings.items.length ">
 	<thead>
 		<tr>
 			<th>
 				Title
+			</th>
+
+			<th>
+				Date
 			</th>
 
 			<th>
@@ -201,6 +262,10 @@
 		<tr ng-repeat="(i, dialogue) in data.dialogues.meetings.items">
 			<td>
 				{{dialogue.title}}
+			</td>
+
+			<td>
+				{{dialogue.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>

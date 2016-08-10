@@ -1,4 +1,4 @@
-app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData){
+app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData, DedupeService){
 
 	$scope.data = ResultsData
 
@@ -48,6 +48,8 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData){
 	  			participant_types: {}
 	  		}
 
+	  		var themes = []
+
 			// loop through all items
 			angular.forEach($scope.data.advocacies.items, function(item) {
 
@@ -67,9 +69,17 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData){
 
 					totals.participant_types[participant_type] += count
 
+
 				})
 
+				themes = themes.concat(item.themes)
+
 			});
+
+			totals.themes = DedupeService.themes(themes)
+
+
+
 
 			$scope.data.advocacies.totals = totals;
 	  }

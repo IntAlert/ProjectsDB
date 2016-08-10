@@ -1,6 +1,14 @@
-<table>
+<table ng-show=" data.results.items.length ">
 	<thead>
 		<tr>
+			<th>
+				Title
+			</th>
+
+			<th>
+				Date
+			</th>
+
 			<th>
 				Narrative
 			</th>
@@ -17,6 +25,14 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="(i, result) in data.results">
+			<td>
+				{{dialogue.title}}
+			</td>
+
+			<td>
+				{{dialogue.date | date:'dd/MM/yyyy'}}
+			</td>
+			
 			<td>
 				{{result.narrative}}
 			</td>

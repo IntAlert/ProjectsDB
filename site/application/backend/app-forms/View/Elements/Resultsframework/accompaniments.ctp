@@ -9,11 +9,15 @@
 
 
 <h2>Accompaniments</h2>
-<table>
+<table ng-show=" data.accompaniments.items.length ">
 	<thead>
 		<tr>
 			<th>
 				Title
+			</th>
+
+			<th>
+				Date
 			</th>
 
 			<th>
@@ -28,6 +32,12 @@
 			<td>
 				{{accompaniment.title}}
 			</td>
+
+
+			<td>
+				{{accompaniment.date | date:'dd/MM/yyyy'}}
+			</td>
+
 
 			<td>
 				<span ng-repeat="(name, count) in accompaniment.participant_types">

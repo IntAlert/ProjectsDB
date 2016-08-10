@@ -1,5 +1,5 @@
 
-app.controller('DialoguesController', function($scope, $mdDialog, ResultsData){
+app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, DedupeService){
 
 	$scope.data = ResultsData
 
@@ -101,6 +101,11 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData){
 				conflict_resolution: false
 			}
 
+			var themes_process = []
+			var themes_meeting = []
+			var participant_types_process = []
+			var participant_types_meeting = []
+
 			// loop through all process items
 			angular.forEach($scope.data.dialogues.processes.items, function(item) {
 
@@ -111,7 +116,12 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData){
 				totals.process_count++
 				totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
 
+				themes_process = themes_process.concat(item.themes)
+	  			participant_types_process = participant_types_process.concat(item.participant_types)
+
 			});
+
+
 
 			// loop through all meeting items
 			angular.forEach($scope.data.dialogues.meetings.items, function(item) {
@@ -123,7 +133,15 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData){
 				totals.meeting_count++
 				totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
 
+				themes_meeting = themes_meeting.concat(item.themes)
+	  			participant_types_meeting = participant_types_meeting.concat(item.participant_types)
+
 			});
+
+			totals.themes_process = DedupeService.themes(themes_process)
+			totals.participant_types_process = DedupeService.participantTypes(participant_types_process)
+			totals.themes_meeting = DedupeService.themes(themes_meeting)
+			totals.participant_types_meeting = DedupeService.participantTypes(participant_types_meeting)
 
 			$scope.data.dialogues.totals = totals;
 		}

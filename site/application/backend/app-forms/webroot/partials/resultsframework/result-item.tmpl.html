@@ -8,20 +8,41 @@
     </md-toolbar>
 
 	<md-dialog-content>
-		
-		<div layout="row">
-			<!-- Narrative -->
-			<md-input-container class="md-block">
-          
-				<label>Narrative</label>
-				<textarea 
-					width="100%"
+
+		<div layout="row" layout-wrap>
+			<div flex="50">
+				<!-- Title -->
+				<md-input-container>
+					<label>Title</label>
+					<input ng-model="data.result.title" required>
+				</md-input-container>
+			</div>
+
+			<div flex="50">
+				<!-- Date -->
+				<md-datepicker 
 					required
-					ng-model="data.result.narrative" 
-					md-minlength="20" 
-					md-maxlength="250" 
-					rows="5"></textarea>
-			</md-input-container>
+					ng-model="data.result.date" 
+					md-placeholder="Enter date">
+				</md-datepicker>
+			</div>
+		
+			
+			<div flex="100">
+				<!-- Narrative -->
+				<md-input-container class="md-block">
+	          
+					<label>Narrative</label>
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.result.narrative" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+				</md-input-container>
+			</div>
+
 		</div>
 
 		<div layout="row"><h3>Strategic Pathway</h3></div>

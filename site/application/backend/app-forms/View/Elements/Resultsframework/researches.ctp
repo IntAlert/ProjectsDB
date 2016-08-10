@@ -6,15 +6,43 @@
 		<td>{{data.researches.totals.count || 0}}</td>
 	</tr>
 
+	<tr>
+		<th>Topics</th>
+		<td>
+			<span ng-repeat="theme in data.researches.totals.themes">
+					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.researches.totals.themes.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
+	<tr>
+		<th>Countries</th>
+		<td>
+			<span ng-repeat="territory in data.researches.totals.countries">
+					{{territory.Territory.name}}{{$last ? '' : ', '}}
+			</span>
+			<span ng-if=" !data.researches.totals.countries.length ">
+				none
+			</span>
+		</td>
+	</tr>
+
 </table>
 
 
 <h2>Research</h2>
-<table>
+<table ng-show=" data.researches.items.length ">
 	<thead>
 		<tr>
 			<th>
 				Title
+			</th>
+
+			<th>
+				Date
 			</th>
 
 			<th>
@@ -31,6 +59,10 @@
 		<tr ng-repeat="(i, research) in data.researches.items">
 			<td>
 				{{research.title}}
+			</td>
+
+			<td>
+				{{research.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>
@@ -72,4 +104,4 @@
 
 <md-button class="md-raised" ng-click="showResearchItemDialog()">Add</md-button>
 
-
+<pre>{{data.researches |json }}</pre>

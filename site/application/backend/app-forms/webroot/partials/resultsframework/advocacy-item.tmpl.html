@@ -8,17 +8,27 @@
     </md-toolbar>
 
 	<md-dialog-content>
-		
-		<div layout="row">
-			<!-- Title -->
-			<md-input-container>
-				<label>Title</label>
-				<input ng-model="data.advocacy.title" required>
-			</md-input-container>
-		</div>
-
 
 		<div layout="row" layout-wrap>
+
+
+			<div flex="50">
+				<!-- Title -->
+				<md-input-container>
+					<label>Title</label>
+					<input ng-model="data.advocacy.title" required>
+				</md-input-container>
+			</div>
+
+
+			<div flex="50">
+				<!-- Date -->
+				<md-datepicker 
+					required
+					ng-model="data.advocacy.date" 
+					md-placeholder="Enter date">
+				</md-datepicker>
+			</div>
 
 
 			<div flex="50">
