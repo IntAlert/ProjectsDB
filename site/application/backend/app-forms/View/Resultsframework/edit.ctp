@@ -143,4 +143,4 @@
 <?php echo $this->Html->script('resultsframework/advocacies'); ?>
 
 
-<style type="text/css">pre {display: none}</style>
+<style type="text/css">/*pre {display: none}*/</style>

@@ -22,6 +22,7 @@ class ResultsFrameworkTraining extends AppModel {
 			$dataToSave = array(
 				'rf_id' => $rf_id,
 				'date' => $training['date'],
+				// 'date' => date_format(date_create('@' . strtotime($training['date'])), 'c'),
 				'data_json' => json_encode($training)
 			);
 

@@ -1,4 +1,4 @@
-app.factory('ResultsFrameworkService', function($http) {
+app.factory('ResultsFrameworkService', function($http, ResultsData) {
   var obj = {
 
   	save: function(data) {
@@ -14,9 +14,9 @@ app.factory('ResultsFrameworkService', function($http) {
 
   	get: function(project_id) {
   		// NB. saving goes via /api not /forms
-		return $http.get('/api/resultsframework/view/' + project_id)
+		$http.get('/api/resultsframework/view/' + project_id)
 			.then(function(response){
-				return response.data
+				ResultsData = response.data.data
 			}, function(){
 				alert("resultsframework download error")
 			});

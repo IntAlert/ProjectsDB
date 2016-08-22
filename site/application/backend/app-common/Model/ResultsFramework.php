@@ -31,15 +31,17 @@ class ResultsFramework extends AppModel {
 			'data_json' => json_encode($data),
 		);
 
-		if (isset($data['id'])) { // update?
-			$this->id = $data['id'];
+		// is there already a record for this projectId?
+		$record = $this->findByProjectId($data['project_id']);
+
+		if ($record) { // update?
+			$this->id = $record['ResultsFramework']['id'];
 		}
 
 		parent::save($dataToSave);
 
 		// save trainings
 		$this->ResultsFrameworkTraining->saveItemised($this->id, $data['trainings']);
-
 
 	}
 }

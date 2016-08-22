@@ -81,6 +81,10 @@ function TrainingItemController($scope, $mdDialog, data, FormOptions) {
 	// options for form fields
 	$scope.FormOptions = FormOptions;
 
+	$scope.updateDate = function() {
+		data.training.date = data.training.date.addMinutes(-new Date().getTimezoneOffset())
+	}
+
 	$scope.cancel = function() {
 		$mdDialog.cancel();
 	};
