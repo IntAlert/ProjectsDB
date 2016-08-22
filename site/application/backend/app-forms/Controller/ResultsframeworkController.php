@@ -10,10 +10,27 @@ App::uses('AppController', 'Controller');
 class ResultsframeworkController extends AppController {
 
 
-	public $uses = false;
+	public $uses = array('ResultsFramework', 'Project');
 
-	public function add() {
+	public function edit($project_id) {
+		// check if project exists
+		if (!$this->Project->exists($project_id)) {
+			throw new NotFoundException(__('Invalid project'));
+		}
+	}
+
+	public function save($project_id) {
+
+		$this->layout = 'ajax';
 		
+		// check if project exists
+		if (!$this->Project->exists($project_id)) {
+			throw new NotFoundException(__('Invalid project'));
+		}
+
+		// save submitted data
+		$this->request->data['project_id'] = 160;
+		$this->ResultsFramework->save($this->request->data);
 	}
 
 // /**

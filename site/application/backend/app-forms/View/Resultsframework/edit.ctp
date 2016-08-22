@@ -5,6 +5,12 @@
 <div class="resultsframework form" ng-app="resultsframework">
 	
 	<form ng-controller="ResultsframeworkController">
+
+		<md-button 
+			class="md-raised" 
+			ng-click="save()">
+			Save Whole Record
+		</md-button>
 	
 	<fieldset>
 		<legend><?php echo __('Results for Project LOREM IPSUM'); ?></legend>
@@ -126,6 +132,7 @@
 
 <?php echo $this->Html->script('resultsframework/app'); ?>
 <?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
+<?php echo $this->Html->script('resultsframework/services/ResultsFrameworkService'); ?>
 <?php echo $this->Html->script('resultsframework/geography'); ?>
 <?php echo $this->Html->script('resultsframework/themes'); ?>
 <?php echo $this->Html->script('resultsframework/researches'); ?>

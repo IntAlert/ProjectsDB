@@ -114,7 +114,7 @@ app.factory('FormOptions', function($http) {
   return formOptionsInstance;
 });
 
-app.controller('ResultsframeworkController', function ($scope, $window, $location, $anchorScroll) {
+app.controller('ResultsframeworkController', function ($scope, $window, $location, $anchorScroll, ResultsData, ResultsFrameworkService) {
 
 	// UI
 	$scope.disableTabsByValid = true;
@@ -132,6 +132,19 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 		$anchorScroll();
 
 	}
+
+	// get any data that exists
+	ResultsFrameworkService.get(160)
+
+	$scope.save = function(data) {
+		ResultsFrameworkService.save(ResultsData)
+			.then(function(data){
+
+			}, function(data){
+				// fail
+			})
+	}
+
 	
 });
 
