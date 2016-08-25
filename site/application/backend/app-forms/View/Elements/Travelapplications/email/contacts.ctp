@@ -8,7 +8,7 @@
 		</th>
 		
 		<td>
-			<?php echo $travelapplicationObj->contact_home->user->User->name_formal; ?>
+			<?php echo $travelapplicationObj->contact_home->user->displayName; ?>
 		</td>
 	</tr>
 
@@ -24,11 +24,31 @@
 
 	<tr>
 		<th>
+			Telephone Number(s)
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_home->tel_land; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
 			Mobile telephone number(s)
 		</th>
 		
 		<td>
 			<?php echo $travelapplicationObj->contact_home->tel_mobile; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Skype
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_home->tel_skype; ?>
 		</td>
 	</tr>
 
@@ -53,7 +73,7 @@
 			</th>
 			
 			<td>
-				<?php echo $travelapplicationObj->contact_incountry->user->User->name_formal; ?>
+				<?php echo $travelapplicationObj->contact_incountry->user->displayName; ?>
 			</td>
 		</tr>
 
@@ -64,6 +84,16 @@
 			
 			<td>
 				<?php echo $travelapplicationObj->contact_incountry->email; ?>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				Telephone Number
+			</th>
+			
+			<td>
+				<?php echo $travelapplicationObj->contact_incountry->tel_land; ?>
 			</td>
 		</tr>
 
@@ -83,7 +113,7 @@
 			</th>
 			
 			<td>
-				<?php echo $travelapplicationObj->contact_incountry->skype; ?>
+				<?php echo $travelapplicationObj->contact_incountry->tel_skype; ?>
 			</td>
 		</tr>
 

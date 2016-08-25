@@ -28,4 +28,28 @@ class TravelapplicationItinerary extends AppModel {
             'className' => 'Territory',
         ),
 	);
+
+
+    function getIdsByDestinationAndDate($destination_territory_id, $date) {
+
+        $conditions = [];
+        if ($destination_territory_id != -1) {
+            $conditions[] = array('destination_territory_id' => $destination_territory_id);
+        }
+
+        if ($date != -1) {
+            $conditions[] = array(
+                'start <=' => $date,
+                'finish >=' => $date,
+            );
+        }
+
+        // debug($conditions);
+
+        $fields = array('travelapplication_id', 'travelapplication_id');
+        $ids = $this->find('list', compact('fields', 'conditions'));
+
+        return array_unique($ids);
+
+    }
 }

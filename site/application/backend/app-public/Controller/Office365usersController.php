@@ -100,7 +100,7 @@ class Office365usersController extends AppController {
             $tokens = $o365auth->getAppTokens();
             $o365userAPI = new Office365UserAPI($tokens['access_token']);
 
-            $office365Users = $o365userAPI->getAllUsers($startsWith);
+            $office365Users = $o365userAPI->search($startsWith);
 
             $knownUsers = $this->Office365user->getAlreadyKnownListByObjectId($office365Users);
 

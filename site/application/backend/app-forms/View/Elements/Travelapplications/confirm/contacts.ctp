@@ -8,7 +8,7 @@
 		</th>
 		
 		<td>
-			{{formData.contact_home.user.User.name_formal}}
+			{{formData.contact_home.user.displayName}}
 		</td>
 	</tr>
 
@@ -24,11 +24,31 @@
 
 	<tr>
 		<th>
+			Telephone Number(s)
+		</th>
+		
+		<td>
+			{{formData.contact_home.tel_land}}
+		</td>
+	</tr>
+
+	<tr>
+		<th>
 			Mobile telephone number(s)
 		</th>
 		
 		<td>
 			{{formData.contact_home.tel_mobile}}
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Skype
+		</th>
+		
+		<td>
+			{{formData.contact_home.tel_skype}}
 		</td>
 	</tr>
 
@@ -52,7 +72,7 @@
 			</th>
 			
 			<td>
-				{{formData.contact_incountry.user.User.name_formal}}
+				{{formData.contact_incountry.user.displayName}}
 			</td>
 		</tr>
 
@@ -63,6 +83,16 @@
 			
 			<td>
 				{{formData.contact_incountry.email}}
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				Telephone number(s)
+			</th>
+			
+			<td>
+				{{formData.contact_incountry.tel_land}}
 			</td>
 		</tr>
 
@@ -82,7 +112,7 @@
 			</th>
 			
 			<td>
-				{{formData.contact_incountry.skype}}
+				{{formData.contact_incountry.tel_skype}}
 			</td>
 		</tr>
 

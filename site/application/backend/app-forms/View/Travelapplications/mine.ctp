@@ -1,5 +1,6 @@
 <div class="travelapplications index">
 	<h2><?php echo __('Travel Applications'); ?></h2>
+
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

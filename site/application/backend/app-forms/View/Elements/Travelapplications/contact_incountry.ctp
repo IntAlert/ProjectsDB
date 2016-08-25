@@ -12,7 +12,7 @@
 				<select 
 					ng-required=" formData.mode == 'no-office' "
 					ng-model="formData.contact_incountry.user" 
-					ng-options="user.User.name_formal for user in users track by user.User.id">
+					ng-options="office365user.displayName for office365user in office365Users.all track by office365user.objectId">
 				</select>
 			</td>
 		</tr>
@@ -57,6 +57,21 @@
 						'ng-required' => "formData.mode == 'no-office'",
 						'label' => false,
 						'ng-model' => 'formData.contact_incountry.tel_mobile'
+					));
+				?>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				Skype
+			</th>
+			<td>
+				<?php
+					echo $this->Form->input('homecontact_tel_skype', array(
+						'ng-required' => "formData.mode == 'no-office'",
+						'label' => false,
+						'ng-model' => 'formData.contact_incountry.tel_skype'
 					));
 				?>
 			</td>

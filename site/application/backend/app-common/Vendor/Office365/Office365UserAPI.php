@@ -1,9 +1,5 @@
 <?php
-
 App::uses('HttpSocket', 'Network/Http');
-
-
-
 
 class Office365UserAPI {
 
@@ -42,7 +38,7 @@ class Office365UserAPI {
     }
 
 
-    function getAllUsers($startsWithStr = null) {
+    function search($startsWithStr = null) {
 
 
     	$options = array( 
@@ -66,9 +62,46 @@ class Office365UserAPI {
         ));
 
 
-        $url = 'https://graph.windows.net/' . OFFICE365_TENANT_ID . '/users/';
+        $url = 'https://graph.windows.net/' . OFFICE365_TENANT_ID . '/users/?$top=10';
 
         // debug(compact('url', 'data', 'options'));
+
+        // /$links/members
+
+        $result = $socket->get($url, $data, $options);
+
+        $o365_user_response = json_decode($result->body);
+
+        debug($o365_user_response);
+
+        $users = $o365_user_response->value;
+
+        return $users;
+
+    }
+
+
+
+    function all() {
+
+        // All International Alert Group Id
+        $all_object_id = '375abe38-5b56-4deb-b725-02ce52b2a339';
+
+        $options = array( 
+            'header' => array( 
+                'Authorization' => 'Bearer ' . $this->access_token
+            ) 
+        );
+
+        $data = array(
+            "api-version" => "1.6"
+        );
+
+        $socket = new HttpSocket(array(
+            'ssl_verify_host' => false
+        ));
+
+        $url = 'https://graph.windows.net/' . OFFICE365_TENANT_ID . '/groups/' . $all_object_id . '/members?$top=999';
 
         $result = $socket->get($url, $data, $options);
 

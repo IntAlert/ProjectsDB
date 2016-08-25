@@ -27,7 +27,7 @@
 		<select 
 			required
 			ng-model="formData.applicant.approving_manager" 
-			ng-options="user.User.name_formal for user in users track by user.User.id">
+			ng-options="office365user.displayName for office365user in office365Users.all track by office365user.objectId">
 		</select>
 	</div>
 

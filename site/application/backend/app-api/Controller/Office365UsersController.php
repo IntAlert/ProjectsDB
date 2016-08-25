@@ -5,20 +5,33 @@ App::import('Vendor', 'Office365/Office365UserAPI');
 
 class Office365UsersController extends AppController {
 
+  function all() {
+
+    // get all users from o365
+    $o365auth = new Office365AuthAPI();
+    $tokens = $o365auth->getAppTokens();
+    $o365userAPI = new Office365UserAPI($tokens['access_token']);
+
+    $users = $o365userAPI->all();
+
+
+    $this->set(compact('users'));
+        
+  }
 
 	function search() {
 
 		$startsWith = $this->request->query('startsWith');
 
 		// get all users from o365
-        $o365auth = new Office365AuthAPI();
-        $tokens = $o365auth->getAppTokens();
-        $o365userAPI = new Office365UserAPI($tokens['access_token']);
+    $o365auth = new Office365AuthAPI();
+    $tokens = $o365auth->getAppTokens();
+    $o365userAPI = new Office365UserAPI($tokens['access_token']);
 
-        $users = $o365userAPI->getAllUsers($startsWith);
+    $users = $o365userAPI->search($startsWith);
 
 
-        $this->set(compact('users'));
+    $this->set(compact('users'));
         
 	}
 
@@ -36,27 +49,6 @@ class Office365UsersController extends AppController {
         $this->set(compact('user'));
         
 	}
-
-
-	public function isAuthorized($user) {
-
-		// die();
-
-
-        // login / logout allowed
-        if (in_array($this->action, array('login', 'logout'))) {
-            return true;
-        }
-
-        // admin allowed to see the rest
-        if ($user['role'] == 'admin') {
-            return true;
-        }
-
-        // most people cannot see this
-        return false;
-        
-    }
 
 
 }

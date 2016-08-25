@@ -1,16 +1,17 @@
-app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll, travelapplicationService) {
+app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll, travelapplicationService, Office365UsersService) {
 
 
 	// UI
 	$scope.disableTabsByValid = true;
 
 	// debug
-	// $scope.disableTabsByValid = false;
-	// $scope.selectedTabIndex = 3;
+	$scope.disableTabsByValid = false;
+	$scope.selectedTabIndex = 2;
 
 	// data for form fields
 	$scope.users = [];
 	$scope.territories = [];
+	$scope.office365Users = Office365UsersService
 
 
 	// all form fields
@@ -100,14 +101,20 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	// Watch data
 	$scope.$watch('formData.contact_home.user', function() {
 		if ($scope.formData.contact_home.user) {
-			$scope.formData.contact_home.email = $scope.formData.contact_home.user.Office365user.email	
+			$scope.formData.contact_home.email = $scope.formData.contact_home.user.mail;
+			$scope.formData.contact_home.tel_land = $scope.formData.contact_home.user.telephoneNumber;
+			$scope.formData.contact_home.tel_mobile = $scope.formData.contact_home.user.mobile;
+			$scope.formData.contact_home.tel_skype = $scope.formData.contact_home.user.userPrincipalName;
 		}
 		
 	}, true);
 
 	$scope.$watch('formData.contact_incountry.user', function() {
 		if ($scope.formData.contact_incountry.user) {
-			$scope.formData.contact_incountry.email = $scope.formData.contact_incountry.user.Office365user.email
+			$scope.formData.contact_incountry.email = $scope.formData.contact_incountry.user.mail;
+			$scope.formData.contact_incountry.tel_land = $scope.formData.contact_incountry.user.telephoneNumber;
+			$scope.formData.contact_incountry.tel_mobile = $scope.formData.contact_incountry.user.mobile;
+			$scope.formData.contact_incountry.tel_skype = $scope.formData.contact_incountry.user.userPrincipalName;
 		}
 	}, true);
 

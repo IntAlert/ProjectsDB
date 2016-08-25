@@ -2,7 +2,7 @@
 App::uses('CakeEmail', 'Network/Email');
 App::uses('Component', 'Controller');
 class TravelapplicationNotifierComponent extends Component {
-    public function sendEmail($data, $travelapplication_id, $travelapplicationReceivers) {
+    public function sendEmail($data, $travelapplication_id, $recipientsEmailAddresses) {
         
     	// data is coming in as an maga array
     	// we want as an object
@@ -11,8 +11,8 @@ class TravelapplicationNotifierComponent extends Component {
     	$Email = new CakeEmail('default');
 
     	// extract recipients
-    	foreach ($travelapplicationReceivers as $receiver) {
-    		$Email->addTo($receiver['Office365user']['email']);
+    	foreach ($recipientsEmailAddresses as $email) {
+    		$Email->addTo('as.thomson+'.urlencode($email).'@gmail.com');
     	}
 
 		

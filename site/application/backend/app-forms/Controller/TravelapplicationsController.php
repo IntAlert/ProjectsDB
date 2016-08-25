@@ -39,6 +39,12 @@ class TravelapplicationsController extends AppController {
  *
  * @return void
  */
+
+
+	public function admin_ui() {
+		
+	}
+
 	public function admin() {
 
 		// show all applications
@@ -70,6 +76,16 @@ class TravelapplicationsController extends AppController {
 		);
 		
 		$this->set('travelapplications', $this->Paginator->paginate());
+
+	}
+
+	public function search() {
+
+		$this->layout = 'ajax';
+
+		$travelapplications = $this->Travelapplication->search($this->request->data);
+
+		$this->set(compact('travelapplications'));
 
 	}
 
@@ -119,19 +135,25 @@ class TravelapplicationsController extends AppController {
 			// create application
 			$travelapplication_id = $this->Travelapplication->saveWithItinerary($this->request->data);
 
+
+			$recipientsEmailAddresses = [];
+
 			// get Travel Application Receivers
-			$travelapplicationReceivers = $this->User->findUsersByRoleName('travel-application-receiver');
+			$admins = $this->User->findUsersByRoleName('travel-application-receiver');
+
+			foreach($admins as $admin) {
+				$recipientsEmailAddresses[] = $admin['Office365user']['email'];
+			}
 
 			// add the manager to the list
-			$manager = $this->User->findById($this->request->data['applicant']['approving_manager']['User']['id']);
-			$travelapplicationReceivers[] = $manager;
+			$recipientsEmailAddresses[] = $this->request->data['applicant']['approving_manager']['mail'];
 
 			// add the self to the list
 			$me = $this->User->findById($this->Auth->user('id'));
-			$travelapplicationReceivers[] = $me;
+			$recipientsEmailAddresses[] = $me['Office365user']['email'];
 
 			// send mail
-			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $travelapplicationReceivers);
+			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $recipientsEmailAddresses);
 
 			// return result
 			$this->layout = 'ajax';

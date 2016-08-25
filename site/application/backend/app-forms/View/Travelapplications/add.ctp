@@ -112,3 +112,6 @@
 
 <?php echo $this->Html->script('travelapplications/app'); ?>
 <?php echo $this->Html->script('travelapplications/edit'); ?>
+
+<?php echo $this->Html->script('shared/services/Office365UsersService'); ?>
+

@@ -68,9 +68,9 @@ class Travelapplication extends AppModel {
 		$travelapplication = array(
 			'mode' => $data["mode"],
 			'applicant_user_id' => $data["applicant"]["id"],
-			'manager_user_id' => $data["applicant"]["approving_manager"]["User"]["id"],
-			'contact_home_user_id' => isset($data["contact_home"]["user"]) ? $data["contact_home"]["user"]["User"]["id"]: null,
-			'contact_incountry_user_id' => isset($data["contact_incountry"]["user"]) ? $data["contact_incountry"]["user"]["User"]["id"] : null,
+			'manager_o365_object_id' => $data["applicant"]["approving_manager"]["objectId"],
+			'contact_home_o365_object_id' => isset($data["contact_home"]["user"]) ? $data["contact_home"]["user"]["objectId"]: null,
+			'contact_incountry_o365_object_id' => isset($data["contact_incountry"]["user"]) ? $data["contact_incountry"]["user"]["objectId"] : null,
 			'application_json' => json_encode($data),
 		);
 
@@ -110,6 +110,65 @@ class Travelapplication extends AppModel {
 		}
 
 		return $travelapplication_id;
+	}
+
+	function search($data = null) {
+
+		// $data = array(
+		// 	'destination_territory_id' => -1,
+		// 	'date' => '2016-07-27',
+		// 	'contact_o365_object_id' => 'f1a3aea2-0302-4982-b373-74ac88195268',
+		// 	'applicant_o365_object_id' => 4,
+		// );
+
+		$conditions = [];
+
+		// search by destination
+		// get travelapplication_ids of itineraries that have a matching destination
+		if ( !($data['destination_territory_id'] == -1 && $data['date'] == -1) ) {
+			$travelapplication_ids = $this
+				->TravelapplicationItinerary
+				->getIdsByDestinationAndDate($data['destination_territory_id'], $data['date']);
+
+
+			// // just return empty if there are no matching travelapplications
+			// if ( empty($travelapplication_ids)) return [];
+
+			$conditions[] = array(
+				'id' => $travelapplication_ids
+			);
+		}
+
+		// search by date
+		// get travelapplication_ids of itineraries that have a matching destination		
+
+		// search by contact
+		if ($data['contact_o365_object_id'] != -1) {
+			$conditions[] = array(
+				'OR' => array(
+					'manager_o365_object_id' => $data['contact_o365_object_id'],
+					'contact_home_o365_object_id' => $data['contact_o365_object_id'],
+					'contact_incountry_o365_object_id' => $data['contact_o365_object_id'],
+					'contact_hq_o365_object_id' => $data['contact_o365_object_id'],
+				)
+			);
+		}
+
+		// search by applicant
+		if ($data['applicant_o365_object_id'] != -1) {
+			$conditions[] = array(
+				'applicant_o365_object_id' => $data['applicant_o365_object_id']
+			);
+		}
+
+		// debug($conditions);
+
+		return $this->find('all', array(
+			'contain' => false,
+			'conditions' => $conditions
+		));
+
+
 	}
 
 }

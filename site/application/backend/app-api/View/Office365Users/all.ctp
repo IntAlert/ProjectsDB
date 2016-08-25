@@ -19,5 +19,14 @@ foreach ($users as $user) {
 
 }
 
+
+// reorder $usersClean alphabetically
+usort($usersClean, function($a, $b){
+	if ($a['displayName'] == $b['displayName']) {
+        return 0;
+    }
+    return ($a['displayName'] < $b['displayName']) ? -1 : 1;
+});
+
 // echo $this->AjaxResponse->package($users);
 echo $this->AjaxResponse->package($usersClean);

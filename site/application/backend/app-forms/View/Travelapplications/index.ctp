@@ -1,57 +1,156 @@
-<div class="travelapplications index">
+<div 
+	class="travelapplications index"
+	ng-app="travelapplication"
+	ng-controller="TravelapplicationListController">
+
+
 	<h2><?php echo __('Travel Applications'); ?></h2>
+
+	
+	<pre>{{query | json}}</pre>
+
+	<div class="search-bar" layout="row">
+
+
+		<form action="" name="travelapplicationForm" method="get">
+
+			<!-- Country -->
+			<div flex>
+
+				<md-input-container>
+					<label>Country</label>
+					<md-select ng-model="query.country">
+						<md-option ng-value="-1">
+							<em>All</em>
+						</md-option>
+						<md-option 
+							ng-repeat="country in FormOptions.countries.all" 
+							ng-value="country.Territory.id">
+						{{country.Territory.name}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+
+			</div>
+
+			<div flex>
+				<md-checkbox 
+					aria-label="Disabled checkbox" 
+					ng-model="query.allDates">
+	            All dates?
+	          </md-checkbox>
+			</div>
+
+			<!-- Date -->
+			<div flex>
+					<md-datepicker 
+						ng-model="query.date" 
+						ng-disabled="query.allDates"
+						md-placeholder="Enter date"
+						md-open-on-focus>
+					</md-datepicker>
+			</div>
+
+			 <!-- Applicant -->
+			<div flex>
+				<md-input-container>
+					<label>Applicant</label>
+					<md-select ng-model="query.applicant">
+						<md-option ng-value="-1">
+							<em>All</em>
+						</md-option>
+						<md-option 
+							ng-repeat="user in FormOptions.users.all" 
+							ng-value="user.objectId">
+							{{user.displayName}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+
+			<!-- Contact -->
+			<div flex>
+				<md-input-container>
+					<label>Contact</label>
+					<md-select ng-model="query.contact">
+						<md-option ng-value="-1">
+							<em>All</em>
+						</md-option>
+						<md-option 
+							ng-repeat="user in FormOptions.users.all" 
+							ng-value="user.objectId">
+							{{user.displayName}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+
+			<!-- <div flex>
+				<md-button 
+					class="md-raised md-primary" 
+					aria-label="Search"
+					ng-click="submitForm()"
+				>
+					Search
+				</md-button>
+			</div> -->
+		</form>
+
+
+	</div>
+
+
+
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('applicant_user_id', 'Applicant'); ?></th>
-			<th><?php echo $this->Paginator->sort('manager_user_id', 'Approving Manager'); ?></th>
+			<th>Applicant</th>
+			<th>Approving Manager</th>
 			<th>Destinations</th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th>Created</th>
+			<th class="actions">Actions</th>
 	</tr>
 	</thead>
 	<tbody>
-	<?php foreach ($travelapplications as $travelapplication): ?>
-	<tr>
+	<tr
+		ng-repeat="ta in travelapplications">
 		<td>
-			<?php echo $travelapplication['Applicant']['name_formal'] ?>
+			{{ta.applicant.name}}
 		</td>
 		<td>
-			<?php echo $travelapplication['ApprovingManager']['name_formal'] ?>
+			{{ta.applicant.approving_manager.User.name}}
 		</td>
 
 		<td>
-			<?php 
-				$destination_csv = [];
-				foreach ($travelapplication['TravelapplicationItinerary'] as $itinerary) {
-					$destination_csv[] = $itinerary['Destination']['name'];
-				}
 
-				echo implode($destination_csv, ', ') 
-			?>
+  			<span ng-repeat="itinerary_item in ta.itinerary">
+					{{itinerary_item.destination.Territory.name}}{{$last ? '' : ', '}}
+			</span>
+
 		</td>
 
-		<td><?php echo $this->Time->nice($travelapplication['Travelapplication']['created']); ?>&nbsp;</td>
+		<td>{{ta.created | date}}</td>
 		
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $travelapplication['Travelapplication']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $travelapplication['Travelapplication']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', '{{ta.id}}')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', '{{ta.id}}')); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
 	</tbody>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+
+	<pre>{{travelapplications | json}}</pre>
+
 </div>
+
+
+
+
+<? echo $this->Html->script('/js/travelapplications/app.js') ;?>
+
+<? echo $this->Html->script('/js/travelapplications/services/TravelapplicationsService.js') ;?>
+<? echo $this->Html->script('/js/shared/services/CountriesService.js') ;?>
+
+<? echo $this->Html->script('/js/shared/services/Office365UsersService.js') ;?>
+
+<? echo $this->Html->script('/js/travelapplications/index.js') ;?>

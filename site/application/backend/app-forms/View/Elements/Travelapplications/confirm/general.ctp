@@ -27,7 +27,7 @@
 		</th>
 		
 		<td>
-			{{formData.applicant.approving_manager.User.name_formal}}
+			{{formData.applicant.approving_manager.displayName}}
 		</td>
 	</tr>
 </table>

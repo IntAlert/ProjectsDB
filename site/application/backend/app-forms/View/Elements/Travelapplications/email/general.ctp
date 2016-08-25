@@ -28,7 +28,7 @@
 		</th>
 		
 		<td>
-			<?php echo $travelapplicationObj->applicant->approving_manager->User->name_formal; ?>
+			<?php echo $travelapplicationObj->applicant->approving_manager->displayName; ?>
 		</td>
 	</tr>
 </table>
