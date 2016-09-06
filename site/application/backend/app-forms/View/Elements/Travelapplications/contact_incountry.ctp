@@ -64,7 +64,7 @@
 
 		<tr>
 			<th>
-				Skype
+				Skype *
 			</th>
 			<td>
 				<?php

@@ -1,4 +1,6 @@
 
+		<?php echo $this->element('Travelapplications/contact_hq'); ?>
+
 		<?php echo $this->element('Travelapplications/contact_home'); ?>
 
 		<?php echo $this->element('Travelapplications/contact_incountry'); ?>

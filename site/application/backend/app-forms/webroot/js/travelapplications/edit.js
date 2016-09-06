@@ -5,8 +5,8 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	$scope.disableTabsByValid = true;
 
 	// debug
-	$scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 2;
+	// $scope.disableTabsByValid = false;
+	// $scope.selectedTabIndex = 2;
 
 	// data for form fields
 	$scope.users = [];
@@ -31,6 +31,15 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 		},
 
 		// Contact Home
+		"contact_hq": {
+			"user": false,
+			"email": "",
+			"tel_land": "",
+			"tel_mobile": "",
+			"freqency_of_contact": ""
+		},
+
+		// Contact HQ
 		"contact_home": {
 			"user": false,
 			"email": "",
@@ -98,7 +107,20 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	};
 
 
+
+
 	// Watch data
+	$scope.$watch('formData.contact_hq.user', function() {
+
+		if ($scope.formData.contact_hq.user) {
+			$scope.formData.contact_hq.email = $scope.formData.contact_hq.user.mail;
+			$scope.formData.contact_hq.tel_land = $scope.formData.contact_hq.user.telephoneNumber;
+			$scope.formData.contact_hq.tel_mobile = $scope.formData.contact_hq.user.mobile;
+			$scope.formData.contact_hq.tel_skype = $scope.formData.contact_hq.user.userPrincipalName;
+		}
+		
+	}, true);
+
 	$scope.$watch('formData.contact_home.user', function() {
 		if ($scope.formData.contact_home.user) {
 			$scope.formData.contact_home.email = $scope.formData.contact_home.user.mail;

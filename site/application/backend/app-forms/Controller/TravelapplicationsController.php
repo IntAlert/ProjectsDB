@@ -147,6 +147,9 @@ class TravelapplicationsController extends AppController {
 
 			// add the manager to the list
 			$recipientsEmailAddresses[] = $this->request->data['applicant']['approving_manager']['mail'];
+			$recipientsEmailAddresses[] = $this->request->data['contact_hq']['email'];
+			$recipientsEmailAddresses[] = $this->request->data['contact_home']['email'];
+			$recipientsEmailAddresses[] = $this->request->data['contact_incountry']['email'];
 
 			// add the self to the list
 			$me = $this->User->findById($this->Auth->user('id'));
