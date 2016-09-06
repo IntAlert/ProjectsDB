@@ -1,4 +1,4 @@
-app.controller('TravelapplicationListController', function ($scope, $location, CountriesService, Office365UsersService, TravelapplicationsService, $httpParamSerializer, $mdDialog) {
+app.controller('TravelapplicationListController', function ($scope, $location, CountriesService, Office365UsersService, TravelapplicationsService, $httpParamSerializer, $mdDialog, NonInteractiveDialogService) {
 
 
 	$scope.travelapplications = []
@@ -24,15 +24,7 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 		$scope.formData = ta;
 
 		$mdDialog.show({
-	      controller: function($scope, $mdDialog) {
-		    // $scope.hide = function() {
-		    //   $mdDialog.hide();
-		    // };
-
-		    // $scope.cancel = function() {
-		    //   $mdDialog.cancel();
-		    // };
-		  },
+	      controller: function($scope, $mdDialog) {},
 	      contentElement: '#myDialog',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
@@ -48,7 +40,7 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 
 	$scope.getTravelapplications = function() {
 
-		$scope.searching = true;
+		NonInteractiveDialogService.show('Searching', 'Searching all travel applications', null);
 		$scope.travelapplications = [];
 
 		var query = {
@@ -68,19 +60,19 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 		TravelapplicationsService
 			.search(query)
 			.then(function(response) {
-				$scope.travelapplications = response
-				$scope.searching = false;
+				$scope.travelapplications = response;
+				NonInteractiveDialogService.hide();
 			})
 	}
 
 
 	// get all travel applications
-	$scope.searching = true;
+	NonInteractiveDialogService.show('Loading', 'Loading most recent travel applications', null);
 	TravelapplicationsService
 			.getAll()
 			.then(function(response) {
 				$scope.travelapplications = response
-				$scope.searching = false;
+				NonInteractiveDialogService.hide()
 			})
 
 

@@ -115,3 +115,5 @@
 
 <?php echo $this->Html->script('shared/services/Office365UsersService'); ?>
 
+<?php echo $this->Html->script('shared/services/NonInteractiveDialogService'); ?>
+

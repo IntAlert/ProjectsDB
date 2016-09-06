@@ -90,15 +90,9 @@
 		</div>
 	</div>
 
-	<div layout="row" ng-show="!searching && travelapplications.length == 0">
+	<div layout="row" ng-show="travelapplications.length == 0">
 
 		No travel applications found
-
-	</div>
-
-	<div layout="row" ng-show="searching">
-
-		Searching for travel applications
 
 	</div>
 
@@ -234,3 +228,6 @@
 <? echo $this->Html->script('/js/shared/services/Office365UsersService.js') ;?>
 
 <? echo $this->Html->script('/js/travelapplications/list.js') ;?>
+
+<?php echo $this->Html->script('shared/services/NonInteractiveDialogService'); ?>
+

@@ -1,18 +1,17 @@
-app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll, travelapplicationService, Office365UsersService) {
+app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll, travelapplicationService, Office365UsersService, NonInteractiveDialogService) {
 
 
 	// UI
 	$scope.disableTabsByValid = true;
 
 	// debug
-	// $scope.disableTabsByValid = false;
-	// $scope.selectedTabIndex = 2;
+	$scope.disableTabsByValid = false;
+	$scope.selectedTabIndex = 7;
 
 	// data for form fields
 	$scope.users = [];
 	$scope.territories = [];
 	$scope.office365Users = Office365UsersService
-
 
 	// all form fields
 	$scope.formData = {
@@ -234,6 +233,15 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 			})
 
 	}
+
+	$scope.hideNonInteractiveMsg = function(ev) {
+		NonInteractiveDialogService.hide()
+	}
+
+	$scope.showSavingDialog = function(ev){
+		NonInteractiveDialogService.show('Saving', 'Your travel application is being saved and sent to your nominated contacts...', ev);
+	}
+
 
 
 

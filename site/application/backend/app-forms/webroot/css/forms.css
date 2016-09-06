@@ -12,4 +12,6 @@ nav.main {text-align: center}
 	font-weight: bold;
 }
 
-md-dialog-actions 
+.md-dialog-content p {
+	color:#333;
+}

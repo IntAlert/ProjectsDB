@@ -17,6 +17,13 @@
 
 
 <div layout="row" layout-align="end center">
+	
+	<md-button 
+		ng-click=" showSavingDialog($event) "
+		class="md-raised">
+		Show Saving dialog
+	</md-button>
+
 	<md-button 
 		ng-show="checklistForm.$valid"
 		ng-click=" submitTravelApplication() "
@@ -24,3 +31,5 @@
 		Submit Travel Application
 	</md-button>
 </div>
+
+

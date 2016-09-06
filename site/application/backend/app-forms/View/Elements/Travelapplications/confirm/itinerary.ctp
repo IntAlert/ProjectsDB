@@ -31,7 +31,7 @@
 					Origin
 				</th>
 				<td>
-					{{itinerary_item.origin.Territory.name}}
+					{{itinerary_item.origin.Territory.name || "Not Specified"}}
 				</td>
 			</tr>
 			<tr>
