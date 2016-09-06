@@ -40,11 +40,10 @@
 			</tr>
 
 			<tr>
-				<th>Origin *</th>
+				<th>Origin</th>
 				<td colspan="3">
 
-					<select 
-						required
+					<select
 						ng-model="itinerary_item.origin" 
 						ng-options="territory.Territory.name for territory in territories">
 					</select>
