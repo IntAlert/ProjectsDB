@@ -48,9 +48,11 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 
 	$scope.getTravelapplications = function() {
 
+		$scope.searching = true;
+		$scope.travelapplications = [];
+
 		var query = {
 			destination_territory_id: $scope.query.country,
-	  		// date: date_formatted,
 	  		contact_o365_object_id: $scope.query.contact,
 	  		applicant_o365_object_id: $scope.query.applicant
 		}
@@ -67,15 +69,18 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 			.search(query)
 			.then(function(response) {
 				$scope.travelapplications = response
-				console.log(response)
+				$scope.searching = false;
 			})
 	}
 
+
+	// get all travel applications
+	$scope.searching = true;
 	TravelapplicationsService
 			.getAll()
 			.then(function(response) {
 				$scope.travelapplications = response
-				console.log(response)
+				$scope.searching = false;
 			})
 
 

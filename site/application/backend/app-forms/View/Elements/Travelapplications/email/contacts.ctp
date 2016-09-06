@@ -1,5 +1,69 @@
 <h2>Contacts</h2>
 
+<h3>Point of Contact information in London</h3>
+<table>
+	<tr>
+		<th>
+			Name
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_hq->user->displayName; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Email Address(es)
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_hq->email; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Telephone Number(s)
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_hq->tel_land; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Mobile telephone number(s)
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_hq->tel_mobile; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Skype
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_hq->tel_skype; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+			Agreed Frequency of Contact
+		</th>
+		
+		<td>
+			<?php echo $travelapplicationObj->contact_hq->freqency_of_contact; ?>
+		</td>
+	</tr>
+</table>
+
+
 <h3>Point of Contact information in your home office</h3>
 <table>
 	<tr>

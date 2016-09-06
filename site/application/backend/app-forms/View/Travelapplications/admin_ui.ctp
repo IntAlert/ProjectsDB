@@ -1,6 +1,7 @@
 <div 
 	class="travelapplications index"
 	ng-app="travelapplicationList"
+	ng-cloak
 	ng-controller="TravelapplicationListController">
 
 	<div layout="row">
@@ -11,7 +12,7 @@
 				<label>Country</label>
 				<md-select ng-model="query.country">
 					<md-option ng-value="-1">
-						<em>All</em>
+						All
 					</md-option>
 					<md-option 
 						ng-repeat="country in FormOptions.countries.all" 
@@ -30,7 +31,7 @@
 				<label>Applicant</label>
 				<md-select ng-model="query.applicant">
 					<md-option ng-value="-1">
-						<em>All</em>
+						All
 					</md-option>
 					<md-option 
 						ng-repeat="user in FormOptions.users.all" 
@@ -60,7 +61,6 @@
 
 		<div flex="20">
 			<md-checkbox 
-				ng-change="getTravelapplications()"
 				aria-label="Disabled checkbox" 
 				ng-model="query.allDates">
             All dates?
@@ -90,15 +90,31 @@
 		</div>
 	</div>
 
-	<div layout="row">
+	<div layout="row" ng-show="!searching && travelapplications.length == 0">
+
+		No travel applications found
+
+	</div>
+
+	<div layout="row" ng-show="searching">
+
+		Searching for travel applications
+
+	</div>
+
+	<div layout="row" ng-show="travelapplications.length">
+
+
 
 		<div flex>
 			<table cellpadding="0" cellspacing="0">
 				<thead>
 				<tr>
+						
+						<th>Destinations</th>
 						<th>Applicant</th>
 						<th>Approving Manager</th>
-						<th>Destinations</th>
+						
 						<th>Created</th>
 						<th class="actions">Actions</th>
 				</tr>
@@ -106,12 +122,6 @@
 				<tbody>
 				<tr
 					ng-repeat="ta in travelapplications">
-					<td>
-						{{ta.applicant.name}}
-					</td>
-					<td>
-						{{ta.applicant.approving_manager.displayName}}
-					</td>
 
 					<td>
 
@@ -120,6 +130,16 @@
 						</span>
 
 					</td>
+
+
+					<td>
+						{{ta.applicant.name}}
+					</td>
+					<td>
+						{{ta.applicant.approving_manager.displayName}}
+					</td>
+
+					
 
 					<td>{{ta.created | date}}</td>
 					
