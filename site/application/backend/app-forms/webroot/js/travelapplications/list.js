@@ -1,4 +1,4 @@
-app.controller('TravelapplicationListController', function ($scope, $location, CountriesService, Office365UsersService, TravelapplicationsService, $httpParamSerializer) {
+app.controller('TravelapplicationListController', function ($scope, $location, CountriesService, Office365UsersService, TravelapplicationsService, $httpParamSerializer, $mdDialog) {
 
 
 	$scope.travelapplications = []
@@ -16,25 +16,67 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 		contact: $location.search().contact | -1
 	}
 
-	
+
+	// previewed form is held here:
+	$scope.formData = null;
+
+	$scope.previewTravelapplication = function(ev, ta){
+		$scope.formData = ta;
+
+		$mdDialog.show({
+	      controller: function($scope, $mdDialog) {
+		    // $scope.hide = function() {
+		    //   $mdDialog.hide();
+		    // };
+
+		    // $scope.cancel = function() {
+		    //   $mdDialog.cancel();
+		    // };
+		  },
+	      contentElement: '#myDialog',
+	      parent: angular.element(document.body),
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      fullscreen: false
+	    })
+	    .then(function(answer) {
+	      $scope.status = 'You said the information was "' + answer + '".';
+	    }, function() {
+	      $scope.status = 'You cancelled the dialog.';
+	    });
+	}
+
 	$scope.getTravelapplications = function() {
 
-		var date_formatted = '2016-07-11';
-
-		var q = {
+		var query = {
 			destination_territory_id: $scope.query.country,
-	  		date: date_formatted,
+	  		// date: date_formatted,
 	  		contact_o365_object_id: $scope.query.contact,
 	  		applicant_o365_object_id: $scope.query.applicant
 		}
 
+		if ( $scope.query.allDates ) {
+			query.date = -1;
+		} else {
+			// get yyyy-mm-dd format
+			var date_formatted = $scope.query.date.toISOString().substring(0, 10);
+			query.date = date_formatted;
+		}
+
 		TravelapplicationsService
-			.search(q)
+			.search(query)
 			.then(function(response) {
 				$scope.travelapplications = response
 				console.log(response)
 			})
 	}
+
+	TravelapplicationsService
+			.getAll()
+			.then(function(response) {
+				$scope.travelapplications = response
+				console.log(response)
+			})
 
 
 })

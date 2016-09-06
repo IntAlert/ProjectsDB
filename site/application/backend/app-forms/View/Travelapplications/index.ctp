@@ -102,41 +102,41 @@
 
 
 	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th>Applicant</th>
-			<th>Approving Manager</th>
-			<th>Destinations</th>
-			<th>Created</th>
-			<th class="actions">Actions</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr
-		ng-repeat="ta in travelapplications">
-		<td>
-			{{ta.applicant.name}}
-		</td>
-		<td>
-			{{ta.applicant.approving_manager.User.name}}
-		</td>
+		<thead>
+		<tr>
+				<th>Applicant</th>
+				<th>Approving Manager</th>
+				<th>Destinations</th>
+				<th>Created</th>
+				<th class="actions">Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr
+			ng-repeat="ta in travelapplications">
+			<td>
+				{{ta.applicant.name}}
+			</td>
+			<td>
+				{{ta.applicant.approving_manager.User.name}}
+			</td>
 
-		<td>
+			<td>
 
-  			<span ng-repeat="itinerary_item in ta.itinerary">
-					{{itinerary_item.destination.Territory.name}}{{$last ? '' : ', '}}
-			</span>
+	  			<span ng-repeat="itinerary_item in ta.itinerary">
+						{{itinerary_item.destination.Territory.name}}{{$last ? '' : ', '}}
+				</span>
 
-		</td>
+			</td>
 
-		<td>{{ta.created | date}}</td>
-		
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', '{{ta.id}}')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', '{{ta.id}}')); ?>
-		</td>
-	</tr>
-	</tbody>
+			<td>{{ta.created | date}}</td>
+			
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('action' => 'view', '{{ta.id}}')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', '{{ta.id}}')); ?>
+			</td>
+		</tr>
+		</tbody>
 	</table>
 
 	<pre>{{travelapplications | json}}</pre>

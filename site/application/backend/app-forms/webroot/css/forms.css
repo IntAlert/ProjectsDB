@@ -1,7 +1,15 @@
 img.logo {margin-bottom:10px;}
 nav.main {text-align: center}
 .md-datepicker-calendar table {width:auto;}
-md-datepicker {
+.md-datepicker {
 	margin-top: 18px;
     display: inline-block;
 }
+
+.md-toolbar-tools h2 {
+	background:none;
+	color:#fff;
+	font-weight: bold;
+}
+
+md-dialog-actions 

@@ -30,8 +30,6 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 		$scope.query.date = new Date($location.search().date)
 	}
 
-	
-
 	$scope.getTravelapplications = function() {
 
 		var date_formatted = '2016-07-11';

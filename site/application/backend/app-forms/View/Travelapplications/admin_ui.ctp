@@ -5,7 +5,7 @@
 
 	<div layout="row">
 		<!-- Country -->
-		<div flex>
+		<div flex="20">
 
 			<md-input-container>
 				<label>Country</label>
@@ -23,27 +23,9 @@
 
 		</div>
 
-		<div flex>
-			<md-checkbox 
-				ng-change="getTravelapplications()"
-				aria-label="Disabled checkbox" 
-				ng-model="query.allDates">
-            All dates?
-          </md-checkbox>
-		</div>
 
-		<!-- Date -->
-		<div flex>
-				<md-datepicker 
-					ng-model="query.date" 
-					ng-disabled="query.allDates"
-					md-placeholder="Enter date"
-					md-open-on-focus>
-				</md-datepicker>
-		</div>
-
-		 <!-- Applicant -->
-		<div flex>
+		<!-- Applicant -->
+		<div flex="20">
 			<md-input-container>
 				<label>Applicant</label>
 				<md-select ng-model="query.applicant">
@@ -60,7 +42,7 @@
 		</div>
 
 		<!-- Contact -->
-		<div flex>
+		<div flex="20">
 			<md-input-container>
 				<label>Contact</label>
 				<md-select ng-model="query.contact">
@@ -76,11 +58,32 @@
 			</md-input-container>
 		</div>
 
-		<div flex>
+		<div flex="20">
+			<md-checkbox 
+				ng-change="getTravelapplications()"
+				aria-label="Disabled checkbox" 
+				ng-model="query.allDates">
+            All dates?
+          </md-checkbox>
+		</div>
+
+		<!-- Date -->
+		<div flex="20">
+				<md-datepicker 
+					ng-model="query.date" 
+					ng-show=" !query.allDates "
+					md-placeholder="Enter date"
+					md-open-on-focus>
+				</md-datepicker>
+		</div>
+
+		 
+
+		<div flex="20">
 			<md-button 
 				class="md-raised md-primary" 
 				aria-label="Search"
-				ng-click="submitForm()"
+				ng-click="getTravelapplications()"
 			>
 				Search
 			</md-button>
@@ -89,7 +92,7 @@
 
 	<div layout="row">
 
-		<div flex="50">
+		<div flex>
 			<table cellpadding="0" cellspacing="0">
 				<thead>
 				<tr>
@@ -107,7 +110,7 @@
 						{{ta.applicant.name}}
 					</td>
 					<td>
-						{{ta.applicant.approving_manager.User.name}}
+						{{ta.applicant.approving_manager.displayName}}
 					</td>
 
 					<td>
@@ -121,38 +124,89 @@
 					<td>{{ta.created | date}}</td>
 					
 					<td class="actions">
-						<?php echo $this->Html->link(__('View'), array('action' => 'view', '{{ta.id}}')); ?>
-						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', '{{ta.id}}')); ?>
+						<a 
+							ng-click="previewTravelapplication($event, ta)"
+							class="md-button">
+							View
+						</a>
 					</td>
 				</tr>
 				</tbody>
 				</table>
 
-				<pre>{{travelapplications | json}}</pre>
+				<!-- <pre>{{travelapplications | json}}</pre> -->
 
-			</div>
-
-
-			<div flex="50">
-				Preview
 			</div>
 
 		</div>
 
 
-		
+
+	 <div style="visibility: hidden">
+    <div class="md-dialog-container" id="myDialog">
+      <md-dialog layout-padding>
+        
+
+        <md-toolbar>
+			      <div class="md-toolbar-tools">
+			        <h2>
+			        	Travel Application for {{formData.applicant.name}}
+			        </h2>
+			      </div>
+			    </md-toolbar>
+        
+
+					        
+			     <md-dialog-content>
+			      <div class="md-dialog-content">
+
+									<?php echo $this->element('Travelapplications/confirm/general'); ?>
+
+									<?php echo $this->element('Travelapplications/confirm/applicant'); ?>
+
+									<?php echo $this->element('Travelapplications/confirm/contacts'); ?>
+
+									<?php echo $this->element('Travelapplications/confirm/itinerary'); ?>
+
+									<?php echo $this->element('Travelapplications/confirm/meetings'); ?>
+
+									<?php echo $this->element('Travelapplications/confirm/security'); ?>
+
+									<?php echo $this->element('Travelapplications/confirm/checklist'); ?>
+								</div>
+							</md-dialog-content>
 
 
+							<md-dialog-actions layout="row">
+			      
+			      <md-button 
+				      target="_blank"
+				      class="md-raised"
+			      	ng-href="/forms/travelapplications/edit/{{formData.id}}">
+			       Edit
+			      </md-button>
+			      
+			      <span flex></span>
+
+			    </md-dialog-actions>
+
+
+      </md-dialog>
+    </div>
+  </div>
 
 	</div>
-
-
 
 </div>
 
 
 
+
+
+
 <? echo $this->Html->script('/js/travelapplications/app-list.js') ;?>
+
+
 
 <? echo $this->Html->script('/js/travelapplications/services/TravelapplicationsService.js') ;?>
 <? echo $this->Html->script('/js/shared/services/CountriesService.js') ;?>

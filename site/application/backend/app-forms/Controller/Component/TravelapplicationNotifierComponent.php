@@ -12,6 +12,7 @@ class TravelapplicationNotifierComponent extends Component {
 
     	// extract recipients
     	foreach ($recipientsEmailAddresses as $email) {
+    		$Email->addTo('danm@international-alert.org');
     		$Email->addTo('as.thomson+'.urlencode($email).'@gmail.com');
     	}
 

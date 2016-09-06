@@ -1,6 +1,10 @@
 <h2>Meetings</h2>
 
-<table>
+<p ng-show="formData.schedule.length==0">
+	No meetings
+</p>
+
+<table ng-show="formData.schedule.length">
 	<thead>
 		<tr>
 			<th>

@@ -112,9 +112,10 @@ class Travelapplication extends AppModel {
 		return $travelapplication_id;
 	}
 
-	function search($data = null) {
+	function search($query = null) {
 
-		// $data = array(
+		// debug($query);
+		// $query = array(
 		// 	'destination_territory_id' => -1,
 		// 	'date' => '2016-07-27',
 		// 	'contact_o365_object_id' => 'f1a3aea2-0302-4982-b373-74ac88195268',
@@ -123,12 +124,12 @@ class Travelapplication extends AppModel {
 
 		$conditions = [];
 
-		// search by destination
+		// search by destination and destination
 		// get travelapplication_ids of itineraries that have a matching destination
-		if ( !($data['destination_territory_id'] == -1 && $data['date'] == -1) ) {
+		if ( !($query['destination_territory_id'] == -1 && $query['date'] == -1) ) {
 			$travelapplication_ids = $this
 				->TravelapplicationItinerary
-				->getIdsByDestinationAndDate($data['destination_territory_id'], $data['date']);
+				->getIdsByDestinationAndDate($query['destination_territory_id'], $query['date']);
 
 
 			// // just return empty if there are no matching travelapplications
@@ -139,25 +140,22 @@ class Travelapplication extends AppModel {
 			);
 		}
 
-		// search by date
-		// get travelapplication_ids of itineraries that have a matching destination		
-
 		// search by contact
-		if ($data['contact_o365_object_id'] != -1) {
+		if ($query['contact_o365_object_id'] != -1) {
 			$conditions[] = array(
 				'OR' => array(
-					'manager_o365_object_id' => $data['contact_o365_object_id'],
-					'contact_home_o365_object_id' => $data['contact_o365_object_id'],
-					'contact_incountry_o365_object_id' => $data['contact_o365_object_id'],
-					'contact_hq_o365_object_id' => $data['contact_o365_object_id'],
+					'manager_o365_object_id' => $query['contact_o365_object_id'],
+					'contact_home_o365_object_id' => $query['contact_o365_object_id'],
+					'contact_incountry_o365_object_id' => $query['contact_o365_object_id'],
+					'contact_hq_o365_object_id' => $query['contact_o365_object_id'],
 				)
 			);
 		}
 
 		// search by applicant
-		if ($data['applicant_o365_object_id'] != -1) {
+		if ($query['applicant_o365_object_id'] != -1) {
 			$conditions[] = array(
-				'applicant_o365_object_id' => $data['applicant_o365_object_id']
+				'applicant_o365_object_id' => $query['applicant_o365_object_id']
 			);
 		}
 
