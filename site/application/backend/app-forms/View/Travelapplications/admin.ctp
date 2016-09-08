@@ -2,46 +2,44 @@
 	class="travelapplications index"
 	ng-app="travelapplicationList"
 	ng-cloak
-	ng-controller="TravelapplicationIndexController">
-
+	ng-controller="TravelapplicationAdminController">
 
 	<div class="travelapplication-search-nav">
-
 		<div 
 			layout="row" 
 			layout-align="space-between center">
 
 			
-			<!-- Mine/Managed -->
+			<!-- Country -->
 			<div flex="30">
 
-				<md-radio-group ng-model="query.mode">
+				<md-input-container layout="column" flex>
+					<label>Country</label>
+					<md-select 
+						ng-change="getTravelapplications()"
+						ng-model="query.country">
+						<md-option ng-value="-1">
+							All
+						</md-option>
+						<md-option 
+							ng-repeat="country in FormOptions.countries.all" 
+							ng-value="country.Territory.id">
+						{{country.Territory.name}}
+						</md-option>
+					</md-select>
+				</md-input-container>
 
-					<md-radio-button 
-						ng-click="getMyTravelapplications()"
-						value="mine" 
-						class="md-primary">
-						My Applications
-					</md-radio-button>
-
-					<md-radio-button 
-						ng-click="getManagedTravelapplications()"
-						value="managed">
-						Applications where I am manager
-					</md-radio-button>
-
-			    </md-radio-group>
-	
 			</div>
+			
+
+
 			
 			<!-- Applicant -->
 			<div flex="30">
-				<md-input-container 
-					ng-hide=" query.mode == 'mine' "
-					layout="column" flex>
+				<md-input-container layout="column" flex>
 					<label>Applicant</label>
 					<md-select 
-						ng-change="getManagedTravelapplications()"
+						ng-change="getTravelapplications()"
 						ng-model="query.applicant_o365_object_id">
 						<md-option ng-value="-1">
 							All
@@ -55,24 +53,43 @@
 				</md-input-container>
 			</div>
 			
+
+			
+			<!-- Contact -->
+			<div flex="30">
+				<md-input-container layout="column" flex>
+					<label>Contact</label>
+					<md-select 
+						ng-change="getTravelapplications()"
+						ng-model="query.contact">
+						<md-option ng-value="-1">
+							<em>All</em>
+						</md-option>
+						<md-option 
+							ng-repeat="user in FormOptions.users.all"
+							ng-value="user.objectId">
+							{{user.displayName}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
 			
 
 			<div class="all-dates" flex="20">
 				<md-checkbox 
-					ng-change="getManagedTravelapplications()"
-					ng-hide=" query.mode == 'mine' "
+					ng-change="getTravelapplications()"
 					aria-label="Disabled checkbox" 
 					ng-model="query.allDates">
 	            All dates?
-    </md-checkbox>
+	          </md-checkbox>
 			</div>
 
 			<!-- Date -->
 			<div class="date">
 					<md-datepicker 
-						ng-change="getManagedTravelapplications()"
+						ng-change="getTravelapplications()"
 						ng-model="query.date" 
-						ng-hide=" query.mode == 'mine' || query.allDates "
+						ng-show=" !query.allDates "
 						md-placeholder="Enter date"
 						md-open-on-focus>
 					</md-datepicker>
@@ -82,12 +99,14 @@
 		</div>
 	</div>
 
-
+	
 
 	<?php echo $this->element('/Travelapplications/index'); ?>
+	
+
+	</div>
 
 </div>
-
 
 <? echo $this->Html->script('/js/travelapplications/app-list.js') ;?>
 
@@ -97,7 +116,7 @@
 
 <? echo $this->Html->script('/js/shared/services/Office365UsersService.js') ;?>
 
-<? echo $this->Html->script('/js/travelapplications/TravelapplicationIndexController.js') ;?>
+<? echo $this->Html->script('/js/travelapplications/TravelapplicationAdminController.js') ;?>
 
 <?php echo $this->Html->script('shared/services/NonInteractiveDialogService'); ?>
 

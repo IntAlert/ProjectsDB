@@ -49,7 +49,7 @@ switch (Configure::read('ENVIRONMENT')) {
 	default:
 		// assume vagrant
 		Configure::write('debug', 2);
-		Configure::write('Cache.disable', true);
+		Configure::write('Cache.disable', false);
 		break;
 }
 
@@ -408,4 +408,13 @@ Cache::config('_cake_model_', array(
 	'path' => CACHE . 'models' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
+));
+
+
+
+// short
+Cache::config('short', array(
+    'engine' => 'File',
+    'duration' => '+1 hour',
+    'path' => CACHE . 'short' . DS,
 ));

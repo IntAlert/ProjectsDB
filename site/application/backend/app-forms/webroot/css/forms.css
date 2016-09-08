@@ -12,6 +12,34 @@ nav.main {text-align: center}
 	font-weight: bold;
 }
 
-.md-dialog-content p {
+md-dialog-content p {
 	color:#333;
+}
+
+
+
+/*Travel applications*/
+
+.travelapplication-search-nav {
+	background:#eee;
+	margin-left: -40px;
+	padding-left: 40px;
+	margin-right: -40px;
+	padding-right: 40px;
+	margin-top:-20px;
+	padding-top:20px;
+	margin-bottom:20px;
+
+}
+
+.travelapplication-search-nav .all-dates {
+	padding-top:20px;
+}
+
+.travelapplication-search-nav .date {
+	padding-top:7px;
+}
+
+.travelapplication-search-nav .search {
+	padding-right:20px
 }

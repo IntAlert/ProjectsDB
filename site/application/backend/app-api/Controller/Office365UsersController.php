@@ -14,6 +14,13 @@ class Office365UsersController extends AppController {
 
     $users = $o365userAPI->all();
 
+    $users = Cache::read('office365users.all', 'short');
+    // var_dump($users);
+    if (!$users) {
+        $users = $o365userAPI->all();
+        // $users = time();
+        Cache::write('office365users.all', $users, 'short');
+    }
 
     $this->set(compact('users'));
         

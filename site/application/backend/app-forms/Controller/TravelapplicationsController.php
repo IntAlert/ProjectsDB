@@ -41,45 +41,27 @@ class TravelapplicationsController extends AppController {
  */
 
 
-	public function admin_ui() {
+	public function index() {
+
 		
+
 	}
 
 	public function admin() {
 
-		// show all applications
-
-		$this->Paginator->settings = $this->paginate;
-		
-		$this->set('travelapplications', $this->Paginator->paginate());
-
-		$this->render('index');
-	}
-
-	public function mine() {
-
-		// show applications that you have made
-
-		$this->Paginator->settings = $this->paginate;
-		$this->Paginator->settings['conditions'] = array(
-			'Travelapplication.applicant_user_id' => $this->Auth->user('id')
-		);
-		
-		$this->set('travelapplications', $this->Paginator->paginate());
-	}
-
-	public function manager() {
-
-		$this->Paginator->settings = $this->paginate;
-		$this->Paginator->settings['conditions'] = array(
-			'Travelapplication.manager_user_id' => $this->Auth->user('id')
-		);
-		
-		$this->set('travelapplications', $this->Paginator->paginate());
+		// check they are allowed to see this
+		if ( !$this->User->userHasRole($this->Auth->user('id'), 'travel-application-admin') ) {
+			throw new NotFoundException(); // should really throw a 403
+		}
 
 	}
 
 	public function search() {
+
+		// check they are allowed to see this
+		if ( !$this->User->userHasRole($this->Auth->user('id'), 'travel-application-admin') ) {
+			throw new NotFoundException(); // should really throw a 403
+		}
 
 		$this->layout = 'ajax';
 
@@ -89,14 +71,33 @@ class TravelapplicationsController extends AppController {
 
 	}
 
-	function testMail() {
-		$travelapplication = $this->Travelapplication->findById(1);
-		$travelapplicationObj = json_decode($travelapplication['Travelapplication']['application_json']);
-		$this->set('travelapplicationObj', $travelapplicationObj);
+	public function mine() {
 
-		$this->layout = '/Emails/html/default';
-		$this->render('/Emails/html/travelapplications/send_email');
+		$this->layout = 'ajax';
+
+		$travelapplications = $this->Travelapplication->getMine($this->Auth->user('id'));
+
+		$this->set(compact('travelapplications'));
+
+		$this->render('search');
+
 	}
+
+	public function managed() {
+
+		$this->layout = 'ajax';
+
+		// get this user's o365 id
+		$manager_o365_object_id = $this->User->getO365Id($this->Auth->user('id'));
+
+		$travelapplications = $this->Travelapplication->getManaged($manager_o365_object_id, $this->request->data);
+
+		$this->set(compact('travelapplications'));
+
+		$this->render('search');
+
+	}
+
 
 /**
  * view method
@@ -132,14 +133,19 @@ class TravelapplicationsController extends AppController {
 		
 		if ($this->request->is('post')) {
 
+			$travelapplication_id = $this->request->data('id');
+
+			// get the user's o365 id
+			$user_o365_object_id = $this->User->getO365Id($this->Auth->user('id'));
+
 			// create application
-			$travelapplication_id = $this->Travelapplication->saveWithItinerary($this->request->data);
+			$travelapplication_id = $this->Travelapplication->saveWithItinerary($user_o365_object_id, $this->request->data, $travelapplication_id);
 
 
 			$recipientsEmailAddresses = [];
 
 			// get Travel Application Receivers
-			$admins = $this->User->findUsersByRoleName('travel-application-receiver');
+			$admins = $this->User->findUsersByRoleName('travel-application-admin');
 
 			foreach($admins as $admin) {
 				$recipientsEmailAddresses[] = $admin['Office365user']['email'];

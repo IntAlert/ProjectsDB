@@ -5,7 +5,8 @@ app.factory('NonInteractiveDialogService', function($mdDialog) {
 		$mdDialog.show({
           targetEvent: ev,
           clickOutsideToClose: false,
-		  escapeToClose: false,
+          parent: document.body,
+    		  escapeToClose: false,
           template:
             '<md-dialog>' +
 

@@ -6,7 +6,7 @@
 	
 	<?php echo $this->Form->create('Travelapplication', array(
 		'name' => 'Travelapplication',
-		'ng-controller' => "TravelapplicationController"
+		'ng-controller' => "TravelapplicationEditController"
 	)); ?>
 
 	<fieldset>
@@ -111,9 +111,13 @@
 </div>
 
 <?php echo $this->Html->script('travelapplications/app'); ?>
-<?php echo $this->Html->script('travelapplications/edit'); ?>
+<?php echo $this->Html->script('travelapplications/TravelapplicationEditController'); ?>
 
 <?php echo $this->Html->script('shared/services/Office365UsersService'); ?>
 
 <?php echo $this->Html->script('shared/services/NonInteractiveDialogService'); ?>
+
+<?php echo $this->Html->script('shared/services/CountriesService'); ?>
+
+<?php echo $this->Html->script('travelapplications/services/TravelapplicationsService'); ?>
 

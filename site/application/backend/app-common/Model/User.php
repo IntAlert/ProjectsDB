@@ -49,6 +49,15 @@ class User extends AppModel {
         ));
     }
 
+    public function getO365Id($user_id) {
+        $user = $this->find('first', array(
+            'conditions' => array('id' => $user_id),
+            'contain' => 'Office365user'
+        ));
+
+        return $user['Office365user']['o365_object_id'];
+    }
+
     public function findUsersByRoleName($role_name) {
 
         // get all user ids that are budget holders
@@ -69,6 +78,31 @@ class User extends AppModel {
                 'User.id' => $user_ids
             )
         ));
+    }
+
+
+    public function userHasRole($user_id, $role_short_name) {
+
+        // get all user ids that are budget holders
+        $role = $this->Role->find('first', array(
+            'conditions' => array(
+                'Role.short_name' => $role_short_name, // budget holder
+            )
+        ));
+
+        // If the role does not exist, throw an error
+        if ( !$role ) {
+            throw new Exception("Role does not exist" . $role_short_name, 1);
+            
+        }
+
+        return !! $this->RolesUser->find('first', array(
+            'conditions' => array(
+                'role_id' => $role['Role']['id'],
+                'user_id' => $user_id,
+            )
+        ));
+
     }
 
     public function findBudgetHoldersList() {

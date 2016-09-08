@@ -16,7 +16,6 @@ class Travelapplication extends AppModel {
  */
 	public $displayField = 'summary';
 
-
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -62,42 +61,40 @@ class Travelapplication extends AppModel {
 
 
 
-	function saveWithItinerary($data, $travelapplication_id = null) {
+	function saveWithItinerary($applicant_o365_object_id, $data, $travelapplication_id) {
 
 		// debug($data);
 		$travelapplication = array(
 			'mode' => $data["mode"],
 			'applicant_user_id' => $data["applicant"]["id"],
+			'applicant_o365_object_id' => $applicant_o365_object_id,
 			'manager_o365_object_id' => $data["applicant"]["approving_manager"]["objectId"],
 			'contact_home_o365_object_id' => isset($data["contact_home"]["user"]) ? $data["contact_home"]["user"]["objectId"]: null,
 			'contact_incountry_o365_object_id' => isset($data["contact_incountry"]["user"]) ? $data["contact_incountry"]["user"]["objectId"] : null,
 			'application_json' => json_encode($data),
 		);
 
-		
-		if (is_null($travelapplication_id)) {
-			// create application
-			$this->create();
-		} else {
+		if ($travelapplication_id) {
 			// edit application
 			$this->id = $travelapplication_id;
+		} else {
+			// create application
+			$this->create();
 		}
 		
-		if ($this->save($travelapplication)) {
+		if ( $this->save($travelapplication) ) {
 
-			if (is_null($travelapplication_id)) {
-				$travelapplication_id = $this->id;
-			} else {
+			if ( $travelapplication_id ) {
 				// delete any itineraries if this is an edit
-				$this->Travelapplication->TravelapplicationItinerary->deleteAll([
-					'travelapplication_id' => $travelapplication_id
+				$this->TravelapplicationItinerary->deleteAll([
+					'travelapplication_id' => $this->id
 				]);
 			}
 
 			// save the itineraries
 			foreach($data['itinerary'] as $itinerary) {
 				$itinerary = array(
-					'travelapplication_id' => $travelapplication_id,
+					'travelapplication_id' => $this->id,
 					'start' => $itinerary['start'],
 					'finish' => $itinerary['finish'],
 					'origin_territory_id' => $itinerary['origin']['Territory']['id'],
@@ -109,7 +106,35 @@ class Travelapplication extends AppModel {
 			}
 		}
 
-		return $travelapplication_id;
+		return $this->id;
+	}
+
+	function getMine($user_id) {
+
+		// just return recent applications
+		return $this->find('all', array(
+			'contain' => false,
+			'conditions' => array(
+				'applicant_user_id' => $user_id
+			),
+			'order' => array(
+				'Travelapplication.created' => 'DESC'
+			),
+		));
+
+	}
+
+	function getManaged($manager_o365_object_id, $query = null) {
+
+		$query = array(
+			'contact_o365_object_id' => $manager_o365_object_id,
+			'destination_territory_id' => -1,
+			'date' => $query['date'],
+			'applicant_o365_object_id' => $query['applicant_o365_object_id'],
+		);
+
+		return $this->search($query);
+
 	}
 
 	function search($query = null) {
@@ -123,6 +148,8 @@ class Travelapplication extends AppModel {
 		// );
 
 		$conditions = [];
+
+		// debug($query);
 
 		// search by destination and destination
 		// get travelapplication_ids of itineraries that have a matching destination
@@ -163,7 +190,10 @@ class Travelapplication extends AppModel {
 
 		return $this->find('all', array(
 			'contain' => false,
-			'conditions' => $conditions
+			'conditions' => $conditions,
+			'order' => array(
+				'Travelapplication.created' => 'DESC'
+			),
 		));
 
 

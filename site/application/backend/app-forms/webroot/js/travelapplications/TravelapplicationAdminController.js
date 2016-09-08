@@ -1,5 +1,8 @@
-app.controller('TravelapplicationListController', function ($scope, $location, CountriesService, Office365UsersService, TravelapplicationsService, $httpParamSerializer, $mdDialog, NonInteractiveDialogService) {
+app.controller('TravelapplicationAdminController', function ($scope, $location, CountriesService, Office365UsersService, TravelapplicationsService, $httpParamSerializer, $mdDialog, NonInteractiveDialogService) {
 
+
+	$scope.searching = true;
+	$scope.isAdmin = true;
 
 	$scope.travelapplications = []
 
@@ -9,11 +12,11 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 	}
 
 	$scope.query = {
-		country: $location.search().country | -1,
+		country: -1,
 		allDates: true,
 		date: new Date(),
-		applicant: $location.search().applicant | -1,
-		contact: $location.search().contact | -1
+		applicant_o365_object_id: -1,
+		contact_o365_object_id: -1
 	}
 
 
@@ -31,11 +34,6 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 	      clickOutsideToClose:true,
 	      fullscreen: false
 	    })
-	    .then(function(answer) {
-	      $scope.status = 'You said the information was "' + answer + '".';
-	    }, function() {
-	      $scope.status = 'You cancelled the dialog.';
-	    });
 	}
 
 	$scope.getTravelapplications = function() {
@@ -45,8 +43,8 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 
 		var query = {
 			destination_territory_id: $scope.query.country,
-	  		contact_o365_object_id: $scope.query.contact,
-	  		applicant_o365_object_id: $scope.query.applicant
+	  		contact_o365_object_id: $scope.query.contact_o365_object_id,
+	  		applicant_o365_object_id: $scope.query.applicant_o365_object_id
 		}
 
 		if ( $scope.query.allDates ) {
@@ -69,11 +67,11 @@ app.controller('TravelapplicationListController', function ($scope, $location, C
 	// get all travel applications
 	NonInteractiveDialogService.show('Loading', 'Loading most recent travel applications', null);
 	TravelapplicationsService
-			.getAll()
-			.then(function(response) {
-				$scope.travelapplications = response
-				NonInteractiveDialogService.hide()
-			})
+		.getAll()
+		.then(function(response) {
+			$scope.travelapplications = response
+			NonInteractiveDialogService.hide()
+		})
 
 
 })

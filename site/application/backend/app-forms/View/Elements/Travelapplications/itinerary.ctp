@@ -45,7 +45,7 @@
 
 					<select
 						ng-model="itinerary_item.origin" 
-						ng-options="territory.Territory.name for territory in territories">
+						ng-options="country.Territory.name for country in countries.all">
 					</select>
 
 				</td>
@@ -58,7 +58,7 @@
 					<select 
 						required
 						ng-model="itinerary_item.destination" 
-						ng-options="territory.Territory.name for territory in territories">
+						ng-options="country.Territory.name for country in countries.all">
 					</select>
 
 				</td>

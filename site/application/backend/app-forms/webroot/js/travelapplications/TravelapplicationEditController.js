@@ -1,5 +1,6 @@
-app.controller('TravelapplicationController', function ($scope, $http, $window, $location, $anchorScroll, travelapplicationService, Office365UsersService, NonInteractiveDialogService) {
+app.controller('TravelapplicationEditController', function ($scope, $window, $location, $anchorScroll, TravelapplicationsService, Office365UsersService, NonInteractiveDialogService, CountriesService) {
 
+	$scope.TravelApplicationID = false;
 
 	// UI
 	$scope.disableTabsByValid = true;
@@ -9,8 +10,7 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	$scope.selectedTabIndex = 7;
 
 	// data for form fields
-	$scope.users = [];
-	$scope.territories = [];
+	$scope.countries = CountriesService;
 	$scope.office365Users = Office365UsersService
 
 	// all form fields
@@ -143,60 +143,44 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 	$scope.formData.applicant.id = me.id
 	$scope.formData.applicant.name = me.name
 
-	// Load data for select boxes
-	// All users
-	$http.get('/api/users/all.json')
-		.then(function(response){
-			$scope.users = response.data;
-
-			// All geographical territories
-			$http.get('/api/territories/allCountries.json')
-				.then(function(response){
-					$scope.territories = response.data;
-				}, function(territories){
-					alert("territories download error")
-				});
-
-			downloadIfEdit()
+	// Determine if add or edit
+	var parts = window.location.pathname.split('/')
+	if (parts[parts.length - 2] == 'edit') {
+		$scope.TravelApplicationID = parts[parts.length - 1]
+	}
+	console.log($scope.TravelApplicationID);
 
 
-		}, function(users){
-			alert("Users download error")
-		});
 
-	
-
-		function downloadIfEdit() {
-			// Determine if add or edit
-			var parts = window.location.pathname.split('/')
-			if (parts[parts.length - 2] == 'edit') {
-				var TravelApplicationID = parts[parts.length - 1]
-				// Get travelapplication JSON
-				travelapplicationService.getById(TravelApplicationID)
-					.then(function(data){
-						$scope.formData = data;
-					}, function(){
-						alert('error')
-					})
-
-			}	
+	// Show loading until form data available
+	NonInteractiveDialogService.show('Loading', 'Please wait while we load your form options...', null);
+	$scope.$watch('[countries.all, office365Users.all]', function() {
+		if ($scope.countries.all.length && $scope.office365Users.all.length) {
+			NonInteractiveDialogService.hide()
 		}
+	}, true);
 
 
 
-	// Load data
+	// Load data if this is an existing application
+	function downloadIfEdit() {
+		if ($scope.TravelApplicationID) {
+			// Get travelapplication JSON
+			TravelapplicationsService.getById($scope.TravelApplicationID)
+				.then(function(data){
+					$scope.formData = data;
+				}, function(){
+					alert('Error downloading Travel Application')
+				})
+		}
+	}
 
 
-	
-
-	
+	// UX functions
 	$scope.changeActiveTab = function(i) {
-		
 		$scope.selectedTabIndex = i
-
 		$location.hash('tabs');
 		$anchorScroll();
-
 	}
 
 	$scope.addItineraryItem = function() {
@@ -221,12 +205,15 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 
 	$scope.submitTravelApplication = function() {
 		
-		var cleanFormData = angular.toJson($scope.formData)
+		// Tell user to wait
+		NonInteractiveDialogService.show('Saving', 'Your travel application is being saved and sent to your nominated contacts...', null);
 
-		$http.post('/forms/travelapplications/add', cleanFormData)
+		// save it!
+		TravelapplicationsService.save($scope.formData, $scope.TravelApplicationID)
 			.then(function(){
 				// success
-				window.location.href = '/forms/travelapplications/mine';
+				console.log('save success')
+				window.location.href = '/forms/travelapplications';
 			}, function(){
 				// there has been an error
 				alert('there has been an error')
@@ -234,21 +221,11 @@ app.controller('TravelapplicationController', function ($scope, $http, $window, 
 
 	}
 
-	$scope.hideNonInteractiveMsg = function(ev) {
-		NonInteractiveDialogService.hide()
-	}
-
-	$scope.showSavingDialog = function(ev){
-		NonInteractiveDialogService.show('Saving', 'Your travel application is being saved and sent to your nominated contacts...', ev);
-	}
-
-
-
-
+	downloadIfEdit();
 	
 	
 	// fixture for debugging
-	// $scope.formData = travelapplicationService.getDummyData()
+	// $scope.formData = TravelapplicationsService.getDummyData()
 
 });
 

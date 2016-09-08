@@ -32,8 +32,6 @@ class TravelapplicationItinerary extends AppModel {
 
     function getIdsByDestinationAndDate($destination_territory_id, $date) {
 
-        // $date = '2016-08-02';
-
         $conditions = [];
         if ($destination_territory_id != -1) {
             $conditions[] = array('destination_territory_id' => $destination_territory_id);
