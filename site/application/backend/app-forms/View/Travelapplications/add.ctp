@@ -1,20 +1,6 @@
 <?php // echo $this->Html->script('travelapplications/add', array('inline' => false)); ?>
 
 
-<!--[if IE 10]><!--><script>if (/@cc_on!@/false) {document.documentElement.className+=' ie10';}</script><!--<![endif]-->
-
-
-<style type="text/css">
-.ie10 span[flex] { display: block; }
-.ie10 md-dialog { padding: 0px 20px;}
-.ie10 .ie10FixDivWithSidenav {
-display: inline-block;
-width: calc(100% - 280px);
-}
-</style>
-
-
-
 <?php echo $this->Html->css('travelapplications/add', array('inline' => false)); ?>
 
 <div class="travelapplications form" ng-app="travelapplication">
