@@ -1,7 +1,7 @@
 <?php // echo $this->Html->script('travelapplications/add', array('inline' => false)); ?>
 
 
-<!--[if IE 10]><!-->< script>if (/@cc_on!@/false) {document.documentElement.className+=' ie10';}<!--<![endif]-->
+<!--[if IE 10]><!--><script>if (/@cc_on!@/false) {document.documentElement.className+=' ie10';}</script><!--<![endif]-->
 
 
 <style type="text/css">
