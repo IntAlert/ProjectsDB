@@ -19,8 +19,7 @@
 
 					<md-radio-button 
 						ng-click="getMyTravelapplications()"
-						value="mine" 
-						class="md-primary">
+						value="mine" >
 						My Applications
 					</md-radio-button>
 

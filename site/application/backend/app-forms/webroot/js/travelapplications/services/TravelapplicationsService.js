@@ -51,7 +51,7 @@ app.factory('TravelapplicationsService', function($http) {
   }
 
   instance.getMyTravelapplications = function() {
-    return $http.get('/forms/travelapplications/mine2')
+    return $http.get('/forms/travelapplications/mine')
       .then(function(response){
         return response.data;
       }, function(){
@@ -62,7 +62,7 @@ app.factory('TravelapplicationsService', function($http) {
   instance.getManagedTravelapplications = function(query) {
 
     console.log(query)
-    return $http.post('/forms/travelapplications/managed2', {
+    return $http.post('/forms/travelapplications/managed', {
       date: query.date,
       applicant_o365_object_id: query.applicant_o365_object_id
     })
