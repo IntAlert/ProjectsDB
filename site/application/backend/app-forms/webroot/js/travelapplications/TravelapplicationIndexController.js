@@ -104,7 +104,7 @@ app.controller('TravelapplicationIndexController', function ($scope, $location, 
 	// get all travel applications
 	NonInteractiveDialogService.show('Loading', 'Loading most recent travel applications', null);
 	TravelapplicationsService
-			.getAll()
+			.getMyTravelapplications()
 			.then(function(response) {
 				$scope.travelapplications = response
 				NonInteractiveDialogService.hide()
