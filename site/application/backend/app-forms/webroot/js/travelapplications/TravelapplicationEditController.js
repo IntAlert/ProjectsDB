@@ -1,4 +1,4 @@
-app.controller('TravelapplicationEditController', function ($scope, $window, $location, $anchorScroll, TravelapplicationsService, Office365UsersService, NonInteractiveDialogService, CountriesService) {
+app.controller('TravelapplicationEditController', function ($scope, $window, $location, $timeout, $anchorScroll, $localStorage, TravelapplicationsService, Office365UsersService, NonInteractiveDialogService, CountriesService) {
 
 	$scope.TravelApplicationID = false;
 
@@ -6,8 +6,8 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 	$scope.disableTabsByValid = true;
 
 	// debug
-	$scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 7;
+	// $scope.disableTabsByValid = false;
+	// $scope.selectedTabIndex = 7;
 
 	// data for form fields
 	$scope.countries = CountriesService;
@@ -139,6 +139,14 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 		}
 	}, true);
 
+
+	// keep all data in scope saved in localStorage until successful save
+	var localCache = $localStorage.$default({
+		'formData': $scope.formData
+	});
+
+	$scope.formData = localCache.formData
+
 	// This user
 	$scope.formData.applicant.id = me.id
 	$scope.formData.applicant.name = me.name
@@ -213,7 +221,14 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 			.then(function(){
 				// success
 				console.log('save success')
-				window.location.href = '/forms/travelapplications';
+
+				// clear local storage
+				$localStorage.$reset();
+				$timeout(function(){
+				   window.location.href = '/forms/travelapplications';
+				});
+
+				
 			}, function(){
 				// there has been an error
 				alert('there has been an error')

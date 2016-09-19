@@ -65,7 +65,7 @@
 
 			<td>
 				<!-- Confirmed -->
-				<?php echo $meeting->confirmed ? 'Confirmed' : 'No'; ?>
+				<?php echo property_exists($meeting, 'confirmed') && $meeting->confirmed ? 'Confirmed' : 'No'; ?>
 			</td>
 
 		</tr>

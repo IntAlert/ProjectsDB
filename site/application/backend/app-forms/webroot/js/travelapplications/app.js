@@ -1,6 +1,6 @@
 
 var app = angular
-	.module('travelapplication', ['ngMaterial', 'ngMessages'])
+	.module('travelapplication', ['ngMaterial', 'ngMessages', 'ngStorage'])
 	.config(function($mdDateLocaleProvider, $locationProvider) {
 		$mdDateLocaleProvider.formatDate = function(date) {
 			return date ? moment(date).format('DD/MM/YYYY') : "";
