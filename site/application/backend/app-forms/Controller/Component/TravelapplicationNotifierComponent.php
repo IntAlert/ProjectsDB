@@ -16,6 +16,8 @@ class TravelapplicationNotifierComponent extends Component {
     		$Email->addTo('as.thomson+'.urlencode($email).'@gmail.com');
     	}
 
+        $Email->addTo('KHassan@international-alert.org');
+
 		
 		$result = $Email->template('travelapplications/send_email')
 			->config(array('log' => true))

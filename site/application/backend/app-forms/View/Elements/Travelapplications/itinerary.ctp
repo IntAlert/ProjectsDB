@@ -21,6 +21,7 @@
 				<td colspan="3">
 					<md-datepicker
 						required
+						md-max-date="itinerary_item.finish"
 						ng-model="itinerary_item.start" 
 						md-placeholder="Enter date"
 					></md-datepicker>
@@ -33,6 +34,7 @@
 				<td colspan="3">
 					<md-datepicker 
 						required
+						md-min-date="itinerary_item.start"
 						ng-model="itinerary_item.finish" 
 						md-placeholder="Enter date"
 					></md-datepicker>

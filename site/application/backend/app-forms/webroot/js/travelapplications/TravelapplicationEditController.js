@@ -6,8 +6,8 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 	$scope.disableTabsByValid = true;
 
 	// debug
-	// $scope.disableTabsByValid = false;
-	// $scope.selectedTabIndex = 7;
+	$scope.disableTabsByValid = false;
+	$scope.selectedTabIndex = 7;
 
 	// data for form fields
 	$scope.countries = CountriesService;
