@@ -29,13 +29,5 @@
 			</td>
 		</tr>
 		
-		<tr ng-show=" formData.mode=='has-office' ">
-			<th>
-				I have notified the Country Manager(s) of my arrival, departure and purpose of visit
-			</th>
-			<td>
-				<?php echo $travelapplicationObj->countrymanager_notified ? 'YES' : 'NO'; ?>
-			</td>
-		</tr>
 	</tbody>
 </table>
