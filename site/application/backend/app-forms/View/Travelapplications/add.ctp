@@ -11,7 +11,7 @@
 	)); ?>
 
 	<fieldset>
-		<legend><?php echo __('New Travel Application'); ?></legend>
+		<legend><?php echo __('New Trip'); ?></legend>
 
 		<div ng-cloak>
 		  <md-content>

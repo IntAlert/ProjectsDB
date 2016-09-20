@@ -1,6 +1,6 @@
 <div layout="row" ng-show="!searching && travelapplications.length == 0">
 
-		No travel applications found
+		No trips found
 
 </div>
 
@@ -84,7 +84,7 @@
     <md-toolbar>
 		      <div class="md-toolbar-tools">
 		        <h2>
-		        	Travel Application for {{formData.applicant.name}}
+		        	Trip for {{formData.applicant.name}}
 		        </h2>
 		      </div>
 		    </md-toolbar>

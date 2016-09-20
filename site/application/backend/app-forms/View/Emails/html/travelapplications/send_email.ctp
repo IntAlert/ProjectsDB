@@ -1,4 +1,4 @@
-<h1>A new travel application has been submitted</h1>
+<h1>A new trip has been submitted</h1>
 
 <p>
 	<a href="<?php echo Router::url('/travelapplications/view', true); ?>/<?php echo $travelapplication_id; ?>">

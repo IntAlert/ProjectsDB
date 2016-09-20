@@ -40,7 +40,7 @@
 
 <!-- Emergency Contacts -->
 
-<p>Confirm the above is correct to continue with your travel application</p>
+<p>Confirm the above is correct to continue with your trip</p>
 
 
 
@@ -50,6 +50,6 @@
 		ng-show="emergencyForm.$valid"
 		ng-click=" continueApplication() "
 		class="md-raised">
-		Continue Travel Application
+		Continue Trip
 	</md-button>
 </div>

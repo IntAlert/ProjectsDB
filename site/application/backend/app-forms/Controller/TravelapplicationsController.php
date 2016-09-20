@@ -184,7 +184,7 @@ class TravelapplicationsController extends AppController {
 	public function edit($id = null) {
 		
 		if (!$this->Travelapplication->exists($id)) {
-			throw new NotFoundException(__('Invalid Travel Application'));
+			throw new NotFoundException(__('Invalid Trip'));
 		}
 
 		if ($this->request->is('post')) {

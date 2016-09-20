@@ -1,4 +1,4 @@
-<h1 class="md-display-2">Confirm Application</h1>
+<h1 class="md-display-2">Confirm Trip</h1>
 
 
 <?php echo $this->element('Travelapplications/confirm/general'); ?>
@@ -22,7 +22,7 @@
 		ng-show="checklistForm.$valid"
 		ng-click=" submitTravelApplication() "
 		class="md-raised">
-		Submit Travel Application
+		Submit Trip
 	</md-button>
 </div>
 

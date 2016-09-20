@@ -37,7 +37,7 @@ app.controller('TravelapplicationIndexController', function ($scope, $location, 
 
 	$scope.getMyTravelapplications = function() {
 
-		NonInteractiveDialogService.show('Searching', 'Searching all travel applications', null);
+		NonInteractiveDialogService.show('Searching', 'Searching all trips', null);
 		$scope.travelapplications = [];
 
 		TravelapplicationsService.getMyTravelapplications()
@@ -49,7 +49,7 @@ app.controller('TravelapplicationIndexController', function ($scope, $location, 
 
 	$scope.getManagedTravelapplications = function() {
 
-		NonInteractiveDialogService.show('Searching', 'Searching all travel applications', null);
+		NonInteractiveDialogService.show('Searching', 'Searching all trips', null);
 		$scope.travelapplications = [];
 
 		var query = {
@@ -73,7 +73,7 @@ app.controller('TravelapplicationIndexController', function ($scope, $location, 
 
 	$scope.getTravelapplications = function() {
 
-		NonInteractiveDialogService.show('Searching', 'Searching all travel applications', null);
+		NonInteractiveDialogService.show('Searching', 'Searching all trips', null);
 		$scope.travelapplications = [];
 
 		var query = {
@@ -102,7 +102,7 @@ app.controller('TravelapplicationIndexController', function ($scope, $location, 
 
 
 	// get all travel applications
-	NonInteractiveDialogService.show('Loading', 'Loading most recent travel applications', null);
+	NonInteractiveDialogService.show('Loading', 'Loading most recent trips', null);
 	TravelapplicationsService
 			.getMyTravelapplications()
 			.then(function(response) {

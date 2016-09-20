@@ -26,7 +26,7 @@ class TravelapplicationNotifierComponent extends Component {
 		    	'travelapplication_id' => $travelapplication_id,
 		    	'travelapplicationObj' => $travelapplicationObj
 		    ))
-		    ->subject('Travel Application')
+		    ->subject('Trip')
 		    ->send();
 
 

@@ -178,7 +178,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 				.then(function(data){
 					$scope.formData = data;
 				}, function(){
-					alert('Error downloading Travel Application')
+					alert('Error downloading Trip')
 				})
 		}
 	}
@@ -214,7 +214,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 	$scope.submitTravelApplication = function() {
 		
 		// Tell user to wait
-		NonInteractiveDialogService.show('Saving', 'Your travel application is being saved and sent to your nominated contacts...', null);
+		NonInteractiveDialogService.show('Saving', 'Your trip is being saved and sent to your nominated contacts...', null);
 
 		// save it!
 		TravelapplicationsService.save($scope.formData, $scope.TravelApplicationID)
