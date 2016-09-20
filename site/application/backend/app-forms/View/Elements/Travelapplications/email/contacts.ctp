@@ -44,7 +44,7 @@
 
 	<tr>
 		<th>
-			Skype
+			Skype for Bussiness
 		</th>
 		
 		<td>
@@ -108,7 +108,7 @@
 
 	<tr>
 		<th>
-			Skype
+			Skype for Bussiness
 		</th>
 		
 		<td>
@@ -173,7 +173,7 @@
 
 		<tr>
 			<th>
-				Skype
+				Skype for Bussiness
 			</th>
 			
 			<td>
