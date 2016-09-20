@@ -16,6 +16,7 @@ h4 {color:#000; font-weight: bold; }
 
 nav.main {
 	color:#fff;
+
 }
 nav.main ul li a {
 	background:rgba(255,255,255,0.7);
@@ -34,6 +35,7 @@ nav.main ul li a:hover {
 
 #content {
 	/*box-shadow:#666 2px 2px 2px 2px*/
+	background: rgb(250,250,250);
 }
 
 form div {padding:0.5em 0;}
