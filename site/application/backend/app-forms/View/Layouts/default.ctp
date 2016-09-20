@@ -204,7 +204,7 @@ if ( !isset($title) ) {
 
 			<ul>
 				<li class="logo">
-					<img src="/pdb/img/logo.png">
+					<img src="/pdb/img/small_logo.png">
 				</li>
 				<li>
 					<a href="https://intalert.typeform.com/to/SUUUaZ" target="_blank">Report Bug</a>
