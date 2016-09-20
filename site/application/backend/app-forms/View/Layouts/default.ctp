@@ -159,7 +159,9 @@ if ( !isset($title) ) {
 
 		<nav class="main">
 
-			<img src="/pdb/img/logo.png" height="60" class="logo">
+			<div class="logo-container">
+				<img src="/pdb/img/logo-slogan-landscape.png" height="80" class="logo">
+			</div>
 
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 

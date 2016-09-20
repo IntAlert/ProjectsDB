@@ -45,6 +45,10 @@ class TravelapplicationsController extends AppController {
 
 		
 
+		$this->set('title', "Trips");
+		
+		
+
 	}
 
 	public function admin() {
@@ -53,6 +57,8 @@ class TravelapplicationsController extends AppController {
 		if ( !$this->User->userHasRole($this->Auth->user('id'), 'travel-application-admin') ) {
 			throw new NotFoundException(); // should really throw a 403
 		}
+
+		$this->set('title', "Trips");
 
 	}
 
@@ -83,20 +89,20 @@ class TravelapplicationsController extends AppController {
 
 	}
 
-	public function managed() {
+	// public function managed() {
 
-		$this->layout = 'ajax';
+	// 	$this->layout = 'ajax';
 
-		// get this user's o365 id
-		$manager_o365_object_id = $this->User->getO365Id($this->Auth->user('id'));
+	// 	// get this user's o365 id
+	// 	$manager_o365_object_id = $this->User->getO365Id($this->Auth->user('id'));
 
-		$travelapplications = $this->Travelapplication->getManaged($manager_o365_object_id, $this->request->data);
+	// 	$travelapplications = $this->Travelapplication->getManaged($manager_o365_object_id, $this->request->data);
 
-		$this->set(compact('travelapplications'));
+	// 	$this->set(compact('travelapplications'));
 
-		$this->render('search');
+	// 	$this->render('search');
 
-	}
+	// }
 
 
 /**
@@ -131,6 +137,8 @@ class TravelapplicationsController extends AppController {
  */
 	public function add() {
 		
+
+		// save is done via AJAX
 		if ($this->request->is('post')) {
 
 			$travelapplication_id = $this->request->data('id');
@@ -169,6 +177,8 @@ class TravelapplicationsController extends AppController {
 			return $this->render('save_success_json');
 
 		}
+
+		$this->set('title', "New Trip");
 		
 	}
 
@@ -181,23 +191,23 @@ class TravelapplicationsController extends AppController {
  */
 
 
-	public function edit($id = null) {
+	// public function edit($id = null) {
 		
-		if (!$this->Travelapplication->exists($id)) {
-			throw new NotFoundException(__('Invalid Trip'));
-		}
+	// 	if (!$this->Travelapplication->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid Trip'));
+	// 	}
 
-		if ($this->request->is('post')) {
+	// 	if ($this->request->is('post')) {
 
-			// create application
-			$this->Travelapplication->saveWithItinerary($this->request->data, $id);
-			$this->layout = 'ajax';
-			return $this->render('save_success_json');
+	// 		// create application
+	// 		$this->Travelapplication->saveWithItinerary($this->request->data, $id);
+	// 		$this->layout = 'ajax';
+	// 		return $this->render('save_success_json');
 
-		}
+	// 	}
 
-		$this->render('add');
+	// 	$this->render('add');
 		
-	}
+	// }
 
 }

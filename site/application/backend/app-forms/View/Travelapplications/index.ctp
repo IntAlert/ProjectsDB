@@ -20,13 +20,13 @@
 					<md-radio-button 
 						ng-click="getMyTravelapplications()"
 						value="mine" >
-						My Applications
+						My Trips
 					</md-radio-button>
 
 					<md-radio-button 
 						ng-click="getManagedTravelapplications()"
 						value="managed">
-						Applications where I am manager
+						Trips where I am manager
 					</md-radio-button>
 
 			    </md-radio-group>
