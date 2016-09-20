@@ -1,10 +1,10 @@
 <h1>A new trip has been submitted</h1>
 
-<p>
+<!--<p>
 	<a href="<?php echo Router::url('/travelapplications/view', true); ?>/<?php echo $travelapplication_id; ?>">
 		View on PROMPT
 	</a>
-</p>
+</p>-->
 
 
 <h2>Summary</h2>
