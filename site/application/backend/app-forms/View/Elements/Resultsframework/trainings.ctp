@@ -1,22 +1,22 @@
 <table>
 	<tr>
 		<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
-		<td>{{data.trainings.totals.event_count || 0}}</td>
+		<td>{{data.record.trainings.totals.event_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>How many male participants took part?</th>
-		<td>{{data.trainings.totals.male_count || 0}}</td>
+		<td>{{data.record.trainings.totals.male_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>How many female participants took part?</th>
-		<td>{{data.trainings.totals.female_count || 0}}</td>
+		<td>{{data.record.trainings.totals.female_count || 0}}</td>
 	</tr>
 	<tr>
 		<th>Themes</th>
 		<td>
-			<span ng-repeat="theme in data.trainings.totals.themes">
+			<span ng-repeat="theme in data.record.trainings.totals.themes">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.trainings.totals.themes.length ">
@@ -28,7 +28,7 @@
 	<tr>
 		<th>Participant Types</th>
 		<td>
-			<span ng-repeat="participant_type in data.trainings.totals.participant_types">
+			<span ng-repeat="participant_type in data.record.trainings.totals.participant_types">
 					{{participant_type.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.trainings.totals.participant_types.length ">
@@ -39,7 +39,7 @@
 </table>
 
 <h2>Training</h2>
-<table ng-show=" data.trainings.items.length ">
+<table ng-show=" data.record.trainings.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -69,7 +69,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, training) in data.trainings.items">
+		<tr ng-repeat="(i, training) in data.record.trainings.items">
 			<td>
 				{{training.title}}
 			</td>
@@ -126,6 +126,6 @@
 <md-button class="md-raised" ng-click="showTrainingItemDialog()">Add Training</md-button>
 
 
-<pre>{{data.trainings | json}}</pre>
+<pre>{{data.record.trainings | json}}</pre>
 
 

@@ -1,4 +1,4 @@
-<table ng-show=" data.results.items.length ">
+<table ng-show=" data.record.results.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -24,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, result) in data.results">
+		<tr ng-repeat="(i, result) in data.record.results">
 			<td>
 				{{dialogue.title}}
 			</td>
@@ -67,3 +67,6 @@
 </table>
 
 <md-button class="md-raised" ng-click="showResultItemDialog()">Add</md-button>
+
+
+<pre>{{ data.record.results || json }}</pre>

@@ -5,44 +5,44 @@
 
 	<tr>
 		<th>Number of sustained dialogue processes conducted</th>
-		<td>{{data.dialogues.totals.process_count || 0}}</td>
+		<td>{{data.record.dialogues.totals.process_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>Number of separate dialogue meetings, including mediation sessions, facilitated / organised?</th>
-		<td>{{data.dialogues.totals.meeting_count || 0}}</td>
+		<td>{{data.record.dialogues.totals.meeting_count || 0}}</td>
 	</tr>
 
 
 	<tr>
 		<th>How many female participants took part (cumulative)?</th>
-		<td>{{data.dialogues.totals.male_count || 0}}</td>
+		<td>{{data.record.dialogues.totals.male_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>How many female participants took part (cumulative) ?</th>
-		<td>{{data.dialogues.totals.female_count || 0}}</td>
+		<td>{{data.record.dialogues.totals.female_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>Number of males for whom trauma-counselling services were provided (cumulative)?</th>
-		<td>{{data.dialogues.totals.male_trauma_count || 0}}</td>
+		<td>{{data.record.dialogues.totals.male_trauma_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>Number of females for whom trauma-counselling services were provided (cumulative) ?</th>
-		<td>{{data.dialogues.totals.female_trauma_count || 0}}</td>
+		<td>{{data.record.dialogues.totals.female_trauma_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>The dialogue sought to resolve a specific conflict issue between groups or entities </th>
-		<td>{{data.dialogues.totals.conflict_resolution ? 'YES': 'NO'}}</td>
+		<td>{{data.record.dialogues.totals.conflict_resolution ? 'YES': 'NO'}}</td>
 	</tr>
 
 	<tr>
 		<th>What kinds of groups or entities were involved in the dialogue processes?</th>
 		<td>
-			<span ng-repeat="participant_type in data.dialogues.totals.participant_types_process">
+			<span ng-repeat="participant_type in data.record.dialogues.totals.participant_types_process">
 					{{participant_type.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.dialogues.totals.participant_types_process.length ">
@@ -55,7 +55,7 @@
 		<th>Topics in dialogue processes?</th>
 		<td>
 			<strong>DO NOT RECORD???</strong>
-			<span ng-repeat="theme in data.dialogues.totals.themes_process">
+			<span ng-repeat="theme in data.record.dialogues.totals.themes_process">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.dialogues.totals.themes_process.length ">
@@ -67,7 +67,7 @@
 	<tr>
 		<th>Kinds of participants / groups involved in dialogue meetings?</th>
 		<td>
-			<span ng-repeat="participant_type in data.dialogues.totals.participant_types_meeting">
+			<span ng-repeat="participant_type in data.record.dialogues.totals.participant_types_meeting">
 					{{participant_type.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.dialogues.totals.participant_types_meeting.length ">
@@ -79,7 +79,7 @@
 	<tr>
 		<th>Topics in dialogue meetings?</th>
 		<td>
-			<span ng-repeat="theme in data.dialogues.totals.themes_meeting">
+			<span ng-repeat="theme in data.record.dialogues.totals.themes_meeting">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.dialogues.totals.themes_meeting.length ">
@@ -93,7 +93,7 @@
 
 
 <h2>Processes</h2>
-<table ng-show=" data.dialogues.processes.items.length ">
+<table ng-show=" data.record.dialogues.processes.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -139,7 +139,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, dialogue) in data.dialogues.processes.items">
+		<tr ng-repeat="(i, dialogue) in data.record.dialogues.processes.items">
 			<td>
 				{{dialogue.title}}
 			</td>
@@ -213,7 +213,7 @@
 
 
 <h2>Meetings</h2>
-<table ng-show=" data.dialogues.meetings.items.length ">
+<table ng-show=" data.record.dialogues.meetings.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -259,7 +259,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, dialogue) in data.dialogues.meetings.items">
+		<tr ng-repeat="(i, dialogue) in data.record.dialogues.meetings.items">
 			<td>
 				{{dialogue.title}}
 			</td>
@@ -333,4 +333,4 @@
 
 
 
-<pre>{{data.dialogues | json}}</pre>
+<pre>{{data.record.dialogues | json}}</pre>

@@ -34,7 +34,7 @@
 		      </md-tab>
 
 		    <!-- THEMES -->
-		      <md-tab label="THEMES">
+		      <md-tab label="PATHWAYS/THEMES">
 		        <md-content 
 		        	class="md-padding" 
 		        	ng-controller="ThemesController"

@@ -7,42 +7,6 @@ var app = angular
 		};
 	})
 
-// shared ResultsData
-app.factory('ResultsData', function(){
-  return {
-  		themes: [],
-  		dialogues: {
-  			meetings: {
-  				items: []
-  			},
-  			processes: {
-  				items: []
-  			}
-  		},
-  		grography: {
-  			countries: [],
-	  		regions: []
-  		},
-  		trainings: {
-  			items: [],
-  			totals: {}
-  		},
-		accompaniments: {
-  			items: [],
-  			totals: {}
-  		},
-		advocacies:{
-  			items: [],
-  			totals: {}
-  		},
-		researches: {
-			items: [],
-  			totals: {}
-		},
-		results: []
-	};
-});
-
 
 app.factory('FormOptions', function($http) {
   var formOptionsInstance = {
@@ -74,8 +38,6 @@ app.factory('FormOptions', function($http) {
   		]
   	}
   };
-
-  console.log(formOptionsInstance);
 
 
   // All countries
@@ -114,14 +76,14 @@ app.factory('FormOptions', function($http) {
   return formOptionsInstance;
 });
 
-app.controller('ResultsframeworkController', function ($scope, $window, $location, $anchorScroll, ResultsData, ResultsFrameworkService) {
+app.controller('ResultsframeworkController', function ($scope, $window, $location, $anchorScroll, ResultsFrameworkService) {
 
 	// UI
 	$scope.disableTabsByValid = true;
 
 	// debug
 	// $scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 2;
+	$scope.selectedTabIndex = 1;
 
 	
 	$scope.changeActiveTab = function(i) {
@@ -137,7 +99,7 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 	ResultsFrameworkService.get(160)
 
 	$scope.save = function(data) {
-		ResultsFrameworkService.save(ResultsData)
+		ResultsFrameworkService.save()
 			.then(function(data){
 
 			}, function(data){

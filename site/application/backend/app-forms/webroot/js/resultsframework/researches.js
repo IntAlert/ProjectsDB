@@ -1,11 +1,11 @@
 
-app.controller('ResearchesController', function($scope, $mdDialog, ResultsData, DedupeService){
+app.controller('ResearchesController', function($scope, $mdDialog, ResultsFrameworkService,  DedupeService){
 
-	$scope.data = ResultsData
+	$scope.data = ResultsFrameworkService
 
 	$scope.removeResearchItem = function(i) {
 		if (confirm("Are you sure you want to remove this research item?")) {
-			$scope.data.researches.items.splice(i,1)
+			$scope.data.record.researches.items.splice(i,1)
 			updateTotals()
 		}
 	}
@@ -13,7 +13,7 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData, 
 	$scope.showResearchItemDialog = function(i) {
 
 		// add or edit
-		var researchToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.researches.items[i]
+		var researchToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.researches.items[i]
 
 	    $mdDialog.show({
 	      controller: ResearchItemController,
@@ -30,10 +30,10 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData, 
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.researches.items.push(research)
+				$scope.data.record.researches.items.push(research)
 	    	} else {
 	    		// edit
-	    		$scope.data.researches.items[i] = research	
+	    		$scope.data.record.researches.items[i] = research	
 	    	}
 
 	    	updateTotals()
@@ -47,13 +47,13 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData, 
 		function updateTotals() {
 
 			var totals = {
-				count: $scope.data.researches.items.length
+				count: $scope.data.record.researches.items.length
 			};
 
 			var themes = []
 			var countries = []
 
-			angular.forEach($scope.data.researches.items, function(item) {
+			angular.forEach($scope.data.record.researches.items, function(item) {
 
 				totals.male_count += item.male_count
 				totals.female_count += item.female_count
@@ -70,7 +70,7 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsData, 
 			totals.themes = DedupeService.themes(themes)
 			totals.countries = DedupeService.territories(countries)
 
-			$scope.data.researches.totals = totals
+			$scope.data.record.researches.totals = totals
 
 		}
 })

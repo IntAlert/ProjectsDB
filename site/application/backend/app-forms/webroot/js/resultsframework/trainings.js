@@ -1,11 +1,11 @@
 
-app.controller('TrainingsController', function($scope, $mdDialog, ResultsData, DedupeService){
+app.controller('TrainingsController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService){
 
-	$scope.data = ResultsData
+	$scope.data = ResultsFrameworkService
 
 	$scope.removeTrainingItem = function(i) {
 		if (confirm("Are you sure you want to remove this training item?")) {
-			$scope.data.trainings.items.splice(i,1)
+			$scope.data.record.trainings.items.splice(i,1)
 			updateTotals()
 		}
 	}
@@ -13,7 +13,7 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData, D
 	$scope.showTrainingItemDialog = function(i) {
 
 		// add or edit
-		var trainingToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.trainings.items[i]
+		var trainingToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.trainings.items[i]
 
 	    $mdDialog.show({
 	      controller: TrainingItemController,
@@ -30,10 +30,10 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData, D
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.trainings.items.push(training)
+				$scope.data.record.trainings.items.push(training)
 	    	} else {
 	    		// edit
-	    		$scope.data.trainings.items[i] = training	
+	    		$scope.data.record.trainings.items[i] = training	
 	    	}
 			
 			updateTotals()
@@ -56,7 +56,7 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData, D
 		var themes = []
 		var participant_types = []
 
-		angular.forEach($scope.data.trainings.items, function(item) {
+		angular.forEach($scope.data.record.trainings.items, function(item) {
 			this.event_count++
   			this.male_count += item.male_count
   			this.female_count += item.female_count
@@ -70,7 +70,7 @@ app.controller('TrainingsController', function($scope, $mdDialog, ResultsData, D
 		totals.participant_types = DedupeService.participantTypes(participant_types)
 
 
-		$scope.data.trainings.totals = totals;
+		$scope.data.record.trainings.totals = totals;
 	}
 })
 

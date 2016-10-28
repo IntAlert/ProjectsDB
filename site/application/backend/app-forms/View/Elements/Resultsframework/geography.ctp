@@ -3,7 +3,7 @@
     <ul class="territories-selector">
 		<li ng-repeat="region in FormOptions.regions">
 			<md-checkbox 
-				checklist-model="data.geography.regions" 
+				checklist-model="data.record.geography.regions" 
 				checklist-value="region"
 				>
 	            {{region.Territory.name}}
@@ -18,7 +18,7 @@
     <ul class="territories-selector">
 		<li ng-repeat="country in FormOptions.countries">
 			<md-checkbox 
-				checklist-model="data.geography.territories" 
+				checklist-model="data.record.geography.territories" 
 				checklist-value="country"
 				>
 	            {{country.Territory.name}}

@@ -42,13 +42,7 @@ class TravelapplicationsController extends AppController {
 
 
 	public function index() {
-
-		
-
 		$this->set('title', "Trips");
-		
-		
-
 	}
 
 	public function admin() {
@@ -191,23 +185,23 @@ class TravelapplicationsController extends AppController {
  */
 
 
-	// public function edit($id = null) {
+	public function edit($id = null) {
 		
-	// 	if (!$this->Travelapplication->exists($id)) {
-	// 		throw new NotFoundException(__('Invalid Trip'));
-	// 	}
+		if (!$this->Travelapplication->exists($id)) {
+			throw new NotFoundException(__('Invalid Trip'));
+		}
 
-	// 	if ($this->request->is('post')) {
+		if ($this->request->is('post')) {
 
-	// 		// create application
-	// 		$this->Travelapplication->saveWithItinerary($this->request->data, $id);
-	// 		$this->layout = 'ajax';
-	// 		return $this->render('save_success_json');
+			// create application
+			$this->Travelapplication->saveWithItinerary($this->request->data, $id);
+			$this->layout = 'ajax';
+			return $this->render('save_success_json');
 
-	// 	}
+		}
 
-	// 	$this->render('add');
+		$this->render('add');
 		
-	// }
+	}
 
 }

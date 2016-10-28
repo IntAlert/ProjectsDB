@@ -5,7 +5,7 @@
 		<li ng-repeat="theme in FormOptions.themes">
 			
 			<md-checkbox 
-				checklist-model="data.themes" 
+				checklist-model="data.record.themes.items" 
 				checklist-value="theme"
 			>
 	            {{theme.Theme.name}}
@@ -18,22 +18,32 @@
 <div layout="row" layout-wrap>
 	<div flex="50">
 		<h3>Primary Strategic Pathway</h3>
-		<md-radio-group ng-model="data.pathways.primary">
+		<md-radio-group ng-model="local.pathways.primaryId" ng-change="updatePathways()">
+	      
 	      <md-radio-button 
 	      	ng-repeat="pathway in FormOptions.pathways"
-	      	ng-value="pathway" class="md-primary">{{pathway.Pathway.name}}</md-radio-button>
+	      	ng-value="pathway.Pathway.id" 
+	      	class="md-primary">
+	      		{{pathway.Pathway.name}}
+	      </md-radio-button>
+
 	    </md-radio-group>
 	</div>
 
 	<div flex="50">
 		<h3>Secondary Strategic Pathway</h3>
-		<md-radio-group ng-model="data.pathways.secondary">
+		<md-radio-group ng-model="local.pathways.secondaryId" ng-change="updatePathways()">
+	      
 	      <md-radio-button 
 	      	ng-repeat="pathway in FormOptions.pathways"
-	      	ng-value="pathway" class="md-primary">{{pathway.Pathway.name}}</md-radio-button>
+	      	ng-value="pathway.Pathway.id" 
+	      	class="md-primary">
+	      		{{pathway.Pathway.name}}
+	      </md-radio-button>
+
 	    </md-radio-group>
 	</div>
 
 </div>
 
-<pre>{{themes | json}}</pre>
+<pre>{{data.record.pathways | json}}</pre>

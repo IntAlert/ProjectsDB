@@ -3,7 +3,7 @@
 
 # change these values
 VAGRANT_DOMAIN_NAME = "local.projects.international-alert.org"
-VAGRANT_IP_ADDRESS = "192.168.33.58"
+VAGRANT_IP_ADDRESS = "10.168.33.58"
 
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!

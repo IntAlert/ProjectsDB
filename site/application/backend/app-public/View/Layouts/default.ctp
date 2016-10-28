@@ -222,9 +222,6 @@ if ( !isset($title) ) {
 				<li class="logo">
 					<img src="/pdb/img/small_logo.png">
 				</li>
-				<li>
-					<a href="https://intalert.typeform.com/to/SUUUaZ" target="_blank">Report Bug</a>
-				</li>
 				<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 				<li>
 					<a href="/pdb/users/logout">Log out</a>

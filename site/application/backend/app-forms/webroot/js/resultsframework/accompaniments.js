@@ -1,10 +1,10 @@
-app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsData){
+app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsFrameworkService){
 
-	$scope.data = ResultsData
+	$scope.data = ResultsFrameworkService
 
 	$scope.removeAccompanimentItem = function(i) {
 		if (confirm("Are you sure you want to remove this accompaniment item?")) {
-			$scope.data.accompaniments.items.splice(i,1)
+			$scope.data.record.accompaniments.items.splice(i,1)
 			updateTotals()
 		}
 	}
@@ -12,7 +12,7 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsDa
 	$scope.showAccompanimentItemDialog = function(i) {
 
 		// add or edit
-		var accompanimentToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.accompaniments.items[i]
+		var accompanimentToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.accompaniments.items[i]
 
 	    $mdDialog.show({
 	      controller: AccompanimentItemController,
@@ -29,10 +29,10 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsDa
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.accompaniments.items.push(accompaniment)
+				$scope.data.record.accompaniments.items.push(accompaniment)
 	    	} else {
 	    		// edit
-	    		$scope.data.accompaniments.items[i] = accompaniment	
+	    		$scope.data.record.accompaniments.items[i] = accompaniment	
 	    	}
 
 	    	updateTotals()
@@ -48,7 +48,7 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsDa
 		var totals = {}
 
 		// loop through all items
-		angular.forEach($scope.data.accompaniments.items, function(item) {
+		angular.forEach($scope.data.record.accompaniments.items, function(item) {
 
 			// loop through all participant types
 			angular.forEach(item.participant_types, function(count, participant_type) {
@@ -66,7 +66,7 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsDa
 
 		});
 
-		$scope.data.accompaniments.totals = totals;
+		$scope.data.record.accompaniments.totals = totals;
 	}
 })
 

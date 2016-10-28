@@ -1,5 +1,5 @@
 <table>
-	<tr ng-repeat="(participant_type, count) in data.accompaniments.totals">
+	<tr ng-repeat="(participant_type, count) in data.record.accompaniments.totals">
 		<th>{{participant_type}}</th>
 		<td>{{count || 0}}</td>
 	</tr>
@@ -9,7 +9,7 @@
 
 
 <h2>Accompaniments</h2>
-<table ng-show=" data.accompaniments.items.length ">
+<table ng-show=" data.record.accompaniments.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -28,7 +28,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, accompaniment) in data.accompaniments.items">
+		<tr ng-repeat="(i, accompaniment) in data.record.accompaniments.items">
 			<td>
 				{{accompaniment.title}}
 			</td>
@@ -74,5 +74,5 @@
 
 
 <pre>
-	{{data.accompaniments | json}}
+	{{data.record.accompaniments | json}}
 </pre>

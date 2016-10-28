@@ -1,8 +1,8 @@
 
-app.controller('GeographyController', function($scope, ResultsData, FormOptions) {
+app.controller('GeographyController', function($scope, FormOptions, ResultsFrameworkService) {
 
 
-	$scope.data = ResultsData
+	$scope.data = ResultsFrameworkService
 	$scope.FormOptions = FormOptions
 
 })

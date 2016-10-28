@@ -1,11 +1,11 @@
 
-app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, DedupeService){
+app.controller('DialoguesController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService){
 
-	$scope.data = ResultsData
+	$scope.data = ResultsFrameworkService
 
 	$scope.removeDialogueProcessItem = function(i) {
 		if (confirm("Are you sure you want to remove this dialogue item?")) {
-			$scope.data.dialogues.processes.items.splice(i,1)
+			$scope.data.record.dialogues.processes.items.splice(i,1)
 			updateTotals()
 		}
 	}
@@ -13,7 +13,7 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 	$scope.showDialogueProcessItemDialog = function(i) {
 
 		// add or edit
-		var dialogueToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.dialogues.processes.items[i]
+		var dialogueToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.dialogues.processes.items[i]
 
 	    $mdDialog.show({
 	      controller: DialogueItemController,
@@ -30,10 +30,10 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.dialogues.processes.items.push(dialogue)
+				$scope.data.record.dialogues.processes.items.push(dialogue)
 	    	} else {
 	    		// edit
-	    		$scope.data.dialogues.processes.items[i] = dialogue	
+	    		$scope.data.record.dialogues.processes.items[i] = dialogue	
 	    	}
 
 	    	updateTotals()
@@ -49,7 +49,7 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 	  // Meetings
 		$scope.removeDialogueMeetingItem = function(i) {
 			if (confirm("Are you sure you want to remove this dialogue item?")) {
-				$scope.data.dialogues.meetings.items.splice(i,1)
+				$scope.data.record.dialogues.meetings.items.splice(i,1)
 				updateTotals()
 			}
 		}
@@ -57,7 +57,7 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 		$scope.showDialogueMeetingItemDialog = function(i) {
 
 			// add or edit
-			var dialogueToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.dialogues.meetings.items[i]
+			var dialogueToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.dialogues.meetings.items[i]
 
 		    $mdDialog.show({
 		      controller: DialogueItemController,
@@ -74,10 +74,10 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 		    	// add or edit
 		    	if (typeof(i) == 'undefined') {
 		    		// add
-					$scope.data.dialogues.meetings.items.push(dialogue)
+					$scope.data.record.dialogues.meetings.items.push(dialogue)
 		    	} else {
 		    		// edit
-		    		$scope.data.dialogues.meetings.items[i] = dialogue	
+		    		$scope.data.record.dialogues.meetings.items[i] = dialogue	
 		    	}
 
 		    	updateTotals()
@@ -107,7 +107,7 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 			var participant_types_meeting = []
 
 			// loop through all process items
-			angular.forEach($scope.data.dialogues.processes.items, function(item) {
+			angular.forEach($scope.data.record.dialogues.processes.items, function(item) {
 
 				totals.male_count += item.male_count
 				totals.female_count += item.female_count
@@ -124,7 +124,7 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 
 
 			// loop through all meeting items
-			angular.forEach($scope.data.dialogues.meetings.items, function(item) {
+			angular.forEach($scope.data.record.dialogues.meetings.items, function(item) {
 
 				totals.male_count += item.male_count
 				totals.female_count += item.female_count
@@ -143,7 +143,7 @@ app.controller('DialoguesController', function($scope, $mdDialog, ResultsData, D
 			totals.themes_meeting = DedupeService.themes(themes_meeting)
 			totals.participant_types_meeting = DedupeService.participantTypes(participant_types_meeting)
 
-			$scope.data.dialogues.totals = totals;
+			$scope.data.record.dialogues.totals = totals;
 		}
 })
 

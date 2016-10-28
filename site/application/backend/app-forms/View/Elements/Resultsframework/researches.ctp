@@ -3,13 +3,13 @@
 
 	<tr>
 		<th>Number of research reports or other papers produced by Alert to improve understanding and peacebuilding approaches on particular geographic contexts or issues?</th>
-		<td>{{data.researches.totals.count || 0}}</td>
+		<td>{{data.record.researches.totals.count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>Topics</th>
 		<td>
-			<span ng-repeat="theme in data.researches.totals.themes">
+			<span ng-repeat="theme in data.record.researches.totals.themes">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.researches.totals.themes.length ">
@@ -21,7 +21,7 @@
 	<tr>
 		<th>Countries</th>
 		<td>
-			<span ng-repeat="territory in data.researches.totals.countries">
+			<span ng-repeat="territory in data.record.researches.totals.countries">
 					{{territory.Territory.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.researches.totals.countries.length ">
@@ -34,7 +34,7 @@
 
 
 <h2>Research</h2>
-<table ng-show=" data.researches.items.length ">
+<table ng-show=" data.record.researches.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -56,7 +56,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, research) in data.researches.items">
+		<tr ng-repeat="(i, research) in data.record.researches.items">
 			<td>
 				{{research.title}}
 			</td>
@@ -104,4 +104,4 @@
 
 <md-button class="md-raised" ng-click="showResearchItemDialog()">Add</md-button>
 
-<pre>{{data.researches |json }}</pre>
+<pre>{{data.record.researches |json }}</pre>

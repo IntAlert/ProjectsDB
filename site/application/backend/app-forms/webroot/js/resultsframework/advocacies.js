@@ -1,10 +1,10 @@
-app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData, DedupeService){
+app.controller('AdvocaciesController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService){
 
-	$scope.data = ResultsData
+	$scope.data = ResultsFrameworkService
 
 	$scope.removeAdvocacyItem = function(i) {
 		if (confirm("Are you sure you want to remove this advocacy item?")) {
-			$scope.data.advocacies.items.splice(i,1)
+			$scope.data.record.advocacies.items.splice(i,1)
 			updateTotals()
 		}
 	}
@@ -12,7 +12,7 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData, 
 	$scope.showAdvocacyItemDialog = function(i) {
 
 		// add or edit
-		var advocacyToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.advocacies.items[i]
+		var advocacyToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.advocacies.items[i]
 
 	    $mdDialog.show({
 	      controller: AdvocacyItemController,
@@ -29,10 +29,10 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData, 
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.advocacies.items.push(advocacy)
+				$scope.data.record.advocacies.items.push(advocacy)
 	    	} else {
 	    		// edit
-	    		$scope.data.advocacies.items[i] = advocacy	
+	    		$scope.data.record.advocacies.items[i] = advocacy	
 	    	}
 			updateTotals()
 
@@ -51,7 +51,7 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData, 
 	  		var themes = []
 
 			// loop through all items
-			angular.forEach($scope.data.advocacies.items, function(item) {
+			angular.forEach($scope.data.record.advocacies.items, function(item) {
 
 				// fe/male counts
 				totals.male_count += item.male_count
@@ -81,7 +81,7 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, ResultsData, 
 
 
 
-			$scope.data.advocacies.totals = totals;
+			$scope.data.record.advocacies.totals = totals;
 	  }
 })
 
