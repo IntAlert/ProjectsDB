@@ -1,4 +1,4 @@
-
+<h2>Research Summary</h2>
 <table>
 
 	<tr>
@@ -103,5 +103,3 @@
 </table>
 
 <md-button class="md-raised" ng-click="showResearchItemDialog()">Add</md-button>
-
-<pre>{{data.record.researches |json }}</pre>

@@ -1,3 +1,4 @@
+<h2>Training Summary</h2>
 <table>
 	<tr>
 		<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
@@ -124,8 +125,3 @@
 </table>
 
 <md-button class="md-raised" ng-click="showTrainingItemDialog()">Add Training</md-button>
-
-
-<pre>{{data.record.trainings | json}}</pre>
-
-

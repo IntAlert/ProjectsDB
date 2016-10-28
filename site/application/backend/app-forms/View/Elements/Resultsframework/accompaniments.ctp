@@ -1,3 +1,4 @@
+<h2>Accompaniment Summary</h2>
 <table>
 	<tr ng-repeat="(participant_type, count) in data.record.accompaniments.totals">
 		<th>{{participant_type}}</th>
@@ -70,9 +71,3 @@
 
 <md-button class="md-raised" ng-click="showAccompanimentItemDialog()">Add Accompaniment</md-button>
 
-
-
-
-<pre>
-	{{data.record.accompaniments | json}}
-</pre>

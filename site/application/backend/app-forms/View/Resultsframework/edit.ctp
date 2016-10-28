@@ -133,14 +133,16 @@
 <?php echo $this->Html->script('resultsframework/app'); ?>
 <?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResultsFrameworkService'); ?>
-<?php echo $this->Html->script('resultsframework/geography'); ?>
-<?php echo $this->Html->script('resultsframework/themes'); ?>
-<?php echo $this->Html->script('resultsframework/researches'); ?>
-<?php echo $this->Html->script('resultsframework/results'); ?>
-<?php echo $this->Html->script('resultsframework/trainings'); ?>
-<?php echo $this->Html->script('resultsframework/dialogues'); ?>
-<?php echo $this->Html->script('resultsframework/accompaniments'); ?>
-<?php echo $this->Html->script('resultsframework/advocacies'); ?>
+<?php echo $this->Html->script('resultsframework/services/FormOptionsService'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/ResultsFramework'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/geography'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/themes'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/researches'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/results'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/trainings'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/dialogues'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/accompaniments'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/advocacies'); ?>
 
 
 <style type="text/css">/*pre {display: none}*/</style>

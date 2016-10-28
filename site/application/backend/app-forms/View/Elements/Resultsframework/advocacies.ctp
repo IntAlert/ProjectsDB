@@ -1,3 +1,5 @@
+<h2>Advocacy and Outreach Summary</h2>
+
 <table>
 	<tr>
 		<th>How many male participants in public advocacy meetings</th>
@@ -139,8 +141,3 @@
 <md-button class="md-raised" ng-click="showAdvocacyItemDialog()">Add Advocacy/Outreach</md-button>
 
 
-
-
-<pre>
-	{{data.record.advocacies | json}}
-</pre>

@@ -1,3 +1,4 @@
+<h2>Results</h2>
 <table ng-show=" data.record.results.items.length ">
 	<thead>
 		<tr>
@@ -24,13 +25,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, result) in data.record.results">
+		<tr ng-repeat="(i, result) in data.record.results.items">
 			<td>
-				{{dialogue.title}}
+				{{result.title}}
 			</td>
 
 			<td>
-				{{dialogue.date | date:'dd/MM/yyyy'}}
+				{{result.date | date:'dd/MM/yyyy'}}
 			</td>
 			
 			<td>
@@ -67,6 +68,3 @@
 </table>
 
 <md-button class="md-raised" ng-click="showResultItemDialog()">Add</md-button>
-
-
-<pre>{{ data.record.results || json }}</pre>

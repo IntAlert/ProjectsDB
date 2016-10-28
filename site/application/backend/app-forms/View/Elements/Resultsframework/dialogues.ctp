@@ -1,4 +1,4 @@
-
+<h2>Dialog Summary</h2>
 
 <table>
 
@@ -330,7 +330,3 @@
 
 <md-button class="md-raised" ng-click="showDialogueMeetingItemDialog()">Add Dialog Meeting</md-button>
 
-
-
-
-<pre>{{data.record.dialogues | json}}</pre>

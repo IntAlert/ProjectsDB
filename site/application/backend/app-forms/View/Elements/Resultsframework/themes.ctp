@@ -45,5 +45,3 @@
 	</div>
 
 </div>
-
-<pre>{{data.record.pathways | json}}</pre>
