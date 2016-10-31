@@ -92,7 +92,18 @@
 
 
 
-<h2>Processes</h2>
+
+<div class="item-list-header clearfix">
+	<h2>Processes</h2>
+
+	<md-button class="md-raised" ng-click="showDialogueProcessItemDialog()">Add Dialog Process</md-button>
+
+</div>
+
+<div ng-hide="data.record.dialogues.processes.items.length">
+	None
+</div>
+
 <table ng-show=" data.record.dialogues.processes.items.length ">
 	<thead>
 		<tr>
@@ -208,11 +219,22 @@
 	
 </table>
 
-<md-button class="md-raised" ng-click="showDialogueProcessItemDialog()">Add Dialog Process</md-button>
 
 
 
-<h2>Meetings</h2>
+
+
+<div class="item-list-header clearfix">
+	<h2>Meetings</h2>
+
+	<md-button class="md-raised" ng-click="showDialogueProcessItemDialog()">Add Dialog Meeting</md-button>
+
+</div>
+
+<div ng-hide="data.record.dialogues.meetings.items.length">
+	None
+</div>
+
 <table ng-show=" data.record.dialogues.meetings.items.length ">
 	<thead>
 		<tr>
@@ -327,6 +349,3 @@
 	</tbody>
 	
 </table>
-
-<md-button class="md-raised" ng-click="showDialogueMeetingItemDialog()">Add Dialog Meeting</md-button>
-

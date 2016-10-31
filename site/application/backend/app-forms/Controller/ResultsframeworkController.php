@@ -14,9 +14,12 @@ class ResultsframeworkController extends AppController {
 
 	public function edit($project_id) {
 		// check if project exists
-		if (!$this->Project->exists($project_id)) {
+		if (! ($project = $this->Project->findById($project_id))) {
 			throw new NotFoundException(__('Invalid project'));
 		}
+
+		$this->set(compact('project'));
+
 	}
 
 	public function save($project_id) {

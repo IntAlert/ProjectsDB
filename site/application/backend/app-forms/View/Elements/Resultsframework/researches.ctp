@@ -33,7 +33,22 @@
 </table>
 
 
-<h2>Research</h2>
+
+
+
+
+<div class="item-list-header clearfix">
+	<h2>Research</h2>
+
+	
+	<md-button class="md-raised" ng-click="showResearchItemDialog()">Add</md-button>
+
+</div>
+
+<div ng-hide="data.record.researches.items.length">
+	None
+</div>
+
 <table ng-show=" data.record.researches.items.length ">
 	<thead>
 		<tr>
@@ -101,5 +116,3 @@
 	</tbody>
 	
 </table>
-
-<md-button class="md-raised" ng-click="showResearchItemDialog()">Add</md-button>

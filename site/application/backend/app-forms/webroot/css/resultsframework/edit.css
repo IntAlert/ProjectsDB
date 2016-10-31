@@ -1,0 +1,58 @@
+.resultsframework h2 {background:none;}
+
+.territories-selector {
+	list-style: none;
+	margin:0;
+	padding:0;
+	color:#333;
+}
+.territories-selector li {
+	float:left;
+	width:17%;
+}
+
+.themes-selector {
+	list-style: none;
+	margin:0;
+	padding:0;
+	color:#333;
+}
+.themes-selector li {
+	float:left;
+	width:45%;
+}
+
+.pathway-selector {
+	color:#333;
+}
+
+.md-toolbar-tools h2 {color: rgba(255,255,255,0.87); background:none;}
+.md-button {color:#333;}
+[role="checkbox"] {color:#333;}
+
+
+
+.resultsframework legend {
+	float: left;
+	width:75%;
+}
+.resultsframework .save-whole-record {
+	float:right;
+}
+
+
+
+.resultsframework .item-list-header {
+	padding:3em 0 0;
+}
+.resultsframework .item-list-header h2 {
+	float: left;
+	width:75%;
+}
+
+
+
+.resultsframework .item-list-header .md-button {
+	float: right;
+	background:#ccc;
+}

@@ -1,4 +1,14 @@
-<h2>Results</h2>
+<div class="item-list-header clearfix">
+	<h2>Results</h2>
+
+	<md-button class="md-raised" ng-click="showResultItemDialog()">Add</md-button>
+
+</div>
+
+<div ng-hide="data.record.results.items.length">
+	None
+</div>
+
 <table ng-show=" data.record.results.items.length ">
 	<thead>
 		<tr>
@@ -66,5 +76,3 @@
 	</tbody>
 	
 </table>
-
-<md-button class="md-raised" ng-click="showResultItemDialog()">Add</md-button>

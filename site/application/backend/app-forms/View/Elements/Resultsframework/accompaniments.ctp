@@ -9,7 +9,19 @@
 
 
 
-<h2>Accompaniments</h2>
+<div class="item-list-header clearfix">
+	<h2>Accompaniments</h2>
+
+	<md-button class="md-raised" ng-click="showAccompanimentItemDialog()">Add Accompaniment</md-button>
+
+</div>
+
+
+<div ng-hide="data.record.accompaniments.items.length">
+	None
+</div>
+
+
 <table ng-show=" data.record.accompaniments.items.length ">
 	<thead>
 		<tr>
@@ -69,5 +81,7 @@
 	
 </table>
 
-<md-button class="md-raised" ng-click="showAccompanimentItemDialog()">Add Accompaniment</md-button>
+
+
+
 

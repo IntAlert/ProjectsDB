@@ -49,7 +49,19 @@
 
 
 
-<h2>Advocacy and Outreach</h2>
+
+<div class="item-list-header clearfix">
+	<h2>Advocacy and Outreach</h2>
+
+	<md-button class="md-raised" ng-click="showAdvocacyItemDialog()">Add Advocacy/Outreach</md-button>
+
+</div>
+
+<div ng-hide="data.record.advocacies.items.length">
+	None
+</div>
+
+
 <table ng-show=" data.record.advocacies.items.length ">
 	<thead>
 		<tr>
@@ -138,6 +150,6 @@
 	
 </table>
 
-<md-button class="md-raised" ng-click="showAdvocacyItemDialog()">Add Advocacy/Outreach</md-button>
+
 
 

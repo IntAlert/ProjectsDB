@@ -1,19 +1,28 @@
 <?php // echo $this->Html->script('travelapplications/add', array('inline' => false)); ?>
 
-<?php echo $this->Html->css('resultsframework/add', array('inline' => false)); ?>
+<?php echo $this->Html->css('resultsframework/edit', array('inline' => false)); ?>
 
 <div class="resultsframework form" ng-app="resultsframework">
 	
 	<form ng-controller="ResultsframeworkController">
 
-		<md-button 
-			class="md-raised" 
-			ng-click="save()">
-			Save Whole Record
-		</md-button>
+
+		
 	
 	<fieldset>
-		<legend><?php echo __('Results for Project LOREM IPSUM'); ?></legend>
+
+		<div class="header clearfix">
+			
+		
+			<legend><?php echo __('Results for ' . $project['Project']['title']); ?></legend>
+
+			<md-button 
+				class="md-raised md-primary save-whole-record" 
+				ng-click="save()">
+					Save Whole Record
+			</md-button>
+
+		</div>
 
 		<div ng-cloak>
 		  <md-content>
