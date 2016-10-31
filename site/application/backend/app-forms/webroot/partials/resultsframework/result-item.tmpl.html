@@ -20,11 +20,12 @@
 
 			<div flex="50">
 				<!-- Date -->
-				<md-datepicker 
+				{{data.result.date}}
+				<date-string-selector
 					required
 					ng-model="data.result.date" 
 					md-placeholder="Enter date">
-				</md-datepicker>
+				</date-string-selector>
 			</div>
 		
 			
@@ -46,15 +47,15 @@
 		</div>
 
 		<div layout="row"><h3>Strategic Pathway</h3></div>
+		
+		
+
 		<div layout="row" class="pathway-selector">
-			<md-radio-group required ng-model="data.result.pathway">
-		      <md-radio-button 
-		      	ng-repeat="pathway in FormOptions.pathways"
-		      	ng-value="pathway" 
-		      	class="md-primary">
-		      		{{pathway.Pathway.name}}
-		      </md-radio-button>
-		    </md-radio-group>
+			<strategic-pathway-selector 
+				pathways="FormOptions.pathways" 
+				ng-model="data.result.pathway">
+
+			</strategic-pathway-selector>
 
 		</div>
 
@@ -73,8 +74,6 @@
 				</li>
 			</ul>
 		</div>
-		
-		<pre>{{data.result | json}}</pre>
 
 	</md-dialog-content>
 

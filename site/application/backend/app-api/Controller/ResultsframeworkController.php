@@ -15,7 +15,7 @@ class ResultsframeworkController extends AppController {
 	public function view($project_id) {
 		// check if project exists
 		if (!$this->Project->exists($project_id)) {
-			throw new NotFoundException(__('Invalid project'));
+			throw new NotFoundException(__('Invalid project: ' . $project_id));
 		}
 
 		// get any data that exists for this project

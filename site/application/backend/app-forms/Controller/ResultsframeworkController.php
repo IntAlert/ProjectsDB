@@ -29,7 +29,7 @@ class ResultsframeworkController extends AppController {
 		}
 
 		// save submitted data
-		$this->request->data['project_id'] = 160;
+		$this->request->data['project_id'] = $project_id;
 		$this->ResultsFramework->save($this->request->data);
 	}
 

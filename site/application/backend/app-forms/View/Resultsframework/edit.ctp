@@ -131,6 +131,10 @@
 
 
 <?php echo $this->Html->script('resultsframework/app'); ?>
+<?php echo $this->Html->script('shared/services/NonInteractiveDialogService'); ?>
+<?php echo $this->Html->script('shared/directives/StrategicPathwaySelector'); ?>
+<?php echo $this->Html->script('shared/directives/DateStringSelector'); ?>
+
 <?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResultsFrameworkService'); ?>
 <?php echo $this->Html->script('resultsframework/services/FormOptionsService'); ?>
@@ -143,6 +147,7 @@
 <?php echo $this->Html->script('resultsframework/controllers/dialogues'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/accompaniments'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/advocacies'); ?>
+
 
 
 <style type="text/css">/*pre {display: none}*/</style>

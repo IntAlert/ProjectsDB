@@ -44,17 +44,24 @@ app.factory('ResultsFrameworkService', function($http) {
 		}
 	}
 
+	// selected Project Id
+	var project_id = null;
+
+
+	// Build instance to return
 	var instance = {
 		record: {}
 	}
 
 	instance.save = function() {
-		var project_id = 160;
 		// NB. saving goes via /forms not /api
 		return $http.post('/forms/resultsframework/save/' + project_id, instance.record)
 	};
 
-	instance.get = function(project_id) {
+	instance.load = function(a_project_id) {
+
+		project_id = a_project_id;
+
 		// NB. saving goes via /api not /forms
 		return $http.get('/api/resultsframework/view/' + project_id)
 			.then(function(response){
