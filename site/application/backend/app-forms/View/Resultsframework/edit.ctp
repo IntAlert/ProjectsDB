@@ -142,12 +142,12 @@
 <?php echo $this->Html->script('resultsframework/app'); ?>
 <?php echo $this->Html->script('shared/services/NonInteractiveDialogService'); ?>
 <?php echo $this->Html->script('shared/directives/StrategicPathwaySelector'); ?>
-<?php echo $this->Html->script('shared/directives/DateStringSelector'); ?>
+<?php echo $this->Html->script('shared/directives/dateStringSelector'); ?>
 
 <?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResultsFrameworkService'); ?>
 <?php echo $this->Html->script('resultsframework/services/FormOptionsService'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/ResultsFramework'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/Resultsframework'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/geography'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/themes'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/researches'); ?>
