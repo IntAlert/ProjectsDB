@@ -64,7 +64,7 @@ if ( !isset($title) ) {
 
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 
 	<script type="text/javascript" src="/pdb/js/lib/datamaps.world.min.js"></script>
 
@@ -125,21 +125,32 @@ if ( !isset($title) ) {
 
 	<div id="container">
 
-		<nav class="main">
+		<nav class="main clearfix">
 
+			<div class="clearfix">
+				<div class="logo-container">
+					<img src="/pdb/img/logo-slogan-landscape.png" height="80" class="logo">
+				</div>
+
+
+				<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
+		
+				<div id="search-shortcut" class="clearfix">
+					<form action="/pdb/projects" method="get">
+
+						<input type="hidden" name="action" value="search">
+
+						<input type="text" name="q" placeholder="Search PROMPT projects" class="contracted search-autocomplete">
+
+					</form>
+				</div>
+
+				<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
+				
+			</div>
 
 <?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
 	
-			<div id="search-shortcut" class="clearfix">
-				<form action="/pdb/projects" method="get">
-
-					<input type="hidden" name="action" value="search">
-
-					<input type="text" name="q" placeholder="Search PROMPT projects" class="contracted search-autocomplete">
-
-				</form>
-			</div>
-
 
 			<ul>
 

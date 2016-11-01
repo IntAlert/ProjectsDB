@@ -31,7 +31,7 @@ class User extends AppModel {
         $role = $this->Role->find('first', array(
             'contain' => 'User',
             'conditions' => array(
-                'Role.name' => $role_name, // budget holder
+                'Role.short_name' => $role_name, // budget holder
             )
         ));
 

@@ -59,6 +59,17 @@ var data = <?php echo json_encode($project); ?>;
 			
 		</li>
 
+		<li>
+			<a 
+				href="/forms/resultsframework/edit/<?php echo $project['Project']['id']; ?>" 
+				target="_blank"
+				class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+				role="button">
+				Results Framework
+			</a>
+
+		</li>
+
 	</ul>
 </nav>
 

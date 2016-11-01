@@ -1,4 +1,4 @@
-body {background:#fff; font-size: 85%;}
+body {background:#fff; color:#333; font-size: 85%;}
 #container {min-width: 1120px;}
 
 nav {padding:1.5em 1em 0;}
@@ -12,6 +12,7 @@ nav ul li a {
 	border-radius: 1px 1px 0 0;
 }
 
+h2 {background: none;}
 h4 {color:#000; font-weight: bold; }
 
 nav.main {
@@ -74,6 +75,9 @@ pre {
  white-space: -o-pre-wrap;    /* Opera 7 */
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+
+.logo-container {float:left;}
+#search-shortcut {float: right;}
 
 #search-shortcut form {
 	float: right;
