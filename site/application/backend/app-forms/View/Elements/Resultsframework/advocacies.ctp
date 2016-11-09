@@ -36,7 +36,7 @@
 		<th>Participant Types</th>
 		<td>
 			<span ng-repeat="participant_type in data.record.advocacies.totals.participant_types">
-					{{participant_type.name}}{{$last ? '' : ', '}}
+					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.record.advocacies.totals.participant_types.length ">
 				none

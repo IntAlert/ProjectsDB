@@ -1,32 +1,14 @@
 app.factory('FormOptions', function($http) {
   var formOptionsInstance = {
-	participant_types: [
-		{name:"Youth groups"},
-		{name:"Women's groups"},
-		{name:"Local community groups"},
-		{name:"Diaspora communities"},
-		{name:"Refugee/ displaced communities"},
-		{name:"Local NGO"},
-		{name:"INGO"},
-		{name:"IGO"},
-		{name:"National Business"},
-		{name:"Int'l Business"},
-		{name:"Donors"},
-		{name:"National Govt"},
-		{name:"Sub-National Govt"},
-		{name:"MPs/political parties"},
-		{name:"Non-state armed groups"},
-		{name:"Media"},
-		{name:"Academic Institutions"},
-		{name:"Think Tanks"}
-	],
-  	results: {
-  		impacts: [
-  			{"name": "Changed knowledge and attitudes"},
-  			{"name": "Changed behaviours and processes"},
-  			{"name": "Changed conditions"}
-  		]
-  	}
+	participant_types: [],
+	impacts: [],
+  	// results: {
+  	// 	impacts: [
+  	// 		{"name": "Changed knowledge and attitudes"},
+  	// 		{"name": "Changed behaviours and processes"},
+  	// 		{"name": "Changed conditions"}
+  	// 	]
+  	// }
   };
 
 
@@ -60,6 +42,23 @@ app.factory('FormOptions', function($http) {
 			formOptionsInstance.pathways = response.data;
 		}, function(){
 			alert("pathways download error")
+		});
+
+
+	// All participant types
+	$http.get('/api/participant_types/all.json')
+		.then(function(response){
+			formOptionsInstance.participant_types = response.data.data;
+		}, function(){
+			alert("participant_types download error")
+		});
+
+	// All participant types
+	$http.get('/api/impacts/all.json')
+		.then(function(response){
+			formOptionsInstance.impacts = response.data.data;
+		}, function(){
+			alert("participant_types download error")
 		});
   
 

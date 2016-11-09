@@ -4,6 +4,8 @@ App::uses('HttpSocket', 'Network/Http');
 App::import('Vendor', 'Office365/Office365AuthAPI');
 App::import('Vendor', 'Office365/Office365SharepointAPI');
 App::import('Vendor', 'Office365/Office365UserAPI');
+App::import('Vendor', 'Office365/Office365PowerBIAPI');
+
 
 
 #App::import('Vendor', 'OAuth/OAuthClient');
@@ -63,6 +65,18 @@ class Office365usersController extends AppController {
         $user = $this->Office365user->getOrCreate($o365_user_response, array('budget-holder'));
 
         $this->Office365user->updateGraphTokens($user['Office365user']['user_id'], $tokens);
+
+
+        //
+        // GET ACCESS TO POWERBI
+        //
+        // $powerbi = new Office365PowerBIAPI();
+
+        // $tokens = $powerbi->getAccessTokens($tokens['refresh_token']);
+
+        // var_dump($tokens);
+        // die();
+
 
         //
         // GET ACCESS TO SHAREPOINT

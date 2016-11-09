@@ -24,7 +24,7 @@
 			<span ng-repeat="territory in data.record.researches.totals.countries">
 					{{territory.Territory.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.researches.totals.countries.length ">
+			<span ng-if=" !data.record.researches.totals.countries.length ">
 				none
 			</span>
 		</td>

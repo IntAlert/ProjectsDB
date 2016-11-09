@@ -43,7 +43,7 @@
 		<th>What kinds of groups or entities were involved in the dialogue processes?</th>
 		<td>
 			<span ng-repeat="participant_type in data.record.dialogues.totals.participant_types_process">
-					{{participant_type.name}}{{$last ? '' : ', '}}
+					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.dialogues.totals.participant_types_process.length ">
 				none
@@ -68,7 +68,7 @@
 		<th>Kinds of participants / groups involved in dialogue meetings?</th>
 		<td>
 			<span ng-repeat="participant_type in data.record.dialogues.totals.participant_types_meeting">
-					{{participant_type.name}}{{$last ? '' : ', '}}
+					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.dialogues.totals.participant_types_meeting.length ">
 				none
@@ -170,7 +170,7 @@
 
 			<td>
 				<span ng-repeat="participant_type in dialogue.participant_types">
-					{{participant_type.name}}{{$last ? '' : ', '}}
+					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
 				</span>
 				<span ng-if=" !dialogue.participant_types.length ">
 					none
@@ -301,7 +301,7 @@
 
 			<td>
 				<span ng-repeat="participant_type in dialogue.participant_types">
-					{{participant_type.name}}{{$last ? '' : ', '}}
+					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
 				</span>
 				<span ng-if=" !dialogue.participant_types.length ">
 					none

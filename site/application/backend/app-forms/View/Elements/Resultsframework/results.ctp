@@ -54,7 +54,7 @@
 
 			<td>
 				<span ng-repeat="impact in result.impacts">
-					{{impact.name}}{{$last ? '' : ', '}}
+					{{impact.Impact.name}}{{$last ? '' : ', '}}
 				</span>
 			</td>
 			<td>
