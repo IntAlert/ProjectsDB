@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 /**
  * Accompaniment Model
  *
+ * @property Project $Project
+ * @property ParticipantCounts $ParticipantCounts
  * @property ParticipantType $ParticipantType
  */
 class Accompaniment extends AppModel {
@@ -16,6 +18,43 @@ class Accompaniment extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Project' => array(
+			'className' => 'Project',
+			'foreignKey' => 'project_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'ParticipantCount' => array(
+			'className' => 'ParticipantCount',
+			'foreignKey' => 'accompaniment_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 
 /**
  * hasAndBelongsToMany associations

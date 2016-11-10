@@ -52,4 +52,14 @@ class Process extends AppModel {
 		)
 	);
 
+	public $belongsTo = array(
+		'Project' => array(
+			'className' => 'Project',
+			'foreignKey' => 'project_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
 }
