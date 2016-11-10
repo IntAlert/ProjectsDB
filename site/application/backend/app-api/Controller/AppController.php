@@ -41,9 +41,9 @@ class AppController extends Controller {
 	public $components = array(
 		// 'RequestHandler',
 		'Session',
-		'Auth' => array(
-	        'authorize' => array('Controller'), // Added this line
-	    ),
+		// 'Auth' => array(
+	 //        'authorize' => array('controller'), // Added this line
+	 //    ),
 
 	);
 
@@ -55,14 +55,12 @@ class AppController extends Controller {
 	protected function _insistPost() {
 		if (!$this->request->is('post')) {
 			throw new ValidationException("You must use POST", 405);
-			
 		}
 	}
 
 	protected function _insistGet() {
 		if (!$this->request->is('get')) {
 			throw new ValidationException("You must use GET", 405);
-			
 		}
 	}
 
@@ -94,6 +92,7 @@ class AppController extends Controller {
 
 	// callbacks
     public function beforeFilter() {
+
 		parent::beforeFilter();
 	}
 
@@ -103,9 +102,8 @@ class AppController extends Controller {
 	}
 
 	public function isAuthorized($user) {
-		
 		// if logged in, you can access whole API unless overridden
-		return !!$this->Auth->user('id');
+		return true; //!!$this->Auth->user('id');
 	}
 
 	public function redirect($url, $status = null, $exit = true) {
