@@ -52,6 +52,28 @@ class Advocacy extends AppModel {
 		)
 	);
 
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'AdvocacyParticipantCount' => array(
+			'className' => 'AdvocacyParticipantCount',
+			'foreignKey' => 'advocacy_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 	public $belongsTo = array(
 		'Project' => array(
 			'className' => 'Project',

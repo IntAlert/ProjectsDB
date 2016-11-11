@@ -14,13 +14,13 @@
 				<!-- Title -->
 				<md-input-container>
 					<label>Title</label>
-					<input ng-model="data.result.title" required>
+					<input ng-model="data.Result.title" required>
 				</md-input-container>
 			</div>
 
 			<div flex="50">
 				<!-- Date -->
-				<date-string-selector ng-model="data.result.date" /> 
+				<date-string-selector ng-model="data.Result.date" /> 
 			</div>
 		
 			
@@ -32,7 +32,7 @@
 					<textarea 
 						width="100%"
 						required
-						ng-model="data.result.narrative" 
+						ng-model="data.Result.narrative" 
 						md-minlength="20" 
 						md-maxlength="250" 
 						rows="5"></textarea>
@@ -48,7 +48,7 @@
 		<div layout="row" class="pathway-selector">
 			<strategic-pathway-selector 
 				pathways="FormOptions.pathways" 
-				ng-model="data.result.pathway">
+				ng-model="data.Pathway">
 
 			</strategic-pathway-selector>
 
@@ -60,8 +60,9 @@
 				<li ng-repeat="impact in FormOptions.impacts">
 					
 					<md-checkbox 
-						checklist-model="data.result.impacts" 
-						checklist-value="impact"
+						checklist-model="data.Impact" 
+						checklist-value="impact.Impact"
+						checklist-comparator=".id"
 					>
 			            {{impact.Impact.name}}
 					</md-checkbox>
@@ -79,8 +80,8 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="resultItemForm.$valid && data.result.impacts.length "
-	  	ng-click="save(data.result)" 
+	  	ng-show="resultItemForm.$valid && data.Impact.length "
+	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
 	  </md-button>

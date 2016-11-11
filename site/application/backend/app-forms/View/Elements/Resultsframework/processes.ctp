@@ -37,7 +37,7 @@
 		<th>What kinds of groups or entities were involved in the dialogue processes?</th>
 		<td>
 			<span ng-repeat="participant_type in data.totals.participant_types">
-					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
+					{{participant_type.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.totals.participant_types.length ">
 				none
@@ -48,9 +48,8 @@
 	<tr>
 		<th>Topics in dialogue processes?</th>
 		<td>
-			<strong>DO NOT RECORD???</strong>
 			<span ng-repeat="theme in data.totals.themes">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+					{{theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.totals.themes.length ">
 				none

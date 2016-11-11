@@ -6,9 +6,9 @@ App::uses('AppModel', 'Model');
  * @property ParticipantType $ParticipantType
  * @property Theme $Theme
  */
-class ParticipantCount extends AppModel {
+class AdvocacyParticipantCount extends AppModel {
 
-	var $useTable = 'accompaniments_participant_types';
+	var $useTable = 'advocacies_participant_types';
 
 	function deleteCounts($accompaniment_id) {
 		return $this->deleteAll(compact('accompaniment_id'));

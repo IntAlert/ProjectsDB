@@ -16,14 +16,14 @@
 				<!-- Title -->
 				<md-input-container>
 					<label>Title</label>
-					<input ng-model="data.advocacy.title" required>
+					<input ng-model="data.Advocacy.title" required>
 				</md-input-container>
 			</div>
 
 
 			<div flex="50">
 				<!-- Date -->
-				<date-string-selector ng-model="data.advocacy.date" /> 
+				<date-string-selector ng-model="data.Advocacy.date" /> 
 			</div>
 
 
@@ -35,7 +35,7 @@
 						required
 						type="number"
 						min="0"
-						ng-model="data.advocacy.male_count"
+						ng-model="data.Advocacy.male_count"
 						>
 				</md-input-container>
 			</div>
@@ -49,7 +49,7 @@
 						required
 						type="number"
 						min="0"
-						ng-model="data.advocacy.female_count"
+						ng-model="data.Advocacy.female_count"
 						>
 				</md-input-container>
 			</div>
@@ -59,14 +59,14 @@
   
 			<div 
 				flex="50" 
-				ng-repeat="participation_type in FormOptions.participant_types">
+				ng-repeat="(i, participant_type) in FormOptions.participant_types">
 				<!-- Participation Types -->
 				<md-input-container class="md-block">
-					<label>Number of {{participation_type.name}}</label>
+					<label>Number of {{participant_type.ParticipantType.name}}</label>
 					<input 
 						type="number"
 						min="0"
-						ng-model="data.advocacy.participant_types[participation_type.name]"
+						ng-model="data.ParticipantType[participant_type.ParticipantType.id]"
 						>
 				</md-input-container>
 			</div>
@@ -78,8 +78,9 @@
 				<li ng-repeat="theme in FormOptions.themes">
 					
 					<md-checkbox 
-						checklist-model="data.advocacy.themes" 
-						checklist-value="theme"
+						checklist-model="data.Theme" 
+						checklist-value="theme.Theme"
+						checklist-comparator=".id"
 					>
 			            {{theme.Theme.name}}
 					</md-checkbox>
@@ -90,7 +91,7 @@
 	
 
 		
-		<!-- <pre>{{data.advocacy | json}}</pre> -->
+		<!-- <pre>{{data | json}}</pre> -->
 
 	</md-dialog-content>
 
@@ -102,8 +103,8 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="advocacyItemForm.$valid && data.advocacy.themes.length"
-	  	ng-click="save(data.advocacy)" 
+	  	ng-show="advocacyItemForm.$valid && data.Theme.length"
+	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
 	  </md-button>

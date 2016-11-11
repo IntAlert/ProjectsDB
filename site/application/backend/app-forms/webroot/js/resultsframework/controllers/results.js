@@ -1,18 +1,18 @@
 
-app.controller('ResultsController', function($scope, $mdDialog, ResultsFrameworkService){
+app.controller('ResultsController', function($scope, $mdDialog, ResultsService){
 
-	$scope.data = ResultsFrameworkService
+	$scope.data = ResultsService
 
-	$scope.removeResultItem = function(i) {
+	$scope.removeResultItem = function(id) {
 		if (confirm("Are you sure you want to remove this result?")) {
-			$scope.data.record.results.items.splice(i,1)
+			ResultsService.delete(id)
 		}
 	}
 
 	$scope.showResultItemDialog = function(i) {
 
 		// add or edit
-		var resultToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.results.items[i]
+		var resultToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.items[i]
 
 	    $mdDialog.show({
 	      controller: ResultItemController,
@@ -21,18 +21,16 @@ app.controller('ResultsController', function($scope, $mdDialog, ResultsFramework
 	      // targetEvent: ev,
 	      clickOutsideToClose: true,
 	      locals: {
-	      	data: {
-		      	result: resultToEdit	
-	      	}
+	      	data: resultToEdit
 	      }
 	    }).then(function(result) {
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.record.results.items.push(result)
+				ResultsService.create(result)
 	    	} else {
 	    		// edit
-	    		$scope.data.record.results.items[i] = result	
+	    		ResultsService.update(result)
 	    	}
 			
 

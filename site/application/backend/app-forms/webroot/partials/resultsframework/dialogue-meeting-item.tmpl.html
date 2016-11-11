@@ -1,8 +1,8 @@
-<md-dialog layout-padding ng-cloak ng-form="dialogueProcessItemForm">
+<md-dialog layout-padding ng-cloak ng-form="dialogueMeetingItemForm">
 
 	<md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Edit Dialogue Process</h2>
+        <h2>Edit Dialogue Meeting</h2>
       </div>
     </md-toolbar>
 
@@ -13,22 +13,27 @@
 				<!-- Title -->
 				<md-input-container>
 					<label>Title</label>
-					<input ng-model="data.dialogue.title" required>
+					<input ng-model="data.Meeting.title" required>
 				</md-input-container>
 			</div>
 
 			<div flex="50">
 				<!-- Date -->
-				<date-string-selector ng-model="data.dialogue.date" /> 
+				<date-string-selector ng-model="data.Meeting.date" /> 
 
 			</div>
-
+		
 
 			<div flex="50">
 				<!-- Session Count -->
 				<md-input-container>
 					<label>Number of Sessions</label>
-					<input type="number" min="0" ng-model="data.dialogue.session_count" required>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.Meeting.session_count"
+						required>
 				</md-input-container>
 			</div>
 
@@ -36,7 +41,12 @@
 				<!-- Male Count -->
 				<md-input-container>
 					<label>Number of Males</label>
-					<input type="number" min="0" ng-model="data.dialogue.male_count" required>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.Meeting.male_count"
+						required>
 				</md-input-container>
 			</div>
 
@@ -44,7 +54,12 @@
 				<!-- Female Count -->
 				<md-input-container>
 					<label>Number of Females</label>
-					<input type="number" min="0" ng-model="data.dialogue.female_count" required>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.Meeting.female_count"
+						required>
 				</md-input-container>
 			</div>
 
@@ -52,7 +67,12 @@
 				<!-- Male Count (Trauma) -->
 				<md-input-container>
 					<label>Number of Males (Trauma-councelled)</label>
-					<input type="number" min="0" ng-model="data.dialogue.male_trauma_count" required>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.Meeting.male_trauma_count"
+						required>
 				</md-input-container>
 			</div>
 
@@ -60,7 +80,11 @@
 				<!-- Female Count (Trauma) -->
 				<md-input-container>
 					<label>Number of Females (Trauma-councelled)</label>
-					<input type="number" min="0" ng-model="data.dialogue.female_trauma_count" required>
+					<input 
+						number-string type="number" 
+						min="0" 
+						ng-model="data.Meeting.female_trauma_count" 
+						required>
 				</md-input-container>
 			</div>
 		</div>
@@ -71,8 +95,9 @@
 				<li ng-repeat="theme in FormOptions.themes">
 					
 					<md-checkbox 
-						checklist-model="data.dialogue.themes" 
-						checklist-value="theme"
+						checklist-model="data.Theme" 
+						checklist-value="theme.Theme"
+						checklist-comparator=".id"
 					>
 			            {{theme.Theme.name}}
 					</md-checkbox>
@@ -87,8 +112,9 @@
 				<li ng-repeat="participant_type in FormOptions.participant_types">
 					
 					<md-checkbox 
-						checklist-model="data.dialogue.participant_types" 
-						checklist-value="participant_type"
+						checklist-model="data.ParticipantType" 
+						checklist-value="participant_type.ParticipantType"
+						checklist-comparator=".id"
 					>
 			            {{participant_type.ParticipantType.name}}
 					</md-checkbox>
@@ -101,7 +127,7 @@
 		<div layout="row">
 
 			<md-checkbox 
-				ng-model="data.dialogue.conflict_resolution" 
+				ng-model="data.Meeting.conflict_resolution" 
 			>
 	            Please tick this box if the dialogue seek to resolve a specific conflict issue between groups or entities
 			</md-checkbox>
@@ -109,7 +135,7 @@
 		</div>
 
 		
-		<!-- <pre>{{data.dialogue | json}}</pre> -->
+		<!-- <pre>{{data.Meeting | json}}</pre> -->
 
 	</md-dialog-content>
 
@@ -120,8 +146,8 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="dialogueProcessItemForm.$valid && data.dialogue.themes.length && data.dialogue.participant_types.length"
-	  	ng-click="save(data.dialogue)" 
+	  	ng-show="dialogueMeetingItemForm.$valid && data.Theme.length && data.ParticipantType.length"
+	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
 	  </md-button>

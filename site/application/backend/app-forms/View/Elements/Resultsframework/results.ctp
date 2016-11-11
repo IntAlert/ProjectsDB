@@ -5,11 +5,11 @@
 
 </div>
 
-<div ng-hide="data.record.results.items.length">
+<div ng-hide="data.items.length">
 	None
 </div>
 
-<table ng-show=" data.record.results.items.length ">
+<table ng-show=" data.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -35,26 +35,26 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, result) in data.record.results.items">
+		<tr ng-repeat="(i, result) in data.items">
 			<td>
-				{{result.title}}
+				{{result.Result.title}}
 			</td>
 
 			<td>
-				{{result.date | date:'dd/MM/yyyy'}}
+				{{result.Result.date | date:'dd/MM/yyyy'}}
 			</td>
 			
 			<td>
-				{{result.narrative}}
+				{{result.Result.narrative}}
 			</td>
 
 			<td>
-				{{result.pathway.Pathway.name}}
+				{{result.Pathway.name}}
 			</td>
 
 			<td>
-				<span ng-repeat="impact in result.impacts">
-					{{impact.Impact.name}}{{$last ? '' : ', '}}
+				<span ng-repeat="impact in result.Impact">
+					{{impact.name}}{{$last ? '' : ', '}}
 				</span>
 			</td>
 			<td>
@@ -67,7 +67,7 @@
 
 				<md-button 
 					class="md-raised" 
-					ng-click="removeResultItem(i)">
+					ng-click="removeResultItem(result.Result.id)">
 					Remove
 				</md-button>
 

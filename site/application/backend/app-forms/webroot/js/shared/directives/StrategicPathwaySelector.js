@@ -15,14 +15,14 @@ app.directive('strategicPathwaySelector',
 					$scope.pathways.map(function(p){
 
 						if (p.Pathway.id == $scope.selectedPathwayId)
-							$scope.ngModel = p;
+							$scope.ngModel = p.Pathway;
 					})
 
 				};
 
 				$scope.$watch('ngModel', function(){
 					if($scope.ngModel) {
-						$scope.selectedPathwayId = $scope.ngModel.Pathway.id;
+						$scope.selectedPathwayId = $scope.ngModel.id;
 					}
 					
 				})

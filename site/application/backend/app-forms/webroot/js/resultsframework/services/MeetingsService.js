@@ -24,8 +24,6 @@ app.factory('MeetingsService', function($http, DedupeService) {
 				
 				updateTotals()
 
-				console.log(instance)
-
 			}, function(){
 				alert("meetings download error")
 			});
@@ -85,33 +83,44 @@ app.factory('MeetingsService', function($http, DedupeService) {
 
 	}
 
+
 	function updateTotals() {
 
 		var totals = {
-			'event_count': 0,
-			'male_count': 0,
-			'female_count': 0
+			male_count: 0,
+			female_count: 0,
+			meeting_count: 0,
+			male_trauma_count: 0,
+			female_trauma_count: 0,
+			conflict_resolution: false
 		}
 
 		var themes = []
 		var participant_types = []
 
+		// loop through all meeting items
 		angular.forEach(instance.items, function(item) {
-			this.event_count++
-  			this.male_count += Number(item.Meeting.male_count)
-  			this.female_count += Number(item.Meeting.female_count)
 
-  			themes = themes.concat(item.Theme)
+			totals.male_count += item.male_count
+			totals.female_count += item.female_count
+			totals.female_trauma_count += item.female_trauma_count
+			totals.male_trauma_count += item.male_trauma_count
+			totals.meeting_count++
+			totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
+
+			themes = themes.concat(item.Theme)
   			participant_types = participant_types.concat(item.ParticipantType)
 
-		}, totals);
+		});
+
+
 
 		totals.themes = DedupeService.themes(themes)
 		totals.participant_types = DedupeService.participantTypes(participant_types)
 
-
 		instance.totals = totals;
 	}
+
 
   return instance
 

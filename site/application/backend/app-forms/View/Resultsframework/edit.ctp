@@ -16,12 +16,6 @@
 		
 			<legend><?php echo __('Results for ' . $project['Project']['title']); ?></legend>
 
-			<md-button 
-				class="md-raised md-primary save-whole-record" 
-				ng-click="save()">
-					Save Whole Record
-			</md-button>
-
 		</div>
 
 		<div ng-cloak>
@@ -79,18 +73,18 @@
 		      </md-tab>
 
 		    <!-- MEETINGS -->
-		      <!-- <md-tab label="MEETINGS">
+		      <md-tab label="MEETINGS">
 		        <md-content 
 		        	class="md-padding" 
 		        	ng-controller="MeetingsController"
 		        	ng-form="meetingForm">
 
-		        <?php //echo $this->element('Resultsframework/meetings'); ?>
+		        <?php echo $this->element('Resultsframework/meetings'); ?>
 		        </md-content>
-		      </md-tab> -->
+		      </md-tab>
 
 		    <!-- PROCESSES -->
-		      <md-tab label="PROCESSES">
+		      <md-tab label="DIALOGUE PROCESSES">
 		        <md-content 
 		        	class="md-padding" 
 		        	ng-controller="ProcessesController"
@@ -163,10 +157,13 @@
 
 
 <?php echo $this->Html->script('resultsframework/services/TrainingsService'); ?>
-
 <?php echo $this->Html->script('resultsframework/services/ResearchesService'); ?>
 <?php echo $this->Html->script('resultsframework/services/MeetingsService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ProcessesService'); ?>
+<?php echo $this->Html->script('resultsframework/services/ResultsService'); ?>
+<?php echo $this->Html->script('resultsframework/services/AdvocaciesService'); ?>
+<?php //echo $this->Html->script('resultsframework/services/AccommpanimentsService'); ?>
+
 
 <?php echo $this->Html->script('resultsframework/controllers/Resultsframework'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/geography'); ?>
@@ -174,7 +171,7 @@
 <?php echo $this->Html->script('resultsframework/controllers/researches'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/results'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/trainings'); ?>
-<?php //echo $this->Html->script('resultsframework/controllers/meetings'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/meetings'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/processes'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/accompaniments'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/advocacies'); ?>

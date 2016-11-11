@@ -4,18 +4,18 @@
 	<tr>
 		<th>How many male participants in public advocacy meetings</th>
 		<td>
-			{{data.record.advocacies.totals.female_count || 0}}
+			{{data.totals.female_count || 0}}
 		</td>
 	</tr>
 
 	<tr>
 		<th>How many female participants in public advocacy meetings</th>
 		<td>
-			{{data.record.advocacies.totals.male_count || 0}}
+			{{data.totals.male_count || 0}}
 		</td>
 	</tr>
 
-	<tr ng-repeat="(participant_type, count) in data.record.advocacies.totals.participant_types">
+	<tr ng-repeat="(participant_type, count) in data.totals.participant_types">
 		<th>{{participant_type}}</th>
 		<td>{{count || 0}}</td>
 	</tr>
@@ -23,10 +23,10 @@
 	<tr>
 		<th>Topics</th>
 		<td>
-			<span ng-repeat="theme in data.record.advocacies.totals.themes">
+			<span ng-repeat="theme in data.totals.Theme">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.advocacies.totals.themes.length ">
+			<span ng-if=" !data.totals.themes.length ">
 				none
 			</span>
 		</td>
@@ -35,10 +35,10 @@
 	<!-- <tr>
 		<th>Participant Types</th>
 		<td>
-			<span ng-repeat="participant_type in data.record.advocacies.totals.participant_types">
+			<span ng-repeat="participant_type in data.totals.participant_types">
 					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.record.advocacies.totals.participant_types.length ">
+			<span ng-if=" !data.totals.participant_types.length ">
 				none
 			</span>
 		</td>
@@ -57,12 +57,12 @@
 
 </div>
 
-<div ng-hide="data.record.advocacies.items.length">
+<div ng-hide="data.items.length">
 	None
 </div>
 
 
-<table ng-show=" data.record.advocacies.items.length ">
+<table ng-show=" data.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -93,13 +93,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, advocacy) in data.record.advocacies.items">
+		<tr ng-repeat="(i, advocacy) in data.items">
 			<td>
-				{{advocacy.title}}
+				{{advocacy.Advocacy.title}}
 			</td>
 
 			<td>
-				{{advocacy.date | date:'dd/MM/yyyy'}}
+				{{advocacy.Advocacy.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>
@@ -112,18 +112,18 @@
 			</td>
 
 			<td>
-				{{advocacy.male_count}}
+				{{advocacy.Advocacy.male_count}}
 			</td>
 
 			<td>
-				{{advocacy.female_count}}
+				{{advocacy.Advocacy.female_count}}
 			</td>
 
 			<td>
-				<span ng-repeat="theme in advocacy.themes">
+				<span ng-repeat="theme in advocacy.Theme">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 				</span>
-				<span ng-if=" !advocacy.themes.length ">
+				<span ng-if=" !advocacy.Theme.length ">
 					none
 				</span>
 			</td>
@@ -140,7 +140,7 @@
 
 				<md-button 
 					class="md-raised" 
-					ng-click="removeAdvocacyItem(i)">
+					ng-click="removeAdvocacyItem(advocacy.Advocacy.id)">
 					Remove
 				</md-button>
 

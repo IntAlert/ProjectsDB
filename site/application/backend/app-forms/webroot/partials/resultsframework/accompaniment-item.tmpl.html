@@ -28,14 +28,14 @@
   
 			<div 
 				flex="50" 
-				ng-repeat="participation_type in FormOptions.participant_types">
+				ng-repeat="participant_type in FormOptions.participant_types">
 				<!-- Participation Types -->
 				<md-input-container class="md-block">
-					<label>Number of {{participation_type.name}}</label>
+					<label>Number of {{participant_type.name}}</label>
 					<input 
 						type="number"
 						min="0"
-						ng-model="data.accompaniment.participant_types[participation_type.name]"
+						ng-model="data.accompaniment.participant_types[participant_type.name]"
 						>
 				</md-input-container>
 			</div>
