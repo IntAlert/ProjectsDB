@@ -2,25 +2,25 @@
 <table>
 	<tr>
 		<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
-		<td>{{data.record.trainings.totals.event_count || 0}}</td>
+		<td>{{data.totals.event_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>How many male participants took part?</th>
-		<td>{{data.record.trainings.totals.male_count || 0}}</td>
+		<td>{{data.totals.male_count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>How many female participants took part?</th>
-		<td>{{data.record.trainings.totals.female_count || 0}}</td>
+		<td>{{data.totals.female_count || 0}}</td>
 	</tr>
 	<tr>
 		<th>Themes</th>
 		<td>
-			<span ng-repeat="theme in data.record.trainings.totals.themes">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			<span ng-repeat="theme in data.totals.themes">
+					{{theme.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.trainings.totals.themes.length ">
+			<span ng-if=" !data.totals.themes.length ">
 				none
 			</span>
 		</td>
@@ -29,10 +29,10 @@
 	<tr>
 		<th>Participant Types</th>
 		<td>
-			<span ng-repeat="participant_type in data.record.trainings.totals.participant_types">
-					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
+			<span ng-repeat="participant_type in data.totals.participant_types">
+					{{participant_type.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.trainings.totals.participant_types.length ">
+			<span ng-if=" !data.totals.participant_types.length ">
 				none
 			</span>
 		</td>
@@ -49,11 +49,11 @@
 
 </div>
 
-<div ng-hide="data.record.trainings.items.length">
+<div ng-hide="data.items.length">
 	None
 </div>
 
-<table ng-show=" data.record.trainings.items.length ">
+<table ng-show=" data.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -83,39 +83,39 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, training) in data.record.trainings.items">
+		<tr ng-repeat="(i, training) in data.items">
 			<td>
-				{{training.title}}
+				{{training.Training.title}}
 			</td>
 
 			<td>
-				{{training.date | date:'dd/MM/yyyy'}}
+				{{training.Training.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>
-				<span ng-repeat="theme in training.themes">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+				<span ng-repeat="theme in training.Theme">
+					{{theme.name}}{{$last ? '' : ', '}}
 				</span>
-				<span ng-if=" !training.themes.length ">
+				<span ng-if=" !training.Theme.length ">
 					none
 				</span>
 			</td>
 
 			<td>
-				<span ng-repeat="participant_type in training.participant_types">
-					{{participant_type.ParticipantType.name}}{{$last ? '' : ', '}}
+				<span ng-repeat="participant_type in training.ParticipantType">
+					{{participant_type.name}}{{$last ? '' : ', '}}
 				</span>
-				<span ng-if=" !training.participant_types.length ">
+				<span ng-if=" !training.ParticipantType.length ">
 					none
 				</span>
 			</td>
 
 			<td>
-				{{training.male_count || 0}}
+				{{training.Training.male_count || 0}}
 			</td>
 
 			<td>
-				{{training.female_count || 0}}
+				{{training.Training.female_count || 0}}
 			</td>
 			<td>
 
@@ -127,7 +127,7 @@
 
 				<md-button 
 					class="md-raised" 
-					ng-click="removeTrainingItem(i)">
+					ng-click="removeTrainingItem(training.Training.id)">
 					Remove
 				</md-button>
 

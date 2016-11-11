@@ -31,7 +31,7 @@
 
 
 			<!-- GEOGRAPHY -->
-		      <md-tab label="GEOGRAPHY">
+		      <!-- <md-tab label="GEOGRAPHY">
 		        <md-content 
 		        class="md-padding" 
 		        ng-controller="GeographyController"
@@ -40,10 +40,10 @@
 		        <?php echo $this->element('Resultsframework/geography'); ?>
 
 		        </md-content>
-		      </md-tab>
+		      </md-tab> -->
 
 		    <!-- THEMES -->
-		      <md-tab label="PATHWAYS/THEMES">
+		      <!-- <md-tab label="PATHWAYS/THEMES">
 		        <md-content 
 		        	class="md-padding" 
 		        	ng-controller="ThemesController"
@@ -52,7 +52,7 @@
 		        <?php echo $this->element('Resultsframework/themes'); ?>
 
 		        </md-content>
-		      </md-tab>
+		      </md-tab> -->
 
 		    <!-- TRAINING -->
 		      <md-tab label="TRAINING">
@@ -144,9 +144,17 @@
 <?php echo $this->Html->script('shared/directives/StrategicPathwaySelector'); ?>
 <?php echo $this->Html->script('shared/directives/dateStringSelector'); ?>
 
+<?php echo $this->Html->script('shared/directives/NumberStringInput'); ?>
+
 <?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResultsFrameworkService'); ?>
 <?php echo $this->Html->script('resultsframework/services/FormOptionsService'); ?>
+
+
+<?php echo $this->Html->script('resultsframework/services/TrainingsService'); ?>
+
+<?php echo $this->Html->script('resultsframework/services/ResearchesService'); ?>
+
 <?php echo $this->Html->script('resultsframework/controllers/Resultsframework'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/geography'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/themes'); ?>

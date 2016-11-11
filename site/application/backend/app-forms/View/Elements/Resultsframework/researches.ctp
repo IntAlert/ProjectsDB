@@ -3,16 +3,16 @@
 
 	<tr>
 		<th>Number of research reports or other papers produced by Alert to improve understanding and peacebuilding approaches on particular geographic contexts or issues?</th>
-		<td>{{data.record.researches.totals.count || 0}}</td>
+		<td>{{data.totals.count || 0}}</td>
 	</tr>
 
 	<tr>
 		<th>Topics</th>
 		<td>
-			<span ng-repeat="theme in data.record.researches.totals.themes">
+			<span ng-repeat="theme in data.totals.themes">
 					{{theme.Theme.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.researches.totals.themes.length ">
+			<span ng-if=" !data.totals.themes.length ">
 				none
 			</span>
 		</td>
@@ -21,10 +21,10 @@
 	<tr>
 		<th>Countries</th>
 		<td>
-			<span ng-repeat="territory in data.record.researches.totals.countries">
+			<span ng-repeat="territory in data.totals.countries">
 					{{territory.Territory.name}}{{$last ? '' : ', '}}
 			</span>
-			<span ng-if=" !data.record.researches.totals.countries.length ">
+			<span ng-if=" !data.totals.countries.length ">
 				none
 			</span>
 		</td>
@@ -45,11 +45,11 @@
 
 </div>
 
-<div ng-hide="data.record.researches.items.length">
+<div ng-hide="data.items.length">
 	None
 </div>
 
-<table ng-show=" data.record.researches.items.length ">
+<table ng-show=" data.items.length ">
 	<thead>
 		<tr>
 			<th>
@@ -71,29 +71,29 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="(i, research) in data.record.researches.items">
+		<tr ng-repeat="(i, research) in data.items">
 			<td>
-				{{research.title}}
+				{{research.Research.title}}
 			</td>
 
 			<td>
-				{{research.date | date:'dd/MM/yyyy'}}
+				{{research.Research.date | date:'dd/MM/yyyy'}}
 			</td>
 
 			<td>
-				<span ng-repeat="theme in research.themes">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+				<span ng-repeat="theme in research.Theme">
+					{{theme.name}}{{$last ? '' : ', '}}
 				</span>
-				<span ng-if=" !research.themes.length ">
+				<span ng-if=" !research.Theme.length ">
 					none
 				</span>
 			</td>
 
 			<td>
-				<span ng-repeat="country in research.countries">
-					{{country.Territory.name}}{{$last ? '' : ', '}}
+				<span ng-repeat="territory in research.Territory">
+					{{territory.name}}{{$last ? '' : ', '}}
 				</span>
-				<span ng-if=" !research.countries.length ">
+				<span ng-if=" !research.Territory.length ">
 					none
 				</span>
 			</td>
@@ -107,7 +107,7 @@
 
 				<md-button 
 					class="md-raised" 
-					ng-click="removeResearchItem(i)">
+					ng-click="removeResearchItem(research.id)">
 					Remove
 				</md-button>
 

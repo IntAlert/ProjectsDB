@@ -1,19 +1,18 @@
 
-app.controller('ResearchesController', function($scope, $mdDialog, ResultsFrameworkService,  DedupeService){
+app.controller('ResearchesController', function($scope, $mdDialog, ResultsFrameworkService, ResearchesService){
 
-	$scope.data = ResultsFrameworkService
+	$scope.data = ResearchesService
 
-	$scope.removeResearchItem = function(i) {
+	$scope.removeResearchItem = function(id) {
 		if (confirm("Are you sure you want to remove this research item?")) {
-			$scope.data.record.researches.items.splice(i,1)
-			updateTotals()
+			ResearchesService.delete(id)
 		}
 	}
 
 	$scope.showResearchItemDialog = function(i) {
 
 		// add or edit
-		var researchToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.researches.items[i]
+		var researchToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.items[i]
 
 	    $mdDialog.show({
 	      controller: ResearchItemController,
@@ -22,21 +21,17 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsFramew
 	      // targetEvent: ev,
 	      clickOutsideToClose: true,
 	      locals: {
-	      	data: {
-		      	research: researchToEdit	
-	      	}
+	      	data: researchToEdit
 	      }
 	    }).then(function(research) {
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.record.researches.items.push(research)
+	    		ResearchesService.create(research)
 	    	} else {
 	    		// edit
-	    		$scope.data.record.researches.items[i] = research	
+	    		ResearchesService.update(research)
 	    	}
-
-	    	updateTotals()
 			
 
 	    }, function() {
@@ -44,35 +39,7 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsFramew
 	    });
 	  };
 
-		function updateTotals() {
-
-			var totals = {
-				count: $scope.data.record.researches.items.length
-			};
-
-			var themes = []
-			var countries = []
-
-			angular.forEach($scope.data.record.researches.items, function(item) {
-
-				totals.male_count += item.male_count
-				totals.female_count += item.female_count
-				totals.female_trauma_count += item.female_trauma_count
-				totals.male_trauma_count += item.male_trauma_count
-				totals.meeting_count++
-				totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
-
-				themes = themes.concat(item.themes)
-	  			countries = countries.concat(item.countries)
-
-			});
-
-			totals.themes = DedupeService.themes(themes)
-			totals.countries = DedupeService.territories(countries)
-
-			$scope.data.record.researches.totals = totals
-
-		}
+		
 })
 
 function ResearchItemController($scope, $mdDialog, data, FormOptions) {

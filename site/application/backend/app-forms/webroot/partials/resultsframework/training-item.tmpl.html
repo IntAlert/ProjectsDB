@@ -15,14 +15,14 @@
 				<!-- Title -->
 				<md-input-container>
 					<label>Title</label>
-					<input ng-model="data.training.title" required>
+					<input ng-model="data.Training.title" required>
 				</md-input-container>
 			</div>
 
 			<div flex="50">
 				<!-- Date -->
 
-				<date-string-selector ng-model="data.training.date" /> 
+				<date-string-selector ng-model="data.Training.date" /> 
 
 
 			</div>
@@ -32,7 +32,7 @@
 				<!-- Male Count -->
 				<md-input-container>
 					<label>Number of Males</label>
-					<input type="number" ng-model="data.training.male_count" required>
+					<input number-string type="number" ng-model="data.Training.male_count" required>
 				</md-input-container>
 			</div>
 
@@ -40,7 +40,7 @@
 				<!-- Female Count -->
 				<md-input-container>
 					<label>Number of Females</label>
-					<input type="number" ng-model="data.training.female_count" required>
+					<input number-string type="number" ng-model="data.Training.female_count" required>
 				</md-input-container>
 			</div>
 		</div>
@@ -51,8 +51,9 @@
 				<li ng-repeat="theme in FormOptions.themes">
 					
 					<md-checkbox 
-						checklist-model="data.training.themes" 
-						checklist-value="theme"
+						checklist-model="data.Theme" 
+						checklist-value="theme.Theme"
+						checklist-comparator=".id"
 					>
 			            {{theme.Theme.name}}
 					</md-checkbox>
@@ -67,8 +68,9 @@
 				<li ng-repeat="participant_type in FormOptions.participant_types">
 					
 					<md-checkbox 
-						checklist-model="data.training.participant_types" 
-						checklist-value="participant_type"
+						checklist-model="data.ParticipantType" 
+						checklist-value="participant_type.ParticipantType"
+						checklist-comparator=".id"
 					>
 			            {{participant_type.ParticipantType.name}}
 					</md-checkbox>
@@ -76,7 +78,6 @@
 				</li>
 			</ul>
 		</div>
-
 
 	</md-dialog-content>
 
@@ -87,8 +88,8 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="trainingItemForm.$valid && data.training.themes.length && data.training.participant_types.length"
-	  	ng-click="save(data.training)" 
+	  	ng-show="trainingItemForm.$valid && data.Theme.length && data.ParticipantType.length"
+	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
 	  </md-button>

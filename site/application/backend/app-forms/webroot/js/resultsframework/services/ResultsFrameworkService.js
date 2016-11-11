@@ -1,4 +1,4 @@
-app.factory('ResultsFrameworkService', function($http) {
+app.factory('ResultsFrameworkService', function($location, TrainingsService, ResearchesService) {
 
 
 
@@ -45,7 +45,7 @@ app.factory('ResultsFrameworkService', function($http) {
 	}
 
 	// selected Project Id
-	var project_id = null;
+	var projectId = null;
 
 
 	// Build instance to return
@@ -53,39 +53,59 @@ app.factory('ResultsFrameworkService', function($http) {
 		record: {}
 	}
 
-	instance.save = function() {
-		// NB. saving goes via /forms not /api
-		return $http.post('/forms/resultsframework/save/' + project_id, instance.record)
-	};
+	// instance.save = function() {
+	// 	// NB. saving goes via /forms not /api
+	// 	return $http.post('/forms/resultsframework/save/' + project_id, instance.record)
+	// };
 
-	instance.load = function(a_project_id) {
+	// instance.load = function(a_project_id) {
 
-		project_id = a_project_id;
+	// 	project_id = a_project_id;
 
-		// NB. saving goes via /api not /forms
-		return $http.get('/api/resultsframework/view/' + project_id)
-			.then(function(response){
+	// 	// NB. saving goes via /api not /forms
+	// 	return $http.get('/api/resultsframework/view/' + project_id)
+	// 		.then(function(response){
 				
-				console.log('Downloaded the record: ')
-				console.log(angular.copy(response))
+	// 			console.log('Downloaded the record: ')
+	// 			console.log(angular.copy(response))
 
-				var record = response.data.data || {}
+	// 			var record = response.data.data || {}
 
-				// merge this data with the template, in case any keys are missing
-				for(key in emptyRecordTemplate) {
-					if ( !record.hasOwnProperty(key) ) {
-						record[key] = emptyRecordTemplate[key]
-					}
-				}
+	// 			// merge this data with the template, in case any keys are missing
+	// 			for(key in emptyRecordTemplate) {
+	// 				if ( !record.hasOwnProperty(key) ) {
+	// 					record[key] = emptyRecordTemplate[key]
+	// 				}
+	// 			}
 
-				console.log('After normalised: ')
-				console.log(record)
+	// 			console.log('After normalised: ')
+	// 			console.log(record)
 
 
-				instance.record = record
-			}, function(){
-				alert("resultsframework download error")
-			});
+	// 			instance.record = record
+	// 		}, function(){
+	// 			alert("resultsframework download error")
+	// 		});
+	// }
+
+	instance.load = function() {
+
+		// determine project id
+		var path = $location.url()
+		var parts = path.split('/')
+		if (parts[4]) {
+			projectId = parts[4];
+		} else {
+			// this should not happen
+			alert('Error determining project id from path: ' + path)
+		}
+
+		if(projectId) {
+			TrainingsService.load(projectId)
+			ResearchesService.load(projectId)
+		}
+
+
 	}
 
   return instance

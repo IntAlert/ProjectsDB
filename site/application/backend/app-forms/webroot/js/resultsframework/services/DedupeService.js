@@ -7,12 +7,16 @@ app.factory('DedupeService', function() {
   		var ids = {}
   		var themesClean = []
 
+      console.log(themesDuped)
+
   		angular.forEach(themesDuped, function(theme){
-  			if ( !ids[theme.Theme.id] ) {
+  			if ( !ids[theme.id] ) {
   				themesClean.push(theme)
   			}
-  			ids[theme.Theme.id] = true
+  			ids[theme.id] = true
   		})
+
+      console.log(themesClean)
 
   		return themesClean;
   	},
@@ -23,10 +27,10 @@ app.factory('DedupeService', function() {
       var territoriesClean = []
 
       angular.forEach(territoriesDuped, function(territory){
-        if ( !ids[territory.Territory.id] ) {
+        if ( !ids[territory.id] ) {
           territoriesClean.push(territory)
         }
-        ids[territory.Territory.id] = true
+        ids[territory.id] = true
       })
 
       return territoriesClean;
@@ -38,10 +42,10 @@ app.factory('DedupeService', function() {
       var participantTypesClean = []
 
       angular.forEach(participantTypesDuped, function(participantType){
-        if ( !names[participantType.name] ) {
+        if ( !names[participantType.id] ) {
           participantTypesClean.push(participantType)
         }
-        names[participantType.name] = true
+        names[participantType.id] = true
       })
 
       return participantTypesClean;

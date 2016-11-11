@@ -14,13 +14,13 @@
 				<!-- Title -->
 				<md-input-container>
 					<label>Title</label>
-					<input ng-model="data.research.title" required>
+					<input ng-model="data.Research.title" required>
 				</md-input-container>
 			</div>
 
 			<div flex="50">
 				<!-- Date -->
-				<date-string-selector ng-model="data.research.date" /> 
+				<date-string-selector ng-model="data.Research.date" /> 
 				
 			</div>
 		</div>
@@ -28,12 +28,13 @@
 		<div layout="row"><h3>Territories</h3></div>
 		<div layout="row">
 	        <ul class="territories-selector">
-				<li ng-repeat="country in FormOptions.countries">
+				<li ng-repeat="territory in FormOptions.countries">
 					<md-checkbox 
-						checklist-model="data.research.countries" 
-						checklist-value="country"
+						checklist-model="data.Territory" 
+						checklist-value="territory.Territory"
+						checklist-comparator=".id"
 						>
-			            {{country.Territory.name}}
+			            {{territory.Territory.name}}
 					</md-checkbox>
 				</li>
 			</ul>
@@ -45,8 +46,9 @@
 				<li ng-repeat="theme in FormOptions.themes">
 					
 					<md-checkbox 
-						checklist-model="data.research.themes" 
-						checklist-value="theme"
+						checklist-model="data.Theme" 
+						checklist-value="theme.Theme"
+						checklist-comparator=".id"
 					>
 			            {{theme.Theme.name}}
 					</md-checkbox>
@@ -55,7 +57,7 @@
 			</ul>
 		</div>
 		
-		<!-- <pre>{{data.research | json}}</pre> -->
+		<!-- <pre>{{data | json}}</pre> -->
 
 	</md-dialog-content>
 
@@ -67,8 +69,8 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="researchItemForm.$valid && data.research.themes.length && data.research.countries"
-	  	ng-click="save(data.research)" 
+	  	ng-show="researchItemForm.$valid && data.Theme.length && data.Territory.length"
+	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
 	  </md-button>
