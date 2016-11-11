@@ -1,4 +1,4 @@
-app.factory('ResultsFrameworkService', function($location, TrainingsService, ResearchesService) {
+app.factory('ResultsFrameworkService', function($location, TrainingsService, ResearchesService, ProcessesService, MeetingsService) {
 
 
 
@@ -103,6 +103,8 @@ app.factory('ResultsFrameworkService', function($location, TrainingsService, Res
 		if(projectId) {
 			TrainingsService.load(projectId)
 			ResearchesService.load(projectId)
+			ProcessesService.load(projectId)
+			MeetingsService.load(projectId)
 		}
 
 

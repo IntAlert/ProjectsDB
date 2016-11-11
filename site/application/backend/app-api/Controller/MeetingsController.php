@@ -80,13 +80,13 @@ class MeetingsController extends AppController {
 		
 		// TODO: must be authed and must be note owner
 
-		$processes = $this->Process->find('all', array(
+		$meetings = $this->Meeting->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['date' => 'ASC'],
 			'contain' => ['ParticipantType', 'Theme']
 		));
 		
-		$this->set(array('data' => $processes));
+		$this->set(array('data' => $meetings));
 	}
 
 
