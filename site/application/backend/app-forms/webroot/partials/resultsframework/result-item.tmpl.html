@@ -18,27 +18,163 @@
 				</md-input-container>
 			</div>
 
-			<div flex="100">
+			<div flex="75">
+			<p>Tell us the exact date this occurred or as near as you can get. This helps a third person to verify your claim.</p>
+			</div>
+			<div flex="25">
 				<!-- Date -->
+
 				<date-string-selector ng-model="data.Result.date" /> 
+
 			</div>
 		
 			
 			<div flex="100">
-				<!-- Narrative -->
+				<!-- Who -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Narrative</label>
+					<label class="md-block">Who?</label>
+					
 					<textarea 
 						width="100%"
 						required
-						ng-model="data.Result.narrative" 
+						ng-model="data.Result.who" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+
+					<div class="hint">Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.</div>
+				</md-input-container>
+
+			</div>
+
+			<div flex="100">
+				<!-- What -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block">What?</label>
+					
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.what" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+
+					<div class="hint">Tell us what they did differently (not what activity you did)</div>
+				</md-input-container>
+			</div>
+
+
+			<div flex="100">
+				<!-- Narrative -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block">Where?</label>
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.where" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+					<div class="hint">Tell us where or in which environment</div>
+				</md-input-container>
+			</div>
+
+
+
+
+			<div flex="100">
+				<!-- Narrative -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block">Significance</label>
+
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.significance" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+					<div class="hint">Tell us why you think this change in practice of relationship is significant.</div>
+				</md-input-container>
+			</div>
+
+
+
+			<div flex="100">
+				<!-- Narrative -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block">Partner Contribution</label>
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.contribution_partner" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+
+
+				</md-input-container>
+			</div>
+
+
+
+			<div flex="100">
+				<!-- Narrative -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block">Alert Contribution</label>
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.contribution_alert" 
 						md-minlength="20" 
 						md-maxlength="250" 
 						rows="5"></textarea>
 				</md-input-container>
 			</div>
 
+
+
+			<div flex="100">
+				<!-- Narrative -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block">Evidence</label>
+
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.evidence" 
+						md-minlength="20" 
+						md-maxlength="250" 
+						rows="5"></textarea>
+					<div class="hint">
+						Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.
+					</div>
+				</md-input-container>
+			</div>
+
+		</div>
+
+		<div layout="row"><h3>Territories</h3></div>
+		<div layout="row">
+	        <ul class="territories-selector">
+				<li ng-repeat="territory in FormOptions.countries">
+					<md-checkbox 
+						checklist-model="data.Territory" 
+						checklist-value="territory.Territory"
+						checklist-comparator=".id"
+						>
+			            {{territory.Territory.name}}
+					</md-checkbox>
+				</li>
+			</ul>
 		</div>
 
 		<div layout="row"><h3>Strategic Pathway</h3></div>
@@ -70,6 +206,9 @@
 				</li>
 			</ul>
 		</div>
+
+
+
 
 	</md-dialog-content>
 

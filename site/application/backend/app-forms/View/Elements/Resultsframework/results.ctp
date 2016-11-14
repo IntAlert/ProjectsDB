@@ -21,7 +21,7 @@
 			</th>
 
 			<th>
-				Narrative
+				What
 			</th>
 
 			<th>
@@ -45,7 +45,7 @@
 			</td>
 			
 			<td>
-				{{result.Result.narrative}}
+				{{result.Result.what}}
 			</td>
 
 			<td>

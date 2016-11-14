@@ -46,6 +46,19 @@ class Result extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
+		'Territory' => array(
+			'className' => 'Territory',
+			'joinTable' => 'results_territories',
+			'foreignKey' => 'result_id',
+			'associationForeignKey' => 'territory_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+		),
 		'Impact' => array(
 			'className' => 'Impact',
 			'joinTable' => 'impacts_results',

@@ -72,9 +72,11 @@ app.factory('ResultsService', function($http, DedupeService) {
 		var dataFormatted = {
 			Result: result.Result,
 			Impact: {Impact: []}, // HABTM
+			Territory: {Territory: []}, // HABTM
 		}
 
 		dataFormatted.Impact.Impact = result.Impact.map(function(i){return i.id})
+		dataFormatted.Territory.Territory = result.Territory.map(function(t){return t.id})
 		dataFormatted.Result.pathway_id = result.Pathway.id
 		dataFormatted.Result.project_id = project_id
 
