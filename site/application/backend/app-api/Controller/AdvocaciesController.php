@@ -48,7 +48,7 @@ class AdvocaciesController extends AppController {
 			$data = $this->request->input('json_decode');
 
 			// delete previous associations
-			$this->Advocacy->ParticipantCount->deleteCounts($id);
+			$this->Advocacy->AdvocacyParticipantCount->deleteCounts($id);
 
 			$advocacy = $this->Advocacy->saveAssociated($data);
 		}
@@ -87,7 +87,7 @@ class AdvocaciesController extends AppController {
 		$trainings = $this->Advocacy->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['date' => 'ASC'],
-			'contain' => ['ParticipantType', 'Theme', 'AdvocacyParticipantCount']
+			'contain' => ['ParticipantType', 'Theme']
 		));
 		
 		$this->set(array('data' => $trainings));

@@ -23,8 +23,8 @@
 	<tr>
 		<th>Topics</th>
 		<td>
-			<span ng-repeat="theme in data.totals.Theme">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+			<span ng-repeat="theme in data.totals.themes">
+					{{theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.totals.themes.length ">
 				none
@@ -103,11 +103,11 @@
 			</td>
 
 			<td>
-				<span ng-repeat="(name, count) in advocacy.participant_types">
-					<span ng-if="count">
-						{{name}}
-						({{count}}){{$last ? '' : ', '}}
-					</span>
+				<span ng-repeat="participant_type in advocacy.ParticipantType | filter:cutOutZero()">
+				
+					{{participant_type.name}}
+					({{participant_type.AdvocaciesParticipantType.count}}){{$last ? '' : ', '}}
+				
 				</span>
 			</td>
 
@@ -121,7 +121,7 @@
 
 			<td>
 				<span ng-repeat="theme in advocacy.Theme">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+					{{theme.name}}{{$last ? '' : ', '}}
 				</span>
 				<span ng-if=" !advocacy.Theme.length ">
 					none

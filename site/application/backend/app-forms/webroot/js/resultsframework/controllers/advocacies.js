@@ -36,6 +36,13 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, DedupeService
 	    });
 	  };
 
+
+	  $scope.cutOutZero = function() {
+		return function( item ) {
+			return item.AdvocaciesParticipantType.count != '0';
+		};
+	  };
+
 	  
 })
 

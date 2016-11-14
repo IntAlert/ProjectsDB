@@ -11,6 +11,8 @@
 
 		<div layout="row" layout-wrap>
 
+			<!-- <pre>{{data | json}}</pre> -->
+			<!-- <pre>{{data.participant_type_counts | json}}</pre> -->
 
 			<div flex="50">
 				<!-- Title -->
@@ -32,6 +34,7 @@
 				<md-input-container class="md-block">
 					<label>Number of Males</label>
 					<input 
+						number-string
 						required
 						type="number"
 						min="0"
@@ -46,6 +49,7 @@
 				<md-input-container class="md-block">
 					<label>Number of Females</label>
 					<input 
+						number-string
 						required
 						type="number"
 						min="0"
@@ -61,12 +65,13 @@
 				flex="50" 
 				ng-repeat="(i, participant_type) in FormOptions.participant_types">
 				<!-- Participation Types -->
+
 				<md-input-container class="md-block">
 					<label>Number of {{participant_type.ParticipantType.name}}</label>
 					<input 
 						type="number"
 						min="0"
-						ng-model="data.ParticipantType[participant_type.ParticipantType.id]"
+						ng-model="data.participant_type_counts[participant_type.ParticipantType.id]"
 						>
 				</md-input-container>
 			</div>

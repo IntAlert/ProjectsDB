@@ -48,7 +48,7 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 			.then(function(response){
 				instance.load(project_id)
 			}, function(){
-				alert("advocacies delete error")
+				alert("advocacies create error")
 			});
 	}
 
@@ -60,7 +60,7 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 			.then(function(response){
 				instance.load(project_id)
 			}, function(){
-				alert("advocacies delete error")
+				alert("advocacies update error")
 			});
 	}
 
@@ -68,8 +68,6 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 
 	// Private functions
 	function formatForSaving(advocacy) {
-
-		console.log(advocacy)
 
 		var dataFormatted = {
 			Advocacy: advocacy.Advocacy,
@@ -79,10 +77,10 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 
 		// build AdvocacyParticipantCount for saving
 		for(participant_type_id in advocacy.participant_type_counts) {
-			var count = advocacy.participant_type_counts.participant_type_id
+			var count = advocacy.participant_type_counts[participant_type_id]
 			dataFormatted.AdvocacyParticipantCount.push({
 				count: count,
-				participant_type_id
+				participant_type_id:participant_type_id
 			})
 		}
 		
@@ -129,6 +127,8 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 		});
 
 		totals.themes = DedupeService.themes(themes)
+
+		console.log(totals)
 
 		instance.totals = totals;
 	}
