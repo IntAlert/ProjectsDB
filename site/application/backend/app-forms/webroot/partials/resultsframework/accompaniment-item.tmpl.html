@@ -15,27 +15,28 @@
 				<!-- Title -->
 				<md-input-container>
 					<label>Title</label>
-					<input ng-model="data.accompaniment.title" required>
+					<input ng-model="data.Accompaniment.title" required>
 				</md-input-container>
 			</div>
 
 
 			<div flex="50">
 				<!-- Date -->
-				<date-string-selector ng-model="data.accompaniment.date" /> 
+				<date-string-selector ng-model="data.Accompaniment.date" /> 
 			</div>
 			
   
 			<div 
 				flex="50" 
-				ng-repeat="participant_type in FormOptions.participant_types">
+				ng-repeat="(i, participant_type) in FormOptions.participant_types">
 				<!-- Participation Types -->
+
 				<md-input-container class="md-block">
-					<label>Number of {{participant_type.name}}</label>
+					<label>Number of {{participant_type.ParticipantType.name}}</label>
 					<input 
 						type="number"
 						min="0"
-						ng-model="data.accompaniment.participant_types[participant_type.name]"
+						ng-model="data.participant_type_counts[participant_type.ParticipantType.id]"
 						>
 				</md-input-container>
 			</div>
@@ -55,7 +56,7 @@
 	  <span flex></span>
 	  <md-button 
 	  	ng-show="accompanimentItemForm.$valid"
-	  	ng-click="save(data.accompaniment)" 
+	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
 	  </md-button>

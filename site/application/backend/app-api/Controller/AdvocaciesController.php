@@ -84,13 +84,13 @@ class AdvocaciesController extends AppController {
 		
 		// TODO: must be authed and must be note owner
 
-		$trainings = $this->Advocacy->find('all', array(
+		$advocacies = $this->Advocacy->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['date' => 'ASC'],
 			'contain' => ['ParticipantType', 'Theme']
 		));
 		
-		$this->set(array('data' => $trainings));
+		$this->set(array('data' => $advocacies));
 	}
 
 

@@ -108,19 +108,22 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 			totals.male_count += item.male_count
 			totals.female_count += item.female_count
 
+
+			// NB... At the moment, we don't show this, so calc not right below
+			
 			// loop through all participant types
-			angular.forEach(item.participant_types, function(count, participant_type) {
+			// angular.forEach(item.participant_types, function(count, participant_type) {
 
-				if (count) {
+			// 	if (count) {
 
-					if ( !totals.participant_types.hasOwnProperty(participant_type) ) {
-						totals.participant_types[participant_type] = 0
-					}
-				}
+			// 		if ( !totals.participant_types.hasOwnProperty(participant_type) ) {
+			// 			totals.participant_types[participant_type] = 0
+			// 		}
+			// 	}
 
-				totals.participant_types[participant_type] += count
+			// 	totals.participant_types[participant_type] += count
 
-			})
+			// })
 
 			themes = themes.concat(item.Theme)
 
@@ -128,7 +131,6 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 
 		totals.themes = DedupeService.themes(themes)
 
-		console.log(totals)
 
 		instance.totals = totals;
 	}

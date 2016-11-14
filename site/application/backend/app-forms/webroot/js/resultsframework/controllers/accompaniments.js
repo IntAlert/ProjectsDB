@@ -1,18 +1,18 @@
-app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsFrameworkService){
+app.controller('AccompanimentsController', function($scope, $mdDialog, FormOptions, ResultsFrameworkService, AccompanimentsService){
 
-	$scope.data = ResultsFrameworkService
+	$scope.data = AccompanimentsService
+	$scope.FormOptions = FormOptions	
 
-	$scope.removeAccompanimentItem = function(i) {
+	$scope.removeAccompanimentItem = function(id) {
 		if (confirm("Are you sure you want to remove this accompaniment item?")) {
-			$scope.data.record.accompaniments.items.splice(i,1)
-			updateTotals()
+			AccompanimentsService.delete(id)
 		}
 	}
 
 	$scope.showAccompanimentItemDialog = function(i) {
 
 		// add or edit
-		var accompanimentToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.record.accompaniments.items[i]
+		var accompanimentToEdit = (typeof(i) == 'undefined') ? {} : $scope.data.items[i]
 
 	    $mdDialog.show({
 	      controller: AccompanimentItemController,
@@ -21,53 +21,28 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, ResultsFr
 	      // targetEvent: ev,
 	      clickOutsideToClose: true,
 	      locals: {
-	      	data: {
-		      	accompaniment: accompanimentToEdit	
-	      	}
+	      	data: accompanimentToEdit
 	      }
 	    }).then(function(accompaniment) {
 	    	// add or edit
 	    	if (typeof(i) == 'undefined') {
 	    		// add
-				$scope.data.record.accompaniments.items.push(accompaniment)
+				AccompanimentsService.create(accompaniment)
 	    	} else {
 	    		// edit
-	    		$scope.data.record.accompaniments.items[i] = accompaniment	
-	    	}
-
-	    	updateTotals()
-			
+	    		AccompanimentsService.update(accompaniment)
+	    	}			
 
 	    }, function() {
 	      console.log('You cancelled the dialog.');
 	    });
 	  };
 
-	function updateTotals() {
-
-		var totals = {}
-
-		// loop through all items
-		angular.forEach($scope.data.record.accompaniments.items, function(item) {
-
-			// loop through all participant types
-			angular.forEach(item.participant_types, function(count, participant_type) {
-
-				if (count) {
-
-					if ( !totals.hasOwnProperty(participant_type) ) {
-						totals[participant_type] = 0
-					}
-				}
-
-				totals[participant_type] += count
-
-			})
-
-		});
-
-		$scope.data.record.accompaniments.totals = totals;
-	}
+	  $scope.cutOutZero = function() {
+		return function( item ) {
+			return item.AccompanimentsParticipantType.count != '0';
+		};
+	  };
 })
 
 function AccompanimentItemController($scope, $mdDialog, data, FormOptions) {

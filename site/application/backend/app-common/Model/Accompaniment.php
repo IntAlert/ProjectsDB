@@ -40,7 +40,7 @@ class Accompaniment extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'ParticipantCount' => array(
+		'AccompanimentParticipantCount' => array(
 			'className' => 'AccompanimentParticipantCount',
 			'foreignKey' => 'accompaniment_id',
 			'dependent' => false,

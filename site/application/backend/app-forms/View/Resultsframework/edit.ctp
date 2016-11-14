@@ -162,7 +162,7 @@
 <?php echo $this->Html->script('resultsframework/services/ProcessesService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResultsService'); ?>
 <?php echo $this->Html->script('resultsframework/services/AdvocaciesService'); ?>
-<?php //echo $this->Html->script('resultsframework/services/AccommpanimentsService'); ?>
+<?php echo $this->Html->script('resultsframework/services/AccompanimentsService'); ?>
 
 
 <?php echo $this->Html->script('resultsframework/controllers/Resultsframework'); ?>

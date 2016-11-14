@@ -24,8 +24,6 @@ app.factory('TrainingsService', function($http, DedupeService) {
 				
 				updateTotals()
 
-				console.log(instance)
-
 			}, function(){
 				alert("trainings download error")
 			});
@@ -105,9 +103,6 @@ app.factory('TrainingsService', function($http, DedupeService) {
   			participant_types = participant_types.concat(item.ParticipantType)
 
 		}, totals);
-
-		console.log(participant_types)
-		console.log(themes)
 
 		totals.themes = DedupeService.themes(themes)
 		totals.participant_types = DedupeService.participantTypes(participant_types)

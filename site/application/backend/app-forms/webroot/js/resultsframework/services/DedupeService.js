@@ -7,16 +7,12 @@ app.factory('DedupeService', function() {
   		var ids = {}
   		var themesClean = []
 
-      console.log(themesDuped)
-
   		angular.forEach(themesDuped, function(theme){
   			if ( !ids[theme.id] ) {
   				themesClean.push(theme)
   			}
   			ids[theme.id] = true
   		})
-
-      console.log(themesClean)
 
   		return themesClean;
   	},
