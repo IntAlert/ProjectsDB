@@ -13,7 +13,7 @@
 
 			<div flex="50">
 				<!-- Title -->
-				<md-input-container>
+				<md-input-container class="md-block">
 					<label>Title</label>
 					<input ng-model="data.Accompaniment.title" required>
 				</md-input-container>
@@ -35,6 +35,7 @@
 					<label>Number of {{participant_type.ParticipantType.name}}</label>
 					<input 
 						type="number"
+						number-string
 						min="0"
 						ng-model="data.participant_type_counts[participant_type.ParticipantType.id]"
 						>

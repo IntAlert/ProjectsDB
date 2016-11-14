@@ -116,7 +116,7 @@
 			<th title="The dialogue seek to resolve a specific conflict issue between groups or entities">
 				Conflict resolution?
 			</th>
-			<th width="25%"></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>

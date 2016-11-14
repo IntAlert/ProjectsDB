@@ -10,7 +10,7 @@
 		<th>Topics</th>
 		<td>
 			<span ng-repeat="theme in data.totals.themes">
-					{{theme.Theme.name}}{{$last ? '' : ', '}}
+					{{theme.name}}{{$last ? '' : ', '}}
 			</span>
 			<span ng-if=" !data.totals.themes.length ">
 				none

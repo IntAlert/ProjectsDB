@@ -26,6 +26,7 @@ app.directive('dateStringSelector',
 			},
             template: 
         		'<md-datepicker ' +
+        			'class="md-block"' +
 					'required ' +
 					'ng-model="localDate"  ' +
 					'ng-change="updateDate()"' +
