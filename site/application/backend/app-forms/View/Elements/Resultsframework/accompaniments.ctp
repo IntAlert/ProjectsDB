@@ -6,7 +6,17 @@
 	</tr>
 </table>
 
+<div class="instruction-block">
+	
+	<p>
+		Please note the number of each category of formal entity (e.g. organisations, NGOs, companies, government departments, etc., please see the list in annex 1) which we have actively accompanied, i.e. with which we worked in a relationship as a partner, critical friend, capacity-builder, etc.
+	</p>
 
+	<p>
+	Veuillez noter le nombre de chaque catégorie d'entité formelle (par exemple, organisations, ONG, entreprises, ministères, etc., voir la liste en annexe 1) que nous avons activement accompagné, c'est-à-dire avec lesquels nous avons travaillé en tant que partenaire, « ami critique », etc.
+	</p>
+
+</div>
 
 
 <div class="item-list-header clearfix">

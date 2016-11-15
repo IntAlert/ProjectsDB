@@ -39,6 +39,20 @@
 	</tr>
 </table>
 
+<div class="instruction-block">
+	<p>
+		Please include here all training workshops or other training / learning events held, along with your best estimate of the total number of male and female participants. If you have precise data based on attendance sheets etc., please use them; if not, please use reasonable estimates based on internal reports or on the advice of the trainers who led the workshops.
+		<br>
+		<strong>
+			NB a person who attends two trainings is counted twice.
+		</strong>
+	</p>
+	<p>
+		Veuillez inclure ici tous les ateliers de formation ou d'autres activités de renforcement des capacités exécutés, ainsi que votre meilleure estimation du nombre total de participants masculins et féminins. Si vous avez des données précises, veuillez les utiliser; sinon, utilisez des estimations raisonnables fondées sur des rapports internes ou sur les estimations des formateurs qui ont facilité les ateliers.
+		<br>
+		<strong>NB une personne qui assiste à deux formations est comptée deux fois.</strong>
+	</p>
+</div>
 
 <div class="item-list-header clearfix">
 	<h2>Training</h2>

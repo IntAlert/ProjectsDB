@@ -304,3 +304,14 @@ nav.admin-nav ul li p {padding:1em;}
 .tooltip-inline-required .fa-asterisk {
 	color:red;
 }
+
+
+/*resultsframework*/
+
+.resultsframework .instruction-block {
+	margin-top: 4em;
+}
+
+.md-dialog-container .instruction-block {
+	margin: 0 0 2em;
+}

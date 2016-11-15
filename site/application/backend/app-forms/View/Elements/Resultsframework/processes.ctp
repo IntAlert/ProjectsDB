@@ -60,7 +60,14 @@
 </table>
 
 
-
+<div class="instruction-block">
+	<p>
+		By 'dialogue processes', we mean sustained processes of dialogue in which the same groups of people were brought together over a series of meetings.
+	</p>
+	<p>
+		"Sustained dialogue" signifie un processus continu de sessions de dialogue dans lequel les mêmes groupes de personnes ont été réunis dans une série de réunions. 
+	</p>
+</div>
 
 
 <div class="item-list-header clearfix">
