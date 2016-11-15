@@ -105,8 +105,8 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 		angular.forEach(instance.items, function(item) {
 
 			// fe/male counts
-			totals.male_count += item.male_count
-			totals.female_count += item.female_count
+			totals.male_count += Number(item.Advocacy.male_count)
+			totals.female_count += Number(item.Advocacy.female_count)
 
 
 			// NB... At the moment, we don't show this, so calc not right below

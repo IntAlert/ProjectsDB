@@ -101,12 +101,12 @@ app.factory('MeetingsService', function($http, DedupeService) {
 		// loop through all meeting items
 		angular.forEach(instance.items, function(item) {
 
-			totals.male_count += item.male_count
-			totals.female_count += item.female_count
-			totals.female_trauma_count += item.female_trauma_count
-			totals.male_trauma_count += item.male_trauma_count
+			totals.male_count += Number(item.Meeting.male_count)
+			totals.female_count += Number(item.Meeting.female_count)
+			totals.female_trauma_count += Number(item.Meeting.female_trauma_count)
+			totals.male_trauma_count += Number(item.Meeting.male_trauma_count)
 			totals.meeting_count++
-			totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
+			totals.conflict_resolution = totals.conflict_resolution || item.Meeting.conflict_resolution
 
 			themes = themes.concat(item.Theme)
   			participant_types = participant_types.concat(item.ParticipantType)
