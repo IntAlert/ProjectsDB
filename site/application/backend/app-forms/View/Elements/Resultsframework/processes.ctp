@@ -73,7 +73,7 @@
 <div class="item-list-header clearfix">
 	<h2>Processes</h2>
 
-	<md-button class="md-raised" ng-click="showDialogueProcessItemDialog()">Add Dialog Process</md-button>
+	<md-button class="md-raised" ng-click="showDialogueProcessItemDialog()">Add Dialogue Process</md-button>
 
 </div>
 

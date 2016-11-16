@@ -1,4 +1,4 @@
-<h2>Dialog Meeting Summary</h2>
+<h2>Dialogue Meeting Summary</h2>
 
 <table>
 
@@ -64,9 +64,9 @@
 
 
 <div class="item-list-header clearfix">
-	<h2>Meetings</h2>
+	<h2>Dialogue Meetings</h2>
 
-	<md-button class="md-raised" ng-click="showDialogueMeetingItemDialog()">Add Dialog Meeting</md-button>
+	<md-button class="md-raised" ng-click="showDialogueMeetingItemDialog()">Add Dialogue Meeting</md-button>
 
 </div>
 
