@@ -1,6 +1,4 @@
 
-
-
 <div layout="row"><h3>Themes</h3></div>
 <div layout="row">
     <ul class="themes-selector">

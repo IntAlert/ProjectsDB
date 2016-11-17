@@ -6,9 +6,6 @@
 	
 	<form ng-controller="ResultsframeworkController">
 
-
-		
-	
 	<fieldset>
 
 		<div class="header clearfix">
@@ -51,9 +48,7 @@
 		    <!-- TRAINING -->
 		      <md-tab label="TRAINING">
 		        <md-content 
-		        	class="md-padding" 
-		        	ng-controller="TrainingsController"
-		        	ng-form="trainingForm">
+		        	class="md-padding">
 
 		        	<?php echo $this->element('Resultsframework/trainings'); ?>
 
@@ -63,43 +58,37 @@
 		    <!-- ACCOMPANIMENT -->
 		      <md-tab label="ACCOMPANIMENT">
 		        <md-content 
-		        	class="md-padding" 
-		        	ng-controller="AccompanimentsController"
-		        	ng-form="accompanimentForm">
+		        	class="md-padding">
 
 		        <?php echo $this->element('Resultsframework/accompaniments'); ?>
 
 		        </md-content>
 		      </md-tab>
 
-		    <!-- MEETINGS -->
-		      <md-tab label="MEETINGS">
-		        <md-content 
-		        	class="md-padding" 
-		        	ng-controller="MeetingsController"
-		        	ng-form="meetingForm">
 
-		        <?php echo $this->element('Resultsframework/meetings'); ?>
+		      <md-tab label="DIALOGUE">
+		        <md-content 
+		        	class="md-padding">
+
+		        <?php echo $this->element('Resultsframework/dialogues'); ?>
 		        </md-content>
 		      </md-tab>
 
-		    <!-- PROCESSES -->
-		      <md-tab label="DIALOGUE PROCESSES">
-		        <md-content 
-		        	class="md-padding" 
-		        	ng-controller="ProcessesController"
-		        	ng-form="processesForm">
 
-		        <?php echo $this->element('Resultsframework/processes'); ?>
+
+		      <md-tab label="OTHER ACTIVITIES">
+		        <md-content 
+		        	class="md-padding">
+
+		        <?php echo $this->element('Resultsframework/other_activities'); ?>
 		        </md-content>
 		      </md-tab>
+
 
 		    <!-- RESEARCH -->
 		      <md-tab label="RESEARCH">
 		        <md-content 
-		        	class="md-padding" 
-		        	ng-controller="ResearchesController"
-		        	ng-form="researchForm">
+		        	class="md-padding">
 
 		      	<?php echo $this->element('Resultsframework/researches'); ?>
 
@@ -110,9 +99,7 @@
 		    <!-- ADVOCACY AND OUTREACH -->
 		      <md-tab label="ADVOCACY AND OUTREACH">
 		        <md-content 
-		        class="md-padding" 
-	        	ng-controller="AdvocaciesController"
-		        ng-form="advocacyForm">
+		        class="md-padding">
 
 		        	<?php echo $this->element('Resultsframework/advocacies'); ?>
 
@@ -123,9 +110,7 @@
 		    <!-- RESULTS -->
 		      <md-tab label="results">
 		        <md-content 
-			        ng-controller="ResultsController"
-			        class="md-padding" 
-			        ng-form="resultsForm">
+			        class="md-padding">
 
 			        <?php echo $this->element('Resultsframework/results'); ?>
 
@@ -163,6 +148,7 @@
 <?php echo $this->Html->script('resultsframework/services/ResultsService'); ?>
 <?php echo $this->Html->script('resultsframework/services/AdvocaciesService'); ?>
 <?php echo $this->Html->script('resultsframework/services/AccompanimentsService'); ?>
+<?php echo $this->Html->script('resultsframework/services/OtherActivitiesService'); ?>
 
 
 <?php echo $this->Html->script('resultsframework/controllers/Resultsframework'); ?>
@@ -175,6 +161,8 @@
 <?php echo $this->Html->script('resultsframework/controllers/processes'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/accompaniments'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/advocacies'); ?>
+
+<?php echo $this->Html->script('resultsframework/controllers/other_activities'); ?>
 
 
 

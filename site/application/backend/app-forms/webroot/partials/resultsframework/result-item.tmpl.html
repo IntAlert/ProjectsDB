@@ -10,7 +10,7 @@
 	<md-dialog-content>
 
 		<div layout="row" layout-wrap>
-			<div flex="100">
+			<div flex="75">
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
@@ -18,14 +18,6 @@
 				</md-input-container>
 			</div>
 
-			<div flex="50">
-				
-				<p>
-					Tell us why you think this change in practice or relationship is significant.
-				</p>
-
-			</div>
-			<div flex="25"></div>
 			<div flex="25">
 				<!-- Date -->
 
@@ -38,7 +30,13 @@
 				<!-- Who -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Who?</label>
+					<label class="md-block md-no-float">
+						Who?
+					</label>
+
+					<div class="hint">Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.</div>
+
+					
 					
 					<textarea 
 						width="100%"
@@ -48,7 +46,7 @@
 						md-maxlength="250" 
 						rows="5"></textarea>
 
-					<div class="hint">Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.</div>
+					
 				</md-input-container>
 
 			</div>
@@ -57,8 +55,10 @@
 				<!-- What -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">What?</label>
+					<label class="md-block md-no-float">What?</label>
 					
+					<div class="hint">Tell us what they did differently (not what activity you did)</div>
+
 					<textarea 
 						width="100%"
 						required
@@ -67,7 +67,7 @@
 						md-maxlength="250" 
 						rows="5"></textarea>
 
-					<div class="hint">Tell us what they did differently (not what activity you did)</div>
+					
 				</md-input-container>
 			</div>
 
@@ -76,7 +76,10 @@
 				<!-- Narrative -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Where?</label>
+					<label class="md-block md-no-float">Where?</label>
+
+					<div class="hint">Tell us where or in which environment</div>
+
 					<textarea 
 						width="100%"
 						required
@@ -84,7 +87,7 @@
 						md-minlength="20" 
 						md-maxlength="250" 
 						rows="5"></textarea>
-					<div class="hint">Tell us where or in which environment</div>
+					
 				</md-input-container>
 			</div>
 
@@ -95,7 +98,9 @@
 				<!-- Narrative -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Significance</label>
+					<label class="md-block md-no-float">Significance</label>
+
+					<div class="hint">Tell us why you think this change in practice of relationship is significant.</div>
 
 					<textarea 
 						width="100%"
@@ -104,7 +109,7 @@
 						md-minlength="20" 
 						md-maxlength="250" 
 						rows="5"></textarea>
-					<div class="hint">Tell us why you think this change in practice of relationship is significant.</div>
+					
 				</md-input-container>
 			</div>
 
@@ -114,7 +119,7 @@
 				<!-- Narrative -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Partner Contribution</label>
+					<label class="md-block md-no-float">Partner Contribution</label>
 					<textarea 
 						width="100%"
 						required
@@ -133,7 +138,7 @@
 				<!-- Narrative -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Alert Contribution</label>
+					<label class="md-block md-no-float">Alert Contribution</label>
 					<textarea 
 						width="100%"
 						required
@@ -150,7 +155,11 @@
 				<!-- Narrative -->
 				<md-input-container class="md-block">
 	          
-					<label class="md-block">Evidence</label>
+					<label class="md-block md-no-float">Evidence</label>
+
+					<div class="hint">
+						Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.
+					</div>
 
 					<textarea 
 						width="100%"
@@ -159,39 +168,9 @@
 						md-minlength="20" 
 						md-maxlength="250" 
 						rows="5"></textarea>
-					<div class="hint">
-						Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.
-					</div>
+					
 				</md-input-container>
 			</div>
-
-		</div>
-
-		<div layout="row"><h3>Territories</h3></div>
-		<div layout="row">
-	        <ul class="territories-selector">
-				<li ng-repeat="territory in FormOptions.countries">
-					<md-checkbox 
-						checklist-model="data.Territory" 
-						checklist-value="territory.Territory"
-						checklist-comparator=".id"
-						>
-			            {{territory.Territory.name}}
-					</md-checkbox>
-				</li>
-			</ul>
-		</div>
-
-		<div layout="row"><h3>Strategic Pathway</h3></div>
-		
-		
-
-		<div layout="row" class="pathway-selector">
-			<strategic-pathway-selector 
-				pathways="FormOptions.pathways" 
-				ng-model="data.Pathway">
-
-			</strategic-pathway-selector>
 
 		</div>
 

@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Result Model
+ * OtherActivity Model
  *
- * @property Pathway $Pathway
- * @property Impact $Impact
+ * @property Project $Project
+ * @property ParticipantType $ParticipantType
  */
-class Result extends AppModel {
+class OtherActivity extends AppModel {
 
 /**
  * Display field
@@ -39,11 +39,11 @@ class Result extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Impact' => array(
-			'className' => 'Impact',
-			'joinTable' => 'impacts_results',
-			'foreignKey' => 'result_id',
-			'associationForeignKey' => 'impact_id',
+		'ParticipantType' => array(
+			'className' => 'ParticipantType',
+			'joinTable' => 'other_activities_participant_types',
+			'foreignKey' => 'other_activity_id',
+			'associationForeignKey' => 'participant_type_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',

@@ -26,7 +26,7 @@ class ResultsController extends AppController {
 
 		$result = $this->Result->find('first', array(
 			'Result.id' => $id,
-			'contain' => ['Pathway', 'Impact', 'Territory']
+			'contain' => ['Impact']
 		));
 		
 
@@ -69,7 +69,7 @@ class ResultsController extends AppController {
 		// TODO: must be authed and must be note owner
 
 		$results = $this->Result->find('all', array(
-			'contain' => ['Pathway', 'Impact', 'Territory']
+			'contain' => ['Impact']
 		));
 		
 
@@ -83,7 +83,7 @@ class ResultsController extends AppController {
 		$results = $this->Result->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['date' => 'ASC'],
-			'contain' => ['Pathway', 'Impact', 'Territory']
+			'contain' => ['Impact']
 		));
 		
 		$this->set(array('data' => $results));

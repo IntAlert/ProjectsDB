@@ -1,0 +1,118 @@
+<md-dialog layout-padding ng-cloak ng-form="dialogueOtherActivityItemForm">
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Other Activity</h2>
+      </div>
+    </md-toolbar>
+
+	<md-dialog-content>
+		
+		<div layout="row" layout-wrap>
+			<div flex="100">
+				<!-- Title -->
+				<md-input-container class="md-block">
+					<label>Title</label>
+					<input ng-model="data.OtherActivity.title" required>
+				</md-input-container>
+			</div>
+
+			<div class="instruction-block">
+				<p>
+					Use informed estimates if you don’t have precise numbers. We may have a number of meetings with the same people; for example we may have 10 meetings with the same 10 people, we would count the attendance as 10x10 = 100 people.
+				</p>
+				<p>
+					Si vous n'avez pas le nombre exacte faites une estimation précise. Par exemple, s'il y a eu 10 sessions avec les mêmes 10 personnes, comptez la participation comme ceci: 10x10 = 100 personnes." 
+				</p>
+				
+			</div>
+
+			<div flex="50">
+				<!-- Date -->
+				<date-string-selector ng-model="data.OtherActivity.date" ></date-string-selector> 
+
+			</div>
+		
+
+			<div flex="50">
+				<!-- Session Count -->
+				<md-input-container class="md-block">
+					<label>Number of Sessions</label>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.OtherActivity.session_count"
+						required>
+				</md-input-container>
+			</div>
+
+
+
+			<div flex="50">
+				<!-- Male Count -->
+				<md-input-container class="md-block">
+					<label>Number of Men</label>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.OtherActivity.male_count"
+						required>
+				</md-input-container>
+			</div>
+
+			<div flex="50">
+				<!-- Female Count -->
+				<md-input-container class="md-block">
+					<label>Number of Women</label>
+					<input
+						number-string
+						type="number"
+						min="0"
+						ng-model="data.OtherActivity.female_count"
+						required>
+				</md-input-container>
+			</div>
+		</div>
+
+
+		<div layout="row"><h3>Participant Types</h3></div>
+		<div layout="row">
+	        <ul class="themes-selector">
+				<li ng-repeat="participant_type in FormOptions.participant_types">
+					
+					<md-checkbox 
+						checklist-model="data.ParticipantType" 
+						checklist-value="participant_type.ParticipantType"
+						checklist-comparator=".id"
+					>
+			            {{participant_type.ParticipantType.name}}
+					</md-checkbox>
+
+				</li>
+			</ul>
+		</div>
+
+		
+		<!-- <pre>{{data.OtherActivity | json}}</pre> -->
+
+	</md-dialog-content>
+
+
+	<md-dialog-actions layout="row">
+        <md-button ng-click="cancel()" md-no-ink class="md-primary">
+          Cancel
+        </md-button>
+	  <span flex></span>
+	  <md-button 
+	  	ng-show="dialogueOtherActivityItemForm.$valid && data.ParticipantType.length"
+	  	ng-click="save(data)" 
+	  	class="md-raised md-primary">
+	    Save
+	  </md-button>
+	</md-dialog-actions>
+
+
+
+</md-dialog>

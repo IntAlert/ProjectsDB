@@ -1,4 +1,4 @@
-app.factory('ResultsFrameworkService', function($location, TrainingsService, ResearchesService, ProcessesService, MeetingsService, ResultsService, AdvocaciesService, AccompanimentsService) {
+app.factory('ResultsFrameworkService', function($q, $location, TrainingsService, ResearchesService, ProcessesService, MeetingsService, ResultsService, AdvocaciesService, AccompanimentsService, OtherActivitiesService) {
 
 
 
@@ -101,13 +101,19 @@ app.factory('ResultsFrameworkService', function($location, TrainingsService, Res
 		}
 
 		if(projectId) {
-			TrainingsService.load(projectId)
-			ResearchesService.load(projectId)
-			ProcessesService.load(projectId)
-			MeetingsService.load(projectId)
-			ResultsService.load(projectId)
-			AccompanimentsService.load(projectId)
-			AdvocaciesService.load(projectId)
+
+			// Load all records before allowing input
+			return $q.all([
+				TrainingsService.load(projectId),
+				ResearchesService.load(projectId),
+				ProcessesService.load(projectId),
+				MeetingsService.load(projectId),
+				ResultsService.load(projectId),
+				AccompanimentsService.load(projectId),
+				AdvocaciesService.load(projectId),
+				OtherActivitiesService.load(projectId)	
+			])
+			
 		}
 
 
