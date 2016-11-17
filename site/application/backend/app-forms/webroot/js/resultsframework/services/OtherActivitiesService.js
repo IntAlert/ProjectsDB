@@ -15,7 +15,7 @@ app.factory('OtherActivitiesService', function($http, DedupeService) {
 		project_id = a_project_id;
 
 		// NB. saving goes via /api not /forms
-		return $http.get('/api/otheractivities/project/' + project_id)
+		return $http.get('/api/OtherActivities/project/' + project_id)
 			.then(function(response){
 
 				var otheractivities = response.data.data || []
@@ -30,7 +30,7 @@ app.factory('OtherActivitiesService', function($http, DedupeService) {
 	}
 
 	instance.delete = function(id) {
-		return $http.post('/api/otheractivities/delete/' + id)
+		return $http.post('/api/OtherActivities/delete/' + id)
 			.then(function(response){
 
 				instance.load(project_id)
@@ -44,7 +44,7 @@ app.factory('OtherActivitiesService', function($http, DedupeService) {
 
 		var dataFormatted = formatForSaving(otheractivity);
 
-		return $http.post('/api/otheractivities/create/', dataFormatted)
+		return $http.post('/api/OtherActivities/create/', dataFormatted)
 			.then(function(response){
 				instance.load(project_id)
 			}, function(){
@@ -56,7 +56,7 @@ app.factory('OtherActivitiesService', function($http, DedupeService) {
 
 		var dataFormatted = formatForSaving(otheractivity);
 
-		return $http.post('/api/otheractivities/update/' + otheractivity.OtherActivity.id, dataFormatted)
+		return $http.post('/api/OtherActivities/update/' + otheractivity.OtherActivity.id, dataFormatted)
 			.then(function(response){
 				instance.load(project_id)
 			}, function(){
