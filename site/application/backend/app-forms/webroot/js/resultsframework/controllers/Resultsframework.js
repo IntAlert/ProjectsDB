@@ -5,7 +5,7 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 
 	// debug
 	// $scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 3;
+	// $scope.selectedTabIndex = 3;
 
 	
 	$scope.changeActiveTab = function(i) {
@@ -27,7 +27,7 @@ app.controller('ResultsframeworkController', function ($scope, $window, $locatio
 	}
 
 	// Load all data
-	NonInteractiveDialogService.show("Results Framework", "Loading... Please wait for records to load.")
+	NonInteractiveDialogService.show("Project Data", "Loading... Please wait for records to load.")
 	ResultsFrameworkService.load()
 	.then(function(){
 		NonInteractiveDialogService.hide()

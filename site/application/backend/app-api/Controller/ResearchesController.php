@@ -26,7 +26,7 @@ class ResearchesController extends AppController {
 
 		$research = $this->Research->find('first', array(
 			'Research.id' => $id,
-			'contain' => ['Territory', 'Theme']
+			'contain' => ['Theme']
 		));
 		
 
@@ -69,7 +69,7 @@ class ResearchesController extends AppController {
 		// TODO: must be authed and must be note owner
 
 		$researches = $this->Research->find('all', array(
-			'contain' => ['Territory', 'Theme']
+			'contain' => ['Theme']
 		));
 		
 
@@ -83,7 +83,7 @@ class ResearchesController extends AppController {
 		$trainings = $this->Research->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['date' => 'ASC'],
-			'contain' => ['Territory', 'Theme']
+			'contain' => ['Theme']
 		));
 		
 		$this->set(array('data' => $trainings));

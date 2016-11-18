@@ -87,10 +87,6 @@
 				</th>
 
 				<th>
-					Sessions
-				</th>
-
-				<th>
 					Men
 				</th>
 
@@ -132,9 +128,6 @@
 					<span ng-if=" !meeting.ParticipantType.length ">
 						none
 					</span>
-				</td>
-				<td>
-					{{meeting.Meeting.session_count}}
 				</td>
 
 				<td>

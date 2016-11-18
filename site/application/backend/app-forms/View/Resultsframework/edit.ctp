@@ -1,4 +1,5 @@
-<?php // echo $this->Html->script('travelapplications/add', array('inline' => false)); ?>
+
+<?php $this->set('title', $project['Project']['title'] . 'Project Data'); ?>
 
 <?php echo $this->Html->css('resultsframework/edit', array('inline' => false)); ?>
 
@@ -11,39 +12,18 @@
 		<div class="header clearfix">
 			
 		
-			<legend><?php echo __('Results for ' . $project['Project']['title']); ?></legend>
+			<legend><?php echo __('Data for ' . $project['Project']['title']); ?></legend>
 
 		</div>
 
 		<div ng-cloak>
 		  <md-content>
-		    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTabIndex" id="tabs">
-
-
-
-			<!-- GEOGRAPHY -->
-		      <!-- <md-tab label="GEOGRAPHY">
-		        <md-content 
-		        class="md-padding" 
-		        ng-controller="GeographyController"
-		        ng-form="geographyForm">
-
-		        <?php echo $this->element('Resultsframework/geography'); ?>
-
-		        </md-content>
-		      </md-tab> -->
-
-		    <!-- THEMES -->
-		      <!-- <md-tab label="PATHWAYS/THEMES">
-		        <md-content 
-		        	class="md-padding" 
-		        	ng-controller="ThemesController"
-		        	ng-form="themesForm">
-
-		        <?php echo $this->element('Resultsframework/themes'); ?>
-
-		        </md-content>
-		      </md-tab> -->
+		    <md-tabs 
+		    	md-dynamic-height
+		    	md-border-bottom
+		    	md-selected="selectedTabIndex"
+		    	id="tabs"
+		    >
 
 		    <!-- TRAINING -->
 		      <md-tab label="TRAINING">
@@ -76,14 +56,6 @@
 
 
 
-		      <md-tab label="OTHER ACTIVITIES">
-		        <md-content 
-		        	class="md-padding">
-
-		        <?php echo $this->element('Resultsframework/other_activities'); ?>
-		        </md-content>
-		      </md-tab>
-
 
 		    <!-- RESEARCH -->
 		      <md-tab label="RESEARCH">
@@ -106,6 +78,16 @@
 		        </md-content>
 		      </md-tab>
 
+
+
+		      <!-- OTHER ACTIVITIES -->
+		      <md-tab label="OTHER ACTIVITIES">
+		        <md-content 
+		        	class="md-padding">
+
+		        <?php echo $this->element('Resultsframework/other_activities'); ?>
+		        </md-content>
+		      </md-tab>
 
 		    <!-- RESULTS -->
 		      <md-tab label="results">

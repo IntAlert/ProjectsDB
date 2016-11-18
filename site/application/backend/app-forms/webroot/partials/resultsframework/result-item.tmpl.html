@@ -158,7 +158,7 @@
 					<label class="md-block md-no-float">Evidence</label>
 
 					<div class="hint">
-						Tell us who acted differently, or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution.
+						Add any quote or quantitative data to support this result, maybe from an interview you did, or from an evaluation for instance.
 					</div>
 
 					<textarea 
@@ -203,7 +203,7 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="resultItemForm.$valid && data.Impact.length "
+	  	ng-disabled="resultItemForm.$invalid || !data.Impact.length "
 	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save

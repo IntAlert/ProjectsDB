@@ -39,7 +39,7 @@ if ( !isset($title) ) {
 	<?php echo $this->Html->charset(); ?>
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>
-		PROMPT - <?php echo $title; ?>
+		<?php echo $title; ?> - PROMPT
 	</title>
 
 	<!-- JS: Libraries -->

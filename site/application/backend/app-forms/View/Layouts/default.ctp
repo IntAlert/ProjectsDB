@@ -42,7 +42,7 @@ if ( !isset($title) ) {
 	
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>
-		PROMPT - <?php echo $title; ?>
+		<?php echo $title; ?> - PROMPT
 	</title>
 
 

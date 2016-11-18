@@ -20,18 +20,6 @@
 			</td>
 		</tr>
 
-		<tr>
-			<th>Countries</th>
-			<td>
-				<span ng-repeat="territory in data.totals.countries">
-						{{territory.Territory.name}}{{$last ? '' : ', '}}
-				</span>
-				<span ng-if=" !data.totals.countries.length ">
-					none
-				</span>
-			</td>
-		</tr>
-
 	</table>
 
 
@@ -68,9 +56,6 @@
 					Themes
 				</th>
 
-				<th>
-					Territories
-				</th>
 				<th width="25%"></th>
 			</tr>
 		</thead>
@@ -95,14 +80,6 @@
 					</span>
 				</td>
 
-				<td>
-					<span ng-repeat="territory in research.Territory">
-						{{territory.name}}{{$last ? '' : ', '}}
-					</span>
-					<span ng-if=" !research.Territory.length ">
-						none
-					</span>
-				</td>
 				<td>
 
 					<md-button 

@@ -57,15 +57,15 @@
 
 
 				<th>
+					Activity Title
+				</th>
+
+				<th>
 					Activity Type
 				</th>
 
 				<th>
 					Participants
-				</th>
-
-				<th>
-					Sessions
 				</th>
 
 				<th>
@@ -92,15 +92,16 @@
 				</td>
 
 				<td>
+					{{other_activity.OtherActivity.type}}
+				</td>
+
+				<td>
 					<span ng-repeat="participant_type in other_activity.ParticipantType">
 						{{participant_type.name}}{{$last ? '' : ', '}}
 					</span>
 					<span ng-if=" !other_activity.ParticipantType.length ">
 						none
 					</span>
-				</td>
-				<td>
-					{{other_activity.OtherActivity.session_count}}
 				</td>
 
 				<td>

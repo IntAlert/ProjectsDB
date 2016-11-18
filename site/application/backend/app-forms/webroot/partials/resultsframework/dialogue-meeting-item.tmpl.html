@@ -32,22 +32,6 @@
 				<date-string-selector ng-model="data.Meeting.date" /> 
 
 			</div>
-		
-
-			<div flex="50">
-				<!-- Session Count -->
-				<md-input-container class="md-block">
-					<label>Number of Sessions</label>
-					<input
-						number-string
-						type="number"
-						min="0"
-						ng-model="data.Meeting.session_count"
-						required>
-				</md-input-container>
-			</div>
-
-
 
 			<div flex="50">
 				<!-- Male Count -->
@@ -75,31 +59,6 @@
 				</md-input-container>
 			</div>
 
-			<div flex="50">
-				<!-- Male Count (Trauma) -->
-				<md-input-container class="md-block">
-					<label>Number of Men (Trauma-councelled)</label>
-					<input
-						number-string
-						type="number"
-						min="0"
-						ng-model="data.Meeting.male_trauma_count"
-						required>
-				</md-input-container>
-			</div>
-
-			<div flex="50">
-				<!-- Female Count (Trauma) -->
-				<md-input-container class="md-block">
-					<label>Number of Women (Trauma-councelled)</label>
-					<input 
-						number-string type="number" 
-						min="0" 
-						ng-model="data.Meeting.female_trauma_count" 
-						required>
-				</md-input-container>
-			</div>
-		</div>
 
 		<div layout="row"><h3>Themes</h3></div>
 		<div layout="row">
@@ -158,7 +117,7 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="dialogueMeetingItemForm.$valid && data.Theme.length && data.ParticipantType.length"
+	  	ng-show="dialogueMeetingItemForm.$invalid || !data.Theme.length && !data.ParticipantType.length"
 	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save

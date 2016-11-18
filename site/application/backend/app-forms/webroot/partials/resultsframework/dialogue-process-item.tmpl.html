@@ -75,32 +75,6 @@
 				</md-input-container>
 			</div>
 
-			<div flex="50">
-				<!-- Male Count (Trauma) -->
-				<md-input-container class="md-block">
-					<label>Number of Men (Trauma-councelled)</label>
-					<input
-						number-string
-						type="number"
-						min="0"
-						ng-model="data.Process.male_trauma_count"
-						required>
-				</md-input-container>
-			</div>
-
-			<div flex="50">
-				<!-- Female Count (Trauma) -->
-				<md-input-container class="md-block">
-					<label>Number of Women (Trauma-councelled)</label>
-					<input 
-						number-string type="number" 
-						min="0" 
-						ng-model="data.Process.female_trauma_count" 
-						required>
-				</md-input-container>
-			</div>
-		</div>
-
 		<div layout="row"><h3>Themes</h3></div>
 		<div layout="row">
 	        <ul class="themes-selector">
@@ -158,7 +132,7 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="dialogueProcessItemForm.$valid && data.Theme.length && data.ParticipantType.length"
+	  	ng-disabled="dialogueProcessItemForm.$invalid || !data.Theme.length || !data.ParticipantType.length"
 	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save

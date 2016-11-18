@@ -72,11 +72,9 @@ app.factory('ResearchesService', function($http, DedupeService) {
 		var dataFormatted = {
 			Research: research.Research,
 			Theme: {Theme: []}, // HABTM
-			Territory: {Territory: []}, // HABTM
 		}
 
 		dataFormatted.Theme.Theme = research.Theme.map(function(t){return t.id})
-		dataFormatted.Territory.Territory = research.Territory.map(function(pt){return pt.id})
 		dataFormatted.Research.project_id = project_id
 
 		return dataFormatted;
@@ -91,24 +89,14 @@ app.factory('ResearchesService', function($http, DedupeService) {
 		};
 
 		var themes = []
-		var territories = []
 
 		angular.forEach(instance.items, function(item) {
 
-			totals.male_count += Number(item.Research.male_count)
-			totals.female_count += Number(item.Research.female_count)
-			totals.female_trauma_count += Number(item.Research.female_trauma_count)
-			totals.male_trauma_count += Number(item.Research.male_trauma_count)
-			totals.meeting_count++
-			totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
-
 			themes = themes.concat(item.Theme)
-  			territories = territories.concat(item.Territory)
 
 		});
 
 		totals.themes = DedupeService.themes(themes)
-		totals.territories = DedupeService.territories(territories)
 
 		instance.totals = totals
 

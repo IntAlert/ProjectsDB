@@ -31,19 +31,6 @@ class Research extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Territory' => array(
-			'className' => 'Territory',
-			'joinTable' => 'researches_territories',
-			'foreignKey' => 'research_id',
-			'associationForeignKey' => 'territory_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		),
 		'Theme' => array(
 			'className' => 'Theme',
 			'joinTable' => 'researches_themes',

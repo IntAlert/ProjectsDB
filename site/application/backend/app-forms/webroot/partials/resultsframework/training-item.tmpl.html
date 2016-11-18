@@ -88,7 +88,7 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="trainingItemForm.$valid && data.Theme.length && data.ParticipantType.length"
+	  	ng-disabled="trainingItemForm.$invalid || !data.Theme.length || !data.ParticipantType.length"
 	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save

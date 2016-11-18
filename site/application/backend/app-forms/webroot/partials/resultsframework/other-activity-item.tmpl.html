@@ -16,6 +16,14 @@
 					<input ng-model="data.OtherActivity.title" required>
 				</md-input-container>
 			</div>
+			
+			<div flex="100">
+				<!-- Type -->
+				<md-input-container class="md-block">
+					<label>Type</label>
+					<input ng-model="data.OtherActivity.type" required>
+				</md-input-container>
+			</div>
 
 			<div class="instruction-block">
 				<p>
@@ -33,21 +41,6 @@
 
 			</div>
 		
-
-			<div flex="50">
-				<!-- Session Count -->
-				<md-input-container class="md-block">
-					<label>Number of Sessions</label>
-					<input
-						number-string
-						type="number"
-						min="0"
-						ng-model="data.OtherActivity.session_count"
-						required>
-				</md-input-container>
-			</div>
-
-
 
 			<div flex="50">
 				<!-- Male Count -->
@@ -106,7 +99,7 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="dialogueOtherActivityItemForm.$valid && data.ParticipantType.length"
+	  	ng-disabled="dialogueOtherActivityItemForm.$invalid || !data.ParticipantType.length"
 	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
