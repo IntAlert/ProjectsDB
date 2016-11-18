@@ -64,7 +64,7 @@ if ( !isset($title) ) {
   <script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
 
   <!-- Angular Material Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 
 	<script src="/pdb/js/lib/angular.checklist-model.js"></script>
 
@@ -146,7 +146,7 @@ if ( !isset($title) ) {
 	?>
 
 	<!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
 
 
 	<link rel="stylesheet" type="text/css" href="/pdb/css/print.css" media="print" >
