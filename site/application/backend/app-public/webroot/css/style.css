@@ -324,6 +324,6 @@ nav.admin-nav ul li p {padding:1em;}
 	margin-top:15px;
 }
 
-md-dialog {
+md-dialog.rf-dialog-large {
 	min-width:800px !important;
 }
