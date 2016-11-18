@@ -69,6 +69,8 @@ app.factory('AdvocaciesService', function($http, DedupeService) {
 	// Private functions
 	function formatForSaving(advocacy) {
 
+
+		console.log(advocacy)
 		var dataFormatted = {
 			Advocacy: advocacy.Advocacy,
 			Theme: {Theme: []}, // HABTM

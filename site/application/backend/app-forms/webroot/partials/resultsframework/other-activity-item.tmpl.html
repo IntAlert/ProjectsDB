@@ -9,18 +9,26 @@
 	<md-dialog-content>
 		
 		<div layout="row" layout-wrap>
-			<div flex="100">
+			<div flex="75">
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
 					<input ng-model="data.OtherActivity.title" required>
 				</md-input-container>
 			</div>
+
+
+			<div flex="25">
+				<!-- Date -->
+				<date-string-selector ng-model="data.OtherActivity.date" ></date-string-selector> 
+
+			</div>
+
 			
 			<div flex="100">
 				<!-- Type -->
 				<md-input-container class="md-block">
-					<label>Type</label>
+					<label>Activity Type</label>
 					<input ng-model="data.OtherActivity.type" required>
 				</md-input-container>
 			</div>
@@ -35,12 +43,6 @@
 				
 			</div>
 
-			<div flex="50">
-				<!-- Date -->
-				<date-string-selector ng-model="data.OtherActivity.date" ></date-string-selector> 
-
-			</div>
-		
 
 			<div flex="50">
 				<!-- Male Count -->

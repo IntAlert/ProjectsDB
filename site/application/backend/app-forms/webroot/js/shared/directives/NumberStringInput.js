@@ -5,7 +5,7 @@ app.directive('numberString', function() {
     link: function(scope, $el, attrs, ngModel) {
       if ($el.get(0).type === 'number') {
         ngModel.$parsers.push(function(value) {
-        	return value.toString();
+        	return (value == null) ? null : value.toString();
         });
 
         ngModel.$formatters.push(function(value) {

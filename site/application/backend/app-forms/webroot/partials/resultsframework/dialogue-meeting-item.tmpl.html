@@ -9,12 +9,20 @@
 	<md-dialog-content>
 		
 		<div layout="row" layout-wrap>
-			<div flex="100">
+			<div flex="75">
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
 					<input ng-model="data.Meeting.title" required>
 				</md-input-container>
+			</div>
+
+
+			<div flex="25">
+				<!-- Date -->
+				<date-string-selector ng-model="data.Meeting.date"> 
+				</date-string-selector>
+
 			</div>
 
 			<div class="instruction-block">
@@ -27,11 +35,6 @@
 				
 			</div>
 
-			<div flex="50">
-				<!-- Date -->
-				<date-string-selector ng-model="data.Meeting.date" /> 
-
-			</div>
 
 			<div flex="50">
 				<!-- Male Count -->
@@ -58,7 +61,7 @@
 						required>
 				</md-input-container>
 			</div>
-
+		</div>
 
 		<div layout="row"><h3>Themes</h3></div>
 		<div layout="row">
@@ -117,7 +120,7 @@
         </md-button>
 	  <span flex></span>
 	  <md-button 
-	  	ng-show="dialogueMeetingItemForm.$invalid || !data.Theme.length && !data.ParticipantType.length"
+	  	ng-disabled="dialogueMeetingItemForm.$invalid || !data.Theme.length && !data.ParticipantType.length"
 	  	ng-click="save(data)" 
 	  	class="md-raised md-primary">
 	    Save
