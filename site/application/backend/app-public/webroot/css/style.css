@@ -315,3 +315,11 @@ nav.admin-nav ul li p {padding:1em;}
 .md-dialog-container .instruction-block {
 	margin: 0 0 2em;
 }
+
+.hint p {
+	margin:0.5em 0;
+}
+
+.date-string-selector-container {
+	margin-top:15px;
+}

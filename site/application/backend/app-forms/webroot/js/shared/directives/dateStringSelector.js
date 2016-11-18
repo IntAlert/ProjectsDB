@@ -25,13 +25,15 @@ app.directive('dateStringSelector',
 
 			},
             template: 
-        		'<md-datepicker ' +
-        			'class="md-block"' +
-					'required ' +
-					'ng-model="localDate"  ' +
-					'ng-change="updateDate()"' +
-					'md-placeholder="Enter date"> ' +
-				'</md-datepicker>'
+            	'<div class="date-string-selector-container">' +
+	        		'<md-datepicker ' +
+	        			'class="md-block"' +
+						'required ' +
+						'ng-model="localDate"  ' +
+						'ng-change="updateDate()"' +
+						'md-placeholder="Enter date"> ' +
+					'</md-datepicker>' +
+				'</div>'
         }
     }
 );
