@@ -327,3 +327,10 @@ nav.admin-nav ul li p {padding:1em;}
 md-dialog.rf-dialog-large {
 	min-width:800px !important;
 }
+
+@media screen and (min-width:0\0) {
+// Seems to fix flexbox type layout issues in IE10
+	span[flex], md-card-content, md-dialog-content {
+		display: block;
+	}
+}
