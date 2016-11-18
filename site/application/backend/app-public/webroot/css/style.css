@@ -323,3 +323,7 @@ nav.admin-nav ul li p {padding:1em;}
 .date-string-selector-container {
 	margin-top:15px;
 }
+
+md-dialog {
+	min-width:800px !important;
+}
