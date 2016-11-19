@@ -65,7 +65,7 @@ var data = <?php echo json_encode($project); ?>;
 				target="_blank"
 				class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				role="button">
-				Project Data
+				Monitoring Data
 			</a>
 
 		</li>
