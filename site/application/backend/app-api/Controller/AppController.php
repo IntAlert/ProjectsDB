@@ -45,6 +45,9 @@ class AppController extends Controller {
 	 //        'authorize' => array('controller'), // Added this line
 	 //    ),
 
+	    'RequestHandler' => array(
+	        'viewClassMap' => array('csv' => 'CsvView.Csv')
+	    )
 	);
 
 	public $uses = array('User');
@@ -112,6 +115,11 @@ class AppController extends Controller {
 		// only reason a redirect would happen would be unAuthed
 		throw new ForbiddenException("Not authed");
 
+    }
+
+    public function isCSVrequest() {
+    	return isset($this->request->params['ext']) 
+    		&& $this->request->params['ext'] == 'csv';
     }
 
 }

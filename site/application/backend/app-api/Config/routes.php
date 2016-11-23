@@ -36,7 +36,7 @@
  */
 	CakePlugin::routes();
 
-	Router::parseExtensions('html', 'rss', 'json');
+	Router::parseExtensions('html', 'rss', 'json', 'csv');
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
