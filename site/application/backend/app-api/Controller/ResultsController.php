@@ -77,11 +77,20 @@ class ResultsController extends AppController {
 		// TODO: must be authed and must be note owner
 
 		$results = $this->Result->find('all', array(
-			'contain' => ['Impact']
+			'order' => ['date' => 'DESC'],
+			'contain' => [
+				'Project.Territory', 
+				'Project.Pathway', 
+				'Project.Theme', 
+				'Impact'
+			]
 		));
-		
 
-		$this->set(array('data' => $results));
+		if ($this->isCSVrequest()) {
+			return $this->csv($results);
+		} else {
+			return $this->json($results);
+		}
 	}
 
 	public function project($project_id) {
