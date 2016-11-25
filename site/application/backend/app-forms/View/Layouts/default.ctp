@@ -139,9 +139,9 @@ if ( !isset($title) ) {
 	
 
 	<!-- <link rel="stylesheet" type="text/css" href="/pdb/css/cake.generic.css"> -->
-	<link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/pdb/css/style.css?v=2">
 
-	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css?v=2">
 
 	
 
