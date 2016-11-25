@@ -1,5 +1,7 @@
 <div ng-controller="TrainingsQueryController">
 
+
+
 <div layout="row">
   <div flex="25" class="filters">
     
@@ -135,6 +137,34 @@
 
 	></div>
 
+	<div class="api_urls" ng-if=" !state.data_loading ">
+		<h2>Get this data via the API</h2>
+		<label>CSV</label>
+
+		<!-- CSV -->
+		<div>
+			<!-- Target -->
+			<input type="text" id="csv" readonly ng-value="data.api_urls.csv">
+
+			<!-- Trigger -->
+			<button class="btn" ngclipboard data-clipboard-target="#csv">
+			    Copy to clipboard
+			</button>
+		</div>
+
+		<!-- JSON -->
+		<div>
+			<!-- Target -->
+			<input type="text" id="json" readonly ng-value="data.api_urls.json">
+
+			<!-- Trigger -->
+			<button class="btn" ngclipboard data-clipboard-target="#json">
+			    Copy to clipboard
+			</button>
+		</div>
+
+	</div>
+
 
 	<div class="grid_data_loading" ng-show=" state.data_loading">
 		<md-progress-circular md-mode="indeterminate"></md-progress-circular>	
@@ -147,3 +177,4 @@
 
 
 </div>
+

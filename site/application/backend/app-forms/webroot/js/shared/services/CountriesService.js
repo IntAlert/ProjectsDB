@@ -4,7 +4,7 @@ app.factory('CountriesService', function($http) {
   }
 
   // All countries
-  $http.get('/api/territories/allCountries.json')
+  $http.get('/api/territories/allCountries')
   .then(function(response){
     instance.all = response.data;
 

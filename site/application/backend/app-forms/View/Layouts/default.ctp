@@ -65,6 +65,10 @@ if ( !isset($title) ) {
 	<script src="/pdb/components/angular-ui-grid/ui-grid.js"></script>
 	<link rel="stylesheet" type="text/css" href="/pdb/components/angular-ui-grid/ui-grid.min.css">
 
+	<!-- Clipboard -->
+	<script src="/pdb/components/clipboard/dist/clipboard.min.js"></script>
+	<script src="/pdb/components/ngclipboard/dist/ngclipboard.min.js"></script>
+
 	<script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
 
   <!-- Angular Material Library -->

@@ -1,6 +1,6 @@
 
 var app = angular
-	.module('resultsframework', ['ngMaterial', 'ngMessages', "checklist-model", 'ui.grid', 'ui.grid.selection', 'ui.grid.exporter'])
+	.module('resultsframework', ['ngMaterial', 'ngMessages', "checklist-model", 'ui.grid', 'ui.grid.selection', 'ui.grid.exporter', 'ngclipboard'])
 	.config(function($mdDateLocaleProvider, $locationProvider) {
 		$mdDateLocaleProvider.formatDate = function(date) {
 			return date ? moment(date).format('DD/MM/YYYY') : "";

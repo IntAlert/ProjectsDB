@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-ui-grid": "^3.2.9"
+    "angular-ui-grid": "^3.2.9",
+    "ngclipboard": "^1.1.1"
   }
 }

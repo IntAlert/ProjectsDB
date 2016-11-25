@@ -137,6 +137,15 @@ class TrainingsController extends AppController {
 			'contain' => ['ParticipantType', 'Theme']
 		));
 
+
+		// $this->response->header(array(
+		//     'Content-Type' => 'application/csv',
+		//     'Content-Disposition' => 'attachment; filename=example.csv',
+		//     'Pragma' => 'no-cache'
+		// ));
+
+
+
 		$this->set(array('data' => $trainings));
 	}
 

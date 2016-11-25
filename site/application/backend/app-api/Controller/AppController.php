@@ -45,9 +45,7 @@ class AppController extends Controller {
 	 //        'authorize' => array('controller'), // Added this line
 	 //    ),
 
-	    'RequestHandler' => array(
-	        'viewClassMap' => array('csv' => 'CsvView.Csv')
-	    )
+	    'RequestHandler'
 	);
 
 	public $uses = array('User');

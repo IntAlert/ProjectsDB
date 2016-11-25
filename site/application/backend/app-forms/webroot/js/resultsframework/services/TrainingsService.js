@@ -1,9 +1,14 @@
-app.factory('TrainingsService', function($http, DedupeService) {
+app.factory('TrainingsService', function($http, $httpParamSerializer, $location, DedupeService) {
 
 	// Build instance to return
 	var instance = {
 		items: [],
-		totals: {}
+		totals: {},
+
+		api_urls: {
+			csv: null,
+			json: null
+		}
 	}
 
 	// selected Project Id
@@ -45,7 +50,11 @@ app.factory('TrainingsService', function($http, DedupeService) {
 			queryParams.pathway_id = query.pathways.selected.Pathway.id
 		}
 
-		return $http.get('/api/trainings/all', {params: queryParams})
+		// set API URLs
+		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/trainings/all.csv?' + $httpParamSerializer(queryParams);
+		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/trainings/all?' + $httpParamSerializer(queryParams);
+
+		return $http.get(instance.api_urls.json)
 			.then(function(response){
 
 				var trainings = response.data.data || []
