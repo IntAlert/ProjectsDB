@@ -1,4 +1,4 @@
-app.controller('ResultsframeworkController', function ($scope, $window, $location, $anchorScroll, NonInteractiveDialogService, ResultsFrameworkService) {
+app.controller('ResultsframeworkEditController', function ($scope, $window, $location, $anchorScroll, NonInteractiveDialogService, ResultsFrameworkService) {
 
 	// UI
 	$scope.disableTabsByValid = true;

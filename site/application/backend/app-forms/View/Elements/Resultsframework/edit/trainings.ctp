@@ -85,7 +85,7 @@
 				</th>
 
 				<th>
-					Partipant Types
+					Participant Types
 				</th>
 
 				<th>

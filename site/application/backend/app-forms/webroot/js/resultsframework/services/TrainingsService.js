@@ -10,6 +10,52 @@ app.factory('TrainingsService', function($http, DedupeService) {
 	var project_id = null;
 
 
+	instance.query = function(query) {
+
+		var queryParams = {};
+
+
+		// filter on date?
+		if ( !query.dates.all ) {
+			queryParams.start_date = query.dates.start.toISOString().slice(0,10),
+			queryParams.finish_date = query.dates.finish.toISOString().slice(0,10)
+		}
+
+		// filter on participant type?
+		if ( !query.participant_types.all ) {
+			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
+		}
+
+		// filter on theme?
+		if ( !query.themes.all ) {
+			queryParams.theme_id = query.themes.selected.Theme.id
+		}
+
+		// filter on territory?
+		if ( !query.territories.all ) {
+			queryParams.territory_id = query.territories.selected.Territory.id
+		}
+
+		// filter on pathway?
+		if ( !query.pathways.all ) {
+			queryParams.pathway_id = query.pathways.selected.Pathway.id
+		}
+
+		return $http.get('/api/trainings/all', {params: queryParams})
+			.then(function(response){
+
+				var trainings = response.data.data || []
+
+				instance.items = trainings
+				
+				updateTotals()
+
+			}, function(){
+				alert("trainings download error")
+			});
+	}
+
+
 	instance.load = function(a_project_id) {
 
 		project_id = a_project_id;

@@ -1,18 +1,18 @@
 
-<?php $this->set('title', $project['Project']['title'] . 'Project Data'); ?>
+<?php $this->set('title', 'Query Monitoring Data'); ?>
 
-<?php echo $this->Html->css('resultsframework/edit', array('inline' => false)); ?>
+<?php echo $this->Html->css('resultsframework/query', array('inline' => false)); ?>
 
 <div class="resultsframework form" ng-app="resultsframework">
 	
-	<form ng-controller="ResultsframeworkEditController">
+	<form ng-controller="ResultsframeworkQueryController">
 
 	<fieldset>
 
 		<div class="header clearfix">
 			
 		
-			<legend><?php echo __('Data for ' . $project['Project']['title']); ?></legend>
+			<legend><?php echo __('Query Monitoring Data'); ?></legend>
 
 		</div>
 
@@ -30,7 +30,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		        	<?php echo $this->element('Resultsframework/edit/trainings'); ?>
+		        	<?php echo $this->element('Resultsframework/query/trainings'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -40,7 +40,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		        <?php echo $this->element('Resultsframework/edit/accompaniments'); ?>
+		        <?php // echo $this->element('Resultsframework/query/accompaniments'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -50,7 +50,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		        <?php echo $this->element('Resultsframework/edit/dialogues'); ?>
+		        <?php // echo $this->element('Resultsframework/query/dialogues'); ?>
 		        </md-content>
 		      </md-tab>
 
@@ -62,7 +62,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		      	<?php echo $this->element('Resultsframework/edit/researches'); ?>
+		      	<?php // echo $this->element('Resultsframework/query/researches'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -73,7 +73,7 @@
 		        <md-content 
 		        class="md-padding">
 
-		        	<?php echo $this->element('Resultsframework/edit/advocacies'); ?>
+		        	<?php // echo $this->element('Resultsframework/query/advocacies'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -85,7 +85,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		        <?php echo $this->element('Resultsframework/edit/other_activities'); ?>
+		        <?php // echo $this->element('Resultsframework/query/other_activities'); ?>
 		        </md-content>
 		      </md-tab>
 
@@ -94,7 +94,7 @@
 		        <md-content 
 			        class="md-padding">
 
-			        <?php echo $this->element('Resultsframework/edit/results'); ?>
+			        <?php // echo $this->element('Resultsframework/query/results'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -133,18 +133,18 @@
 <?php echo $this->Html->script('resultsframework/services/OtherActivitiesService'); ?>
 
 
-<?php echo $this->Html->script('resultsframework/controllers/ResultsframeworkEditController'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/geography'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/themes'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/researches'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/results'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/trainings'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/meetings'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/processes'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/accompaniments'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/advocacies'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/ResultsframeworkQueryController'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/geography'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/themes'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/researches'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/results'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/query/TrainingsQueryController'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/meetings'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/processes'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/accompaniments'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/advocacies'); ?>
 
-<?php echo $this->Html->script('resultsframework/controllers/edit/other_activities'); ?>
+<?php // echo $this->Html->script('resultsframework/controllers/query/other_activities'); ?>
 
 
 

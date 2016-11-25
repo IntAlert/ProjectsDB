@@ -13,7 +13,7 @@ app.factory('FormOptions', function($http) {
 
 
   // All countries
-	$http.get('/api/territories/allCountries.json')
+	$http.get('/api/territories/allCountries')
 		.then(function(response){
 			formOptionsInstance.countries = response.data;
 		}, function(){
@@ -21,7 +21,7 @@ app.factory('FormOptions', function($http) {
 		});
 
 	// All regions
-	$http.get('/api/territories/allRegions.json')
+	$http.get('/api/territories/allRegions')
 		.then(function(response){
 			formOptionsInstance.regions = response.data;
 		}, function(){
@@ -29,7 +29,7 @@ app.factory('FormOptions', function($http) {
 		});
 
 	// All themes
-	$http.get('/api/themes/all.json')
+	$http.get('/api/themes/all')
 		.then(function(response){
 			formOptionsInstance.themes = response.data;
 		}, function(){
@@ -37,7 +37,7 @@ app.factory('FormOptions', function($http) {
 		});
 
 	// All pathways
-	$http.get('/api/pathways/all.json')
+	$http.get('/api/pathways/all')
 		.then(function(response){
 			formOptionsInstance.pathways = response.data;
 		}, function(){
@@ -46,7 +46,7 @@ app.factory('FormOptions', function($http) {
 
 
 	// All participant types
-	$http.get('/api/participant_types/all.json')
+	$http.get('/api/participant_types/all')
 		.then(function(response){
 			formOptionsInstance.participant_types = response.data.data;
 		}, function(){
@@ -54,7 +54,7 @@ app.factory('FormOptions', function($http) {
 		});
 
 	// All participant types
-	$http.get('/api/impacts/all.json')
+	$http.get('/api/impacts/all')
 		.then(function(response){
 			formOptionsInstance.impacts = response.data.data;
 		}, function(){

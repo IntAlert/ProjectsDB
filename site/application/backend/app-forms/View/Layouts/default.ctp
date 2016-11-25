@@ -61,10 +61,14 @@ if ( !isset($title) ) {
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 
-  <script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
+	<!-- UI GRID -->
+	<script src="/pdb/components/angular-ui-grid/ui-grid.js"></script>
+	<link rel="stylesheet" type="text/css" href="/pdb/components/angular-ui-grid/ui-grid.min.css">
+
+	<script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
 
   <!-- Angular Material Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 
 	<script src="/pdb/js/lib/angular.checklist-model.js"></script>
 
@@ -88,7 +92,7 @@ if ( !isset($title) ) {
 
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 
 	<script type="text/javascript" src="/pdb/js/lib/datamaps.world.min.js"></script>
 
@@ -130,10 +134,10 @@ if ( !isset($title) ) {
 
 	
 
-	<link rel="stylesheet" type="text/css" href="/pdb/css/cake.generic.css">
-	<link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/pdb/css/cake.generic.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
 
-	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css"> -->
 
 	
 

@@ -36,6 +36,10 @@ class ResultsframeworkController extends AppController {
 		$this->ResultsFramework->save($this->request->data);
 	}
 
+	public function query() {
+
+	}
+
 // /**
 //  * Components
 //  *

@@ -2,6 +2,10 @@
 
 class TrainingsController extends AppController {
 
+	public $components = array(
+		'ProjectIdSearch'
+	);
+
 
 	function create() {
 		
@@ -68,10 +72,68 @@ class TrainingsController extends AppController {
 		
 		// TODO: must be authed and must be note owner
 
+
+		// Training filters
+		$start_date = $this->request->query('start_date');
+		$finish_date = $this->request->query('finish_date');
+		$participation_type_id = $this->request->query('participation_type_id');
+		$theme_id = $this->request->query('theme_id');
+		
+		// Project filters
+		$projectFilter = array(
+    		"pathway_id" => $this->request->query('pathway_id'),
+    		"donor_id" => $this->request->query('donor_id'),
+    		"territory_id" => $this->request->query('territory_id')
+    	);
+
+		// generate project id filters based on theme_id, pathway_id, etc
+		$project_ids = $this->ProjectIdSearch->getProjectIds($projectFilter);
+
+
+		// build conditions, joins
+		$conditions = [];
+		$joins = [];
+
+		// filter on training dates?
+		if ($start_date) $conditions[] = ['date >=' => $start_date];
+		if ($finish_date) $conditions[] = ['date >=' => $finish_date];
+
+		// filter on training participant type?
+		if ($participation_type_id) {
+			$joins[] = array(
+				'table' => 'trainings_participant_types',
+	            'alias' => 'TrainingsParticipantType',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Training.id = TrainingsParticipantType.training_id',
+	                'TrainingsParticipantType.participation_type_id' => $participation_type_id
+	            )
+	        );	
+		}
+
+		// filter on training theme?
+		if ($theme_id) {
+			$joins[] = array(
+				'table' => 'trainings_themes',
+	            'alias' => 'TrainingsTheme',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Training.id = TrainingsTheme.training_id',
+	                'TrainingsTheme.theme_id' => $theme_id
+	            )
+	        );	
+		}
+
+		// Add project ID filter
+		if (is_array($project_ids)) 
+			$condtions['project_id'] = $project_ids;
+
 		$trainings = $this->Training->find('all', array(
+			'order' => ['Training.date' => 'DESC'],
+			'conditions' => $conditions,
+			'joins' => $joins,
 			'contain' => ['ParticipantType', 'Theme']
 		));
-		
 
 		$this->set(array('data' => $trainings));
 	}
