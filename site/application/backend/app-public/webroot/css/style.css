@@ -1,4 +1,5 @@
 body {background:#fff; color:#333; font-size: 85%;}
+
 #container {min-width: 1120px;}
 
 nav {padding:1.5em 1em 0;}
@@ -39,7 +40,90 @@ nav.main ul li a:hover {
 	background: rgb(250,250,250);
 }
 
-form div {padding:0.5em 0;}
+form div {padding:0;}
+
+fieldset {
+	border: none;
+	margin-bottom: 1em;
+	padding: 16px 10px;
+}
+fieldset legend {
+	color: #e32;
+	font-size: 160%;
+	font-weight: bold;
+}
+fieldset fieldset {
+	margin-top: 0;
+	padding: 10px 0 0;
+}
+fieldset fieldset legend {
+	font-size: 120%;
+	font-weight: normal;
+}
+fieldset fieldset div {
+	clear: left;
+	margin: 0 20px;
+}
+
+
+/** Tables **/
+table {
+	border-right:0;
+	clear: both;
+	color: #333;
+	margin-bottom: 10px;
+	width: 100%;
+}
+th {
+	border:0;
+	border-bottom:2px solid #555;
+	text-align: left;
+	padding:4px;
+}
+th a {
+	display: block;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+th a.asc:after {
+	content: ' ⇣';
+}
+th a.desc:after {
+	content: ' ⇡';
+}
+table tr td {
+	padding: 6px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom:1px solid #ddd;
+}
+table tr:nth-child(even) {
+	background: #f9f9f9;
+}
+td.actions {
+	text-align: center;
+	white-space: nowrap;
+}
+table td.actions a {
+	margin: 0px 6px;
+	padding:2px 5px;
+}
+
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
 
 body.dashboard-dashboard nav .dashboard a,
 body.dashboard-admin nav .dashboard-admin a,
@@ -119,6 +203,8 @@ div.form, div.index, div.view {
 
 #footer {
 	background:#000;
+	clear: both;
+    padding: 6px 10px;
 }
 
 #footer ul {
@@ -136,7 +222,9 @@ height:48px;
 #footer ul a {
 	text-decoration: none;
 }
-
+#header a, #footer a {
+	color:#fff;
+}
 
 
 
@@ -326,11 +414,4 @@ nav.admin-nav ul li p {padding:1em;}
 
 md-dialog.rf-dialog-large {
 	min-width:800px !important;
-}
-
-@media screen and (min-width:0\0) {
-// Seems to fix flexbox type layout issues in IE10
-	span[flex], md-card-content, md-dialog-content {
-		display: block;
-	}
 }

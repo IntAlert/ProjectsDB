@@ -16,6 +16,7 @@
 		    <!-- Start Date -->
 		  	<md-datepicker 
 		  		ng-model="query.dates.start" 
+		  		md-max-date="query.dates.finish"
 		  		md-placeholder="Start date"
 		    ></md-datepicker>
 		</div>
@@ -25,6 +26,7 @@
 		  	<!-- End Date -->
 		  	<md-datepicker 
 		  		ng-model="query.dates.finish" 
+		  		md-min-date="query.dates.start"
 		  		md-placeholder="Start date"
 		    ></md-datepicker>
 		</div>
@@ -138,7 +140,6 @@
 		<md-progress-circular md-mode="indeterminate"></md-progress-circular>	
 	</div>	
 
-    <pre>{{query | json}}</pre>
   </div>
 
 

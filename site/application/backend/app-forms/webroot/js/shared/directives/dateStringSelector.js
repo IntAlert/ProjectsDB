@@ -19,6 +19,7 @@ app.directive('dateStringSelector',
 
 
 				$scope.updateDate = function() {
+					// correct for annoying timezone issue
 					$scope.ngModel = $scope.localDate.addMinutes(-new Date().getTimezoneOffset())
 				}
 

@@ -76,7 +76,7 @@ class TrainingsController extends AppController {
 		// Training filters
 		$start_date = $this->request->query('start_date');
 		$finish_date = $this->request->query('finish_date');
-		$participation_type_id = $this->request->query('participation_type_id');
+		$participant_type_id = $this->request->query('participant_type_id');
 		$theme_id = $this->request->query('theme_id');
 		
 		// Project filters
@@ -96,19 +96,21 @@ class TrainingsController extends AppController {
 
 		// filter on training dates?
 		if ($start_date) $conditions[] = ['date >=' => $start_date];
-		if ($finish_date) $conditions[] = ['date >=' => $finish_date];
+		if ($finish_date) $conditions[] = ['date <=' => $finish_date];
 
 		// filter on training participant type?
-		if ($participation_type_id) {
+
+		if ($participant_type_id) {
 			$joins[] = array(
 				'table' => 'trainings_participant_types',
 	            'alias' => 'TrainingsParticipantType',
 	            'type' => 'INNER',
 	            'conditions' => array(
 	                'Training.id = TrainingsParticipantType.training_id',
-	                'TrainingsParticipantType.participation_type_id' => $participation_type_id
+	                'TrainingsParticipantType.participant_type_id' => $participant_type_id
 	            )
-	        );	
+	        );
+
 		}
 
 		// filter on training theme?
@@ -126,7 +128,7 @@ class TrainingsController extends AppController {
 
 		// Add project ID filter
 		if (is_array($project_ids)) 
-			$condtions['project_id'] = $project_ids;
+			$conditions['project_id'] = $project_ids;
 
 		$trainings = $this->Training->find('all', array(
 			'order' => ['Training.date' => 'DESC'],

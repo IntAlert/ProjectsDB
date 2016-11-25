@@ -1,5 +1,14 @@
 img.logo {margin-bottom:10px;}
 nav.main {text-align: center}
+
+nav h1 {
+	margin-left: 2em;
+    float: left;
+    padding-top: 11px;
+    color: #333;	
+}
+
+
 .md-datepicker-calendar table {width:auto;}
 .md-datepicker {
 	margin-top: 18px;

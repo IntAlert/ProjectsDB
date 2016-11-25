@@ -39,15 +39,16 @@ app.controller('TrainingsQueryController', function($scope, $mdDialog, DedupeSer
 	$scope.gridOptions = {
 		enableSorting: true,
 		columnDefs: [
-		  { name:'Project ID', field: 'Training.project_id' },
+		  { name:'Project Id', field: 'Training.project_id', visible:false },
+		  { name:'Training Id', field: 'Training.id', visible:false },
 		  { name:'title', field: 'Training.title' },
 		  { name:'Males', field: 'Training.male_count' },
 		  { name:'Females', field: 'Training.female_count' },
-		  { name:'date', field: 'Training.date'}
+		  { name:'Date', field: 'Training.date'}
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'test.csv',
+		exporterCsvFilename: 'trainings.csv',
 		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;

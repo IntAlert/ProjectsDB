@@ -17,8 +17,12 @@ app.factory('TrainingsService', function($http, DedupeService) {
 
 		// filter on date?
 		if ( !query.dates.all ) {
-			queryParams.start_date = query.dates.start.toISOString().slice(0,10),
-			queryParams.finish_date = query.dates.finish.toISOString().slice(0,10)
+			// correct for annoying timezone issue
+			var start_date = query.dates.start.addMinutes(-new Date().getTimezoneOffset());
+			var finish_date = query.dates.finish.addMinutes(-new Date().getTimezoneOffset());
+			
+			queryParams.start_date = start_date.toISOString().slice(0,10),
+			queryParams.finish_date = finish_date.toISOString().slice(0,10)
 		}
 
 		// filter on participant type?

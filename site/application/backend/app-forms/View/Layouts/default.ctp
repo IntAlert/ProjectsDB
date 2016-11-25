@@ -135,9 +135,9 @@ if ( !isset($title) ) {
 	
 
 	<!-- <link rel="stylesheet" type="text/css" href="/pdb/css/cake.generic.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/pdb/css/style.css">
 
-	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css"> -->
+	<link rel="stylesheet" type="text/css" href="/forms/css/forms.css">
 
 	
 
@@ -161,39 +161,16 @@ if ( !isset($title) ) {
 
 	<div id="container">
 
-		<nav class="main">
+		<nav class="main clearfix">
 
 			<div class="logo-container">
 				<img src="/pdb/img/logo-slogan-landscape.png" height="80" class="logo">
 			</div>
 
-<?php if (AuthComponent::user('id')): // only show nav to logged in users ?>
+			<h1>
+				<?php echo $title; ?>
+			</h1>
 
-			<ul>
-
-
-
-
-<?php if ($is_admin): // only show nav to logged in users ?>
-
-				<!-- <li class="dashboard-admin">
-					
-					<a href="/pdb/dashboard/admin">
-						<i class="fa fa-lock"></i>
-						Admin
-					</a>
-				</li> -->
-
-<?php endif;// (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
-
-
-
-
-
-			</ul>
-
-	<?php endif; // (AuthComponent::user('id')): // only show nav to logged in users ?>
-	
 		</nav>
 		<div id="content">
 

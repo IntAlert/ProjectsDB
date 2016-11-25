@@ -1,5 +1,5 @@
 
-<?php $this->set('title', $project['Project']['title'] . 'Project Data'); ?>
+<?php $this->set('title', ' Monitoring Data for ' . $project['Project']['title']); ?>
 
 <?php echo $this->Html->css('resultsframework/edit', array('inline' => false)); ?>
 
@@ -8,14 +8,6 @@
 	<form ng-controller="ResultsframeworkEditController">
 
 	<fieldset>
-
-		<div class="header clearfix">
-			
-		
-			<legend><?php echo __('Data for ' . $project['Project']['title']); ?></legend>
-
-		</div>
-
 		<div ng-cloak>
 		  <md-content>
 		    <md-tabs 

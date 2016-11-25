@@ -21,3 +21,10 @@
 	width: 100%;
 	height: 450px;
 }
+
+/* Disable PDF export */
+.ui-grid-menu #menuitem-3,
+.ui-grid-menu #menuitem-4,
+.ui-grid-menu #menuitem-5 {
+	display: none;
+}
