@@ -19,7 +19,7 @@ app.controller('ResultsController', function($scope, $mdDialog, ResultsService){
 	      templateUrl: '/forms/partials/resultsframework/result-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: resultToEdit
 	      }

@@ -19,7 +19,7 @@ app.controller('OtherActivitiesController', function($scope, $mdDialog, DedupeSe
 	      templateUrl: '/forms/partials/resultsframework/other-activity-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: otherActivityToEdit
 	      }

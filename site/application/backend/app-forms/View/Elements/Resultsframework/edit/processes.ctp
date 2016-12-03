@@ -77,7 +77,11 @@
 		<thead>
 			<tr>
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 				<th>
@@ -114,7 +118,11 @@
 		<tbody>
 			<tr ng-repeat="(i, process) in data.items">
 				<td>
-					{{process.Process.date | date:'dd/MM/yyyy'}}
+					{{process.Process.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{process.Process.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 

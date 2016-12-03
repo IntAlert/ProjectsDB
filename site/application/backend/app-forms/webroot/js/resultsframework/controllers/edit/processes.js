@@ -19,7 +19,7 @@ app.controller('ProcessesController', function($scope, $mdDialog, DedupeService,
 	      templateUrl: '/forms/partials/resultsframework/dialogue-process-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: processToEdit
 	      }

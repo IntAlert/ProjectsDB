@@ -11,7 +11,7 @@
 		
 		<div layout="row" layout-wrap>
 
-			<div flex="75">
+			<div flex="100">
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
@@ -19,11 +19,17 @@
 				</md-input-container>
 			</div>
 
-			<div flex="25">
-				<!-- Date -->
+			<div flex="50">
+				<!-- Start Date -->
 
-				<date-string-selector ng-model="data.Training.date" /> 
+				<date-string-selector label="Start Date" max="data.Training.finish_date" ng-model="data.Training.start_date" /> 
 
+			</div>
+
+			<div flex="50">
+				<!-- Finish Date -->
+
+				<date-string-selector label="Finish Date"  min="data.Training.start_date" ng-model="data.Training.finish_date" /> 
 
 			</div>
 

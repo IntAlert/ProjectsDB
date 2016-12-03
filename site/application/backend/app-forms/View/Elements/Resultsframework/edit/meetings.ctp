@@ -70,7 +70,11 @@
 			<tr>
 
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 
@@ -104,7 +108,11 @@
 			<tr ng-repeat="(i, meeting) in data.items">
 
 				<td>
-					{{meeting.Meeting.date | date:'dd/MM/yyyy'}}
+					{{meeting.Meeting.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{meeting.Meeting.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 

@@ -9,7 +9,7 @@
 	<md-dialog-content ng-cloak>
 		
 		<div layout="row" layout-wrap>
-			<div flex="75">
+			<div flex="100">
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
@@ -18,10 +18,17 @@
 			</div>
 
 
-			<div flex="25">
-				<!-- Date -->
-				<date-string-selector ng-model="data.Meeting.date"> 
-				</date-string-selector>
+			<div flex="50">
+				<!-- Start Date -->
+
+				<date-string-selector label="Start Date" max="data.Meeting.finish_date" ng-model="data.Meeting.start_date" /> 
+
+			</div>
+
+			<div flex="50">
+				<!-- Finish Date -->
+
+				<date-string-selector label="Finish Date"  min="data.Meeting.start_date" ng-model="data.Meeting.finish_date" /> 
 
 			</div>
 

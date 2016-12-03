@@ -1,7 +1,7 @@
 
 <?php $this->set('title', ' Monitoring Data for ' . $project['Project']['title']); ?>
 
-<?php echo $this->Html->css('resultsframework/edit', array('inline' => false)); ?>
+<?php echo $this->Html->css('resultsframework/edit.css?v=2', array('inline' => false)); ?>
 
 <div class="resultsframework form" ng-app="resultsframework">
 	

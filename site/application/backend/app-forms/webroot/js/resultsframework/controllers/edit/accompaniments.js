@@ -19,7 +19,7 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, FormOptio
 	      templateUrl: '/forms/partials/resultsframework/accompaniment-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: accompanimentToEdit
 	      }

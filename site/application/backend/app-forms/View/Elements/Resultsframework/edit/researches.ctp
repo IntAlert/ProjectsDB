@@ -43,7 +43,11 @@
 		<thead>
 			<tr>
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 
@@ -62,7 +66,11 @@
 		<tbody>
 			<tr ng-repeat="(i, research) in data.items">
 				<td>
-					{{research.Research.date | date:'dd/MM/yyyy'}}
+					{{research.Research.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{research.Research.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 
@@ -90,7 +98,7 @@
 
 					<md-button 
 						class="md-raised" 
-						ng-click="removeResearchItem(research.id)">
+						ng-click="removeResearchItem(research.Research.id)">
 						Remove
 					</md-button>
 

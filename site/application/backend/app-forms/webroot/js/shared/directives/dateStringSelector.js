@@ -3,11 +3,16 @@ app.directive('dateStringSelector',
 		return {
 			require: '^ngModel',
 			scope: {
-				'ngModel': '='
+				'ngModel': '=',
+				'label': '@label',
+				'min': '=',
+				'max': '='
 			},
 			controller: function($scope) {
 
 				$scope.localDate = null;
+
+				console.log($scope.label)
 
 				// turn a saved string into a date object on load from DB
 				$scope.$watch('ngModel', function(){
@@ -27,11 +32,14 @@ app.directive('dateStringSelector',
 			},
             template: 
             	'<div class="date-string-selector-container">' +
+            		'<label>{{label}}</label>' +
 	        		'<md-datepicker ' +
 	        			'class="md-block"' +
 						'required ' +
 						'ng-model="localDate"  ' +
 						'ng-change="updateDate()"' +
+						'md-min-date="min"  ' +
+						'md-max-date="max"  ' +
 						'md-placeholder="Enter date"> ' +
 					'</md-datepicker>' +
 				'</div>'

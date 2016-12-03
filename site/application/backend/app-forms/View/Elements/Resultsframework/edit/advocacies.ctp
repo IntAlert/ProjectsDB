@@ -67,7 +67,11 @@
 		<thead>
 			<tr>
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 				<th>
@@ -97,7 +101,11 @@
 		<tbody>
 			<tr ng-repeat="(i, advocacy) in data.items">
 				<td>
-					{{advocacy.Advocacy.date | date:'dd/MM/yyyy'}}
+					{{advocacy.Advocacy.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{advocacy.Advocacy.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 				<td>

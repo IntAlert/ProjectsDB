@@ -56,3 +56,20 @@
 	float: right;
 	background:#ccc;
 }
+
+.resultsframework md-input-container .md-input,
+.resultsframework md-input-container .md-datepicker-input{
+	background: #fafafa;
+	padding:4px 12px;
+}
+.resultsframework md-input-container label {
+	margin:4px 12px;	
+}
+
+.date-string-selector-container label {
+	display: block;
+	margin:4px 12px;
+}
+.date-string-selector-container input {
+	width:400px;
+}

@@ -38,7 +38,11 @@
 		<thead>
 			<tr>
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 				<th>
@@ -56,7 +60,11 @@
 			<tr ng-repeat="(i, accompaniment) in data.items">
 
 				<td>
-					{{accompaniment.Accompaniment.date | date:'dd/MM/yyyy'}}
+					{{accompaniment.Accompaniment.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{accompaniment.Accompaniment.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 				<td>

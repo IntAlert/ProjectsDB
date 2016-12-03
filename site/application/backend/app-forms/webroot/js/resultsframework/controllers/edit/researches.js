@@ -19,7 +19,7 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsFramew
 	      templateUrl: '/forms/partials/resultsframework/research-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: researchToEdit
 	      }

@@ -1,5 +1,6 @@
 <div ng-controller="TrainingsController">
 	<h2>Training Summary</h2>
+
 	<table>
 		<tr>
 			<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
@@ -73,7 +74,11 @@
 			<tr>
 
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 				<th>
@@ -101,7 +106,11 @@
 		<tbody>
 			<tr ng-repeat="(i, training) in data.items">
 				<td>
-					{{training.Training.date | date:'dd/MM/yyyy'}}
+					{{training.Training.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{training.Training.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 				<td>

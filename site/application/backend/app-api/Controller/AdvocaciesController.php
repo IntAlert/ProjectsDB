@@ -86,7 +86,7 @@ class AdvocaciesController extends AppController {
 
 		$advocacies = $this->Advocacy->find('all', array(
 			'conditions' => ['project_id' => $project_id],
-			'order' => ['date' => 'ASC'],
+			'order' => ['finish_date' => 'ASC'],
 			'contain' => ['ParticipantType', 'Theme']
 		));
 		

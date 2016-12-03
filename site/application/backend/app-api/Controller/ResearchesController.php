@@ -82,7 +82,7 @@ class ResearchesController extends AppController {
 
 		$trainings = $this->Research->find('all', array(
 			'conditions' => ['project_id' => $project_id],
-			'order' => ['date' => 'ASC'],
+			'order' => ['created' => 'ASC'],
 			'contain' => ['Theme']
 		));
 		

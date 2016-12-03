@@ -52,7 +52,11 @@
 			<tr>
 
 				<th>
-					Date
+					Start Date
+				</th>
+
+				<th>
+					Finish Date
 				</th>
 
 
@@ -83,7 +87,11 @@
 			<tr ng-repeat="(i, other_activity) in data.items">
 
 				<td>
-					{{other_activity.OtherActivity.date | date:'dd/MM/yyyy'}}
+					{{other_activity.OtherActivity.start_date | date:'dd/MM/yyyy'}}
+				</td>
+
+				<td>
+					{{other_activity.OtherActivity.finish_date | date:'dd/MM/yyyy'}}
 				</td>
 
 

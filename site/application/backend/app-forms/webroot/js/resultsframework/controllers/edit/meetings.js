@@ -19,7 +19,7 @@ app.controller('MeetingsController', function($scope, $mdDialog, DedupeService, 
 	      templateUrl: '/forms/partials/resultsframework/dialogue-meeting-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: meetingToEdit
 	      }

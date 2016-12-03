@@ -36,7 +36,7 @@
 			<tr ng-repeat="(i, result) in data.items">
 				
 				<td>
-					{{result.Result.date | date:'dd/MM/yyyy'}}
+					{{result.Result.created | dateToISO | date:'dd/MM/yyyy'}}
 				</td>
 
 				<td>

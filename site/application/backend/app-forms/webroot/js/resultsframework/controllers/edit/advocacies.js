@@ -17,7 +17,7 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, DedupeService
 	      controller: AdvocacyItemController,
 	      templateUrl: '/forms/partials/resultsframework/advocacy-item.tmpl.html',
 	      parent: angular.element(document.body),
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: advocacyToEdit
 	      }

@@ -19,7 +19,7 @@ app.controller('TrainingsController', function($scope, $mdDialog, DedupeService,
 	      templateUrl: '/forms/partials/resultsframework/training-item.tmpl.html',
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
-	      clickOutsideToClose: true,
+	      clickOutsideToClose: false,
 	      locals: {
 	      	data: trainingToEdit
 	      }

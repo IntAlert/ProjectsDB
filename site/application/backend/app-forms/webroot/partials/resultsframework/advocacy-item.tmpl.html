@@ -14,7 +14,7 @@
 			<!-- <pre>{{data | json}}</pre> -->
 			<!-- <pre>{{data.participant_type_counts | json}}</pre> -->
 
-			<div flex="75">
+			<div flex="100">
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
@@ -23,9 +23,18 @@
 			</div>
 
 
-			<div flex="25">
-				<!-- Date -->
-				<date-string-selector ng-model="data.Advocacy.date" /> 
+			<div flex="50">
+				<!-- Start Date -->
+
+				<date-string-selector label="Start Date" max="data.Advocacy.finish_date" ng-model="data.Advocacy.start_date" /> 
+
+			</div>
+
+			<div flex="50">
+				<!-- Finish Date -->
+
+				<date-string-selector label="Finish Date"  min="data.Advocacy.start_date" ng-model="data.Advocacy.finish_date" /> 
+
 			</div>
 
 
