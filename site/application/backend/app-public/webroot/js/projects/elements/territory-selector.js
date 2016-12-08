@@ -18,10 +18,10 @@ $(function(){
 		var label = $("label[for='"+ selectedInput.attr('id') + "']");
 
 
-		// if department name is EP, PIP:
+		// if department name is EP, PIP, PAU:
 		var departmentName = label.text().toUpperCase();
 
-		if (departmentName == 'EMERGING PROGRAMMES' && departmentName == 'PIP') {
+		if (departmentName == 'EMERGING PROGRAMMES' || departmentName == 'PIP' ||  departmentName == 'PAU') {
 			// show all
 			$(".territory-selector .territory-checkbox").show();
 
