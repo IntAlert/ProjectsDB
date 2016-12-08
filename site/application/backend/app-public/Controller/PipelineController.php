@@ -43,7 +43,11 @@ class PipelineController extends AppController {
 		$departmentUnrestrictedAllocationsThisYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocationsList($selectedYear);
 		
 		// get departments
-		$departmentsList = $this->Department->findOrderedList();
+		$departmentsList = $this->Department->findListByYear($selectedYear);
+
+		// // get valid departments for this year
+		// $departmentsList = $this->Department->findListByYear($year);
+		// $department_ids = array_keys($departmentsList);
 
 		$this->set(compact(
 			'departmentBudgetsThisYear',
@@ -71,7 +75,7 @@ class PipelineController extends AppController {
 		$firstYear = $this->Department->Project->getFirstProjectYear();
 
 		// get departments
-		$departmentsList = $this->Department->findOrderedList();
+		$departmentsList = $this->Department->findListByYear($selectedYear);
 
 
 		// get department

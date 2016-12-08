@@ -220,7 +220,7 @@ class ProjectsController extends AppController {
 		$themes = $this->Project->Theme->findOrderedList();
 		$pathways = $this->Project->Pathway->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
-		$departments = $this->Project->Department->find('list');
+		$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
 		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
 		$currencies = $this->Currency->find('list');
@@ -290,7 +290,7 @@ class ProjectsController extends AppController {
 		
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
 		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
-		$departments = $this->Project->Department->find('list');
+		$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
 		$donorWarnings = $this->Donor->findDonorWarnings();

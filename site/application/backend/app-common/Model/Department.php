@@ -53,5 +53,53 @@ class Department extends AppModel {
 		));
 	}
 
+	public function findListByYear($year) {
+
+		// returns valid departments
+		$conditions = array(
+			[
+				'OR' => [
+					'start_date' => null,
+					'YEAR(start_date) <=' => $year
+				]
+			],
+			[
+				'OR' => [
+					'finish_date' => null,
+					'YEAR(finish_date) >=' => $year
+				]
+			],
+		);
+
+
+		return $this->find('list', array(
+			'conditions' => $conditions
+		));
+	}
+
+	public function findListByDate($dateString) {
+
+		// returns valid departments
+		$conditions = array(
+			[
+				'OR' => [
+					'start_date' => null,
+					'start_date <=' => $dateString
+				]
+			],
+			[
+				'OR' => [
+					'finish_date' => null,
+					'finish_date >=' => $dateString
+				]
+			],
+		);
+
+
+		return $this->find('list', array(
+			'conditions' => $conditions
+		));
+	}
+
 
 }

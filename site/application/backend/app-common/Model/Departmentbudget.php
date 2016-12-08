@@ -48,6 +48,7 @@ class Departmentbudget extends AppModel {
 	}
 
 	public function getDepartmentBudgetsList($year) {
+
 		return $this->find('list', array(
 			'fields' => array('department_id', 'value_gbp'),
 			'conditions' => array(
