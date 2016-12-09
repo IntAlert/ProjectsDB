@@ -48,10 +48,5 @@ class ProjectsController extends AppController {
 		$this->set('projects', $projects);
 	}
 
-	// public function isAuthorized($user) {
-	// 	// if logged in, you can access whole API unless overridden
-	// 	return true; //!!$this->Auth->user('id');
-	// }
-
 
 }

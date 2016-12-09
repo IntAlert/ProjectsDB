@@ -85,8 +85,6 @@ class AppController extends Controller {
 		}
 
 		return ($ints_clean);
-
-
 	}
 
 
