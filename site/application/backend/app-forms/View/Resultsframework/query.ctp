@@ -1,3 +1,8 @@
+<script>
+	// for use when ouputing stateless access to API end points
+	var api_key = "<?php echo $_SERVER['API_KEY']; ?>";
+</script>
+
 
 <?php $this->set('title', 'Query Monitoring Data'); ?>
 
@@ -10,7 +15,6 @@
 	<fieldset>
 
 		<div class="header clearfix">
-			
 		
 			<legend><?php echo __('Query Monitoring Data'); ?></legend>
 

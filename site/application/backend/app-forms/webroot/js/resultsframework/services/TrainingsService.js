@@ -17,7 +17,9 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 
 	instance.query = function(query) {
 
-		var queryParams = {};
+		var queryParams = {
+			key: api_key // set in HTML document via PHP
+		};
 
 
 		// filter on date?

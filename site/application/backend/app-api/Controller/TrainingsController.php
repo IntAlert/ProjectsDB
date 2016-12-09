@@ -95,8 +95,15 @@ class TrainingsController extends AppController {
 		$joins = [];
 
 		// filter on training dates?
-		if ($start_date) $conditions[] = ['date >=' => $start_date];
-		if ($finish_date) $conditions[] = ['date <=' => $finish_date];
+		if ($start_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Training.finish_date >=' => $start_date];
+		}
+
+		if ($finish_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Training.start_date <=' => $finish_date];
+		}
 
 		// filter on training participant type?
 
@@ -131,7 +138,7 @@ class TrainingsController extends AppController {
 			$conditions['project_id'] = $project_ids;
 
 		$trainings = $this->Training->find('all', array(
-			'order' => ['Training.date' => 'DESC'],
+			'order' => ['Training.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
 			'contain' => ['ParticipantType', 'Theme', 'Project.Territory']
