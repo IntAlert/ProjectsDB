@@ -26,11 +26,6 @@ class ProjectsController extends AppController {
 
 		$key = $this->request->query('key');
 
-		// TODO: get rid
-		if ($key != '32b4j23b4kj23b') {
-			throw new NotFoundException();
-		}
-
 		$projects = $this->Project->find('all', array(
 			// 'fields' => array('id', 'title', 'summary'),
 			'contain' => array(
@@ -53,10 +48,10 @@ class ProjectsController extends AppController {
 		$this->set('projects', $projects);
 	}
 
-	public function isAuthorized($user) {
-		// if logged in, you can access whole API unless overridden
-		return true; //!!$this->Auth->user('id');
-	}
+	// public function isAuthorized($user) {
+	// 	// if logged in, you can access whole API unless overridden
+	// 	return true; //!!$this->Auth->user('id');
+	// }
 
 
 }

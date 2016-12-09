@@ -39,11 +39,10 @@ class AppController extends Controller {
 
 	// components
 	public $components = array(
-		// 'RequestHandler',
 		'Session',
 		// 'Auth' => array(
-	 //        'authorize' => array('controller'), // Added this line
-	 //    ),
+		// 	// 'authorize' => array('controller'), // Added this line
+		// ),
 
 	    'RequestHandler'
 	);
@@ -94,6 +93,17 @@ class AppController extends Controller {
 	// callbacks
     public function beforeFilter() {
 
+    	// handle auth here
+    	if ($this->request->query("key") == $_SERVER['API_KEY']) {
+    		// let through
+
+    	} else if ($this->Session->read('Auth.User.id')) {
+    		// let through
+
+    	} else {
+    		throw new ForbiddenException("Not authed");	
+    	}
+
 		parent::beforeFilter();
 	}
 
@@ -102,18 +112,6 @@ class AppController extends Controller {
 		$this->response->type('json');
 	}
 
-	public function isAuthorized($user) {
-		// if logged in, you can access whole API unless overridden
-		return true; //!!$this->Auth->user('id');
-	}
-
-	public function redirect($url, $status = null, $exit = true) {
-
-		// never do a redirect as this is an API
-		// only reason a redirect would happen would be unAuthed
-		throw new ForbiddenException("Not authed");
-
-    }
 
     public function isCSVrequest() {
     	return isset($this->request->params['ext']) 
