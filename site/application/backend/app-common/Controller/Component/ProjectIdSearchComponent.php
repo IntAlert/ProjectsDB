@@ -16,6 +16,7 @@ class ProjectIdSearchComponent extends Component {
     		"theme_id" => NULL,
     		"pathway_id" => NULL,
     		"donor_id" => NULL,
+    		"department_id" => NULL,
     		"territory_id" => NULL
     	);
 
@@ -23,14 +24,20 @@ class ProjectIdSearchComponent extends Component {
 
 
     	// If we have received no filters, return FALSE
-    	// which tells the consumer that they should not filter
-    	// on project ID
-    	if (is_null($projectFilter['theme_id']) && is_null($projectFilter['pathway_id']) && is_null($projectFilter['donor_id']) && is_null($projectFilter['territory_id'])) {
+    	
+    	// array_filter returns empty if all children all null/false
+    	if (!array_filter($projectFilter)) {
 			return FALSE;
 		}
     	
     	// BUILD SEARCH CONDITIONS AND JOINS
 		$conditions = array('Project.deleted' => false);
+
+		// simple filters
+		if ($projectFilter['department_id']) {
+			$conditions['department_id'] = $projectFilter['department_id'];
+		}
+
 		$joins = [];
 
 		// theme_id (INNER JOIN METHOD)

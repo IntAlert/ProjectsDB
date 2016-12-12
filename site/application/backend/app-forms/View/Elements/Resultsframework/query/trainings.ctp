@@ -76,6 +76,27 @@
 	</div>
 
 	<div class="filter territories">
+		<!-- All Departments -->
+	  	<md-checkbox ng-model="query.departments.all">
+	  		All Project Departments
+	  	</md-checkbox>
+
+	  	<!-- Department -->
+	  	<md-select 
+	  		ng-model="query.departments.selected" 
+	  		ng-hide="query.departments.all">
+		  	<md-option ng-value="null"> Select Project Department </md-option>
+		  	<md-option 
+		  		ng-repeat="department in FormOptions.departments"
+		  		ng-value="department"
+		  	>
+			  	{{department.Department.name}}
+
+			</md-option>
+		</md-select>
+	</div>
+
+	<div class="filter territories">
 		<!-- All Territories -->
 	  	<md-checkbox ng-model="query.territories.all">
 	  		All Project Territories

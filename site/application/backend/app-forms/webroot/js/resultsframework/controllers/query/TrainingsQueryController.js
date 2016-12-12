@@ -25,6 +25,10 @@ app.controller('TrainingsQueryController', function($scope, $mdDialog, DedupeSer
 			all: true,
 			selected: null
 		},
+		departments: {
+			all: true,
+			selected: null
+		},
 		territories: {
 			all: true,
 			selected: null
@@ -40,11 +44,13 @@ app.controller('TrainingsQueryController', function($scope, $mdDialog, DedupeSer
 		enableSorting: true,
 		columnDefs: [
 		  { name:'Project Id', field: 'Training.project_id', visible:false },
+		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Training Id', field: 'Training.id', visible:false },
-		  { name:'title', field: 'Training.title' },
+		  { name:'Training Title', field: 'Training.title' },
 		  { name:'Males', field: 'Training.male_count' },
 		  { name:'Females', field: 'Training.female_count' },
-		  { name:'Date', field: 'Training.date'}
+		  { name:'Start Date', field: 'Training.start_date', visible:false },
+		  { name:'Finish Date', field: 'Training.finish_date'},
 		],
 		
 		enableGridMenu:true,

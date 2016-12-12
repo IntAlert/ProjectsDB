@@ -42,6 +42,11 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 			queryParams.theme_id = query.themes.selected.Theme.id
 		}
 
+		// filter on department?
+		if ( !query.departments.all ) {
+			queryParams.department_id = query.departments.selected.Department.id
+		}
+
 		// filter on territory?
 		if ( !query.territories.all ) {
 			queryParams.territory_id = query.territories.selected.Territory.id

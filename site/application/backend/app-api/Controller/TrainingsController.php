@@ -83,6 +83,7 @@ class TrainingsController extends AppController {
 		$projectFilter = array(
     		"pathway_id" => $this->request->query('pathway_id'),
     		"donor_id" => $this->request->query('donor_id'),
+    		"department_id" => $this->request->query('department_id'),
     		"territory_id" => $this->request->query('territory_id')
     	);
 
