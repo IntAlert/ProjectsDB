@@ -37,4 +37,34 @@ class AppModel extends Model {
 		return AuthComponent::user();
 	}
 
+
+	// afterFind and realAfterFind added in order to
+	// return Integers
+    public function afterFind($results, $primary=false){
+	    $results = $this->realAfterFind($results);
+
+	    return $results;
+	}
+
+	public function realAfterFind($object){
+	    if (isset($object[0]))
+	        foreach($object as &$result)
+	            $result = $this->realAfterFind($result);
+	    else {
+	        if (isset($object[$this->name]))
+	            $arr = &$object[$this->name];
+	        else
+	            $arr = &$object;
+
+	        foreach($arr as $columnName => &$value){
+	            if (is_numeric($value))
+	                $value = (int) $value;
+	            else if (is_array($value))
+	                $value = $this->realAfterFind($value);
+	        }
+	    }
+
+	    return $object;
+	}
+
 }

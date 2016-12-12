@@ -25,4 +25,10 @@ class AjaxResponseHelper extends AppHelper {
 	}
 
 
+	function castIntegers($data) {
+
+
+	}
+
+
 }
