@@ -32,11 +32,12 @@ $(function(){
 
 			// show just the right ones.
 			$(".territory-selector .territory-checkbox").each(function(){
-				
+
 				var $div = $(this);
 				var departmentIdsCsv = $($div.find('input')).data('department-ids-csv');
 				var departmentIds = String(departmentIdsCsv).split(',');
 
+				// console.log(selectedDepartmentId, departmentIds);
 
 				if ($.inArray(selectedDepartmentId, departmentIds) > -1) {
 					$(this).show();

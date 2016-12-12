@@ -48,7 +48,7 @@
 		<div class="input select">
 			<?php 
 
-			foreach($territoriesWithDepartments as $territory):
+		foreach($territoriesWithDepartments as $territory):
 
 			// build a list of programme_ids
 			$department_ids = array();
@@ -56,7 +56,6 @@
 				$department_ids[] = $department['id'];
 			}
 			$department_ids_csv = implode(',', $department_ids);
-
 
 			?>
 

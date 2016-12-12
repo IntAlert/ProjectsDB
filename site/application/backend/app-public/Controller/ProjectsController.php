@@ -301,7 +301,6 @@ class ProjectsController extends AppController {
 		$budget_holders = $this->User->findBudgetHoldersList();
 
 
-
 		// THESE LINES WERE IN PLACE TO ENSURE THAT LEGACY PROJECTS 
 		// WOULD HAVE THE RIGHT FILE STRUCTURE
 		//

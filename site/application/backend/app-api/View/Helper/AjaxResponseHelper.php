@@ -18,6 +18,7 @@ class AjaxResponseHelper extends AppHelper {
 
 		$ok = true;
 		$server_time = date('Y-m-d H:i:s'); // MySQL datetime
+		$data = $this->extractNumbers($data);
 
 		$response = compact('ok', 'status', 'data', 'server_time');
 
@@ -25,10 +26,30 @@ class AjaxResponseHelper extends AppHelper {
 	}
 
 
-	function castIntegers($data) {
+	private function extractNumbers($o) {
 
+		if(is_object($o)) {
+
+			$result = new stdClass();
+		    foreach ($o->children as $child) {
+		        $result[$child->name] = $this->extractNumbers($child);
+		    }
+
+		} elseif(is_array($o)) {
+
+			$result = [];
+			foreach ($o as $key => $value) {
+				$result[$key] = $this->extractNumbers($value);
+			}
+
+		} elseif(is_numeric($o)) {
+			$result = (float)$o;
+		} else {
+			$result = $o;
+		}
+
+		return $result;
 
 	}
-
 
 }
