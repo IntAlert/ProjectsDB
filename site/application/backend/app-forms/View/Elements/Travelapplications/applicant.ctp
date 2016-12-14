@@ -10,39 +10,37 @@
 			'ng-model' => 'formData.applicant.name'
 		));
 
-		echo $this->Form->input('role_category', array(
-			'required' => true,
-			'type' => 'radio',
-			'options' => array(
-				'Alert staff' => 'Alert staff', 
-				'Consultant' => 'Consultant', 
-				'Other'=> 'Other'
-			),
-			'legend' => 'Category *',
-			'ng-model' => 'formData.applicant.role_category'
-		));
 
-		echo $this->Form->input('role_category_other', array(
-			'type' => 'text',
-			'label' => 'Other Role *',
-			'ng-model' => 'formData.applicant.role_category_other',
-			'ng-required' => " formData.applicant.role_category == 'Other' ",
-			'div' => array(
-				'ng-show' => " formData.applicant.role_category == 'Other' "
-			)
-			
-		));
+		?>
 
-		echo $this->Form->input('role_text', array(
-			'required' => true,
-			'type' => 'text',
-			'label' => 'Your role at Alert *',
-			'ng-model' => 'formData.applicant.role_text'
-		));
+<p>Category *</p>
+<md-radio-group ng-model="formData.applicant.role_category">
+
+  <md-radio-button value="Alert staff">Alert staff</md-radio-button>
+  <md-radio-button value="Consultant">Consultant</md-radio-button>
+  <md-radio-button value="Other">Other</md-radio-button>
+  
+</md-radio-group>
 
 
+<div ng-show=" formData.applicant.role_category == 'Other' ">
+	<md-input-container md-no-float class="md-block">
+		<label>Other role*</label>
+		<input 
+			ng-required=" formData.applicant.role_category == 'Other' "
+			ng-model=" formData.applicant.role_category_other " 
+			>
+	</md-input-container>
+</div>
 
-?>
+
+	<md-input-container md-no-float class="md-block">
+		<label>Your role at Alert *</label>
+		<input 
+			required
+			ng-model=" formData.applicant.role_text " 
+			>
+	</md-input-container>
 
 
 <div layout="row" layout-align="end center">

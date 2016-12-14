@@ -1,26 +1,16 @@
-<?php
-			
-		echo $this->Form->input('mode', array(
-			'type' => 'radio',
-			'options' => array(
-				'has-office' => 'Yes, the country does have an Alert office', 
-				'no-office' => 'No, the country does not have an Alert office'
-			),
-			'legend' => 'Does your destination country have an Alert office? *',
-			'ng-model' => 'formData.mode'
-		));
+<p>Does your destination country have an Alert office? *</p>
+<md-radio-group ng-model="formData.mode">
 
+  <md-radio-button value="has-office" class="md-primary">Yes, the country does have an Alert office</md-radio-button>
+  <md-radio-button value="no-office"> No, the country does not have an Alert office </md-radio-button>
 
-		echo $this->Form->input('reason', array(
-			'required' => true,
-			"ng-minlength" => "3",
-			'label' => 'Reason for your trip *',
-			'type' => 'textarea',
-			'ng-model' => 'formData.applicant.reason'
-		));
+</md-radio-group>
 
+<md-input-container class="md-block">
+	<label>Reason for your trip *</label>
+	<textarea ng-model="formData.applicant.reason" md-minlength="3" md-maxlength="350" rows="5" required></textarea>
+</md-input-container>
 
-?>
 
 	<div class="input select">
 		<label>Name of manager who has approved trip *</label>
