@@ -20,7 +20,12 @@ class TravelapplicationsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'TravelapplicationNotifier');
+	public $components = array(
+		'Paginator', 
+		'Session', 
+		'TravelapplicationNotifier',
+		'CalendarInvite'
+	);
 
 
 	public $paginate = array(
@@ -40,6 +45,40 @@ class TravelapplicationsController extends AppController {
  * @return void
  */
 
+
+	// public function testICS() {
+
+
+	// 	$travelapplication_id = 29;
+
+	// 	$travelapplication = $this->Travelapplication->find('first', array(
+	// 		'conditions' => ['Travelapplication.id' => $travelapplication_id],
+	// 		'contain' => [
+	// 			'Applicant.Office365user',
+	// 			'TravelapplicationItinerary.Origin',
+	// 			'TravelapplicationItinerary.Destination',
+	// 		]
+	// 	));
+
+
+	// 	$ICSContent = $this->CalendarInvite->buildTravelapplicationICS($travelapplication);
+
+	// 	$Email = new CakeEmail('default');
+	// 	$Email->addTo('as.thomson@gmail.com');
+	// 	$result = $Email->template('travelapplications/invite')
+	// 	    ->emailFormat('html')
+	// 	    ->subject('Invite')
+	// 	    ->attachments([
+	// 	    	'invite.ics' => [
+	// 		    	'mimetype' => 'text/calendar',
+	// 				'data' => $ICSContent,
+	// 			]
+	// 		])
+	// 	    ->send();
+
+	// 	// debug($result);
+	// 	die();
+	// }
 
 	public function index() {
 		$this->set('title', "Trips");
@@ -166,12 +205,30 @@ class TravelapplicationsController extends AppController {
 			}
 			
 
-			// add the self to the list
+			// add self to the list
 			$me = $this->User->findById($this->Auth->user('id'));
 			$recipientsEmailAddresses[] = $me['Office365user']['email'];
 
-			// send mail
+
+			// get data for the invite
+			$travelapplication = $this->Travelapplication->find('first', array(
+				'conditions' => ['Travelapplication.id' => $travelapplication_id],
+				'contain' => [
+					'Applicant.Office365user',
+					'TravelapplicationItinerary.Origin',
+					'TravelapplicationItinerary.Destination',
+				]
+			));
+
+
+			$ICSContent = $this->CalendarInvite->buildTravelapplicationICS($travelapplication);
+
+			// send group mail
 			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $recipientsEmailAddresses);
+
+			// send invite mail to this user
+			$this->TravelapplicationNotifier->sendInvite($ICSContent, $me);
+
 
 			// return result
 			$this->layout = 'ajax';

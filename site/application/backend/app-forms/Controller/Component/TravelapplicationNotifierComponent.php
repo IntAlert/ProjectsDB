@@ -26,7 +26,6 @@ class TravelapplicationNotifierComponent extends Component {
 
 		
 		$result = $Email->template('travelapplications/send_email')
-			->config(array('log' => true))
 		    ->emailFormat('html')
 		    ->viewVars(array(
 		    	'travelapplication_id' => $travelapplication_id,
@@ -36,5 +35,21 @@ class TravelapplicationNotifierComponent extends Component {
 		    ->send();
 
 
+    }
+
+    function sendInvite($ICSContent, $user) {
+        $Email = new CakeEmail('default');
+        $Email->addTo($user['Office365user']['email']);
+        // $Email->addTo('as.thomson@gmail.com');
+        $result = $Email->template('travelapplications/invite')
+            ->emailFormat('html')
+            ->subject('Invite')
+            ->attachments([
+                'invite.ics' => [
+                    'mimetype' => 'text/calendar',
+                    'data' => $ICSContent,
+                ]
+            ])
+            ->send();
     }
 }
