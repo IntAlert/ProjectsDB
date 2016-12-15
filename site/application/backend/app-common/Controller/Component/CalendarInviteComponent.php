@@ -15,6 +15,20 @@ class CalendarInviteComponent extends Component {
 		return preg_replace('/([\,;])/','\\\$1', $string);
 	}
 
+	private function breakInto75s($string) {
+
+		$response = '';
+		$lines = preg_split("/((\r?\n)|(\r\n?))/", $string);
+		foreach ($lines as $line) {
+			$chunks = str_split($line, 75);
+			foreach ($chunks as $chunk) {
+				$response .= $chunk . "\r\n";
+			}
+		}
+		
+		return $response;
+	}
+
 	function buildTravelapplicationICS($travelapplication) {
 
 
@@ -67,6 +81,8 @@ class CalendarInviteComponent extends Component {
 		// }
 
 
+		$url = Router::url('/travelapplications/view', true) . '/' . $travelapplication['Travelapplication']['id'];
+
 
 		$description = '';
 		$description .= 'Itinerary:\n';
@@ -81,7 +97,6 @@ class CalendarInviteComponent extends Component {
 		$location = implode(', ', $uniqueLocations);
 		$summary = 'Travel in: ' . $location;
 
-		$url = Router::url('/travelapplications/view', true) . '/' . $travelapplication['Travelapplication']['id'];
 
 
 		return $this->buildICS($startTimestamp, $finishTimestamp, $description, $url, $summary, $location);
@@ -119,7 +134,7 @@ END:VCALENDAR
 
 EndICS;
 
-	return $content;
+	return $this->breakInto75s($content);
 		
     }
 }

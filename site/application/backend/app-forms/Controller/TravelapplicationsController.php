@@ -46,39 +46,41 @@ class TravelapplicationsController extends AppController {
  */
 
 
-	// public function testICS() {
+	public function testICS() {
 
 
-	// 	$travelapplication_id = 29;
+		$travelapplication_id = 29;
 
-	// 	$travelapplication = $this->Travelapplication->find('first', array(
-	// 		'conditions' => ['Travelapplication.id' => $travelapplication_id],
-	// 		'contain' => [
-	// 			'Applicant.Office365user',
-	// 			'TravelapplicationItinerary.Origin',
-	// 			'TravelapplicationItinerary.Destination',
-	// 		]
-	// 	));
+		$travelapplication = $this->Travelapplication->find('first', array(
+			'conditions' => ['Travelapplication.id' => $travelapplication_id],
+			'contain' => [
+				'Applicant.Office365user',
+				'TravelapplicationItinerary.Origin',
+				'TravelapplicationItinerary.Destination',
+			]
+		));
 
 
-	// 	$ICSContent = $this->CalendarInvite->buildTravelapplicationICS($travelapplication);
+		$ICSContent = $this->CalendarInvite->buildTravelapplicationICS($travelapplication);
 
-	// 	$Email = new CakeEmail('default');
-	// 	$Email->addTo('as.thomson@gmail.com');
-	// 	$result = $Email->template('travelapplications/invite')
-	// 	    ->emailFormat('html')
-	// 	    ->subject('Invite')
-	// 	    ->attachments([
-	// 	    	'invite.ics' => [
-	// 		    	'mimetype' => 'text/calendar',
-	// 				'data' => $ICSContent,
-	// 			]
-	// 		])
-	// 	    ->send();
+		echo($ICSContent);
 
-	// 	// debug($result);
-	// 	die();
-	// }
+		// $Email = new CakeEmail('default');
+		// $Email->addTo('as.thomson@gmail.com');
+		// $result = $Email->template('travelapplications/invite')
+		//     ->emailFormat('html')
+		//     ->subject('Invite')
+		//     ->attachments([
+		//     	'invite.ics' => [
+		// 	    	'mimetype' => 'text/calendar',
+		// 			'data' => $ICSContent,
+		// 		]
+		// 	])
+		//     ->send();
+
+		// debug($result);
+		die();
+	}
 
 	public function index() {
 		$this->set('title', "Trips");
