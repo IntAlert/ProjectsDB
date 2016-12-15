@@ -17,6 +17,8 @@ class CalendarInviteComponent extends Component {
 
 	private function breakInto75s($string) {
 
+		return $string;
+
 		$response = '';
 		$lines = preg_split("/((\r?\n)|(\r\n?))/", $string);
 		foreach ($lines as $line) {
