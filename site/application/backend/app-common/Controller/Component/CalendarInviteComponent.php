@@ -44,9 +44,6 @@ class CalendarInviteComponent extends Component {
 			$timestamps[] = strtotime($itinerary['start'] . ' 09:00:00');
 			$timestamps[] = strtotime($itinerary['finish'] . ' 17:00:00');
 
-			// echo $itinerary['start'] . '~';
-			// echo $itinerary['finish'];
-
 			$itineraryParts[] = $itinerary['start'] . ': ' . $itinerary['Origin']['name'] . ' - ' . $itinerary['Destination']['name'];
 			$locationParts[] = $itinerary['Origin']['name'];
 			$locationParts[] = $itinerary['Destination']['name'];

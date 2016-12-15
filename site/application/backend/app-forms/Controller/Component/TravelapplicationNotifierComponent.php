@@ -47,7 +47,7 @@ class TravelapplicationNotifierComponent extends Component {
             ->subject('Invite')
             ->attachments([
                 'invite.ics' => [
-                    'mimetype' => 'text/calendar',
+                    'mimetype' => 'text/calendar; method=REQUEST; charset=utf-8',
                     'data' => $ICSContent,
                 ]
             ])
