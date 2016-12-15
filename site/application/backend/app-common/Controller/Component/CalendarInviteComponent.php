@@ -15,15 +15,14 @@ class CalendarInviteComponent extends Component {
 		return preg_replace('/([\,;])/','\\\$1', $string);
 	}
 
-	private function breakInto75s($string) {
-
-		return $string;
+	private function fold($string) {
 
 		$response = '';
 		$lines = preg_split("/((\r?\n)|(\r\n?))/", $string);
 		foreach ($lines as $line) {
-			$chunks = str_split($line, 75);
-			foreach ($chunks as $chunk) {
+			$chunks = str_split($line, 74);
+			foreach ($chunks as $i => $chunk) {
+				if ($i) $response .= ' ';
 				$response .= $chunk . "\r\n";
 			}
 		}
@@ -32,9 +31,6 @@ class CalendarInviteComponent extends Component {
 	}
 
 	function buildTravelapplicationICS($travelapplication) {
-
-
-		// determine earliest/latest date
 
 		// debug($travelapplication);
 
@@ -46,8 +42,8 @@ class CalendarInviteComponent extends Component {
 		$itineraryParts = [];
 		$locationParts = [];
 		foreach ($travelapplication['TravelapplicationItinerary'] as $itinerary) {
-			$startTimestamps[] = strtotime($itinerary['start'] . ' 00:00:01');
-			$finishTimestamps[] = strtotime($itinerary['finish'] . ' 23:59:59');
+			$startTimestamps[] = strtotime($itinerary['start'] . ' 09:00:00');
+			$finishTimestamps[] = strtotime($itinerary['finish'] . ' 17:00:00');
 
 			$itineraryParts[] = $itinerary['start'] . ': ' . $itinerary['Origin']['name'] . ' - ' . $itinerary['Destination']['name'];
 			$locationParts[] = $itinerary['Origin']['name'];
@@ -119,24 +115,27 @@ class CalendarInviteComponent extends Component {
     	$content =<<<EndICS
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+PRODID:-//Google Inc//Google Calendar 
 CALSCALE:GREGORIAN
+METHOD:REQUEST
 BEGIN:VEVENT
+DTSTART:$startDate
 DTEND:$endDate
-UID:$uid
 DTSTAMP:$datestamp
+CREATED:$datestamp
+ORGANIZER;CN=PROMPT:mailto:prompt@international-alert.org
+UID:$uid
+SEQUENCE:1
 LOCATION:$location
 DESCRIPTION:$description
 URL:$url
 SUMMARY:$summary
-DTSTART:$startDate
+TRANSP:OPAQUE
 END:VEVENT
 END:VCALENDAR
-
-
 EndICS;
 
-	return $this->breakInto75s($content);
+	return $this->fold($content);
 		
     }
 }

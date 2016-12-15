@@ -49,7 +49,7 @@ class TravelapplicationsController extends AppController {
 	public function testICS() {
 
 
-		$travelapplication_id = 29;
+		$travelapplication_id = 27;
 
 		$travelapplication = $this->Travelapplication->find('first', array(
 			'conditions' => ['Travelapplication.id' => $travelapplication_id],
@@ -65,18 +65,18 @@ class TravelapplicationsController extends AppController {
 
 		echo($ICSContent);
 
-		// $Email = new CakeEmail('default');
-		// $Email->addTo('as.thomson@gmail.com');
-		// $result = $Email->template('travelapplications/invite')
-		//     ->emailFormat('html')
-		//     ->subject('Invite')
-		//     ->attachments([
-		//     	'invite.ics' => [
-		// 	    	'mimetype' => 'text/calendar',
-		// 			'data' => $ICSContent,
-		// 		]
-		// 	])
-		//     ->send();
+		$Email = new CakeEmail('default');
+		$Email->addTo('athomson@international-alert.org');
+		$result = $Email->template('travelapplications/invite')
+		    ->emailFormat('html')
+		    ->subject('Invite')
+		    ->attachments([
+		    	'invite.ics' => [
+			    	'mimetype' => 'text/calendar; charset=utf-8',
+					'data' => $ICSContent,
+				]
+			])
+		    ->send();
 
 		// debug($result);
 		die();
