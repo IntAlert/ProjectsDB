@@ -42,7 +42,8 @@ class TravelapplicationNotifierComponent extends Component {
         $Email->addTo($user['Office365user']['email']);
         // $Email->addTo('as.thomson@gmail.com');
         $result = $Email->template('travelapplications/invite')
-            ->emailFormat('html')
+            ->emailFormat('text')
+
             ->subject('Invite')
             ->attachments([
                 'invite.ics' => [

@@ -36,21 +36,23 @@ class CalendarInviteComponent extends Component {
 
 
 		// iterate through itineray items to extract key info
-		$startTimestamps = [];
-		$finishTimestamps = [];
+		$timestamps = [];
 		$summaryParts = [];
 		$itineraryParts = [];
 		$locationParts = [];
 		foreach ($travelapplication['TravelapplicationItinerary'] as $itinerary) {
-			$startTimestamps[] = strtotime($itinerary['start'] . ' 09:00:00');
-			$finishTimestamps[] = strtotime($itinerary['finish'] . ' 17:00:00');
+			$timestamps[] = strtotime($itinerary['start'] . ' 09:00:00');
+			$timestamps[] = strtotime($itinerary['finish'] . ' 17:00:00');
+
+			// echo $itinerary['start'] . '~';
+			// echo $itinerary['finish'];
 
 			$itineraryParts[] = $itinerary['start'] . ': ' . $itinerary['Origin']['name'] . ' - ' . $itinerary['Destination']['name'];
 			$locationParts[] = $itinerary['Origin']['name'];
 			$locationParts[] = $itinerary['Destination']['name'];
 		}
-		$startTimestamp = min($startTimestamps);
-		$finishTimestamp = max($finishTimestamps);
+		$startTimestamp = min($timestamps);
+		$finishTimestamp = max($timestamps);
 		$uniqueLocations = array_unique($locationParts);
 		sort($uniqueLocations);
 
@@ -103,8 +105,8 @@ class CalendarInviteComponent extends Component {
     
     function buildICS($startTimestamp, $finishTimestamp, $description, $url, $summary, $location) {
 
-    	$endDate = $this->dateToCal($startTimestamp);
-    	$startDate = $this->dateToCal($finishTimestamp);
+    	$endDate = $this->dateToCal($finishTimestamp);
+    	$startDate = $this->dateToCal($startTimestamp);
     	$description = $this->escapeString($description);
     	$url = $url;
     	$summary = $this->escapeString($summary);

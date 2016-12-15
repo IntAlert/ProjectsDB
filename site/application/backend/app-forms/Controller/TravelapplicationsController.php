@@ -68,11 +68,12 @@ class TravelapplicationsController extends AppController {
 		$Email = new CakeEmail('default');
 		$Email->addTo('athomson@international-alert.org');
 		$result = $Email->template('travelapplications/invite')
+			->config(array('log' => true))
 		    ->emailFormat('html')
 		    ->subject('Invite')
 		    ->attachments([
 		    	'invite.ics' => [
-			    	'mimetype' => 'text/calendar; charset=utf-8',
+			    	'mimetype' => 'text/calendar; method=REQUEST; charset=utf-8',
 					'data' => $ICSContent,
 				]
 			])
