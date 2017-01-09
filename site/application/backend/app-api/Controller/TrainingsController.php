@@ -69,9 +69,6 @@ class TrainingsController extends AppController {
 	}
 
 	function all() {
-		
-		// TODO: must be authed and must be note owner
-
 
 		// Training filters
 		$start_date = $this->request->query('start_date');
@@ -144,13 +141,6 @@ class TrainingsController extends AppController {
 			'joins' => $joins,
 			'contain' => ['ParticipantType', 'Theme', 'Project.Territory']
 		));
-
-
-		// $this->response->header(array(
-		//     'Content-Type' => 'application/csv',
-		//     'Content-Disposition' => 'attachment; filename=example.csv',
-		//     'Pragma' => 'no-cache'
-		// ));
 
 
 

@@ -1,13 +1,74 @@
-app.factory('AccompanimentsService', function($http, DedupeService) {
+app.factory('AccompanimentsService', function($http, $httpParamSerializer, $location, DedupeService) {
 
 	// Build instance to return
 	var instance = {
 		items: [],
-		totals: {}
+		totals: {},
+
+		api_urls: {
+			csv: null,
+			json: null
+		}
 	}
 
 	// selected Project Id
 	var project_id = null;
+
+
+	instance.query = function(query) {
+
+		var queryParams = {
+			key: api_key // set in HTML document via PHP
+		};
+
+
+		// filter on date?
+		if ( !query.dates.all ) {
+			// correct for annoying timezone issue
+			var start_date = query.dates.start.addMinutes(-new Date().getTimezoneOffset());
+			var finish_date = query.dates.finish.addMinutes(-new Date().getTimezoneOffset());
+			
+			queryParams.start_date = start_date.toISOString().slice(0,10),
+			queryParams.finish_date = finish_date.toISOString().slice(0,10)
+		}
+
+		// filter on participant type?
+		if ( !query.participant_types.all ) {
+			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
+		}
+
+		// filter on department?
+		if ( !query.departments.all ) {
+			queryParams.department_id = query.departments.selected.Department.id
+		}
+
+		// filter on territory?
+		if ( !query.territories.all ) {
+			queryParams.territory_id = query.territories.selected.Territory.id
+		}
+
+		// filter on pathway?
+		if ( !query.pathways.all ) {
+			queryParams.pathway_id = query.pathways.selected.Pathway.id
+		}
+
+		// set API URLs
+		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/accompaniments/all.csv?' + $httpParamSerializer(queryParams);
+		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/accompaniments/all?' + $httpParamSerializer(queryParams);
+
+		return $http.get(instance.api_urls.json)
+			.then(function(response){
+
+				var accompaniments = response.data.data || []
+
+				instance.items = accompaniments
+				
+				updateTotals()
+
+			}, function(){
+				alert("accompaniments download error")
+			});
+	}
 
 
 	instance.load = function(a_project_id) {

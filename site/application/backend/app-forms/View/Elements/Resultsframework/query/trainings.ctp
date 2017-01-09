@@ -165,10 +165,10 @@
 		<!-- CSV -->
 		<div>
 			<!-- Target -->
-			<input type="text" id="csv" readonly ng-value="data.api_urls.csv">
+			<input type="text" id="api-csv-training" readonly ng-value="data.api_urls.csv">
 
 			<!-- Trigger -->
-			<button class="btn" ngclipboard data-clipboard-target="#csv">
+			<button class="btn" ngclipboard data-clipboard-target="#api-csv-training">
 			    Copy to clipboard
 			</button>
 		</div>
@@ -176,10 +176,10 @@
 		<!-- JSON -->
 		<div>
 			<!-- Target -->
-			<input type="text" id="json" readonly ng-value="data.api_urls.json">
+			<input type="text" id="api-json-training" readonly ng-value="data.api_urls.json">
 
 			<!-- Trigger -->
-			<button class="btn" ngclipboard data-clipboard-target="#json">
+			<button class="btn" ngclipboard data-clipboard-target="#api-json-training">
 			    Copy to clipboard
 			</button>
 		</div>

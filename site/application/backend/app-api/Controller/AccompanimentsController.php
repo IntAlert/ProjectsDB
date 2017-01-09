@@ -2,6 +2,9 @@
 
 class AccompanimentsController extends AppController {
 
+	public $components = array(
+		'ProjectIdSearch'
+	);
 
 	function create() {
 		
@@ -68,16 +71,68 @@ class AccompanimentsController extends AppController {
 	}
 
 	function all() {
+
+		// Accompaniment filters
+		$start_date = $this->request->query('start_date');
+		$finish_date = $this->request->query('finish_date');
+		$participant_type_id = $this->request->query('participant_type_id');
 		
-		// TODO: must be authed and must be note owner
+		// Project filters
+		$projectFilter = array(
+    		"pathway_id" => $this->request->query('pathway_id'),
+    		"donor_id" => $this->request->query('donor_id'),
+    		"department_id" => $this->request->query('department_id'),
+    		"territory_id" => $this->request->query('territory_id')
+    	);
+
+		// generate project id filters based on pathway_id, etc
+		$project_ids = $this->ProjectIdSearch->getProjectIds($projectFilter);
 
 
-		$accompaniments = $this->Accompaniment->find('all', array(
-			'contain' => array('ParticipantType')
+		// build conditions, joins
+		$conditions = [];
+		$joins = [];
+
+		// filter on training dates?
+		if ($start_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Accompaniment.finish_date >=' => $start_date];
+		}
+
+		if ($finish_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Accompaniment.start_date <=' => $finish_date];
+		}
+
+		// filter on training participant type?
+
+		if ($participant_type_id) {
+			$joins[] = array(
+				'table' => 'trainings_participant_types',
+	            'alias' => 'AccompanimentsParticipantType',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Accompaniment.id = AccompanimentsParticipantType.training_id',
+	                'AccompanimentsParticipantType.participant_type_id' => $participant_type_id
+	            )
+	        );
+
+		}
+
+		// Add project ID filter
+		if (is_array($project_ids)) 
+			$conditions['project_id'] = $project_ids;
+
+		$trainings = $this->Accompaniment->find('all', array(
+			'order' => ['Accompaniment.start_date' => 'DESC'],
+			'conditions' => $conditions,
+			'joins' => $joins,
+			'contain' => ['ParticipantType', 'Project.Territory']
 		));
-		
 
-		$this->set(array('data' => $accompaniments));
+
+
+		$this->set(array('data' => $trainings));
 	}
 
 	function project($project_id) {
