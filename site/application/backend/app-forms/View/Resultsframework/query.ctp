@@ -54,7 +54,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		        <?php // echo $this->element('Resultsframework/query/dialogues'); ?>
+		        <?php echo $this->element('Resultsframework/query/dialogues'); ?>
 		        </md-content>
 		      </md-tab>
 
@@ -145,7 +145,7 @@
 <?php echo $this->Html->script('resultsframework/controllers/query/TrainingsQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/AccompanimentsQueryController'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/meetings'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/processes'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/query/DialoguesQueryController'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/accompaniments'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/advocacies'); ?>
 

@@ -1,13 +1,79 @@
-app.factory('ProcessesService', function($http, DedupeService) {
+app.factory('ProcessesService', function($http, DedupeService, $httpParamSerializer, $location) {
 
 	// Build instance to return
 	var instance = {
 		items: [],
-		totals: {}
+		totals: {},
+
+		api_urls: {
+			csv: null,
+			json: null
+		}
 	}
 
 	// selected Project Id
 	var project_id = null;
+
+
+	instance.query = function(query) {
+
+		var queryParams = {
+			key: api_key // set in HTML document via PHP
+		};
+
+
+		// filter on date?
+		if ( !query.dates.all ) {
+			// correct for annoying timezone issue
+			var start_date = query.dates.start.addMinutes(-new Date().getTimezoneOffset());
+			var finish_date = query.dates.finish.addMinutes(-new Date().getTimezoneOffset());
+			
+			queryParams.start_date = start_date.toISOString().slice(0,10),
+			queryParams.finish_date = finish_date.toISOString().slice(0,10)
+		}
+
+		// filter on participant type?
+		if ( !query.participant_types.all ) {
+			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
+		}
+
+		// filter on theme?
+		if ( !query.themes.all ) {
+			queryParams.theme_id = query.themes.selected.Theme.id
+		}
+
+		// filter on department?
+		if ( !query.departments.all ) {
+			queryParams.department_id = query.departments.selected.Department.id
+		}
+
+		// filter on territory?
+		if ( !query.territories.all ) {
+			queryParams.territory_id = query.territories.selected.Territory.id
+		}
+
+		// filter on pathway?
+		if ( !query.pathways.all ) {
+			queryParams.pathway_id = query.pathways.selected.Pathway.id
+		}
+
+		// set API URLs
+		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/processes/all.csv?' + $httpParamSerializer(queryParams);
+		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/processes/all?' + $httpParamSerializer(queryParams);
+
+		return $http.get(instance.api_urls.json)
+			.then(function(response){
+
+				var processes = response.data.data || []
+
+				instance.items = processes
+				
+				updateTotals()
+
+			}, function(){
+				alert("processes download error")
+			});
+	}
 
 
 	instance.load = function(a_project_id) {
