@@ -11,16 +11,6 @@
 		</tr>
 
 		<tr>
-			<th>How many men took part (cumulative)?</th>
-			<td>{{data.totals.male_count || 0}}</td>
-		</tr>
-
-		<tr>
-			<th>How many women took part (cumulative) ?</th>
-			<td>{{data.totals.female_count || 0}}</td>
-		</tr>
-
-		<tr>
 			<th>The dialogue sought to resolve a specific conflict issue between groups or entities </th>
 			<td>{{data.totals.conflict_resolution ? 'YES': 'NO'}}</td>
 		</tr>
@@ -101,14 +91,6 @@
 					Number of Sessions
 				</th>
 
-				<th>
-					Men
-				</th>
-
-				<th>
-					Women
-				</th>
-
 				<th title="The dialogue seek to resolve a specific conflict issue between groups or entities">
 					Conflict resolution?
 				</th>
@@ -150,14 +132,6 @@
 				</td>
 				<td>
 					{{process.Process.session_count}}
-				</td>
-
-				<td>
-					{{process.Process.male_count}}
-				</td>
-
-				<td>
-					{{process.Process.female_count}}
 				</td>
 
 				<td>

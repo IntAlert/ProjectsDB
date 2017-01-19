@@ -153,11 +153,7 @@ app.factory('ProcessesService', function($http, DedupeService, $httpParamSeriali
 	function updateTotals() {
 
 		var totals = {
-			male_count: 0,
-			female_count: 0,
 			process_count: 0,
-			male_trauma_count: 0,
-			female_trauma_count: 0,
 			conflict_resolution: false
 		}
 
@@ -167,10 +163,6 @@ app.factory('ProcessesService', function($http, DedupeService, $httpParamSeriali
 		// loop through all process items
 		angular.forEach(instance.items, function(item) {
 
-			totals.male_count += Number(item.Process.male_count)
-			totals.female_count += Number(item.Process.female_count)
-			totals.female_trauma_count += Number(item.Process.female_trauma_count)
-			totals.male_trauma_count += Number(item.Process.male_trauma_count)
 			totals.process_count++
 			totals.conflict_resolution = totals.conflict_resolution || item.Process.conflict_resolution
 
