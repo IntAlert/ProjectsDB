@@ -3,11 +3,24 @@ app.factory('ResultsService', function($http, DedupeService) {
 	// Build instance to return
 	var instance = {
 		items: [],
-		totals: {}
+		totals: {},
+
+		api_urls: {
+			csv: null,
+			json: null
+		}
 	}
 
 	// selected Project Id
 	var project_id = null;
+
+	instance.updateApiUrls = function(query) {
+
+	}
+
+	instance.query = function(query) {
+
+	}
 
 	instance.load = function(a_project_id) {
 

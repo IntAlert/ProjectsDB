@@ -50,11 +50,19 @@
 		      </md-tab>
 
 
-		      <md-tab label="DIALOGUE">
+		      <md-tab label="DIALOGUE PROCESSES">
 		        <md-content 
 		        	class="md-padding">
 
-		        <?php echo $this->element('Resultsframework/query/dialogues'); ?>
+		        <?php echo $this->element('Resultsframework/query/processes'); ?>
+		        </md-content>
+		      </md-tab>
+
+		      <md-tab label="DIALOGUE MEETINGS">
+		        <md-content 
+		        	class="md-padding">
+
+		        <?php echo $this->element('Resultsframework/query/meetings'); ?>
 		        </md-content>
 		      </md-tab>
 
@@ -145,7 +153,8 @@
 <?php echo $this->Html->script('resultsframework/controllers/query/TrainingsQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/AccompanimentsQueryController'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/meetings'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/query/DialoguesQueryController'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/query/DialogueProcessesQueryController'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/query/DialogueMeetingsQueryController'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/accompaniments'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/advocacies'); ?>
 

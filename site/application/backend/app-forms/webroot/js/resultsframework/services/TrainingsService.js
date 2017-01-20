@@ -41,8 +41,6 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 			key: api_key // set in HTML document via PHP
 		};
 
-		console.log(query);
-
 
 		// filter on date?
 		if ( !query.dates.all ) {

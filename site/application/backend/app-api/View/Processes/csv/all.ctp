@@ -14,16 +14,16 @@ $headers = [
 
 $rows = [];
 
-foreach ($data as $training) {
+foreach ($data as $process) {
 	$rows[] = [
 
-		$training['Process']['project_id'],
-		$training['Process']['id'],
-		$training['Process']['title'],
-		$training['Process']['start_date'],
-		$training['Process']['finish_date'],
-		$training['Process']['male_count'],
-		$training['Process']['female_count'],
+		$process['Process']['project_id'],
+		$process['Process']['id'],
+		$process['Process']['title'],
+		$process['Process']['start_date'],
+		$process['Process']['finish_date'],
+		$process['Process']['male_count'],
+		$process['Process']['female_count'],
 	];
 }
 

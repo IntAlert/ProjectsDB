@@ -15,7 +15,7 @@ app.factory('AccompanimentsService', function($http, $httpParamSerializer, $loca
 	var project_id = null;
 
 
-	instance.query = function(query) {
+	instance.updateApiUrls = function(query) {
 
 		var queryParams = {
 			key: api_key // set in HTML document via PHP
@@ -33,22 +33,22 @@ app.factory('AccompanimentsService', function($http, $httpParamSerializer, $loca
 		}
 
 		// filter on participant type?
-		if ( !query.participant_types.all ) {
+		if ( query.participant_types && !query.participant_types.all ) {
 			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
 		}
 
 		// filter on department?
-		if ( !query.departments.all ) {
+		if ( query.departments && !query.departments.all ) {
 			queryParams.department_id = query.departments.selected.Department.id
 		}
 
 		// filter on territory?
-		if ( !query.territories.all ) {
+		if ( query.territories && !query.territories.all ) {
 			queryParams.territory_id = query.territories.selected.Territory.id
 		}
 
 		// filter on pathway?
-		if ( !query.pathways.all ) {
+		if ( query.pathways && !query.pathways.all ) {
 			queryParams.pathway_id = query.pathways.selected.Pathway.id
 		}
 
@@ -56,6 +56,14 @@ app.factory('AccompanimentsService', function($http, $httpParamSerializer, $loca
 		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/accompaniments/all.csv?' + $httpParamSerializer(queryParams);
 		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/accompaniments/all?' + $httpParamSerializer(queryParams);
 
+	}
+
+
+	instance.query = function(query) {
+
+		// set API URLs
+		instance.updateApiUrls(query);
+		
 		return $http.get(instance.api_urls.json)
 			.then(function(response){
 

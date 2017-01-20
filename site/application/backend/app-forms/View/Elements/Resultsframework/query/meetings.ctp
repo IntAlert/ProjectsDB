@@ -1,4 +1,4 @@
-<div ng-controller="DialoguesQueryController">
+<div ng-controller="DialogueMeetingsQueryController">
 
 	<div layout="row">
 	  <div flex="25" class="filters">

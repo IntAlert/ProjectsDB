@@ -77,6 +77,7 @@ class ProcessesController extends AppController {
 		
 		// Project filters
 		$projectFilter = array(
+			"project_id" => $this->request->query('project_id'), 
     		"pathway_id" => $this->request->query('pathway_id'),
     		"donor_id" => $this->request->query('donor_id'),
     		"department_id" => $this->request->query('department_id'),
@@ -106,7 +107,7 @@ class ProcessesController extends AppController {
 
 		if ($participant_type_id) {
 			$joins[] = array(
-				'table' => 'trainings_participant_types',
+				'table' => 'processes_participant_types',
 	            'alias' => 'ProcessesParticipantType',
 	            'type' => 'INNER',
 	            'conditions' => array(
@@ -120,7 +121,7 @@ class ProcessesController extends AppController {
 		// filter on training theme?
 		if ($theme_id) {
 			$joins[] = array(
-				'table' => 'trainings_themes',
+				'table' => 'processes_themes',
 	            'alias' => 'ProcessesTheme',
 	            'type' => 'INNER',
 	            'conditions' => array(
@@ -134,7 +135,7 @@ class ProcessesController extends AppController {
 		if (is_array($project_ids)) 
 			$conditions['project_id'] = $project_ids;
 
-		$trainings = $this->Process->find('all', array(
+		$processes = $this->Process->find('all', array(
 			'order' => ['Process.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
@@ -143,7 +144,7 @@ class ProcessesController extends AppController {
 
 
 
-		$this->set(array('data' => $trainings));
+		$this->set(array('data' => $processes));
 	}
 
 	function project($project_id) {

@@ -1,6 +1,6 @@
-app.controller('DialoguesQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, ProcessesService){
+app.controller('DialogueMeetingsQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, MeetingsService){
 
-	$scope.data = ProcessesService
+	$scope.data = MeetingsService
 	$scope.FormOptions = FormOptions
 
 
@@ -42,18 +42,18 @@ app.controller('DialoguesQueryController', function($scope, $mdDialog, DedupeSer
 	$scope.gridOptions = {
 		enableSorting: true,
 		columnDefs: [
-		  { name:'Project Id', field: 'Process.project_id', visible:false },
+		  { name:'Project Id', field: 'Meeting.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
-		  { name:'Process Id', field: 'Process.id', visible:false },
-		  { name:'Process Title', field: 'Process.title' },
-		  { name:'Males', field: 'Process.male_count' },
-		  { name:'Females', field: 'Process.female_count' },
-		  { name:'Start Date', field: 'Process.start_date', visible:false },
-		  { name:'Finish Date', field: 'Process.finish_date'},
+		  { name:'Meeting Id', field: 'Meeting.id', visible:false },
+		  { name:'Meeting Title', field: 'Meeting.title' },
+		  { name:'Males', field: 'Meeting.male_count' },
+		  { name:'Females', field: 'Meeting.female_count' },
+		  { name:'Start Date', field: 'Meeting.start_date', visible:false },
+		  { name:'Finish Date', field: 'Meeting.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'processes.csv',
+		exporterCsvFilename: 'meetings.csv',
 		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
@@ -64,9 +64,9 @@ app.controller('DialoguesQueryController', function($scope, $mdDialog, DedupeSer
 
 	$scope.updateQuery = function(){
 		$scope.state.data_loading = true
-		ProcessesService.query($scope.query)
+		MeetingsService.query($scope.query)
 			.then(function(){
-				$scope.gridOptions.data = ProcessesService.items
+				$scope.gridOptions.data = MeetingsService.items
 				$scope.state.data_loading = false
 			})
 	}
