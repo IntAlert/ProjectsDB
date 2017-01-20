@@ -1,3 +1,10 @@
+<script>
+	// for use when ouputing stateless access to API end points
+	var api_key = "<?php echo $_SERVER['API_KEY']; ?>";
+	var project_id = <?php echo $project['Project']['id']; ?>;
+	
+</script>
+
 
 <?php $this->set('title', ' Monitoring Data for ' . $project['Project']['title']); ?>
 
@@ -91,6 +98,16 @@
 		        </md-content>
 		      </md-tab>
 
+		    <!-- EXPORT -->
+		      <md-tab label="export">
+		        <md-content 
+			        class="md-padding">
+
+			        <?php echo $this->element('Resultsframework/edit/export'); ?>
+
+		        </md-content>
+		      </md-tab>
+
 		    </md-tabs>
 		  </md-content>
 		</div>
@@ -138,6 +155,6 @@
 
 <?php echo $this->Html->script('resultsframework/controllers/edit/other_activities'); ?>
 
-
+<?php echo $this->Html->script('resultsframework/controllers/edit/export'); ?>
 
 <style type="text/css">/*pre {display: none}*/</style>

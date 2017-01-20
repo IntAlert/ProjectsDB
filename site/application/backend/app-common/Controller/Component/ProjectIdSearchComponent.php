@@ -13,6 +13,7 @@ class ProjectIdSearchComponent extends Component {
 
     	// $projectFilter can have any of these values
     	$projectFilterDefaults = array(
+    		"project_id" => NULL,
     		"theme_id" => NULL,
     		"pathway_id" => NULL,
     		"donor_id" => NULL,
@@ -36,6 +37,15 @@ class ProjectIdSearchComponent extends Component {
 		// simple filters
 		if ($projectFilter['department_id']) {
 			$conditions['department_id'] = $projectFilter['department_id'];
+		}
+
+		// if a project id is set, then obviously the response 
+		// will just be this project id
+		// For the sake of code complexity though, 
+		// just let the rest of the function run its course
+		
+		if( !is_null($projectFilter['project_id']) ) {
+			$conditions['id'] = $projectFilter['project_id'];
 		}
 
 		$joins = [];

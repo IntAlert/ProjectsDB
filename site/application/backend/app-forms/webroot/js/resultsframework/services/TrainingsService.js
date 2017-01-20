@@ -17,50 +17,10 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 
 	instance.query = function(query) {
 
-		var queryParams = {
-			key: api_key // set in HTML document via PHP
-		};
-
-
-		// filter on date?
-		if ( !query.dates.all ) {
-			// correct for annoying timezone issue
-			var start_date = query.dates.start.addMinutes(-new Date().getTimezoneOffset());
-			var finish_date = query.dates.finish.addMinutes(-new Date().getTimezoneOffset());
-			
-			queryParams.start_date = start_date.toISOString().slice(0,10),
-			queryParams.finish_date = finish_date.toISOString().slice(0,10)
-		}
-
-		// filter on participant type?
-		if ( !query.participant_types.all ) {
-			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
-		}
-
-		// filter on theme?
-		if ( !query.themes.all ) {
-			queryParams.theme_id = query.themes.selected.Theme.id
-		}
-
-		// filter on department?
-		if ( !query.departments.all ) {
-			queryParams.department_id = query.departments.selected.Department.id
-		}
-
-		// filter on territory?
-		if ( !query.territories.all ) {
-			queryParams.territory_id = query.territories.selected.Territory.id
-		}
-
-		// filter on pathway?
-		if ( !query.pathways.all ) {
-			queryParams.pathway_id = query.pathways.selected.Pathway.id
-		}
-
 		// set API URLs
-		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/trainings/all.csv?' + $httpParamSerializer(queryParams);
-		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/trainings/all?' + $httpParamSerializer(queryParams);
+		instance.updateApiUrls(query);
 
+		// Then run the query
 		return $http.get(instance.api_urls.json)
 			.then(function(response){
 
@@ -73,6 +33,63 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 			}, function(){
 				alert("trainings download error")
 			});
+	}
+
+	instance.updateApiUrls = function(query) {
+
+		var queryParams = {
+			key: api_key // set in HTML document via PHP
+		};
+
+		console.log(query);
+
+
+		// filter on date?
+		if ( !query.dates.all ) {
+			// correct for annoying timezone issue
+			var start_date = query.dates.start.addMinutes(-new Date().getTimezoneOffset());
+			var finish_date = query.dates.finish.addMinutes(-new Date().getTimezoneOffset());
+			
+			queryParams.start_date = start_date.toISOString().slice(0,10),
+			queryParams.finish_date = finish_date.toISOString().slice(0,10)
+		}
+
+		// This function is used by query and edit pages
+		// all of the above 
+
+		// filter on participant type?
+		if ( query.participant_types && !query.participant_types.all ) {
+			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
+		}
+
+		// filter on theme?
+		if ( query.themes && !query.themes.all ) {
+			queryParams.theme_id = query.themes.selected.Theme.id
+		}
+
+		// filter on department?
+		if ( query.departments && !query.departments.all ) {
+			queryParams.department_id = query.departments.selected.Department.id
+		}
+
+		// filter on territory?
+		if ( query.territories && !query.territories.all ) {
+			queryParams.territory_id = query.territories.selected.Territory.id
+		}
+
+		// filter on pathway?
+		if ( query.pathways && !query.pathways.all ) {
+			queryParams.pathway_id = query.pathways.selected.Pathway.id
+		}
+
+		// filter on project_id?
+		if ( query.project_id ) {
+			queryParams.project_id = query.project_id
+		}
+
+		// set API URLs
+		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/trainings/all.csv?' + $httpParamSerializer(queryParams);
+		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/trainings/all?' + $httpParamSerializer(queryParams);
 	}
 
 

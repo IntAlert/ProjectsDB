@@ -11,9 +11,12 @@ App::uses('AppHelper', 'View/Helper');
  */
 class CsvResponseHelper extends AppHelper {
 
-	function send($headers, $rows) {
+	function send($headers, $rows, $filename = 'export') {
 
 
+		header('Content-Type: application/csv');
+		header('Content-Disposition: attachment; filename=' . $filename . '.csv');
+		header('Pragma: no-cache');
 
 
 		// escape header row

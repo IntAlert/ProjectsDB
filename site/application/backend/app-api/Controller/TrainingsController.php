@@ -78,6 +78,7 @@ class TrainingsController extends AppController {
 		
 		// Project filters
 		$projectFilter = array(
+    		"project_id" => $this->request->query('project_id'), 
     		"pathway_id" => $this->request->query('pathway_id'),
     		"donor_id" => $this->request->query('donor_id'),
     		"department_id" => $this->request->query('department_id'),
@@ -139,12 +140,21 @@ class TrainingsController extends AppController {
 			'order' => ['Training.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
-			'contain' => ['ParticipantType', 'Theme', 'Project.Territory']
+			'contain' => ['ParticipantType', 'Theme', 'Project.Territory', 'Project.Pathway']
 		));
 
 
+		// get territories
+		$territories = $this->Training->Project->Territory->findActiveList();
 
-		$this->set(array('data' => $trainings));
+		// get pathways
+		$pathways = $this->Training->Project->Pathway->findOrderedList();		
+
+		$this->set(array(
+			'pathways' => $pathways,
+			'territories' => $territories,
+			'data' => $trainings
+		));
 	}
 
 	function project($project_id) {

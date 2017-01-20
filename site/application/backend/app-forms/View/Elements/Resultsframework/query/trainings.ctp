@@ -29,7 +29,7 @@
 		  	<md-datepicker 
 		  		ng-model="query.dates.finish" 
 		  		md-min-date="query.dates.start"
-		  		md-placeholder="Start date"
+		  		md-placeholder="Finish date"
 		    ></md-datepicker>
 		</div>
     </div>
@@ -172,6 +172,8 @@
 			    Copy to clipboard
 			</button>
 		</div>
+
+		<label>JSON</label>
 
 		<!-- JSON -->
 		<div>
