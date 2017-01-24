@@ -1,5 +1,5 @@
 <h2>General</h2>
-<table>
+<table width="100%">
 	<tr width="50%">
 		<th>
 			Does your destination country have an Alert office?

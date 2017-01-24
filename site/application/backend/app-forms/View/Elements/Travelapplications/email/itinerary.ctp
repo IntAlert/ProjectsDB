@@ -8,7 +8,7 @@
 
 	<h3>Leg #<?php echo $i + 1; ?></h3>
 	
-	<table>
+	<table width="100%">
 		<tbody>
 			<tr width="50%">
 				<th>

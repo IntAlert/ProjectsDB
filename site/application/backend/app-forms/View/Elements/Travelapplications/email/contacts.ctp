@@ -1,7 +1,7 @@
 <h2>Contacts</h2>
 
 <h3>Point of Contact information in London</h3>
-<table>
+<table width="100%">
 	<tr width="50%">
 		<th>
 			Name
@@ -65,7 +65,7 @@
 
 
 <h3>Point of Contact information in your home office</h3>
-<table>
+<table width="100%">
 	<tr width="50%">
 		<th>
 			Name
@@ -130,7 +130,7 @@
 <?php if ($travelapplicationObj->mode == 'no-office'): ?>
 <div>
 	<h3>Point of Contact information in-country</h3>
-	<table>
+	<table width="100%">
 		<tr width="50%">
 			<th>
 				Name
@@ -197,7 +197,7 @@
 <div>
 
 	<h3>Other Contacts</h3>
-	<table>
+	<table width="100%">
 		<tr width="50%">
 			<th>
 				Alert Partners

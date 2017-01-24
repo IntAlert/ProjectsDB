@@ -1,6 +1,6 @@
 <h2>Checklist</h2>
 	
-<table>
+<table width="100%">
 	<tbody>
 		<tr width="50%">
 			<th>

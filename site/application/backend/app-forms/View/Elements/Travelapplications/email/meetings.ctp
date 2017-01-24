@@ -1,6 +1,6 @@
 <?php if (count($travelapplicationObj->schedule)): ?>
 <h2>Meetings</h2>
-<table>
+<table width="100%">
 	<thead>
 		<tr width="50%">
 			<th>

@@ -1,5 +1,5 @@
 <h2>Applicant</h2>
-<table>
+<table width="100%">
 	<tr width="50%">
 		<th>
 			Your name
