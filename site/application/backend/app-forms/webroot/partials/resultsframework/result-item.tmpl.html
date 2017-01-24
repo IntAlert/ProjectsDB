@@ -41,7 +41,7 @@
 					<textarea 
 						width="100%"
 						required
-						ng-model="data.Result.who" 
+						ng-model="data.Result.reporter" 
 						md-minlength="5" 
 						md-maxlength="100" 
 						rows="3"></textarea>
@@ -58,7 +58,33 @@
 					<label class="md-block md-no-float">Who did something differently?</label>
 					
 					<div class="hint">
-					<p>What – tell us what they did differently (not what activity you did).
+					<p>Tell us who is this result about: who did something differently as a result of our work?
+					</p>
+					<p>
+						Dites-nous de qui il s'agit : qui a fait quelque chose différemment  à cause de notre travail ?
+					</p>
+					</div>
+
+					<textarea 
+						width="100%"
+						required
+						ng-model="data.Result.who" 
+						md-minlength="20" 
+						md-maxlength="500" 
+						rows="5"></textarea>
+
+					
+				</md-input-container>
+			</div>
+
+			<div flex="100">
+				<!-- What -->
+				<md-input-container class="md-block">
+	          
+					<label class="md-block md-no-float">What – tell us what <u>they</u> did differently</label>
+					
+					<div class="hint">
+					<p>tell us what they did differently (not what activity you did).
 					</p>
 					<p>
 						Dites-nous ce qu’ils ont fait de différent (pas l’activité que nous avons fait).
