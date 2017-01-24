@@ -10,7 +10,7 @@
 	
 	<table>
 		<tbody>
-			<tr>
+			<tr width="50%">
 				<th>
 					Start
 				</th>
@@ -18,7 +18,7 @@
 					<?php echo $this->Time->format($itineraryItem->start, '%d/%m/%Y');?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -28,7 +28,7 @@
 					<?php echo $this->Time->format($itineraryItem->finish, '%d/%m/%Y');?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -38,7 +38,7 @@
 					<?php echo $itineraryItem->origin->Territory->name;?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -48,7 +48,7 @@
 					<?php echo $itineraryItem->destination->Territory->name;?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -58,7 +58,7 @@
 					<?php echo $itineraryItem->transport->detail;?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -68,7 +68,7 @@
 					<?php echo property_exists($itineraryItem->transport, 'phone') ? $itineraryItem->transport->phone : 'n/a';?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -78,7 +78,7 @@
 					<?php echo property_exists($itineraryItem->transport, 'email') ? $itineraryItem->transport->email : 'n/a';?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -88,7 +88,7 @@
 					<?php echo $itineraryItem->accommodation->detail;?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>
@@ -98,7 +98,7 @@
 					<?php echo $itineraryItem->accommodation->email;?>
 				</td>
 			</tr>
-			<tr>
+			<tr width="50%">
 
 
 				<th>

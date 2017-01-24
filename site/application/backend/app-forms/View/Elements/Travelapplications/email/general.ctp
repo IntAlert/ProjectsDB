@@ -1,6 +1,6 @@
 <h2>General</h2>
 <table>
-	<tr>
+	<tr width="50%">
 		<th>
 			Does your destination country have an Alert office?
 		</th>
@@ -11,7 +11,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Reason for your trip
 		</th>
@@ -22,7 +22,7 @@
 	</tr>
 
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Approving Manager
 		</th>

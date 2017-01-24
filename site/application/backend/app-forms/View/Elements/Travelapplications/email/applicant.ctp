@@ -1,6 +1,6 @@
 <h2>Applicant</h2>
 <table>
-	<tr>
+	<tr width="50%">
 		<th>
 			Your name
 		</th>
@@ -10,7 +10,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Role Category
 		</th>
@@ -21,7 +21,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Your role at Alert
 		</th>

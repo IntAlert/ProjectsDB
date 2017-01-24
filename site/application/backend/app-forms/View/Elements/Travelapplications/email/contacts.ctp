@@ -2,7 +2,7 @@
 
 <h3>Point of Contact information in London</h3>
 <table>
-	<tr>
+	<tr width="50%">
 		<th>
 			Name
 		</th>
@@ -12,7 +12,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Email Address(es)
 		</th>
@@ -22,7 +22,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Telephone Number(s)
 		</th>
@@ -32,7 +32,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Mobile telephone number(s)
 		</th>
@@ -42,7 +42,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Skype for Bussiness
 		</th>
@@ -52,7 +52,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Agreed Frequency of Contact
 		</th>
@@ -66,7 +66,7 @@
 
 <h3>Point of Contact information in your home office</h3>
 <table>
-	<tr>
+	<tr width="50%">
 		<th>
 			Name
 		</th>
@@ -76,7 +76,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Email Address(es)
 		</th>
@@ -86,7 +86,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Telephone Number(s)
 		</th>
@@ -96,7 +96,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Mobile telephone number(s)
 		</th>
@@ -106,7 +106,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Skype for Bussiness
 		</th>
@@ -116,7 +116,7 @@
 		</td>
 	</tr>
 
-	<tr>
+	<tr width="50%">
 		<th>
 			Agreed Frequency of Contact
 		</th>
@@ -131,7 +131,7 @@
 <div>
 	<h3>Point of Contact information in-country</h3>
 	<table>
-		<tr>
+		<tr width="50%">
 			<th>
 				Name
 			</th>
@@ -141,7 +141,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Email Address(es)
 			</th>
@@ -151,7 +151,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Telephone Number
 			</th>
@@ -161,7 +161,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Mobile telephone number(s)
 			</th>
@@ -171,7 +171,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Skype for Bussiness
 			</th>
@@ -181,7 +181,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Agreed Frequency of Contact
 			</th>
@@ -198,7 +198,7 @@
 
 	<h3>Other Contacts</h3>
 	<table>
-		<tr>
+		<tr width="50%">
 			<th>
 				Alert Partners
 			</th>
@@ -208,7 +208,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Embassies
 			</th>
@@ -218,7 +218,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Local emergency numbers
 			</th>
@@ -228,7 +228,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				Local medical facilities
 			</th>

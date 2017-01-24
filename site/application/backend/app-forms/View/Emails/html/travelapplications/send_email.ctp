@@ -7,8 +7,15 @@
 </p>-->
 
 
-<h2>Summary</h2>
-
+<h2>Travel Destination(s)</h2>
+<?php 
+	// create CSV of destinations
+	$destinations = [];
+	foreach ($travelapplicationObj->itinerary as $i => $itineraryItem): 
+		$destinations[] = $itineraryItem->destination->Territory->name;
+	endforeach;
+	echo implode(',', $destinations);
+?>
 
 <?php echo $this->element('Travelapplications/email/general'); ?>
 

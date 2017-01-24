@@ -2,7 +2,7 @@
 <h2>Meetings</h2>
 <table>
 	<thead>
-		<tr>
+		<tr width="50%">
 			<th>
 				Date
 			</th>
@@ -35,7 +35,7 @@
 	>
 
 <?php foreach($travelapplicationObj->schedule as $meeting): ?>
-		<tr>
+		<tr width="50%">
 			<td>
 				<!-- Date -->
 				<?php echo $this->Time->format($meeting->date, '%d/%m/%Y'); ?>

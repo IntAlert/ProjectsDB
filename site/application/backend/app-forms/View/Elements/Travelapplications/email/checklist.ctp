@@ -2,7 +2,7 @@
 	
 <table>
 	<tbody>
-		<tr>
+		<tr width="50%">
 			<th>
 				I have read, understood & signed Alert's Security Covenant
 			</th>
@@ -11,7 +11,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				I have read &amp; understood Alert's Security Policy, Procedures, and Staff &amp; Field Workers Tasks &amp; Responsibilities</a>
 			</th>
@@ -20,7 +20,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr width="50%">
 			<th>
 				I have read &amp; understood Country Security &amp; Evacuation Plans
 			</th>

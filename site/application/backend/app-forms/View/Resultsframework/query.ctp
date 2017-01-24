@@ -74,7 +74,7 @@
 		        <md-content 
 		        	class="md-padding">
 
-		      	<?php // echo $this->element('Resultsframework/query/researches'); ?>
+		      	<?php echo $this->element('Resultsframework/query/researches'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -148,7 +148,7 @@
 <?php echo $this->Html->script('resultsframework/controllers/ResultsframeworkQueryController'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/geography'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/themes'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/researches'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/query/ResearchesQueryController'); ?>
 <?php // echo $this->Html->script('resultsframework/controllers/query/results'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/TrainingsQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/AccompanimentsQueryController'); ?>

@@ -7,7 +7,7 @@
 </md-radio-group>
 
 <md-input-container class="md-block">
-	<label>Reason for your trip *</label>
+	<label>Reason for your trip</label>
 	<textarea ng-model="formData.applicant.reason" md-minlength="3" md-maxlength="350" rows="5" required></textarea>
 </md-input-container>
 
