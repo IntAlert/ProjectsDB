@@ -122,3 +122,5 @@
 
 <?php echo $this->Html->script('travelapplications/services/TravelapplicationsService'); ?>
 
+<?php echo $this->Html->script('shared/directives/dateStringSelector'); ?>
+

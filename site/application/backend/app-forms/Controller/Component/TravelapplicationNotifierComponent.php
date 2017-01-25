@@ -25,14 +25,21 @@ class TravelapplicationNotifierComponent extends Component {
         // $Email->addTo('KHassan@international-alert.org');
 
 		
-		$result = $Email->template('travelapplications/send_email')
+		$Email->template('travelapplications/send_email')
 		    ->emailFormat('html')
 		    ->viewVars(array(
 		    	'travelapplication_id' => $travelapplication_id,
 		    	'travelapplicationObj' => $travelapplicationObj
 		    ))
-		    ->subject('Trip')
-		    ->send();
+		    ->subject('Trip');
+
+
+        if(Configure::read('debug') > 0) {
+            // skip sending
+            // $result = $Email->send();
+        } else {
+            $result = $Email->send();
+        }
 
 
     }

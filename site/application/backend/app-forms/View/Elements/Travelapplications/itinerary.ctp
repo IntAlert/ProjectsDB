@@ -19,6 +19,13 @@
 			<tr>
 				<th>Start *</th>
 				<td colspan="3">
+
+					<!-- <date-string-selector 
+						label="Enter date" 
+						max="itinerary_item.finish" 
+						ng-model="itinerary_item.start" 
+					/>  -->
+
 					<md-datepicker
 						required
 						md-max-date="itinerary_item.finish"
@@ -32,6 +39,14 @@
 			<tr>
 				<th>Finish *</th>
 				<td colspan="3">
+
+
+					<!-- <date-string-selector 
+						label="Enter date" 
+						min="itinerary_item.start" 
+						ng-model="itinerary_item.finish" 
+					/>  -->
+
 					<md-datepicker 
 						required
 						md-min-date="itinerary_item.start"

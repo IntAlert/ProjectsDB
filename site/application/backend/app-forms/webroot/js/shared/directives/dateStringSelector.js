@@ -12,8 +12,6 @@ app.directive('dateStringSelector',
 
 				$scope.localDate = null;
 
-				console.log($scope.label)
-
 				// turn a saved string into a date object on load from DB
 				$scope.$watch('ngModel', function(){
 					if(typeof($scope.ngModel) == 'string') {
