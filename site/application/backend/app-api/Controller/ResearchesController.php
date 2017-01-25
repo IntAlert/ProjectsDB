@@ -2,6 +2,9 @@
 
 class ResearchesController extends AppController {
 
+	public $components = array(
+		'ProjectIdSearch'
+	);
 
 	function create() {
 		
@@ -66,14 +69,81 @@ class ResearchesController extends AppController {
 
 	function all() {
 		
-		// TODO: must be authed and must be note owner
-
-		$researches = $this->Research->find('all', array(
-			'contain' => ['Theme']
-		));
+		// Research filters
+		$start_date = $this->request->query('start_date');
+		$finish_date = $this->request->query('finish_date');
+		$theme_id = $this->request->query('theme_id');
 		
+		// Project filters
+		$projectFilter = array(
+			"project_id" => $this->request->query('project_id'), 
+    		"pathway_id" => $this->request->query('pathway_id'),
+    		"department_id" => $this->request->query('department_id'),
+    		"territory_id" => $this->request->query('territory_id')
+    	);
 
-		$this->set(array('data' => $researches));
+		// generate project id filters based on theme_id, pathway_id, etc
+		$project_ids = $this->ProjectIdSearch->getProjectIds($projectFilter);
+
+
+		// build conditions, joins
+		$conditions = [];
+		$joins = [];
+
+		// filter on training theme?
+		if ($theme_id) {
+			$joins[] = array(
+				'table' => 'meetings_themes',
+	            'alias' => 'ResearchesTheme',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Research.id = ResearchesTheme.training_id',
+	                'ResearchesTheme.theme_id' => $theme_id
+	            )
+	        );	
+		}
+
+		// filter on training dates?
+		if ($start_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Research.finish_date >=' => $start_date];
+		}
+
+		if ($finish_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Research.start_date <=' => $finish_date];
+		}
+
+		// Add project ID filter
+		if (is_array($project_ids)) 
+			$conditions['project_id'] = $project_ids;
+
+		$meetings = $this->Research->find('all', array(
+			'order' => ['Research.start_date' => 'DESC'],
+			'conditions' => $conditions,
+			'joins' => $joins,
+			'contain' => [
+				'Theme',
+				'Project.Territory',
+				'Project.Pathway'
+			]
+		));
+
+		// get all themes
+		$themes = $this->Research->Theme->findOrderedList();
+
+		// get all territories
+		$territories = $this->Research->Project->Territory->findActiveList();
+
+		// get all pathways
+		$pathways = $this->Research->Project->Pathway->findOrderedList();		
+
+		$this->set(array(
+			'pathways' => $pathways,
+			'territories' => $territories,
+			'themes' => $themes,
+			'data' => $meetings,
+		));
 	}
 
 	function project($project_id) {
