@@ -176,9 +176,10 @@
 
 	<div class="api_urls" ng-if=" !state.data_loading ">
 		<h2>Get this data via the API</h2>
-		<label>CSV</label>
+		
 
 		<!-- CSV -->
+		<label>CSV</label>
 		<div>
 			<!-- Target -->
 			<input type="text" id="api-csv-training" readonly ng-value="data.api_urls.csv">
@@ -189,9 +190,9 @@
 			</button>
 		</div>
 
-		<label>JSON</label>
 
 		<!-- JSON -->
+		<label>JSON</label>
 		<div>
 			<!-- Target -->
 			<input type="text" id="api-json-training" readonly ng-value="data.api_urls.json">

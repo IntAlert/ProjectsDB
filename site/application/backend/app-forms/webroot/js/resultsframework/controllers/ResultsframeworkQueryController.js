@@ -5,7 +5,7 @@ app.controller('ResultsframeworkQueryController', function ($scope, $window, $lo
 
 	// debug
 	// $scope.disableTabsByValid = false;
-	$scope.selectedTabIndex = 0;
+	$scope.selectedTabIndex = 1;
 
 	
 	$scope.changeActiveTab = function(i) {

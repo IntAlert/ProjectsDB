@@ -139,9 +139,9 @@
 
 		<div class="api_urls" ng-if=" !state.data_loading ">
 			<h2>Get this data via the API</h2>
-			<label>CSV</label>
 
 			<!-- CSV -->
+			<label>CSV</label>
 			<div>
 				<!-- Target -->
 				<input type="text" id="api-csv-dialogues" readonly ng-value="data.api_urls.csv">
@@ -153,6 +153,7 @@
 			</div>
 
 			<!-- JSON -->
+			<label>JSON</label>
 			<div>
 				<!-- Target -->
 				<input type="text" id="api-json-dialogues" readonly ng-value="data.api_urls.json">
