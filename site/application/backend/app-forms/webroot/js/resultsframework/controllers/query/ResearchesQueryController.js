@@ -41,14 +41,12 @@ app.controller('ResearchesQueryController', function($scope, $mdDialog, ResultsF
 		  { name:'Project Id', field: 'Research.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Research Id', field: 'Research.id', visible:false },
-		  { name:'Research Title', field: 'Research.title' },
-		  { name:'Start Date', field: 'Research.start_date', visible:false },
+		  { name:'Title', field: 'Research.title' },
+		  { name:'Start Date', field: 'Research.start_date'},
 		  { name:'Finish Date', field: 'Research.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'researches.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -63,6 +61,11 @@ app.controller('ResearchesQueryController', function($scope, $mdDialog, ResultsF
 				$scope.gridOptions.data = ResearchesService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = ResearchesService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

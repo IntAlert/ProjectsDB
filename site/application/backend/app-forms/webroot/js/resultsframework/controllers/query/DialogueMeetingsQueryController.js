@@ -45,16 +45,14 @@ app.controller('DialogueMeetingsQueryController', function($scope, $mdDialog, De
 		  { name:'Project Id', field: 'Meeting.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Meeting Id', field: 'Meeting.id', visible:false },
-		  { name:'Meeting Title', field: 'Meeting.title' },
+		  { name:'Title', field: 'Meeting.title' },
 		  { name:'Males', field: 'Meeting.male_count' },
 		  { name:'Females', field: 'Meeting.female_count' },
-		  { name:'Start Date', field: 'Meeting.start_date', visible:false },
+		  { name:'Start Date', field: 'Meeting.start_date'},
 		  { name:'Finish Date', field: 'Meeting.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'meetings.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -69,6 +67,11 @@ app.controller('DialogueMeetingsQueryController', function($scope, $mdDialog, De
 				$scope.gridOptions.data = MeetingsService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = MeetingsService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

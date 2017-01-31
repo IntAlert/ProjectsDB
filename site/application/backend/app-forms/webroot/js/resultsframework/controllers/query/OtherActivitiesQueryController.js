@@ -45,16 +45,15 @@ app.controller('OtherActivitiesQueryController', function($scope, $mdDialog, Ded
 		  { name:'Project Id', field: 'OtherActivity.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'OtherActivity Id', field: 'OtherActivity.id', visible:false },
-		  { name:'OtherActivity Title', field: 'OtherActivity.title' },
+		  { name:'Title', field: 'OtherActivity.title' },
+		  { name:'Type', field: 'OtherActivity.type' },
 		  { name:'Males', field: 'OtherActivity.male_count' },
 		  { name:'Females', field: 'OtherActivity.female_count' },
-		  { name:'Start Date', field: 'OtherActivity.start_date', visible:false },
+		  { name:'Start Date', field: 'OtherActivity.start_date'},
 		  { name:'Finish Date', field: 'OtherActivity.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'other_activities.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -69,6 +68,11 @@ app.controller('OtherActivitiesQueryController', function($scope, $mdDialog, Ded
 				$scope.gridOptions.data = OtherActivitiesService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = OtherActivitiesService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

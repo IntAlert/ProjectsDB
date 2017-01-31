@@ -41,14 +41,12 @@ app.controller('AdvocaciesQueryController', function($scope, $mdDialog, ResultsF
 		  { name:'Project Id', field: 'Advocacy.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Advocacy Id', field: 'Advocacy.id', visible:false },
-		  { name:'Advocacy Title', field: 'Advocacy.title' },
-		  { name:'Start Date', field: 'Advocacy.start_date', visible:false },
+		  { name:'Title', field: 'Advocacy.title' },
+		  { name:'Start Date', field: 'Advocacy.start_date'},
 		  { name:'Finish Date', field: 'Advocacy.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'advocacies.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -63,6 +61,11 @@ app.controller('AdvocaciesQueryController', function($scope, $mdDialog, ResultsF
 				$scope.gridOptions.data = AdvocaciesService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = AdvocaciesService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

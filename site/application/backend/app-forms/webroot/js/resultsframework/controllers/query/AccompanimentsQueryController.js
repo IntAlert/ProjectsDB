@@ -42,14 +42,12 @@ app.controller('AccompanimentsQueryController', function($scope, $mdDialog, Dedu
 		  { name:'Project Id', field: 'Accompaniment.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Accompaniment Id', field: 'Accompaniment.id', visible:false },
-		  { name:'Accompaniment Title', field: 'Accompaniment.title' },
-		  { name:'Start Date', field: 'Accompaniment.start_date', visible:false },
+		  { name:'Title', field: 'Accompaniment.title' },
+		  { name:'Start Date', field: 'Accompaniment.start_date'},
 		  { name:'Finish Date', field: 'Accompaniment.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'accompaniments.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -64,6 +62,11 @@ app.controller('AccompanimentsQueryController', function($scope, $mdDialog, Dedu
 				$scope.gridOptions.data = AccompanimentsService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = AccompanimentsService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

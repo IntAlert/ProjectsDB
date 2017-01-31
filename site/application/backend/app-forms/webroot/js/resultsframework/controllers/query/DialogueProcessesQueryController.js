@@ -45,16 +45,14 @@ app.controller('DialogueProcessesQueryController', function($scope, $mdDialog, D
 		  { name:'Project Id', field: 'Process.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Process Id', field: 'Process.id', visible:false },
-		  { name:'Process Title', field: 'Process.title' },
+		  { name:'Title', field: 'Process.title' },
 		  { name:'Males', field: 'Process.male_count' },
 		  { name:'Females', field: 'Process.female_count' },
-		  { name:'Start Date', field: 'Process.start_date', visible:false },
+		  { name:'Start Date', field: 'Process.start_date'},
 		  { name:'Finish Date', field: 'Process.finish_date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'processes.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -69,6 +67,11 @@ app.controller('DialogueProcessesQueryController', function($scope, $mdDialog, D
 				$scope.gridOptions.data = ProcessesService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = ProcessesService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

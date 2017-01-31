@@ -45,13 +45,11 @@ app.controller('ResultsQueryController', function($scope, $mdDialog, DedupeServi
 		  { name:'Project Id', field: 'Result.project_id', visible:false },
 		  { name:'Project Name', field: 'Project.title'},
 		  { name:'Result Id', field: 'Result.id', visible:false },
-		  { name:'Result Title', field: 'Result.title' },
+		  { name:'Title', field: 'Result.title' },
 		  { name:'Date', field: 'Result.date'},
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'results.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -66,6 +64,11 @@ app.controller('ResultsQueryController', function($scope, $mdDialog, DedupeServi
 				$scope.gridOptions.data = ResultsService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = ResultsService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query
