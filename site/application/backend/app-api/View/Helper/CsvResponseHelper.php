@@ -11,14 +11,14 @@ App::uses('AppHelper', 'View/Helper');
  */
 class CsvResponseHelper extends AppHelper {
 
-	function send($headers, $rows, $filename = 'export') {
+	function send($headers, $rows, $filename = 'export', $requestQuery = false) {
 
-
-		// header('Content-Type: application/csv');
-		// header('Content-Disposition: attachment; filename=' . $filename . '.csv');
-		// header('Pragma: no-cache');
-
-
+		if (isset($requestQuery['download']) && $requestQuery['download']) {
+			header('Content-Type: application/csv');
+			header('Content-Disposition: attachment; filename=' . $filename . '.csv');
+			header('Pragma: no-cache');	
+		}
+		
 		// escape header row
 		$headersEscaped = [];
 		foreach ($headers as $header) {

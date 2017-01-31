@@ -150,7 +150,15 @@ class TrainingsController extends AppController {
 		// get pathways
 		$pathways = $this->Training->Project->Pathway->findOrderedList();		
 
+		// get participant_types
+		$participant_types = $this->Training->ParticipantType->findOrderedList();		
+
+		// get themes
+		$themes = $this->Training->Theme->findOrderedList();		
+
 		$this->set(array(
+			'participant_types' => $participant_types,
+			'themes' => $themes,
 			'pathways' => $pathways,
 			'territories' => $territories,
 			'data' => $trainings

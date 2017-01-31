@@ -1,5 +1,5 @@
 
-app.controller('TrainingsQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, TrainingsService){
+app.controller('TrainingsQueryController', function($scope, $mdDialog, $window, DedupeService, ResultsFrameworkService, FormOptions, TrainingsService){
 
 	$scope.data = TrainingsService
 	$scope.FormOptions = FormOptions
@@ -54,8 +54,6 @@ app.controller('TrainingsQueryController', function($scope, $mdDialog, DedupeSer
 		],
 		
 		enableGridMenu:true,
-		exporterCsvFilename: 'trainings.csv',
-		exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
 	    onRegisterApi: function(gridApi){
 	      $scope.gridApi = gridApi;
 	    },
@@ -70,6 +68,11 @@ app.controller('TrainingsQueryController', function($scope, $mdDialog, DedupeSer
 				$scope.gridOptions.data = TrainingsService.items
 				$scope.state.data_loading = false
 			})
+	}
+
+	$scope.downloadCSV = function() {
+		var url = TrainingsService.api_urls.csv + '&download=1';
+		$window.open(url, "_blank");
 	}
 
 	// Load with default query

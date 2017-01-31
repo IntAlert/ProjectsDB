@@ -43,6 +43,7 @@
 
 	  	<!-- Participant Type -->
 	  	<md-select 
+	  		aria-label="Participant Type"
 	  		ng-model="query.participant_types.selected" 
 	  		ng-hide="query.participant_types.all">
 		  	<md-option ng-value="null"> Select Participant Type </md-option>
@@ -63,7 +64,10 @@
 	  	</md-checkbox>
 
 	  	<!-- Theme -->
-	  	<md-select ng-model="query.themes.selected" ng-hide="query.themes.all">
+	  	<md-select 
+		  	aria-label="Theme"
+	  		ng-model="query.themes.selected" 
+	  		ng-hide="query.themes.all">
 		  	<md-option ng-value="null"> Select Training Theme </md-option>
 		  	<md-option
 		  		ng-repeat="theme in FormOptions.themes"
@@ -83,6 +87,7 @@
 
 	  	<!-- Department -->
 	  	<md-select 
+		  	aria-label="Department"
 	  		ng-model="query.departments.selected" 
 	  		ng-hide="query.departments.all">
 		  	<md-option ng-value="null"> Select Project Department </md-option>
@@ -104,6 +109,7 @@
 
 	  	<!-- Territory -->
 	  	<md-select 
+	  		aria-label="Territory"
 	  		ng-model="query.territories.selected" 
 	  		ng-hide="query.territories.all">
 		  	<md-option ng-value="null"> Select Project Territory </md-option>
@@ -125,6 +131,7 @@
 
 	  	<!-- Pathway -->
 	  	<md-select 
+		  	aria-label="Pathway"
 	  		ng-model="query.pathways.selected" 
 	  		ng-hide="query.pathways.all">
 		  	<md-option ng-value="null"> Select Project Pathway </md-option>
@@ -157,6 +164,15 @@
 		class="grid"
 
 	></div>
+
+	<div class="download_csv" ng-if=" !state.data_loading ">
+		<md-button 
+			ng-click="downloadCSV()"
+			class="md-primary md-raised"
+		>
+			Download CSV
+		</md-button>
+	</div>
 
 	<div class="api_urls" ng-if=" !state.data_loading ">
 		<h2>Get this data via the API</h2>
