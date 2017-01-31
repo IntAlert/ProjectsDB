@@ -27,14 +27,14 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 
 $rows = [];
 
-foreach ($data as $training) {
+foreach ($data as $research) {
 	$row = [
 
-		$training['Research']['project_id'],
-		$training['Research']['id'],
-		$training['Research']['title'],
-		$training['Research']['start_date'],
-		$training['Research']['finish_date'],
+		$research['Research']['project_id'],
+		$research['Research']['id'],
+		$research['Research']['title'],
+		$research['Research']['start_date'],
+		$research['Research']['finish_date'],
 	];
 
 
@@ -42,7 +42,7 @@ foreach ($data as $training) {
 	// make list of selected territory ids
 	$selected_territory_ids = array_map(function($territory){
 		return (int) $territory['id'];
-	}, $training['Project']['Territory']);
+	}, $research['Project']['Territory']);
 	
 	// add all territories, 0 if not selected, 1 if so
 	foreach ($territories as $territory_id => $territory_name) {
@@ -53,17 +53,12 @@ foreach ($data as $training) {
 	// make list of selected pathway ids
 	$selected_pathway_ids = array_map(function($pathway){
 		return (int) $pathway['id'];
-	}, $training['Project']['Pathway']);
+	}, $research['Project']['Pathway']);
 
 	// add all pathways, 0 if not selected, 1 if so
 	foreach ($pathways as $pathway_id => $pathway_name) {
 		$row[] = (int) in_array($pathway_id, $selected_pathway_ids);
 	}
-
-
-	// var_dump($selected_pathway_ids);
-	// var_dump($training);
-
 
 	$rows[] = $row;
 

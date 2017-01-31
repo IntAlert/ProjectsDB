@@ -135,10 +135,18 @@ class ResultsController extends AppController {
 			]
 		));
 
-		// get all participant_types
+		// get territories
+		$territories = $this->Result->Project->Territory->findActiveList();
+
+		// get pathways
+		$pathways = $this->Result->Project->Pathway->findOrderedList();
+
+		// get all impacts
 		$impacts = $this->Result->Impact->findOrderedList();	
 
 		$this->set(array(
+			'territories' => $territories,
+			'pathways' => $pathways,
 			'impacts' => $impacts,
 			'data' => $results,
 		));
