@@ -71,7 +71,7 @@ app.controller('DialogueProcessesQueryController', function($window, $scope, $md
 
 	$scope.downloadCSV = function() {
 		var url = ProcessesService.api_urls.csv + '&download=1';
-		$window.open(url, "_blank");
+		$window.open(url);
 	}
 
 	// Load with default query

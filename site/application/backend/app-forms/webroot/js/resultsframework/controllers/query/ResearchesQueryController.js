@@ -65,7 +65,7 @@ app.controller('ResearchesQueryController', function($window, $scope, $mdDialog,
 
 	$scope.downloadCSV = function() {
 		var url = ResearchesService.api_urls.csv + '&download=1';
-		$window.open(url, "_blank");
+		$window.open(url);
 	}
 
 	// Load with default query

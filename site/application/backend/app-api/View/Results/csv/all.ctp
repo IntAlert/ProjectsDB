@@ -54,10 +54,6 @@ foreach ($data as $result) {
 	}
 
 
-	// var_dump($selected_pathway_ids);
-	// var_dump($result);
-
-
 	$rows[] = $row;
 
 }

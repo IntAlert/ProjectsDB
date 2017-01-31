@@ -66,7 +66,7 @@ app.controller('AccompanimentsQueryController', function($window, $scope, $mdDia
 
 	$scope.downloadCSV = function() {
 		var url = AccompanimentsService.api_urls.csv + '&download=1';
-		$window.open(url, "_blank");
+		$window.open(url);
 	}
 
 	// Load with default query

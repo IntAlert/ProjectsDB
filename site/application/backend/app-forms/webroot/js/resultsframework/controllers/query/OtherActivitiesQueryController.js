@@ -72,7 +72,7 @@ app.controller('OtherActivitiesQueryController', function($window, $scope, $mdDi
 
 	$scope.downloadCSV = function() {
 		var url = OtherActivitiesService.api_urls.csv + '&download=1';
-		$window.open(url, "_blank");
+		$window.open(url);
 	}
 
 	// Load with default query

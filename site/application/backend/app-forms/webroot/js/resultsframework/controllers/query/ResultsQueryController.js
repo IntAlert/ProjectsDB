@@ -64,7 +64,7 @@ app.controller('ResultsQueryController', function($window, $scope, $mdDialog, De
 
 	$scope.downloadCSV = function() {
 		var url = ResultsService.api_urls.csv + '&download=1';
-		$window.open(url, "_blank");
+		$window.open(url);
 	}
 
 	// Load with default query
