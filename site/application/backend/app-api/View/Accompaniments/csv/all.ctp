@@ -76,7 +76,6 @@ foreach ($data as $accompaniment) {
 	$rows[] = $row;
 }
 
-$this->CsvResponse->send($headers, $rows);
-
+$this->CsvResponse->send($headers, $rows, 'accompaniments', $this->request->query);
 
 

@@ -82,7 +82,7 @@ foreach ($data as $meeting) {
 	$rows[] = $row;
 }
 
-$this->CsvResponse->send($headers, $rows);
+$this->CsvResponse->send($headers, $rows, 'meetings', $this->request->query);
 
 
 

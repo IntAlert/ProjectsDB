@@ -44,7 +44,6 @@ foreach ($data as $other_activity) {
 
 }
 
-$this->CsvResponse->send($headers, $rows);
-
+$this->CsvResponse->send($headers, $rows, 'other_activities', $this->request->query);
 
 

@@ -62,7 +62,5 @@ foreach ($data as $result) {
 
 }
 
-$this->CsvResponse->send($headers, $rows);
-
-
+$this->CsvResponse->send($headers, $rows, 'results', $this->request->query);
 

@@ -60,16 +60,11 @@ foreach ($data as $advocacy) {
 		$row[] = (int) in_array($pathway_id, $selected_pathway_ids);
 	}
 
-
-	// var_dump($selected_pathway_ids);
-	// var_dump($advocacy);
-
-
 	$rows[] = $row;
 
 }
 
-$this->CsvResponse->send($headers, $rows);
+$this->CsvResponse->send($headers, $rows, 'advocacies', $this->request->query);
 
 
 

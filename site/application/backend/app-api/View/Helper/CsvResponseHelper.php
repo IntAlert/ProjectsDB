@@ -11,7 +11,7 @@ App::uses('AppHelper', 'View/Helper');
  */
 class CsvResponseHelper extends AppHelper {
 
-	function send($headers, $rows, $filename = 'export', $requestQuery = false) {
+	function send($headers, $rows, $filename = 'export', $requestQuery = null) {
 
 		if (isset($requestQuery['download']) && $requestQuery['download']) {
 			header('Content-Type: application/csv');

@@ -82,7 +82,4 @@ foreach ($data as $process) {
 	$rows[] = $row;
 }
 
-$this->CsvResponse->send($headers, $rows);
-
-
-
+$this->CsvResponse->send($headers, $rows, 'processes', $this->request->query);
