@@ -11,7 +11,7 @@ $headers = [
 	'female_count',
 ];
 
-// add theme headers
+// add participant type headers
 foreach ($participant_types as $participant_type_id => $participant_type_name) {
 	$headers[] = 'PARTICIPANT TYPE: ' . $participant_type_name;
 }

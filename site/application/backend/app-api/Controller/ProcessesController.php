@@ -139,12 +139,25 @@ class ProcessesController extends AppController {
 			'order' => ['Process.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
-			'contain' => ['ParticipantType', 'Theme', 'Project.Territory']
+			'contain' => ['ParticipantType', 'Theme', 'Project.Territory', 'Project.Pathway']
 		));
 
+		// get territories
+		$territories = $this->Process->Project->Territory->findActiveList();
 
+		// get pathways
+		$pathways = $this->Process->Project->Pathway->findOrderedList();		
 
-		$this->set(array('data' => $processes));
+		// get participant_types
+		$participant_types = $this->Process->ParticipantType->findOrderedList();		
+
+		$this->set(array(
+			'participant_types' => $participant_types,
+			'pathways' => $pathways,
+			'territories' => $territories,
+			'data' => $processes
+		));
+
 	}
 
 	function project($project_id) {
