@@ -41,6 +41,7 @@
 
 		  	<!-- Department -->
 		  	<md-select 
+		  		aria-label="Department"
 		  		ng-model="query.departments.selected" 
 		  		ng-hide="query.departments.all">
 			  	<md-option ng-value="null"> Select Project Department </md-option>
@@ -62,6 +63,7 @@
 
 		  	<!-- Territory -->
 		  	<md-select 
+		  		aria-label="Territory"
 		  		ng-model="query.territories.selected" 
 		  		ng-hide="query.territories.all">
 			  	<md-option ng-value="null"> Select Project Territory </md-option>
@@ -83,6 +85,7 @@
 
 		  	<!-- Pathway -->
 		  	<md-select 
+		  		aria-label="Pathway"
 		  		ng-model="query.pathways.selected" 
 		  		ng-hide="query.pathways.all">
 			  	<md-option ng-value="null"> Select Project Pathway </md-option>
@@ -116,6 +119,16 @@
 
 		></div>
 
+		<div class="download_csv" ng-if=" !state.data_loading ">
+			<md-button 
+				ng-click="downloadCSV()"
+				class="md-primary md-raised"
+			>
+				Download CSV
+			</md-button>
+		</div>
+
+		
 		<div class="api_urls" ng-if=" !state.data_loading ">
 			<h2>Get this data via the API</h2>
 			
