@@ -2,14 +2,9 @@
 
 class ResultsController extends AppController {
 
- //    public function export() {
-	//     $results = $this->Result->find('all');
-	//     $_serialize = 'results';
-	//     $_header = array('Result ID', 'Title', 'Created');
-	//     $_extract = array('Result.id', 'Result.title', 'Result.created');
-
-	//     $this->set(compact('results', '_serialize', '_header', '_extract'));
-	// }
+	public $components = array(
+		'ProjectIdSearch'
+	);
 
 	function create() {
 		
@@ -19,6 +14,11 @@ class ResultsController extends AppController {
 			$this->Result->create();
 
 			$data = $this->request->input('json_decode');
+
+			// date should default to first date the result was recorded
+			// as in, today
+			$data->Result->date = date('Y-m-d');
+
 			$result = $this->Result->saveAssociated($data);
 		}
 
@@ -74,23 +74,60 @@ class ResultsController extends AppController {
 
 	function all() {
 		
-		// TODO: must be authed and must be note owner
+		// Result filters
+		$start_date = $this->request->query('start_date');
+		$finish_date = $this->request->query('finish_date');
+		$theme_id = $this->request->query('theme_id');
+		
+		// Project filters
+		$projectFilter = array(
+			"project_id" => $this->request->query('project_id'), 
+    		"pathway_id" => $this->request->query('pathway_id'),
+    		"department_id" => $this->request->query('department_id'),
+    		"territory_id" => $this->request->query('territory_id')
+    	);
+
+		// generate project id filters based on theme_id, pathway_id, etc
+		$project_ids = $this->ProjectIdSearch->getProjectIds($projectFilter);
+
+
+		// build conditions, joins
+		$conditions = [];
+		$joins = [];
+
+		// filter on other_activitiy dates?
+		if ($start_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Result.date >=' => $start_date];
+		}
+
+		if ($finish_date) {
+			// finish is after start_date filter
+			$conditions[] = ['Result.date <=' => $finish_date];
+		}
+
+		// Add project ID filter
+		if (is_array($project_ids)) 
+			$conditions['project_id'] = $project_ids;
 
 		$results = $this->Result->find('all', array(
-			'order' => ['date' => 'DESC'],
+			'order' => ['Result.date' => 'DESC'],
+			'conditions' => $conditions,
+			'joins' => $joins,
 			'contain' => [
-				'Project.Territory', 
-				'Project.Pathway', 
-				'Project.Theme', 
-				'Impact'
+				'Impact',
+				'Project.Territory',
+				'Project.Pathway'
 			]
 		));
 
-		if ($this->isCSVrequest()) {
-			return $this->csv($results);
-		} else {
-			return $this->json($results);
-		}
+		// get all participant_types
+		$impacts = $this->Result->Impact->findOrderedList();	
+
+		$this->set(array(
+			'impacts' => $impacts,
+			'data' => $results,
+		));
 	}
 
 	public function project($project_id) {
@@ -108,136 +145,8 @@ class ResultsController extends AppController {
 			]
 		));
 		
-		if ($this->isCSVrequest()) {
-			return $this->csv($results);
-		} else {
-			return $this->json($results);
-		}
+		$this->set(array('data' => $results));
 		
 	}
-
-	private function json($results) {
-		$this->set(array('data' => $results));
-	}
-
-	// private function csvBac($results) {
-
-	// 	// build header
-	//     $header = array(
-	//     	'Result ID',
-	//     	'Title',
-	//     	'Date',
-	//     	'Target Group',
-	//     	'Who',
-	//     	'What',
-	//     	'Where',
-	//     	'Significance',
-	//     	'Evidence',
-	//     	'Partner contribution',
-	//     	'Alert contribution',
-	//     	'Territory',
-	//     	'Impact',
-	//     	'Pathway',
-	//     );
-
-	//     // add pathways to the data
-	//     $pathways = $this->Result->Project->Pathway->find('list');
-	//     foreach ($pathways as $pathway_id => $pathway_name) {
-	//     	$header[] = $pathway_name
-	//     }
-
-
-	//     // build data
-	//     $data = 
-
-
-	//     $_serialize = 'data';
-	//     $this->set(compact('data', '_serialize', '_header'));
-	// }
-
-	private function csv($results) {
-
-	    $map = array(
-	    	'Result ID' => 'Result.id',
-	    	'Title' => 'Result.title',
-	    	'Date' => 'Result.date',
-	    	'Target Group' => 'Result.target_group',
-	    	'Who' => 'Result.who',
-	    	'What' => 'Result.what',
-	    	'Where' => 'Result.where',
-	    	'Significance' => 'Result.significance',
-	    	'Evidence' => 'Result.evidence',
-	    	'Partner contribution' => 'Result.contribution_partner',
-	    	'Alert contribution' => 'Result.contribution_alert',
-	    	
-	    	
-	    	// Record level
-	    	'Impact' => 'Impact.name',
-
-	    	// Project level
-	    	'Strategic Pathway' => 'Pathway.name',
-	    	'Territory' => 'Territory.name',
-	    	'Theme' => 'Theme.name',
-	    );
-	    $_header = array_keys($map);
-	    $_extract = array_values($map);
-
-
-	    // re-work results to have one record for each HABTM or HasMany
-	    $resultsExpanded = [];
-
-	    foreach ($results as $result) {
-
-	    	// Ensure all expanded fields have at least one item, null
-	    	// So that there is a row for this result even without HM or HBTM
-	    	if (empty($result['Project']['Pathway'])) $result['Project']['Pathway'] = array(null);
-
-	    	if (empty($result['Project']['Territory'])) $result['Project']['Territory'] = array(null);
-
-	    	if (empty($result['Project']['Theme'])) $result['Project']['Theme'] = array(null);
-
-	    	if (empty($result['Impact'])) $result['Impact'] = array(null);
-
-
-	    	// Expand
-	    	$resultRow = $result;
-	    	// Expand on Pathway
-	    	foreach ($result['Project']['Pathway'] as $pathway) {
-	    		$resultRow['Pathway'] = $pathway;
-	    		
-	    		// Expand on Impact
-	    		foreach($result['Impact'] as $impact) {
-	    			$resultRow['Impact'] = $impact;
-	    		
-	    			// Expand on Territory
-	    			foreach ($result['Project']['Territory'] as $territory) {
-	    				$resultRow['Territory'] = $territory;
-	    				
-	    				// Expand on Theme
-	    				foreach ($result['Project']['Theme'] as $theme) {
-		    				$resultRow['Theme'] = $theme;
-		    				$resultsExpanded[] = $resultRow;
-		    			}
-	    			}
-
-	    		}
-	    	}
-
-	    }
-
-	    $_serialize = 'resultsExpanded';
-
-	    $this->set(compact('resultsExpanded', '_serialize', '_header', '_extract'));
-	}
-
-	// function getPathwayMap() {
-	// 	$pathways = $this->Result->Project->Pathway->find('list');
-
-	// 	$map = [];
-	// 	foreach ($pathways as $pathway) {
-	// 		$map[]
-	// 	}
-	// }
-
 
 }

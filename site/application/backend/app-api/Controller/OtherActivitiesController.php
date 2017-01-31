@@ -130,13 +130,13 @@ class OtherActivitiesController extends AppController {
 		
 		// TODO: must be authed and must be note owner
 
-		$otheractivitys = $this->OtherActivity->find('all', array(
+		$otheractivities = $this->OtherActivity->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['finish_date' => 'ASC'],
 			'contain' => ['ParticipantType']
 		));
 		
-		$this->set(array('data' => $otheractivitys));
+		$this->set(array('data' => $otheractivities));
 	}
 
 

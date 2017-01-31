@@ -106,7 +106,7 @@
 		        <md-content 
 			        class="md-padding">
 
-			        <?php // echo $this->element('Resultsframework/query/results'); ?>
+			        <?php echo $this->element('Resultsframework/query/results'); ?>
 
 		        </md-content>
 		      </md-tab>
@@ -146,18 +146,11 @@
 
 
 <?php echo $this->Html->script('resultsframework/controllers/ResultsframeworkQueryController'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/geography'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/themes'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/ResearchesQueryController'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/results'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/TrainingsQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/AccompanimentsQueryController'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/meetings'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/DialogueProcessesQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/DialogueMeetingsQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/AdvocaciesQueryController'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/query/OtherActivitiesQueryController'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/accompaniments'); ?>
-<?php // echo $this->Html->script('resultsframework/controllers/query/advocacies'); ?>
-
-<?php // echo $this->Html->script('resultsframework/controllers/query/other_activities'); ?>
+<?php echo $this->Html->script('resultsframework/controllers/query/ResultsQueryController'); ?>
