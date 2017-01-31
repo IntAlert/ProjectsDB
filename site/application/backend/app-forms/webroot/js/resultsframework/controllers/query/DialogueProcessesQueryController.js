@@ -1,4 +1,4 @@
-app.controller('DialogueProcessesQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, ProcessesService){
+app.controller('DialogueProcessesQueryController', function($window, $scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, ProcessesService){
 
 	$scope.data = ProcessesService
 	$scope.FormOptions = FormOptions

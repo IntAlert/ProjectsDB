@@ -1,4 +1,4 @@
-app.controller('ResultsQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, ResultsService){
+app.controller('ResultsQueryController', function($window, $scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, ResultsService){
 
 	$scope.data = ResultsService
 	$scope.FormOptions = FormOptions

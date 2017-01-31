@@ -1,4 +1,4 @@
-app.controller('OtherActivitiesQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, OtherActivitiesService){
+app.controller('OtherActivitiesQueryController', function($window, $scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, OtherActivitiesService){
 
 	$scope.data = OtherActivitiesService
 	$scope.FormOptions = FormOptions

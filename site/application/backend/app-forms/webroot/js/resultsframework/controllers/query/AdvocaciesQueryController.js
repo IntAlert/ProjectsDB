@@ -1,4 +1,4 @@
-app.controller('AdvocaciesQueryController', function($scope, $mdDialog, ResultsFrameworkService, FormOptions, AdvocaciesService){
+app.controller('AdvocaciesQueryController', function($window, $scope, $mdDialog, ResultsFrameworkService, FormOptions, AdvocaciesService){
 
 	$scope.data = AdvocaciesService
 	$scope.FormOptions = FormOptions

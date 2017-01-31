@@ -85,7 +85,7 @@ foreach ($data as $training) {
 	// make list of selected theme ids
 	$selected_theme_ids = array_map(function($theme){
 		return (int) $theme['id'];
-	}, $training['ParticipantType']);
+	}, $training['Theme']);
 
 	// add all pathways, 0 if not selected, 1 if so
 	foreach ($themes as $theme_id => $theme_name) {

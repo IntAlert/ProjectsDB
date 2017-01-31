@@ -1,4 +1,4 @@
-app.controller('DialogueMeetingsQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, MeetingsService){
+app.controller('DialogueMeetingsQueryController', function($window, $scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, MeetingsService){
 
 	$scope.data = MeetingsService
 	$scope.FormOptions = FormOptions

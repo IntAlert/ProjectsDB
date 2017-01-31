@@ -1,5 +1,5 @@
 
-app.controller('TrainingsQueryController', function($scope, $mdDialog, $window, DedupeService, ResultsFrameworkService, FormOptions, TrainingsService){
+app.controller('TrainingsQueryController', function($window, $scope, $mdDialog, $window, DedupeService, ResultsFrameworkService, FormOptions, TrainingsService){
 
 	$scope.data = TrainingsService
 	$scope.FormOptions = FormOptions

@@ -127,25 +127,39 @@ class AccompanimentsController extends AppController {
 			'order' => ['Accompaniment.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
-			'contain' => ['ParticipantType', 'Project.Territory']
+			'contain' => ['ParticipantType', 'Project.Territory', 'Project.Pathway']
 		));
 
 
 
-		$this->set(array('data' => $accompaniments));
+		// get territories
+		$territories = $this->Accompaniment->Project->Territory->findActiveList();
+
+		// get pathways
+		$pathways = $this->Accompaniment->Project->Pathway->findOrderedList();		
+
+		// get participant_types
+		$participant_types = $this->Accompaniment->ParticipantType->findOrderedList();		
+
+		$this->set(array(
+			'participant_types' => $participant_types,
+			'pathways' => $pathways,
+			'territories' => $territories,
+			'data' => $accompaniments
+		));
 	}
 
 	function project($project_id) {
 		
 		// TODO: must be authed and must be note owner
 
-		$acccompaniments = $this->Accompaniment->find('all', array(
+		$accompaniments = $this->Accompaniment->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['finish_date' => 'ASC'],
 			'contain' => ['ParticipantType']
 		));
 		
-		$this->set(array('data' => $acccompaniments));
+		$this->set(array('data' => $accompaniments));
 	}
 
 

@@ -1,5 +1,5 @@
 
-app.controller('AccompanimentsQueryController', function($scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, AccompanimentsService){
+app.controller('AccompanimentsQueryController', function($window, $scope, $mdDialog, DedupeService, ResultsFrameworkService, FormOptions, AccompanimentsService){
 
 	$scope.data = AccompanimentsService
 	$scope.FormOptions = FormOptions
