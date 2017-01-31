@@ -72,7 +72,7 @@ class OtherActivitiesController extends AppController {
 		// OtherActivity filters
 		$start_date = $this->request->query('start_date');
 		$finish_date = $this->request->query('finish_date');
-		$theme_id = $this->request->query('theme_id');
+		$participant_type_id = $this->request->query('participant_type_id');
 		
 		// Project filters
 		$projectFilter = array(
@@ -82,7 +82,7 @@ class OtherActivitiesController extends AppController {
     		"territory_id" => $this->request->query('territory_id')
     	);
 
-		// generate project id filters based on theme_id, pathway_id, etc
+		// generate project id filters based on participant_type_id, pathway_id, etc
 		$project_ids = $this->ProjectIdSearch->getProjectIds($projectFilter);
 
 
@@ -99,6 +99,19 @@ class OtherActivitiesController extends AppController {
 		if ($finish_date) {
 			// finish is after start_date filter
 			$conditions[] = ['OtherActivity.start_date <=' => $finish_date];
+		}
+
+		// filter on other_activity theme?
+		if ($participant_type_id) {
+			$joins[] = array(
+				'table' => 'other_activities_participant_types',
+	            'alias' => 'OtherActivitiesParticipantTypes',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'OtherActivity.id = OtherActivitiesParticipantTypes.other_activity_id',
+	                'OtherActivitiesParticipantTypes.participant_type_id' => $participant_type_id
+	            )
+	        );	
 		}
 
 		// Add project ID filter

@@ -93,7 +93,7 @@ class AccompanimentsController extends AppController {
 		$conditions = [];
 		$joins = [];
 
-		// filter on training dates?
+		// filter on accompaniment dates?
 		if ($start_date) {
 			// finish is after start_date filter
 			$conditions[] = ['Accompaniment.finish_date >=' => $start_date];
@@ -104,15 +104,15 @@ class AccompanimentsController extends AppController {
 			$conditions[] = ['Accompaniment.start_date <=' => $finish_date];
 		}
 
-		// filter on training participant type?
+		// filter on accompaniment participant type?
 
 		if ($participant_type_id) {
 			$joins[] = array(
-				'table' => 'trainings_participant_types',
+				'table' => 'accompaniments_participant_types',
 	            'alias' => 'AccompanimentsParticipantType',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Accompaniment.id = AccompanimentsParticipantType.training_id',
+	                'Accompaniment.id = AccompanimentsParticipantType.accompaniment_id',
 	                'AccompanimentsParticipantType.participant_type_id' => $participant_type_id
 	            )
 	        );
@@ -123,7 +123,7 @@ class AccompanimentsController extends AppController {
 		if (is_array($project_ids)) 
 			$conditions['project_id'] = $project_ids;
 
-		$trainings = $this->Accompaniment->find('all', array(
+		$accompaniments = $this->Accompaniment->find('all', array(
 			'order' => ['Accompaniment.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
@@ -132,7 +132,7 @@ class AccompanimentsController extends AppController {
 
 
 
-		$this->set(array('data' => $trainings));
+		$this->set(array('data' => $accompaniments));
 	}
 
 	function project($project_id) {

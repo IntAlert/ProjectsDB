@@ -93,20 +93,20 @@ class AdvocaciesController extends AppController {
 		$conditions = [];
 		$joins = [];
 
-		// filter on training theme?
+		// filter on advocacy theme?
 		if ($theme_id) {
 			$joins[] = array(
-				'table' => 'meetings_themes',
+				'table' => 'advocacies_themes',
 	            'alias' => 'AdvocaciesTheme',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Advocacy.id = AdvocaciesTheme.training_id',
+	                'Advocacy.id = AdvocaciesTheme.advocacy_id',
 	                'AdvocaciesTheme.theme_id' => $theme_id
 	            )
 	        );	
 		}
 
-		// filter on training dates?
+		// filter on advocacy dates?
 		if ($start_date) {
 			// finish is after start_date filter
 			$conditions[] = ['Advocacy.finish_date >=' => $start_date];
@@ -121,7 +121,7 @@ class AdvocaciesController extends AppController {
 		if (is_array($project_ids)) 
 			$conditions['project_id'] = $project_ids;
 
-		$meetings = $this->Advocacy->find('all', array(
+		$advocacies = $this->Advocacy->find('all', array(
 			'order' => ['Advocacy.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
@@ -145,7 +145,7 @@ class AdvocaciesController extends AppController {
 			'pathways' => $pathways,
 			'territories' => $territories,
 			'themes' => $themes,
-			'data' => $meetings,
+			'data' => $advocacies,
 		));
 	}
 

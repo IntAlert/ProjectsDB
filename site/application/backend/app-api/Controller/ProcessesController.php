@@ -92,7 +92,7 @@ class ProcessesController extends AppController {
 		$conditions = [];
 		$joins = [];
 
-		// filter on training dates?
+		// filter on process dates?
 		if ($start_date) {
 			// finish is after start_date filter
 			$conditions[] = ['Process.finish_date >=' => $start_date];
@@ -103,7 +103,7 @@ class ProcessesController extends AppController {
 			$conditions[] = ['Process.start_date <=' => $finish_date];
 		}
 
-		// filter on training participant type?
+		// filter on process participant type?
 
 		if ($participant_type_id) {
 			$joins[] = array(
@@ -111,21 +111,21 @@ class ProcessesController extends AppController {
 	            'alias' => 'ProcessesParticipantType',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Process.id = ProcessesParticipantType.training_id',
+	                'Process.id = ProcessesParticipantType.process_id',
 	                'ProcessesParticipantType.participant_type_id' => $participant_type_id
 	            )
 	        );
 
 		}
 
-		// filter on training theme?
+		// filter on process theme?
 		if ($theme_id) {
 			$joins[] = array(
 				'table' => 'processes_themes',
 	            'alias' => 'ProcessesTheme',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Process.id = ProcessesTheme.training_id',
+	                'Process.id = ProcessesTheme.process_id',
 	                'ProcessesTheme.theme_id' => $theme_id
 	            )
 	        );	

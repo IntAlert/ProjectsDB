@@ -92,7 +92,7 @@ class MeetingsController extends AppController {
 		$conditions = [];
 		$joins = [];
 
-		// filter on training dates?
+		// filter on meeting dates?
 		if ($start_date) {
 			// finish is after start_date filter
 			$conditions[] = ['Meeting.finish_date >=' => $start_date];
@@ -103,7 +103,7 @@ class MeetingsController extends AppController {
 			$conditions[] = ['Meeting.start_date <=' => $finish_date];
 		}
 
-		// filter on training participant type?
+		// filter on meeting participant type?
 
 		if ($participant_type_id) {
 			$joins[] = array(
@@ -111,21 +111,21 @@ class MeetingsController extends AppController {
 	            'alias' => 'MeetingsParticipantType',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Meeting.id = MeetingsParticipantType.training_id',
+	                'Meeting.id = MeetingsParticipantType.meeting_id',
 	                'MeetingsParticipantType.participant_type_id' => $participant_type_id
 	            )
 	        );
 
 		}
 
-		// filter on training theme?
+		// filter on meeting theme?
 		if ($theme_id) {
 			$joins[] = array(
 				'table' => 'meetings_themes',
 	            'alias' => 'MeetingsTheme',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Meeting.id = MeetingsTheme.training_id',
+	                'Meeting.id = MeetingsTheme.meeting_id',
 	                'MeetingsTheme.theme_id' => $theme_id
 	            )
 	        );	

@@ -32,8 +32,8 @@ app.factory('ResultsService', function($http, $location, $httpParamSerializer, D
 		}
 
 		// filter on participant type?
-		if ( query.participant_types && !query.participant_types.all ) {
-			queryParams.participant_type_id = query.participant_types.selected.ParticipantType.id
+		if ( query.impacts && !query.impacts.all ) {
+			queryParams.impact_id = query.impacts.selected.Impact.id
 		}
 
 		// filter on theme?

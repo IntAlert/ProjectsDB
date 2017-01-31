@@ -78,6 +78,7 @@ class ResultsController extends AppController {
 		$start_date = $this->request->query('start_date');
 		$finish_date = $this->request->query('finish_date');
 		$theme_id = $this->request->query('theme_id');
+		$impact_id = $this->request->query('impact_id');
 		
 		// Project filters
 		$projectFilter = array(
@@ -104,6 +105,19 @@ class ResultsController extends AppController {
 		if ($finish_date) {
 			// finish is after start_date filter
 			$conditions[] = ['Result.date <=' => $finish_date];
+		}
+
+		// filter on result impact?
+		if ($impact_id) {
+			$joins[] = array(
+				'table' => 'impacts_results',
+	            'alias' => 'ImpactsResults',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Result.id = ImpactsResults.result_id',
+	                'ImpactsResults.impact_id' => $impact_id
+	            )
+	        );	
 		}
 
 		// Add project ID filter

@@ -16,11 +16,7 @@ app.controller('ResultsQueryController', function($scope, $mdDialog, DedupeServi
 			start: new Date(new Date().getFullYear(), 0, 1), // first day of year
 			finish: new Date(new Date().getFullYear(), 11, 31) // last day of year
 		},
-		participant_types: {
-			all: true,
-			selected: null
-		},
-		themes: {
+		impacts: {
 			all: true,
 			selected: null
 		},

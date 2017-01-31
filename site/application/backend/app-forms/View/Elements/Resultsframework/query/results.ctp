@@ -33,23 +33,23 @@
 	    </div>
 	   </div>
 
-	   <div class="filter participant_types">
-		  	<!-- All Participant Types -->
-		  	<md-checkbox ng-model="query.participant_types.all">
-		  		All Participant Types
+	   <div class="filter impacts">
+		  	<!-- All Impacts -->
+		  	<md-checkbox ng-model="query.impacts.all">
+		  		All Impacts
 		  	</md-checkbox>
 
-		  	<!-- Participant Type -->
+		  	<!-- Impact -->
 		  	<md-select 
-		  		aria-label="Participant Type"
-		  		ng-model="query.participant_types.selected" 
-		  		ng-hide="query.participant_types.all">
-			  	<md-option ng-value="null"> Select Participant Type </md-option>
+		  		aria-label="Impact"
+		  		ng-model="query.impacts.selected" 
+		  		ng-hide="query.impacts.all">
+			  	<md-option ng-value="null"> Select Impact </md-option>
 			  	<md-option 
-			  		ng-repeat="participant_type in FormOptions.participant_types"
-			  		ng-value="participant_type"
+			  		ng-repeat="impact in FormOptions.impacts"
+			  		ng-value="impact"
 			  	>
-				  	{{participant_type.ParticipantType.name}}
+				  	{{impact.Impact.name}}
 
 				</md-option>
 			</md-select>
