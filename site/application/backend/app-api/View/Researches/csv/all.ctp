@@ -4,6 +4,7 @@
 // header
 $headers = [
 	'Project ID',
+	'Project Name',
 	'Research ID',
 	'Title',
 	'Start Date',
@@ -31,11 +32,24 @@ foreach ($data as $research) {
 	$row = [
 
 		$research['Research']['project_id'],
+		$research['Project']['title'],
 		$research['Research']['id'],
 		$research['Research']['title'],
 		$research['Research']['start_date'],
 		$research['Research']['finish_date'],
 	];
+
+
+	// THEME
+	// make list of selected theme ids
+	$selected_theme_ids = array_map(function($theme){
+		return (int) $theme['id'];
+	}, $research['Theme']);
+	
+	// add all themes, 0 if not selected, 1 if so
+	foreach ($themes as $theme_id => $theme_name) {
+		$row[] = (int) in_array($theme_id, $selected_theme_ids);
+	}
 
 
 	// TERRITORY

@@ -151,7 +151,11 @@ class ProcessesController extends AppController {
 		// get participant_types
 		$participant_types = $this->Process->ParticipantType->findOrderedList();		
 
+		// get themes
+		$themes = $this->Process->Theme->findOrderedList();		
+
 		$this->set(array(
+			'themes' => $themes,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,
 			'territories' => $territories,

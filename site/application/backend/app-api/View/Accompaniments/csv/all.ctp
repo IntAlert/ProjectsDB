@@ -3,11 +3,18 @@
 // header
 $headers = [
 	'Project ID',
+	'Project Name',
 	'Accompaniment ID',
 	'Title',
 	'Start Date',
 	'Finish Date',
 ];
+
+
+// add participant_type headers
+foreach ($participant_types as $participant_type_id => $participant_type_name) {
+	$headers[] = 'PARTICIPANT TYPE: ' . $participant_type_name;
+}
 
 // add territory headers
 foreach ($territories as $territory_id => $territory_name) {
@@ -19,10 +26,6 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 	$headers[] = 'PATHWAY: ' . $pathway_name;
 }
 
-// add participant_type headers
-foreach ($participant_types as $participant_type_id => $participant_type_name) {
-	$headers[] = 'PARTICIPANT TYPE: ' . $participant_type_name;
-}
 
 $rows = [];
 
@@ -30,6 +33,7 @@ foreach ($data as $accompaniment) {
 	$row = [
 
 		$accompaniment['Accompaniment']['project_id'],
+		$accompaniment['Project']['title'],
 		$accompaniment['Accompaniment']['id'],
 		$accompaniment['Accompaniment']['title'],
 		$accompaniment['Accompaniment']['start_date'],
@@ -37,6 +41,17 @@ foreach ($data as $accompaniment) {
 	];
 
 	// Add associated data, column by column
+
+	// ACCOMPANIMENT PARTICIPANT_TYPE
+	// make list of selected participant_type ids
+	$selected_participant_type_ids = array_map(function($participant_type){
+		return (int) $participant_type['id'];
+	}, $accompaniment['ParticipantType']);
+
+	// add all pathways, 0 if not selected, 1 if so
+	foreach ($participant_types as $participant_type_id => $participant_type_name) {
+		$row[] = (int) in_array($participant_type_id, $selected_participant_type_ids);
+	}
 
 	// PROJECT TERRITORY
 	// make list of selected territory ids
@@ -59,18 +74,6 @@ foreach ($data as $accompaniment) {
 	foreach ($pathways as $pathway_id => $pathway_name) {
 		$row[] = (int) in_array($pathway_id, $selected_pathway_ids);
 	}
-
-	// ACCOMPANIMENT PARTICIPANT_TYPE
-	// make list of selected participant_type ids
-	$selected_participant_type_ids = array_map(function($participant_type){
-		return (int) $participant_type['id'];
-	}, $accompaniment['ParticipantType']);
-
-	// add all pathways, 0 if not selected, 1 if so
-	foreach ($participant_types as $participant_type_id => $participant_type_name) {
-		$row[] = (int) in_array($participant_type_id, $selected_participant_type_ids);
-	}
-
 	
 
 	$rows[] = $row;

@@ -151,7 +151,11 @@ class MeetingsController extends AppController {
 		// get participant_types
 		$participant_types = $this->Meeting->ParticipantType->findOrderedList();		
 
+		// get themes
+		$themes = $this->Meeting->Theme->findOrderedList();		
+
 		$this->set(array(
+			'themes' => $themes,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,
 			'territories' => $territories,

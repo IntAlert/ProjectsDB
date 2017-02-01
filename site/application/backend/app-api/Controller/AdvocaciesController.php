@@ -127,6 +127,7 @@ class AdvocaciesController extends AppController {
 			'joins' => $joins,
 			'contain' => [
 				'Theme',
+				'ParticipantType',
 				'Project.Territory',
 				'Project.Pathway'
 			]
@@ -135,6 +136,9 @@ class AdvocaciesController extends AppController {
 		// get all themes
 		$themes = $this->Advocacy->Theme->findOrderedList();
 
+		// get all participant_types
+		$participant_types = $this->Advocacy->ParticipantType->findOrderedList();
+
 		// get all territories
 		$territories = $this->Advocacy->Project->Territory->findActiveList();
 
@@ -142,6 +146,7 @@ class AdvocaciesController extends AppController {
 		$pathways = $this->Advocacy->Project->Pathway->findOrderedList();		
 
 		$this->set(array(
+			'participant_types' => $participant_types,
 			'pathways' => $pathways,
 			'territories' => $territories,
 			'themes' => $themes,

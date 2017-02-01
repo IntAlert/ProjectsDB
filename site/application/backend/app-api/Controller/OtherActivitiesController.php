@@ -132,8 +132,16 @@ class OtherActivitiesController extends AppController {
 		// get all participant_types
 		$participant_types = $this->OtherActivity->ParticipantType->findOrderedList();	
 
+		// get all territories
+		$territories = $this->OtherActivity->Project->Territory->findActiveList();
+
+		// get all pathways
+		$pathways = $this->OtherActivity->Project->Pathway->findOrderedList();		
+
 		$this->set(array(
 			'participant_types' => $participant_types,
+			'pathways' => $pathways,
+			'territories' => $territories,
 			'data' => $other_activities,
 		));
 

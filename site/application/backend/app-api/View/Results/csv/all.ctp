@@ -4,10 +4,16 @@
 // header
 $headers = [
 	'Project ID',
+	'Project Name',
 	'Result ID',
 	'Title',
 	'Date',
 ];
+
+// add impact headers
+foreach ($impacts as $impact_id => $impact_name) {
+	$headers[] = 'IMPACT: ' . $impact_name;
+}
 
 // add territory headers
 foreach ($territories as $territory_id => $territory_name) {
@@ -25,13 +31,25 @@ foreach ($data as $result) {
 	$row = [
 
 		$result['Result']['project_id'],
+		$result['Project']['title'],
 		$result['Result']['id'],
 		$result['Result']['title'],
 		$result['Result']['date'],
 	];
 
 
-	// TERRITORY
+	// IMPACT
+	// make list of selected territory ids
+	$selected_impact_ids = array_map(function($impact){
+		return (int) $impact['id'];
+	}, $result['Impact']);
+	
+	// add all impacts, 0 if not selected, 1 if so
+	foreach ($impacts as $impact_id => $impact_name) {
+		$row[] = (int) in_array($impact_id, $selected_impact_ids);
+	}
+
+	// PROJECT TERRITORY
 	// make list of selected territory ids
 	$selected_territory_ids = array_map(function($territory){
 		return (int) $territory['id'];
@@ -42,7 +60,7 @@ foreach ($data as $result) {
 		$row[] = (int) in_array($territory_id, $selected_territory_ids);
 	}
 
-	// PATHWAY
+	// PROJECT PATHWAY
 	// make list of selected pathway ids
 	$selected_pathway_ids = array_map(function($pathway){
 		return (int) $pathway['id'];
