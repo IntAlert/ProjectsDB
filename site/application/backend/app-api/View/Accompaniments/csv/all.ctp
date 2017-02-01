@@ -48,9 +48,27 @@ foreach ($data as $accompaniment) {
 		return (int) $participant_type['id'];
 	}, $accompaniment['ParticipantType']);
 
+	// build list of counts
+	$selected_participant_type_counts = [];
+	foreach ($accompaniment['ParticipantType'] as $participant_type) {
+		
+		$participant_type_id = $participant_type['id'];
+		$count = $participant_type['AccompanimentsParticipantType']['count'];
+
+		$selected_participant_type_counts[$participant_type_id] = $count;
+	}
+
+
 	// add all pathways, 0 if not selected, 1 if so
 	foreach ($participant_types as $participant_type_id => $participant_type_name) {
-		$row[] = (int) in_array($participant_type_id, $selected_participant_type_ids);
+
+		if ( in_array($participant_type_id, $selected_participant_type_ids) ) {
+			$value = $selected_participant_type_counts[$participant_type_id];
+		} else {
+			$value = 0;
+		}
+
+		$row[] = $value;
 	}
 
 	// PROJECT TERRITORY
