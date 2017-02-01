@@ -9,8 +9,9 @@ $headers = [
 	'Title',
 	'Start Date',
 	'Finish Date',
-	'male_count',
-	'female_count',
+	'Male Count',
+	'Female Count',
+	'Conflict Resolution?',
 ];
 
 
@@ -49,6 +50,7 @@ foreach ($data as $meeting) {
 		$meeting['Meeting']['finish_date'],
 		$meeting['Meeting']['male_count'],
 		$meeting['Meeting']['female_count'],
+		$meeting['Meeting']['conflict_resolution'],
 	];
 
 	// Add associated data, column by column

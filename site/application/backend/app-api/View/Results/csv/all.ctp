@@ -8,6 +8,14 @@ $headers = [
 	'Result ID',
 	'Title',
 	'Date',
+	'Who are you?',
+	'Who did something differently?',
+	'What - tell us what they did differently',
+	'Where and when?',
+	'Significance',
+	'Partner Contribution',
+	'Alert Contribution',
+	'Evidence',
 ];
 
 // add impact headers
@@ -35,6 +43,15 @@ foreach ($data as $result) {
 		$result['Result']['id'],
 		$result['Result']['title'],
 		$result['Result']['date'],
+
+		$result['Result']['reporter'],
+		$result['Result']['who'],
+		$result['Result']['what'],
+		$result['Result']['where'],
+		$result['Result']['significance'],
+		$result['Result']['contribution_partner'],
+		$result['Result']['contribution_alert'],
+		$result['Result']['evidence'],
 	];
 
 

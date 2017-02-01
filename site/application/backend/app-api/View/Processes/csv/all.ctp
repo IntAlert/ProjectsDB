@@ -9,8 +9,9 @@ $headers = [
 	'Title',
 	'Start Date',
 	'Finish Date',
-	'male_count',
-	'female_count',
+	'Male Count',
+	'Female Count',
+	'Conflict Resolution?',
 ];
 
 // add participant_type headers
@@ -46,6 +47,8 @@ foreach ($data as $process) {
 		$process['Process']['finish_date'],
 		$process['Process']['male_count'],
 		$process['Process']['female_count'],
+		$meeting['Process']['conflict_resolution'],
+
 	];
 
 	// Add associated data, column by column

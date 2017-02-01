@@ -8,8 +8,8 @@ $headers = [
 	'Title',
 	'Start Date',
 	'Finish Date',
-	'male_count',
-	'female_count',
+	'Male Count',
+	'Female Count',
 ];
 
 // add participant type headers
