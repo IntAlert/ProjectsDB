@@ -100,7 +100,7 @@ class ProcessesController extends AppController {
 
 		if ($finish_date) {
 			// finish is after start_date filter
-			$conditions[] = ['Process.start_date <=' => $finish_date];
+			$conditions[] = ['Process.finish_date <=' => $finish_date];
 		}
 
 		// filter on process participant type?

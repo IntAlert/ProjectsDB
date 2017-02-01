@@ -20,6 +20,10 @@ app.controller('AdvocaciesQueryController', function($window, $scope, $mdDialog,
 			all: true,
 			selected: null
 		},
+		participant_types: {
+			all: true,
+			selected: null
+		},
 		departments: {
 			all: true,
 			selected: null

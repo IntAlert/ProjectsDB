@@ -6,6 +6,13 @@ var app = angular
 			return date ? moment(date).format('DD/MM/YYYY') : "";
 		};
 
+
+		// handles manual edit
+		$mdDateLocaleProvider.parseDate = function(dateString) {
+		    var m = moment(dateString, 'DD/MM/YYYY', true);
+		    return m.isValid() ? m.toDate() : new Date(NaN);
+		};
+
 		$locationProvider.html5Mode({
 			enabled: true,
 			rewriteLinks: false

@@ -76,6 +76,7 @@ class AdvocaciesController extends AppController {
 		$start_date = $this->request->query('start_date');
 		$finish_date = $this->request->query('finish_date');
 		$theme_id = $this->request->query('theme_id');
+		$participant_type_id = $this->request->query('participant_type_id');
 		
 		// Project filters
 		$projectFilter = array(
@@ -106,6 +107,19 @@ class AdvocaciesController extends AppController {
 	        );	
 		}
 
+		// filter on other_activity theme?
+		if ($participant_type_id) {
+			$joins[] = array(
+				'table' => 'advocacies_participant_types',
+	            'alias' => 'AdvocaciesParticipantTypes',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Advocacy.id = AdvocaciesParticipantTypes.advocacy_id',
+	                'AdvocaciesParticipantTypes.participant_type_id' => $participant_type_id
+	            )
+	        );	
+		}
+
 		// filter on advocacy dates?
 		if ($start_date) {
 			// finish is after start_date filter
@@ -114,7 +128,7 @@ class AdvocaciesController extends AppController {
 
 		if ($finish_date) {
 			// finish is after start_date filter
-			$conditions[] = ['Advocacy.start_date <=' => $finish_date];
+			$conditions[] = ['Advocacy.finish_date <=' => $finish_date];
 		}
 
 		// Add project ID filter

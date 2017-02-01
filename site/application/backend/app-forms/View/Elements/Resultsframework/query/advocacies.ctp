@@ -33,6 +33,28 @@
 	    </div>
 	   </div>
 
+	   <div class="filter participant_types">
+		  	<!-- All Participant Types -->
+		  	<md-checkbox ng-model="query.participant_types.all">
+		  		All Participant Types
+		  	</md-checkbox>
+
+		  	<!-- Participant Type -->
+		  	<md-select 
+		  		aria-label="Participant Type"
+		  		ng-model="query.participant_types.selected" 
+		  		ng-hide="query.participant_types.all">
+			  	<md-option ng-value="null"> Select Participant Type </md-option>
+			  	<md-option 
+			  		ng-repeat="participant_type in FormOptions.participant_types"
+			  		ng-value="participant_type"
+			  	>
+				  	{{participant_type.ParticipantType.name}}
+
+				</md-option>
+			</md-select>
+		</div>
+
 	   <div class="filter themes">
 			<!-- All Themes -->
 		  	<md-checkbox ng-model="query.themes.all">
@@ -126,7 +148,7 @@
 			ng-click="updateQuery()"
 			class="md-primary md-raised"
 		>
-			Query
+			Refresh Results
 		</md-button>
 
 	  </div>

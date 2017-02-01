@@ -100,7 +100,7 @@ class MeetingsController extends AppController {
 
 		if ($finish_date) {
 			// finish is after start_date filter
-			$conditions[] = ['Meeting.start_date <=' => $finish_date];
+			$conditions[] = ['Meeting.finish_date <=' => $finish_date];
 		}
 
 		// filter on meeting participant type?

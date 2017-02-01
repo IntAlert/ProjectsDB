@@ -101,7 +101,7 @@ class TrainingsController extends AppController {
 
 		if ($finish_date) {
 			// finish is after start_date filter
-			$conditions[] = ['Training.start_date <=' => $finish_date];
+			$conditions[] = ['Training.finish_date <=' => $finish_date];
 		}
 
 		// filter on training participant type?

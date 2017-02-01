@@ -126,7 +126,7 @@
 			ng-click="updateQuery()"
 			class="md-primary md-raised"
 		>
-			Query
+			Refresh Results
 		</md-button>
 
 	  </div>

@@ -98,7 +98,7 @@ class OtherActivitiesController extends AppController {
 
 		if ($finish_date) {
 			// finish is after start_date filter
-			$conditions[] = ['OtherActivity.start_date <=' => $finish_date];
+			$conditions[] = ['OtherActivity.finish_date <=' => $finish_date];
 		}
 
 		// filter on other_activity theme?

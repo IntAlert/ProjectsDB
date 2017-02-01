@@ -90,20 +90,20 @@ class ResearchesController extends AppController {
 		$conditions = [];
 		$joins = [];
 
-		// filter on training theme?
+		// filter on research theme?
 		if ($theme_id) {
 			$joins[] = array(
-				'table' => 'meetings_themes',
+				'table' => 'researches_themes',
 	            'alias' => 'ResearchesTheme',
 	            'type' => 'INNER',
 	            'conditions' => array(
-	                'Research.id = ResearchesTheme.training_id',
+	                'Research.id = ResearchesTheme.research_id',
 	                'ResearchesTheme.theme_id' => $theme_id
 	            )
 	        );	
 		}
 
-		// filter on training dates?
+		// filter on research dates?
 		if ($start_date) {
 			// finish is after start_date filter
 			$conditions[] = ['Research.finish_date >=' => $start_date];
@@ -150,13 +150,13 @@ class ResearchesController extends AppController {
 		
 		// TODO: must be authed and must be note owner
 
-		$trainings = $this->Research->find('all', array(
+		$researchs = $this->Research->find('all', array(
 			'conditions' => ['project_id' => $project_id],
 			'order' => ['created' => 'ASC'],
 			'contain' => ['Theme']
 		));
 		
-		$this->set(array('data' => $trainings));
+		$this->set(array('data' => $researchs));
 	}
 
 

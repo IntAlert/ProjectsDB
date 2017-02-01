@@ -33,6 +33,28 @@
 	    </div>
 	   </div>
 
+	   <div class="filter themes">
+			<!-- All Themes -->
+		  	<md-checkbox ng-model="query.themes.all">
+		  		All Research Themes
+		  	</md-checkbox>
+
+		  	<!-- Theme -->
+		  	<md-select 
+			  	aria-label="Theme"
+		  		ng-model="query.themes.selected" 
+		  		ng-hide="query.themes.all">
+			  	<md-option ng-value="null"> Select Research Theme </md-option>
+			  	<md-option
+			  		ng-repeat="theme in FormOptions.themes"
+			  		ng-value="theme"
+			  	>
+				  	{{theme.Theme.name}}
+
+				</md-option>
+			</md-select>
+		</div>
+
 		<div class="filter territories">
 			<!-- All Departments -->
 		  	<md-checkbox ng-model="query.departments.all">
@@ -104,7 +126,7 @@
 			ng-click="updateQuery()"
 			class="md-primary md-raised"
 		>
-			Query
+			Refresh Results
 		</md-button>
 
 	  </div>

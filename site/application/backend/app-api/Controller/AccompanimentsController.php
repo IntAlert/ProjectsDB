@@ -100,8 +100,8 @@ class AccompanimentsController extends AppController {
 		}
 
 		if ($finish_date) {
-			// finish is after start_date filter
-			$conditions[] = ['Accompaniment.start_date <=' => $finish_date];
+			// finish is after finish_date filter
+			$conditions[] = ['Accompaniment.finish_date <=' => $finish_date];
 		}
 
 		// filter on accompaniment participant type?
