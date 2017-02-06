@@ -7,7 +7,7 @@ $(function(){
 	// SUBMISSION DATES
     $( ".timespan .submission .datepicker-placeholder" ).datepicker({
       defaultDate: $( "#ProjectSubmissionDate" ).val(),
-      yearRange: "-5:+10",
+      yearRange: "-8:+10",
       changeMonth: true,
       changeYear: true,
       numberOfMonths: 1,
@@ -20,7 +20,7 @@ $(function(){
   // START
     $( ".timespan .start .datepicker-placeholder" ).datepicker({
       defaultDate: $( "#ProjectStartDate" ).val(),
-      yearRange: "-5:+10",
+      yearRange: "-8:+10",
       changeMonth: true,
       changeYear: true,
       numberOfMonths: 1,
@@ -49,7 +49,7 @@ $(function(){
       defaultDate: $( "#ProjectFinishDate" ).val(),
       changeMonth: true,
       changeYear: true,
-      yearRange: "-5:+10",
+      yearRange: "-8:+10",
       numberOfMonths: 1,
       dateFormat: 'yy-mm-dd',
       onSelect: function(selectedDate) {
