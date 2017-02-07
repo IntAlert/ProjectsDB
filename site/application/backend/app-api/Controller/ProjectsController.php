@@ -12,11 +12,11 @@ class ProjectsController extends AppController {
 		$options = $this->ProjectSearch->buildSearchOptions();
 
 		$projects = $this->Project->find('all', array(
-			'fields' => array('id', 'title', 'summary'),
+			// 'fields' => array('id', 'title', 'summary'),
 			'contain' => false,
 	        'joins' => $options['joins'],
 	        'conditions' => $options['conditions'],
-	        'limit' => 25,
+	        'limit' => 5,
 	    ));
 
 		$this->set('projects', $projects);

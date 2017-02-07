@@ -39,7 +39,12 @@ class ProjectsController extends AppController {
 			$options = $this->ProjectSearch->buildSearchOptions();
 
 			$this->Paginator->settings = array(
-				'contain' => array('Department', 'Status', 'Territory', 'Contract.Donor'),
+				'contain' => array(
+					'Department', 
+					'Status', 
+					'Territory', 
+					'Contract.Donor'
+				),
 		        'joins' => $options['joins'],
 		        'conditions' => $options['conditions'],
 		        'limit' => 25,
@@ -73,7 +78,20 @@ class ProjectsController extends AppController {
 		$themes = $this->Project->Theme->findOrderedList();
 		$pathways = $this->Project->Pathway->findOrderedList();
 
-		$this->set(compact('action', 'statuses', 'likelihoods', 'programmes', 'departments', 'territories', 'budget_holders', 'themes', 'donors', 'frameworks', 'contractcategories', 'pathways'));
+		$this->set(compact(
+			'action',
+			'statuses',
+			'likelihoods',
+			'programmes',
+			'departments',
+			'territories',
+			'budget_holders',
+			'themes',
+			'donors',
+			'frameworks',
+			'contractcategories',
+			'pathways'
+		));
 		
 	}
 
