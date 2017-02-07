@@ -9,17 +9,43 @@ class ProjectsController extends AppController {
 
 	function search() {
 
+
+		// set limit
+		if ( $this->request->query('limit') ) {
+			$limit = $this->request->query('limit');
+
+		} elseif ( isset($this->request->params['ext']) ) {
+			// if CSV, no limit, otherwise, 5
+			$limit = ($this->request->params['ext'] == 'csv') ? null : 5;
+			
+		} else {
+			$limit = 5;
+		}
+
 		$options = $this->ProjectSearch->buildSearchOptions();
 
 		$projects = $this->Project->find('all', array(
 			// 'fields' => array('id', 'title', 'summary'),
-			'contain' => false,
+			'contain' => array(
+				'Territory',
+				'Pathway',
+			),
 	        'joins' => $options['joins'],
 	        'conditions' => $options['conditions'],
-	        'limit' => 5,
+	        'limit' => $limit,
 	    ));
 
-		$this->set('projects', $projects);
+		// get territories
+		$territories = $this->Project->Territory->findActiveList();
+
+		// get pathways
+		$pathways = $this->Project->Pathway->findOrderedList();
+
+		$this->set(compact(
+			'projects',
+			'territories',
+			'pathways'
+		));
 	}
 
 	function all() {

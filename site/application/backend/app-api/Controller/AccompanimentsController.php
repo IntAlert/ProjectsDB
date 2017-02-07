@@ -136,7 +136,7 @@ class AccompanimentsController extends AppController {
 		$territories = $this->Accompaniment->Project->Territory->findActiveList();
 
 		// get pathways
-		$pathways = $this->Accompaniment->Project->Pathway->findOrderedList();		
+		$pathways = $this->Accompaniment->Project->Pathway->findOrderedList();
 
 		// get participant_types
 		$participant_types = $this->Accompaniment->ParticipantType->findOrderedList();		
