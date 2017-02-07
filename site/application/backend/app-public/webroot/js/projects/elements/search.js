@@ -25,7 +25,6 @@ $(function(){
         width: "100%"
     });
 
-	 // $(".project-search-left select").selectmenu({width:$('.project-search-left').width()});
-
+	 $(".export .btn").button();
 
 })

@@ -61,8 +61,10 @@ class ProjectsController extends AppController {
 
 
 
+		// build CSV download link
+		$csv_download_link = '/api/projects/search.csv?' . $_SERVER['QUERY_STRING'] . '&download=1';
+		
 
-		$this->set('projects', $projects);
 
 		// get search form data
 		$statuses = $this->Project->Status->findOrderedList();
@@ -78,7 +80,10 @@ class ProjectsController extends AppController {
 		$themes = $this->Project->Theme->findOrderedList();
 		$pathways = $this->Project->Pathway->findOrderedList();
 
+
+		// pass data to view
 		$this->set(compact(
+			'projects',
 			'action',
 			'statuses',
 			'likelihoods',
@@ -90,7 +95,8 @@ class ProjectsController extends AppController {
 			'donors',
 			'frameworks',
 			'contractcategories',
-			'pathways'
+			'pathways',
+			'csv_download_link'
 		));
 		
 	}

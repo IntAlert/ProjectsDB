@@ -20,7 +20,12 @@ $headers = [
 	'Value Required',
 	'Value Sourced',
 	'Created',
-	'Deleted',
+
+	// Belongs to fields
+	'Status',
+	'Likelihood',
+	'Department',
+	'Secondary Department',
 ];
 
 // add territory headers
@@ -31,6 +36,11 @@ foreach ($territories as $territory_id => $territory_name) {
 // add pathway headers
 foreach ($pathways as $pathway_id => $pathway_name) {
 	$headers[] = 'PATHWAY: ' . $pathway_name;
+}
+
+// add theme headers
+foreach ($themes as $theme_id => $theme_name) {
+	$headers[] = 'THEME: ' . $theme_name;
 }
 
 
@@ -60,7 +70,12 @@ foreach ($projects as $project) {
 		$project['Project']['value_required'],
 		$project['Project']['value_sourced'],
 		$project['Project']['created'],
-		$project['Project']['deleted'],
+
+		// Belongs to fields
+		$project['Status']['name'],
+		$project['Likelihood']['name'],
+		$project['Department']['name'],
+		$project['SecondaryDepartment']['name'],
 		
 	];
 
@@ -86,6 +101,17 @@ foreach ($projects as $project) {
 	// add all pathways, 0 if not selected, 1 if so
 	foreach ($pathways as $pathway_id => $pathway_name) {
 		$row[] = (int) in_array($pathway_id, $selected_pathway_ids);
+	}
+
+	// PROJECT THEME
+	// make list of selected theme ids
+	$selected_theme_ids = array_map(function($theme){
+		return (int) $theme['id'];
+	}, $project['Theme']);
+
+	// add all themes, 0 if not selected, 1 if so
+	foreach ($themes as $theme_id => $theme_name) {
+		$row[] = (int) in_array($theme_id, $selected_theme_ids);
 	}
 	
 

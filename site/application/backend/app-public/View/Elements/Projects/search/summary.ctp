@@ -78,13 +78,19 @@ if ($this->request->query('action')):
 
 
 echo '<div class="project-search-summary">';
-echo 'You searched for projects matching the following criteria:<br>';
-// echo implode($criteria, ', ');
-echo '<ul class="clearfix">';
-foreach ($criteria as $criterium) {
-	echo '<li>' . $criterium  . '</li>';
+echo 'You searched for projects matching the following criteria:';
+
+if (count($criteria)) {
+	echo '<br>';
+	echo '<ul class="clearfix">';
+	foreach ($criteria as $criterium) {
+		echo '<li>' . $criterium  . '</li>';
+	}
+	echo "</ul>";
+	echo '</div>';	
+} else {
+	echo ' <strong>None - show all projects</strong><br><br><br>';
 }
-echo "</ul>";
-echo '</div>';
+
 
 endif; // ($this->request->query('action')):

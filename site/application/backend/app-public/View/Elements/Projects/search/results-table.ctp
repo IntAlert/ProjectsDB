@@ -6,6 +6,9 @@
 <?php if (count($projects)): ?>
 
 
+<?php echo $this->element('Projects/search/export'); ?>
+
+
 <table>
 
 	<thead>
@@ -198,7 +201,6 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 
 </table>
 <?php // debug($projects); ?>
-
 
 <?php echo $this->element('Projects/search/pagination'); ?>
 

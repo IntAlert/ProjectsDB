@@ -75,7 +75,6 @@ form .project-search-left div {margin:0 0 6px; padding:0;}
 .project-search-results {
 	float:left;
 	clear:none;
-	width: 69%;
 }
 
 .project-search-summary {
@@ -114,3 +113,8 @@ form .project-search-left div {margin:0 0 6px; padding:0;}
 .project-search-left .ms-parent ul li {width:100%;height:auto;}
 
 
+
+/* Project Search */
+.projects .export {
+	float:right;
+}

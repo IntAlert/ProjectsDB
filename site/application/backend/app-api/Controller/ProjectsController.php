@@ -30,6 +30,10 @@ class ProjectsController extends AppController {
 		$projects = $this->Project->find('all', array(
 			// 'fields' => array('id', 'title', 'summary'),
 			'contain' => array(
+				'Status',
+				'Likelihood',
+				'Department', 
+				'SecondaryDepartment',
 				'Theme',
 				'Territory',
 				'Pathway',
@@ -51,7 +55,8 @@ class ProjectsController extends AppController {
 		$this->set(compact(
 			'projects',
 			'territories',
-			'pathways'
+			'pathways',
+			'themes'
 		));
 	}
 
