@@ -17,15 +17,11 @@ echo $this->Form->input('action', array(
 
 <h2>Proposal/Project Search</h2>
 
+<div class="clearfix">
+	<?php echo $this->element('Projects/search/left'); ?>
 
-<?php echo $this->element('Projects/search/left'); ?>
-
-<?php echo $this->element('Projects/search/top'); ?>
-
-<?php echo $this->element('Projects/search/summary'); ?>
-
-<?php echo $this->element('Projects/search/results-table'); ?>
-
+	<?php echo $this->element('Projects/search/right'); ?>
+</div>
 
 </form>
 
