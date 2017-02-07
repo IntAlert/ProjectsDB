@@ -19,33 +19,21 @@ class CsvResponseHelper extends AppHelper {
 			header('Pragma: no-cache');	
 		}
 		
-		// escape header row
-		$headersEscaped = [];
-		foreach ($headers as $header) {
-			$headersEscaped[] = '"' . addslashes($header) . '"';
-		}
+		echo $this->array2csv($headers, $rows);
 
 
-		// escape rows
-		$rowsEscaped = [];
-		foreach ($rows as $row) {
-			$rowEscaped = [];
+	}
 
-			foreach ($row as $cell) {
-				$rowEscaped[] = '"' . addslashes($cell) . '"';
-			}
-
-			$rowsEscaped[] = $rowEscaped;
-		}
-
-		// output header
-		echo implode(',', $headersEscaped), "\r\n";
-
-		// output rows
-		foreach ($rowsEscaped as $row) {
-			echo implode(',', $row), "\r\n";
-		}
-
+	private function array2csv(array $headers, array $rows)
+	{
+	   ob_start();
+	   $df = fopen("php://output", 'w');
+	   fputcsv($df, $headers);
+	   foreach ($rows as $row) {
+	      fputcsv($df, $row);
+	   }
+	   fclose($df);
+	   return ob_get_clean();
 	}
 
 
