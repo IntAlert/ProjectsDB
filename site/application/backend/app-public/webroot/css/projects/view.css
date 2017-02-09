@@ -2,38 +2,6 @@
 	margin-top:0.5em;
 }
 
-.projectnotes {
-	margin:2em 0;
-	max-width:500px;
-}
-.projectnotes ul {
-	list-style: none;
-	margin:0;
-}
-.projectnotes li {
-	margin:1em 0 2em;
-}
-
-.projectnotes li p {
-	background:#f3f3f3;
-	border:1px solid #eee;
-	padding:1em;
-}
-
-.projectnotes li a.delete {
-	margin-top:-10px;
-	display: block;
-	font-size:12px;
-	text-align: right;
-	text-decoration: none;
-	color:#ddd;
-	font-weight: normal;
-	cursor: pointer;
-}
-.projectnotes li a.delete:hover {
-	color:#000;
-}
-
 .project-activity ul {
 	height: 300px;
 	overflow: auto;

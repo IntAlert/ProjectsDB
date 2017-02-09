@@ -43,7 +43,7 @@
 				</em>
 			</p>
 		</li>
-		<? endforeach; // ($project['Projectnote'] as $projectnotes): ?>
+		<? endforeach; ?>
 
 	</ul>
 

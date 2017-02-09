@@ -7,7 +7,6 @@ App::uses('AppModel', 'Model');
  * @property Programme $Programme
  * @property Country $Country
  * @property OwnerUser $OwnerUser
- * @property Projectnote $Projectnote
  * @property Country $Country
  * @property User $User
  */
@@ -72,13 +71,6 @@ class Project extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Projectnote' => array(
-			'className' => 'Projectnote',
-			'foreignKey' => 'project_id',
-			'dependent' => false,
-			'conditions' => array('Projectnote.deleted' => false),
-			'order' => array('created ASC'),
-		),
 
 		'Contract' => array(
 			'className' => 'Contract',

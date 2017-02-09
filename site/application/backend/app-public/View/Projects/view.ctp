@@ -442,12 +442,5 @@ $textBlocks = array(
 
 <?php echo $this->element('Projects/view/activity'); ?>
 
-<?php echo $this->element('Projects/view/projectnotes'); ?>
-
-<!-- 
-
-<br><br><br>
-	<h3>Project Activity</h3>
- -->
 </div>
 

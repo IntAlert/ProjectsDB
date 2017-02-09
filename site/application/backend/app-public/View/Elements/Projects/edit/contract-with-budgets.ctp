@@ -29,8 +29,6 @@ endforeach; //($projects['Contract'] as $contract):
 unset($contract);
 endif; //(count($project['Contract'])):
 
-// debug($project);
-
 ?>
 
 <div class="component-contracts">
@@ -151,6 +149,24 @@ endif; //(count($project['Contract'])):
 
 					</td>
 					
+				</tr>
+
+				<tr colspan="3">
+					Is this contract being procured through a commercial tender?
+					<?php echo $this->Form->input('Contract.'.$contract['id'].'.commercial_tender', array(
+
+							'id' => false,
+							'value' => $contract['subdonor_name'],
+							'type' => 'text',
+							'label' => false,
+							'options' => array(
+								'Yes',
+								'No',
+								'Don\'t know',
+							),
+							'class' => 'contract-subdonor-name',
+
+					)); ?>
 				</tr>
 				
 				<tr>
@@ -447,6 +463,8 @@ endif; //(count($project['Contract'])):
 					</td>
 					
 				</tr>
+
+				
 				
 				<tr>
 
@@ -491,6 +509,30 @@ endif; //(count($project['Contract'])):
 
 					</td>
 
+				</tr>
+
+				<tr>
+					<td colspan="2">
+					<!-- Fill -->
+					</td>
+					<td>
+						Is this contract being procured through a commercial tender?
+						<?php echo $this->Form->input('Contract.{contract_id}.commercial_tender', array(
+
+								'id' => false,
+								'value' => -1,
+								'type' => 'select',
+								'label' => false,
+								'options' => array(
+									-1 => 'Don\'t know',
+									1 => 'Yes',
+									0 => 'No',
+									
+								),
+								'class' => 'contract-subdonor-name',
+
+						)); ?>
+					</td>
 				</tr>
 
 				<tr>
