@@ -62,7 +62,7 @@ $(function(){
 	});
 
 	// handle sub-contract selected
-	$(".contracts .contract").delegate(".contract-category", 'change', updateLeadContractor);
+	$(".component-contracts").delegate(".contract-category", 'change', updateLeadContractor);
 
 	// handle delete payment
 	$(".component-contracts").delegate(".btn-contract-delete", 'click', function(){
@@ -112,8 +112,6 @@ $(function(){
     // update lead contractor inputs as neccessary
     // important to call so that binding available
     $(".contracts .contract .contract-category").each(updateLeadContractor)
-
-
 
 
 });
