@@ -148,6 +148,22 @@
 					<div>
 					<?php
 
+						echo $this->Form->input('commercial_tender', array(
+							'empty' => '--- Contract procured through a commercial tender ---',
+							'label' => false,
+							'options' => array(
+								'unknown' => 'Don\'t know',
+								'yes' => 'Yes',
+								'no' => 'No',
+							),
+							'value' => $this->request->query('commercial_tender'),
+						));
+					?>
+					</div>
+
+					<div>
+					<?php
+
 						echo $this->Form->input('framework_id', array(
 							'empty' => '--- Select Donor Framework ---',
 							'label' => false,

@@ -150,24 +150,6 @@ endif; //(count($project['Contract'])):
 					</td>
 					
 				</tr>
-
-				<tr colspan="3">
-					Is this contract being procured through a commercial tender?
-					<?php echo $this->Form->input('Contract.'.$contract['id'].'.commercial_tender', array(
-
-							'id' => false,
-							'value' => $contract['subdonor_name'],
-							'type' => 'text',
-							'label' => false,
-							'options' => array(
-								'Yes',
-								'No',
-								'Don\'t know',
-							),
-							'class' => 'contract-subdonor-name',
-
-					)); ?>
-				</tr>
 				
 				<tr>
 
@@ -212,6 +194,29 @@ endif; //(count($project['Contract'])):
 
 					</td>
 
+				</tr>
+
+				<tr>
+					<td colspan="2">
+					<!-- Fill -->
+					</td>
+					<td>
+						Is this contract being procured through a commercial tender?
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.commercial_tender', array(
+
+								'id' => false,
+								'value' => $contract['commercial_tender'],
+								'type' => 'select',
+								'label' => false,
+								'options' => array(
+									'unknown' => 'Don\'t know',
+									'yes' => 'Yes',
+									'no' => 'No',
+								),
+								'class' => 'contract-subdonor-name',
+
+						)); ?>
+					</td>
 				</tr>
 
 				<tr>
@@ -524,9 +529,9 @@ endif; //(count($project['Contract'])):
 								'type' => 'select',
 								'label' => false,
 								'options' => array(
-									-1 => 'Don\'t know',
-									1 => 'Yes',
-									0 => 'No',
+									'unknown' => 'Don\'t know',
+									'yes' => 'Yes',
+									'no' => 'No',
 									
 								),
 								'class' => 'contract-subdonor-name',

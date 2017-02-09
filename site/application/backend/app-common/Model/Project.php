@@ -190,6 +190,9 @@ class Project extends AppModel {
 
 	function saveComplete($data) {
 
+		debug($data);
+		die();
+
 		// dynamically calculate value sourced at contract level
 		$value_sourced = 0;
 		if (isset($data['Contract'])):
@@ -202,7 +205,7 @@ class Project extends AppModel {
 
 
 			// delete all existing contractbudgets before a save,
-			// this is a bit dangerous
+			// this is a bit dangerous, assumes save will work, should be transaction
 			foreach ($data['Contract'] as & $contract) {
 
 				if (isset($contract['id'])) {

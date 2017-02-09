@@ -172,6 +172,20 @@ class ProjectSearchComponent extends Component {
 	        );
 		}
 
+		// commercial_tender (INNER JOIN METHOD)
+		if ($commercial_tender = $this->controller->request->query('commercial_tender')) {
+
+			$joins[] = array(
+				'table' => 'contracts',
+	            'alias' => 'ContractCommercialTender',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Project.id = ContractCommercialTender.project_id',
+	                'ContractCommercialTender.commercial_tender' => $commercial_tender
+	            )
+	        );
+		}
+
 		// framework_id (INNER JOIN METHOD)
 		if ($framework_id = $this->controller->request->query('framework_id')) {
 

@@ -162,7 +162,6 @@ class ProjectsController extends AppController {
 				'Contract.Donor',
 				'Contract.Currency',
 				'Contract.Contractbudget',
-				'Projectnote.User',
 				'Status',
 				'Pathway',
 				'Theme',
