@@ -197,8 +197,24 @@ endif; //(count($project['Contract'])):
 				</tr>
 
 				<tr>
-					<td colspan="2">
-					<!-- Fill -->
+					<td>
+						<div class="lead_contractor">
+							<!-- Lead Contractor -->
+							Lead Contractor?
+							<?php echo $this->Form->input('Contract.'.$contract['id'].'.lead_contractor', array(
+
+									'id' => false,
+									'value' => $contract['lead_contractor'],
+									'type' => 'text',
+									'label' => false,
+									'class' => 'contract-lead-contractor',
+
+							)); ?>
+						</div>
+
+					</td>
+					<td>
+						<!-- Fill -->
 					</td>
 					<td>
 						Is this contract being procured through a commercial tender?
@@ -213,7 +229,7 @@ endif; //(count($project['Contract'])):
 									'yes' => 'Yes',
 									'no' => 'No',
 								),
-								'class' => 'contract-subdonor-name',
+								'class' => 'contract-commercial-tender',
 
 						)); ?>
 					</td>
@@ -517,7 +533,23 @@ endif; //(count($project['Contract'])):
 				</tr>
 
 				<tr>
-					<td colspan="2">
+					<td>
+						<div class="lead_contractor">
+							<!-- Lead Contractor -->
+							Lead Contractor?
+							<?php echo $this->Form->input('Contract.{lead_contractor}.lead_contractor', array(
+
+									'id' => false,
+									'value' => '',
+									'type' => 'text',
+									'label' => false,
+									'class' => 'contract-lead-contractor',
+
+							)); ?>
+						</div>
+
+					</td>
+					<td>
 					<!-- Fill -->
 					</td>
 					<td>
@@ -534,7 +566,7 @@ endif; //(count($project['Contract'])):
 									'no' => 'No',
 									
 								),
-								'class' => 'contract-subdonor-name',
+								'class' => 'contract-commercial-tender',
 
 						)); ?>
 					</td>

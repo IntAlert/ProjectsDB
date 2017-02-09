@@ -61,6 +61,9 @@ $(function(){
 		return false;
 	});
 
+	// handle sub-contract selected
+	$(".contracts .contract").delegate(".contract-category", 'change', updateLeadContractor);
+
 	// handle delete payment
 	$(".component-contracts").delegate(".btn-contract-delete", 'click', function(){
 
@@ -106,10 +109,37 @@ $(function(){
     	createContract();
     }
 
+    // update lead contractor inputs as neccessary
+    // important to call so that binding available
+    $(".contracts .contract .contract-category").each(updateLeadContractor)
+
 
 
 
 });
+
+
+function updateLeadContractor(){
+
+	var contractDiv = $(this).parents('div.contract');
+
+	console.log(contractDiv)
+
+	var contractCategoryId = $(this).val();
+
+	var leadContractorInput = $(contractDiv)
+			.find('.lead_contractor')
+
+	if(contractCategoryId == 3) {
+		// is sub-contract
+		leadContractorInput.show();
+	} else {
+		// everything else
+		leadContractorInput.hide();
+	}
+
+
+}
 
 function createContract() {
 
