@@ -537,7 +537,7 @@ endif; //(count($project['Contract'])):
 						<div class="lead_contractor">
 							<!-- Lead Contractor -->
 							Lead Contractor?
-							<?php echo $this->Form->input('Contract.{lead_contractor}.lead_contractor', array(
+							<?php echo $this->Form->input('Contract.{contract_id}.lead_contractor', array(
 
 									'id' => false,
 									'value' => '',

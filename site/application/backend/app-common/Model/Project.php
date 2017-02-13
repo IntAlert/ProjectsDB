@@ -190,6 +190,9 @@ class Project extends AppModel {
 
 	function saveComplete($data) {
 
+		// debug($data);
+		// die();
+
 		// dynamically calculate value sourced at contract level
 		$value_sourced = 0;
 		if (isset($data['Contract'])):
