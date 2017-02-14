@@ -1,3 +1,7 @@
+Tutorials
+===
+- [Adding a new field for an activity type in the Results Framework app](docs/results-framework-add-a-new-field.md)
+
 
 Deployment
 ===
