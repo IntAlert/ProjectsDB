@@ -8,8 +8,9 @@ $headers = [
 	'Title',
 	'Start Date',
 	'Finish Date',
-	'male_count',
-	'female_count',
+	'Male Count',
+	'Female Count',
+	'Transgender Count',
 ];
 
 
@@ -47,6 +48,7 @@ foreach ($data as $training) {
 		$training['Training']['finish_date'],
 		$training['Training']['male_count'],
 		$training['Training']['female_count'],
+		$training['Training']['transgender_count'],
 	];
 
 

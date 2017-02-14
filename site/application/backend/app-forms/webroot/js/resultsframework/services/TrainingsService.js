@@ -169,7 +169,8 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 		var totals = {
 			'event_count': 0,
 			'male_count': 0,
-			'female_count': 0
+			'female_count': 0,
+			'transgender_count': 0
 		}
 
 		var themes = []
@@ -179,6 +180,8 @@ app.factory('TrainingsService', function($http, $httpParamSerializer, $location,
 			this.event_count++
   			this.male_count += Number(item.Training.male_count)
   			this.female_count += Number(item.Training.female_count)
+  			this.transgender_count += Number(item.Training.transgender_count)
+
 
   			themes = themes.concat(item.Theme)
   			participant_types = participant_types.concat(item.ParticipantType)

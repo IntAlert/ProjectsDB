@@ -16,6 +16,11 @@
 			<th>How many female participants took part?</th>
 			<td>{{data.totals.female_count || 0}}</td>
 		</tr>
+
+		<tr>
+			<th>How many transgender participants took part?</th>
+			<td>{{data.totals.transgender_count || 0}}</td>
+		</tr>
 		<tr>
 			<th>Themes</th>
 			<td>
@@ -100,6 +105,10 @@
 				<th>
 					Women
 				</th>
+
+				<th>
+					Transgender
+				</th>
 				<th width="25%"></th>
 			</tr>
 		</thead>
@@ -143,6 +152,11 @@
 				<td>
 					{{training.Training.female_count || 0}}
 				</td>
+
+				<td>
+					{{training.Training.transgender_count || 0}}
+				</td>
+
 				<td>
 
 					<md-button 
