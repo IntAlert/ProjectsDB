@@ -1,33 +1,23 @@
-Deploying from scratch
+Setting up PROMPT on a local machine
 ====
-Follow the steps below to deploy PROMPT on a new server.
+Follow the steps below to deploy PROMPT on your local machine.
 
 
 Pre-requisites
 =====
+- VirtualBox (https://www.virtualbox.org/wiki/Downloads)
+- VirtualBox Extension Pack (https://www.virtualbox.org/wiki/Downloads)
+- Vagrant (https://www.vagrantup.com)
 - The MySQL schema, eg. Vagrant-config/sql/empty.sql
 - Access to this GitHub repo
 
-Getting the code onto the server
+Getting the code onto your local machine
 =====
-1. Create server
-2. Login via SSH and generate an SSH key (https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
-3. Add this key to the deploy keys for GitHub
-4. ```git clone git@github.com:IntAlert/ProjectsDB.git```
+1. ```git clone git@github.com:IntAlert/ProjectsDB.git```
 
-Create database
+Start Vagrant
 ====
-1. Create a MySQL database
-2. Load your MySQL export of the application database
-3. Save credentials for later
-
-
-Soft link public_html folder
-====
-If your server has a default root folder for serving HTML, delete the target folder and create a soft link to the 'frontend' folder
-
-1. ```rm -rf public_html```
-2. ```ln -s ProjectsDB/site/application/frontend public_html```
+1. ```vagrant up```
 
 Create configuration files
 ====
@@ -51,10 +41,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '***',
-		'login' => '***',
-		'password' => '***',
-		'database' => '***',
+		'host' => '127.0.0.1',
+		'login' => 'root',
+		'password' => 'rootpass',
+		'database' => 'app',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
@@ -111,21 +101,18 @@ class EmailConfig {
 }
 ?>
 ```
-Enable the app domain on Azure
-====
-1. Visit http://manage.windowsazure.com
-2. Select "International Alert"
-3. Select "Applications"
-4. Select "PROMPT"
-5. Select "Configure"
-6. To the "Single Sign-on" add a reply URL of the form:
-	http://staging-prompt.intalert.org/pdb/office365users/callback
-	(replacing staging-prompt.intalert.org with your domain)
-7. Click "Save"
 
+Local DNS
+===
+You may need to manually make a record in your ```hosts``` file like:
+	```
+	10.168.33.58	local.projects.international-alert.org
+	```
+
+(This IP matches that found in the ```Vagrantfile```)
 
 Finito Benito
 ====
-You should now be able to visit [PROMPT](http://prompt.intalert.org)
+You should now be able to visit [PROMPT](http://local.projects.international-alert.org)
 
 
