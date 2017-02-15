@@ -165,9 +165,8 @@ app.factory('MeetingsService', function($http, DedupeService, $httpParamSerializ
 		var totals = {
 			male_count: 0,
 			female_count: 0,
+			transgender_count: 0,
 			meeting_count: 0,
-			male_trauma_count: 0,
-			female_trauma_count: 0,
 			conflict_resolution: false
 		}
 
@@ -179,8 +178,8 @@ app.factory('MeetingsService', function($http, DedupeService, $httpParamSerializ
 
 			totals.male_count += Number(item.Meeting.male_count)
 			totals.female_count += Number(item.Meeting.female_count)
-			totals.female_trauma_count += Number(item.Meeting.female_trauma_count)
-			totals.male_trauma_count += Number(item.Meeting.male_trauma_count)
+			totals.transgender_count += Number(item.Meeting.transgender_count)
+			
 			totals.meeting_count++
 			totals.conflict_resolution = totals.conflict_resolution || item.Meeting.conflict_resolution
 

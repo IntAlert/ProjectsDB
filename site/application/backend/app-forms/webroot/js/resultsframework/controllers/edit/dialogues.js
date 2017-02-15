@@ -96,8 +96,6 @@ app.controller('DialoguesController', function($scope, $mdDialog, DedupeService,
 				female_count: 0,
 				process_count: 0,
 				meeting_count: 0,
-				male_trauma_count: 0,
-				female_trauma_count: 0,
 				conflict_resolution: false
 			}
 
@@ -111,8 +109,6 @@ app.controller('DialoguesController', function($scope, $mdDialog, DedupeService,
 
 				totals.male_count += item.male_count
 				totals.female_count += item.female_count
-				totals.female_trauma_count += item.female_trauma_count
-				totals.male_trauma_count += item.male_trauma_count
 				totals.process_count++
 				totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
 
@@ -128,8 +124,6 @@ app.controller('DialoguesController', function($scope, $mdDialog, DedupeService,
 
 				totals.male_count += item.male_count
 				totals.female_count += item.female_count
-				totals.female_trauma_count += item.female_trauma_count
-				totals.male_trauma_count += item.male_trauma_count
 				totals.meeting_count++
 				totals.conflict_resolution = totals.conflict_resolution || item.conflict_resolution
 

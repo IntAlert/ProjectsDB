@@ -20,6 +20,11 @@
 		</tr>
 
 		<tr>
+			<th>How many transgender people took part (cumulative) ?</th>
+			<td>{{data.totals.transgender_count || 0}}</td>
+		</tr>
+
+		<tr>
 			<th>The dialogue sought to resolve a specific conflict issue between groups or entities </th>
 			<td>{{data.totals.conflict_resolution ? 'YES': 'NO'}}</td>
 		</tr>
@@ -98,6 +103,10 @@
 					Women
 				</th>
 
+				<th>
+					Transgender
+				</th>
+
 				<th title="The dialogue seek to resolve a specific conflict issue between groups or entities">
 					Conflict resolution?
 				</th>
@@ -144,6 +153,10 @@
 
 				<td>
 					{{meeting.Meeting.female_count}}
+				</td>
+
+				<td>
+					{{meeting.Meeting.transgender_count}}
 				</td>
 
 				<td>

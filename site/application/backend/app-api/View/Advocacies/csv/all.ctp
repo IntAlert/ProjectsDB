@@ -11,6 +11,7 @@ $headers = [
 	'Finish Date',
 	'Male Count',
 	'Female Count',
+	'Transgender Count',
 ];
 
 // add participant_type headers
@@ -46,6 +47,7 @@ foreach ($data as $advocacy) {
 		$advocacy['Advocacy']['finish_date'],
 		$advocacy['Advocacy']['male_count'],
 		$advocacy['Advocacy']['female_count'],
+		$advocacy['Advocacy']['transgender_count'],
 	];
 
 

@@ -161,6 +161,7 @@ app.factory('OtherActivitiesService', function($http, $location, $httpParamSeria
 		var totals = {
 			male_count: 0,
 			female_count: 0,
+			transgender_count: 0,
 			session_count: 0
 		}
 
@@ -172,6 +173,7 @@ app.factory('OtherActivitiesService', function($http, $location, $httpParamSeria
 
 			totals.male_count += Number(item.OtherActivity.male_count)
 			totals.female_count += Number(item.OtherActivity.female_count)
+			totals.transgender_count += Number(item.OtherActivity.transgender_count)
 			totals.session_count++
 
   			participant_types = participant_types.concat(item.ParticipantType)

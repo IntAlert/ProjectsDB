@@ -16,6 +16,13 @@
 			</td>
 		</tr>
 
+		<tr>
+			<th>How many transgender participants in public advocacy meetings</th>
+			<td>
+				{{data.totals.transgender_count || 0}}
+			</td>
+		</tr>
+
 		<tr ng-repeat="(participant_type, count) in data.totals.participant_types">
 			<th>{{participant_type}}</th>
 			<td>{{count || 0}}</td>
@@ -92,6 +99,10 @@
 				</th>
 
 				<th>
+					Number of Transgender
+				</th>
+
+				<th>
 					Topics
 				</th>
 
@@ -128,6 +139,10 @@
 
 				<td>
 					{{advocacy.Advocacy.female_count}}
+				</td>
+
+				<td>
+					{{advocacy.Advocacy.transgender_count}}
 				</td>
 
 				<td>

@@ -144,8 +144,6 @@ app.factory('AdvocaciesService', function($http, $location, $httpParamSerializer
 	// Private functions
 	function formatForSaving(advocacy) {
 
-
-		console.log(advocacy)
 		var dataFormatted = {
 			Advocacy: advocacy.Advocacy,
 			Theme: {Theme: []}, // HABTM
@@ -173,6 +171,7 @@ app.factory('AdvocaciesService', function($http, $location, $httpParamSerializer
   		var totals = {
   			male_count: 0,
   			female_count: 0,
+  			transgender_count: 0,
   			participant_types: {}
   		}
 
@@ -184,6 +183,7 @@ app.factory('AdvocaciesService', function($http, $location, $httpParamSerializer
 			// fe/male counts
 			totals.male_count += Number(item.Advocacy.male_count)
 			totals.female_count += Number(item.Advocacy.female_count)
+			totals.transgender_count += Number(item.Advocacy.transgender_count)
 
 
 			// NB... At the moment, we don't show this, so calc not right below

@@ -11,6 +11,7 @@ $headers = [
 	'Finish Date',
 	'Male Count',
 	'Female Count',
+	'Transgender Count',
 	'Conflict Resolution?',
 ];
 
@@ -50,6 +51,7 @@ foreach ($data as $meeting) {
 		$meeting['Meeting']['finish_date'],
 		$meeting['Meeting']['male_count'],
 		$meeting['Meeting']['female_count'],
+		$meeting['Meeting']['transgender_count'],
 		$meeting['Meeting']['conflict_resolution'],
 	];
 

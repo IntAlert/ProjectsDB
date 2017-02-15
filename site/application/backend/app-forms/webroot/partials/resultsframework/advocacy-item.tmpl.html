@@ -48,7 +48,7 @@
 			</div>
 
 
-			<div flex="50">
+			<div flex="33">
 				<!-- Participation Types -->
 				<md-input-container class="md-block">
 					<label>Number of Men</label>
@@ -63,7 +63,7 @@
 			</div>
 
 
-			<div flex="50">
+			<div flex="33">
 				<!-- Participation Types -->
 				<md-input-container class="md-block">
 					<label>Number of Women</label>
@@ -73,6 +73,20 @@
 						type="number"
 						min="0"
 						ng-model="data.Advocacy.female_count"
+						>
+				</md-input-container>
+			</div>
+
+			<div flex="33">
+				<!-- Participation Types -->
+				<md-input-container class="md-block">
+					<label>Number of Transgender People</label>
+					<input 
+						number-string
+						required
+						type="number"
+						min="0"
+						ng-model="data.Advocacy.transgender_count"
 						>
 				</md-input-container>
 			</div>

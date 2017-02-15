@@ -10,6 +10,7 @@ $headers = [
 	'Finish Date',
 	'Male Count',
 	'Female Count',
+	'Transgender Count',
 ];
 
 // add participant type headers
@@ -39,6 +40,7 @@ foreach ($data as $other_activity) {
 		$other_activity['OtherActivity']['finish_date'],
 		$other_activity['OtherActivity']['male_count'],
 		$other_activity['OtherActivity']['female_count'],
+		$other_activity['OtherActivity']['transgender_count'],
 	];
 
 	// PARTICIPANT TYPE

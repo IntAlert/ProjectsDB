@@ -19,6 +19,11 @@
 		</tr>
 
 		<tr>
+			<th>How many transgender people took part (cumulative) ?</th>
+			<td>{{data.totals.transgender_count || 0}}</td>
+		</tr>
+
+		<tr>
 			<th>What kinds of groups or entities were involved in these activities?</th>
 			<td>
 				<span ng-repeat="participant_type in data.totals.participant_types">
@@ -80,6 +85,10 @@
 					Women
 				</th>
 
+				<th>
+					Transgender
+				</th>
+
 				<th width="25%"></th>
 			</tr>
 		</thead>
@@ -118,6 +127,10 @@
 
 				<td>
 					{{other_activity.OtherActivity.female_count}}
+				</td>
+
+				<td>
+					{{other_activity.OtherActivity.transgender_count}}
 				</td>
 
 				<td>

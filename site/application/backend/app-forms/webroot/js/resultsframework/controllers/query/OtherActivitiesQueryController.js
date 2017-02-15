@@ -49,6 +49,7 @@ app.controller('OtherActivitiesQueryController', function($window, $scope, $mdDi
 		  { name:'Type', field: 'OtherActivity.type' },
 		  { name:'Males', field: 'OtherActivity.male_count' },
 		  { name:'Females', field: 'OtherActivity.female_count' },
+		  { name:'Transgender', field: 'OtherActivity.transgender_count' },
 		  { name:'Start Date', field: 'OtherActivity.start_date'},
 		  { name:'Finish Date', field: 'OtherActivity.finish_date'},
 		],

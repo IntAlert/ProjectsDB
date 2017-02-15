@@ -48,6 +48,7 @@ app.controller('DialogueMeetingsQueryController', function($window, $scope, $mdD
 		  { name:'Title', field: 'Meeting.title' },
 		  { name:'Males', field: 'Meeting.male_count' },
 		  { name:'Females', field: 'Meeting.female_count' },
+		  { name:'Transgender', field: 'Meeting.transgender_count' },
 		  { name:'Start Date', field: 'Meeting.start_date'},
 		  { name:'Finish Date', field: 'Meeting.finish_date'},
 		],
