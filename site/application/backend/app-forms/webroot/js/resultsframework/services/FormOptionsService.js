@@ -64,7 +64,6 @@ app.factory('FormOptions', function($http) {
 	$http.get('/api/departments/all')
 		.then(function(response){
 			formOptionsInstance.departments = response.data.data;
-			console.log(formOptionsInstance.departments)
 		}, function(){
 			alert("departments download error")
 		});
