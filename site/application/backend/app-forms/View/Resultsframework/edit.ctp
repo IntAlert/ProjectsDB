@@ -141,10 +141,8 @@
 <?php echo $this->Html->script('resultsframework/services/AccompanimentsService'); ?>
 <?php echo $this->Html->script('resultsframework/services/OtherActivitiesService'); ?>
 
-
+<!-- Controllers -->
 <?php echo $this->Html->script('resultsframework/controllers/ResultsframeworkEditController'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/geography'); ?>
-<?php echo $this->Html->script('resultsframework/controllers/edit/themes'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/edit/researches'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/edit/results'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/edit/trainings'); ?>
@@ -156,5 +154,3 @@
 <?php echo $this->Html->script('resultsframework/controllers/edit/other_activities'); ?>
 
 <?php echo $this->Html->script('resultsframework/controllers/edit/export'); ?>
-
-<style type="text/css">/*pre {display: none}*/</style>
