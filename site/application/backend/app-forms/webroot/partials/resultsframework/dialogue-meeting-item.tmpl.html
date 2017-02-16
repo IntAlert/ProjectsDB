@@ -22,14 +22,32 @@
 			<div flex="50">
 				<!-- Start Date -->
 
-				<date-string-selector label="Start Date" max="data.Meeting.finish_date" ng-model="data.Meeting.start_date" /> 
+				<label class="non-material">
+					Start Date
+				</label>
+
+				<ng-combo-date-picker 
+					ng-timezone="0"
+					ng-min-date="2010-01-01"
+					ng-required="true"
+					ng-model="data.Meeting.start_date"
+				></ng-combo-date-picker>
 
 			</div>
 
 			<div flex="50">
 				<!-- Finish Date -->
 
-				<date-string-selector label="Finish Date"  min="data.Meeting.start_date" ng-model="data.Meeting.finish_date" /> 
+				<label class="non-material">
+					Finish Date
+				</label>
+
+				<ng-combo-date-picker 
+					ng-timezone="0"
+					ng-min-date="2010-01-01"
+					ng-required="true"
+					ng-model="data.Meeting.finish_date"
+				></ng-combo-date-picker>
 
 			</div>
 

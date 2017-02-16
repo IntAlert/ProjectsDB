@@ -55,4 +55,18 @@ function ResearchItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.save = function(research) {
 		$mdDialog.hide(research);
 	};
+
+	// don't allow invalid date range
+	$scope.$watch('data.Research.start_date', function(){
+		if (!data.Research) return
+		if (data.Research.start_date > data.Research.finish_date) {
+			data.Research.finish_date = data.Research.start_date
+		}
+	})
+	$scope.$watch('data.Research.finish_date', function(){
+		if (!data.Research) return
+		if (data.Research.finish_date < data.Research.start_date) {
+			data.Research.start_date = data.Research.finish_date
+		}
+	})
 }

@@ -127,11 +127,10 @@
 
 <?php echo $this->Html->script('shared/directives/NumberStringInput'); ?>
 
+<!-- Services -->
 <?php echo $this->Html->script('resultsframework/services/DedupeService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResultsFrameworkService'); ?>
 <?php echo $this->Html->script('resultsframework/services/FormOptionsService'); ?>
-
-
 <?php echo $this->Html->script('resultsframework/services/TrainingsService'); ?>
 <?php echo $this->Html->script('resultsframework/services/ResearchesService'); ?>
 <?php echo $this->Html->script('resultsframework/services/MeetingsService'); ?>
@@ -150,7 +149,5 @@
 <?php echo $this->Html->script('resultsframework/controllers/edit/processes'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/edit/accompaniments'); ?>
 <?php echo $this->Html->script('resultsframework/controllers/edit/advocacies'); ?>
-
 <?php echo $this->Html->script('resultsframework/controllers/edit/other_activities'); ?>
-
 <?php echo $this->Html->script('resultsframework/controllers/edit/export'); ?>

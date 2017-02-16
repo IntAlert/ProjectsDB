@@ -59,4 +59,18 @@ function AdvocacyItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.save = function(advocacy) {
 		$mdDialog.hide(advocacy);
 	};
+
+	// don't allow invalid date range
+	$scope.$watch('data.Advocacy.start_date', function(){
+		if (!data.Advocacy) return
+		if (data.Advocacy.start_date > data.Advocacy.finish_date) {
+			data.Advocacy.finish_date = data.Advocacy.start_date
+		}
+	})
+	$scope.$watch('data.Advocacy.finish_date', function(){
+		if (!data.Advocacy) return
+		if (data.Advocacy.finish_date < data.Advocacy.start_date) {
+			data.Advocacy.start_date = data.Advocacy.finish_date
+		}
+	})
 }

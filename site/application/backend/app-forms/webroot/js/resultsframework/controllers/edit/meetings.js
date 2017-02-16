@@ -54,4 +54,18 @@ function DialogueItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.save = function(dialogue) {
 		$mdDialog.hide(dialogue);
 	};
+
+	// don't allow invalid date range
+	$scope.$watch('data.Meeting.start_date', function(){
+		if (!data.Meeting) return
+		if (data.Meeting.start_date > data.Meeting.finish_date) {
+			data.Meeting.finish_date = data.Meeting.start_date
+		}
+	})
+	$scope.$watch('data.Meeting.finish_date', function(){
+		if (!data.Meeting) return
+		if (data.Meeting.finish_date < data.Meeting.start_date) {
+			data.Meeting.start_date = data.Meeting.finish_date
+		}
+	})
 }

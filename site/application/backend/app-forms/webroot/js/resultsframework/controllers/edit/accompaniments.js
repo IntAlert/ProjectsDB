@@ -58,4 +58,18 @@ function AccompanimentItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.save = function(accompaniment) {
 		$mdDialog.hide(accompaniment);
 	};
+
+	// don't allow invalid date range
+	$scope.$watch('data.Accompaniment.start_date', function(){
+		if (!data.Accompaniment) return
+		if (data.Accompaniment.start_date > data.Accompaniment.finish_date) {
+			data.Accompaniment.finish_date = data.Accompaniment.start_date
+		}
+	})
+	$scope.$watch('data.Accompaniment.finish_date', function(){
+		if (!data.Accompaniment) return
+		if (data.Accompaniment.finish_date < data.Accompaniment.start_date) {
+			data.Accompaniment.start_date = data.Accompaniment.finish_date
+		}
+	})
 }

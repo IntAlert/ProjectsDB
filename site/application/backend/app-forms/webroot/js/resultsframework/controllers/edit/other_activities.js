@@ -54,4 +54,18 @@ function OtherActivityItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.save = function(dialogue) {
 		$mdDialog.hide(dialogue);
 	};
+
+	// don't allow invalid date range
+	$scope.$watch('data.OtherActivity.start_date', function(){
+		if (!data.OtherActivity) return
+		if (data.OtherActivity.start_date > data.OtherActivity.finish_date) {
+			data.OtherActivity.finish_date = data.OtherActivity.start_date
+		}
+	})
+	$scope.$watch('data.OtherActivity.finish_date', function(){
+		if (!data.OtherActivity) return
+		if (data.OtherActivity.finish_date < data.OtherActivity.start_date) {
+			data.OtherActivity.start_date = data.OtherActivity.finish_date
+		}
+	})
 }
