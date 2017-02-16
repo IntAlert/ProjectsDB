@@ -3,9 +3,6 @@ app.controller('TrainingsController', function($scope, $mdDialog, DedupeService,
 
 	$scope.data = TrainingsService
 
-	$scope.startDate = new Date();
-	$scope.finishDate = new Date();
-
 	$scope.removeTrainingItem = function(id) {
 		if (confirm("Are you sure you want to remove this training item?")) {
 			TrainingsService.delete(id)
@@ -19,7 +16,7 @@ app.controller('TrainingsController', function($scope, $mdDialog, DedupeService,
 
 	    $mdDialog.show({
 	      controller: TrainingItemController,
-	      templateUrl: '/forms/partials/resultsframework/training-item.tmpl.html',
+	      templateUrl: '/forms/partials/resultsframework/training-item.tmpl.html?' + Math.random(),
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
 	      clickOutsideToClose: false,

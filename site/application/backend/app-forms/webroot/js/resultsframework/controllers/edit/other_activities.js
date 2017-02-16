@@ -16,7 +16,7 @@ app.controller('OtherActivitiesController', function($scope, $mdDialog, DedupeSe
 
 	    $mdDialog.show({
 	      controller: OtherActivityItemController,
-	      templateUrl: '/forms/partials/resultsframework/other-activity-item.tmpl.html',
+	      templateUrl: '/forms/partials/resultsframework/other-activity-item.tmpl.html?' + Math.random(),
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
 	      clickOutsideToClose: false,

@@ -16,7 +16,7 @@ app.controller('ProcessesController', function($scope, $mdDialog, DedupeService,
 
 	    $mdDialog.show({
 	      controller: DialogueItemController,
-	      templateUrl: '/forms/partials/resultsframework/dialogue-process-item.tmpl.html',
+	      templateUrl: '/forms/partials/resultsframework/dialogue-process-item.tmpl.html?' + Math.random(),
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
 	      clickOutsideToClose: false,

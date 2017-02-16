@@ -16,7 +16,7 @@ app.controller('AccompanimentsController', function($scope, $mdDialog, FormOptio
 
 	    $mdDialog.show({
 	      controller: AccompanimentItemController,
-	      templateUrl: '/forms/partials/resultsframework/accompaniment-item.tmpl.html',
+	      templateUrl: '/forms/partials/resultsframework/accompaniment-item.tmpl.html?' + Math.random(),
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
 	      clickOutsideToClose: false,

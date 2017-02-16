@@ -16,7 +16,7 @@ app.controller('ResearchesController', function($scope, $mdDialog, ResultsFramew
 
 	    $mdDialog.show({
 	      controller: ResearchItemController,
-	      templateUrl: '/forms/partials/resultsframework/research-item.tmpl.html',
+	      templateUrl: '/forms/partials/resultsframework/research-item.tmpl.html?' + Math.random(),
 	      parent: angular.element(document.body),
 	      // targetEvent: ev,
 	      clickOutsideToClose: false,

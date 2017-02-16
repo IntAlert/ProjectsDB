@@ -15,7 +15,7 @@ app.controller('AdvocaciesController', function($scope, $mdDialog, DedupeService
 
 	    $mdDialog.show({
 	      controller: AdvocacyItemController,
-	      templateUrl: '/forms/partials/resultsframework/advocacy-item.tmpl.html',
+	      templateUrl: '/forms/partials/resultsframework/advocacy-item.tmpl.html?' + Math.random(),
 	      parent: angular.element(document.body),
 	      clickOutsideToClose: false,
 	      locals: {
