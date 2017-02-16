@@ -2,20 +2,19 @@ app.factory('FormOptions', function($http) {
   var formOptionsInstance = {
 	participant_types: [],
 	impacts: [],
-  	// results: {
-  	// 	impacts: [
-  	// 		{"name": "Changed knowledge and attitudes"},
-  	// 		{"name": "Changed behaviours and processes"},
-  	// 		{"name": "Changed conditions"}
-  	// 	]
-  	// }
+	countries: [],
+	regions: [],
+	themes: [],
+	pathways: [],
+	departments: [],
+  	
   };
 
 
   // All countries
 	$http.get('/api/territories/allCountries')
 		.then(function(response){
-			formOptionsInstance.countries = response.data;
+			formOptionsInstance.countries = response.data.data;
 		}, function(){
 			alert("countries download error")
 		});
@@ -23,7 +22,7 @@ app.factory('FormOptions', function($http) {
 	// All regions
 	$http.get('/api/territories/allRegions')
 		.then(function(response){
-			formOptionsInstance.regions = response.data;
+			formOptionsInstance.regions = response.data.data;
 		}, function(){
 			alert("regions download error")
 		});
@@ -31,7 +30,7 @@ app.factory('FormOptions', function($http) {
 	// All themes
 	$http.get('/api/themes/all')
 		.then(function(response){
-			formOptionsInstance.themes = response.data;
+			formOptionsInstance.themes = response.data.data;
 		}, function(){
 			alert("themes download error")
 		});
@@ -39,7 +38,7 @@ app.factory('FormOptions', function($http) {
 	// All pathways
 	$http.get('/api/pathways/all')
 		.then(function(response){
-			formOptionsInstance.pathways = response.data;
+			formOptionsInstance.pathways = response.data.data;
 		}, function(){
 			alert("pathways download error")
 		});

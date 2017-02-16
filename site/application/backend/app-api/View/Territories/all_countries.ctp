@@ -1,4 +1,3 @@
 <?php
 
-echo json_encode($territories);
-
+echo $this->AjaxResponse->package($territories);

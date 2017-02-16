@@ -1,4 +1,4 @@
 <?php
 
-echo json_encode($themes);
+echo $this->AjaxResponse->package($themes);
 

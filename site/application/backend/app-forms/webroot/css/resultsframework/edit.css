@@ -73,3 +73,8 @@
 .date-string-selector-container input {
 	width:400px;
 }
+
+label.non-material {
+	display: block;
+	padding:8px 0;
+}

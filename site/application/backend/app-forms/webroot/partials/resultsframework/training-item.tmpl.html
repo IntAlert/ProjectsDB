@@ -12,6 +12,7 @@
 		<div layout="row" layout-wrap>
 
 			<div flex="100">
+
 				<!-- Title -->
 				<md-input-container class="md-block">
 					<label>Title</label>
@@ -22,14 +23,32 @@
 			<div flex="50">
 				<!-- Start Date -->
 
-				<date-string-selector label="Start Date" max="data.Training.finish_date" ng-model="data.Training.start_date" /> 
+				<label class="non-material">
+					Start Date
+				</label>
+
+				<ng-combo-date-picker 
+					ng-timezone="0"
+					ng-min-date="2010-01-01"
+					ng-required="true"
+					ng-model="data.Training.start_date"
+				></ng-combo-date-picker>
 
 			</div>
 
 			<div flex="50">
 				<!-- Finish Date -->
 
-				<date-string-selector label="Finish Date"  min="data.Training.start_date" ng-model="data.Training.finish_date" /> 
+				<label class="non-material">
+					Finish Date
+				</label>
+
+				<ng-combo-date-picker 
+					ng-timezone="0"
+					ng-min-date="2010-01-01"
+					ng-required="true"
+					ng-model="data.Training.finish_date"
+				></ng-combo-date-picker>
 
 			</div>
 

@@ -69,6 +69,11 @@ if ( !isset($title) ) {
 	<script src="/pdb/components/clipboard/dist/clipboard.min.js"></script>
 	<script src="/pdb/components/ngclipboard/dist/ngclipboard.min.js"></script>
 
+	<!-- Angular Date picker -->
+	<script 
+		type="text/javascript" 
+		src="/pdb/webroot/components/ngComboDatePicker/source/ngComboDatePicker.js"></script>
+
 	<script type="text/javascript" src="/pdb/js/lib/moment.js"></script>
 
   <!-- Angular Material Library -->
@@ -78,6 +83,8 @@ if ( !isset($title) ) {
 
 	<script type="text/javascript" src="/pdb/css/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/pdb/js/lib/date.js"></script>
+
+
 
 	<script type="text/javascript">
 		// Resolve name collision between jQuery UI and Twitter Bootstrap

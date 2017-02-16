@@ -3,6 +3,9 @@ app.controller('TrainingsController', function($scope, $mdDialog, DedupeService,
 
 	$scope.data = TrainingsService
 
+	$scope.startDate = new Date();
+	$scope.finishDate = new Date();
+
 	$scope.removeTrainingItem = function(id) {
 		if (confirm("Are you sure you want to remove this training item?")) {
 			TrainingsService.delete(id)
@@ -53,4 +56,19 @@ function TrainingItemController($scope, $mdDialog, data, FormOptions) {
 	$scope.save = function(training) {
 		$mdDialog.hide(training);
 	};
+
+	// don't allow invalid date range
+	$scope.$watch('data.Training.start_date', function(){
+		if (!data.Training) return
+		if (data.Training.start_date > data.Training.finish_date) {
+			data.Training.finish_date = data.Training.start_date
+		}
+	})
+	$scope.$watch('data.Training.finish_date', function(){
+		if (!data.Training) return
+		if (data.Training.finish_date < data.Training.start_date) {
+			data.Training.start_date = data.Training.finish_date
+		}
+	})
 }
+
