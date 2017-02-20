@@ -16,35 +16,55 @@ $max_annual_budget_year = max($years);
 
 // header
 $headers = [
+
+
+	// Key fields
+	'Contract ID',
+
+	// Donor fields
+	'Donor Name',
+	'Sub-donor Name',
+
 	'Project ID',
-	'Project Name',
-	'Fund_code',
-	'Summary',
-	'Objectives',
-	'Goals',
-	'Beneficiaries',
-	'Location',
-	'Partners',
+	'Project Title',
+	'Fund Code',
+
+	// Project fields
 	'Solicited Proposal',
 	'Submission Date',
 	'Start Date',
 	'Finish Date',
-	'Finish Extended',
+	'Finish Extended?',
 	'Extension Reason',
 	'Value Required',
 	'Value Sourced',
-	'Created',
+	'Project Creation Date',
+	
+	// Framework
+	'Framework', 
 
-	// Belongs to fields
-	'Status',
-	'Likelihood',
+	// Contract Category
+	'Contract Category',
+	
+	// Contract fields (ex. ID)
+	'Currency Code',
+	'Origin Total Value',
+	'Summary',
+	'Commercial Tender?',
+	'Lead Contractor?',
+
+	// Project's Belongs to fields
+	'Project Status',
+	'Project Likelihood',
+
 	'Department',
 	'Secondary Department',
+	
 ];
 
 // Add budget years
 for ($y=$min_annual_budget_year; $y <= $max_annual_budget_year; $y++) { 
-	$headers[] = 'Budget (GBP)' . $y;
+	$headers[] = 'Budget (GBP) ' . $y;
 }
 
 
@@ -54,13 +74,19 @@ $rows = [];
 foreach ($contracts as $contract) {
 	$row = [
 
-		// Contract ID
+		// Key fields
 		$contract['Contract']['id'],
+
+		// Donor fields
+		$contract['Donor']['name'],
+		$contract['Contract']['subdonor_name'],
 
 		// Project fields
 		$contract['Project']['id'],
 		$contract['Project']['title'],
 		$contract['Project']['fund_code'],
+
+		// Project fields
 		$contract['Project']['solicited_proposal'],
 		$contract['Project']['submission_date'],
 		$contract['Project']['start_date'],
@@ -70,10 +96,6 @@ foreach ($contracts as $contract) {
 		$contract['Project']['value_required'],
 		$contract['Project']['value_sourced'],
 		$contract['Project']['created'],
-
-		// Donor fields
-		$contract['Donor']['name'],
-		$contract['Contract']['subdonor_name'],
 
 		// Framework
 		$contract['Framework']['name'],
