@@ -62,7 +62,8 @@ class ProjectsController extends AppController {
 
 
 		// build CSV download link
-		$csv_download_link = '/api/projects/search.csv?' . $_SERVER['QUERY_STRING'] . '&download=1';
+		$csv_download_link_contracts = '/api/contracts/search.csv?' . $_SERVER['QUERY_STRING'] . '&download=1';
+		$csv_download_link_projects = '/api/projects/search.csv?' . $_SERVER['QUERY_STRING'] . '&download=1';
 		
 
 
@@ -96,7 +97,8 @@ class ProjectsController extends AppController {
 			'frameworks',
 			'contractcategories',
 			'pathways',
-			'csv_download_link'
+			'csv_download_link_projects',
+			'csv_download_link_contracts'
 		));
 		
 	}

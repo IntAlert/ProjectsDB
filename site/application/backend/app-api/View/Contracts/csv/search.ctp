@@ -147,6 +147,6 @@ foreach ($contracts as $contract) {
 	
 }
 
-$this->CsvResponse->send($headers, $rows, 'projects', $this->request->query);
+$this->CsvResponse->send($headers, $rows, 'contracts', $this->request->query);
 
 
