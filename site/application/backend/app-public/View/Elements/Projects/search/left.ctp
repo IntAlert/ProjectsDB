@@ -220,19 +220,59 @@
 				
 
 				
-					<div>
-						<?php echo $this->Form->input('start_date', array(
-							'value' => $this->request->query('start_date'),
-							'label' => "Project Start Date",
-							'type' => 'text',
-						)); ?>
+
+					<div class="date-block clearfix">
+
+						<!-- Start Date Modifier -->
+						<div class="modifier">
+							<?php echo $this->Form->input('start_date_modifier', array(
+								'value' => $this->request->query('start_date_modifier'),
+								'label' => "Project Start Date",
+								'type' => 'select',
+								'options' => [
+									'before' => 'Starting before',
+									'after' => 'Starting after',
+								]
+							)); ?>
+						</div>
+
+						<!-- Start Date -->
+						<div class="date">
+							<?php echo $this->Form->input('start_date', array(
+								'value' => $this->request->query('start_date'),
+								'label' => false,
+								'type' => 'text',
+							)); ?>
+						</div>
+
 					</div>
-					<div>
-						<?php echo $this->Form->input('finish_date', array(
-							'value' => $this->request->query('finish_date'),
-							'label' => "Project Finish Date",
-							'type' => 'text',
-						)); ?>
+
+					
+
+
+					<div class="date-block clearfix">
+
+						<!-- Finish Date Modifier -->
+						<div class="modifier">
+							<?php echo $this->Form->input('finish_date_modifier', array(
+								'value' => $this->request->query('finish_date_modifier'),
+								'label' => "Project Finish Date",
+								'options' => [
+									'after' => 'Finishing after',
+									'before' => 'Finishing before',
+								]
+							)); ?>
+						</div>
+
+						<!-- Finish Date -->
+						<div class="date">
+							<?php echo $this->Form->input('finish_date', array(
+								'value' => $this->request->query('finish_date'),
+								'label' => false,
+								'type' => 'text',
+							)); ?>
+						</div>
+
 					</div>
 
 

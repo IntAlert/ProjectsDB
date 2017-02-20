@@ -67,11 +67,15 @@ if ($this->request->query('action')):
 	}
 
 	if($start_date = $this->request->query('start_date')) {
-		$criteria[] = 'Starting after: ' . $start_date;
+		$start_date_modifier = $this->request->query('start_date_modifier');
+
+		$criteria[] = 'Starting ' . $start_date_modifier . ': ' . $start_date;
 	}
 
 	if($finish_date = $this->request->query('finish_date')) {
-		$criteria[] = 'Finishing before: ' . $finish_date;
+		$finish_date_modifier = $this->request->query('finish_date_modifier');
+
+		$criteria[] = 'Finishing ' . $finish_date_modifier . ': ' . $finish_date;
 	}
 
 

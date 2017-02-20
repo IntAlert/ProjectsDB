@@ -98,20 +98,30 @@ class ProjectSearchComponent extends Component {
 
 		// start_date
 		if ($start_date = $this->controller->request->query('start_date')) {
+
+			$start_date_modifier = $this->controller->request->query('start_date_modifier');
 			
 			$start_date_mysql = DateTime::createFromFormat('d/m/Y', $start_date)->format('Y-m-d');
 
+			// determine operator
+			$operator = ($start_date_modifier == 'before') ? '<=' : '>=';
+
 			$conditions[] = array(
-				'Project.start_date >=' => $start_date_mysql,
+				('Project.start_date ' . $operator ) => $start_date_mysql,
 			);
 		}
 
 		if ($finish_date = $this->controller->request->query('finish_date')) {
 
+			$finish_date_modifier = $this->controller->request->query('finish_date_modifier');
+
 			$finish_date_mysql = DateTime::createFromFormat('d/m/Y', $finish_date)->format('Y-m-d');
 
+			// determine operator
+			$operator = ($finish_date_modifier == 'before') ? '<=' : '>=';
+
 			$conditions[] = array(
-				'Project.finish_date <=' => $finish_date_mysql,
+				('Project.finish_date ' . $operator) => $finish_date_mysql,
 			);
 
 		}
