@@ -1,5 +1,19 @@
 <?php
 
+// determine the maximum, minimum years of all annual budgets
+$years = [];
+foreach ($contracts as $contract) {
+	foreach ($contract['Contractbudget'] as $contractbudget) {
+		if ($contractbudget['year'])
+			$years[$contractbudget['year']] = $contractbudget['year'];
+	}
+}
+
+
+
+$min_annual_budget_year = min($years);
+$max_annual_budget_year = max($years);
+
 // header
 $headers = [
 	'Project ID',
@@ -27,6 +41,11 @@ $headers = [
 	'Department',
 	'Secondary Department',
 ];
+
+// Add budget years
+for ($y=$min_annual_budget_year; $y <= $max_annual_budget_year; $y++) { 
+	$headers[] = 'Budget (GBP)' . $y;
+}
 
 
 
@@ -77,7 +96,33 @@ foreach ($contracts as $contract) {
 		
 	];
 
+	// add a budget for every year
+	for ($y=$min_annual_budget_year; $y <= $max_annual_budget_year; $y++) { 
+		$matching_budgets = array_filter($contract['Contractbudget'], 
+			function($contractbudget) use($y) {
+				return ($y == $contractbudget['year']);
+			}
+		);
+
+		
+
+		if (count($matching_budgets)) {
+			$budget = array_values($matching_budgets)[0]['value_gbp'];
+		} else {
+			$budget = '';
+		}
+
+		$row[] = $budget;
+	}
+	
+
 	$rows[] = $row;
+
+	// if(count($rows) > 2) {
+	// 	// var_dump($rows);
+	// 	die();	
+	// }
+	
 }
 
 $this->CsvResponse->send($headers, $rows, 'projects', $this->request->query);

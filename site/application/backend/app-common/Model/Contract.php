@@ -47,19 +47,6 @@ class Contract extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Payment' => array(
-			'className' => 'Payment',
-			'foreignKey' => 'contract_id',
-			'dependent' => true,
-			'conditions' => array('Payment.deleted' => false),
-			'fields' => '',
-			'order' => array('Payment.date ASC'),
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'Contractbudget' => array(
 			'className' => 'Contractbudget',
 			'foreignKey' => 'contract_id',

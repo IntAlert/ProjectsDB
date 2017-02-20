@@ -2,13 +2,11 @@
 
 class ContractsController extends AppController {
 
-
 	public $components = array(
 		'ProjectSearch'
 	);
 
 	function search() {
-
 
 		// set limit
 		if ( $this->request->query('limit') ) {
@@ -42,7 +40,8 @@ class ContractsController extends AppController {
 				'Currency',
 				'Currency',
 				'Framework',
-				'Contractcategory'
+				'Contractcategory',
+				'Contractbudget'
 			),
 			'conditions' => array(
 				'project_id' => $project_ids
@@ -52,11 +51,7 @@ class ContractsController extends AppController {
 			)
 	    ));
 
-	    // debug($contracts);
-
-		$this->set(compact(
-			'contracts'
-		));
+		$this->set(compact('contracts'));
 	}
 
 }

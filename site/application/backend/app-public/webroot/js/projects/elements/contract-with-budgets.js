@@ -121,8 +121,6 @@ function updateLeadContractor(){
 
 	var contractDiv = $(this).parents('div.contract');
 
-	console.log(contractDiv)
-
 	var contractCategoryId = $(this).val();
 
 	var leadContractorInput = $(contractDiv)
