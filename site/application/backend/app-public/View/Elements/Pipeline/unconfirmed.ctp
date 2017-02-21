@@ -104,7 +104,7 @@ $projectChecker = new ProjectChecker($project);
 			<td>
 				<?php echo $this->Time->format(
 				  'M&\nb\s\p;y', // non breaking space
-				  $project['submission_date']
+				  $project['proposal_date']
 				); ?>
 			</td>
 
@@ -211,7 +211,7 @@ $projectChecker = new ProjectChecker($project);
 				<td>
 					<?php echo $this->Time->format(
 					  'M&\nb\s\p;y', // non breaking space
-					  $project['submission_date']
+					  $project['proposal_date']
 					); ?>
 				</td>
 

@@ -72,7 +72,7 @@
 			<td><?php echo $project['goals']; ?></td>
 			<td><?php echo $project['beneficiaries']; ?></td>
 			<td><?php echo $project['location']; ?></td>
-			<td><?php echo $project['submission_date']; ?></td>
+			<td><?php echo $project['proposal_date']; ?></td>
 			<td><?php echo $project['start_date']; ?></td>
 			<td><?php echo $project['finish_date']; ?></td>
 			<td><?php echo $project['value_required']; ?></td>

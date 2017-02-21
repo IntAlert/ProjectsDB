@@ -31,7 +31,7 @@ $headers = [
 
 	// Project fields
 	'Solicited Proposal',
-	'Submission Date',
+	'Proposal Due Date',
 	'Start Date',
 	'Finish Date',
 	'Finish Extended?',
@@ -88,7 +88,7 @@ foreach ($contracts as $contract) {
 
 		// Project fields
 		$contract['Project']['solicited_proposal'],
-		$contract['Project']['submission_date'],
+		$contract['Project']['proposal_date'],
 		$contract['Project']['start_date'],
 		$contract['Project']['finish_date'],
 		$contract['Project']['finish_extended'],

@@ -4,20 +4,8 @@ $(function(){
   // $( "#ProjectOwnerUserId" ).selectmenu();
 
 	// set up project dates
-	// SUBMISSION DATES
-    $( ".timespan .submission .datepicker-placeholder" ).datepicker({
-      defaultDate: $( "#ProjectSubmissionDate" ).val(),
-      yearRange: "-8:+10",
-      changeMonth: true,
-      changeYear: true,
-      numberOfMonths: 1,
-      dateFormat: 'yy-mm-dd',
-      onSelect: function(selectedDate) {
-        $( "#ProjectSubmissionDate" ).val(selectedDate);
-      }
-    });
-
-  // START
+	
+  // TIMESPAN: START
     $( ".timespan .start .datepicker-placeholder" ).datepicker({
       defaultDate: $( "#ProjectStartDate" ).val(),
       yearRange: "-8:+10",
@@ -58,6 +46,45 @@ $(function(){
       }
     });
 
+    // OTHER-DATES: SUBMISSION DATES
+    $( ".other-dates .proposal .datepicker-placeholder" ).datepicker({
+      defaultDate: $( "#ProjectProposalDate" ).val(),
+      yearRange: "-8:+10",
+      changeMonth: true,
+      changeYear: true,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(selectedDate) {
+        $( "#ProjectProposalDate" ).val(selectedDate);
+      }
+    });
+
+    // OTHER-DATES: EVALUATION DATES
+    $( ".other-dates .evaluation .datepicker-placeholder" ).datepicker({
+      defaultDate: $( "#ProjectEvaluationDate" ).val(),
+      yearRange: "-1:+10",
+      changeMonth: true,
+      changeYear: true,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(selectedDate) {
+        $( "#ProjectEvaluationDate" ).val(selectedDate);
+      }
+    });
+
+    // OTHER-DATES: SUBMISSION DATES
+    $( ".other-dates .reporting .datepicker-placeholder" ).datepicker({
+      defaultDate: $( "#ProjectReportingDate" ).val(),
+      yearRange: "-1:+10",
+      changeMonth: true,
+      changeYear: true,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onSelect: function(selectedDate) {
+        $( "#ProjectReportingDate" ).val(selectedDate);
+      }
+    });
+
     // ensure project finish date is restricted
     // $( ".timespan .start .datepicker-placeholder" ).datepicker( "option", "maxDate", $( ".timespan .finish .datepicker-placeholder" ).datepicker("getDate") );
     $( ".timespan .finish .datepicker-placeholder" )
@@ -67,7 +94,7 @@ $(function(){
     // handle project finish extension
     $("[name='data[Project][finish_extended]']").change(function(){
       
-      // ignore this change if this radion button not checked:
+      // ignore this change if this radio button not checked:
       if ( !$(this).is(':checked') ) return;
 
       // we're dealing with the selected option now
@@ -77,6 +104,41 @@ $(function(){
           $(".project-extension-block").show()
       }
     }).change()
+
+    // handle proposal required checkbox
+    $("#ProjectProposalRequired").change(function(){
+      
+      // we're dealing with the selected option now
+      if($(this).is(':checked')) {
+          $(".other-dates .proposal .details").show()
+      } else {
+          $(".other-dates .proposal .details").hide()
+      }
+    }).change()
+
+    // handle evaluation required checkbox
+    $("#ProjectEvaluationRequired").change(function(){
+      
+      // we're dealing with the selected option now
+      if($(this).is(':checked')) {
+          $(".other-dates .evaluation .details").show()
+      } else {
+          $(".other-dates .evaluation .details").hide()
+      }
+    }).change()
+
+    // handle reporting required checkbox
+    $("#ProjectReportingRequired").change(function(){
+      
+      // we're dealing with the selected option now
+      if($(this).is(':checked')) {
+          $(".other-dates .reporting .details").show()
+      } else {
+          $(".other-dates .reporting .details").hide()
+      }
+    }).change()
+
+
 
 
     // Summary: limit word count, autogrow

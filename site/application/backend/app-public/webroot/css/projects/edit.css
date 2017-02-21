@@ -6,13 +6,25 @@
 
 
 /*Project timespan*/
-.timespan .submission,
+
 .timespan .start,
-.timespan .finish {float:left; width:25%; clear:none; margin-right:3%;}
+.timespan .finish,
+.timespan .extension {float:left; width:25%; clear:none; margin-right:3%;}
 .timespan h4 {text-align: center; font-size:120%;}
+.timespan .extension h4 {
+  margin-bottom: 1em;
+}
 .timespan .ui-datepicker {margin:0 auto;}
 .ui-datepicker .ui-datepicker-title {padding:0;}
 .timespan-in-months {text-align: center; font-weight: bold;}
+
+/*Other dates*/
+.other-dates .proposal,
+.other-dates .reporting,
+.other-dates .evaluation {
+  float:left; width:25%; clear:none; margin-right:3%;
+}
+.other-dates h4 {text-align: center; font-size:120%;}
 
 .total-contracts-value strong {font-size: 1.2em;}
 .shortfall strong {font-size: 1.2em;}
