@@ -69,7 +69,7 @@ function createProjectdate() {
 	// append
 	projectdatesTableBody.append(newprojectdateTrClone);	
 
-	
+
 	createDatePicker(newprojectdateTrClone.find('.project-date'))
 	
 
@@ -84,7 +84,7 @@ function createDatePicker(selector) {
       changeMonth: true,
       changeYear: true,
       numberOfMonths: 1,
-      dateFormat: 'yy-mm-dd',
+      dateFormat: 'dd/mm/yy',
       onSelect: function(selectedDate) {
         // $( "#ProjectStartDate" ).val(selectedDate);
 
@@ -98,8 +98,6 @@ function createDatePicker(selector) {
         //   $( "#ProjectFinishDate" ).val(selectedDate);
 
         // }
-
-        // updateTimespanInMonths();
 
       }
     });

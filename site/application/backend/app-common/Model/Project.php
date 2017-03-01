@@ -238,6 +238,14 @@ class Project extends AppModel {
 				'project_id' => $data['Project']['id']
 			));	
 		}
+
+		// change date format
+		if(isset($data['Projectdate']) && is_array($data['Projectdate'])) {
+			foreach ($data['Projectdate'] as & $projectdate) {
+				$projectdate['date'] = (new DateTime($projectdate['date']))->format('Y-m-d');
+			}
+		}
+		
 		
 
 		return $this->saveAssociated($data, array('deep' => true));

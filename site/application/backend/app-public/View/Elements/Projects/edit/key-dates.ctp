@@ -42,6 +42,7 @@ $project = $this->request->data;
 
 							'id' => false,
 							'value' => $projectdate['title'],
+							'required' => true,
 							'type' => 'text',
 							'label' => false,
 							'class' => 'project-date-title',
@@ -53,7 +54,8 @@ $project = $this->request->data;
 					<?php echo $this->Form->input('Projectdate.'.$projectdate['id'].'.date', array(
 
 							'id' => false,
-							'value' => $projectdate['date'],
+							'required' => true,
+							'value' => (new DateTime($projectdate['date']))->format('d/m/Y'),
 							'type' => 'text',
 							'label' => false,
 							'class' => 'project-date',
@@ -76,6 +78,7 @@ $project = $this->request->data;
 
 							'id' => false,
 							'value' => '',
+							'required' => true,
 							'type' => 'text',
 							'label' => false,
 							'class' => 'project-date-title',
@@ -87,7 +90,8 @@ $project = $this->request->data;
 					<?php echo $this->Form->input('Projectdate.{projectdate_id}.date', array(
 
 							'id' => false,
-							'value' => date('Y-m-d'),
+							'required' => true,
+							'value' => date('d/m/Y'),
 							'type' => 'text',
 							'label' => false,
 							'class' => 'project-date',
