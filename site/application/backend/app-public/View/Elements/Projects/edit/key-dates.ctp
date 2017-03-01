@@ -18,23 +18,23 @@ $project = $this->request->data;
 <div class="component-key-dates">
 
 	<div class="no-dates-message">
-		No key dates yet. <a class="btn btn-projectdate-add" href="#">Add one</a>
+		No key dates yet. <a class="btn btn-projectdate-add" href="#">Add a key date</a>.
 	</div>
 
 	<table>
 		<thead>
 			<tr>
 				<th>
-					Date
-				</th>
-
-				<th>
 					Title
 				</th>
 
 				<th>
+					Date
+				</th>
+
+				<th>
 					<a class="btn btn-projectdate-add" href="#">
-						Add
+						Add date
 					</a>
 				</th>
 			</tr>
