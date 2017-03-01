@@ -1,7 +1,10 @@
+
 <?php echo $this->Html->script('projects/edit.main', array('inline' => false)); ?>
 <?php echo $this->Html->script('projects/edit.validation', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/edit', array('inline' => false)); ?>
-
+<!-- The order the scripts below is important, which is why not loaded from the CTP elements -->
+<?php echo $this->Html->script('projects/elements/timespan', array('inline' => false)); ?>
+<?php echo $this->Html->script('projects/elements/contract-with-budgets', array('inline' => false)); ?>
 
 
 <div class="projects form">
@@ -109,8 +112,10 @@
 
 
 <!-- PROJECT TIMESPAN -->
+<?php echo $this->element('Projects/edit/timespan'); ?>
 
-<?php echo $this->element('Projects/edit/dates'); ?>
+<!-- KEY DATES -->
+<?php echo $this->element('Projects/edit/key-dates'); ?>
 
 
 <!-- Pathways -->

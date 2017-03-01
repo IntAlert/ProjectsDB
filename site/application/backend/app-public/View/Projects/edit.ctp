@@ -1,8 +1,10 @@
 <?php $this->set('title', 'Projects - Edit - ' . $this->request->data('Project.title')); ?>
 <?php echo $this->Html->script('projects/edit.main', array('inline' => false)); ?>
-
 <?php echo $this->Html->script('projects/edit.validation', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/edit', array('inline' => false)); ?>
+<!-- The order the scripts below is important, which is why not loaded from the CTP elements -->
+<?php echo $this->Html->script('projects/elements/timespan', array('inline' => false)); ?>
+<?php echo $this->Html->script('projects/elements/contract-with-budgets', array('inline' => false)); ?>
 
 
 

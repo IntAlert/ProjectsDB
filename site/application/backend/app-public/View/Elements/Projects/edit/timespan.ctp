@@ -1,4 +1,3 @@
-<?php echo $this->Html->script('projects/elements/timespan', array('inline' => false)); ?>
 
 
 <?

@@ -28,7 +28,7 @@ $(function(){
 		createDatePicker(this)
 	})
 
-
+	updateNoDatesMessage();
 });
 
 
@@ -36,6 +36,8 @@ function deleteProjectdate(projectdateTr) {
 
 	// delete row
 	projectdateTr.remove();
+
+	updateNoDatesMessage();
 
 }
 
@@ -73,6 +75,8 @@ function createProjectdate() {
 	createDatePicker(newprojectdateTrClone.find('.project-date'))
 	
 
+	updateNoDatesMessage();
+
 	return newprojectdateTrClone
 
 }
@@ -86,19 +90,24 @@ function createDatePicker(selector) {
       numberOfMonths: 1,
       dateFormat: 'dd/mm/yy',
       onSelect: function(selectedDate) {
-        // $( "#ProjectStartDate" ).val(selectedDate);
-
-        // // ensure project finish date is valid
-        // $( ".timespan .finish .datepicker-placeholder" ).datepicker( "option", "minDate", selectedDate );
-
-        // if (Date.parse($( "#ProjectFinishDate" ).val()) < Date.parse(selectedDate)) {
-        //   // finish date invalid
-        //   // jquery UI datepicker updates its date but not the hidden field,
-        //   // so do it manually
-        //   $( "#ProjectFinishDate" ).val(selectedDate);
-
-        // }
 
       }
     });
+}
+
+function updateNoDatesMessage() {
+
+	var rows = $(".component-key-dates tbody tr:not(.template)");
+
+	var message = $('.component-key-dates .no-dates-message');
+	var table = $('.component-key-dates table');
+
+	if (rows.length) {
+		message.hide();
+		table.show();
+	} else {
+		message.show();
+		table.hide();
+	}
+	
 }

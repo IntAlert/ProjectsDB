@@ -1,5 +1,5 @@
 <?php 
-echo $this->Html->script('projects/elements/contract-with-budgets', array('inline' => false));
+
 echo $this->Html->css('projects/elements/contract-with-budgets', array('inline' => false));
 
 // for convenience

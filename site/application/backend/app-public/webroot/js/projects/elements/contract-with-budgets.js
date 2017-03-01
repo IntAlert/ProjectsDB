@@ -249,14 +249,9 @@ function createContractBudget(contractDiv, beforeAfter) {
 	// get new payment id
 	var new_contractbudget_id = $(".component-contracts").data("index-new-contractbudget-id");
 
-
-
 	// get component data
 	var earliestYear = $(contractDiv).data('contractbudget-earliest-year');
 	var latestYear = $(contractDiv).data('contractbudget-latest-year');
-
-	// console.log(earliestYear);
-	// console.log(latestYear);
 
 	// get new year, update contract data
 	if ( !earliestYear ) { // don't test for latest year as they'll both be null or both be not null

@@ -13,7 +13,14 @@ $project = $this->request->data;
 </h3>
 
 
+
+
 <div class="component-key-dates">
+
+	<div class="no-dates-message">
+		No key dates yet. <a class="btn btn-projectdate-add" href="#">Add one</a>
+	</div>
+
 	<table>
 		<thead>
 			<tr>
@@ -34,7 +41,7 @@ $project = $this->request->data;
 		</thead>
 
 		<tbody>
-
+<?php if(!empty($project['Projectdate'])): ?>
 <?php foreach($project['Projectdate'] as $projectdate): ?>
 			<tr>
 				<td>
@@ -71,6 +78,7 @@ $project = $this->request->data;
 			</tr>
 
 <?php endforeach; // ($project['Projectdate'] as $projectdate): ?>
+<?php endif; //(!empty($project['Projectdate'])): ?>
 
 			<tr class="template">
 				<td>
