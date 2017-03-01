@@ -32,6 +32,7 @@ $(function(){
 
 					// remove templates
 					$(".component-contracts .template").remove();
+					$(".component-key-dates .template").remove();
 
 					// re-enable
 					$(".ui-buttonset-disabled").buttonset('enable');

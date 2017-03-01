@@ -232,6 +232,14 @@ class Project extends AppModel {
 		$data['Project']['value_sourced'] = $value_sourced;
 
 
+		// delete any existing dates, if this is an update
+		if($data['Project']['id']) {
+			$this->Projectdate->deleteAll(array(
+				'project_id' => $data['Project']['id']
+			));	
+		}
+		
+
 		return $this->saveAssociated($data, array('deep' => true));
 	}
 

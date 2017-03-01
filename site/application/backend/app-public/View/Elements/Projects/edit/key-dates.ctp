@@ -1,11 +1,19 @@
-<?php echo $this->Html->script('projects/elements/key-dates', array('inline' => false)); ?>
+<?php 
+
+echo $this->Html->script('projects/elements/key-dates', array('inline' => false)); 
+
+// for convenience
+$project = $this->request->data;
+
+?>
+
 
 <h3>
 	Key Dates
 </h3>
 
 
-<div class="key-dates">
+<div class="component-key-dates">
 	<table>
 		<thead>
 			<tr>
@@ -17,21 +25,80 @@
 					Title
 				</th>
 
-				<td>
-					<!-- Controls -->
-				</td>
+				<th>
+					<a class="btn btn-projectdate-add" href="#">
+						Add
+					</a>
+				</th>
 			</tr>
 		</thead>
 
 		<tbody>
 
-			<tr >
+<?php foreach($project['Projectdate'] as $projectdate): ?>
+			<tr>
 				<td>
-					<input type="date" name="">
+					<?php echo $this->Form->input('Projectdate.'.$projectdate['id'].'.title', array(
+
+							'id' => false,
+							'value' => $projectdate['title'],
+							'type' => 'text',
+							'label' => false,
+							'class' => 'project-date-title',
+
+						)); ?>
 				</td>
 
 				<td>
-					<input type="text" name="">
+					<?php echo $this->Form->input('Projectdate.'.$projectdate['id'].'.date', array(
+
+							'id' => false,
+							'value' => $projectdate['date'],
+							'type' => 'text',
+							'label' => false,
+							'class' => 'project-date',
+
+						)); ?>
+				</td>
+
+				<td>
+					<a class="btn btn-projectdate-delete" href="#">
+						Delete
+					</a>
+				</td>
+			</tr>
+
+<?php endforeach; // ($project['Projectdate'] as $projectdate): ?>
+
+			<tr class="template">
+				<td>
+					<?php echo $this->Form->input('Projectdate.{projectdate_id}.title', array(
+
+							'id' => false,
+							'value' => '',
+							'type' => 'text',
+							'label' => false,
+							'class' => 'project-date-title',
+
+						)); ?>
+				</td>
+
+				<td>
+					<?php echo $this->Form->input('Projectdate.{projectdate_id}.date', array(
+
+							'id' => false,
+							'value' => date('Y-m-d'),
+							'type' => 'text',
+							'label' => false,
+							'class' => 'project-date',
+
+						)); ?>
+				</td>
+
+				<td>
+					<a class="btn btn-projectdate-delete" href="#">
+						Delete
+					</a>
 				</td>
 			</tr>
 		</tbody>
