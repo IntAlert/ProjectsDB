@@ -1,5 +1,6 @@
 <?php $this->set('title', 'Projects - Edit - ' . $this->request->data('Project.title')); ?>
 <?php echo $this->Html->script('projects/edit.main', array('inline' => false)); ?>
+
 <?php echo $this->Html->script('projects/edit.validation', array('inline' => false)); ?>
 <?php echo $this->Html->css('projects/edit', array('inline' => false)); ?>
 
@@ -117,8 +118,10 @@
 
 
 <!-- PROJECT TIMESPAN -->
+<?php echo $this->element('Projects/edit/timespan'); ?>
 
-<?php echo $this->element('Projects/edit/dates'); ?>
+<!-- KEY DATES -->
+<?php echo $this->element('Projects/edit/key-dates'); ?>
 
 
 

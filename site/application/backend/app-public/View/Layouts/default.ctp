@@ -76,9 +76,6 @@ if ( !isset($title) ) {
 	<link rel="stylesheet" href="/pdb/js/lib/multiple-select/multiple-select.css">
 	<script type="text/javascript" src="/pdb/js/lib/multiple-select/multiple-select.js"></script>
 
-	<!--
-	<script type="text/javascript" src="/pdb/js/plugins/bootstrap-wysiwyg.js"></script> -->
-
 	<script type="text/javascript" src="/pdb/js/main.js"></script>
 	
 

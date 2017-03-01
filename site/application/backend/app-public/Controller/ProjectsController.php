@@ -218,6 +218,7 @@ class ProjectsController extends AppController {
  *
  * @return void
  */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Project->create();

@@ -80,6 +80,13 @@ class Project extends AppModel {
 			'order' => array('created DESC'),
 		),
 
+		'Projectdate' => array(
+			'className' => 'Projectdate',
+			'foreignKey' => 'project_id',
+			'dependent' => true,
+			'order' => array('date ASC'),
+		),
+
 	);
 
 
