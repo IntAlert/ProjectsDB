@@ -163,6 +163,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 	// Show loading until form data available
 	NonInteractiveDialogService.show('Loading', 'Please wait while we load your form options...', null);
 	$scope.$watch('[countries.all, office365Users.all]', function() {
+
 		if ($scope.countries.all.length && $scope.office365Users.all.length) {
 			NonInteractiveDialogService.hide()
 		}

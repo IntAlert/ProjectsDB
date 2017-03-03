@@ -6,7 +6,8 @@ app.factory('CountriesService', function($http) {
   // All countries
   $http.get('/api/territories/allCountries')
   .then(function(response){
-    instance.all = response.data;
+    instance.all = response.data.data;
+    console.log(response.data)
 
   }, function(){
     console.log("countries download error")
