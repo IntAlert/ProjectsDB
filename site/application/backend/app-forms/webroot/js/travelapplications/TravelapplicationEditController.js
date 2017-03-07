@@ -156,8 +156,6 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 	if (parts[parts.length - 2] == 'edit') {
 		$scope.TravelApplicationID = parts[parts.length - 1]
 	}
-	console.log($scope.TravelApplicationID);
-
 
 
 	// Show loading until form data available
