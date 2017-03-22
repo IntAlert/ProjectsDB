@@ -279,7 +279,6 @@ class ProjectsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			if ($this->Project->saveComplete($this->request->data)) {
-				
 
 				$this->Session->setFlash(__('The project has been saved.'));
 

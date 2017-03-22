@@ -1,5 +1,9 @@
 $(function(){
 
+
+	// initialise
+	$(".component-key-dates").data("index-new-key-date-id", 0);
+
 // handle delete contract
 	$(".component-key-dates").delegate(".btn-projectdate-delete", 'click', function(){
 
@@ -44,6 +48,7 @@ function deleteProjectdate(projectdateTr) {
 function createProjectdate() {
 
 	// clone payment template
+
 	var newprojectdateTrClone = $('.component-key-dates tr.template').clone();
 	newprojectdateTrClone.removeClass('template');
 
@@ -56,14 +61,14 @@ function createProjectdate() {
 		
 		var inputName = $(this).attr('name');
 		var newName = inputName
-						.replace('{projectdate_id}', "new-projectdate-"+new_projectnewdate_id);
+						.replace('{projectdate_id}', "new-projectdate-" + new_projectnewdate_id);
 
 		$(this).attr('name', newName);
 
 	});
 
 	// increment payment id for new payments
-	$(".component-key-dates").data("index-new-projectdate-id", new_projectnewdate_id+1)
+	$(".component-key-dates").data("index-new-key-date-id", new_projectnewdate_id + 1);
 
 	// payments
 	var projectdatesTableBody = $('.component-key-dates table tbody');
