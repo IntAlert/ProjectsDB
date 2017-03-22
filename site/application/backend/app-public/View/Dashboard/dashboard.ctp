@@ -9,8 +9,6 @@
 		International Alert's <strong>project metadata and documents</strong>.
 	</p>
 
-
-
 <h2>
 	Find a project
 </h2>

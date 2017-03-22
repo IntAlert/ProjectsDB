@@ -242,7 +242,8 @@ class Project extends AppModel {
 		// change date format
 		if(isset($data['Projectdate']) && is_array($data['Projectdate'])) {
 			foreach ($data['Projectdate'] as & $projectdate) {
-				$projectdate['date'] = (new DateTime($projectdate['date']))->format('Y-m-d');
+				$dt = DateTime::createFromFormat('d/m/Y', $projectdate['date']);
+				$projectdate['date'] = $dt->format('Y-m-d');
 			}
 		}
 		
