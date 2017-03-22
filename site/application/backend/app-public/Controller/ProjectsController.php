@@ -173,6 +173,7 @@ class ProjectsController extends AppController {
 				'Programme',
 				'OwnerUser',
 				'Territory',
+				'Projectdate',
 			),
 			'conditions' => array('Project.' . $this->Project->primaryKey => $id),
 		);

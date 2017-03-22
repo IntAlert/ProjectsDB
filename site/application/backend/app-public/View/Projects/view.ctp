@@ -405,6 +405,7 @@ $contract_value_total_donor_currency += $contractbudget['value_donor_currency'];
 
 </div>
 
+<?php echo $this->element('Projects/view/key-dates'); ?>
 
 
 <?php 
@@ -436,7 +437,6 @@ $textBlocks = array(
 
 
 <?php echo $this->element('Projects/view/urls'); ?>
-
 
 <?php echo $this->element('Projects/view/docs'); ?>
 
