@@ -130,19 +130,6 @@ class UsersController extends AppController {
 
 
 
-    // public function add() {
-        
-    //     if ($this->request->is('post')) {
-            
-    //         // $objectId =
-
-
-
-    //     }
-
-    // }
-
-
     public function isAuthorized($user) {
 
         // login / logout allowed

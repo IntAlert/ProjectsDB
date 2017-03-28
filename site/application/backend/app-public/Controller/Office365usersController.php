@@ -94,9 +94,11 @@ class Office365usersController extends AppController {
         // $post_login_redirect = $this->Session->read('post_login_redirect');
         // die($post_login_redirect);
 
-        if ($post_login_redirect = $this->Session->read('post_login_redirect')) {
-            $this->Session->write('post_login_redirect', null);
-            return $this->redirect($post_login_redirect);
+        if ( $this->Session->read('post_login_redirect') ) {
+            
+            $post_login_redirect = $this->Session->read('post_login_redirect');
+            
+            $this->redirect($post_login_redirect);
         } else {
             return $this->redirect('/dashboard');
         }
