@@ -1,7 +1,3 @@
-<pre>
-	{{formData.applicant}}
-</pre>
-
 <h2>Applicant</h2>
 <table>
 	<tr>
