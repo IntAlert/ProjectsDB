@@ -46,7 +46,7 @@ if ( !isset($title) ) {
 	</title>
 
 
-	<script>var me =<?php echo json_encode(AuthComponent::user()); ?>;</script>
+	<script>var me =<?php echo json_encode($me); ?>;</script>
 
 
 

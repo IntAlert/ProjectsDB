@@ -61,12 +61,12 @@ class Travelapplication extends AppModel {
 
 
 
-	function saveWithItinerary($applicant_o365_object_id, $data, $travelapplication_id) {
+	function saveWithItinerary($applicant_o365_object_id, $user_id, $data, $travelapplication_id) {
 
 		// debug($data);
 		$travelapplication = array(
 			'mode' => $data["mode"],
-			'applicant_user_id' => $data["applicant"]["id"],
+			'applicant_user_id' => $user_id,
 			'applicant_o365_object_id' => $applicant_o365_object_id,
 			'manager_o365_object_id' => $data["applicant"]["approving_manager"]["objectId"],
 			'contact_home_o365_object_id' => isset($data["contact_home"]["user"]) ? $data["contact_home"]["user"]["objectId"]: null,

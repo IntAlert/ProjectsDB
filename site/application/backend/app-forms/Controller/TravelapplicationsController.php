@@ -179,11 +179,12 @@ class TravelapplicationsController extends AppController {
 
 			$travelapplication_id = $this->request->data('id');
 
-			// get the user_id, give the o365 id
-			$user_id = $this->User->getUserIdByO365Id($this->request->data('applicant.user.objectId'));
+			// get the PROMPT user, given the o365 user
+			$user = $this->User->getUserO365Object($this->request->data('applicant.user'));
 
 			// create application
-			$travelapplication_id = $this->Travelapplication->saveWithItinerary($user_o365_object_id, $this->request->data, $travelapplication_id);
+			$user_o365_object_id = $this->request->data('applicant.user.objectId');
+			$travelapplication_id = $this->Travelapplication->saveWithItinerary($user_o365_object_id, $user['User']['id'], $this->request->data, $travelapplication_id);
 
 
 			$recipientsEmailAddresses = [];

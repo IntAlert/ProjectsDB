@@ -11,7 +11,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 
 	// data for form fields
 	$scope.countries = CountriesService;
-	$scope.office365Users = Office365UsersService
+	$scope.office365Users = Office365UsersService;
 
 	// all form fields
 	$scope.formData = {
@@ -164,6 +164,16 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 
 		if ($scope.countries.all.length && $scope.office365Users.all.length) {
 			NonInteractiveDialogService.hide()
+
+			// also set default user as me
+			for (var i = 0; i < $scope.office365Users.all.length; i++) {
+				
+				if ($scope.office365Users.all[i].objectId == me.Office365user.o365_object_id) {
+					$scope.formData.application.user = $scope.office365Users.all[i]
+				}
+			}
+			
+
 		}
 	}, true);
 

@@ -28,14 +28,15 @@ class Office365user extends AppModel {
 
 	function getOrCreate($o365_user_response, $role_ids = null) {
 		
+		$o365_user_response = (object) $o365_user_response;
+
 		// extract useful data
 		$o365_object_id = $o365_user_response->objectId;
 		$name = $o365_user_response->displayName;
 		$email = $o365_user_response->userPrincipalName;
 		$displayName = $o365_user_response->displayName;
-		$givenName = $o365_user_response->givenName;
-		$surname = $o365_user_response->surname;
-		
+		$givenName = property_exists($o365_user_response, 'givenName') ? $o365_user_response->givenName : $o365_user_response->displayName;
+		$surname = property_exists($o365_user_response, 'surname') ? $o365_user_response->surname : $o365_user_response->displayName;
 
 		// look for user
 		$user = $this->findUserByObjectId($o365_object_id);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -42,7 +43,8 @@ class AppController extends Controller {
 	        ),
 	    	'authenticate' => array(
 	            'Form' => array(
-	                'passwordHasher' => 'Blowfish'
+	                'passwordHasher' => 'Blowfish',
+	                // 'contain' => array('Role', 'Office365user')
 	            )
 	        ),
 	        'authorize' => array('Controller'), // Added this line
@@ -85,6 +87,18 @@ class AppController extends Controller {
 
 		// make admin status available to general template
 		$this->set('is_admin', $this->userIs('admin'));
+
+		// Set me value
+		$me = $this->User->find('first', array(
+			'contain' => array(
+				'Role', 'Office365user'
+			),
+			'conditions' => array(
+				'User.id' => $this->Auth->user('id')
+			)
+		));
+
+		$this->set('me', $me);
 	}
 
 	public function isAuthorized($user) {
