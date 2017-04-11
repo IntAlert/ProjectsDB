@@ -20,7 +20,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 
 		// Applicant
 		"applicant": {
-			"id": "",
+			"user": false,
 			"name": "",
 			"role_category": "",
 			"role_category_other": "",
@@ -224,7 +224,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 				// clear local storage
 				$localStorage.$reset();
 				$timeout(function(){
-				   window.location.href = '/forms/travelapplications';
+				   // window.location.href = '/forms/travelapplications';
 				});
 
 				

@@ -3,15 +3,24 @@
 			'type' => 'hidden',
 			'ng-model' => 'formData.applicant.id',
 		));
-		echo $this->Form->input('name', array(
-			'type' => 'text',
-			'label' => 'Your name *',
-			'disabled' => true,
-			'ng-model' => 'formData.applicant.name'
-		));
+		// echo $this->Form->input('name', array(
+		// 	'type' => 'text',
+		// 	'label' => 'Your name *',
+		// 	'disabled' => true,
+		// 	'ng-model' => 'formData.applicant.name'
+		// ));
 
 
 		?>
+
+<div class="input select">
+	<label>Your name *</label>
+	<select 
+		required
+		ng-model="formData.applicant.user" 
+		ng-options="office365user.displayName for office365user in office365Users.all track by office365user.objectId">
+	</select>
+</div>
 
 <p>Category *</p>
 <md-radio-group ng-model="formData.applicant.role_category">

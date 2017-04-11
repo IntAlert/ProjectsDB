@@ -179,8 +179,8 @@ class TravelapplicationsController extends AppController {
 
 			$travelapplication_id = $this->request->data('id');
 
-			// get the user's o365 id
-			$user_o365_object_id = $this->User->getO365Id($this->Auth->user('id'));
+			// get the user_id, give the o365 id
+			$user_id = $this->User->getUserIdByO365Id($this->request->data('applicant.user.objectId'));
 
 			// create application
 			$travelapplication_id = $this->Travelapplication->saveWithItinerary($user_o365_object_id, $this->request->data, $travelapplication_id);
@@ -224,13 +224,13 @@ class TravelapplicationsController extends AppController {
 			));
 
 
-			$ICSContent = $this->CalendarInvite->buildTravelapplicationICS($travelapplication);
+			// $ICSContent = $this->CalendarInvite->buildTravelapplicationICS($travelapplication);
 
 			// send group mail
-			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $recipientsEmailAddresses);
+			// $this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $recipientsEmailAddresses);
 
 			// send invite mail to this user
-			$this->TravelapplicationNotifier->sendInvite($ICSContent, $me);
+			// $this->TravelapplicationNotifier->sendInvite($ICSContent, $me);
 
 
 			// return result

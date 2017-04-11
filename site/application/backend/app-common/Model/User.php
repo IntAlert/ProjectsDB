@@ -58,6 +58,15 @@ class User extends AppModel {
         return $user['Office365user']['o365_object_id'];
     }
 
+    public function getUserIdByO365Id($o365_object_id) {
+        $user = $this->Office365user->find('first', array(
+            'conditions' => array('o365_object_id' => $o365_object_id),
+            'contain' => false
+        ));
+
+        return $user['Office365user']['user_id'];
+    }
+
     public function findUsersByRoleName($role_name) {
 
         // get all user ids that are budget holders
