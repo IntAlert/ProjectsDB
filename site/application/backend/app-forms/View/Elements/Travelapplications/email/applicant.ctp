@@ -6,7 +6,7 @@
 		</th>
 		
 		<td>
-			<?php echo $travelapplicationObj->applicant->name;?>
+			<?php echo $travelapplicationObj->applicant->user->displayName;?>
 		</td>
 	</tr>
 

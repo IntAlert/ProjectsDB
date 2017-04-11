@@ -36,7 +36,7 @@ class TravelapplicationNotifierComponent extends Component {
 
         if(Configure::read('debug') > 0) {
             // skip sending
-            // $result = $Email->send();
+            $result = $Email->send();
         } else {
             $result = $Email->send();
         }

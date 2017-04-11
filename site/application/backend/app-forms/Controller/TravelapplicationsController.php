@@ -230,6 +230,7 @@ class TravelapplicationsController extends AppController {
 			// send group mail
 			$this->TravelapplicationNotifier->sendEmail($this->request->data, $travelapplication_id, $recipientsEmailAddresses);
 
+
 			// send invite mail to this user
 			// $this->TravelapplicationNotifier->sendInvite($ICSContent, $me);
 

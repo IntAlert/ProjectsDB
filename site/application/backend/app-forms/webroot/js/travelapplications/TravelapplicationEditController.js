@@ -232,10 +232,10 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 				console.log('save success')
 
 				// clear local storage
-				$localStorage.$reset();
-				$timeout(function(){
-				   window.location.href = '/forms/travelapplications';
-				});
+				// $localStorage.$reset();
+				// $timeout(function(){
+				//    window.location.href = '/forms/travelapplications';
+				// });
 
 				
 			}, function(){

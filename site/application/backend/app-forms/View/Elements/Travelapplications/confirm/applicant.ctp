@@ -1,3 +1,7 @@
+<pre>
+	{{formData.applicant}}
+</pre>
+
 <h2>Applicant</h2>
 <table>
 	<tr>
@@ -6,7 +10,7 @@
 		</th>
 		
 		<td>
-			{{formData.applicant.name}}
+			{{formData.applicant.user.displayName}}
 		</td>
 	</tr>
 

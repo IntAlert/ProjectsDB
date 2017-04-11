@@ -1,4 +1,4 @@
-<div ng-show=" formData.mode == 'no-office' ">
+<div class="other-contacts" ng-show=" formData.mode == 'no-office' ">
 
 	<h3>Other Useful Contacts</h3>
 
