@@ -45,6 +45,7 @@ function OtherActivityItemController($scope, $mdDialog, data, FormOptions) {
 
 	$scope.data = data;
 
+
 	// options for form fields
 	$scope.FormOptions = FormOptions;
 

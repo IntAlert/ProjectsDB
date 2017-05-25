@@ -7,6 +7,9 @@ app.factory('FormOptions', function($http) {
 	themes: [],
 	pathways: [],
 	departments: [],
+
+
+	defaultMaxDate: '2022-01-01'
   	
   };
 

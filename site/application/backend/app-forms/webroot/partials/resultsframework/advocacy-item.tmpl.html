@@ -32,7 +32,7 @@
 
 				<ng-combo-date-picker 
 					ng-timezone="0"
-					ng-min-date="2010-01-01"
+					ng-min-date="2010-01-01" ng-max-date="{{FormOptions.defaultMaxDate}}" 
 					ng-required="true"
 					ng-model="data.Advocacy.start_date"
 				></ng-combo-date-picker>
@@ -48,7 +48,7 @@
 
 				<ng-combo-date-picker 
 					ng-timezone="0"
-					ng-min-date="2010-01-01"
+					ng-min-date="2010-01-01" ng-max-date="{{FormOptions.defaultMaxDate}}" 
 					ng-required="true"
 					ng-model="data.Advocacy.finish_date"
 				></ng-combo-date-picker>

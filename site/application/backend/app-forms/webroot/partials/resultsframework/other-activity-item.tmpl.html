@@ -25,9 +25,10 @@
 					Start Date
 				</label>
 
+{{FormOptions.defaultMaxDate}}
 				<ng-combo-date-picker 
 					ng-timezone="0"
-					ng-min-date="2010-01-01"
+					ng-min-date="2010-01-01" ng-max-date="{{FormOptions.defaultMaxDate}}" 
 					ng-required="true"
 					ng-model="data.OtherActivity.start_date"
 				></ng-combo-date-picker>
@@ -43,7 +44,7 @@
 
 				<ng-combo-date-picker 
 					ng-timezone="0"
-					ng-min-date="2010-01-01"
+					ng-min-date="2010-01-01" ng-max-date="{{FormOptions.defaultMaxDate}}" 
 					ng-required="true"
 					ng-model="data.OtherActivity.finish_date"
 				></ng-combo-date-picker>
