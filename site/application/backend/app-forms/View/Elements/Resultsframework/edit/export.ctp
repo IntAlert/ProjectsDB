@@ -92,7 +92,7 @@
 			<div>
 				<md-button 
 					class="md-raised" 
-					ng-click="exportOtherActivitiesData()"
+					ng-click="exportOtherActivityData()"
 				>
 					Export Selected Other Activities Data
 				</md-button>
@@ -101,7 +101,7 @@
 			<div>
 				<md-button 
 					class="md-raised" 
-					ng-click="exportResultsData()"
+					ng-click="exportResultData()"
 				>
 					Export Selected Results Data
 				</md-button>

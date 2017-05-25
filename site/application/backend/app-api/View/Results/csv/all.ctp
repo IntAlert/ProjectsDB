@@ -36,12 +36,17 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $result) {
+
+	$budgetHolderName = $result['Project']['OwnerUser']['last_name'] . ', ' . $result['Project']['OwnerUser']['first_name'];
+
+
 	$row = [
 
 		$result['Result']['project_id'],
 		$result['Project']['title'],
 		$result['Result']['id'],
 		$result['Result']['title'],
+		$budgetHolderName,
 		$result['Result']['date'],
 
 		$result['Result']['reporter'],

@@ -6,6 +6,7 @@ $headers = [
 	'Project Name',
 	'Accompaniment ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 ];
@@ -30,12 +31,16 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $accompaniment) {
+
+	$budgetHolderName = $accompaniment['Project']['OwnerUser']['last_name'] . ', ' . $accompaniment['Project']['OwnerUser']['first_name'];
+
 	$row = [
 
 		$accompaniment['Accompaniment']['project_id'],
 		$accompaniment['Project']['title'],
 		$accompaniment['Accompaniment']['id'],
 		$accompaniment['Accompaniment']['title'],
+		$budgetHolderName,
 		$accompaniment['Accompaniment']['start_date'],
 		$accompaniment['Accompaniment']['finish_date'],
 	];

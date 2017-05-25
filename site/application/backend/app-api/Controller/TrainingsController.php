@@ -140,7 +140,13 @@ class TrainingsController extends AppController {
 			'order' => ['Training.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
-			'contain' => ['ParticipantType', 'Theme', 'Project.Territory', 'Project.Pathway']
+			'contain' => [
+				'ParticipantType', 
+				'Theme', 
+				'Project.Territory', 
+				'Project.Pathway', 
+				'Project.OwnerUser'
+			]
 		));
 
 

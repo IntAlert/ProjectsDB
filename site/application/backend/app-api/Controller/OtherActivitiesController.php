@@ -125,7 +125,8 @@ class OtherActivitiesController extends AppController {
 			'contain' => [
 				'ParticipantType',
 				'Project.Territory',
-				'Project.Pathway'
+				'Project.Pathway',
+				'Project.OwnerUser'
 			]
 		));
 

@@ -6,6 +6,7 @@ $headers = [
 	'Project Name',
 	'Training ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 	'Male Count',
@@ -38,12 +39,18 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $training) {
+
+
+	$budgetHolderName = $training['Project']['OwnerUser']['last_name'] . ', ' . $training['Project']['OwnerUser']['first_name'];
+
+
 	$row = [
 
 		$training['Training']['project_id'],
 		$training['Project']['title'],
 		$training['Training']['id'],
 		$training['Training']['title'],
+		$budgetHolderName,
 		$training['Training']['start_date'],
 		$training['Training']['finish_date'],
 		$training['Training']['male_count'],

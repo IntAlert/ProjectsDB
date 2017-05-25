@@ -7,6 +7,7 @@ $headers = [
 	'Project Name',
 	'Research ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 ];
@@ -29,12 +30,16 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $research) {
+
+	$budgetHolderName = $research['Project']['OwnerUser']['last_name'] . ', ' . $research['Project']['OwnerUser']['first_name'];
+
 	$row = [
 
 		$research['Research']['project_id'],
 		$research['Project']['title'],
 		$research['Research']['id'],
 		$research['Research']['title'],
+		$budgetHolderName,
 		$research['Research']['start_date'],
 		$research['Research']['finish_date'],
 	];

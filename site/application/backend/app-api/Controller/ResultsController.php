@@ -131,7 +131,8 @@ class ResultsController extends AppController {
 			'contain' => [
 				'Impact',
 				'Project.Territory',
-				'Project.Pathway'
+				'Project.Pathway', 
+				'Project.OwnerUser'
 			]
 		));
 

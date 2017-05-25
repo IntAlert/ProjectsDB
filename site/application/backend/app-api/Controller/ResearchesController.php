@@ -125,7 +125,8 @@ class ResearchesController extends AppController {
 			'contain' => [
 				'Theme',
 				'Project.Territory',
-				'Project.Pathway'
+				'Project.Pathway', 
+				'Project.OwnerUser'
 			]
 		));
 

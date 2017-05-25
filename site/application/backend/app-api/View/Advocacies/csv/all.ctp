@@ -7,6 +7,7 @@ $headers = [
 	'Project Name',
 	'Advocacy ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 	'Male Count',
@@ -37,12 +38,16 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $advocacy) {
+
+	$budgetHolderName = $advocacy['Project']['OwnerUser']['last_name'] . ', ' . $advocacy['Project']['OwnerUser']['first_name'];
+
 	$row = [
 
 		$advocacy['Advocacy']['project_id'],
 		$advocacy['Project']['title'],
 		$advocacy['Advocacy']['id'],
 		$advocacy['Advocacy']['title'],
+		$budgetHolderName,
 		$advocacy['Advocacy']['start_date'],
 		$advocacy['Advocacy']['finish_date'],
 		$advocacy['Advocacy']['male_count'],

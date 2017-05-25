@@ -127,7 +127,12 @@ class AccompanimentsController extends AppController {
 			'order' => ['Accompaniment.start_date' => 'DESC'],
 			'conditions' => $conditions,
 			'joins' => $joins,
-			'contain' => ['ParticipantType', 'Project.Territory', 'Project.Pathway']
+			'contain' => [
+				'ParticipantType',
+				'Project.Territory',
+				'Project.Pathway',
+				'Project.OwnerUser'
+			]
 		));
 
 

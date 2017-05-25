@@ -143,7 +143,8 @@ class AdvocaciesController extends AppController {
 				'Theme',
 				'ParticipantType',
 				'Project.Territory',
-				'Project.Pathway'
+				'Project.Pathway', 
+				'Project.OwnerUser'
 			]
 		));
 

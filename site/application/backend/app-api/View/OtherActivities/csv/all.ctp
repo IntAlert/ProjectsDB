@@ -6,6 +6,7 @@ $headers = [
 	'Project Name',
 	'Other Activity ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 	'Male Count',
@@ -31,11 +32,15 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $other_activity) {
+	
+	$budgetHolderName = $other_activity['Project']['OwnerUser']['last_name'] . ', ' . $other_activity['Project']['OwnerUser']['first_name'];
+
 	$row = [
 		$other_activity['OtherActivity']['project_id'],
 		$other_activity['Project']['title'],
 		$other_activity['OtherActivity']['id'],
 		$other_activity['OtherActivity']['title'],
+		$budgetHolderName,
 		$other_activity['OtherActivity']['start_date'],
 		$other_activity['OtherActivity']['finish_date'],
 		$other_activity['OtherActivity']['male_count'],

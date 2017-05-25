@@ -7,6 +7,7 @@ $headers = [
 	'Project Name',
 	'Dialogue Meeting ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 	'Male Count',
@@ -41,12 +42,18 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $meeting) {
+
+
+	$budgetHolderName = $meeting['Project']['OwnerUser']['last_name'] . ', ' . $meeting['Project']['OwnerUser']['first_name'];
+
+
 	$row = [
 
 		$meeting['Meeting']['project_id'],
 		$meeting['Project']['title'],
 		$meeting['Meeting']['id'],
 		$meeting['Meeting']['title'],
+		$budgetHolderName,
 		$meeting['Meeting']['start_date'],
 		$meeting['Meeting']['finish_date'],
 		$meeting['Meeting']['male_count'],

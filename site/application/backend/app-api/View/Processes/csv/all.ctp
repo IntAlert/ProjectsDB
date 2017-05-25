@@ -7,6 +7,7 @@ $headers = [
 	'Project Name',
 	'Dialogue Process ID',
 	'Title',
+	'Budget Holder',
 	'Start Date',
 	'Finish Date',
 	'Male Count',
@@ -37,17 +38,24 @@ foreach ($pathways as $pathway_id => $pathway_name) {
 $rows = [];
 
 foreach ($data as $process) {
+
+
+	$budgetHolderName = $process['Project']['OwnerUser']['last_name'] . ', ' . $process['Project']['OwnerUser']['first_name'];
+
+
+
 	$row = [
 
 		$process['Process']['project_id'],
 		$process['Project']['title'],
 		$process['Process']['id'],
 		$process['Process']['title'],
+		$budgetHolderName,
 		$process['Process']['start_date'],
 		$process['Process']['finish_date'],
 		$process['Process']['male_count'],
 		$process['Process']['female_count'],
-		$meeting['Process']['conflict_resolution'],
+		$process['Process']['conflict_resolution'],
 
 	];
 
