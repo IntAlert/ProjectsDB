@@ -218,9 +218,8 @@
 		</div>
 
 		<div layout="row"><h3>Kind of Impact</h3></div>
-		<div layout="row">
-	        <ul class="themes-selector">
-				<li ng-repeat="impact in FormOptions.impacts">
+		
+				<div layout="row" ng-repeat="impact in FormOptions.impacts">
 					
 					<md-checkbox 
 						checklist-model="data.Impact" 
@@ -230,8 +229,8 @@
 			            {{impact.Impact.name}}
 					</md-checkbox>
 
-				</li>
-			</ul>
+				</div>
+			
 		</div>
 
 
