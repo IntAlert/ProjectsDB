@@ -221,16 +221,14 @@
 		
 				<div layout="row" ng-repeat="impact in FormOptions.impacts">
 					
-					<md-checkbox 
-						checklist-model="data.Impact" 
-						checklist-value="impact.Impact"
-						checklist-comparator=".id"
-					>
-			            {{impact.Impact.name}}
-					</md-checkbox>
+				<md-checkbox 
+					checklist-model="data.Impact" 
+					checklist-value="impact.Impact"
+					checklist-comparator=".id"
+				>
+								{{impact.Impact.name}}
+				</md-checkbox>
 
-				</div>
-			
 		</div>
 
 
