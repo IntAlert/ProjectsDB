@@ -12,13 +12,13 @@ $(function(){
 			onfocusout: function (element) {
 		        $(element).valid();
 		    },
-		    onfocusin: function (element) {
-		        $(element).valid();
-		    },
+			onfocusin: function (element) {
+					$(element).valid();
+			},
 			ignore: ":hidden, .ui-datepicker-year, .ui-datepicker-month",
 			errorElement: 'span',
-	        errorElementClass: 'input-validation-error',
-	        errorClass: 'field-validation-error',
+			errorElementClass: 'input-validation-error',
+			errorClass: 'field-validation-error',
 			errorContainer: $("#warning, #summary"),
 			errorPlacement: function(error, element) {
 				error.appendTo($(element).parents(".input"));
@@ -26,7 +26,7 @@ $(function(){
 			submitHandler: function(form) {
 				
 				// handle parent form submission
-				if (finalChecks()) {
+				if ( finalChecks() ) {
 					// no inconsistencies, or
 					// user happy with any that exist
 
@@ -281,9 +281,21 @@ $(function(){
 
 		}
 
+		function checkAtLeastOneRegionSelected() {
+			var selectedRegions = $(".territory-checkbox input[data-territory-type='region']:checked")
+			var atLeastOneRegion = selectedRegions.length > 0
+
+			if ( !atLeastOneRegion ) {
+				alert("Please select at least one region under Territories, Countries or Sub-Programme.\n\neg. Global, Africa, Eurasia, etc...")
+			}
+			return atLeastOneRegion
+		}
+
 		function finalChecks() {
 
-			if (checkForInconsistencies() == false) {
+			if ( checkAtLeastOneRegionSelected() == false) {
+				return false
+			} else if (checkForInconsistencies() == false) {
 				return false
 			} else if ( checkContractsMinimumRequirements() == false) {
 				return false

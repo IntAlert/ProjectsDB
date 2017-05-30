@@ -233,7 +233,7 @@ class Project extends AppModel {
 
 
 		// delete any existing dates, if this is an update
-		if($data['Project']['id']) {
+		if( isset($data['Project']['id']) ) {
 			$this->Projectdate->deleteAll(array(
 				'project_id' => $data['Project']['id']
 			));	

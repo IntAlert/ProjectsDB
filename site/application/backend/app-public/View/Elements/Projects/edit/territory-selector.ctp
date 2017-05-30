@@ -15,7 +15,6 @@
 
 <div class="territory-selector">
 
-
 	<h3>
 		Programme
 	</h3>
@@ -68,6 +67,7 @@
 				echo $this->Form->input('Territory.Territory.', array(
 					'type' => 'checkbox',
 					'id' => 'TerritoryTerritory'.$territory['Territory']['id'],
+					'data-territory-type' => $territory['Territory']['type'],
 					'value' => $territory['Territory']['id'],
 					'label' => $territory['Territory']['name'],
 					'hiddenField' => false,
