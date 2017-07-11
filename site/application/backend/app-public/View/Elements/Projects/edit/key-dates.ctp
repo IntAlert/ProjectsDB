@@ -17,6 +17,13 @@ $project = $this->request->data;
 
 <div class="component-key-dates">
 
+	<div class="instruction-block">
+		<p>
+		Use the <strong>Key Dates</strong> section to record important dates such as reporting due dates or 
+		original end date of project date (when the project end date has been extended).
+		</p>
+	</div>
+
 	<div class="no-dates-message">
 		No key dates yet. <a class="btn btn-projectdate-add" href="#">Add a key date</a>.
 	</div>
