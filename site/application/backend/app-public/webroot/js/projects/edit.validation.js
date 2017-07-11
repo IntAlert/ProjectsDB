@@ -171,7 +171,9 @@ $(function(){
 			  number: true
 			});
 
-			
+			$contracts.find(".contract-overhead-percentage").rules("add", { 
+			  required:true
+			});
 
 		}
 

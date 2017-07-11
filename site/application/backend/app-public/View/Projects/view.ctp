@@ -357,6 +357,7 @@ $contract_value_total_donor_currency += $contractbudget['value_donor_currency'];
 			</tbody>
 
 			<tfoot>
+
 				<tr>
 					<td>
 						Total ALERT contract value
@@ -395,6 +396,24 @@ $contract_value_total_donor_currency += $contractbudget['value_donor_currency'];
 					</td>
 				</tr>
 			<?php endif;  // ($contract['Contract']['origin_total_value']): ?>
+
+
+<?php if ($contract['overhead_percentage']): ?>
+				<tr>
+					<td>
+						Contract Overhead Percentage
+					</td>
+
+					<td>
+
+					</td>
+					<td>
+						<?php echo $contract['overhead_percentage']; ?>
+					</td>
+				</tr>
+<?php endif; // ($contract['overhead_percentage']): ?>
+
+
 
 			</tfoot>
 		</table>

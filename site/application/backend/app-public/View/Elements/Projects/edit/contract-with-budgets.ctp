@@ -226,6 +226,22 @@ endif; //(count($project['Contract'])):
 						)); ?>
 					</td>
 					<td>
+						Maximum Overhead Percentage
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.overhead_percentage', array(
+
+								'id' => false,
+								'value' => $contract['overhead_percentage'],
+								'type' => 'text',
+								'label' => false,
+								'class' => 'contract-overhead-percentage',
+
+						)); ?>
+					</td>
+				</tr>
+				<tr>
+					<td><!-- Fill --></td>
+					<td><!-- Fill --></td>
+					<td>
 						Is this contract being procured through a commercial tender?
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.commercial_tender', array(
 
@@ -569,6 +585,21 @@ endif; //(count($project['Contract'])):
 
 						)); ?>
 					</td>
+					<td>
+						Maximum Overhead Percentage
+						<?php echo $this->Form->input('Contract.{contract_id}.overhead_percentage', array(
+
+								'id' => false,
+								'type' => 'text',
+								'label' => false,
+								'class' => 'contract-overhead-percentage',
+
+						)); ?>
+					</td>
+				</tr>
+				<tr>
+					<td><!-- free --></td>
+					<td><!-- free --></td>
 					<td>
 						Is this contract being procured through a commercial tender?
 						<?php echo $this->Form->input('Contract.{contract_id}.commercial_tender', array(
