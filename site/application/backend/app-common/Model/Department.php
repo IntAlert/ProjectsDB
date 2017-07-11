@@ -73,7 +73,8 @@ class Department extends AppModel {
 
 
 		return $this->find('list', array(
-			'conditions' => $conditions
+			'conditions' => $conditions,
+			'order' => array('sort_order' => 'ASC')
 		));
 	}
 
