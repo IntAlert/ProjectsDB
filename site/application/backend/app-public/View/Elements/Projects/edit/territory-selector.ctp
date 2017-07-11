@@ -16,7 +16,7 @@
 <div class="territory-selector">
 
 	<h3>
-		Programme
+		Departments
 	</h3>
 
 	<?php echo $this->Tooltip->inline_required(); ?>

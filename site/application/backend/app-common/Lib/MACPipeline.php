@@ -45,6 +45,11 @@ class MACPipeline {
 				throw new Exception("Project Status does not exist for Project ID#" . $contractBudget['Contract']['Project']['id']);
 				
 			}
+
+			if ( !isset($contractBudget['Contract']['Project']['Likelihood']['short_name'])) {
+				debug($contractBudget['Contract']['Project']);
+				die();
+			}
 			$contractLikelihood = $contractBudget['Contract']['Project']['Likelihood']['short_name'];
 
 			// relevant project?

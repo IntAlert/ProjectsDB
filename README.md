@@ -23,3 +23,9 @@ Tutorials
 
 Useful links
 - [Azure Admin](https://manage.windowsazure.com)
+
+
+# TODO
+- dept
+- separate region / country 
+- 
