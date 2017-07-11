@@ -43,8 +43,6 @@ endif; //(count($project['Contract'])):
 
 
 
-
-
 <div class="contracts">
 <?php if (isset($project['Contract'])): ?>
 <?php foreach ($project['Contract'] as $contract): 
@@ -280,6 +278,14 @@ endif; //(count($project['Contract'])):
 
 		<div class="contractbudgets">
 			<h3>Annual Budgets</h3>
+
+
+			<div class="instruction-block">
+				<p>
+					NB: When adding project proposals in <strong>high risk areas</strong>
+					(e.g. Mali, Afghanistan, Northern Nigeria, Somalia), add budget for additional security measures (Satellite Phones, Personal Security, Mobile Phone Data)
+				</p>
+			</div>
 
 			<table class="table">
 				<thead>
@@ -642,8 +648,13 @@ endif; //(count($project['Contract'])):
 				?>
 			</h3>
 
-			<small><a target="_blank" href="https://portal.international-alert.org/fis/mer/SitePages/Home.aspx">Alert's working exchange rates are published here</a></small>
-			
+			<div class="instruction-block">
+				<p>
+					NB: When adding project proposals in <strong>high risk areas</strong>
+					(e.g. Mali, Afghanistan, Northern Nigeria, Somalia), add budget for additional security measures (Satellite Phones, Personal Security, Mobile Phone Data)
+				</p>
+			</div>
+
 			<table>
 				<thead>
 					<tr>
@@ -736,7 +747,11 @@ endif; //(count($project['Contract'])):
 
 			</table>
 
-			<small><a target="_blank" href="https://portal.international-alert.org/fis/mer/SitePages/Home.aspx">Alert's working exchange rates are published here</a></small>
+			<small>
+				<a target="_blank" href="https://portal.international-alert.org/fis/mer/SitePages/Home.aspx">
+					Alert's working exchange rates are published here
+				</a>
+			</small>
 
 		</div> <!-- End payments -->
 
