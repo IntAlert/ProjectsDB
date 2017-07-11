@@ -304,6 +304,9 @@ $contract_value_total_donor_currency = 0;
 	<div class="contract">
 		<h4>
 			<?php echo $contract['Donor']['name']; ?>
+			<?php
+			if ($contract['reference']) echo "(ref: " . $contract['reference'] . ")";
+			?>
 		</h4>
 
 		<table>

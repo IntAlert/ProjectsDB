@@ -214,7 +214,16 @@ endif; //(count($project['Contract'])):
 
 					</td>
 					<td>
-						<!-- Fill -->
+						Donor/Contract Reference
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.reference', array(
+
+								'id' => false,
+								'value' => $contract['reference'],
+								'type' => 'text',
+								'label' => false,
+								'class' => 'contract-reference',
+
+						)); ?>
 					</td>
 					<td>
 						Is this contract being procured through a commercial tender?
@@ -550,7 +559,15 @@ endif; //(count($project['Contract'])):
 
 					</td>
 					<td>
-					<!-- Fill -->
+						Donor/Contract Reference
+						<?php echo $this->Form->input('Contract.{contract_id}.reference', array(
+
+								'id' => false,
+								'type' => 'text',
+								'label' => false,
+								'class' => 'contract-reference',
+
+						)); ?>
 					</td>
 					<td>
 						Is this contract being procured through a commercial tender?
