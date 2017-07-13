@@ -35,7 +35,6 @@ foreach ($data as $accompaniment) {
 	$budgetHolderName = $accompaniment['Project']['OwnerUser']['last_name'] . ', ' . $accompaniment['Project']['OwnerUser']['first_name'];
 
 	$row = [
-
 		$accompaniment['Accompaniment']['project_id'],
 		$accompaniment['Project']['title'],
 		$accompaniment['Accompaniment']['id'],

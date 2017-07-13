@@ -34,7 +34,6 @@ foreach ($data as $research) {
 	$budgetHolderName = $research['Project']['OwnerUser']['last_name'] . ', ' . $research['Project']['OwnerUser']['first_name'];
 
 	$row = [
-
 		$research['Research']['project_id'],
 		$research['Project']['title'],
 		$research['Research']['id'],

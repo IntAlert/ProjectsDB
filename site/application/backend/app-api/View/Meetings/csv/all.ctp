@@ -48,7 +48,6 @@ foreach ($data as $meeting) {
 
 
 	$row = [
-
 		$meeting['Meeting']['project_id'],
 		$meeting['Project']['title'],
 		$meeting['Meeting']['id'],

@@ -45,7 +45,6 @@ foreach ($data as $process) {
 
 
 	$row = [
-
 		$process['Process']['project_id'],
 		$process['Project']['title'],
 		$process['Process']['id'],
@@ -56,7 +55,6 @@ foreach ($data as $process) {
 		$process['Process']['male_count'],
 		$process['Process']['female_count'],
 		$process['Process']['conflict_resolution'],
-
 	];
 
 	// Add associated data, column by column

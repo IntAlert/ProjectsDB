@@ -45,7 +45,6 @@ foreach ($data as $training) {
 
 
 	$row = [
-
 		$training['Training']['project_id'],
 		$training['Project']['title'],
 		$training['Training']['id'],
