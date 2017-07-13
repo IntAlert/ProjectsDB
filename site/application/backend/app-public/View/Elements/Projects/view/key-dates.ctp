@@ -14,10 +14,20 @@ $all_dates = [
 	],
 ];
 
+// add key dates
 foreach ($project['Projectdate'] as $projectdate) {
 	$all_dates[] = [
 		'title' => $projectdate['title'],
 		'date' => $projectdate['date'],
+	];
+}
+
+// add contract audit dates
+foreach ($project['Contract'] as $contract) {
+	if ($contract['audit_required'] && $contract['audit_date'])
+	$all_dates[] = [
+		'title' => "Contract Audit Date",
+		'date' => $contract['audit_date'],
 	];
 }
 

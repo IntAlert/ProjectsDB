@@ -207,11 +207,9 @@ class Project extends AppModel {
 			endforeach; // ($data['Contract'] as $contract):
 		
 
-
 			// delete all existing contractbudgets before a save,
 			// this is a bit dangerous, assumes save will work, should be transaction
 			// also modify any dates
-			debug($data['Contract']);
 
 			foreach ($data['Contract'] as & $contract) {
 
@@ -232,13 +230,11 @@ class Project extends AppModel {
 				// modify date to MYSQL
 				if ($contract['audit_date']) {
 					
-					// debug($contract['audit_date']);
-
 					$dt = DateTime::createFromFormat('d/m/Y', $contract['audit_date']);
-					// debug($dt);
+					
 					
 					if ($dt) $contract['audit_date'] = $dt->format('Y-m-d');
-					// debug($contract['audit_date']);
+					
 				}
 
 				
