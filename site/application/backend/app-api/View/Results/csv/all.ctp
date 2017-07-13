@@ -7,7 +7,10 @@ $headers = [
 	'Project Name',
 	'Result ID',
 	'Title',
+
+	'Budget Holder',
 	'Date',
+	
 	'Who are you?',
 	'Who did something differently?',
 	'What - tell us what they did differently',
@@ -46,6 +49,7 @@ foreach ($data as $result) {
 		$result['Project']['title'],
 		$result['Result']['id'],
 		$result['Result']['title'],
+
 		$budgetHolderName,
 		$result['Result']['date'],
 
