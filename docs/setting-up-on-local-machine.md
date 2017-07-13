@@ -29,7 +29,7 @@ Database Configuration
 Create the following configuration file:
 
 ```
-nano ProjectsDB/site/application/backend/app-common/Config/database-common.php
+nano /srv/site/application/backend/app-common/Config/database-common.php
 ```
 
 Example content:

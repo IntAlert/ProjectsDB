@@ -13,12 +13,12 @@
 	Find a project
 </h2>
 	
-<?php foreach ($departmentsWithProjects as $department): ?>
+<?php foreach ($departments as $department_id => $department_name): ?>
 
 	<h3>
 	
-		<a href="/pdb/projects?action=search&amp;department_id=<?php echo $department['Department']['id']; ?>">
-			<?php echo $department['Department']['name']; ?>
+		<a href="/pdb/projects?action=search&amp;department_id=<?php echo $department_id; ?>">
+			<?php echo $department_name; ?>
 		</a>
 		
 	</h3>
