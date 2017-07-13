@@ -224,7 +224,8 @@ endif; //(count($project['Contract'])):
 						)); ?>
 					</td>
 					<td>
-						Maximum Overhead Percentage
+						Overhead Contribution, as a %
+						<?php echo $this->Tooltip->element('Help text to be added'); ?>
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.overhead_percentage', array(
 
 								'id' => false,
@@ -238,7 +239,31 @@ endif; //(count($project['Contract'])):
 				</tr>
 				<tr>
 					<td><!-- Fill --></td>
-					<td><!-- Fill --></td>
+					<td>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.audit_required', array(
+
+								'id' => false,
+								'value' => 1,
+								'checked' => $contract['audit_required'],
+								'type' => 'checkbox',
+								'label' => 'Audit Required?',
+								'class' => 'contract-audit-required',
+
+						)); ?>
+
+						<?php echo $this->Form->input('Contract.'.$contract['id'].'.audit_date', array(
+
+							'id' => false,
+							'div' => 'contract-audit-date-container',
+							'value' => (new DateTime($contract['audit_date']))->format('d/m/Y'),
+							'type' => 'text',
+							'label' => "Audit date",
+							'class' => 'contract-audit-date',
+
+						)); ?>
+					
+					</td>
 					<td>
 						Is this contract being procured through a commercial tender?
 						<?php echo $this->Form->input('Contract.'.$contract['id'].'.commercial_tender', array(
@@ -592,7 +617,9 @@ endif; //(count($project['Contract'])):
 						)); ?>
 					</td>
 					<td>
-						Maximum Overhead Percentage
+						Overhead Contribution, as a %
+						<?php echo $this->Tooltip->element('Help text to be added'); ?>
+
 						<?php echo $this->Form->input('Contract.{contract_id}.overhead_percentage', array(
 
 								'id' => false,
@@ -605,7 +632,29 @@ endif; //(count($project['Contract'])):
 				</tr>
 				<tr>
 					<td><!-- free --></td>
-					<td><!-- free --></td>
+					<td>
+						<?php echo $this->Form->input('Contract.{contract_id}.audit_required', array(
+
+								'id' => false,
+								'value' => 1,
+								'type' => 'checkbox',
+								'label' => 'Audit Required?',
+								'class' => 'contract-audit-required',
+
+						)); ?>
+
+						<?php echo $this->Form->input('Contract.{contract_id}.audit_date', array(
+
+							'id' => false,
+							'div' => 'contract-audit-date-container',
+							'value' => (new DateTime())->format('d/m/Y'),
+							'type' => 'text',
+							'label' => "Audit date",
+							'class' => 'contract-audit-date',
+
+						)); ?>
+
+					</td>
 					<td>
 						Is this contract being procured through a commercial tender?
 						<?php echo $this->Form->input('Contract.{contract_id}.commercial_tender', array(

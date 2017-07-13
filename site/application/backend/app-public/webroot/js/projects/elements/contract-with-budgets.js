@@ -64,6 +64,9 @@ $(function(){
 	// handle sub-contract selected
 	$(".component-contracts").delegate(".contract-category", 'change', updateLeadContractor);
 
+	// handle audit required change
+	$(".component-contracts").delegate(".contract-audit-required", 'change', updateAuditDate);
+
 	// handle delete payment
 	$(".component-contracts").delegate(".btn-contract-delete", 'click', function(){
 
@@ -113,6 +116,17 @@ $(function(){
     // important to call so that binding available
     $(".contracts .contract .contract-category").each(updateLeadContractor)
 
+		// handle audit required change
+		$(".contracts .contract .contract-audit-required").each(updateAuditDate)
+
+
+		// hide lead contractor fields as appropraites
+		$(".component-contracts .contract-category").each(updateLeadContractor)
+
+		// hide audit date fields as appropraites
+		$(".component-contracts .contract-audit-required").each(updateAuditDate)
+
+		createContractDatePicker($(".contracts .contract .contract-audit-date"))
 
 });
 
@@ -134,6 +148,16 @@ function updateLeadContractor(){
 		leadContractorInput.hide();
 	}
 
+}
+
+function updateAuditDate() {
+
+	var contractDiv = $(this).parents('div.contract');
+	var auditRequired = $(this).is(':checked')
+	var auditDateInputContainer = $(contractDiv).find('.contract-audit-date-container')
+
+	if (auditRequired) auditDateInputContainer.show();
+	else auditDateInputContainer.hide();
 
 }
 
@@ -177,6 +201,9 @@ function createContract() {
 
 	// trigger event so that valdidation can be set up for new fields
 	$(".component-contracts").trigger('fields-added');
+
+	// create contract date
+	createContractDatePicker(contractDivClone.find('.contract-audit-date'))
 
 }
 
@@ -404,4 +431,15 @@ function showDonorWarningIfAny() {
 }
 
 
+
+function createContractDatePicker(selector) {
+	$( selector ).datepicker({
+      // defaultDate: $( "#ProjectStartDate" ).val(),
+      yearRange: "-2:+10",
+      changeMonth: true,
+      changeYear: true,
+      numberOfMonths: 1,
+      dateFormat: 'dd/mm/yy'
+    });
+}
 

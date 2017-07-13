@@ -210,6 +210,9 @@ class Project extends AppModel {
 
 			// delete all existing contractbudgets before a save,
 			// this is a bit dangerous, assumes save will work, should be transaction
+			// also modify any dates
+			debug($data['Contract']);
+
 			foreach ($data['Contract'] as & $contract) {
 
 				if (isset($contract['id'])) {
@@ -225,8 +228,25 @@ class Project extends AppModel {
 					}
 
 				}
+
+				// modify date to MYSQL
+				if ($contract['audit_date']) {
+					
+					// debug($contract['audit_date']);
+
+					$dt = DateTime::createFromFormat('d/m/Y', $contract['audit_date']);
+					// debug($dt);
+					
+					if ($dt) $contract['audit_date'] = $dt->format('Y-m-d');
+					// debug($contract['audit_date']);
+				}
+
 				
 			}
+
+
+				// debug($data['Contract']);
+				// die();
 
 		endif; // (isset($data['Contract'])):
 		$data['Project']['value_sourced'] = $value_sourced;
@@ -246,7 +266,6 @@ class Project extends AppModel {
 				$projectdate['date'] = $dt->format('Y-m-d');
 			}
 		}
-		
 		
 
 		return $this->saveAssociated($data, array('deep' => true));

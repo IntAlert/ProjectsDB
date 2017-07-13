@@ -29,7 +29,7 @@ $(function(){
 	});
 
 	$(".component-key-dates tr:not(.template) .project-date").each(function(){
-		createDatePicker(this)
+		createKeyDatePicker(this)
 	})
 
 	updateNoDatesMessage();
@@ -77,7 +77,7 @@ function createProjectdate() {
 	projectdatesTableBody.append(newprojectdateTrClone);	
 
 
-	createDatePicker(newprojectdateTrClone.find('.project-date'))
+	createKeyDatePicker(newprojectdateTrClone.find('.project-date'))
 	
 
 	updateNoDatesMessage();
@@ -86,7 +86,7 @@ function createProjectdate() {
 
 }
 
-function createDatePicker(selector) {
+function createKeyDatePicker(selector) {
 	$( selector ).datepicker({
       // defaultDate: $( "#ProjectStartDate" ).val(),
       yearRange: "-2:+10",
