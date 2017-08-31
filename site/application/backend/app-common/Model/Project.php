@@ -168,25 +168,44 @@ class Project extends AppModel {
 
 
 	}
+	
+	function getProjectsByDepartmentAndYear($department_id, $year_or_years) {
+		
+		// year_or_years may be an int or an array of ints
+		$contain = array(
+			'Contract.Contractbudget',
+			'Contract.Donor',
+			'Territory',
+			'Likelihood',
+			'Status',
+		);
 
-	function getProjectsByDepartmentAndYear($department_id, $year) {
-		return $this->find('all', array(
-			'contain' => array(
-				'Contract.Contractbudget',
-				'Contract.Donor',
-				'Territory',
-				'Likelihood',
-				'Status',
-			),
-			'conditions' => array(
-				'Project.deleted' => false,
-				'Project.department_id' => $department_id,
-				'Status.short_name <>' => array('concept', 'cancelled', 'rejected', 'completed'),
+		$conditions = array(
+			'Project.deleted' => false,
+			'Project.department_id' => $department_id,
+			'Status.short_name <>' => array('concept', 'cancelled', 'rejected', 'completed'),
+		);
+
+		
+		// normalise year input
+		if (!is_array($year_or_years) ) $years = array($year_or_years); 
+		else $years = $year_or_years;
+		
+		// add year(s) to conditions
+		$conditions['OR'] = array();
+		foreach($years as $year) {
+			$conditions['OR'][] = array(
 				'AND' => array(
 					'YEAR(Project.start_date) <=' => $year,
 					'YEAR(Project.finish_date) >=' => $year,
 				)
-			),
+			);
+
+		}
+
+		return $this->find('all', array(
+			'contain' => $contain,
+			'conditions' => $conditions,
 			'order' => array(
 				'Project.title' => 'ASC'
 			),

@@ -499,39 +499,39 @@ class PipelineExportController extends AppController {
 
 
 		// add the row of data
-	    $sheet->fromArray($confirmedProjectValues, NULL, 'A5');
-	    $sheet->fromArray($unconfirmedProjectValues, NULL, 'A' . $unconfirmedStartingRow);
+		$sheet->fromArray($confirmedProjectValues, NULL, 'A5');
+		$sheet->fromArray($unconfirmedProjectValues, NULL, 'A' . $unconfirmedStartingRow);
 
-	    // add totals for confirmed
-	    $confirmedTotalRow = $confirmedStartingRow + count($confirmedProjectValues);
+		// add totals for confirmed
+		$confirmedTotalRow = $confirmedStartingRow + count($confirmedProjectValues);
 
-	    $sheet->setCellValue('I' . $confirmedTotalRow,  $pipeline->getTotalBudgetThisYear(array('confirmed')));
-    	$sheet->setCellValue('J' . $confirmedTotalRow,  $pipeline->getTotalBudgetNextYear(array('confirmed')));
+		$sheet->setCellValue('I' . $confirmedTotalRow,  $pipeline->getTotalBudgetThisYear(array('confirmed')));
+		$sheet->setCellValue('J' . $confirmedTotalRow,  $pipeline->getTotalBudgetNextYear(array('confirmed')));
 
-    	$sheet->setCellValue('I' . ($confirmedTotalRow + 1),  $pipeline->getPercentageBudgetThisYear(array('confirmed')) / 100); // turn into ratio
-    	$sheet->setCellValue('J' . ($confirmedTotalRow + 1),  $pipeline->getPercentageBudgetNextYear(array('confirmed')) / 100); // turn into ratio
+		$sheet->setCellValue('I' . ($confirmedTotalRow + 1),  $pipeline->getPercentageBudgetThisYear(array('confirmed')) / 100); // turn into ratio
+		$sheet->setCellValue('J' . ($confirmedTotalRow + 1),  $pipeline->getPercentageBudgetNextYear(array('confirmed')) / 100); // turn into ratio
 
-    	// add totals for unconfirmed/highly-likely
-	    $unconfirmedTotalRow = $unconfirmedStartingRow + count($unconfirmedProjectValues);
+		// add totals for unconfirmed/highly-likely
+		$unconfirmedTotalRow = $unconfirmedStartingRow + count($unconfirmedProjectValues);
 
-	    // unconfirmed
-	    $sheet->setCellValue('I' . $unconfirmedTotalRow,  $pipeline->getTotalBudgetThisYear(array('highly-likely', 'medium', 'low')));
-	    $sheet->setCellValue('J' . $unconfirmedTotalRow,  $pipeline->getTotalBudgetNextYear(array('highly-likely', 'medium', 'low')));
+		// unconfirmed
+		$sheet->setCellValue('I' . $unconfirmedTotalRow,  $pipeline->getTotalBudgetThisYear(array('highly-likely', 'medium', 'low')));
+		$sheet->setCellValue('J' . $unconfirmedTotalRow,  $pipeline->getTotalBudgetNextYear(array('highly-likely', 'medium', 'low')));
 
-	    // higly likely
-	    $sheet->setCellValue('I' . ($unconfirmedTotalRow + 1),  $pipeline->getTotalBudgetThisYear(array('highly-likely')));
-	    $sheet->setCellValue('J' . ($unconfirmedTotalRow + 1),  $pipeline->getTotalBudgetNextYear(array('highly-likely')));
-	    
-	    // highly likely + confirmed
-	    $sheet->setCellValue('I' . ($unconfirmedTotalRow + 2),  $pipeline->getTotalBudgetThisYear(array('highly-likely', 'confirmed')));
-	    $sheet->setCellValue('J' . ($unconfirmedTotalRow + 2),  $pipeline->getTotalBudgetNextYear(array('highly-likely', 'confirmed')));
+		// higly likely
+		$sheet->setCellValue('I' . ($unconfirmedTotalRow + 1),  $pipeline->getTotalBudgetThisYear(array('highly-likely')));
+		$sheet->setCellValue('J' . ($unconfirmedTotalRow + 1),  $pipeline->getTotalBudgetNextYear(array('highly-likely')));
+		
+		// highly likely + confirmed
+		$sheet->setCellValue('I' . ($unconfirmedTotalRow + 2),  $pipeline->getTotalBudgetThisYear(array('highly-likely', 'confirmed')));
+		$sheet->setCellValue('J' . ($unconfirmedTotalRow + 2),  $pipeline->getTotalBudgetNextYear(array('highly-likely', 'confirmed')));
 
-	    // highly likely + confirmed precentage
-	    $sheet->setCellValue('I' . ($unconfirmedTotalRow + 3),  $pipeline->getPercentageBudgetThisYear(array('highly-likely', 'confirmed')) / 100); // turn into ratio
-	    $sheet->setCellValue('J' . ($unconfirmedTotalRow + 3),  $pipeline->getPercentageBudgetNextYear(array('highly-likely', 'confirmed')) / 100); // turn into ratio
+		// highly likely + confirmed precentage
+		$sheet->setCellValue('I' . ($unconfirmedTotalRow + 3),  $pipeline->getPercentageBudgetThisYear(array('highly-likely', 'confirmed')) / 100); // turn into ratio
+		$sheet->setCellValue('J' . ($unconfirmedTotalRow + 3),  $pipeline->getPercentageBudgetNextYear(array('highly-likely', 'confirmed')) / 100); // turn into ratio
 	}
 
-    private function createExcelTemplate() {
+	private function createExcelTemplate() {
 		$this->excelTemplate = PHPExcel_IOFactory::load(APP . "View/Layouts/mac-template.xlsx");
 	}
 

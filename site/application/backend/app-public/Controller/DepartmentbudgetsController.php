@@ -44,12 +44,9 @@ class DepartmentbudgetsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The Department Budget could not be saved. Please, try again.'));
 			}
-		} else {
-			// $options = array('conditions' => array('Departmentbudget.' . $this->Departmentbudget->primaryKey => $id));
-			// $this->request->data = $this->Departmentbudget->find('first', $options);
-		}
+		} 
 
-		$departments = $this->Departmentbudget->Department->findListByYear($year);
+		$departments = $this->Departmentbudget->Department->findOrderedList($year);
 		$this->set(compact('year', 'departments', 'departmentBudgetsThisYear', 'departmentUnrestrictedAllocationsThisYear'));
 	}
 
