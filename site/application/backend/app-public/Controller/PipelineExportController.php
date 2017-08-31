@@ -59,7 +59,7 @@ class PipelineExportController extends AppController {
 
 			$departmentDetailAnnual = array(
 				'department' => $this->Department->findSimpleById($department_id),
-				'projects' => $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $this->selectedYear),
+				'projects' => $this->Department->Project->getProjectsByDepartmentAndYear($department_id, array($this->selectedYear, $this->nextYear)),
 				'departmentBudgetThisYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->selectedYear),
 				'departmentBudgetNextYear' => $this->Department->Departmentbudget->getDepartmentBudget($department_id, $this->nextYear),
 				'departmentUnrestrictedAllocationThisYear' => $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $this->selectedYear),

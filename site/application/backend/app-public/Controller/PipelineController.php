@@ -70,13 +70,13 @@ class PipelineController extends AppController {
 		// get selected year
 		$selectedYear = $this->request->query('selectedYear');
 		if (is_null($selectedYear)) $selectedYear = $thisYear;
+		$nextYear = $selectedYear + 1;
 
 		// determine first payment year
 		$firstYear = $this->Department->Project->getFirstProjectYear();
 
 		// get departments
 		$departmentsList = $this->Department->findListByYear($selectedYear);
-
 
 		// get department
 		$department = $this->Department->findSimpleById($department_id);
@@ -94,7 +94,7 @@ class PipelineController extends AppController {
 		$departmentUnrestrictedAllocationNextYear = $this->Department->Departmentbudget->getDepartmentUnrestrictedAllocation($department_id, $selectedYear + 1);
 
 		// get projects for this department and year
-		$projects = $this->Department->Project->getProjectsByDepartmentAndYear($department_id, $selectedYear);
+		$projects = $this->Department->Project->getProjectsByDepartmentAndYear($department_id, array($selectedYear, $nextYear));
 
 		$this->set(compact(
 			'departmentsList',
