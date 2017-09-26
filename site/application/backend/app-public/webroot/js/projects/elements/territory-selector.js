@@ -21,7 +21,7 @@ $(function(){
 		// if department name is EP, PIP, PAU:
 		var departmentName = label.text().toUpperCase();
 
-		if (departmentName == 'EMERGING PROGRAMMES' || departmentName == 'PIP' ||  departmentName == 'PAU' ||  departmentName == 'THE HAGUE') {
+		if (departmentName == 'EMERGING PROGRAMMES' || departmentName == 'PIP' ||  departmentName == 'PAU' ||  departmentName == 'THE HAGUE' ||  departmentName == 'CORE GRANT') {
 			// show all
 			$(".territory-selector .territory-checkbox").show();
 
