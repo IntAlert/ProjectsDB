@@ -25,10 +25,10 @@
 				Project
 			</th>
 
-<!-- 		<th>
+			<th>
 				Fund code
 			</th>
- -->
+
 			<th>
 				Donor
 			</th>
@@ -89,7 +89,7 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 				<?php echo $this->Html->link($project['Project']['title'], array('controller' => 'projects', 'action' => 'view', $project['Project']['id'])); ?>
 			</td>
 
-			<!-- <td>
+			<td>
 				<?php 
 					if ($project['Project']['fund_code']) {
 						echo h($project['Project']['fund_code']);
@@ -97,7 +97,7 @@ $contracts_secondary = (count($project['Contract']) > 1) ? array_slice($project[
 						echo 'none';
 					}
 				?>
-			</td> -->
+			</td>
 
 			<td>
 				<?php 

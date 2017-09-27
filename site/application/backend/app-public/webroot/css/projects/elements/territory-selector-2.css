@@ -1,0 +1,29 @@
+
+
+.territory-selector-2 .continents {
+	display: flex;
+}
+
+.territory-selector-2 .continent {
+	padding:10px;
+}
+/* .territory-selector-2 div.territory-checkbox {
+	display:inline;
+	padding:0;
+	margin-bottom:0;
+}
+.territory-selector-2 div.territory-checkbox label {
+	display:inline-block;
+	margin:0;
+}
+
+
+.territory-selector-2 div.radio {
+	display:block;
+	padding:0;
+	margin-bottom:0;
+}
+.territory-selector-2 div.radio label {
+	display:inline-block;
+	margin:0;
+} */

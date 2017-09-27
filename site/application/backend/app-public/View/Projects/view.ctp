@@ -95,6 +95,7 @@ var data = <?php echo json_encode($project); ?>;
 			</td>
 		</tr>
 
+
 		<tr>
 			<th>
 				<?php echo __('Programme'); ?>
@@ -137,6 +138,23 @@ var data = <?php echo json_encode($project); ?>;
 				</th>
 			<td>
 				<?php echo h($project['Likelihood']['name']); ?>
+			</td>
+		</tr>
+
+
+		<tr>
+			<th>
+				<?php echo __('Fund Code'); ?>
+			</th>
+			<td>
+				<?php 
+				if (trim($project['Project']['fund_code'])) {
+					echo h($project['Project']['fund_code']);
+				} else {
+					echo "none";
+				} ?>
+
+				&nbsp;
 			</td>
 		</tr>
 

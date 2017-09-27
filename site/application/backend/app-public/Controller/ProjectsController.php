@@ -22,7 +22,17 @@ class ProjectsController extends AppController {
 		'ProjectSearch'
 	);
 
+public function territoryselector2() {
+	$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
+	
+	$territories = $this->Project->Territory->findActiveList();
+	$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
+	$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
 
+	$this->set(compact('continents', 'territoriesWithDepartments', 'programmes', 'territories', 'departments'));
+
+	
+}
 
 /**
  * index method

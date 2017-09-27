@@ -48,6 +48,16 @@ class Territory extends AppModel {
 			'finderQuery' => '',
 		),
 	);
+	
+	public $belongsTo = array(
+		'Continent' => array(
+			'className' => 'Continent',
+			'foreignKey' => 'continent_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 
 	public function findActiveList() {
