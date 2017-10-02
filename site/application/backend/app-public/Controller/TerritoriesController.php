@@ -88,8 +88,6 @@ class TerritoriesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 
-			debug($this->request->data);
-			die();
 			if ($this->Territory->save($this->request->data)) {
 				$this->Session->setFlash(__('The territory has been saved.'));
 				return $this->redirect(array('action' => 'index'));
