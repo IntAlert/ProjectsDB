@@ -29,6 +29,13 @@ public function territoryselector2() {
 	$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 	$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
 
+	$options = array(
+		'conditions' => array(
+			'Project.id' => 303
+		)
+	);
+	$this->request->data = $this->Project->find('first', $options);
+
 	$this->set(compact('continents', 'territoriesWithDepartments', 'programmes', 'territories', 'departments'));
 
 	
@@ -332,10 +339,12 @@ public function territoryselector2() {
 		$donors = $this->Donor->findOrderedList();
 		$donorWarnings = $this->Donor->findDonorWarnings();
 
-		$territories = $this->Project->Territory->findActiveList();
-		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
+		// $territories = $this->Project->Territory->findActiveList();
+		// $territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$budget_holders = $this->User->findBudgetHoldersList();
+
+		$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
 
 
 		// THESE LINES WERE IN PLACE TO ENSURE THAT LEGACY PROJECTS 
@@ -350,7 +359,7 @@ public function territoryselector2() {
 		// endif; // ( !Configure::read('disable_sharepoint_folder_sync') ) {
 
 
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders', 'donorWarnings'));
+		$this->set(compact('continents', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'users', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'budget_holders', 'donorWarnings'));
 	}
 
 

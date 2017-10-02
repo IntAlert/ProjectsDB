@@ -1,0 +1,10 @@
+
+.department-selector div.radio {
+	display:block;
+	padding:0;
+	margin-bottom:0;
+}
+.department-selector div.radio label {
+	display:inline-block;
+	margin:0;
+}

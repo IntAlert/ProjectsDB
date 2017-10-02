@@ -29,7 +29,7 @@ class Continent extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'Territory.sort_order ASC, Territory.name ASC',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
@@ -39,7 +39,10 @@ class Continent extends AppModel {
 	);
 
 	function findContinentsWithTerritories() {
-		return $this->find('all', array('contain' => array('Territory')));
+		return $this->find('all', array(
+			'contain' => array('Territory'),
+			'order' => 'Continent.sort_order ASC, Continent.name ASC'
+		));
 	}
 
 }

@@ -282,28 +282,28 @@ $(function(){
 
 		}
 
-		function checkRegionsCountriesValid() {
-			var selectedRegions = $(".territory-checkbox input[data-territory-type='region']:checked")
-			var atLeastOneRegion = selectedRegions.length > 0
+		function checkTerritoriesValid() {
+			// var selectedRegions = $(".territory-checkbox input[data-territory-type='region']:checked")
+			// var atLeastOneRegion = selectedRegions.length > 0
 
-			var selectedCountries = $(".territory-checkbox input[data-territory-type='country']:checked")
-			var atLeastOneCountry = selectedCountries.length > 0
+			// var selectedCountries = $(".territory-checkbox input[data-territory-type='country']:checked")
+			// var atLeastOneCountry = selectedCountries.length > 0
 
-			if ( !atLeastOneRegion ) {
-				alert("Please select at least one region under Territories, Countries or Sub-Programme.\n\neg. Global, Africa, Eurasia, etc...")
-				return false;
-			}
+			// if ( !atLeastOneRegion ) {
+			// 	alert("Please select at least one region under Territories, Countries or Sub-Programme.\n\neg. Global, Africa, Eurasia, etc...")
+			// 	return false;
+			// }
 
-			if ( !atLeastOneCountry ) {
-				alert("Please select at least one country under Territories, Countries or Sub-Programme.\n\neg. Afghanistan, Bangladesh, India, etc...")
-				return false;
-			}
+			// if ( !atLeastOneCountry ) {
+			// 	alert("Please select at least one country under Territories, Countries or Sub-Programme.\n\neg. Afghanistan, Bangladesh, India, etc...")
+			// 	return false;
+			// }
 			return true;
 		}
 
 		function finalChecks() {
 
-			if ( checkRegionsCountriesValid() == false) {
+			if ( checkTerritoriesValid() == false) {
 				return false
 			} else if (checkForInconsistencies() == false) {
 				return false

@@ -150,6 +150,9 @@ class TrainingsController extends AppController {
 		));
 
 
+		// get continents
+		$continents = $this->Training->Project->Territory->Continent->find('list');
+
 		// get territories
 		$territories = $this->Training->Project->Territory->findActiveList();
 
@@ -167,6 +170,7 @@ class TrainingsController extends AppController {
 			'themes' => $themes,
 			'pathways' => $pathways,
 			'territories' => $territories,
+			'continents' => $continents,
 			'data' => $trainings
 		));
 	}

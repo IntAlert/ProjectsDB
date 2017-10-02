@@ -71,7 +71,8 @@ class TerritoriesController extends AppController {
 			}
 		}
 		$departments = $this->Territory->Department->find('list');
-		$this->set(compact('departments'));
+		$continents = $this->Territory->Continent->find('list');
+		$this->set(compact('departments', 'continents'));
 	}
 
 /**
@@ -86,6 +87,9 @@ class TerritoriesController extends AppController {
 			throw new NotFoundException(__('Invalid territory'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+
+			debug($this->request->data);
+			die();
 			if ($this->Territory->save($this->request->data)) {
 				$this->Session->setFlash(__('The territory has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -98,7 +102,9 @@ class TerritoriesController extends AppController {
 		}
 		
 		$departments = $this->Territory->Department->find('list');
-		$this->set(compact('departments'));
+		$continents = $this->Territory->Continent->find('list');
+
+		$this->set(compact('departments', 'continents'));
 	}
 
 /**

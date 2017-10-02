@@ -13,6 +13,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('Department', array('multiple' => 'checkbox'));
+		echo $this->Form->input('continent_id');
 		echo $this->Form->input('active');
 	?>
 	</fieldset>
