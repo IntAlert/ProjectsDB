@@ -99,10 +99,9 @@ class ProjectsController extends AppController {
 		);
 		$project = $this->Project->find('first', $options);
 
-		$filename = $project['Project']['title'] . '.url';
-		$filename = preg_replace( '/[^a-z0-9]+/', '-', strtolower( $filename ) );
+		$filename = preg_replace( '/[^a-z0-9]+/', '-', strtolower( $project['Project']['title'] ) ) . '.url';
 
-		$url = "\\intlalert.sharepoint.com@SSL\DavWWWRoot\prompt\Documents\PRODUCTION\projects\project_id_" . $project['Project']['id'] . "\General";
+		$url = '\\intlalert.sharepoint.com@SSL\DavWWWRoot\prompt\Documents\PRODUCTION\projects\project_id_' . $project['Project']['id'] . '\General';
 
 		$this->set(compact('url', 'filename'));
 		
