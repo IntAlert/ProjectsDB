@@ -19,7 +19,9 @@ class DashboardController extends AppController {
 		$user_id = $this->Auth->user('id');
 
 		// get most recently viewed projects
-		$projectsRecentlyViewed = $this->Project->findRecentlyViewed($user_id);
+		// $projectsRecentlyViewed = $this->Project->findRecentlyViewed($user_id);
+		$projectsRecentlyViewed = $this->Audit->findUserActivityViewed($user_id);
+		
 
 		$departments = $this->Project->Department->findOrderedList();
 

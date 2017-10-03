@@ -80,6 +80,40 @@ class Audit extends AppModel
     ));
   }
 
+  function findUserActivityViewed($user_id, $limit = 10) {
+
+    $projects = $this->find('all', array(
+      'conditions' => array(
+        'Audit.model' => "Project",
+        'Audit.source_id' => $user_id,
+        'Audit.event' => array("READ"),
+        'Project.deleted' => false,
+      ),
+      // 'group' => array('Audit.entity_id'),
+      'contain' => array('User', 'Project'),
+      'order' => array('Audit.created DESC'),
+      'limit' => $limit,
+    ));
+
+    // perform a groupBy-like preening in PHP to ensure we don't have double entries
+    // doing the groupBy in MySQL does not give recent user activity in the right order
+
+    $projectIdsSeen = array();
+    $projectsPreened = array();
+
+    foreach($projects as $project):
+
+      if (array_search($project['Project']['id'], $projectIdsSeen) === FALSE) {
+        $projectIdsSeen[] = $project['Project']['id'];
+        $projectsPreened[] = $project;
+      }
+
+    endforeach; //($projects as $project):
+
+    return $projectsPreened;
+
+  }
+  
   public function getLeagueTable() {
         $results = $this->find('all', array(
             'fields' => array(

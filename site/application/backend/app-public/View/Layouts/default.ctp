@@ -153,13 +153,14 @@ if ( !isset($title) ) {
 
 
 
-				<li class="dashboard">
-					
-					<a href="/pdb/dashboard/dashboard">
-						<i class="fa fa-map"></i>
-						PROMPT Dashboard
-					</a>
-				</li>
+			<li class="dashboard">
+			
+			<a href="/pdb/dashboard/dashboard">
+				<i class="fa fa-map"></i>
+				Dashboard
+			</a>
+		</li>
+
 
 
 <?php if ($is_admin): // only show nav to logged in users ?>
@@ -174,6 +175,13 @@ if ( !isset($title) ) {
 
 <?php endif;// (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
 
+
+				<!-- <li class="faq">
+					<a href="/pdb/dashboard/dashboard" target="_blank">
+						<i class="fa fa-question-circle"></i>
+						FAQ
+					</a>
+				</li> -->
 
 				<li class="projects-searchDocs">
 					
@@ -207,6 +215,8 @@ if ( !isset($title) ) {
 						Projects &amp; Fundraising Pipeline
 					</a>
 				</li>
+
+
 
 
 

@@ -87,6 +87,7 @@ class SharepointDocs {
             'P3 Budget and Finance',
             'P4 Donor Reporting',
             'P5 Monitoring & Evaluation',
+            'X1 Photos'
         );
 
 
