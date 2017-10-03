@@ -21,32 +21,19 @@ if($this->SharepointDocs->embedSharepoint()):
 
 // define tool tips for project folders
 $folder_tooltips = array(
-    '1 Tender Documents' => 
-    	'This includes all announcement and Terms of Reference documents published by donors at all stages - for example Call for Expression of Interest, Call for Proposals, Pre-Qualification Questionnaire, Invitiation to Tender, etc.',
-    '2 Workplans' => 
-    	'',
-    '3 Research and Background' => 
-    	'',
-    '4 Communications' => 
-    	'',
-    '5 Draft Proposal Documents' => 
-    	'',
-    '6 Submitted Proposal Documents' => 
-    	'',
-    '7 Donor Feedback' => 
-    	'',
-    '8 Partnership' => 
-    	'',
-    'P1 Contract' => 
-    	'',
-    'P2 Project Inception' => 
-    	'',
-    'P3 Budget and Finance' => 
-    	'',
-    'P4 Donor Reporting' => 
-    	'',
-    'P5 Monitoring & Evaluation' => 
-    	'',
+	'1 Tender Documents' => 'This includes all announcement and Terms of Reference documents published by donors at all stages - for example Call for Expression of Interest, Call for Proposals, Pre-Qualification Questionnaire, Invitiation to Tender, etc.',
+	'2 Workplans' => '',
+	'3 Research and Background' => '',
+	'4 Communications' => '',
+	'5 Draft Proposal Documents' => '',
+	'6 Submitted Proposal Documents' => '',
+	'7 Donor Feedback' => '',
+	'8 Partnership' => '',
+	'P1 Contract' => '',
+	'P2 Project Inception' => '',
+	'P3 Budget and Finance' => '',
+	'P4 Donor Reporting' => '',
+	'P5 Monitoring & Evaluation' => '',
 );
 
 
@@ -61,6 +48,13 @@ $folder_tooltips = array(
 
 <p>You may find the docs <a href="<?php echo $this->SharepointDocs->folderHref()?>">here</a>.</p>
 
+<p>
+	<a 
+		target="_blank"
+		href="<?php echo $this->SharepointDocs->shortcutHref()?>">
+		Download Shortcut to Sharepoint
+	</a>
+</p>
 
 
 
@@ -97,6 +91,12 @@ ksort($folders);
 			Documents
 	</a>
 </h3>
+
+<a 
+	target="_blank"
+	href="<?php echo $this->SharepointDocs->shortcutHref()?>">
+	Download Shortcut to Sharepoint
+</a>
 
 
 

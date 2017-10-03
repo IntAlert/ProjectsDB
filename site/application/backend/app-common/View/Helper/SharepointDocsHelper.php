@@ -36,6 +36,11 @@ class SharepointDocsHelper extends AppHelper {
 
 	}
 
+	public function shortcutHref() {
+		$url = '/api/projects/sharepointShortcut/' . $this->project['Project']['id'];
+		return $url;	
+	}
+
 	public function folderLink($link_text, $subfolder = null, $a_options = array()) {
 		
 		$url = $this->folderHref($subfolder);
