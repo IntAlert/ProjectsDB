@@ -17,6 +17,11 @@ foreach ($participant_types as $participant_type_id => $participant_type_name) {
 	$headers[] = 'PARTICIPANT TYPE: ' . $participant_type_name;
 }
 
+// add continent headers
+foreach ($continents as $continent_id => $continent_name) {
+	$headers[] = 'CONTINENT: ' . $continent_name;
+}
+
 // add territory headers
 foreach ($territories as $territory_id => $territory_name) {
 	$headers[] = 'TERRITORY: ' . $territory_name;
@@ -73,6 +78,17 @@ foreach ($data as $accompaniment) {
 		}
 
 		$row[] = $value;
+	}
+
+	// PROJECT CONTINENT
+	// make list of selected territory ids
+	$selected_continents_ids = array_map(function($territory){
+		return (int) $territory['continent_id'];
+	}, $accompaniment['Project']['Territory']);
+	
+	// add all continents, 0 if not selected, 1 if so
+	foreach ($continents as $continent_id => $continent_name) {
+		$row[] = (int) in_array($continent_id, $selected_continents_ids);
 	}
 
 	// PROJECT TERRITORY

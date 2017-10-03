@@ -132,6 +132,8 @@ class OtherActivitiesController extends AppController {
 
 		// get all participant_types
 		$participant_types = $this->OtherActivity->ParticipantType->findOrderedList();	
+		// get continents
+		$continents = $this->OtherActivity->Project->Territory->Continent->find('list');
 
 		// get all territories
 		$territories = $this->OtherActivity->Project->Territory->findActiveList();
@@ -140,6 +142,7 @@ class OtherActivitiesController extends AppController {
 		$pathways = $this->OtherActivity->Project->Pathway->findOrderedList();		
 
 		$this->set(array(
+			'continents' => $continents,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,
 			'territories' => $territories,

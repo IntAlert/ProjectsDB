@@ -136,6 +136,9 @@ class ResultsController extends AppController {
 			]
 		));
 
+		// get continents
+		$continents = $this->Result->Project->Territory->Continent->find('list');
+
 		// get territories
 		$territories = $this->Result->Project->Territory->findActiveList();
 
@@ -146,6 +149,7 @@ class ResultsController extends AppController {
 		$impacts = $this->Result->Impact->findOrderedList();	
 
 		$this->set(array(
+			'continents' => $continents,
 			'territories' => $territories,
 			'pathways' => $pathways,
 			'impacts' => $impacts,

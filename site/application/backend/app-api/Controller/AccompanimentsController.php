@@ -136,6 +136,10 @@ class AccompanimentsController extends AppController {
 		));
 
 
+		// get continents
+		$continents = $this->Accompaniment->Project->Territory->Continent->find('list');
+
+
 
 		// get territories
 		$territories = $this->Accompaniment->Project->Territory->findActiveList();
@@ -147,6 +151,7 @@ class AccompanimentsController extends AppController {
 		$participant_types = $this->Accompaniment->ParticipantType->findOrderedList();		
 
 		$this->set(array(
+			'continents' => $continents,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,
 			'territories' => $territories,

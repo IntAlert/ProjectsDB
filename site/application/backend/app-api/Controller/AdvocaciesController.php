@@ -154,6 +154,10 @@ class AdvocaciesController extends AppController {
 		// get all participant_types
 		$participant_types = $this->Advocacy->ParticipantType->findOrderedList();
 
+
+		// get continents
+		$continents = $this->Advocacy->Project->Territory->Continent->find('list');
+
 		// get all territories
 		$territories = $this->Advocacy->Project->Territory->findActiveList();
 
@@ -161,6 +165,7 @@ class AdvocaciesController extends AppController {
 		$pathways = $this->Advocacy->Project->Pathway->findOrderedList();		
 
 		$this->set(array(
+			'continents' => $continents,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,
 			'territories' => $territories,

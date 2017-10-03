@@ -133,6 +133,10 @@ class ResearchesController extends AppController {
 		// get all themes
 		$themes = $this->Research->Theme->findOrderedList();
 
+
+		// get continents
+		$continents = $this->Research->Project->Territory->Continent->find('list');
+
 		// get all territories
 		$territories = $this->Research->Project->Territory->findActiveList();
 
@@ -140,6 +144,7 @@ class ResearchesController extends AppController {
 		$pathways = $this->Research->Project->Pathway->findOrderedList();		
 
 		$this->set(array(
+			'continents' => $continents,
 			'pathways' => $pathways,
 			'territories' => $territories,
 			'themes' => $themes,

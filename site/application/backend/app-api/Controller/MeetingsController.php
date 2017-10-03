@@ -148,6 +148,10 @@ class MeetingsController extends AppController {
 			]
 		));
 
+
+		// get continents
+		$continents = $this->Meeting->Project->Territory->Continent->find('list');
+
 		// get territories
 		$territories = $this->Meeting->Project->Territory->findActiveList();
 
@@ -161,6 +165,7 @@ class MeetingsController extends AppController {
 		$themes = $this->Meeting->Theme->findOrderedList();		
 
 		$this->set(array(
+			'continents' => $continents,
 			'themes' => $themes,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,

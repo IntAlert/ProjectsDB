@@ -148,6 +148,10 @@ class ProcessesController extends AppController {
 			]
 		));
 
+
+		// get continents
+		$continents = $this->Process->Project->Territory->Continent->find('list');
+
 		// get territories
 		$territories = $this->Process->Project->Territory->findActiveList();
 
@@ -161,6 +165,7 @@ class ProcessesController extends AppController {
 		$themes = $this->Process->Theme->findOrderedList();		
 
 		$this->set(array(
+			'continents' => $continents,
 			'themes' => $themes,
 			'participant_types' => $participant_types,
 			'pathways' => $pathways,
