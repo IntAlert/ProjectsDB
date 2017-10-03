@@ -32,6 +32,10 @@ $(function(){
 		createKeyDatePicker(this)
 	})
 
+	$(".component-key-dates tr:not(.template) .project-date-remind-by").each(function(){
+		createKeyDatePicker(this)
+	})
+
 	updateNoDatesMessage();
 });
 
@@ -57,7 +61,7 @@ function createProjectdate() {
 
 
 	// update input names
-	newprojectdateTrClone.find("input").each(function(){
+	newprojectdateTrClone.find("input, select").each(function(){
 		
 		var inputName = $(this).attr('name');
 		var newName = inputName
@@ -76,9 +80,8 @@ function createProjectdate() {
 	// append
 	projectdatesTableBody.append(newprojectdateTrClone);	
 
-
-	createKeyDatePicker(newprojectdateTrClone.find('.project-date'))
-	
+	createKeyDatePicker(newprojectdateTrClone.find('.project-date'));
+	createKeyDatePicker(newprojectdateTrClone.find('.project-date-remind-by'));
 
 	updateNoDatesMessage();
 
@@ -88,16 +91,16 @@ function createProjectdate() {
 
 function createKeyDatePicker(selector) {
 	$( selector ).datepicker({
-      // defaultDate: $( "#ProjectStartDate" ).val(),
-      yearRange: "-2:+10",
-      changeMonth: true,
-      changeYear: true,
-      numberOfMonths: 1,
-      dateFormat: 'dd/mm/yy',
-      onSelect: function(selectedDate) {
+		// defaultDate: $( "#ProjectStartDate" ).val(),
+		yearRange: "-2:+10",
+		changeMonth: true,
+		changeYear: true,
+		numberOfMonths: 1,
+		dateFormat: 'dd/mm/yy',
+		onSelect: function(selectedDate) {
 
-      }
-    });
+		}
+	});
 }
 
 function updateNoDatesMessage() {

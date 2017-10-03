@@ -141,50 +141,6 @@ class Project extends AppModel {
 
 	}
 
-
-	// function findRecentlyViewed($user_id, $limit = 10) {
-
-
-	// 	// // get ids of most recently viewed project
-	// 	// $project_ids = $this->Audit->find('all', array(
-	// 	// 	'conditions' => array(
-	// 	// 		'Audit.source_id' => $user_id, // audits the user owns
-	// 	// 		'Audit.model = "Project"',
-	// 	// 		'Audit.event' => 'READ',
-	// 	// 		'Project.deleted = 0',
-	// 	// 	),
-	// 	// 	'group' => array('Audit.entity_id'),
-	// 	// 	'order' => array('Audit.created DESC'),
-	// 	// 	'limit' => $limit,
-	// 	// ));
-
-	// 	// debug($project_ids);
-	// 	// die();
-
-	// 	return $this->find('all', array(
-	// 		'contain' => false,
-	// 		'joins' => array(
-	// 			array(
-	// 				'table' => 'audits',
-	// 	            'alias' => 'Audit',
-	// 	            'type' => 'INNER',
-	// 	            'conditions' => array(
-	// 	            	'Audit.source_id' => $user_id, // audits the user owns
-	// 	                'Audit.model = "Project"',
-	// 	                'Project.id = Audit.entity_id',
-	// 	                'Project.deleted = 0',
-	// 	            ),
-
-	// 	        ),
-	// 		),
-	// 		'order' => array('Audit.created DESC'),
-	// 		'group' => array('Project.id'),
-	// 		'limit' => $limit,
-	// 	));
-
-
-
-	// }
 	
 	function getProjectsByDepartmentAndYear($department_id, $year_or_years) {
 		
@@ -292,10 +248,15 @@ class Project extends AppModel {
 		}
 
 		// change date format
+		debug($data['Projectdate']);
+		// die();
 		if(isset($data['Projectdate']) && is_array($data['Projectdate'])) {
 			foreach ($data['Projectdate'] as & $projectdate) {
-				$dt = DateTime::createFromFormat('d/m/Y', $projectdate['date']);
-				$projectdate['date'] = $dt->format('Y-m-d');
+				$date = DateTime::createFromFormat('d/m/Y', $projectdate['date']);
+				$projectdate['date'] = $date->format('Y-m-d');
+
+				$remindBy = DateTime::createFromFormat('d/m/Y', $projectdate['remind_by']);
+				$projectdate['remind_by'] = $remindBy->format('Y-m-d');
 			}
 		}
 		

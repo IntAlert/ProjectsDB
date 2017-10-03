@@ -130,15 +130,11 @@
 <!-- KEY DATES -->
 <?php echo $this->element('Projects/edit/key-dates'); ?>
 
-
-
 <!-- Pathway -->
 <?php echo $this->element('Projects/edit/pathway-selector'); ?>
 
 <!-- Themes -->
 <?php echo $this->element('Projects/edit/theme-selector'); ?>
-
-
 
 	</fieldset>
 
