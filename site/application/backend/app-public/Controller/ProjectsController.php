@@ -275,8 +275,12 @@ public function territoryselector2() {
 		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$budget_holders = $this->User->findBudgetHoldersList();
+
+		$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
 		
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'donorWarnings'));
+		
+		
+		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'donorWarnings', 'continents'));
 
 
 	}
