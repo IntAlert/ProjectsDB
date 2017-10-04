@@ -48,13 +48,13 @@ $folder_tooltips = array(
 
 <p>You may find the docs <a href="<?php echo $this->SharepointDocs->folderHref()?>">here</a>.</p>
 
-<p>
+<!-- <p>
 	<a 
 		target="_blank"
 		href="<?php echo $this->SharepointDocs->shortcutHref()?>">
 		Download Explorer shortcut to Sharepoint
 	</a>
-</p>
+</p> -->
 
 
 
@@ -92,11 +92,11 @@ ksort($folders);
 	</a>
 </h3>
 
-<a 
+<!-- <a 
 	target="_blank"
 	href="<?php echo $this->SharepointDocs->shortcutHref()?>">
 	Download Explorer shortcut to Sharepoint
-</a>
+</a> -->
 
 
 
