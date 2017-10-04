@@ -97,7 +97,13 @@
 		?>
 
 		<!-- Territories -->
-		<?php echo $this->element('Projects/edit/territory-selector'); ?>
+		<?php // echo $this->element('Projects/edit/territory-selector'); ?>
+
+		<!-- Departments -->
+		<?php echo $this->element('Projects/edit/department-selector'); ?>
+
+		<!-- Territories -->
+		<?php echo $this->element('Projects/edit/territory-selector-2'); ?>
 
 <?
 		echo $this->Form->input('owner_user_id', array(
