@@ -258,7 +258,6 @@ public function territoryselector2() {
 				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
 			}
 		}
-		
 
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
@@ -278,10 +277,7 @@ public function territoryselector2() {
 
 		$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
 		
-		
-		
 		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'donorWarnings', 'continents'));
-
 
 	}
 

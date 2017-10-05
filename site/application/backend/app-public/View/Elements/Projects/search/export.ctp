@@ -5,7 +5,7 @@
 			<?php 
 
 			echo $this->Paginator->counter(array(
-				'format' => __('Download these contracts in CSV')
+				'format' => __('Download contracts in CSV')
 			));
 
 			?>
@@ -17,7 +17,7 @@
 			<?php 
 
 			echo $this->Paginator->counter(array(
-				'format' => __('Download these projects in CSV')
+				'format' => __('Download projects in CSV')
 			));
 
 			?>

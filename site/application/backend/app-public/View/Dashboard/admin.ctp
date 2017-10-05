@@ -48,9 +48,16 @@
 					</li>
 
 					<li>
-						<a href="/pdb/contractcategories">
-							<i class="fa fa-pencil-square-o fa-3x"></i>
-							<p>Manage Contract Categories</p>
+					<a href="/pdb/contractcategories">
+						<i class="fa fa-pencil-square-o fa-3x"></i>
+						<p>Manage Contract Categories</p>
+					</a>
+				</li>
+
+				<li>
+						<a href="/pdb/projectdates">
+							<i class="fa fa-calendar fa-3x"></i>
+							<p>Export Key Dates</p>
 						</a>
 					</li>
 
