@@ -1,9 +1,13 @@
 .projectdates-index .left {
 	float:left;
-	width:40%;
+	padding-top:2em;
+	background:#eee;
+	width:25%;
+	padding:2em 1em;
+	margin-right:1em;
 }
 
 .projectdates-index .results {
 	float:left;
-	width:50%;
+	width:70%;
 }
