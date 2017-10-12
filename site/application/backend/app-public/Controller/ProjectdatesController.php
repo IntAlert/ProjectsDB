@@ -25,10 +25,8 @@ class ProjectdatesController extends AppController {
 
 		$start_date_limit = $this->request->query('start_date_limit');
 		$finish_date_limit = $this->request->query('finish_date_limit');
-
 		$start_date = $this->request->query('start_date');
 		$finish_date = $this->request->query('finish_date');
-
 		$completed = $this->request->query('completed');
 
 		// default values
