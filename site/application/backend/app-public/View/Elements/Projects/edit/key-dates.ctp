@@ -7,16 +7,16 @@ $project = $this->request->data;
 
 
 $keyDateOptions = array(
-	"extension end date", 
-	"baseline - internal",
-	"baseline - external",
-	"mid term evaluation - internal", 
-	"mid term evaluation - external", 
-	"final evaluation - internal", 
-	"final evaluation - external", 
-	"donor report", 
-	"audit",
-	"other",
+	"extension end date" => "extension end date", 
+	"baseline - internal" => "baseline - internal",
+	"baseline - external" => "baseline - external",
+	"mid term evaluation - internal", => "mid term evaluation - internal", 
+	"mid term evaluation - external", => "mid term evaluation - external", 
+	"final evaluation - internal", => "final evaluation - internal", 
+	"final evaluation - external", => "final evaluation - external", 
+	"donor report", => "donor report", 
+	"audit" => "audit",
+	"other" => "other",
 );
 
 

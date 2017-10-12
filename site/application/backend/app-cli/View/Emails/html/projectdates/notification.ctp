@@ -52,7 +52,7 @@
 	In order to stop these notifications, please visit the project page and mark this date as complete.
 
 	You can visit the project page here:
-	<a href="http://staging-prompt.intalert.org/pdb/projects/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>">
-		http://staging-prompt.intalert.org/pdb/projects/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>
+	<a href="http://staging-prompt.intalert.org/pdb/projects/view/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>">
+		http://staging-prompt.intalert.org/pdb/projects/view/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>
 	</a>
 </p>

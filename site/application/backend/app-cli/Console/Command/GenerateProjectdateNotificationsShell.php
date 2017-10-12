@@ -20,6 +20,7 @@ class GenerateProjectdateNotificationsShell extends AppShell {
 		$projectdates = $this->Projectdate->find('all', array(
 			'contain' => false,
 			'conditions' => array(
+				'Projectdate.reminder_frequency_days > ' => -1,
 				'Projectdate.completed' => 0, // has not been marked as complete
 				$db->expression($dateClause), // a reminder is due
 			),
