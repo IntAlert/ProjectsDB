@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
  *
@@ -52,12 +53,12 @@ Cache::config('default', array('engine' => 'File'));
  */
 
 	App::build(array(
-		'Lib' => array(__DIR__ . '/../Lib/'),
-		'Model' => array(__DIR__ . '/../Model/'),
-		'Plugin' => array(__DIR__ . '/../Plugin/'),
-		'Vendor' => array(__DIR__ . '/../Vendor/'),
-		'View/Helper' => array(__DIR__ . '/../View/Helper/'),
-		'Controller/Component' => array(__DIR__ . '/../Controller/Component/'),
+		'Lib' => array(dirname(__FILE__) . '/../Lib/'),
+		'Model' => array(dirname(__FILE__) . '/../Model/'),
+		'Plugin' => array(dirname(__FILE__) . '/../Plugin/'),
+		'Vendor' => array(dirname(__FILE__) . '/../Vendor/'),
+		'View/Helper' => array(dirname(__FILE__) . '/../View/Helper/'),
+		'Controller/Component' => array(dirname(__FILE__) . '/../Controller/Component/'),
 	));
 
 /**
@@ -131,6 +132,6 @@ App::uses('MACPipelineByDepartment', 'Lib');
 App::uses('ProjectChecker', 'Lib');
 
 // Load Vendors via autoload
-require_once(__DIR__ . '/../Vendor/autoload.php');
+require_once(dirname(__FILE__) . '/../Vendor/autoload.php');
 
-require_once(__DIR__ . '/office365.php');
+require_once(dirname(__FILE__) . '/office365.php');
