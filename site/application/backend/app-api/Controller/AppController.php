@@ -89,7 +89,7 @@ class AppController extends Controller {
 
 
 	// callbacks
-    public function beforeFilter() {
+  public function beforeFilter() {
 
     	// handle auth here
     	if ($this->request->query("key") == $_SERVER['API_KEY']) {

@@ -29,3 +29,15 @@ Useful links
 - dept
 - separate region / country 
 - 
+
+
+MAILTO="as.thomson@gmail.com"
+* * * * * cd /var/sites/s/staging-prompt.intalert.org/ProjectsDB/site/application/backend/app-cli/Console && ./cake GenerateProjectdateNotifications
+* * * * * cd /var/sites/s/staging-prompt.intalert.org/ProjectsDB/site/application/backend/app-cli/Console && ./cake SendProjectdateNotifications
+
+
+
+
+
+
+
