@@ -22,7 +22,7 @@ class TravelapplicationNotifierComponent extends Component {
     	}
 
         // For testing
-        // $Email->addTo('KHassan@international-alert.org');
+        // $Email->addTo('XXX@international-alert.org');
 
 		
 		$Email->template('travelapplications/send_email')
