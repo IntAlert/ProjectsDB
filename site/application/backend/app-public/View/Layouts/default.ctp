@@ -176,12 +176,12 @@ if ( !isset($title) ) {
 <?php endif;// (AuthComponent::user('role') == 'admin'): // only show nav to logged in users ?>
 
 
-				<!-- <li class="faq">
-					<a href="/pdb/dashboard/dashboard" target="_blank">
+				<li class="faq">
+					<a href="/pdb/files/Alert_PROMPT_FAQ_2017.pdf" target="_blank">
 						<i class="fa fa-question-circle"></i>
-						FAQ
+						Help
 					</a>
-				</li> -->
+				</li>
 
 				<li class="projects-searchDocs">
 					
