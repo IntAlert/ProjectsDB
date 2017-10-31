@@ -45,13 +45,19 @@ class Result extends AppModel {
 			'foreignKey' => 'result_id',
 			'associationForeignKey' => 'impact_id',
 			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		)
 	);
+
+	public function approvePublication($id) {
+		$this->id = $id;
+		return $this->saveField('publication_approved', true);
+		return true; // assume it worked
+	}
+
+	public function blockPublication($id) {
+		$this->id = $id;
+		return $this->saveField('publication_approved', false);
+		return true; // assume it worked
+	}
 
 }

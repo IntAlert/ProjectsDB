@@ -1,3 +1,6 @@
+<h3>Further details</h3>
+
+
 <?php echo $this->Form->input('summary', array(
 		// 'placeholder' => "e.g. help text",
 		'tooltip' => 'Up to 300 word summary of what your project hopes to achieve and how this will be delivered',

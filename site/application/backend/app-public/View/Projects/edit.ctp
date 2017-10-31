@@ -84,13 +84,15 @@
 	
 	<?php echo $this->element('Projects/edit/contract-with-budgets'); ?>
 
+	<?php echo $this->element('Projects/edit/IATI'); ?>
+
 	<?php echo $this->element('Projects/edit/text-metadata'); ?>
 
 	<?php echo $this->element('Projects/edit/other-metadata'); ?>
 
 	<?php echo $this->element('Projects/edit/urls'); ?>
 
-
+	
 
 
 <?

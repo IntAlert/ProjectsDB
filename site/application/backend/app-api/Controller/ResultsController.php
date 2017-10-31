@@ -72,6 +72,28 @@ class ResultsController extends AppController {
 		$this->set(array('data' => $result));
 	}
 
+	function approvePublication($id) {
+		
+		// TODO: must be authed and must be note owner
+
+		if ($this->request->is('post')) {
+			$result = $this->Result->approvePublication($id);
+		}
+
+		$this->set(array('data' => $result));
+	}
+
+	function blockPublication($id) {
+		
+		// TODO: must be authed and must be note owner
+
+		if ($this->request->is('post')) {
+			$result = $this->Result->blockPublication($id);
+		}
+
+		$this->set(array('data' => $result));
+	}
+
 	function all() {
 		
 		// Result filters

@@ -136,6 +136,25 @@ app.factory('ResultsService', function($http, $location, $httpParamSerializer, D
 			});
 	}
 
+	instance.approvePublication = function(result_id) {
+		return $http.post('/api/results/approvePublication/' + result_id)
+		.then(function(response){
+			window.location.reload();
+		}, function(){
+			alert("results approve error")
+		});
+	}
+
+
+	instance.blockPublication = function(result_id) {
+		return $http.post('/api/results/blockPublication/' + result_id)
+		.then(function(response){
+			window.location.reload();
+		}, function(){
+			alert("results block error")
+		});
+	}
+
 
 
 	// Private functions
