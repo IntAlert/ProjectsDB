@@ -65,7 +65,7 @@ $reminderFrequencyOptions = array(
 				</th>
 
 				<th>
-					Remind By
+					Remind From
 				</th>
 
 				<th>
