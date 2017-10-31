@@ -30,10 +30,10 @@ class SendProjectdateNotificationsShell extends AppShell {
 			$this->sendNotification($projectdatenotification);
 
 			// update all notifications that relate to this projectdate
-			// $this->Projectdatenotification->updateAll(
-			// 	array('Projectdatenotification.sent' => true),
-			// 	array('Projectdatenotification.projectdate_id' => $projectdate_id)
-			// );
+			$this->Projectdatenotification->updateAll(
+				array('Projectdatenotification.sent' => true),
+				array('Projectdatenotification.projectdate_id' => $projectdate_id)
+			);
 			
 		endforeach; //($projectdates as $projectdate):
 
