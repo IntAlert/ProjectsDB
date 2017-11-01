@@ -1,4 +1,4 @@
-<h1>A result needs approval for public</h1>
+<h1>A result needs approval for publication</h1>
 
 <p>
 	The following result has been submitted on PROMPT. Please click the link at the bottom of this email to approve the result for publication by the Communications department.

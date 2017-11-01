@@ -19,6 +19,7 @@ class ResultsController extends AppController {
 			// as in, today
 			$data->Result->date = date('Y-m-d');
 
+
 			$result = $this->Result->saveAssociated($data);
 		}
 
@@ -54,6 +55,11 @@ class ResultsController extends AppController {
 			$this->Result->id = $id;
 
 			$data = $this->request->input('json_decode');
+
+			// any updated result should be unmarked for publication, 
+			// in case it now has data that is sensitive
+			$data->Result->project_owner_notified = false;
+			$data->Result->publication_approved = false;
 
 			$result = $this->Result->saveAssociated($data);
 		}
