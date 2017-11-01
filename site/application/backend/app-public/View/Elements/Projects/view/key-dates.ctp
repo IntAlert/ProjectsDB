@@ -19,6 +19,7 @@ foreach ($project['Projectdate'] as $projectdate) {
 	$all_dates[] = [
 		'title' => $projectdate['title'],
 		'date' => $projectdate['date'],
+		'completed' => $projectdate['completed'],
 	];
 }
 
@@ -67,7 +68,12 @@ array_walk($all_dates, function( &$pd ){
 			
 				<tr>
 					<td><?php echo $date['title']; ?></td>
-					<td><?php echo $date['date_formatted']; ?></td>
+					<td>
+						<?php echo $date['date_formatted']; ?>
+						<?php if (isset($date['completed'])) {
+							if ($date['completed']) echo '(Marked as complete)';
+						} ?>
+					</td>
 				</tr>
 
 			<?php endforeach; // ($dates as $date): ?>
