@@ -61,6 +61,11 @@ app.factory('ResultsService', function($http, $location, $httpParamSerializer, D
 			queryParams.project_id = query.project_id
 		}
 
+		// filter on project_id?
+		if ( query.publication_approved_only ) {
+			queryParams.publication_approved_only = 1
+		}
+
 		// set API URLs
 		instance.api_urls.csv = $location.protocol() + "://" + $location.host() + '/api/results/all.csv?' + $httpParamSerializer(queryParams);
 		instance.api_urls.json = $location.protocol() + "://" + $location.host() + '/api/results/all?' + $httpParamSerializer(queryParams);

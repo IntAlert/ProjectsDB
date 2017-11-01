@@ -107,6 +107,8 @@ class ResultsController extends AppController {
 		$finish_date = $this->request->query('finish_date');
 		$theme_id = $this->request->query('theme_id');
 		$impact_id = $this->request->query('impact_id');
+		$publication_approved_only = $this->request->query('publication_approved_only');
+		
 		
 		// Project filters
 		$projectFilter = array(
@@ -123,6 +125,10 @@ class ResultsController extends AppController {
 		// build conditions, joins
 		$conditions = [];
 		$joins = [];
+
+		if ($publication_approved_only) {
+			$conditions[] = ['Result.publication_approved' => true];
+		}
 
 		// filter on other_activitiy dates?
 		if ($start_date) {
@@ -151,6 +157,8 @@ class ResultsController extends AppController {
 		// Add project ID filter
 		if (is_array($project_ids)) 
 			$conditions['project_id'] = $project_ids;
+
+		
 
 		$results = $this->Result->find('all', array(
 			'order' => ['Result.date' => 'DESC'],

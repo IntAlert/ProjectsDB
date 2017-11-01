@@ -31,7 +31,8 @@ app.controller('ResultsQueryController', function($window, $scope, $mdDialog, De
 		pathways: {
 			all: true,
 			selected: null
-		}
+		},
+		publication_approved_only: false
 	}
 
 	// Grid Options

@@ -121,6 +121,13 @@
 			</md-select>
 		</div>
 
+		<div class="filter publishable">
+			<!-- Only show results marked for publication by comms -->
+			<md-checkbox ng-model="query.publication_approved_only">
+				Only show results publicly publishable
+			</md-checkbox>
+		</div>
+
 		<!-- Search -->
 		<md-button 
 			ng-click="updateQuery()"
