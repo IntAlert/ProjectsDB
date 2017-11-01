@@ -29,10 +29,10 @@ class SendResultApprovalRequestShell extends AppShell {
 			$this->sendNotification($result);
 
 			// update all notifications that relate to this projectdate
-			// $this->Result->updateAll(
-			// 	array('Result.project_owner_notified' => true),
-			// 	array('Result.id' => $result_id)
-			// );
+			$this->Result->updateAll(
+				array('Result.project_owner_notified' => true),
+				array('Result.id' => $result_id)
+			);
 			
 		endforeach; //($projectdates as $projectdate):
 
