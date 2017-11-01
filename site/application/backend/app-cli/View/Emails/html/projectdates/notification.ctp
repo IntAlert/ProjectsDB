@@ -1,6 +1,4 @@
-<h1>Project Milestone Reminder</h1>
-
-<p>The following milestone is due:</p>
+<h1>Project Key Date Reminder</h1>
 
 <table width="100%">
 	<tr>
@@ -16,7 +14,7 @@
 
 	<tr>
 		<th style="text-align:left">
-			Milestone Type
+			Key Date Type
 		</th>
 
 		<td>
@@ -26,7 +24,7 @@
 
 	<tr>
 		<th style="text-align:left">
-			Milestone Title
+			Key Date Title
 		</th>
 
 		<td>
