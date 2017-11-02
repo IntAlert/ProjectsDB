@@ -19,7 +19,7 @@ foreach($travelapplications as &$travelapplication):
 		if (property_exists($application->applicant, 'user')) {
 
 			$row = [
-				$application->applicant->user->displayName
+				$application->applicant->user->displayName,
 				$itinerary->destination->Territory->name
 			];
 		}
