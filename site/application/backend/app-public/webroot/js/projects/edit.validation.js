@@ -223,7 +223,7 @@ $(function(){
 
 		function checkContractsMinimumRequirements() {
 
-			var $contracts = $(".component-contracts").find(".contract:not(.template)");
+			var $contracts = $(".component-contracts").find(".contract:not(.template):not(.deleted)");
 
 			// check at least one contract
 			if ($contracts.length == 0) {

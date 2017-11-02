@@ -22,24 +22,6 @@ class ProjectsController extends AppController {
 		'ProjectSearch'
 	);
 
-public function territoryselector2() {
-	$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
-	
-	$territories = $this->Project->Territory->findActiveList();
-	$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
-	$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
-
-	$options = array(
-		'conditions' => array(
-			'Project.id' => 303
-		)
-	);
-	$this->request->data = $this->Project->find('first', $options);
-
-	$this->set(compact('continents', 'territoriesWithDepartments', 'programmes', 'territories', 'departments'));
-
-	
-}
 
 /**
  * index method
@@ -271,13 +253,12 @@ public function territoryselector2() {
 		$donorWarnings = $this->Donor->findDonorWarnings();
 
 		$territories = $this->Project->Territory->findActiveList();
-		$territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$budget_holders = $this->User->findBudgetHoldersList();
 
 		$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
 		
-		$this->set(compact('territoriesWithDepartments', 'statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'donorWarnings', 'continents'));
+		$this->set(compact('statuses', 'themes', 'likelihoods', 'programmes', 'departments', 'territories', 'users', 'budget_holders', 'currencies', 'donors', 'frameworks', 'contractcategories', 'pathways', 'donorWarnings', 'continents'));
 
 	}
 
@@ -339,11 +320,8 @@ public function territoryselector2() {
 		$donors = $this->Donor->findOrderedList();
 		$donorWarnings = $this->Donor->findDonorWarnings();
 
-		// $territories = $this->Project->Territory->findActiveList();
-		// $territoriesWithDepartments = $this->Project->Territory->findActiveWithDepartment();
 		$users = $this->User->find('list');
 		$budget_holders = $this->User->findBudgetHoldersList();
-
 		$continents = $this->Project->Territory->Continent->findContinentsWithTerritories();
 
 

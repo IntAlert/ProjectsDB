@@ -30,23 +30,7 @@ class Territory extends AppModel {
 			'foreignKey' => 'territory_id',
 			'associationForeignKey' => 'project_id',
 			'unique' => 'keepExisting',
-		),
-		'Department' => array(
-			'className' => 'Department',
-			'joinTable' => 'departments_territories',
-			'foreignKey' => 'territory_id',
-			'associationForeignKey' => 'department_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => array(
-				'Department.sort_order' => 'ASC',
-				'Department.name' => 'ASC',
-			),
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		),
+		)
 	);
 	
 	public $belongsTo = array(
@@ -83,12 +67,12 @@ class Territory extends AppModel {
 		));
 	}
 
-	public function findActiveWithDepartment() {
-		return $this->find('all', array(
-			'contain' => array('Department'),
-			'conditions' => array('active' => true),
-			'order' => array('Territory.sort_order ASC', 'Territory.name ASC'),
-		));
-	}
+	// public function findActiveWithDepartment() {
+	// 	return $this->find('all', array(
+	// 		'contain' => array('Department'),
+	// 		'conditions' => array('active' => true),
+	// 		'order' => array('Territory.sort_order ASC', 'Territory.name ASC'),
+	// 	));
+	// }
 
 }

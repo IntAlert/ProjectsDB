@@ -250,7 +250,7 @@ function deleteContract(contractDiv) {
 
 	// HIDE
 	contractDiv
-		.addClass('.deleted')
+		.addClass('deleted')
 		.slideUp(function(){
 
 			// if this a contract created in this session (i.e. not already in the DB),
