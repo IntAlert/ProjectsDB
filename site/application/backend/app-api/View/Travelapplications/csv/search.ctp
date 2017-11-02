@@ -16,10 +16,14 @@ foreach($travelapplications as &$travelapplication):
 	// debug($application->applicant->user->displayName);
 	foreach($application->itinerary as $itinerary):
 
-		$row = [
-			property_exists($application->applicant, 'user') ? $application->applicant->user->displayName : 'No user',
-			$itinerary->destination->Territory->name
-		];
+		if (property_exists($application->applicant, 'user')) {
+
+			$row = [
+				$application->applicant->user->displayName
+				$itinerary->destination->Territory->name
+			];
+		}
+		
 
 		$rows[] = $row;
 
