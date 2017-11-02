@@ -1,9 +1,8 @@
 <h1>A result needs approval for publication</h1>
 
 <p>
-	The following result has been submitted on PROMPT. Please click the link at the bottom of this email to approve the result for publication by the Communications department.
+	The following result has been submitted on PROMPT. Please click the link at the bottom of this email to approve the content of the result for use by the communications dept. The product of their communication will be shown to you (as budget holder) before final publication.
 </p>
-
 
 <table width="100%">
 
@@ -88,7 +87,7 @@
 <p>If you <strong>DO NOT</strong> want this result to be publically available, you do not need to do anything. Results are marked as <strong>not approved for publication</strong> by default.</p>
 
 <p>
-	<a href="http://staging-prompt.intalert.org/forms/resultsframework/approveResult/<?php echo $result['Result']['id'];?>">
-	http://staging-prompt.intalert.org/forms/resultsframework/approveResult/<?php echo $result['Result']['id'];?>
+	<a href="http://prompt.intalert.org/forms/resultsframework/approveResult/<?php echo $result['Result']['id'];?>">
+	http://prompt.intalert.org/forms/resultsframework/approveResult/<?php echo $result['Result']['id'];?>
 	</a>
 </p>

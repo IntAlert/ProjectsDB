@@ -61,7 +61,7 @@ $reminderFrequencyOptions = array(
 				</th>
 
 				<th>
-					Date
+					Deadline
 				</th>
 
 				<th>
