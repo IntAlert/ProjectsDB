@@ -10,7 +10,7 @@ App::uses('AppController', 'Controller');
 class TravelapplicationsController extends AppController {
 
 	public function search() {
-		$travelapplications = $this->Travelapplication->search($this->request->data);
+		$travelapplications = $this->Travelapplication->search($this->request->query);
 
 		$this->set(compact('travelapplications'));
 
