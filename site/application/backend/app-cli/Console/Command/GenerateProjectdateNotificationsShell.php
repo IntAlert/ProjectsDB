@@ -20,7 +20,7 @@ class GenerateProjectdateNotificationsShell extends AppShell {
 		$projectdates = $this->Projectdate->find('all', array(
 			'contain' => false,
 			'conditions' => array(
-				'Projectdate.created > 2018-02-01 00:00:00', // after launch
+				'Projectdate.created >' => '2018-02-01', // after launch
 				'Projectdate.reminder_frequency_days > ' => -1, // not never
 				'Projectdate.completed' => 0, // has not been marked as complete
 				$db->expression($dateClause), // a reminder is due
