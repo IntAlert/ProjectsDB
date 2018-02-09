@@ -13,7 +13,7 @@ class SendResultApprovalRequestShell extends AppShell {
 		$results = $this->Result->find('all', array(
 			'contain' => array('Project.OwnerUser.Office365user', 'Impact'),
 			'conditions' => array(
-				'Result.created > 2018-02-01 00:00:00', // after launch
+				'Projectdate.created >' => '2018-02-01', // after launch
 				'Result.project_owner_notified' => false, // owner has not been notified
 			),
 			'limit' => $this->batchSize,
