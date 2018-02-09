@@ -21,14 +21,4 @@
 		</td>
 	</tr>
 
-	<tr width="50%">
-		<th>
-			Your role at Alert
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->applicant->role_text;?>
-		</td>
-	</tr>
-
 </table>

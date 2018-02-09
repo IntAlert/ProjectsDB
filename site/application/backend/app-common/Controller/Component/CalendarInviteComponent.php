@@ -64,7 +64,6 @@ class CalendarInviteComponent extends Component {
 		// Work through other contacts, syphoning off contacts that are saved in record
 		// foreach ([
 		// 	'applicant' => 'Traveller', 
-		// 	'contact_hq' => 'HQ Contact', 
 		// 	'contact_home' => 'Home Contact', 
 		// 	'contact_incountry' => 'In-country Contact'
 		// ] as $key => $niceName) {

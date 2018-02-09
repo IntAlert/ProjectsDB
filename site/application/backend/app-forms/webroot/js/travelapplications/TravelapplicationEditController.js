@@ -30,15 +30,6 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 		},
 
 		// Contact Home
-		"contact_hq": {
-			"user": false,
-			"email": "",
-			"tel_land": "",
-			"tel_mobile": "",
-			"freqency_of_contact": ""
-		},
-
-		// Contact HQ
 		"contact_home": {
 			"user": false,
 			"email": "",
@@ -63,12 +54,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 			"sources": ""
 		},
 
-		"contact_other": {
-			"alert": "",
-			"embassies": "",
-			"emergency": "",
-			"medical": ""
-		},
+		"contact_other": "",
 
 		// Itinerary
 		"itinerary": [{
@@ -109,17 +95,6 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 
 
 	// Watch data
-	$scope.$watch('formData.contact_hq.user', function() {
-
-		if ($scope.formData.contact_hq.user) {
-			$scope.formData.contact_hq.email = $scope.formData.contact_hq.user.mail;
-			$scope.formData.contact_hq.tel_land = $scope.formData.contact_hq.user.telephoneNumber;
-			$scope.formData.contact_hq.tel_mobile = $scope.formData.contact_hq.user.mobile;
-			$scope.formData.contact_hq.tel_skype = $scope.formData.contact_hq.user.userPrincipalName;
-		}
-		
-	}, true);
-
 	$scope.$watch('formData.contact_home.user', function() {
 		if ($scope.formData.contact_home.user) {
 			$scope.formData.contact_home.email = $scope.formData.contact_home.user.mail;
@@ -169,7 +144,7 @@ app.controller('TravelapplicationEditController', function ($scope, $window, $lo
 			for (var i = 0; i < $scope.office365Users.all.length; i++) {
 				
 				if ($scope.office365Users.all[i].objectId == me.Office365user.o365_object_id) {
-					$scope.formData.application.user = $scope.office365Users.all[i]
+					$scope.formData.applicant.user = $scope.office365Users.all[i]
 				}
 			}
 			

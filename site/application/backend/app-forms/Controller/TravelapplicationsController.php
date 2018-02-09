@@ -198,7 +198,6 @@ class TravelapplicationsController extends AppController {
 
 			// add the manager to the list
 			$recipientsEmailAddresses[] = $this->request->data['applicant']['approving_manager']['mail'];
-			$recipientsEmailAddresses[] = $this->request->data['contact_hq']['email'];
 
 			if($this->request->data['contact_home']['email']) {
 				$recipientsEmailAddresses[] = $this->request->data['contact_home']['email'];

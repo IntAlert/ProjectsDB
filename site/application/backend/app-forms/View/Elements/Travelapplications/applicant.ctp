@@ -43,14 +43,6 @@
 </div>
 
 
-	<md-input-container md-no-float class="md-block">
-		<label>Your role at Alert</label>
-		<input 
-			required
-			ng-model=" formData.applicant.role_text " 
-			>
-	</md-input-container>
-
 
 <div layout="row" layout-align="end center">
 	<md-button 

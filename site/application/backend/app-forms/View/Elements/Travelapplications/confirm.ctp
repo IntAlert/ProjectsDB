@@ -13,13 +13,11 @@
 
 <?php echo $this->element('Travelapplications/confirm/security'); ?>
 
-<?php echo $this->element('Travelapplications/confirm/checklist'); ?>
-
 
 <div layout="row" layout-align="end center">
 
 	<md-button 
-		ng-show="checklistForm.$valid"
+		ng-show="securityForm.$valid"
 		ng-click=" submitTravelApplication() "
 		class="md-raised">
 		Submit Trip

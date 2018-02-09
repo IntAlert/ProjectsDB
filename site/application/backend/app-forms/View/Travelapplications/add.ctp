@@ -84,16 +84,6 @@
 
 		      </md-tab>
 
-		      <!-- Checklist -->
-		      <md-tab 
-		      	label="checklist" 
-		      	ng-disabled="disableTabsByValid && securityForm.$invalid">
-		        <md-content class="md-padding" ng-form="checklistForm">
-		          <?php echo $this->element('Travelapplications/checklist'); ?>
-
-		        </md-content>
-		      </md-tab>
-
 		      <!-- Confirm -->
 		      <md-tab label="confirm" ng-disabled="disableTabsByValid && checklistForm.$invalid">
 		        <md-content class="md-padding">

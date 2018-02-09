@@ -1,69 +1,6 @@
 <h2>Contacts</h2>
 
 
-<h3>Point of Contact information in London</h3>
-<table>
-	<tr>
-		<th>
-			Name
-		</th>
-		
-		<td>
-			{{formData.contact_hq.user.displayName}}
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			Email Address(es)
-		</th>
-		
-		<td>
-			{{formData.contact_hq.email}}
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			Telephone Number(s)
-		</th>
-		
-		<td>
-			{{formData.contact_hq.tel_land}}
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			Mobile telephone number(s)
-		</th>
-		
-		<td>
-			{{formData.contact_hq.tel_mobile}}
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			Skype for Business
-		</th>
-		
-		<td>
-			{{formData.contact_hq.tel_skype}}
-		</td>
-	</tr>
-
-	<tr>
-		<th>
-			Agreed Frequency of Contact
-		</th>
-		
-		<td>
-			{{formData.contact_hq.freqency_of_contact}}
-		</td>
-	</tr>
-</table>
-
 
 <h3>Point of Contact information in your home office</h3>
 <table>
@@ -199,43 +136,14 @@
 	<table>
 		<tr>
 			<th>
-				Alert Partners
+				Alert Partners, Embassies, Local emergency numbers, Local medical facilities
 			</th>
 			
 			<td>
-				{{formData.contact_other.alert}}
+				{{formData.contact_other}}
 			</td>
 		</tr>
 
-		<tr>
-			<th>
-				Embassies
-			</th>
-			
-			<td>
-				{{formData.contact_other.embassies}}
-			</td>
-		</tr>
-
-		<tr>
-			<th>
-				Local emergency numbers
-			</th>
-			
-			<td>
-				{{formData.contact_other.emergency}}
-			</td>
-		</tr>
-
-		<tr>
-			<th>
-				Local medical facilities
-			</th>
-			
-			<td>
-				{{formData.contact_other.medical}}
-			</td>
-		</tr>
 	</table>
 
 </div>  <!-- ng-show=" formData.mode == 'no-office' -->

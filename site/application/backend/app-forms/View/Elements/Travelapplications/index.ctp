@@ -42,9 +42,6 @@
 				</td>
 
 				<!-- Contacts -->
-				<td>						
-					{{ta.contact_hq.user.displayName}}
-				</td>
 
 				<td>
 					{{ta.contact_home.user.displayName || "n/a"}}
@@ -105,8 +102,6 @@
 								<?php echo $this->element('Travelapplications/confirm/meetings'); ?>
 
 								<?php echo $this->element('Travelapplications/confirm/security'); ?>
-
-								<?php echo $this->element('Travelapplications/confirm/checklist'); ?>
 
 								<!-- <pre>{{formData |json}}</pre> -->
 							</div>

@@ -21,14 +21,4 @@
 		</td>
 	</tr>
 
-	<tr>
-		<th>
-			Your role at Alert
-		</th>
-		
-		<td>
-			{{formData.applicant.role_text}}
-		</td>
-	</tr>
-
 </table>

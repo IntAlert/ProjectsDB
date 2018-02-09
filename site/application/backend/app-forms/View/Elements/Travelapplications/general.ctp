@@ -6,10 +6,13 @@
 
 </md-radio-group>
 
-<md-input-container class="md-block">
-	<label>Reason for your trip</label>
-	<textarea ng-model="formData.applicant.reason" md-minlength="3" md-maxlength="350" rows="5" required></textarea>
-</md-input-container>
+<div class="travel-request-reason">
+	<p>Reason for your trip</p>
+	<md-input-container class="md-block" md-no-float>
+		
+		<textarea ng-model="formData.applicant.reason" md-minlength="3" md-maxlength="350" rows="5" required></textarea>
+	</md-input-container>
+</div>
 
 
 	<div class="input select">

@@ -7,7 +7,7 @@
 			ng-click="removeItineraryItem(i)"
 			ng-show="formData.itinerary.length > 1"
 			class="md-warn">
-			Remove Leg
+			Remove Item
 		</md-button>
 	</div>
 

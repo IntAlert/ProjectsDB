@@ -28,5 +28,3 @@
 <?php echo $this->element('Travelapplications/email/meetings'); ?>
 
 <?php echo $this->element('Travelapplications/email/security'); ?>
-
-<?php echo $this->element('Travelapplications/email/checklist'); ?>

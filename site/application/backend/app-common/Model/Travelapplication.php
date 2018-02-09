@@ -173,8 +173,7 @@ class Travelapplication extends AppModel {
 				'OR' => array(
 					'manager_o365_object_id' => $query['contact_o365_object_id'],
 					'contact_home_o365_object_id' => $query['contact_o365_object_id'],
-					'contact_incountry_o365_object_id' => $query['contact_o365_object_id'],
-					'contact_hq_o365_object_id' => $query['contact_o365_object_id'],
+					'contact_incountry_o365_object_id' => $query['contact_o365_object_id']
 				)
 			);
 		}

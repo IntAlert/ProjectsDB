@@ -60,3 +60,12 @@ md-dialog-content p {
 .other-contacts label {
 	display: block;
 }
+
+.travel-request-reason textarea.md-input {
+	background:#fff;
+	box-shadow: 5px 5px 31px #aaa !important;
+}
+
+.security label {
+	display: block;
+}

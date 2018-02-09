@@ -18,7 +18,6 @@
 
 	<?php echo $this->element('Travelapplications/confirm/security'); ?>
 
-	<?php echo $this->element('Travelapplications/confirm/checklist'); ?>
 
 	</div>
 

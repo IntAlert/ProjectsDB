@@ -1,67 +1,5 @@
 <h2>Contacts</h2>
 
-<h3>Point of Contact information in London</h3>
-<table width="100%">
-	<tr width="50%">
-		<th>
-			Name
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->contact_hq->user->displayName; ?>
-		</td>
-	</tr>
-
-	<tr width="50%">
-		<th>
-			Email Address(es)
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->contact_hq->email; ?>
-		</td>
-	</tr>
-
-	<tr width="50%">
-		<th>
-			Telephone Number(s)
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->contact_hq->tel_land; ?>
-		</td>
-	</tr>
-
-	<tr width="50%">
-		<th>
-			Mobile telephone number(s)
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->contact_hq->tel_mobile; ?>
-		</td>
-	</tr>
-
-	<tr width="50%">
-		<th>
-			Skype for Bussiness
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->contact_hq->tel_skype; ?>
-		</td>
-	</tr>
-
-	<tr width="50%">
-		<th>
-			Agreed Frequency of Contact
-		</th>
-		
-		<td>
-			<?php echo $travelapplicationObj->contact_hq->freqency_of_contact; ?>
-		</td>
-	</tr>
-</table>
 
 
 <h3>Point of Contact information in your home office</h3>
@@ -200,43 +138,14 @@
 	<table width="100%">
 		<tr width="50%">
 			<th>
-				Alert Partners
+				Alert Partners, Embassies, Local emergency numbers, Local medical facilities
 			</th>
 			
 			<td>
-				<?php echo $travelapplicationObj->contact_other->alert; ?>
+				<?php echo $travelapplicationObj->contact_other; ?>
 			</td>
 		</tr>
 
-		<tr width="50%">
-			<th>
-				Embassies
-			</th>
-			
-			<td>
-				<?php echo $travelapplicationObj->contact_other->embassies; ?>
-			</td>
-		</tr>
-
-		<tr width="50%">
-			<th>
-				Local emergency numbers
-			</th>
-			
-			<td>
-				<?php echo $travelapplicationObj->contact_other->emergency; ?>
-			</td>
-		</tr>
-
-		<tr width="50%">
-			<th>
-				Local medical facilities
-			</th>
-			
-			<td>
-				<?php echo $travelapplicationObj->contact_other->medical; ?>
-			</td>
-		</tr>
 	</table>
 
 </div>  
