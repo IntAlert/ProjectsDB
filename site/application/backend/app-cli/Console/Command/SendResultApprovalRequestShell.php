@@ -54,7 +54,7 @@ class SendResultApprovalRequestShell extends AppShell {
 		    ))
 		    ->subject('PROMPT Result Approval Request - ' . $result['Project']['title'])
 				->addTo('athomson@international-alert.org')
-		    // ->addTo($result['Project']['OwnerUser']['Office365user']['email'])
+		    ->addTo($result['Project']['OwnerUser']['Office365user']['email'])
 		    ->send();
 
 	}
