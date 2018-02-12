@@ -18,10 +18,7 @@ class TerritoriesController extends AppController {
 
 	public $paginate = array(
         'limit' => 100,
-        'contain' => array('Department'),
         'order' => array(
-            // 'Department.sort_order' => 'asc',
-            // 'Department.name' => 'asc',
             'Territory.sort_order' => 'asc',
             'Territory.name' => 'asc',
         )
@@ -70,9 +67,8 @@ class TerritoriesController extends AppController {
 				$this->Session->setFlash(__('The territory could not be saved. Please, try again.'));
 			}
 		}
-		$departments = $this->Territory->Department->find('list');
 		$continents = $this->Territory->Continent->find('list');
-		$this->set(compact('departments', 'continents'));
+		$this->set(compact('continents'));
 	}
 
 /**
@@ -99,10 +95,9 @@ class TerritoriesController extends AppController {
 			$this->request->data = $this->Territory->find('first', $options);
 		}
 		
-		$departments = $this->Territory->Department->find('list');
 		$continents = $this->Territory->Continent->find('list');
 
-		$this->set(compact('departments', 'continents'));
+		$this->set(compact('continents'));
 	}
 
 /**
