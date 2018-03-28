@@ -22,6 +22,6 @@
 <body>
 	<?php echo $this->fetch('content'); ?>
 
-	<p>This email was sent using the <a href="http://prompt.intalert.org/">PROMPT</a></p>
+	<p>This email was sent using the <a href="https://prompt.intalert.org/">PROMPT</a></p>
 </body>
 </html>

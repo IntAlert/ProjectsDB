@@ -14,7 +14,6 @@
 	<tr>
 			<!-- <th><?php echo $this->Paginator->sort('id'); ?></th> -->
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('department_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('active'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -24,21 +23,6 @@
 	<tr>
 		<!-- <td><?php echo h($territory['Territory']['id']); ?>&nbsp;</td> -->
 		<td><?php echo h($territory['Territory']['name']); ?>&nbsp;</td>
-		<td><?php 
-
-			$department_names = array();
-			foreach($territory['Department'] as $department) {
-				$department_names[] = $department['name'];
-			}
-
-			if (count($department_names)) {
-				echo implode(', ', $department_names);
-			} else {
-				echo 'none';
-			}
-
-
-		?>&nbsp;</td>
 		<td><?php echo $territory['Territory']['active'] ? 'Yes' : 'No'; ?>&nbsp;</td>
 		<td class="actions">
 			<!--<?php echo $this->Html->link(__('View'), array('action' => 'view', $territory['Territory']['id'])); ?>-->

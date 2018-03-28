@@ -50,7 +50,7 @@
 	In order to stop these notifications, please visit the project page and mark this date as complete.
 
 	You can visit the project page here:
-	<a href="http://prompt.intalert.org/pdb/projects/view/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>">
-		http://prompt.intalert.org/pdb/projects/view/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>
+	<a href="https://prompt.intalert.org/pdb/projects/view/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>">
+		https://prompt.intalert.org/pdb/projects/view/<?php echo $projectdatenotification['Projectdatenotification']['project_id'];?>
 	</a>
 </p>
