@@ -40,7 +40,7 @@
 					class="md-raised" 
 					ng-click="exportTrainingData()"
 				>
-					Export Selected Training Data
+					Export Selected Capacity Building Data
 				</md-button>
 			</div>
 

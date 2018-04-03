@@ -20,7 +20,7 @@
 		</tr>
 
 		<tr>
-			<th>How many transgender people took part (cumulative) ?</th>
+			<th>How many gender-unspecified people took part (cumulative) ?</th>
 			<td>{{data.totals.transgender_count || 0}}</td>
 		</tr>
 

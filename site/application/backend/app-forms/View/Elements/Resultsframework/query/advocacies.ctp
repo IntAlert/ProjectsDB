@@ -66,7 +66,7 @@
 			  	aria-label="Theme"
 		  		ng-model="query.themes.selected" 
 		  		ng-hide="query.themes.all">
-			  	<md-option ng-value="null"> Select Training Theme </md-option>
+			  	<md-option ng-value="null"> Select Capacity Building Theme </md-option>
 			  	<md-option
 			  		ng-repeat="theme in FormOptions.themes"
 			  		ng-value="theme"

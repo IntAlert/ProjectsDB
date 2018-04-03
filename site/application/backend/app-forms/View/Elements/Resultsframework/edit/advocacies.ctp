@@ -17,7 +17,7 @@
 		</tr>
 
 		<tr>
-			<th>How many transgender participants in public advocacy meetings</th>
+			<th>How many gender-unspecified participants in public advocacy meetings</th>
 			<td>
 				{{data.totals.transgender_count || 0}}
 			</td>
@@ -99,7 +99,7 @@
 				</th>
 
 				<th>
-					Number of Transgender
+					Number of Other Gender
 				</th>
 
 				<th>

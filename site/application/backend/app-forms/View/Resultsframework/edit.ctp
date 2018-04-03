@@ -25,7 +25,7 @@
 		    >
 
 		    <!-- TRAINING -->
-		      <md-tab label="TRAINING">
+		      <md-tab label="CAPACITY BUILDING">
 		        <md-content 
 		        	class="md-padding">
 

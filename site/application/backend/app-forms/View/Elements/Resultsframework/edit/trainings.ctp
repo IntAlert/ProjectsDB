@@ -1,10 +1,10 @@
 <div ng-controller="TrainingsController">
-	<h2>Training Summary</h2>
+	<h2>Capacity Building Summary</h2>
 
 	<table>
 
 		<tr>
-			<th>How many training and learning events were carried out within the project, whether by Alert or partners?</th>
+			<th>How many capacity building events were carried out within the project, whether by Alert or partners?</th>
 			<td>{{data.totals.event_count || 0}}</td>
 		</tr>
 
@@ -19,7 +19,7 @@
 		</tr>
 
 		<tr>
-			<th>How many transgender participants took part?</th>
+			<th>How many gender-unspecified participants took part?</th>
 			<td>{{data.totals.transgender_count || 0}}</td>
 		</tr>
 		<tr>

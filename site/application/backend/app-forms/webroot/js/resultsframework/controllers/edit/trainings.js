@@ -4,7 +4,7 @@ app.controller('TrainingsController', function($scope, $mdDialog, DedupeService,
 	$scope.data = TrainingsService
 
 	$scope.removeTrainingItem = function(id) {
-		if (confirm("Are you sure you want to remove this training item?")) {
+		if (confirm("Are you sure you want to remove this capacity building item?")) {
 			TrainingsService.delete(id)
 		}
 	}
