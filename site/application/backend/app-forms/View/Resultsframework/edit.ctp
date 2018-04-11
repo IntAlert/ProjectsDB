@@ -34,16 +34,6 @@
 		        </md-content>
 		      </md-tab>
 
-		    <!-- ACCOMPANIMENT -->
-		      <md-tab label="ACCOMPANIMENT">
-		        <md-content 
-		        	class="md-padding">
-
-		        <?php echo $this->element('Resultsframework/edit/accompaniments'); ?>
-
-		        </md-content>
-		      </md-tab>
-
 
 		      <md-tab label="DIALOGUE">
 		        <md-content 
@@ -86,7 +76,19 @@
 
 		        <?php echo $this->element('Resultsframework/edit/other_activities'); ?>
 		        </md-content>
-		      </md-tab>
+					</md-tab>
+					
+				
+		    <!-- ACCOMPANIMENT -->
+				<md-tab label="ACCOMPANIMENT">
+					<md-content 
+						class="md-padding">
+
+					<?php echo $this->element('Resultsframework/edit/accompaniments'); ?>
+
+					</md-content>
+				</md-tab>
+
 
 		    <!-- RESULTS -->
 		      <md-tab label="results">

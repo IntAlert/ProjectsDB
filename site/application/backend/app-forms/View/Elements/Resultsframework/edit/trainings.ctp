@@ -63,11 +63,11 @@
 	</div>
 
 	<div class="item-list-header clearfix">
-		<h2>Training</h2>
+		<h2>Capacity Building</h2>
 
 		<md-button 
 			class="md-raised" 
-			ng-click="showTrainingItemDialog()">Add Training</md-button>
+			ng-click="showTrainingItemDialog()">Add Capacity Building Activity</md-button>
 
 	</div>
 

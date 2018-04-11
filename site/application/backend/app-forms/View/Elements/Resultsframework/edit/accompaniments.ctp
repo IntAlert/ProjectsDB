@@ -46,7 +46,7 @@
 				</th>
 
 				<th>
-					Title
+					Name of the entity that is being accompanied through the project
 				</th>
 
 				<th>
