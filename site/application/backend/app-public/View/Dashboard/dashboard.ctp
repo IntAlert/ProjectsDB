@@ -9,6 +9,12 @@
 		International Alert's <strong>project metadata and documents</strong>.
 	</p>
 
+
+<a href="https://intlalert.sharepoint.com/prompt-resources/SitePages/Home.aspx">
+Proposal-writing Resources
+</a>
+
+
 <h2>
 	Find a project
 </h2>
