@@ -60,7 +60,7 @@ class SendProjectdateNotificationsShell extends AppShell {
 		    ->viewVars(array(
 		    	'projectdatenotification' => $projectdatenotification,
 		    ))
-		    ->subject('PROMPT Key Date Reminder - ' . $projectdatenotification['Project']['title'])
+		    ->subject($projectdatenotification['Project']['title'] . ' - PROMPT Key Date Reminder')
 				->addTo('athomson@international-alert.org')
 		    ->addTo($projectdatenotification['Project']['OwnerUser']['Office365user']['email'])
 		    ->send();
