@@ -1,5 +1,19 @@
 <div id="dashboard-actions">
 
+<!--
+<div class="instruction-block" style="margin-bottom:2em;">
+	<p>
+		NEW: Please refer to <a href="https://intlalert.sharepoint.com/prompt-resources/SitePages/Home.aspx">
+		Proposal-writing Resources
+		</a> for info on <br>Commercial Contracting, Country Strategies, DM&amp;E, Donor Strategies &amp; intel and Partnerships.
+	</p>
+	<p>
+		Please feel free to contribute content to these resources.
+	</p>
+</div>
+-->
+
+
 	<h2>
 		Hello <?php echo AuthComponent::user('first_name'); ?>
 	</h2>
@@ -10,9 +24,6 @@
 	</p>
 
 
-<a href="https://intlalert.sharepoint.com/prompt-resources/SitePages/Home.aspx">
-Proposal-writing Resources
-</a>
 
 
 <h2>
