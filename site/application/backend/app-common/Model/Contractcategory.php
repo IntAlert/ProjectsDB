@@ -30,10 +30,17 @@ class Contractcategory extends AppModel {
 		)
 	);
 
-	public function findOrderedList() {
+	public function findOrderedList($includeCoreGrant = false) {
+
+		$conditions = array('deleted' => false);
+
+		if ( !$includeCoreGrant ) {
+			$conditions['short_name <>'] = 'core_grant';
+		}
+
 		return $this->find('list', array(
 			'order' => array('Contractcategory.name ASC'),
-			'conditions' => array('deleted' => false),
+			'conditions' => $conditions,
 		));
 	}
 

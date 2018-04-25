@@ -241,13 +241,15 @@ class ProjectsController extends AppController {
 			}
 		}
 
+		$is_admin = $this->userIs('admin');
+
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
 		$pathways = $this->Project->Pathway->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
-		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
+		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList($is_admin);
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
 		$donorWarnings = $this->Donor->findDonorWarnings();
@@ -308,13 +310,16 @@ class ProjectsController extends AppController {
 			$this->request->data = $this->Project->find('first', $options);
 
 		}
+
+		$is_admin = $this->userIs('admin');
+
 		$statuses = $this->Project->Status->findOrderedList();
 		$themes = $this->Project->Theme->findOrderedList();
 		$pathways = $this->Project->Pathway->findOrderedList();
 		$likelihoods = $this->Project->Likelihood->findOrderedList();
 		
 		$frameworks = $this->Project->Contract->Framework->findOrderedList();
-		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList();
+		$contractcategories = $this->Project->Contract->Contractcategory->findOrderedList($is_admin);
 		$departments = $this->Project->Department->findListByDate(date('Y-m-d'));
 		$currencies = $this->Currency->find('list');
 		$donors = $this->Donor->findOrderedList();
