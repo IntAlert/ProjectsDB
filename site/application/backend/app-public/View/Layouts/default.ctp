@@ -201,6 +201,16 @@ if ( !isset($title) ) {
 
 				</li>
 
+				
+
+				<li class="projects-add">
+					<a
+					href="/pdb/projects/add">
+					<i class="fa-plus-circle"></i>
+						Add Proposal/Project
+					</a>
+				</li>
+
 				<li class="projects-add">
 					<a 
 					target="_blank"
