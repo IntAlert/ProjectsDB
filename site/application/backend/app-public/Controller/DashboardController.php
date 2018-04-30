@@ -44,7 +44,7 @@ class DashboardController extends AppController {
 
 		$year = date('Y');
 		
-		$mapData = $this->Project->getMapData(2015);
+		$mapData = $this->Project->getMapData($year);
 
 		$this->set(compact('mapData', 'year'));
 	}

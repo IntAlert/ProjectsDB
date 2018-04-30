@@ -202,7 +202,9 @@ if ( !isset($title) ) {
 				</li>
 
 				<li class="projects-add">
-					<a href="https://intlalert.sharepoint.com/prompt-resources/SitePages/Home.aspx">
+					<a 
+					target="_blank"
+					href="https://intlalert.sharepoint.com/prompt-resources/SitePages/Home.aspx">
 					<i class="fa fa-book"></i>
 						Resources
 					</a>
