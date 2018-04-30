@@ -67,12 +67,4 @@ class Territory extends AppModel {
 		));
 	}
 
-	// public function findActiveWithDepartment() {
-	// 	return $this->find('all', array(
-	// 		'contain' => array('Department'),
-	// 		'conditions' => array('active' => true),
-	// 		'order' => array('Territory.sort_order ASC', 'Territory.name ASC'),
-	// 	));
-	// }
-
 }
