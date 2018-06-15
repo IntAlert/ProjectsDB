@@ -396,6 +396,11 @@ nav.admin-nav ul li p {padding:1em;}
 
 /*resultsframework*/
 
+.resultsframework md-input-container label {
+	color: rgba(0,0,0,1);
+	font-weight: bold;
+}
+
 .resultsframework .instruction-block {
 	margin-top: 4em;
 }
