@@ -206,7 +206,7 @@ if ( !isset($title) ) {
 				<li class="projects-add">
 					<a
 					href="/pdb/projects/add">
-					<i class="fa-plus-circle"></i>
+					<i class="fa fa-plus-circle"></i>
 						Add Proposal/Project
 					</a>
 				</li>

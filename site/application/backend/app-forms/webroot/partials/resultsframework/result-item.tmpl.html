@@ -2,18 +2,24 @@
 <md-dialog class="rf-dialog-large"  layout-padding ng-form="resultItemForm">
 
 	<md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Edit Result</h2>
-      </div>
-    </md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Edit Result</h2>
+		</div>
+	</md-toolbar>
 
 	<md-dialog-content ng-cloak>
+
+		<div class="instruction-block">
+			<p>
+				This form can be printed in hard copy and brought on the field by partners, project staff or any other Alert staff. It is also available electronically on the tablets. Once it is filled in, it can be given to the M&amp;E assistant so it can be included on PROMPT. It is important to create the time for reflection on how the project in going. Results can be positive, negative, expected or unexpected and can be used for reflection.
+			</p>
+		</div>
 
 		<div layout="row" layout-wrap>
 			<div flex="100">
 				<!-- Title -->
 				<md-input-container class="md-block">
-					<label>Title</label>
+					<label>Result Title</label>
 					<input ng-model="data.Result.title" required>
 				</md-input-container>
 			</div>
@@ -31,7 +37,7 @@
 					<p>
 						Tell us who you are/who is reporting this result?
 					</p>
-					<p>
+					<p class="lang-fr">
 						Dites-nous qui vous êtes/qui rapporte ce résultat?
 					</p>
 					</div>
@@ -58,10 +64,10 @@
 					<label class="md-block md-no-float">Who did something differently?</label>
 					
 					<div class="hint">
-					<p>Tell us who is this result about: who did something differently as a result of our work?
+					<p>Tell us who acted differently or changed their practice: this could be a person, a group of people or organisations, or an institution or part of an institution. If you are reporting a change in conditions, such as a decrease in criminality, you can skip to the next question.
 					</p>
-					<p>
-						Dites-nous de qui il s'agit : qui a fait quelque chose différemment  à cause de notre travail ?
+					<p class="lang-fr">
+						S’il s’agit d’un changement de conditions dans lesquelles les gens vivent, travaillent, évoluent, etc., comme une diminution de la criminalité par exemple, vous pouvez passer directement à la question suivante.
 					</p>
 					</div>
 
@@ -86,7 +92,7 @@
 					<div class="hint">
 					<p>Tell us what they did differently (not what activity you did).
 					</p>
-					<p>
+					<p class="lang-fr">
 						Dites-nous ce qu’ils ont fait de différent (pas l’activité que nous avons fait).
 					</p>
 					</div>
@@ -140,15 +146,16 @@
 					<label class="md-block md-no-float">Significance</label>
 
 					<div class="hint">
-						<p>Tell us why you think this change in practice or relationship is significant.</p>
-						<p>Dites-nous pourquoi vous pensez que ce changement de pratique ou de relation est significatif?</p></div>
+						<p>Tell us why you think this change in practice or relationship is significant, based on the context we are working in (a result is significant because it changes something for the people we work with).</p>
+						<p class="lang-fr">Dites-nous pourquoi vous pensez que ce changement de pratique ou de relation est significatif pour le contexte dans lequel nous travaillons (un résultat est significatif parce qu’il change quelque chose pour les personnes avec qui nous travaillons).</p>
+					</div>
 
 					<textarea 
 						width="100%"
 						required
 						ng-model="data.Result.significance" 
 						md-minlength="20" 
-						md-maxlength="500" 
+						md-maxlength="1000" 
 						rows="5"></textarea>
 					
 				</md-input-container>
