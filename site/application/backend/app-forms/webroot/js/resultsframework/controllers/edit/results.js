@@ -55,10 +55,8 @@ app.controller('ResultsController', function($scope, $mdDialog, ResultsService){
 
 		resultInProse += territory_names.join(', ');
 
-		resultInProse += " called ";
-
 		// ADD PROJECT NAME
-		resultInProse += result.Project.title.trim();
+		resultInProse += ' called "' + result.Project.title.trim() + '" ';
 
 		// ADD ‘WHERE AND WHEN’
 		resultInProse += "in " + result.Result.where.trim() + " ";
@@ -92,8 +90,8 @@ app.controller('ResultsController', function($scope, $mdDialog, ResultsService){
 
 		$mdDialog.show(
       $mdDialog.alert()
-        .parent(angular.element(document.querySelector('#popupContainer')))
-        .clickOutsideToClose(true)
+				.clickOutsideToClose(true)
+				.parent(angular.element(document.body))
         .title('Result in prose')
         .textContent(resultInProse)
         .ariaLabel('Result in prose')
