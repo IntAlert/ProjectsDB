@@ -57,7 +57,7 @@
 					<md-button 
 						class="md-raised" 
 						ng-click="showMagicParagraphDialog(i)">
-						Show prose
+						Prose
 					</md-button>
 
 					<md-button 
