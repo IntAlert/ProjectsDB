@@ -56,6 +56,12 @@
 
 					<md-button 
 						class="md-raised" 
+						ng-click="showMagicParagraphDialog(i)">
+						Show prose
+					</md-button>
+
+					<md-button 
+						class="md-raised" 
 						ng-click="showResultItemDialog(i)">
 						Edit
 					</md-button>
