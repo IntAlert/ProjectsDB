@@ -156,7 +156,7 @@ class Project extends AppModel {
 		$conditions = array(
 			'Project.deleted' => false,
 			'Project.department_id' => $department_id,
-			'Status.short_name <>' => array('concept', 'cancelled', 'rejected', 'completed'),
+			'Status.short_name <>' => array('concept', 'cancelled', 'rejected', 'completed', 'not-submitted'),
 		);
 
 		

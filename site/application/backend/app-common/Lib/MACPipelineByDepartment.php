@@ -282,7 +282,7 @@ class MACPipelineByDepartment {
 				'fund_code' => $project['Project']['fund_code'],
 
 				// dates
-				'proposal_date' => $project['Project']['proposal_date'],
+				'submission_date' => $project['Project']['submission_date'],
 				'start_date' => $project['Project']['start_date'],
 				'finish_date' => $project['Project']['finish_date'],
 				'duration_months' => $duration_months,
