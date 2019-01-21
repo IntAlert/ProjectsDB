@@ -9,6 +9,8 @@ class SendResultApprovalRequestShell extends AppShell {
 
 	function main() {
 
+		$this->quickTest();
+
 		// get all project dates that are past remind_by
 		$results = $this->Result->find('all', array(
 			'contain' => array('Project.OwnerUser.Office365user', 'Impact'),
@@ -53,10 +55,25 @@ class SendResultApprovalRequestShell extends AppShell {
 		    	'result' => $result,
 		    ))
 		    ->subject('PROMPT Result Approval Request - ' . $result['Project']['title'])
-				->addTo('athomson@international-alert.org')
+				// ->addTo('athomson@international-alert.org')
 		    ->addTo($result['Project']['OwnerUser']['Office365user']['email'])
 		    ->send();
 
 	}
+
+	private quickTest() {
+		// get all project dates that are past remind_by
+		$results = $this->Result->find('all', array(
+			'contain' => array('Project.OwnerUser.Office365user', 'Impact'),
+			'conditions' => array(
+				'Result.created >' => '2018-02-01', // after launch
+				'Result.project_owner_notified' => false, // owner has not been notified
+			),
+			'order' => 'Result.created ASC',
+		));
+		var_dump(count($results));
+		var_dump($results);
+	}
+	
 
 }

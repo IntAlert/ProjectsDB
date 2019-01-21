@@ -66,7 +66,7 @@ class TravelapplicationsController extends AppController {
 		echo($ICSContent);
 
 		$Email = new CakeEmail('default');
-		$Email->addTo('athomson@international-alert.org');
+		// $Email->addTo('athomson@international-alert.org');
 		$result = $Email->template('travelapplications/invite')
 			->config(array('log' => true))
 		    ->emailFormat('html')
