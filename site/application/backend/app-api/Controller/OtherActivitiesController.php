@@ -135,7 +135,7 @@ class OtherActivitiesController extends AppController {
 		$participant_types = $this->OtherActivity->ParticipantType->findOrderedList();	
 
 		// get themes
-		$themes = $this->Meeting->Theme->findOrderedList();		
+		$themes = $this->OtherActivity->Project->Theme->findOrderedList();		
 
 		// get continents
 		$continents = $this->OtherActivity->Project->Territory->Continent->find('list');
