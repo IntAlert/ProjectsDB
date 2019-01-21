@@ -9,7 +9,7 @@ class SendResultApprovalRequestShell extends AppShell {
 
 	function main() {
 
-		$this->quickTest();
+		// $this->quickTest();
 
 		// get all project dates that are past remind_by
 		$results = $this->Result->find('all', array(

@@ -124,6 +124,7 @@ class OtherActivitiesController extends AppController {
 			'joins' => $joins,
 			'contain' => [
 				'ParticipantType',
+				'Project.Theme', 
 				'Project.Territory',
 				'Project.Pathway',
 				'Project.OwnerUser'
@@ -132,6 +133,10 @@ class OtherActivitiesController extends AppController {
 
 		// get all participant_types
 		$participant_types = $this->OtherActivity->ParticipantType->findOrderedList();	
+
+		// get themes
+		$themes = $this->Meeting->Theme->findOrderedList();		
+
 		// get continents
 		$continents = $this->OtherActivity->Project->Territory->Continent->find('list');
 
@@ -144,6 +149,7 @@ class OtherActivitiesController extends AppController {
 		$this->set(array(
 			'continents' => $continents,
 			'participant_types' => $participant_types,
+			'themes' => $themes,
 			'pathways' => $pathways,
 			'territories' => $territories,
 			'data' => $other_activities,
