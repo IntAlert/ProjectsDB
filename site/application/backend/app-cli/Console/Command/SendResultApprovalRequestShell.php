@@ -61,7 +61,7 @@ class SendResultApprovalRequestShell extends AppShell {
 
 	}
 
-	private quickTest() {
+	private function quickTest() {
 		// get all project dates that are past remind_by
 		$results = $this->Result->find('all', array(
 			'contain' => array('Project.OwnerUser.Office365user', 'Impact'),
@@ -74,6 +74,5 @@ class SendResultApprovalRequestShell extends AppShell {
 		var_dump(count($results));
 		var_dump($results);
 	}
-	
 
 }
